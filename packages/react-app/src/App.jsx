@@ -213,22 +213,19 @@ function App(props) {
     )
   })
 
-  // Then read your DAI balance like:
-  const myMainnetDAIBalance = useContractReader(
-    mainnetContracts,
-    'DAI',
+  // keep track of a variable from the contract in the local React state:
+  const nftBalanceOf = useContractReader(
+    readContracts,
+    'NFTokenEnumerable',
     'balanceOf',
     ['0x34aA3F359A9D614239015126635CE7732c18fDF3']
   )
 
-  // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader(readContracts, 'YourContract', 'purpose')
-
   // 📟 Listen for broadcast events
-  const setPurposeEvents = useEventListener(
+  const transferEvents = useEventListener(
     readContracts,
-    'YourContract',
-    'SetPurpose',
+    'NFTokenEnumerable',
+    'Transfer',
     localProvider,
     1
   )
@@ -272,7 +269,6 @@ function App(props) {
       )
       console.log('📝 readContracts', readContracts)
       console.log('🌍 DAI contract on mainnet:', mainnetContracts)
-      console.log('💵 yourMainnetDAIBalance', myMainnetDAIBalance)
       console.log('🔐 writeContracts', writeContracts)
     }
   }, [
@@ -477,7 +473,7 @@ function App(props) {
               }}
               to='/'
             >
-              YourContract
+              NFTokenEnumerable
             </Link>
           </Menu.Item>
           <Menu.Item key='/hints'>
@@ -531,7 +527,7 @@ function App(props) {
             */}
 
             <Contract
-              name='YourContract'
+              name='NFTokenEnumerable'
               signer={userSigner}
               provider={localProvider}
               address={address}
@@ -557,33 +553,8 @@ function App(props) {
               tx={tx}
               writeContracts={writeContracts}
               readContracts={readContracts}
-              purpose={purpose}
-              setPurposeEvents={setPurposeEvents}
+              transferEvents={transferEvents}
             />
-          </Route>
-          <Route path='/mainnetdai'>
-            <Contract
-              name='DAI'
-              customContract={
-                mainnetContracts &&
-                mainnetContracts.contracts &&
-                mainnetContracts.contracts.DAI
-              }
-              signer={userSigner}
-              provider={mainnetProvider}
-              address={address}
-              blockExplorer='https://etherscan.io/'
-            />
-            {/*
-            <Contract
-              name="UNI"
-              customContract={mainnetContracts && mainnetContracts.contracts && mainnetContracts.contracts.UNI}
-              signer={userSigner}
-              provider={mainnetProvider}
-              address={address}
-              blockExplorer="https://etherscan.io/"
-            />
-            */}
           </Route>
           <Route path='/subgraph'>
             <Subgraph

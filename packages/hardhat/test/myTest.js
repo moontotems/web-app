@@ -6,7 +6,7 @@ use(solidity);
 
 describe("My Dapp", function () {
   let myContract;
-
+  /*
   describe("YourContract", function () {
     it("Should deploy YourContract", async function () {
       const YourContract = await ethers.getContractFactory("YourContract");
@@ -23,4 +23,5 @@ describe("My Dapp", function () {
       });
     });
   });
+  */
 });
