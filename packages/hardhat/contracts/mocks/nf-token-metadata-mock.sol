@@ -7,21 +7,13 @@ import "../ownership/ownable.sol";
 /**
  * @dev This is an example contract implementation of NFToken with metadata extension.
  */
-contract NFTokenMetadataMock is
-  NFTokenMetadata,
-  Ownable
-{
-
+contract NFTokenMetadataMock is NFTokenMetadata, Ownable {
   /**
    * @dev Contract constructor.
    * @param _name A descriptive name for a collection of NFTs.
    * @param _symbol An abbreviated name for NFTokens.
    */
-  constructor(
-    string memory _name,
-    string memory _symbol
-  )
-  {
+  constructor(string memory _name, string memory _symbol) {
     nftName = _name;
     nftSymbol = _symbol;
   }
@@ -32,14 +24,7 @@ contract NFTokenMetadataMock is
    * @param _tokenId of the NFT to be minted by the msg.sender.
    * @param _uri String representing RFC 3986 URI.
    */
-  function mint(
-    address _to,
-    uint256 _tokenId,
-    string calldata _uri
-  )
-    external
-    onlyOwner
-  {
+  function mint(address _to, uint256 _tokenId, string calldata _uri) external onlyOwner {
     super._mint(_to, _tokenId);
     super._setTokenUri(_tokenId, _uri);
   }
@@ -48,13 +33,7 @@ contract NFTokenMetadataMock is
    * @dev Removes a NFT from owner.
    * @param _tokenId Which NFT we want to remove.
    */
-  function burn(
-    uint256 _tokenId
-  )
-    external
-    onlyOwner
-  {
+  function burn(uint256 _tokenId) external onlyOwner {
     super._burn(_tokenId);
   }
-
 }

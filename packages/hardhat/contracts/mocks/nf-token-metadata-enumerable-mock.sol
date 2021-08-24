@@ -9,22 +9,13 @@ import "../ownership/ownable.sol";
  * @dev This is an example contract implementation of NFToken with enumerable and metadata
  * extensions.
  */
-contract NFTokenMetadataEnumerableMock is
-  NFTokenEnumerable,
-  NFTokenMetadata,
-  Ownable
-{
-
+contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ownable {
   /**
    * @dev Contract constructor.
    * @param _name A descriptive name for a collection of NFTs.
    * @param _symbol An abbreviated name for NFTokens.
    */
-  constructor(
-    string memory _name,
-    string memory _symbol
-  )
-  {
+  constructor(string memory _name, string memory _symbol) {
     nftName = _name;
     nftSymbol = _symbol;
   }
@@ -35,14 +26,7 @@ contract NFTokenMetadataEnumerableMock is
    * @param _tokenId of the NFT to be minted by the msg.sender.
    * @param _uri String representing RFC 3986 URI.
    */
-  function mint(
-    address _to,
-    uint256 _tokenId,
-    string calldata _uri
-  )
-    external
-    onlyOwner
-  {
+  function mint(address _to, uint256 _tokenId, string calldata _uri) external onlyOwner {
     super._mint(_to, _tokenId);
     super._setTokenUri(_tokenId, _uri);
   }
@@ -51,12 +35,7 @@ contract NFTokenMetadataEnumerableMock is
    * @dev Removes a NFT from owner.
    * @param _tokenId Which NFT we want to remove.
    */
-  function burn(
-    uint256 _tokenId
-  )
-    external
-    onlyOwner
-  {
+  function burn(uint256 _tokenId) external onlyOwner {
     super._burn(_tokenId);
   }
 
@@ -68,14 +47,7 @@ contract NFTokenMetadataEnumerableMock is
    * @param _to The address that will own the minted NFT.
    * @param _tokenId of the NFT to be minted by the msg.sender.
    */
-  function _mint(
-    address _to,
-    uint256 _tokenId
-  )
-    internal
-    override(NFToken, NFTokenEnumerable)
-    virtual
-  {
+  function _mint(address _to, uint256 _tokenId) internal override(NFToken, NFTokenEnumerable) virtual {
     NFTokenEnumerable._mint(_to, _tokenId);
   }
 
@@ -87,16 +59,9 @@ contract NFTokenMetadataEnumerableMock is
    * NFT.
    * @param _tokenId ID of the NFT to be burned.
    */
-  function _burn(
-    uint256 _tokenId
-  )
-    internal
-    override(NFTokenMetadata, NFTokenEnumerable)
-    virtual
-  {
+  function _burn(uint256 _tokenId) internal override(NFTokenMetadata, NFTokenEnumerable) virtual {
     NFTokenEnumerable._burn(_tokenId);
-    if (bytes(idToUri[_tokenId]).length != 0)
-    {
+    if (bytes(idToUri[_tokenId]).length != 0) {
       delete idToUri[_tokenId];
     }
   }
@@ -107,13 +72,7 @@ contract NFTokenMetadataEnumerableMock is
    * @param _from Address from wich we want to remove the NFT.
    * @param _tokenId Which NFT we want to remove.
    */
-  function _removeNFToken(
-    address _from,
-    uint256 _tokenId
-  )
-    internal
-    override(NFToken, NFTokenEnumerable)
-  {
+  function _removeNFToken(address _from, uint256 _tokenId) internal override(NFToken, NFTokenEnumerable) {
     NFTokenEnumerable._removeNFToken(_from, _tokenId);
   }
 
@@ -123,13 +82,7 @@ contract NFTokenMetadataEnumerableMock is
    * @param _to Address to wich we want to add the NFT.
    * @param _tokenId Which NFT we want to add.
    */
-  function _addNFToken(
-    address _to,
-    uint256 _tokenId
-  )
-    internal
-    override(NFToken, NFTokenEnumerable)
-  {
+  function _addNFToken(address _to, uint256 _tokenId) internal override(NFToken, NFTokenEnumerable) {
     NFTokenEnumerable._addNFToken(_to, _tokenId);
   }
 
@@ -139,15 +92,7 @@ contract NFTokenMetadataEnumerableMock is
    * @param _owner Address for whom to query the count.
    * @return Number of _owner NFTs.
    */
-  function _getOwnerNFTCount(
-    address _owner
-  )
-    internal
-    override(NFToken, NFTokenEnumerable)
-    view
-    returns (uint256)
-  {
+  function _getOwnerNFTCount(address _owner) internal override(NFToken, NFTokenEnumerable) view returns (uint256) {
     return NFTokenEnumerable._getOwnerNFTCount(_owner);
   }
-
 }
