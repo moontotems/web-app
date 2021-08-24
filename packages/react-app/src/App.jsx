@@ -216,7 +216,7 @@ function App(props) {
   // keep track of a variable from the contract in the local React state:
   const nftBalanceOf = useContractReader(
     readContracts,
-    'NFTokenEnumerable',
+    'NFTokenEnumerableMock',
     'balanceOf',
     ['0x34aA3F359A9D614239015126635CE7732c18fDF3']
   )
@@ -224,7 +224,7 @@ function App(props) {
   // 📟 Listen for broadcast events
   const transferEvents = useEventListener(
     readContracts,
-    'NFTokenEnumerable',
+    'NFTokenEnumerableMock',
     'Transfer',
     localProvider,
     1
@@ -455,7 +455,6 @@ function App(props) {
 
   return (
     <div id='App'>
-      {/* ✏️ Edit the header and change the title to your project name */}
       <Header />
 
       {networkDisplay}
@@ -473,7 +472,7 @@ function App(props) {
               }}
               to='/'
             >
-              NFTokenEnumerable
+              NFTokenEnumerableMock
             </Link>
           </Menu.Item>
           <Menu.Item key='/hints'>
@@ -527,7 +526,7 @@ function App(props) {
             */}
 
             <Contract
-              name='NFTokenEnumerable'
+              name='NFTokenEnumerableMock'
               signer={userSigner}
               provider={localProvider}
               address={address}
