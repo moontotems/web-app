@@ -84,7 +84,7 @@ export default function Faucet(props) {
   return (
     <span>
       <Input
-        size='large'
+        size='small'
         placeholder={props.placeholder ? props.placeholder : 'local faucet'}
         prefix={blockie}
         // value={address}

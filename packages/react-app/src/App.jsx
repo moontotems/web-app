@@ -28,8 +28,7 @@ import {
   useOnBlock,
   useUserSigner
 } from './hooks'
-// import Hints from './Hints'
-import { ExampleUI, Hints, Subgraph } from './pages'
+import { Home, ExampleUI, Subgraph } from './pages'
 
 const { ethers } = require('ethers')
 
@@ -216,7 +215,7 @@ function App(props) {
   // keep track of a variable from the contract in the local React state:
   const nftBalanceOf = useContractReader(
     readContracts,
-    'NFTokenEnumerableMock',
+    'NFTokenMetadataEnumerableMock',
     'balanceOf',
     ['0x34aA3F359A9D614239015126635CE7732c18fDF3']
   )
@@ -224,7 +223,7 @@ function App(props) {
   // 📟 Listen for broadcast events
   const transferEvents = useEventListener(
     readContracts,
-    'NFTokenEnumerableMock',
+    'NFTokenMetadataEnumerableMock',
     'Transfer',
     localProvider,
     1
@@ -472,17 +471,17 @@ function App(props) {
               }}
               to='/'
             >
-              NFTokenEnumerableMock
+              NFTokenMetadataEnumerableMock
             </Link>
           </Menu.Item>
-          <Menu.Item key='/hints'>
+          <Menu.Item key='/home'>
             <Link
               onClick={() => {
-                setRoute('/hints')
+                setRoute('/home')
               }}
-              to='/hints'
+              to='/home'
             >
-              Hints
+              Home
             </Link>
           </Menu.Item>
           <Menu.Item key='/exampleui'>
@@ -493,16 +492,6 @@ function App(props) {
               to='/exampleui'
             >
               ExampleUI
-            </Link>
-          </Menu.Item>
-          <Menu.Item key='/mainnetdai'>
-            <Link
-              onClick={() => {
-                setRoute('/mainnetdai')
-              }}
-              to='/mainnetdai'
-            >
-              Mainnet DAI
             </Link>
           </Menu.Item>
           <Menu.Item key='/subgraph'>
@@ -519,26 +508,27 @@ function App(props) {
 
         <Switch>
           <Route exact path='/'>
-            {/*
-                🎛 this scaffolding is full of commonly used components
-                this <Contract/> component will automatically parse your ABI
-                and give you a form to interact with it locally
-            */}
-
             <Contract
-              name='NFTokenEnumerableMock'
+              name='NFTokenMetadataEnumerableMock'
               signer={userSigner}
               provider={localProvider}
               address={address}
               blockExplorer={blockExplorer}
             />
           </Route>
-          <Route path='/hints'>
-            <Hints
+          <Route exact path='/home'>
+            <Home
               address={address}
-              yourLocalBalance={yourLocalBalance}
+              userSigner={userSigner}
               mainnetProvider={mainnetProvider}
+              localProvider={localProvider}
+              yourLocalBalance={yourLocalBalance}
               price={ethPriceDollar}
+              gasPrice={gasPrice}
+              tx={tx}
+              writeContracts={writeContracts}
+              readContracts={readContracts}
+              transferEvents={transferEvents}
             />
           </Route>
           <Route path='/exampleui'>
@@ -619,7 +609,7 @@ function App(props) {
               onClick={() => {
                 window.open('https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA')
               }}
-              size='large'
+              size='small'
               shape='round'
             >
               <span style={{ marginRight: 8 }} role='img' aria-label='support'>

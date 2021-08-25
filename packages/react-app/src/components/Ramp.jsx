@@ -57,7 +57,7 @@ export default function Ramp(props) {
   return (
     <div>
       <Button
-        size='large'
+        size='small'
         shape='round'
         onClick={() => {
           setModalUp('up')

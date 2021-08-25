@@ -46,7 +46,7 @@ export default function ExampleUI({
           marginTop: 64
         }}
       >
-        <h2>NFTokenEnumerableMock UI:</h2>
+        <h2>NFTokenMetadataEnumerableMock UI:</h2>
         <h4>transferFrom:</h4>
         <Divider />
         <div style={{ margin: 8 }}>
@@ -58,12 +58,14 @@ export default function ExampleUI({
           <Button
             style={{ marginTop: 8 }}
             onClick={async () => {
-              console.log(writeContracts['NFTokenEnumerableMock'])
-              console.log(readContracts['NFTokenEnumerableMock'])
-              console.log(writeContracts['NFTokenEnumerableMock'].transferFrom)
+              console.log(writeContracts['NFTokenMetadataEnumerableMock'])
+              console.log(readContracts['NFTokenMetadataEnumerableMock'])
+              console.log(
+                writeContracts['NFTokenMetadataEnumerableMock'].transferFrom
+              )
               const TOKEN_ID = 1
               const result = tx(
-                writeContracts['NFTokenEnumerableMock'].transferFrom(
+                writeContracts['NFTokenMetadataEnumerableMock'].transferFrom(
                   address,
                   addressFortransferFrom,
                   TOKEN_ID
@@ -98,8 +100,8 @@ export default function ExampleUI({
         Your Contract Address:
         <Address
           address={
-            readContracts && readContracts.NFTokenEnumerableMock
-              ? readContracts.NFTokenEnumerableMock.address
+            readContracts && readContracts.NFTokenMetadataEnumerableMock
+              ? readContracts.NFTokenMetadataEnumerableMock.address
               : null
           }
           ensProvider={mainnetProvider}
@@ -110,7 +112,11 @@ export default function ExampleUI({
           <Button
             onClick={() => {
               // look how you call setPurpose on your contract:
-              tx(writeContracts.NFTokenEnumerableMock.setPurpose('🍻 Cheers'))
+              tx(
+                writeContracts.NFTokenMetadataEnumerableMock.setPurpose(
+                  '🍻 Cheers'
+                )
+              )
             }}
           >
             Set Purpose to &quot;🍻 Cheers&quot;
@@ -121,7 +127,7 @@ export default function ExampleUI({
             onClick={() => {
               /* look how we call setPurpose AND send some value along */
               tx(
-                writeContracts.NFTokenEnumerableMock.setPurpose(
+                writeContracts.NFTokenMetadataEnumerableMock.setPurpose(
                   '💵 Paying for this one!',
                   {
                     value: utils.parseEther('0.001')
@@ -139,9 +145,9 @@ export default function ExampleUI({
             onClick={() => {
               /* you can also just craft a transaction and send it to the tx() transactor */
               tx({
-                to: writeContracts.NFTokenEnumerableMock.address,
+                to: writeContracts.NFTokenMetadataEnumerableMock.address,
                 value: utils.parseEther('0.001'),
-                data: writeContracts.NFTokenEnumerableMock.interface.encodeFunctionData(
+                data: writeContracts.NFTokenMetadataEnumerableMock.interface.encodeFunctionData(
                   'setPurpose(string)',
                   ['🤓 Whoa so 1337!']
                 )

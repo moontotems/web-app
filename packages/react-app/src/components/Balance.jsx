@@ -57,15 +57,19 @@ export default function Balance(props) {
 
   const price = props.price || props.dollarMultiplier
 
-  if (price && dollarMode) {
-    displayBalance = '$' + (floatBalance * price).toFixed(2)
+  if (price) {
+    if (dollarMode) {
+      displayBalance = '$' + (floatBalance * price).toFixed(2)
+    } else {
+      displayBalance = `${floatBalance.toFixed(2)} ETH`
+    }
   }
 
   return (
     <span
       style={{
         verticalAlign: 'middle',
-        fontSize: props.size ? props.size : 24,
+        fontSize: props.fontSize ? props.fontSize : 24,
         padding: 8,
         cursor: 'pointer'
       }}

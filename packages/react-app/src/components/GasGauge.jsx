@@ -25,7 +25,7 @@ export default function GasGauge(props) {
       onClick={() => {
         window.open('https://ethgasstation.info/')
       }}
-      size='large'
+      size='small'
       shape='round'
     >
       <span style={{ marginRight: 8 }}>
