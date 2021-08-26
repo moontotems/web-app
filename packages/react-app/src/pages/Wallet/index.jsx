@@ -96,7 +96,7 @@ export default function Wallet({
 
   return (
     <div style={{ backgroundColor: '#000' }}>
-      <h2>Your Crypto Moons</h2>
+      <h2>Your Talismoons</h2>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         {usersMoons.map(usersMoon => {
           const CREATURE_IMAGE = CREATURE_IMAGES[usersMoon.id]

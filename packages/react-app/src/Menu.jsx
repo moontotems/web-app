@@ -35,7 +35,7 @@ export default function MyMenu() {
           }}
           to='/all'
         >
-          All Crypto Moons
+          All Talismoons
         </Link>
       </Menu.Item>
       <Menu.Item key='/minted'>
@@ -45,7 +45,7 @@ export default function MyMenu() {
           }}
           to='/minted'
         >
-          Minted Crypto Moons
+          Minted Talismoons
         </Link>
       </Menu.Item>
       <Menu.Item key='/wallet'>
@@ -55,7 +55,7 @@ export default function MyMenu() {
           }}
           to='/wallet'
         >
-          Your Crypto Moons
+          Your Talismoons
         </Link>
       </Menu.Item>
       <Menu.Item key='/contract-events'>

@@ -26,7 +26,7 @@ export default function All({
 
   return (
     <div style={{ backgroundColor: '#000' }}>
-      <h2>All Crypto Moons</h2>
+      <h2>All Talismoons</h2>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         {CREATURE_IMAGES.map((CREATURE_IMAGE, index) => {
           const {
