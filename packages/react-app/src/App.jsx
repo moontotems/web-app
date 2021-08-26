@@ -1,21 +1,16 @@
 import WalletConnectProvider from '@walletconnect/web3-provider'
 //import Torus from '@toruslabs/torus-embed'
 import WalletLink from 'walletlink'
-import { Alert, Button, Col, Menu, Row } from 'antd'
+import { Alert, Button, Col, Row } from 'antd'
 import 'antd/dist/antd.css'
 import React, { useCallback, useEffect, useState } from 'react'
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import Web3Modal from 'web3modal'
 import './App.css'
-import {
-  Account,
-  Contract,
-  Faucet,
-  GasGauge,
-  Header,
-  Ramp,
-  ThemeSwitch
-} from './components'
+import Routes from './Routes'
+import Menu from './Menu'
+import Footer from './Footer'
+import { Account, Faucet, GasGauge, Header, Ramp } from './components'
 import { INFURA_ID, NETWORK, NETWORKS } from './constants'
 import { Transactor } from './helpers'
 import {
@@ -28,11 +23,10 @@ import {
   useOnBlock,
   useUserSigner
 } from './hooks'
-import { Home, ExampleUI, Subgraph } from './pages'
 
 const { ethers } = require('ethers')
 
-/// 📡 What chain are your contracts deployed to?
+// 📡 What chain are your contracts deployed to?
 const targetNetwork = NETWORKS.localhost // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
@@ -212,28 +206,6 @@ function App(props) {
     )
   })
 
-  // keep track of a variable from the contract in the local React state:
-  const nftBalanceOf = useContractReader(
-    readContracts,
-    'NFTokenMetadataEnumerableMock',
-    'balanceOf',
-    ['0x34aA3F359A9D614239015126635CE7732c18fDF3']
-  )
-
-  // 📟 Listen for broadcast events
-  const transferEvents = useEventListener(
-    readContracts,
-    'NFTokenMetadataEnumerableMock',
-    'Transfer',
-    localProvider,
-    1
-  )
-
-  /*
-  const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
-  console.log("🏷 Resolved austingriffith.eth as:",addressFromENS)
-  */
-
   //
   // 🧫 DEBUG 👨🏻‍🔬
   //
@@ -320,15 +292,7 @@ function App(props) {
       )
     } else {
       networkDisplay = (
-        <div
-          style={{
-            zIndex: 2,
-            position: 'absolute',
-            right: 0,
-            top: 60,
-            padding: 16
-          }}
-        >
+        <>
           <Alert
             message='⚠️ Wrong Network'
             description={
@@ -367,18 +331,13 @@ function App(props) {
             type='error'
             closable={false}
           />
-        </div>
+        </>
       )
     }
   } else {
     networkDisplay = (
       <div
         style={{
-          zIndex: -1,
-          position: 'absolute',
-          right: 154,
-          top: 28,
-          padding: 16,
           color: targetNetwork.color
         }}
       >
@@ -413,11 +372,6 @@ function App(props) {
       loadWeb3Modal()
     }
   }, [loadWeb3Modal])
-
-  const [route, setRoute] = useState()
-  useEffect(() => {
-    setRoute(window.location.pathname)
-  }, [setRoute])
 
   let faucetHint = ''
   const faucetAvailable =
@@ -456,107 +410,25 @@ function App(props) {
     <div id='App'>
       <Header />
 
-      {networkDisplay}
-
       <BrowserRouter>
-        <Menu
-          style={{ textAlign: 'center' }}
-          selectedKeys={[route]}
-          mode='horizontal'
-        >
-          <Menu.Item key='/'>
-            <Link
-              onClick={() => {
-                setRoute('/')
-              }}
-              to='/'
-            >
-              NFTokenMetadataEnumerableMock
-            </Link>
-          </Menu.Item>
-          <Menu.Item key='/home'>
-            <Link
-              onClick={() => {
-                setRoute('/home')
-              }}
-              to='/home'
-            >
-              Home
-            </Link>
-          </Menu.Item>
-          <Menu.Item key='/exampleui'>
-            <Link
-              onClick={() => {
-                setRoute('/exampleui')
-              }}
-              to='/exampleui'
-            >
-              ExampleUI
-            </Link>
-          </Menu.Item>
-          <Menu.Item key='/subgraph'>
-            <Link
-              onClick={() => {
-                setRoute('/subgraph')
-              }}
-              to='/subgraph'
-            >
-              Subgraph
-            </Link>
-          </Menu.Item>
-        </Menu>
+        <Menu />
 
-        <Switch>
-          <Route exact path='/'>
-            <Contract
-              name='NFTokenMetadataEnumerableMock'
-              signer={userSigner}
-              provider={localProvider}
-              address={address}
-              blockExplorer={blockExplorer}
-            />
-          </Route>
-          <Route exact path='/home'>
-            <Home
-              address={address}
-              userSigner={userSigner}
-              mainnetProvider={mainnetProvider}
-              localProvider={localProvider}
-              yourLocalBalance={yourLocalBalance}
-              price={ethPriceDollar}
-              gasPrice={gasPrice}
-              tx={tx}
-              writeContracts={writeContracts}
-              readContracts={readContracts}
-              transferEvents={transferEvents}
-            />
-          </Route>
-          <Route path='/exampleui'>
-            <ExampleUI
-              address={address}
-              userSigner={userSigner}
-              mainnetProvider={mainnetProvider}
-              localProvider={localProvider}
-              yourLocalBalance={yourLocalBalance}
-              price={ethPriceDollar}
-              tx={tx}
-              writeContracts={writeContracts}
-              readContracts={readContracts}
-              transferEvents={transferEvents}
-            />
-          </Route>
-          <Route path='/subgraph'>
-            <Subgraph
-              subgraphUri={props.subgraphUri}
-              tx={tx}
-              writeContracts={writeContracts}
-              mainnetProvider={mainnetProvider}
-            />
-          </Route>
-        </Switch>
+        <Routes
+          address={address}
+          userSigner={userSigner}
+          mainnetProvider={mainnetProvider}
+          localProvider={localProvider}
+          yourLocalBalance={yourLocalBalance}
+          price={ethPriceDollar}
+          gasPrice={gasPrice}
+          tx={tx}
+          writeContracts={writeContracts}
+          readContracts={readContracts}
+          blockExplorer={blockExplorer}
+        />
+
+        <Footer />
       </BrowserRouter>
-
-      <ThemeSwitch />
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <div
@@ -579,10 +451,12 @@ function App(props) {
           logoutOfWeb3Modal={logoutOfWeb3Modal}
           blockExplorer={blockExplorer}
         />
+        {networkDisplay}
         {faucetHint}
       </div>
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
+      {/*
       <div
         style={{
           position: 'fixed',
@@ -623,7 +497,7 @@ function App(props) {
         <Row align='middle' gutter={[4, 4]}>
           <Col span={24}>
             {
-              /* if the local provider has a signer, let's show the faucet: */
+              // if the local provider has a signer, let's show the faucet:
               faucetAvailable ? (
                 <Faucet
                   localProvider={localProvider}
@@ -637,6 +511,7 @@ function App(props) {
           </Col>
         </Row>
       </div>
+      */}
     </div>
   )
 }

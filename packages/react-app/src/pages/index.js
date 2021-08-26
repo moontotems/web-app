@@ -1,3 +1,10 @@
-export { default as ExampleUI } from './ExampleUI'
-export { default as Subgraph } from './Subgraph'
-export { default as Home } from './Home'
+export { default as Home } from './Home/'
+export { default as All } from './All/'
+export { default as Minted } from './Minted/'
+export { default as Wallet } from './Wallet/'
+export { default as ContractEvents } from './ContractEvents/'
+
+export { default as Contact } from './Contact'
+export { default as LegalNotice } from './LegalNotice'
+export { default as PrivacyPolicy } from './PrivacyPolicy'
+export { default as TermsAndConditions } from './TermsAndConditions'

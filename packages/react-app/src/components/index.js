@@ -1,3 +1,5 @@
+export { default as Creature } from './Creature'
+
 export { default as Account } from './Account'
 export { default as Address } from './Address'
 export { default as AddressInput } from './AddressInput'
