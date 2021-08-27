@@ -1,7 +1,7 @@
 {
-  "short_name": "🏗 Scaffold-Eth App",
+  "short_name": "Crypto Moons",
   "start_url": ".",
-  "name": "🏗 Scaffold-Eth App",
+  "name": "Crypto Moons",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,7 +19,6 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
