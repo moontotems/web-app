@@ -1,7 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { Row, Col } from 'antd'
-import { Creature } from '../../components'
+import { Row, Col, Button } from 'antd'
 
 // TODO: fetch this from file server
 console.log('fetching local json list of talismoon data')
@@ -53,18 +52,22 @@ export default function CreaturePage({
         <Col span={6} />
         <Col span={12}>
           <img src={imagePath} width='100%' />
-          <h2
-            style={{
-              //fontFamily: 'Univers LT Std',
-              fontStyle: 'normal',
-              fontWeight: 'normal',
-              fontSize: '48px',
-              lineHeight: '58px',
-              textAlign: 'center'
-            }}
-          >
-            {name1} {name2}
-          </h2>
+          <Row>
+            <Col span={24}>
+              <h2
+                style={{
+                  //fontFamily: 'Univers LT Std',
+                  fontStyle: 'normal',
+                  fontWeight: 'normal',
+                  fontSize: '48px',
+                  lineHeight: '58px',
+                  textAlign: 'center'
+                }}
+              >
+                {name1} {name2}
+              </h2>
+            </Col>
+          </Row>
           <Row>
             <Col span={12}>
               <div
@@ -116,6 +119,15 @@ export default function CreaturePage({
                 <div>---</div>
               </div>
             </Col>
+          </Row>
+          <Row>
+            <Col span={9} />
+            <Col span={6}>
+              <Button block type='primary' style={{ marginTop: '20px' }}>
+                Offering
+              </Button>
+            </Col>
+            <Col span={9} />
           </Row>
         </Col>
         <Col span={6} />
