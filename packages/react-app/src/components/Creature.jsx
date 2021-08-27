@@ -1,5 +1,6 @@
-import React from 'react'
-import { Col, Button } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Button } from 'antd'
 
 export default function Creature({
   imagePath,
@@ -15,6 +16,11 @@ export default function Creature({
   generation,
   showAdoptButton
 }) {
+  const [route, setRoute] = useState()
+  useEffect(() => {
+    setRoute(window.location.pathname)
+  }, [setRoute])
+
   const adopt = () => {
     console.log('now adopt:')
     console.log({ this: this })
@@ -30,7 +36,15 @@ export default function Creature({
           minHeight: 104
         }}
       >
-        <img src={imagePath} width='100%' />
+        <Link
+          onClick={() => {
+            setRoute('/creature')
+          }}
+          to={`/creature/${id}`}
+        >
+          <img src={imagePath} width='100%' />
+        </Link>
+
         <div
           style={{
             fontWeight: 700,

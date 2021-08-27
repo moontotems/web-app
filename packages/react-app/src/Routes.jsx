@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import {
   Home,
   All,
+  Creature,
   Minted,
   Wallet,
   ContractEvents,
@@ -44,6 +45,20 @@ export default function Routes({
       </Route>
       <Route exact path='/all'>
         <All
+          address={address}
+          userSigner={userSigner}
+          mainnetProvider={mainnetProvider}
+          localProvider={localProvider}
+          yourLocalBalance={yourLocalBalance}
+          price={ethPriceDollar}
+          gasPrice={gasPrice}
+          tx={tx}
+          writeContracts={writeContracts}
+          readContracts={readContracts}
+        />
+      </Route>
+      <Route exact path='/creature/:id'>
+        <Creature
           address={address}
           userSigner={userSigner}
           mainnetProvider={mainnetProvider}
