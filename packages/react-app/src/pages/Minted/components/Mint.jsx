@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { utils } from 'ethers'
 import { Form, Input, Button } from 'antd'
 
 export default function Mint({ gasPrice, tx, writeContracts }) {
@@ -14,14 +15,14 @@ export default function Mint({ gasPrice, tx, writeContracts }) {
   const handleSubmit = async () => {
     const values = await form.validateFields()
     console.log({ values })
-    const { _to, _tokenId } = values
+    const { _to, _tokenId, _amount } = values
 
     // writeContracts.NFTokenMetadataEnumerableMock
     tx(
       writeContracts.NFTokenMetadataEnumerableMock.mint(_to, _tokenId, {
-        gasPrice
+        gasPrice,
         // gasLimit: 1000000
-        // value: ,
+        value: utils.parseEther(_amount)
         // nonce:
       })
     )
@@ -41,6 +42,9 @@ export default function Mint({ gasPrice, tx, writeContracts }) {
       </Form.Item>
       <Form.Item name='_tokenId' label='uint256 _tokenId'>
         <Input placeholder='uint256 _tokenId' />
+      </Form.Item>
+      <Form.Item name='_amount' label='_amount'>
+        <Input placeholder='_amount in ETH' />
       </Form.Item>
       <Button htmlType='submit'>Submit</Button>
     </Form>
