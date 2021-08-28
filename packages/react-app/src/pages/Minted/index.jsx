@@ -48,7 +48,7 @@ export default function Minted({
     <div style={{ backgroundColor: '#000' }}>
       <div>
         <h2>Minted</h2>
-        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        <Row>
           {NFTS_MINTED?.map((NFT, index) => {
             const {
               id,
@@ -65,7 +65,7 @@ export default function Minted({
             const key = `TALISMOONS-${id}-minted`
 
             return (
-              <Col key={key} span={4}>
+              <Col key={key} xs={24} sm={16} md={8} lg={6}>
                 <Creature
                   imagePath={`./images/creatures/JPG/TALISMOONS_G1.${id}.jpg`}
                   key={`TALISMOONS_G1.${id}`}

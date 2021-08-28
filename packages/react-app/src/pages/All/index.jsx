@@ -27,7 +27,7 @@ export default function All({
   return (
     <div style={{ backgroundColor: '#000' }}>
       <h2>All Talismoons</h2>
-      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+      <Row>
         {CREATURE_IMAGES.map((CREATURE_IMAGE, index) => {
           const {
             id,
@@ -44,7 +44,7 @@ export default function All({
           const key = `TALISMOONS-${id}-all`
 
           return (
-            <Col key={key} span={4}>
+            <Col key={key} xs={24} sm={16} md={8} lg={6}>
               <Creature
                 imagePath={`./images/creatures/JPG/TALISMOONS_G1.${id}.jpg`}
                 id={id}

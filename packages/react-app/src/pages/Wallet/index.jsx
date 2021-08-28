@@ -97,9 +97,10 @@ export default function Wallet({
   return (
     <div style={{ backgroundColor: '#000' }}>
       <h2>Your Talismoons</h2>
-      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+      <Row>
         {usersMoons.map(usersMoon => {
           const CREATURE_IMAGE = CREATURE_IMAGES[usersMoon.id]
+
           const {
             id,
             name1,
@@ -115,7 +116,7 @@ export default function Wallet({
           const key = `TALISMOONS-${id}`
 
           return (
-            <Col key={key} span={4}>
+            <Col key={key} xs={24} sm={16} md={8} lg={6}>
               <Creature
                 imagePath={`./images/creatures/JPG/TALISMOONS_G1.${id}.jpg`}
                 id={id}
