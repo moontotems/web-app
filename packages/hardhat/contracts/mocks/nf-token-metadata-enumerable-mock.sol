@@ -21,7 +21,7 @@ contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ow
   }
 
   /** NOTE: Edited by ssteiger
-   * @dev Emits when when NFTs are minted.
+   * @dev Emits when NFTs are minted.
    */
   event Mint(
     address indexed _to,
