@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, List } from 'antd'
+import { Row, Col, List } from 'antd'
 import { Address } from '../../components'
 
 // TODO: fetch this from file server
@@ -30,6 +30,14 @@ export default function ContractEvents({
   readContracts,
   writeContracts
 }) {
+  const mintEvents = useEventListener(
+    readContracts,
+    'NFTokenMetadataEnumerableMock',
+    'Mint',
+    localProvider,
+    1
+  )
+
   const transferEvents = useEventListener(
     readContracts,
     'NFTokenMetadataEnumerableMock',
@@ -59,75 +67,136 @@ export default function ContractEvents({
     readContracts && writeContracts
   )
 
+  console.log({ mintEvents })
+  console.log({ transferEvents })
+  console.log({ approvalEvents })
+  console.log({ approvalForAllEvents })
+
   return (
-    <div style={{ backgroundColor: '#000' }}>
-      <h2>Contract Events</h2>
+    <>
+      <Row>
+        <Col xs={24}>
+          <h2>Contract Events</h2>
+        </Col>
+      </Row>
+      <Row
+        gutter={[16, 16]}
+        style={{ padding: '16px', backgroundColor: '#000' }}
+      >
+        <Col xs={24} sm={24} md={12} lg={12}>
+          <h3>Mint Events</h3>
+          <List
+            bordered
+            dataSource={mintEvents}
+            renderItem={event => {
+              return (
+                <List.Item
+                  key={`mint_${event.blockNumber}_ ${event.sender}_${event._tokenId}`}
+                >
+                  {'Block '} {event.blockNumber}
+                  {' - Token Id: '}
+                  {event._tokenId.toString()}
+                  <Address
+                    address={event._from}
+                    size='medium'
+                    ensProvider={mainnetProvider}
+                    fontSize={16}
+                  />
+                  {'To: '}
+                  <Address
+                    address={event._to}
+                    size='medium'
+                    ensProvider={mainnetProvider}
+                    fontSize={16}
+                  />
+                </List.Item>
+              )
+            }}
+          />
+        </Col>
 
-      <Divider />
+        <Col xs={24} sm={24} md={12} lg={12}>
+          <h3>Transfer Events</h3>
+          <List
+            bordered
+            dataSource={transferEvents}
+            renderItem={event => {
+              return (
+                <List.Item
+                  key={`transfer_${event.blockNumber}_ ${event.sender}_${event._tokenId}`}
+                >
+                  {'Block '} {event.blockNumber}
+                  {' - Token Id: '}
+                  {event._tokenId.toString()}
+                  {' - From: '}
+                  <Address
+                    address={event._from}
+                    size='medium'
+                    ensProvider={mainnetProvider}
+                    fontSize={16}
+                  />
+                  {'To: '}
+                  <Address
+                    address={event._to}
+                    size='medium'
+                    ensProvider={mainnetProvider}
+                    fontSize={16}
+                  />
+                </List.Item>
+              )
+            }}
+          />
+        </Col>
 
-      <h3>Transfer Events</h3>
-      <List
-        bordered
-        dataSource={transferEvents}
-        renderItem={item => {
-          return (
-            <List.Item
-              key={item.blockNumber + '_' + item.sender + '_' + item.purpose}
-            >
-              <Address
-                address={item[0]}
-                ensProvider={mainnetProvider}
-                fontSize={16}
-              />
-              {item[1]}
-            </List.Item>
-          )
-        }}
-      />
+        <Col xs={24} sm={24} md={12} lg={12}>
+          <h3>Approval Events</h3>
+          <List
+            bordered
+            dataSource={approvalEvents}
+            renderItem={event => {
+              return (
+                <List.Item
+                  key={`approval_${event.blockNumber}_ ${event.sender}_${event.purpose}`}
+                >
+                  {'Block '} {event.blockNumber}
+                  {' - '}
+                  <Address
+                    address={event[0]}
+                    size='medium'
+                    ensProvider={mainnetProvider}
+                    fontSize={16}
+                  />
+                  {event[1]}
+                </List.Item>
+              )
+            }}
+          />
+        </Col>
 
-      <Divider />
-
-      <h3>Approval Events</h3>
-      <List
-        bordered
-        dataSource={approvalEvents}
-        renderItem={item => {
-          return (
-            <List.Item
-              key={item.blockNumber + '_' + item.sender + '_' + item.purpose}
-            >
-              <Address
-                address={item[0]}
-                ensProvider={mainnetProvider}
-                fontSize={16}
-              />
-              {item[1]}
-            </List.Item>
-          )
-        }}
-      />
-
-      <Divider />
-
-      <h3>Approval For All Events</h3>
-      <List
-        bordered
-        dataSource={approvalForAllEvents}
-        renderItem={item => {
-          return (
-            <List.Item
-              key={item.blockNumber + '_' + item.sender + '_' + item.purpose}
-            >
-              <Address
-                address={item[0]}
-                ensProvider={mainnetProvider}
-                fontSize={16}
-              />
-              {item[1]}
-            </List.Item>
-          )
-        }}
-      />
-    </div>
+        <Col xs={24} sm={24} md={12} lg={12}>
+          <h3>Approval For All Events</h3>
+          <List
+            bordered
+            dataSource={approvalForAllEvents}
+            renderItem={event => {
+              return (
+                <List.Item
+                  key={`approvalForAll_${event.blockNumber}_ ${event.sender}_${event.purpose}`}
+                >
+                  {'Block '} {event.blockNumber}
+                  {' - '}
+                  <Address
+                    address={event[0]}
+                    ensProvider={mainnetProvider}
+                    fontSize={16}
+                  />
+                  {event[1]}
+                </List.Item>
+              )
+            }}
+          />
+        </Col>
+      </Row>
+    </>
   )
 }
