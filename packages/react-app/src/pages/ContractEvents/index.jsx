@@ -91,7 +91,7 @@ export default function ContractEvents({
             renderItem={event => {
               return (
                 <List.Item
-                  key={`mint_${event.blockNumber}_ ${event.sender}_${event._tokenId}`}
+                  key={`mint_${event.blockNumber}_${event.sender}_${event._tokenId}`}
                 >
                   {'Block '} {event.blockNumber}
                   {' - Token Id: '}
@@ -123,7 +123,7 @@ export default function ContractEvents({
             renderItem={event => {
               return (
                 <List.Item
-                  key={`transfer_${event.blockNumber}_ ${event.sender}_${event._tokenId}`}
+                  key={`transfer_${event.blockNumber}_${event.sender}_${event._tokenId}`}
                 >
                   {'Block '} {event.blockNumber}
                   {' - Token Id: '}
@@ -156,7 +156,7 @@ export default function ContractEvents({
             renderItem={event => {
               return (
                 <List.Item
-                  key={`approval_${event.blockNumber}_ ${event.sender}_${event.purpose}`}
+                  key={`approval_${event.blockNumber}_${event.sender}_${event.purpose}`}
                 >
                   {'Block '} {event.blockNumber}
                   {' - '}
@@ -181,7 +181,7 @@ export default function ContractEvents({
             renderItem={event => {
               return (
                 <List.Item
-                  key={`approvalForAll_${event.blockNumber}_ ${event.sender}_${event.purpose}`}
+                  key={`approvalForAll_${event.blockNumber}_${event.sender}_${event.purpose}`}
                 >
                   {'Block '} {event.blockNumber}
                   {' - '}
