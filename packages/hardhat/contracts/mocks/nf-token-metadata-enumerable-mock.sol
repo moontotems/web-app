@@ -20,7 +20,15 @@ contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ow
     nftSymbol = _symbol;
   }
 
-  /**
+  /** NOTE: Edited by ssteiger
+   * @dev Emits when when NFTs are minted.
+   */
+  event Mint(
+    address indexed _to,
+    uint256 indexed _tokenId
+  );
+
+  /** NOTE: Edited by ssteiger
    * @dev Mints a new NFT.
    * @param _to The address that will own the minted NFT.
    * @param _tokenId of the NFT to be minted by the msg.sender.
@@ -29,6 +37,7 @@ contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ow
   function mint(address _to, uint256 _tokenId, string calldata _uri) external onlyOwner {
     super._mint(_to, _tokenId);
     super._setTokenUri(_tokenId, _uri);
+    emit Mint(msg.sender, _tokenId);
   }
 
   /**
