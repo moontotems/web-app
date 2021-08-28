@@ -6,9 +6,8 @@ export default function Mint({ gasPrice, tx, writeContracts }) {
 
   useEffect(() => {
     form.setFieldsValue({
-      _to: '0xb68Bc26fE4e55E326Ad2430B2864d98d57f85F8E',
-      //_tokenId: 1,
-      _uri: 'test'
+      _to: '0xb68Bc26fE4e55E326Ad2430B2864d98d57f85F8E'
+      // _tokenId: 1
     })
   }, [])
 
