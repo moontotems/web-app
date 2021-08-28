@@ -46,9 +46,6 @@ export default function Mint({ gasPrice, tx, writeContracts }) {
       <Form.Item name='_tokenId' label='uint256 _tokenId'>
         <Input placeholder='uint256 _tokenId' />
       </Form.Item>
-      <Form.Item name='_uri' label='string calldata _uri'>
-        <Input placeholder='string calldata _uri' />
-      </Form.Item>
       <Button htmlType='submit'>Submit</Button>
     </Form>
   )
