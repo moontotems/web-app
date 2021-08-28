@@ -19,21 +19,15 @@ export default function Mint({ gasPrice, tx, writeContracts }) {
 
     const address = '0xb68Bc26fE4e55E326Ad2430B2864d98d57f85F8E'
     const TOKEN_ID = 1
-    const _uri = 'test.de'
 
     // writeContracts.NFTokenMetadataEnumerableMock
     tx(
-      writeContracts.NFTokenMetadataEnumerableMock.mint(
-        address,
-        TOKEN_ID,
-        _uri,
-        {
-          gasPrice
-          // gasLimit: 1000000
-          // value: ,
-          // nonce:
-        }
-      )
+      writeContracts.NFTokenMetadataEnumerableMock.mint(address, TOKEN_ID, {
+        gasPrice
+        // gasLimit: 1000000
+        // value: ,
+        // nonce:
+      })
     )
   }
 

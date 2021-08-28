@@ -3,6 +3,7 @@ pragma solidity 0.8.6;
 
 import "./nf-token.sol";
 import "./erc721-metadata.sol";
+import "../utils/Strings.sol";
 
 /**
  * @dev Optional metadata implementation for ERC-721 non-fungible token standard.
@@ -11,6 +12,7 @@ contract NFTokenMetadata is
   NFToken,
   ERC721Metadata
 {
+  using Strings for uint256;
 
   /**
    * @dev A descriptive name for a collection of NFTs.
@@ -23,9 +25,9 @@ contract NFTokenMetadata is
   string internal nftSymbol;
 
   /**
-   * @dev Mapping from NFT ID to metadata uri.
+   * @dev A base prefix for all token uris.
    */
-  mapping (uint256 => string) internal idToUri;
+  string internal nftBaseUri;
 
   /**
    * @notice When implementing this contract don't forget to set nftName and nftSymbol.
@@ -63,20 +65,31 @@ contract NFTokenMetadata is
   }
 
   /**
-   * @dev A distinct URI (RFC 3986) for a given NFT.
-   * @param _tokenId Id for which we want uri.
-   * @return URI of _tokenId.
+   * @dev Base URI for computing {tokenURI}. If set, the resulting URI for each
+   * token will be the concatenation of the `baseURI` and the `tokenId`. Empty
+   * by default, can be overriden in child contracts.
    */
-  function tokenURI(
-    uint256 _tokenId
-  )
+  function baseUri()
+    external
+    view
+    returns (string memory _baseUri)
+  {
+    _baseUri = nftBaseUri;
+  }
+
+  /**
+   * @dev See {IERC721Metadata-tokenURI}.
+   */
+  function tokenURI(uint256 _tokenId)
     external
     override
     view
-    validNFToken(_tokenId)
     returns (string memory)
   {
-    return idToUri[_tokenId];
+    // TODO: add check for _tokenId < totalSupply
+    //require(_tokenId >= this.totalSupply(), "ERC721: operator query for nonexistent token");
+    string memory baseURI = nftBaseUri;
+    return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, _tokenId.toString())) : "";
   }
 
   /**
@@ -95,26 +108,22 @@ contract NFTokenMetadata is
     virtual
   {
     super._burn(_tokenId);
-
-    delete idToUri[_tokenId];
   }
 
   /**
    * @notice This is an internal function which should be called from user-implemented external
    * function. Its purpose is to show and properly initialize data structures when using this
    * implementation.
-   * @dev Set a distinct URI (RFC 3986) for a given NFT ID.
-   * @param _tokenId Id for which we want URI.
-   * @param _uri String representing RFC 3986 URI.
+   * @dev Set a new URI base.
+   * @param _baseUri String representing the new URI base.
    */
-  function _setTokenUri(
-    uint256 _tokenId,
-    string memory _uri
+  function _setBaseUri(
+    string memory _baseUri
   )
     internal
-    validNFToken(_tokenId)
+    virtual
   {
-    idToUri[_tokenId] = _uri;
+    nftBaseUri = _baseUri;
   }
 
 }

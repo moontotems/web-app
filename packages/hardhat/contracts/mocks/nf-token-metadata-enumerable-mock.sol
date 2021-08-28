@@ -20,7 +20,7 @@ contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ow
     nftSymbol = _symbol;
   }
 
-  /** NOTE: Edited by ssteiger
+  /**
    * @dev Emits when NFTs are minted.
    */
   event Mint(
@@ -28,16 +28,29 @@ contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ow
     uint256 indexed _tokenId
   );
 
-  /** NOTE: Edited by ssteiger
+  /**
    * @dev Mints a new NFT.
    * @param _to The address that will own the minted NFT.
    * @param _tokenId of the NFT to be minted by the msg.sender.
-   * @param _uri String representing RFC 3986 URI.
    */
-  function mint(address _to, uint256 _tokenId, string calldata _uri) external onlyOwner {
+  function mint(address _to, uint256 _tokenId) external payable {
     super._mint(_to, _tokenId);
-    super._setTokenUri(_tokenId, _uri);
+    _transferEther(owner);
     emit Mint(msg.sender, _tokenId);
+  }
+
+  /**
+   * @dev Base URI for computing {tokenURI}. If set, the resulting URI for each
+   * token will be the concatenation of the `baseURI` and the `tokenId`. Empty
+   * by default, can be overriden in child contracts.
+   */
+  function setBaseUri(
+    string memory _baseUri
+  )
+    external
+    onlyOwner
+  {
+    super._setBaseUri(_baseUri);
   }
 
   /**
@@ -46,6 +59,16 @@ contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ow
    */
   function burn(uint256 _tokenId) external onlyOwner {
     super._burn(_tokenId);
+  }
+
+  /**
+   * @dev Transfers ether (msg.value) to the passed address.
+   * @notice This is an internal function which should be called from user-implemented function.
+   * @param _to The address to which to transfer the ether.
+   */
+  function _transferEther(address _to) internal {
+    (bool sent, bytes memory data) = _to.call{value: msg.value}("");
+    require(sent, "Failed to send Ether");
   }
 
   /**
@@ -70,9 +93,6 @@ contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ow
    */
   function _burn(uint256 _tokenId) internal override(NFTokenMetadata, NFTokenEnumerable) virtual {
     NFTokenEnumerable._burn(_tokenId);
-    if (bytes(idToUri[_tokenId]).length != 0) {
-      delete idToUri[_tokenId];
-    }
   }
 
   /**
