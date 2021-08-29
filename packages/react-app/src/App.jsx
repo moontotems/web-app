@@ -1,17 +1,23 @@
 import WalletConnectProvider from '@walletconnect/web3-provider'
-//import Torus from '@toruslabs/torus-embed'
 import WalletLink from 'walletlink'
-import { Alert, Button, Col, Row } from 'antd'
+
+import { Alert, Button } from 'antd'
 import 'antd/dist/antd.css'
+
 import React, { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Web3Modal from 'web3modal'
+
 import './App.css'
+import './themes/config.js'
+
 import Routes from './Routes'
 import Menu from './Menu'
 import Footer from './Footer'
 import { Account, Faucet, GasGauge, Header, Ramp } from './components'
+
 import { INFURA_ID, NETWORK, NETWORKS } from './constants'
+
 import { Transactor } from './helpers'
 import {
   useBalance,
