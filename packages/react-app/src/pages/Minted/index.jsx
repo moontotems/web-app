@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Divider, Form, Input, Button } from 'antd'
+import { Row, Col, Divider } from 'antd'
 import { Creature } from '../../components'
 import { Mint } from './components'
 
@@ -9,16 +9,7 @@ import talismoon_data from './talismoon_data.json'
 console.log('fetching local json list of talismoon data: OK')
 console.log({ talismoon_data })
 
-import {
-  useBalance,
-  useContractLoader,
-  useContractReader,
-  useEventListener,
-  useExchangePrice,
-  useGasPrice,
-  useOnBlock,
-  useUserSigner
-} from '../../hooks'
+import { useEventListener } from '../../hooks'
 
 export default function Minted({
   address,
@@ -31,15 +22,6 @@ export default function Minted({
   readContracts,
   writeContracts
 }) {
-  const totalSupply =
-    useContractReader(
-      readContracts,
-      'NFTokenMetadataEnumerableMock',
-      'totalSupply'
-    ) || {}
-
-  const TOTAL_SUPPLY_AS_INT = parseInt(totalSupply.toString()) || 0
-
   const mintEvents = useEventListener(
     readContracts,
     'NFTokenMetadataEnumerableMock',
@@ -47,10 +29,6 @@ export default function Minted({
     localProvider,
     1
   )
-
-  const NFTS_MINTED = [...Array(TOTAL_SUPPLY_AS_INT).keys()]
-
-  console.log({ NFTS_MINTED })
 
   return (
     <div style={{ backgroundColor: '#000' }}>
