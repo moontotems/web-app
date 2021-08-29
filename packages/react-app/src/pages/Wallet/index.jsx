@@ -41,7 +41,7 @@ export default function Wallet({
       readContracts,
       'NFTokenMetadataEnumerableMock',
       'balanceOf',
-      ['0xb68Bc26fE4e55E326Ad2430B2864d98d57f85F8E']
+      [address]
     ) || {}
 
   const balanceOfUser = parseInt(balanceOf.toString()) || 0
