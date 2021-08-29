@@ -7,6 +7,54 @@ export const ETHERSCAN_KEY = 'PSW8C433Q667DVEX5BCRMGNAH9FSGFZ7Q8'
 // BLOCKNATIVE ID FOR Notify.js:
 export const BLOCKNATIVE_DAPPID = '0b58206a-f3c0-4701-a62f-73c7243e8c77'
 
+/*
+  contract error message codes:
+
+  string constant ZERO_ADDRESS = "003001";
+  string constant NOT_VALID_NFT = "003002";
+  string constant NOT_OWNER_OR_OPERATOR = "003003";
+  string constant NOT_OWNER_APPROVED_OR_OPERATOR = "003004";
+  string constant NOT_ABLE_TO_RECEIVE_NFT = "003005";
+  string constant NFT_ALREADY_EXISTS = "003006";
+  string constant NOT_OWNER = "003007";
+  string constant IS_OWNER = "003008";
+*/
+export const NFT_CONTRACT_ERROR_CODE_MAP = {
+  '003001': {
+    errorCode: 'ZERO_ADDRESS',
+    // eslint-disable-next-line quotes
+    message: `Can't transfer to ZERO_ADDRESS.`
+  },
+  '003002': {
+    errorCode: 'NOT_VALID_NFT',
+    message: 'Not a valid NFT.'
+  },
+  '003003': {
+    errorCode: 'NOT_OWNER_OR_OPERATOR',
+    message: 'Not owner or operator.'
+  },
+  '003004': {
+    errorCode: 'NOT_OWNER_APPROVED_OR_OPERATOR',
+    message: 'Not owner, approved or operator.'
+  },
+  '003005': {
+    errorCode: 'NOT_ABLE_TO_RECEIVE_NFT',
+    message: 'Not able to receive NFT.'
+  },
+  '003006': {
+    errorCode: 'NFT_ALREADY_EXISTS',
+    message: 'NFT already exists.'
+  },
+  '003007': {
+    errorCode: 'NOT_OWNER',
+    message: 'Not owner.'
+  },
+  '003008': {
+    errorCode: 'IS_OWNER',
+    message: 'Is owner.'
+  }
+}
+
 export const NETWORKS = {
   localhost: {
     name: 'localhost',

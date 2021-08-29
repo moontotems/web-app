@@ -96,13 +96,7 @@ export default function ContractEvents({
                   {'Block '} {event.blockNumber}
                   {' - Token Id: '}
                   {event._tokenId.toString()}
-                  <Address
-                    address={event._from}
-                    size='medium'
-                    ensProvider={mainnetProvider}
-                    fontSize={16}
-                  />
-                  {'To: '}
+                  {' To: '}
                   <Address
                     address={event._to}
                     size='medium'
@@ -135,7 +129,7 @@ export default function ContractEvents({
                     ensProvider={mainnetProvider}
                     fontSize={16}
                   />
-                  {'To: '}
+                  {' To: '}
                   <Address
                     address={event._to}
                     size='medium'

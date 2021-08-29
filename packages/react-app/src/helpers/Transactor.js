@@ -1,6 +1,6 @@
 import { notification } from 'antd'
 import Notify from 'bnc-notify'
-import { BLOCKNATIVE_DAPPID } from '../constants'
+import { BLOCKNATIVE_DAPPID, NFT_CONTRACT_ERROR_CODE_MAP } from '../constants'
 
 const { ethers } = require('ethers')
 
@@ -97,7 +97,7 @@ export default function Transactor(providerOrSigner, gasPrice, etherscan) {
           notification.info({
             message: 'Local Transaction Sent',
             description: result.hash,
-            placement: 'bottomRight'
+            placement: 'topRight'
           })
           // on most networks BlockNative will update a transaction handler,
           // but locally we will set an interval to listen...
@@ -151,9 +151,27 @@ export default function Transactor(providerOrSigner, gasPrice, etherscan) {
           //ignore
         }
 
+        const messageCodeRevertErrorMessage =
+          'Error: VM Exception while processing transaction: reverted with reason string '
+        const messageContainsErrorCode = message.includes(
+          messageCodeRevertErrorMessage
+        )
+        if (messageContainsErrorCode) {
+          let revertMessageCode = message.replace(
+            messageCodeRevertErrorMessage,
+            ''
+          )
+          // eslint-disable-next-line quotes
+          revertMessageCode = revertMessageCode.replaceAll(`'`, '')
+          let revertMessage = NFT_CONTRACT_ERROR_CODE_MAP[revertMessageCode]
+          if (!revertMessage) revertMessage = message
+          message = revertMessage.message
+        }
+
         notification.error({
           message: 'Transaction Error',
-          description: message
+          description: message,
+          placement: 'topRight'
         })
         if (callback && typeof callback === 'function') {
           callback(e)
