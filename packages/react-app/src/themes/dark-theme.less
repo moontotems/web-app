@@ -2,6 +2,11 @@
 @import "~antd/dist/antd.less";
 @import "~antd/lib/style/themes/default.less";
 
+.ant-input-affix-wrapper,
+.ant-input {
+  background-color: #000;
+  color: #fff;
+}
 // https://ant.design/docs/react/customize-theme
 
 // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
@@ -408,9 +413,9 @@
     ceil(((@input-height-lg - @font-size-lg * @line-height-base) / 2) * 10) / 10
   ) - @border-width-base;
 @input-placeholder-color: hsv(0, 0, 75%);
-@input-color:@black;
-@input-icon-color: @input-color;
-@input-border-color: @border-color-base;
+@input-color: @black;
+@input-icon-color: @white;
+@input-border-color: @white;
 @input-bg: @component-background;
 @input-number-hover-border-color: @input-hover-border-color;
 @input-number-handler-active-bg: #f4f4f4;
