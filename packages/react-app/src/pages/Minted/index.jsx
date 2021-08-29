@@ -40,6 +40,14 @@ export default function Minted({
 
   const TOTAL_SUPPLY_AS_INT = parseInt(totalSupply.toString()) || 0
 
+  const mintEvents = useEventListener(
+    readContracts,
+    'NFTokenMetadataEnumerableMock',
+    'Mint',
+    localProvider,
+    1
+  )
+
   const NFTS_MINTED = [...Array(TOTAL_SUPPLY_AS_INT).keys()]
 
   console.log({ NFTS_MINTED })
@@ -49,7 +57,8 @@ export default function Minted({
       <div>
         <h2>Minted</h2>
         <Row>
-          {NFTS_MINTED?.map((NFT, index) => {
+          {mintEvents?.map((event, index) => {
+            const { blockNumber, sender, _from, _to, _tokenId } = event
             const {
               id,
               name1,
@@ -60,7 +69,7 @@ export default function Minted({
               characteristic3,
               element,
               family
-            } = talismoon_data[index]
+            } = talismoon_data[_tokenId]
 
             const key = `TALISMOONS-${id}-minted`
 
