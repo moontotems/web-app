@@ -2,13 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Row, Col } from 'antd'
 import { Creature } from '../../components'
 
-// TODO: fetch this from file server
-console.log('fetching local json list of talismoon data')
-import talismoon_data from './talismoon_data.json'
-console.log('fetching local json list of talismoon data: OK')
-
-console.log({ talismoon_data })
-
 import {
   useBalance,
   useContractLoader,
@@ -29,7 +22,8 @@ export default function Wallet({
   gasPrice,
   tx,
   readContracts,
-  writeContracts
+  writeContracts,
+  creatures
 }) {
   const CREATURE_IMAGES = []
   for (let i = 0; i < 100; i++) {
@@ -48,11 +42,11 @@ export default function Wallet({
 
   console.log({ balanceOfUser })
 
-  const [usersMoons, setUsersMoons] = useState([])
+  const [usersCreatures, setUsersCreatures] = useState([])
 
   useEffect(() => {
-    const getUsersMoons = async () => {
-      const usersMoonsUpdate = []
+    const getUsersCreatures = async () => {
+      const usersCreaturesUpdate = []
       for (let tokenIndex = 0; tokenIndex < balanceOfUser; tokenIndex++) {
         try {
           console.log('Getting token index', tokenIndex)
@@ -74,7 +68,7 @@ export default function Wallet({
           try {
             //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
             //console.log('jsonManifest', jsonManifest)
-            usersMoonsUpdate.push({
+            usersCreaturesUpdate.push({
               id: tokenId.toString(),
               uri: tokenURI,
               owner: address
@@ -87,51 +81,39 @@ export default function Wallet({
           console.log(e)
         }
       }
-      setUsersMoons(usersMoonsUpdate)
+      setUsersCreatures(usersCreaturesUpdate)
     }
-    getUsersMoons()
+    getUsersCreatures()
   }, [address, balanceOfUser])
-
-  console.log({ usersMoons })
 
   return (
     <div style={{ backgroundColor: '#000' }}>
       <h2>Your Talismoons</h2>
       <Row>
-        {usersMoons.map(usersMoon => {
-          const CREATURE_IMAGE = CREATURE_IMAGES[usersMoon.id]
+        {usersCreatures.map(usersCreature => {
+          const creature = creatures[usersCreature.id]
+          if (creature) {
+            const { id } = creature
 
-          const {
-            id,
-            name1,
-            name2,
-            generation,
-            characteristic1,
-            characteristic2,
-            characteristic3,
-            element,
-            family
-          } = talismoon_data[usersMoon.id]
+            const key = `TALISMOONS-${id}`
 
-          const key = `TALISMOONS-${id}`
-
-          return (
-            <Col key={key} xs={24} sm={16} md={8} lg={6}>
-              <Creature
-                imagePath={`./images/creatures/JPG/TALISMOONS_G1.${id}.jpg`}
-                id={id}
-                name1={name1}
-                name2={name2}
-                generation={generation}
-                characteristic1={characteristic1}
-                characteristic2={characteristic2}
-                characteristic3={characteristic3}
-                element={element}
-                family={family}
-                showAdoptButton={false}
-              />
-            </Col>
-          )
+            return (
+              <Col key={key} xs={24} sm={16} md={8} lg={6}>
+                <Creature
+                  creature={creature}
+                  address={address}
+                  mainnetProvider={mainnetProvider}
+                  localProvider={localProvider}
+                  yourLocalBalance={localProvider}
+                  price={price}
+                  gasPrice={gasPrice}
+                  tx={tx}
+                  readContracts={readContracts}
+                  writeContracts={writeContracts}
+                />
+              </Col>
+            )
+          }
         })}
       </Row>
     </div>

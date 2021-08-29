@@ -1,12 +1,6 @@
-import React, { useEffect } from 'react'
-import { Row, Col, Divider, Form, Input, Button } from 'antd'
+import React from 'react'
+import { Row, Col } from 'antd'
 import { Discription } from './components'
-
-// TODO: fetch this from file server
-console.log('fetching local json list of talismoon data')
-import talismoon_data from './talismoon_data.json'
-console.log('fetching local json list of talismoon data: OK')
-console.log({ talismoon_data })
 
 import {
   useBalance,
@@ -28,7 +22,8 @@ export default function Home({
   gasPrice,
   tx,
   readContracts,
-  writeContracts
+  writeContracts,
+  creatures
 }) {
   console.log(
     'readContracts && writeContracts',

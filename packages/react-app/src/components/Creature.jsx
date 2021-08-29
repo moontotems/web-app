@@ -1,32 +1,54 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'antd'
+import { ethers } from 'ethers'
 
 export default function Creature({
-  imagePath,
-  key,
-  id,
-  name1,
-  name2,
-  characteristic1,
-  characteristic2,
-  characteristic3,
-  element,
-  family,
-  generation,
-  showAdoptButton
+  address,
+  mainnetProvider,
+  localProvider,
+  yourLocalBalance,
+  price,
+  gasPrice,
+  tx,
+  readContracts,
+  writeContracts,
+  creature
 }) {
   const [route, setRoute] = useState()
   useEffect(() => {
     setRoute(window.location.pathname)
   }, [setRoute])
+  console.log({ creature })
 
-  const adopt = () => {
-    console.log('now adopt:')
-    console.log({ this: this })
-    let creature = this.props
-    delete creature.showAdoptButton
-    console.log({ creature })
+  const {
+    id,
+    name1,
+    name2,
+    generation,
+    characteristic1,
+    characteristic2,
+    characteristic3,
+    element,
+    family,
+    minted,
+    image
+  } = creature
+
+  const mint = () => {
+    const to = address
+    const tokenId = id
+    const value = ethers.utils.parseEther('0.1')
+    console.log({ to, tokenId, value })
+
+    tx(
+      writeContracts.NFTokenMetadataEnumerableMock.mint(to, tokenId, {
+        gasPrice,
+        // gasLimit: 1000000
+        value
+        // nonce:
+      })
+    )
   }
 
   return (
@@ -42,7 +64,7 @@ export default function Creature({
           }}
           to={`/creature/${id}`}
         >
-          <img src={imagePath} width='100%' />
+          <img src={image} width='100%' />
         </Link>
 
         <div
@@ -70,7 +92,8 @@ export default function Creature({
           <div>Family: {family}</div>
           <div>Generation: {generation}</div>
         </div>
-        {showAdoptButton && <Button onClick={() => adopt()}>Adopt</Button>}
+
+        {!minted && <Button onClick={() => mint()}>Adopt for {0.1} Ξ</Button>}
       </div>
     </>
   )

@@ -30,13 +30,19 @@ import {
   useUserSigner
 } from './hooks'
 
+// TODO: fetch this from file server
+console.log('fetching local json list of talismoon data')
+import talismoon_data from './talismoon_data.json'
+console.log('fetching local json list of talismoon data: OK')
+console.log({ talismoon_data })
+
 const { ethers } = require('ethers')
 
 // 📡 What chain are your contracts deployed to?
 const targetNetwork = NETWORKS.localhost // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
-const DEBUG = true
+const DEBUG = false
 const NETWORKCHECK = true
 
 // 🛰 providers
@@ -412,6 +418,62 @@ function App(props) {
     )
   }
 
+  const CREATURE_IMAGES = []
+  for (let i = 0; i < 100; i++) {
+    CREATURE_IMAGES[i] = `TALISMOONS_G1.${i}`
+  }
+
+  const mintEvents = useEventListener(
+    readContracts,
+    'NFTokenMetadataEnumerableMock',
+    'Mint',
+    localProvider,
+    1
+  )
+
+  const mintEventsMap = {}
+  mintEvents.map((mintEvent, index) => {
+    mintEventsMap[mintEvent._tokenId] = mintEvent
+    // convert _tokenId from bigNumber to string
+    mintEventsMap[mintEvent._tokenId]['1'] =
+      mintEventsMap[mintEvent._tokenId]['1'].toString()
+  })
+
+  console.log({ mintEventsMap })
+
+  const creatures = CREATURE_IMAGES.map((CREATURE_IMAGE, index) => {
+    const {
+      id: tokenId,
+      name1,
+      name2,
+      generation,
+      characteristic1,
+      characteristic2,
+      characteristic3,
+      element,
+      family
+    } = talismoon_data[index]
+
+    const image = `/images/creatures/JPG/TALISMOONS_G1.${tokenId}.jpg`
+
+    return {
+      tokenId,
+      id: tokenId,
+      minted: !!mintEventsMap[tokenId],
+      name1,
+      name2,
+      generation,
+      characteristic1,
+      characteristic2,
+      characteristic3,
+      element,
+      family,
+      image
+    }
+  })
+
+  console.log({ creatures })
+
   return (
     <div id='App'>
       <Header />
@@ -431,6 +493,10 @@ function App(props) {
           writeContracts={writeContracts}
           readContracts={readContracts}
           blockExplorer={blockExplorer}
+          creatures={creatures}
+          contractEvents={{
+            mintEvents
+          }}
         />
 
         <Footer />

@@ -25,7 +25,9 @@ export default function Routes({
   tx,
   writeContracts,
   readContracts,
-  blockExplorer
+  blockExplorer,
+  creatures,
+  contractEvents: { mintEvents }
 }) {
   return (
     <Switch>
@@ -41,6 +43,7 @@ export default function Routes({
           tx={tx}
           writeContracts={writeContracts}
           readContracts={readContracts}
+          creatures={creatures}
         />
       </Route>
       <Route exact path='/all'>
@@ -55,6 +58,7 @@ export default function Routes({
           tx={tx}
           writeContracts={writeContracts}
           readContracts={readContracts}
+          creatures={creatures}
         />
       </Route>
       <Route exact path='/creature/:id'>
@@ -69,6 +73,7 @@ export default function Routes({
           tx={tx}
           writeContracts={writeContracts}
           readContracts={readContracts}
+          creatures={creatures}
         />
       </Route>
       <Route exact path='/minted'>
@@ -83,6 +88,8 @@ export default function Routes({
           tx={tx}
           writeContracts={writeContracts}
           readContracts={readContracts}
+          creatures={creatures}
+          mintEvents={mintEvents}
         />
       </Route>
       <Route exact path='/wallet'>
@@ -97,6 +104,7 @@ export default function Routes({
           tx={tx}
           writeContracts={writeContracts}
           readContracts={readContracts}
+          creatures={creatures}
         />
       </Route>
       <Route exact path='/contract-events'>
@@ -111,6 +119,7 @@ export default function Routes({
           tx={tx}
           writeContracts={writeContracts}
           readContracts={readContracts}
+          creatures={creatures}
         />
       </Route>
       <Route exact path='/contract-interface'>

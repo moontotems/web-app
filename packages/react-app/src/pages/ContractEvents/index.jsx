@@ -2,12 +2,6 @@ import React from 'react'
 import { Row, Col, List } from 'antd'
 import { Address } from '../../components'
 
-// TODO: fetch this from file server
-console.log('fetching local json list of talismoon data')
-import talismoon_data from './talismoon_data.json'
-console.log('fetching local json list of talismoon data: OK')
-console.log({ talismoon_data })
-
 import {
   useBalance,
   useContractLoader,
@@ -28,7 +22,8 @@ export default function ContractEvents({
   gasPrice,
   tx,
   readContracts,
-  writeContracts
+  writeContracts,
+  creatures
 }) {
   const mintEvents = useEventListener(
     readContracts,

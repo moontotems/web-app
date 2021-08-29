@@ -1,12 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Row, Col, Button } from 'antd'
-
-// TODO: fetch this from file server
-console.log('fetching local json list of talismoon data')
-import talismoon_data from './talismoon_data.json'
-console.log('fetching local json list of talismoon data: OK')
-console.log({ talismoon_data })
+import { ethers } from 'ethers'
 
 import {
   useBalance,
@@ -29,7 +24,8 @@ export default function CreaturePage({
   tx,
   readContracts,
   writeContracts,
-  location
+  location,
+  creatures
 }) {
   let { id } = useParams()
 
@@ -41,17 +37,33 @@ export default function CreaturePage({
     characteristic2,
     characteristic3,
     element,
-    family
-  } = talismoon_data[id]
+    family,
+    minted,
+    image
+  } = creatures[id]
 
-  const imagePath = `/images/creatures/JPG/TALISMOONS_G1.${id}.jpg`
+  const mint = () => {
+    const to = address
+    const tokenId = id
+    const value = ethers.utils.parseEther('0.1')
+    console.log({ to, tokenId, value })
+
+    tx(
+      writeContracts.NFTokenMetadataEnumerableMock.mint(to, tokenId, {
+        gasPrice,
+        // gasLimit: 1000000
+        value
+        // nonce:
+      })
+    )
+  }
 
   return (
     <div style={{ backgroundColor: '#000' }}>
       <Row>
         <Col span={6} />
         <Col span={12}>
-          <img src={imagePath} width='100%' />
+          <img src={image} width='100%' />
           <Row>
             <Col span={24}>
               <h2
@@ -90,7 +102,6 @@ export default function CreaturePage({
                 <div>Traits</div>
                 <div>Timestamp</div>
                 <div>Lunar Phase</div>
-                <div>Current Value</div>
               </div>
             </Col>
             <Col span={12}>
@@ -116,16 +127,29 @@ export default function CreaturePage({
                 </div>
                 <div>---</div>
                 <div>---</div>
-                <div>---</div>
               </div>
             </Col>
           </Row>
           <Row>
             <Col span={9} />
             <Col span={6}>
-              <Button block type='primary' style={{ marginTop: '20px' }}>
-                Offering
-              </Button>
+              {minted && (
+                <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
+                  <Button block type='primary' style={{ marginTop: '20px' }}>
+                    Make Offer
+                  </Button>
+                </a>
+              )}
+              {!minted && (
+                <Button
+                  block
+                  type='primary'
+                  onClick={() => mint()}
+                  style={{ marginTop: '20px' }}
+                >
+                  Adopt for 0.1 Ξ
+                </Button>
+              )}
             </Col>
             <Col span={9} />
           </Row>
