@@ -68,7 +68,7 @@ export default function CreaturePage({
             <Col span={24}>
               <h2
                 style={{
-                  //fontFamily: 'Univers LT Std',
+                  fontFamily: 'UniversLTStd',
                   fontStyle: 'normal',
                   fontWeight: 'normal',
                   fontSize: '48px',
@@ -85,7 +85,7 @@ export default function CreaturePage({
               <div
                 style={{
                   padding: 10,
-                  //fontFamily: 'Univers LT Std',
+                  fontFamily: 'UniversLTStd',
                   fontStyle: 'normal',
                   fontWeight: 'normal',
                   fontSize: '24px',
@@ -108,7 +108,7 @@ export default function CreaturePage({
               <div
                 style={{
                   padding: 10,
-                  //fontFamily: 'Univers LT Std',
+                  fontFamily: 'UniversLTStd',
                   fontStyle: 'normal',
                   fontWeight: 'normal',
                   fontSize: '18px',
