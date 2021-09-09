@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Col } from 'antd'
 import { Creature } from '../../components'
+import creature_meta_data_hashmap from '../../creature_meta_data_hashmap.json'
 
-import {
-  useBalance,
-  useContractLoader,
-  useContractReader,
-  useEventListener,
-  useExchangePrice,
-  useGasPrice,
-  useOnBlock,
-  useUserSigner
-} from '../../hooks'
+import { useContractReader } from '../../hooks'
 
 export default function Wallet({
   address,
@@ -22,14 +14,8 @@ export default function Wallet({
   gasPrice,
   tx,
   readContracts,
-  writeContracts,
-  creatures
+  writeContracts
 }) {
-  const CREATURE_IMAGES = []
-  for (let i = 0; i < 100; i++) {
-    CREATURE_IMAGES[i] = `TALISMOONS_G1.${i}`
-  }
-
   const balanceOf =
     useContractReader(
       readContracts,
@@ -91,29 +77,28 @@ export default function Wallet({
       <h2>Your Talismoons</h2>
       <Row>
         {usersCreatures.map(usersCreature => {
-          const creature = creatures[usersCreature.id]
-          if (creature) {
-            const { id } = creature
+          const tokenId = usersCreature.id
+          const minted = true
+          const metaData = creature_meta_data_hashmap[tokenId]
 
-            const key = `TALISMOONS-${id}`
+          const key = `TALISMOON-${tokenId}`
 
-            return (
-              <Col key={key} xs={24} sm={16} md={8} lg={6}>
-                <Creature
-                  creature={creature}
-                  address={address}
-                  mainnetProvider={mainnetProvider}
-                  localProvider={localProvider}
-                  yourLocalBalance={localProvider}
-                  price={price}
-                  gasPrice={gasPrice}
-                  tx={tx}
-                  readContracts={readContracts}
-                  writeContracts={writeContracts}
-                />
-              </Col>
-            )
-          }
+          return (
+            <Col key={key} xs={24} sm={16} md={8} lg={6}>
+              <Creature
+                address={address}
+                mainnetProvider={mainnetProvider}
+                localProvider={localProvider}
+                yourLocalBalance={localProvider}
+                price={price}
+                gasPrice={gasPrice}
+                tx={tx}
+                readContracts={readContracts}
+                writeContracts={writeContracts}
+                creature={{ tokenId, metaData, minted }}
+              />
+            </Col>
+          )
         })}
       </Row>
     </div>

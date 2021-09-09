@@ -1,18 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Row, Col, Button } from 'antd'
 import { ethers } from 'ethers'
-
-import {
-  useBalance,
-  useContractLoader,
-  useContractReader,
-  useEventListener,
-  useExchangePrice,
-  useGasPrice,
-  useOnBlock,
-  useUserSigner
-} from '../../hooks'
+import { useEventListener } from '../../hooks'
+import creature_meta_data_hashmap from '../../creature_meta_data_hashmap.json'
 
 export default function CreaturePage({
   address,
@@ -23,28 +14,75 @@ export default function CreaturePage({
   gasPrice,
   tx,
   readContracts,
-  writeContracts,
-  location,
-  creatures
+  writeContracts
 }) {
-  let { id } = useParams()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  let { id: tokenId } = useParams()
 
   const {
-    name1,
-    name2,
-    generation,
-    characteristic1,
-    characteristic2,
-    characteristic3,
-    element,
-    family,
-    minted,
-    image
-  } = creatures[id]
+    age,
+    birthDay,
+    birthMonth,
+    birthYear,
+    birthYearStr,
+    edition,
+    eyeAsymmetrical,
+    eyeColor1,
+    eyeColor2,
+    eyeMulticolor,
+    lunarOriginBatchId,
+    lunarOriginId,
+    lunarOriginName,
+    lunarOriginNameLatin,
+    lunarOriginQuantity,
+    moonMonth,
+    moonMonthId,
+    moonPhase,
+    moonPhaseId,
+    P,
+    rarity,
+    rarityOrigin,
+    seedGlobal,
+    seedLocal,
+    spawn_DateDay,
+    spawn_DateMonth,
+    spawn_DateYear,
+    spawn_Hour,
+    total,
+    trait_jobField,
+    trait_jobTitle,
+    trait_name1,
+    trait_name2,
+    trait_personality1,
+    trait_personality2,
+    trait_personality3
+  } = creature_meta_data_hashmap[tokenId]
+
+  const mintEvents = useEventListener(
+    readContracts,
+    'NFTokenMetadataEnumerableMock',
+    'Mint',
+    localProvider,
+    1
+  )
+  const mintEventsMap = {}
+  mintEvents.map(mintEvent => {
+    mintEventsMap[mintEvent._tokenId] = mintEvent
+    // convert _tokenId from bigNumber to string
+    mintEventsMap[mintEvent._tokenId]['1'] =
+      mintEventsMap[mintEvent._tokenId]['1'].toString()
+  })
+
+  const minted = !!mintEventsMap[tokenId]
+  const image = `https://talismoonstest.blob.core.windows.net/images/TALISMOONS_BATCH01.${tokenId}.jpeg`
+
+  console.log({ minted })
 
   const mint = () => {
     const to = address
-    const tokenId = id
     const value = ethers.utils.parseEther('0.1')
     console.log({ to, tokenId, value })
 
@@ -76,7 +114,7 @@ export default function CreaturePage({
                   textAlign: 'center'
                 }}
               >
-                {name1} {name2}
+                {trait_name1} {trait_name2}
               </h2>
             </Col>
           </Row>
@@ -88,8 +126,8 @@ export default function CreaturePage({
                   fontFamily: 'UniversLTStd',
                   fontStyle: 'normal',
                   fontWeight: 'normal',
-                  fontSize: '24px',
-                  lineHeight: '29px',
+                  fontSize: '18px',
+                  lineHeight: '24px',
                   textAlign: 'right',
                   color: '#fff',
                   opacity: 0.5
@@ -100,6 +138,8 @@ export default function CreaturePage({
                 <div>Fertility</div>
                 <div>Sex</div>
                 <div>Traits</div>
+                <div>trait_jobField</div>
+                <div>trait_jobTitle</div>
                 <div>Timestamp</div>
                 <div>Lunar Phase</div>
               </div>
@@ -112,19 +152,21 @@ export default function CreaturePage({
                   fontStyle: 'normal',
                   fontWeight: 'normal',
                   fontSize: '18px',
-                  //lineHeight: '22px',
-                  lineHeight: '29px',
+                  lineHeight: '24px',
                   textAlign: 'left',
                   color: '#fff'
                 }}
               >
-                <div>{family}</div>
+                <div>---</div>
                 <div>---</div>
                 <div>---</div>
                 <div>---</div>
                 <div>
-                  {characteristic1}, {characteristic2}, {characteristic3}
+                  {trait_personality1}, {trait_personality2},{' '}
+                  {trait_personality3}
                 </div>
+                <div>{trait_jobField}</div>
+                <div>{trait_jobTitle}</div>
                 <div>---</div>
                 <div>---</div>
               </div>
@@ -136,7 +178,7 @@ export default function CreaturePage({
               {minted && (
                 <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
                   <Button block type='primary' style={{ marginTop: '20px' }}>
-                    Make Offer
+                    Make offer on Opensea
                   </Button>
                 </a>
               )}

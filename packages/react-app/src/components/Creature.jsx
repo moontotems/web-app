@@ -13,31 +13,56 @@ export default function Creature({
   tx,
   readContracts,
   writeContracts,
-  creature
+  creature: { tokenId, minted, metaData }
 }) {
   const [route, setRoute] = useState()
   useEffect(() => {
     setRoute(window.location.pathname)
   }, [setRoute])
-  console.log({ creature })
+
+  const image = `https://talismoonstest.blob.core.windows.net/images/TALISMOONS_BATCH01.${tokenId}.jpeg`
 
   const {
-    id,
-    name1,
-    name2,
-    generation,
-    characteristic1,
-    characteristic2,
-    characteristic3,
-    element,
-    family,
-    minted,
-    image
-  } = creature
+    age,
+    birthDay,
+    birthMonth,
+    birthYear,
+    birthYearStr,
+    edition,
+    eyeAsymmetrical,
+    eyeColor1,
+    eyeColor2,
+    eyeMulticolor,
+    lunarOriginBatchId,
+    lunarOriginId,
+    lunarOriginName,
+    lunarOriginNameLatin,
+    lunarOriginQuantity,
+    moonMonth,
+    moonMonthId,
+    moonPhase,
+    moonPhaseId,
+    P,
+    rarity,
+    rarityOrigin,
+    seedGlobal,
+    seedLocal,
+    spawn_DateDay,
+    spawn_DateMonth,
+    spawn_DateYear,
+    spawn_Hour,
+    total,
+    trait_jobField,
+    trait_jobTitle,
+    trait_name1,
+    trait_name2,
+    trait_personality1,
+    trait_personality2,
+    trait_personality3
+  } = metaData || {}
 
   const mint = () => {
     const to = address
-    const tokenId = id
     const value = ethers.utils.parseEther('0.1')
     console.log({ to, tokenId, value })
 
@@ -62,7 +87,7 @@ export default function Creature({
           onClick={() => {
             setRoute('/creature')
           }}
-          to={`/creature/${id}`}
+          to={`/creature/${tokenId}`}
         >
           <img src={image} width='100%' />
         </Link>
@@ -73,7 +98,7 @@ export default function Creature({
             fontSize: '36px'
           }}
         >
-          #{id}
+          #{tokenId}
         </div>
         <div
           style={{
@@ -84,13 +109,19 @@ export default function Creature({
             lineHeight: '2.12 em'
           }}
         >
-          &quot;{`${name1} ${name2}`}&quot;
+          &quot;{`${trait_name1} ${trait_name2}`}&quot;
           <div style={{ fontSize: 12 }}>
-            {characteristic1}, {characteristic2}, {characteristic3}
+            {trait_personality1}, {trait_personality2}, {trait_personality3}
           </div>
-          <div>{element}</div>
-          <div>Family: {family}</div>
-          <div>Generation: {generation}</div>
+          <div>Age: {age}</div>
+          <div>Moon Month: {moonMonth}</div>
+          <div>Moon Phase: {moonPhase}</div>
+          <div>Job Field: {trait_jobField}</div>
+          <div>Job Title: {trait_jobTitle}</div>
+          <div>Moon Phase: {birthYearStr}</div>
+          <div>Lunar Origin Name: {lunarOriginName}</div>
+          <div>Lunar Origin Name Latin: {lunarOriginNameLatin}</div>
+          <div>Lunar Origin Quantity: {lunarOriginQuantity}</div>
         </div>
 
         {!minted && <Button onClick={() => mint()}>Adopt for {0.1} Ξ</Button>}

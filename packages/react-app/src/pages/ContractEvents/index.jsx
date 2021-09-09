@@ -2,16 +2,7 @@ import React from 'react'
 import { Row, Col, List } from 'antd'
 import { Address } from '../../components'
 
-import {
-  useBalance,
-  useContractLoader,
-  useContractReader,
-  useEventListener,
-  useExchangePrice,
-  useGasPrice,
-  useOnBlock,
-  useUserSigner
-} from '../../hooks'
+import { useEventListener } from '../../hooks'
 
 export default function ContractEvents({
   address,
@@ -22,8 +13,7 @@ export default function ContractEvents({
   gasPrice,
   tx,
   readContracts,
-  writeContracts,
-  creatures
+  writeContracts
 }) {
   const mintEvents = useEventListener(
     readContracts,
