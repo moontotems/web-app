@@ -3,6 +3,7 @@ import WalletLink from 'walletlink'
 
 import { Alert, Button } from 'antd'
 import 'antd/dist/antd.css'
+import 'carbon-components/css/carbon-components.min.css'
 
 import React, { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
