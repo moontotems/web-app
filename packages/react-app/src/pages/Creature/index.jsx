@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Tabs, Button } from 'antd'
 import { ethers } from 'ethers'
 import { useEventListener } from '../../hooks'
 import creature_meta_data_hashmap from '../../creature_meta_data_hashmap.json'
@@ -16,6 +16,8 @@ export default function CreaturePage({
   readContracts,
   writeContracts
 }) {
+  const { TabPane } = Tabs
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -119,57 +121,74 @@ export default function CreaturePage({
             </Col>
           </Row>
           <Row>
-            <Col span={12}>
-              <div
-                style={{
-                  padding: 10,
-                  fontFamily: 'UniversLTStd',
-                  fontStyle: 'normal',
-                  fontWeight: 'normal',
-                  fontSize: '18px',
-                  lineHeight: '24px',
-                  textAlign: 'right',
-                  color: '#fff',
-                  opacity: 0.5
-                }}
-              >
-                <div>Family</div>
-                <div>Occupation</div>
-                <div>Fertility</div>
-                <div>Sex</div>
-                <div>Traits</div>
-                <div>trait_jobField</div>
-                <div>trait_jobTitle</div>
-                <div>Timestamp</div>
-                <div>Lunar Phase</div>
-              </div>
-            </Col>
-            <Col span={12}>
-              <div
-                style={{
-                  padding: 10,
-                  fontFamily: 'UniversLTStd',
-                  fontStyle: 'normal',
-                  fontWeight: 'normal',
-                  fontSize: '18px',
-                  lineHeight: '24px',
-                  textAlign: 'left',
-                  color: '#fff'
-                }}
-              >
-                <div>---</div>
-                <div>---</div>
-                <div>---</div>
-                <div>---</div>
-                <div>
-                  {trait_personality1}, {trait_personality2},{' '}
-                  {trait_personality3}
-                </div>
-                <div>{trait_jobField}</div>
-                <div>{trait_jobTitle}</div>
-                <div>---</div>
-                <div>---</div>
-              </div>
+            <Col span={24}>
+              <Tabs defaultActiveKey='1' centered>
+                <TabPane tab='Attributes' key='1'>
+                  <Row>
+                    <Col span={12}>
+                      <div
+                        style={{
+                          padding: 10,
+                          fontFamily: 'UniversLTStd',
+                          fontStyle: 'normal',
+                          fontWeight: 'normal',
+                          fontSize: '18px',
+                          lineHeight: '24px',
+                          textAlign: 'right',
+                          color: '#fff',
+                          opacity: 0.5
+                        }}
+                      >
+                        <div>Family</div>
+                        <div>Occupation</div>
+                        <div>Fertility</div>
+                        <div>Sex</div>
+                        <div>Traits</div>
+                        <div>trait_jobField</div>
+                        <div>trait_jobTitle</div>
+                        <div>Timestamp</div>
+                        <div>Lunar Phase</div>
+                      </div>
+                    </Col>
+                    <Col span={12}>
+                      <div
+                        style={{
+                          padding: 10,
+                          fontFamily: 'UniversLTStd',
+                          fontStyle: 'normal',
+                          fontWeight: 'normal',
+                          fontSize: '18px',
+                          lineHeight: '24px',
+                          textAlign: 'left',
+                          color: '#fff'
+                        }}
+                      >
+                        <div>---</div>
+                        <div>---</div>
+                        <div>---</div>
+                        <div>---</div>
+                        <div>
+                          {trait_personality1}, {trait_personality2},{' '}
+                          {trait_personality3}
+                        </div>
+                        <div>{trait_jobField}</div>
+                        <div>{trait_jobTitle}</div>
+                        <div>---</div>
+                        <div>---</div>
+                      </div>
+                    </Col>
+                  </Row>
+                </TabPane>
+                <TabPane tab='Files' key='2'>
+                  Content of Tab Files
+                </TabPane>
+                <TabPane tab='Trade' key='3'>
+                  Content of Tab Trade
+                </TabPane>
+                <TabPane tab='History' key='4'>
+                  Content of Tab History
+                </TabPane>
+              </Tabs>
             </Col>
           </Row>
           <Row>
