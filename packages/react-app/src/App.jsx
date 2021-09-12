@@ -13,7 +13,6 @@ import './App.css'
 import './themes/config.js'
 
 import Routes from './Routes'
-import Menu from './Menu'
 import Footer from './Footer'
 import { Account, Faucet, GasGauge, Header, Ramp } from './components'
 
@@ -127,7 +126,7 @@ const web3Modal = new Web3Modal({
   }
 })
 
-function App(props) {
+function App() {
   const mainnetProvider =
     poktMainnetProvider && poktMainnetProvider._isProvider
       ? poktMainnetProvider
@@ -157,8 +156,9 @@ function App(props) {
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
   const gasPrice = useGasPrice(targetNetwork, 'fast')
-  // Use your injected provider from 🦊 Metamask or if you don't have it then instantly generate a 🔥 burner wallet.
-  const userSigner = useUserSigner(injectedProvider, localProvider)
+
+  // Use your injected provider from 🦊 Metamask
+  const userSigner = useUserSigner(injectedProvider)
 
   useEffect(() => {
     async function getAddress() {
@@ -380,145 +380,44 @@ function App(props) {
     }
   }, [loadWeb3Modal])
 
-  let faucetHint = ''
-  const faucetAvailable =
-    localProvider &&
-    localProvider.connection &&
-    targetNetwork.name.indexOf('local') !== -1
-
-  const [faucetClicked, setFaucetClicked] = useState(false)
-  if (
-    !faucetClicked &&
-    localProvider &&
-    localProvider._network &&
-    localProvider._network.chainId === 31337 &&
-    yourLocalBalance &&
-    ethers.utils.formatEther(yourLocalBalance) <= 0
-  ) {
-    faucetHint = (
-      <div style={{ padding: 16 }}>
-        <Button
-          type='primary'
-          onClick={() => {
-            faucetTx({
-              to: address,
-              value: ethers.utils.parseEther('0.01')
-            })
-            setFaucetClicked(true)
-          }}
-        >
-          💰 Grab funds from the faucet ⛽️
-        </Button>
-      </div>
-    )
-  }
-
   return (
     <div id='App'>
-      <Header />
-
       <BrowserRouter>
-        <Menu />
-
-        <Routes
+        <Header
           address={address}
+          localProvider={localProvider}
           userSigner={userSigner}
           mainnetProvider={mainnetProvider}
-          localProvider={localProvider}
-          yourLocalBalance={yourLocalBalance}
           price={ethPriceDollar}
-          gasPrice={gasPrice}
-          tx={tx}
-          writeContracts={writeContracts}
-          readContracts={readContracts}
           blockExplorer={blockExplorer}
-        />
-
-        <Footer />
-      </BrowserRouter>
-
-      {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
-      <div
-        style={{
-          position: 'fixed',
-          textAlign: 'right',
-          right: 0,
-          top: 0,
-          padding: 10
-        }}
-      >
-        <Account
-          address={address}
-          localProvider={localProvider}
-          userSigner={userSigner}
-          mainnetProvider={mainnetProvider}
-          price={ethPriceDollar}
           web3Modal={web3Modal}
           loadWeb3Modal={loadWeb3Modal}
           logoutOfWeb3Modal={logoutOfWeb3Modal}
-          blockExplorer={blockExplorer}
+          networkDisplay={networkDisplay}
         />
-        {networkDisplay}
-        {faucetHint}
-      </div>
 
-      {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
-      {/*
-      <div
-        style={{
-          position: 'fixed',
-          textAlign: 'left',
-          left: 0,
-          bottom: 20,
-          padding: 10
-        }}
-      >
-        <Row align='middle' gutter={[4, 4]}>
-          <Col span={8}>
-            <Ramp
-              price={ethPriceDollar}
-              address={address}
-              networks={NETWORKS}
-            />
-          </Col>
+        <div
+          style={{
+            marginTop: 48
+          }}
+        >
+          <Routes
+            address={address}
+            userSigner={userSigner}
+            mainnetProvider={mainnetProvider}
+            localProvider={localProvider}
+            yourLocalBalance={yourLocalBalance}
+            price={ethPriceDollar}
+            gasPrice={gasPrice}
+            tx={tx}
+            writeContracts={writeContracts}
+            readContracts={readContracts}
+            blockExplorer={blockExplorer}
+          />
+        </div>
 
-          <Col span={8} style={{ textAlign: 'center', opacity: 0.8 }}>
-            <GasGauge gasPrice={gasPrice} />
-          </Col>
-          <Col span={8} style={{ textAlign: 'center', opacity: 1 }}>
-            <Button
-              onClick={() => {
-                window.open('https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA')
-              }}
-              size='small'
-              shape='round'
-            >
-              <span style={{ marginRight: 8 }} role='img' aria-label='support'>
-                💬
-              </span>
-              Support
-            </Button>
-          </Col>
-        </Row>
-
-        <Row align='middle' gutter={[4, 4]}>
-          <Col span={24}>
-            {
-              // if the local provider has a signer, let's show the faucet:
-              faucetAvailable ? (
-                <Faucet
-                  localProvider={localProvider}
-                  price={ethPriceDollar}
-                  ensProvider={mainnetProvider}
-                />
-              ) : (
-                ''
-              )
-            }
-          </Col>
-        </Row>
-      </div>
-      */}
+        <Footer />
+      </BrowserRouter>
     </div>
   )
 }
