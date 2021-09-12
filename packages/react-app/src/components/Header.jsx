@@ -117,18 +117,23 @@ export default function MyHeader({
         </HeaderMenu>
       </HeaderNavigation>
       <HeaderGlobalBar>
-        <div style={{ marginRight: 15 }}>{networkDisplay}</div>
-        <Account
-          address={address}
-          localProvider={localProvider}
-          userSigner={userSigner}
-          mainnetProvider={mainnetProvider}
-          price={ethPriceDollar}
-          web3Modal={web3Modal}
-          loadWeb3Modal={loadWeb3Modal}
-          logoutOfWeb3Modal={logoutOfWeb3Modal}
-          blockExplorer={blockExplorer}
-        />
+        <span style={{ marginTop: 13 }}>
+          <div style={{ marginRight: 15 }}>{networkDisplay}</div>
+        </span>
+
+        <span style={{ marginTop: 13 }}>
+          <Account
+            address={address}
+            localProvider={localProvider}
+            userSigner={userSigner}
+            mainnetProvider={mainnetProvider}
+            price={ethPriceDollar}
+            web3Modal={web3Modal}
+            loadWeb3Modal={loadWeb3Modal}
+            logoutOfWeb3Modal={logoutOfWeb3Modal}
+            blockExplorer={blockExplorer}
+          />
+        </span>
         <HeaderGlobalAction aria-label='Search' onClick={() => {}}>
           <Search20 />
         </HeaderGlobalAction>
