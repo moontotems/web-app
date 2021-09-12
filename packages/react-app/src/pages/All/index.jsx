@@ -16,7 +16,7 @@ export default function All({
   readContracts,
   writeContracts
 }) {
-  const [numberOfVisibleCreatures, setNumberOfVisibleCreatures] = useState(500)
+  const [numberOfVisibleCreatures, setNumberOfVisibleCreatures] = useState(200)
 
   let creatures = []
   // TODO: change this to 0
@@ -57,7 +57,6 @@ export default function All({
 
   return (
     <div style={{ backgroundColor: '#000' }}>
-      <h2>All Talismoons</h2>
       <InfiniteScroll
         dataLength={numberOfVisibleCreatures}
         next={() => setNumberOfVisibleCreatures(numberOfVisibleCreatures + 100)}
