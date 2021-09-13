@@ -20,7 +20,17 @@ export default function Creature({
     setRoute(window.location.pathname)
   }, [setRoute])
 
-  const image = `https://talismoonstest.blob.core.windows.net/images/TALISMOONS_BATCH01.${tokenId}.jpeg`
+  let prefixedTokenId = ''
+  if (tokenId < 10) {
+    prefixedTokenId = `0000${tokenId}`
+  } else if (tokenId < 100) {
+    prefixedTokenId = `000${tokenId}`
+  } else if (tokenId < 1000) {
+    prefixedTokenId = `00${tokenId}`
+  }
+
+  //const image = `https://talismoonstest.blob.core.windows.net/images/TALISMOONS_BATCH01.${tokenId}.jpeg`
+  const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
 
   const {
     age,
@@ -92,38 +102,34 @@ export default function Creature({
           <img src={image} width='100%' />
         </Link>
 
-        <div
-          style={{
-            fontWeight: 700,
-            fontSize: '36px'
-          }}
-        >
-          #{tokenId}
-        </div>
-        <div
-          style={{
-            margin: '10px 0',
-            padding: '10px 0',
-            fontWeight: 200,
-            fontSize: 16,
-            lineHeight: '2.12 em'
-          }}
-        >
-          &quot;{`${trait_name1} ${trait_name2}`}&quot;
-          <div style={{ fontSize: 12 }}>
-            {trait_personality1}, {trait_personality2}, {trait_personality3}
+        <div>
+          <div
+            style={{
+              //fontFamily: 'Univers LT Std',
+              fontSize: '14px',
+              fontStyle: 'normal',
+              fontWeight: '400',
+              lineHeight: '25px',
+              letterSpacing: '0.04em',
+              textAlign: 'center'
+            }}
+          >
+            {`${trait_name1} ${trait_name2}`}
           </div>
-          <div>Age: {age}</div>
-          <div>Moon Month: {moonMonth}</div>
-          <div>Moon Phase: {moonPhase}</div>
-          <div>Job Field: {trait_jobField}</div>
-          <div>Job Title: {trait_jobTitle}</div>
-          <div>Moon Phase: {birthYearStr}</div>
-          <div>Lunar Origin Name: {lunarOriginName}</div>
-          <div>Lunar Origin Name Latin: {lunarOriginNameLatin}</div>
-          <div>Lunar Origin Quantity: {lunarOriginQuantity}</div>
+          <div
+            style={{
+              //fontFamily: 'Univers LT Std',
+              fontSize: '10px',
+              fontStyle: 'normal',
+              fontWeight: '400',
+              lineHeight: '25px',
+              letterSpacing: '0.04em',
+              textAlign: 'center'
+            }}
+          >
+            {trait_jobTitle} {trait_jobField}
+          </div>
         </div>
-
         {!minted && <Button onClick={() => mint()}>Adopt for {0.1} Ξ</Button>}
       </div>
     </>

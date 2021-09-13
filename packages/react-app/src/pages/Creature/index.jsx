@@ -78,9 +78,19 @@ export default function CreaturePage({
       mintEventsMap[mintEvent._tokenId]['1'].toString()
   })
 
-  const minted = !!mintEventsMap[tokenId]
-  const image = `https://talismoonstest.blob.core.windows.net/images/TALISMOONS_BATCH01.${tokenId}.jpeg`
+  let prefixedTokenId = ''
+  if (tokenId < 10) {
+    prefixedTokenId = `0000${tokenId}`
+  } else if (tokenId < 100) {
+    prefixedTokenId = `000${tokenId}`
+  } else if (tokenId < 1000) {
+    prefixedTokenId = `00${tokenId}`
+  }
 
+  //const image = `https://talismoonstest.blob.core.windows.net/images/TALISMOONS_BATCH01.${tokenId}.jpeg`
+  const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+
+  const minted = !!mintEventsMap[tokenId]
   console.log({ minted })
 
   const mint = () => {
