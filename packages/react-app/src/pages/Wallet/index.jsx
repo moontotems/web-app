@@ -10,7 +10,7 @@ import {
   TableCell
 } from 'carbon-components-react'
 import { Creature } from '../../components'
-import creature_meta_data_hashmap from '../../creature_meta_data_hashmap.json'
+import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 
 import { useContractReader } from '../../hooks'
 
@@ -182,7 +182,7 @@ export default function Wallet({
         {usersCreatures.map(usersCreature => {
           const tokenId = usersCreature.id
           const minted = true
-          const metaData = creature_meta_data_hashmap[tokenId]
+          const metaData = creature_metadata_hashmap[tokenId]
 
           const key = `TALISMOON-${tokenId}`
 

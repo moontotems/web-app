@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Divider } from 'antd'
 import { useEventListener } from '../../hooks'
 import { Creature } from '../../components'
-import creature_meta_data_hashmap from '../../creature_meta_data_hashmap.json'
+import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 import { Mint } from './components'
 
 export default function Minted({
@@ -43,7 +43,7 @@ export default function Minted({
             const { blockNumber, sender, _from, _to, _tokenId } = event
 
             const tokenId = _tokenId.toString()
-            const metaData = creature_meta_data_hashmap[tokenId]
+            const metaData = creature_metadata_hashmap[tokenId]
             const isFavorite = checkIfIsFavorite(tokenId)
             const key = `TALISMOON-${tokenId}-minted`
 

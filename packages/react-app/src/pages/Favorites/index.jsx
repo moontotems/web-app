@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col } from 'antd'
 import { Creature } from '../../components'
 import { useEventListener } from '../../hooks'
-import creature_meta_data_hashmap from '../../creature_meta_data_hashmap.json'
+import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 
 export default function Favorites({
   address,
@@ -40,7 +40,7 @@ export default function Favorites({
   for (let tokenId = INITIAL_TOKEN_ID; tokenId < MAX_TOKEN_ID; tokenId++) {
     const minted = !!mintEventsMap[tokenId]
     const isFavorite = checkIfIsFavorite(tokenId)
-    const metaData = creature_meta_data_hashmap[tokenId]
+    const metaData = creature_metadata_hashmap[tokenId]
 
     creatures.push({
       tokenId,
@@ -59,7 +59,7 @@ export default function Favorites({
             {favoritedIds.map(favoritedId => {
               console.log({ favoritedId })
               console.log({ creatures })
-              const { tokenId } = creatures[favoritedId]
+              const { tokenId } = creatures[favoritedId - 1]
               console.log({ tokenId })
 
               const key = `TALISMOON-${tokenId}`

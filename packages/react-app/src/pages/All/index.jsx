@@ -3,7 +3,7 @@ import { Row, Col } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { Creature } from '../../components'
 import { useEventListener } from '../../hooks'
-import creature_meta_data_hashmap from '../../creature_meta_data_hashmap.json'
+import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 
 export default function All({
   address,
@@ -50,7 +50,7 @@ export default function All({
   ) {
     const minted = !!mintEventsMap[tokenId]
     const isFavorite = checkIfIsFavorite(tokenId)
-    const metaData = creature_meta_data_hashmap[tokenId]
+    const metaData = creature_metadata_hashmap[tokenId]
 
     creatures.push({
       tokenId,

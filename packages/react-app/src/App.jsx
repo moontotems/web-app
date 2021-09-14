@@ -386,11 +386,13 @@ function App() {
   const [favoritedIds, setFavoritedIds] = useState(favoritedIdsStore)
 
   const checkIfIsFavorite = _tokenId => {
+    _tokenId = parseInt(_tokenId)
     const _favoritedIds = persistantStore.get('favoritedIds') || []
     return _favoritedIds.includes(_tokenId)
   }
 
   const updateFavorites = _tokenId => {
+    _tokenId = parseInt(_tokenId)
     let _favoritedIds = persistantStore.get('favoritedIds') || []
     if (_favoritedIds.includes(_tokenId)) {
       _favoritedIds.pop(_tokenId)
