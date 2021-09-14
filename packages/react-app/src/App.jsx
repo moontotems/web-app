@@ -8,13 +8,14 @@ import 'carbon-components/css/carbon-components.min.css'
 import React, { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Web3Modal from 'web3modal'
+import persistantStore from 'store'
 
 import './App.css'
 import './themes/config.js'
 
 import Routes from './Routes'
 import Footer from './Footer'
-import { Account, Faucet, GasGauge, Header, Ramp } from './components'
+import { Header } from './components'
 
 import { INFURA_ID, NETWORK, NETWORKS } from './constants'
 
@@ -380,6 +381,26 @@ function App() {
     }
   }, [loadWeb3Modal])
 
+  const favoritedIdsStore = persistantStore.get('favoritedIds') || []
+
+  const [favoritedIds, setFavoritedIds] = useState(favoritedIdsStore)
+
+  const checkIfIsFavorite = _tokenId => {
+    const _favoritedIds = persistantStore.get('favoritedIds') || []
+    return _favoritedIds.includes(_tokenId)
+  }
+
+  const updateFavorites = _tokenId => {
+    let _favoritedIds = persistantStore.get('favoritedIds') || []
+    if (_favoritedIds.includes(_tokenId)) {
+      _favoritedIds.pop(_tokenId)
+    } else {
+      _favoritedIds.push(_tokenId)
+    }
+    persistantStore.set('favoritedIds', _favoritedIds)
+    setFavoritedIds(_favoritedIds)
+  }
+
   return (
     <div id='App'>
       <BrowserRouter>
@@ -407,6 +428,11 @@ function App() {
             mainnetProvider={mainnetProvider}
             localProvider={localProvider}
             yourLocalBalance={yourLocalBalance}
+            favorites={{
+              favoritedIds,
+              checkIfIsFavorite,
+              updateFavorites
+            }}
             price={ethPriceDollar}
             gasPrice={gasPrice}
             tx={tx}

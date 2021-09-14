@@ -9,6 +9,7 @@ export default function ContractEvents({
   mainnetProvider,
   localProvider,
   yourLocalBalance,
+  favorites,
   price,
   gasPrice,
   tx,

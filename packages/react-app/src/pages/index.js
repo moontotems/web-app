@@ -1,6 +1,7 @@
 export { default as Home } from './Home/'
 export { default as All } from './All/'
 export { default as Creature } from './Creature/'
+export { default as Favorites } from './Favorites/'
 export { default as Minted } from './Minted/'
 export { default as Wallet } from './Wallet/'
 export { default as ContractEvents } from './ContractEvents/'

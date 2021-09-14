@@ -1,28 +1,36 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Row, Col, Tabs, Button } from 'antd'
+import { Row, Col, Button } from 'antd'
 import { ethers } from 'ethers'
+import {
+  CheckmarkOutline32,
+  CheckmarkFilled32,
+  Favorite32,
+  FavoriteFilled32
+} from '@carbon/icons-react'
+
 import { useEventListener } from '../../hooks'
 import creature_meta_data_hashmap from '../../creature_meta_data_hashmap.json'
+import './styles.css'
 
 export default function CreaturePage({
   address,
   mainnetProvider,
   localProvider,
   yourLocalBalance,
+  favorites: { favoritedIds, checkIfIsFavorite, updateFavorites },
   price,
   gasPrice,
   tx,
   readContracts,
   writeContracts
 }) {
-  const { TabPane } = Tabs
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
   let { id: tokenId } = useParams()
+  tokenId = parseInt(tokenId)
 
   const {
     age,
@@ -91,7 +99,8 @@ export default function CreaturePage({
   const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
 
   const minted = !!mintEventsMap[tokenId]
-  console.log({ minted })
+
+  const isFavorite = checkIfIsFavorite(tokenId)
 
   const mint = () => {
     const to = address
@@ -110,119 +119,122 @@ export default function CreaturePage({
 
   return (
     <div style={{ backgroundColor: '#000' }}>
+      <div
+        style={{ position: 'fixed', top: 90, left: 0, width: 600, padding: 20 }}
+      >
+        <div
+          style={{
+            float: 'left',
+            width: '20%',
+            paddingRight: 10,
+            fontFamily: 'UniversLTStd',
+            fontStyle: 'normal',
+            fontWeight: 'normal',
+            fontSize: '18px',
+            lineHeight: '24px',
+            textAlign: 'right',
+            color: '#fff',
+            opacity: 0.5
+          }}
+        >
+          <div className='creature-attribute-prefix'>Name</div>
+          <div className='creature-attribute-prefix'>Title</div>
+          <div className='creature-attribute-prefix'>From</div>
+          <div className='creature-attribute-prefix'>Personality</div>
+          <div className='creature-attribute-prefix'>Lunar Sign</div>
+          <div className='creature-attribute-prefix'>Age</div>
+          <div className='creature-attribute-prefix'>Rarity</div>
+        </div>
+        <div
+          style={{
+            float: 'left',
+            width: '75%',
+            fontFamily: 'UniversLTStd',
+            fontStyle: 'normal',
+            fontWeight: 'normal',
+            fontSize: '18px',
+            lineHeight: '24px',
+            textAlign: 'left',
+            color: '#fff'
+          }}
+        >
+          <div className='creature-attribute-value' style={{ fontSize: 30 }}>
+            {trait_name1} {trait_name2}
+          </div>
+          <div className='creature-attribute-value'>
+            <b>
+              {trait_jobField} {trait_jobTitle}
+            </b>
+          </div>
+          <div className='creature-attribute-value'>
+            <b>{lunarOriginName}</b>
+          </div>
+          <div className='creature-attribute-value'>
+            {trait_personality1}, {trait_personality2}, {trait_personality3}
+          </div>
+          <div className='creature-attribute-value'>{lunarOriginNameLatin}</div>
+          <div className='creature-attribute-value'>{age} years</div>
+          <div className='creature-attribute-value'>{rarity}</div>
+        </div>
+      </div>
       <Row>
-        <Col span={6} />
+        <Col span={6}></Col>
         <Col span={12}>
           <img src={image} width='100%' />
           <Row>
             <Col span={24}>
-              <h2
-                style={{
-                  fontFamily: 'UniversLTStd',
-                  fontStyle: 'normal',
-                  fontWeight: 'normal',
-                  fontSize: '48px',
-                  lineHeight: '58px',
-                  textAlign: 'center'
-                }}
-              >
-                {trait_name1} {trait_name2}
-              </h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={24}>
-              <Tabs defaultActiveKey='1' centered>
-                <TabPane tab='Attributes' key='1'>
-                  <Row>
-                    <Col span={12}>
-                      <div
-                        style={{
-                          padding: 10,
-                          fontFamily: 'UniversLTStd',
-                          fontStyle: 'normal',
-                          fontWeight: 'normal',
-                          fontSize: '18px',
-                          lineHeight: '24px',
-                          textAlign: 'right',
-                          color: '#fff',
-                          opacity: 0.5
-                        }}
-                      >
-                        <div>Family</div>
-                        <div>Occupation</div>
-                        <div>Fertility</div>
-                        <div>Sex</div>
-                        <div>Traits</div>
-                        <div>trait_jobField</div>
-                        <div>trait_jobTitle</div>
-                        <div>Timestamp</div>
-                        <div>Lunar Phase</div>
-                      </div>
-                    </Col>
-                    <Col span={12}>
-                      <div
-                        style={{
-                          padding: 10,
-                          fontFamily: 'UniversLTStd',
-                          fontStyle: 'normal',
-                          fontWeight: 'normal',
-                          fontSize: '18px',
-                          lineHeight: '24px',
-                          textAlign: 'left',
-                          color: '#fff'
-                        }}
-                      >
-                        <div>---</div>
-                        <div>---</div>
-                        <div>---</div>
-                        <div>---</div>
-                        <div>
-                          {trait_personality1}, {trait_personality2},{' '}
-                          {trait_personality3}
-                        </div>
-                        <div>{trait_jobField}</div>
-                        <div>{trait_jobTitle}</div>
-                        <div>---</div>
-                        <div>---</div>
-                      </div>
-                    </Col>
-                  </Row>
-                </TabPane>
-                <TabPane tab='Files' key='2'>
-                  Content of Tab Files
-                </TabPane>
-                <TabPane tab='Trade' key='3'>
-                  Content of Tab Trade
-                </TabPane>
-                <TabPane tab='History' key='4'>
-                  Content of Tab History
-                </TabPane>
-              </Tabs>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={9} />
-            <Col span={6}>
-              {minted && (
-                <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
-                  <Button block type='primary' style={{ marginTop: '20px' }}>
-                    Make offer on Opensea
+              <div style={{ float: 'left', width: '10%' }}>
+                <CheckmarkOutline32 style={{ fill: '#4589FF' }} />
+                <CheckmarkFilled32 style={{ fill: '#00FF74' }} />
+              </div>
+              <div style={{ float: 'left', width: '80%' }}>
+                {minted && (
+                  <a
+                    href='https://opensea.io/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    <Button type='primary'>View on Opensea</Button>
+                    <Button
+                      type='primary'
+                      style={{
+                        marginTop: '20px',
+                        backgroundColor: '#24A148',
+                        borderColor: '#24A148'
+                      }}
+                    >
+                      Make offer on Opensea
+                    </Button>
+                  </a>
+                )}
+                {!minted && (
+                  <Button
+                    block
+                    type='success'
+                    onClick={() => mint()}
+                    style={{ marginTop: '20px' }}
+                  >
+                    Summon this Totem (0.1 Ξ)
                   </Button>
-                </a>
-              )}
-              {!minted && (
-                <Button
-                  block
-                  type='primary'
-                  onClick={() => mint()}
-                  style={{ marginTop: '20px' }}
-                >
-                  Adopt for 0.1 Ξ
-                </Button>
-              )}
+                )}
+              </div>
+              <div style={{ float: 'left', width: '10%' }}>
+                {!isFavorite && (
+                  <Favorite32
+                    role='button'
+                    style={{ fill: 'white', cursor: 'pointer' }}
+                    onClick={() => updateFavorites(tokenId)}
+                  />
+                )}
+                {isFavorite && (
+                  <FavoriteFilled32
+                    role='button'
+                    style={{ fill: '#DA1E28', cursor: 'pointer' }}
+                    onClick={() => updateFavorites(tokenId)}
+                  />
+                )}
+              </div>
             </Col>
-            <Col span={9} />
           </Row>
         </Col>
         <Col span={6} />

@@ -73,21 +73,11 @@ export default function MyHeader({
         <HeaderMenuItem>
           <Link
             onClick={() => {
-              setRoute('/minted')
+              setRoute('/favorites')
             }}
-            to='/minted'
+            to='/favorites'
           >
-            Minted Talismoons
-          </Link>
-        </HeaderMenuItem>
-        <HeaderMenuItem>
-          <Link
-            onClick={() => {
-              setRoute('/wallet')
-            }}
-            to='/wallet'
-          >
-            Your Talismoons
+            Favorites
           </Link>
         </HeaderMenuItem>
         <HeaderMenuItem>
@@ -111,9 +101,58 @@ export default function MyHeader({
           </Link>
         </HeaderMenuItem>
         <HeaderMenu aria-label='Subm' menuLinkName='Subm'>
-          <HeaderMenuItem href='#'>Sub-link 1</HeaderMenuItem>
-          <HeaderMenuItem href='#'>Sub-link 2</HeaderMenuItem>
-          <HeaderMenuItem href='#'>Sub-link 3</HeaderMenuItem>
+          <HeaderMenuItem href='#'>
+            <Link
+              onClick={() => {
+                setRoute('/wallet')
+              }}
+              to='/wallet'
+            >
+              My Totems
+            </Link>
+          </HeaderMenuItem>
+          <HeaderMenuItem href='#'>
+            <Link
+              onClick={() => {
+                setRoute('/minted')
+              }}
+              to='/minted'
+            >
+              My Favorite Moons
+            </Link>
+          </HeaderMenuItem>
+          <HeaderMenuItem href='#'>
+            <Link
+              onClick={() => {
+                setRoute('/minted')
+              }}
+              to='/minted'
+            >
+              Minted Totems
+            </Link>
+          </HeaderMenuItem>
+          <HeaderMenuItem href='#'>
+            <Link
+              onClick={() => {
+                setRoute('/contract-events')
+              }}
+              to='/contract-events'
+            >
+              Contract Events
+            </Link>
+          </HeaderMenuItem>
+
+          <HeaderMenuItem href='#'>
+            {' '}
+            <Link
+              onClick={() => {
+                setRoute('/contract-interface')
+              }}
+              to='/contract-interface'
+            >
+              C Interface
+            </Link>
+          </HeaderMenuItem>
         </HeaderMenu>
       </HeaderNavigation>
       <HeaderGlobalBar>

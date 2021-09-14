@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Col } from 'antd'
+import {
+  DataTable,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeader,
+  TableBody,
+  TableCell
+} from 'carbon-components-react'
 import { Creature } from '../../components'
 import creature_meta_data_hashmap from '../../creature_meta_data_hashmap.json'
 
 import { useContractReader } from '../../hooks'
+
+import './styles.css'
 
 export default function Wallet({
   address,
   mainnetProvider,
   localProvider,
   yourLocalBalance,
+  favorites,
   price,
   gasPrice,
   tx,
@@ -72,9 +84,100 @@ export default function Wallet({
     getUsersCreatures()
   }, [address, balanceOfUser])
 
+  const headers = [
+    {
+      key: 'state',
+      header: 'State'
+    },
+    {
+      key: 'image',
+      header: 'Image'
+    },
+    {
+      key: 'name',
+      header: 'Name'
+    },
+    {
+      key: 'title',
+      header: 'Title'
+    },
+    {
+      key: 'personality',
+      header: 'Personality'
+    },
+    {
+      key: 'origin',
+      header: 'Origin'
+    },
+    {
+      key: 'lunar-phase',
+      header: 'Lunar Phase'
+    },
+    {
+      key: 'age',
+      header: 'Age'
+    },
+    {
+      key: 'value',
+      header: 'Value'
+    }
+  ]
+
+  const rows = [
+    {
+      id: 'a',
+      name: 'Load balancer 1',
+      status: 'Disabled'
+    },
+    {
+      id: 'b',
+      name: 'Load balancer 2',
+      status: 'Starting'
+    },
+    {
+      id: 'c',
+      name: 'Load balancer 3',
+      status: 'Active'
+    }
+  ]
+
   return (
     <div style={{ backgroundColor: '#000' }}>
-      <h2>Your Talismoons</h2>
+      <Row>
+        <DataTable rows={rows} headers={headers}>
+          {({ rows, headers, getTableProps, getHeaderProps, getRowProps }) => (
+            <Table
+              {...getTableProps()}
+              size='lg'
+              stickyHeader
+              useZebraStyles
+              useStaticWidth={false}
+            >
+              <TableHead>
+                <TableRow>
+                  {headers.map((header, index) => (
+                    <TableHeader
+                      key={`header-${index}`}
+                      {...getHeaderProps({ header })}
+                    >
+                      {header.header}
+                    </TableHeader>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row, index) => (
+                  <TableRow key={`row-${index}`} {...getRowProps({ row })}>
+                    {row.cells.map(cell => (
+                      <TableCell key={cell.id}>{cell.value}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </DataTable>
+      </Row>
       <Row>
         {usersCreatures.map(usersCreature => {
           const tokenId = usersCreature.id
@@ -90,6 +193,7 @@ export default function Wallet({
                 mainnetProvider={mainnetProvider}
                 localProvider={localProvider}
                 yourLocalBalance={localProvider}
+                favorites={favorites}
                 price={price}
                 gasPrice={gasPrice}
                 tx={tx}

@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from 'antd'
 import { ethers } from 'ethers'
+import {
+  CheckmarkOutline16,
+  Favorite16,
+  FavoriteFilled16
+} from '@carbon/icons-react'
 
 export default function Creature({
   address,
   mainnetProvider,
   localProvider,
   yourLocalBalance,
+  favorites: { favoritedIds, checkIfIsFavorite, updateFavorites },
   price,
   gasPrice,
   tx,
   readContracts,
   writeContracts,
-  creature: { tokenId, minted, metaData }
+  creature: { tokenId, minted, isFavorite, metaData }
 }) {
   const [route, setRoute] = useState()
   useEffect(() => {
@@ -102,35 +107,58 @@ export default function Creature({
           <img src={image} width='100%' />
         </Link>
 
-        <div>
-          <div
-            style={{
-              //fontFamily: 'Univers LT Std',
-              fontSize: '14px',
-              fontStyle: 'normal',
-              fontWeight: '400',
-              lineHeight: '25px',
-              letterSpacing: '0.04em',
-              textAlign: 'center'
-            }}
-          >
-            {`${trait_name1} ${trait_name2}`}
+        <div style={{ width: '100%' }}>
+          <div style={{ float: 'left', width: '10%' }}>
+            <CheckmarkOutline16 style={{ fill: '#4589FF' }} />
           </div>
-          <div
-            style={{
-              //fontFamily: 'Univers LT Std',
-              fontSize: '10px',
-              fontStyle: 'normal',
-              fontWeight: '400',
-              lineHeight: '25px',
-              letterSpacing: '0.04em',
-              textAlign: 'center'
-            }}
-          >
-            {trait_jobTitle} {trait_jobField}
+          <div style={{ float: 'left', width: '80%' }}>
+            <div
+              style={{
+                //fontFamily: 'Univers LT Std',
+                fontSize: '14px',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                lineHeight: '25px',
+                letterSpacing: '0.04em',
+                textAlign: 'center'
+              }}
+            >
+              {`${trait_name1} ${trait_name2}`}
+            </div>
+            <div
+              style={{
+                //fontFamily: 'Univers LT Std',
+                fontSize: '10px',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                lineHeight: '25px',
+                letterSpacing: '0.04em',
+                textAlign: 'center'
+              }}
+            >
+              {trait_jobTitle} {trait_jobField}
+            </div>
+          </div>
+          <div style={{ float: 'left', width: '10%' }}>
+            {!isFavorite && (
+              <Favorite16
+                role='button'
+                style={{ fill: 'white', cursor: 'pointer' }}
+                onClick={() => updateFavorites(tokenId)}
+              />
+            )}
+            {isFavorite && (
+              <FavoriteFilled16
+                role='button'
+                style={{ fill: '#DA1E28', cursor: 'pointer' }}
+                onClick={() => updateFavorites(tokenId)}
+              />
+            )}
+
+            {/*<FavoriteFilled32 style={{ fill: 'red' }} />*/}
           </div>
         </div>
-        {!minted && <Button onClick={() => mint()}>Adopt for {0.1} Ξ</Button>}
+        {/*!minted && <Button onClick={() => mint()}>Adopt for {0.1} Ξ</Button>*/}
       </div>
     </>
   )

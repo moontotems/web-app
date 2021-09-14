@@ -18,6 +18,7 @@ export default function Home({
   mainnetProvider,
   localProvider,
   yourLocalBalance,
+  favorites,
   price,
   gasPrice,
   tx,

@@ -10,6 +10,8 @@ export default function Minted({
   mainnetProvider,
   localProvider,
   yourLocalBalance,
+  favorites,
+  favorites: { favoritedIds, checkIfIsFavorite, updateFavorites },
   price,
   gasPrice,
   tx,
@@ -42,6 +44,7 @@ export default function Minted({
 
             const tokenId = _tokenId.toString()
             const metaData = creature_meta_data_hashmap[tokenId]
+            const isFavorite = checkIfIsFavorite(tokenId)
             const key = `TALISMOON-${tokenId}-minted`
 
             return (
@@ -51,12 +54,13 @@ export default function Minted({
                   mainnetProvider={mainnetProvider}
                   localProvider={localProvider}
                   yourLocalBalance={localProvider}
+                  favorites={favorites}
                   price={price}
                   gasPrice={gasPrice}
                   tx={tx}
                   readContracts={readContracts}
                   writeContracts={writeContracts}
-                  creature={{ tokenId, metaData, minted: true }}
+                  creature={{ tokenId, metaData, minted: true, isFavorite }}
                 />
               </Col>
             )

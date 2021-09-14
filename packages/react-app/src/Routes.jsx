@@ -4,6 +4,7 @@ import {
   Home,
   All,
   Creature,
+  Favorites,
   Minted,
   Wallet,
   ContractEvents,
@@ -20,6 +21,7 @@ export default function Routes({
   mainnetProvider,
   localProvider,
   yourLocalBalance,
+  favorites,
   ethPriceDollar,
   gasPrice,
   tx,
@@ -36,6 +38,7 @@ export default function Routes({
           mainnetProvider={mainnetProvider}
           localProvider={localProvider}
           yourLocalBalance={yourLocalBalance}
+          favorites={favorites}
           price={ethPriceDollar}
           gasPrice={gasPrice}
           tx={tx}
@@ -50,6 +53,7 @@ export default function Routes({
           mainnetProvider={mainnetProvider}
           localProvider={localProvider}
           yourLocalBalance={yourLocalBalance}
+          favorites={favorites}
           price={ethPriceDollar}
           gasPrice={gasPrice}
           tx={tx}
@@ -64,6 +68,22 @@ export default function Routes({
           mainnetProvider={mainnetProvider}
           localProvider={localProvider}
           yourLocalBalance={yourLocalBalance}
+          favorites={favorites}
+          price={ethPriceDollar}
+          gasPrice={gasPrice}
+          tx={tx}
+          writeContracts={writeContracts}
+          readContracts={readContracts}
+        />
+      </Route>
+      <Route exact path='/favorites'>
+        <Favorites
+          address={address}
+          userSigner={userSigner}
+          mainnetProvider={mainnetProvider}
+          localProvider={localProvider}
+          yourLocalBalance={yourLocalBalance}
+          favorites={favorites}
           price={ethPriceDollar}
           gasPrice={gasPrice}
           tx={tx}
@@ -78,6 +98,7 @@ export default function Routes({
           mainnetProvider={mainnetProvider}
           localProvider={localProvider}
           yourLocalBalance={yourLocalBalance}
+          favorites={favorites}
           price={ethPriceDollar}
           gasPrice={gasPrice}
           tx={tx}
@@ -92,6 +113,7 @@ export default function Routes({
           mainnetProvider={mainnetProvider}
           localProvider={localProvider}
           yourLocalBalance={yourLocalBalance}
+          favorites={favorites}
           price={ethPriceDollar}
           gasPrice={gasPrice}
           tx={tx}
@@ -106,6 +128,7 @@ export default function Routes({
           mainnetProvider={mainnetProvider}
           localProvider={localProvider}
           yourLocalBalance={yourLocalBalance}
+          favorites={favorites}
           price={ethPriceDollar}
           gasPrice={gasPrice}
           tx={tx}
