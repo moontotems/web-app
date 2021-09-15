@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ethers } from 'ethers'
 import {
   CheckmarkOutline16,
+  CheckmarkFilled16,
   Favorite16,
   FavoriteFilled16
 } from '@carbon/icons-react'
@@ -34,8 +35,8 @@ export default function Creature({
     prefixedTokenId = `00${tokenId}`
   }
 
-  //const image = `https://talismoonstest.blob.core.windows.net/images/TALISMOONS_BATCH01.${tokenId}.jpeg`
-  const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+  const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+  //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
 
   const {
     age,
@@ -109,7 +110,8 @@ export default function Creature({
 
         <div style={{ width: '100%' }}>
           <div style={{ float: 'left', width: '10%' }}>
-            <CheckmarkOutline16 style={{ fill: '#4589FF' }} />
+            {minted && <CheckmarkOutline16 style={{ fill: '#4589FF' }} />}
+            {!minted && <CheckmarkFilled16 style={{ fill: '#00FF74' }} />}
           </div>
           <div style={{ float: 'left', width: '80%' }}>
             <div

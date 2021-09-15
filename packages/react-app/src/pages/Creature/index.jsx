@@ -1,16 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Menu, Button, Dropdown } from 'antd'
 import { ethers } from 'ethers'
 import {
   CheckmarkOutline32,
   CheckmarkFilled32,
   Favorite32,
-  FavoriteFilled32
+  FavoriteFilled32,
+  Filter32,
+  Apps32,
+  CarouselHorizontal32,
+  List32,
+  Download32,
+  Information32,
+  ChatBot32,
+  Edit32,
+  ZoomIn32
 } from '@carbon/icons-react'
 
 import { useEventListener } from '../../hooks'
-import creature_meta_data_hashmap from '../../creature_meta_data_hashmap.json'
+import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
+import { Attributes, Chatbot } from './components'
 import './styles.css'
 
 export default function CreaturePage({
@@ -29,47 +39,12 @@ export default function CreaturePage({
     window.scrollTo(0, 0)
   }, [])
 
-  let { id: tokenId } = useParams()
-  tokenId = parseInt(tokenId)
+  const { id: tokenId } = useParams()
 
-  const {
-    age,
-    birthDay,
-    birthMonth,
-    birthYear,
-    birthYearStr,
-    edition,
-    eyeAsymmetrical,
-    eyeColor1,
-    eyeColor2,
-    eyeMulticolor,
-    lunarOriginBatchId,
-    lunarOriginId,
-    lunarOriginName,
-    lunarOriginNameLatin,
-    lunarOriginQuantity,
-    moonMonth,
-    moonMonthId,
-    moonPhase,
-    moonPhaseId,
-    P,
-    rarity,
-    rarityOrigin,
-    seedGlobal,
-    seedLocal,
-    spawn_DateDay,
-    spawn_DateMonth,
-    spawn_DateYear,
-    spawn_Hour,
-    total,
-    trait_jobField,
-    trait_jobTitle,
-    trait_name1,
-    trait_name2,
-    trait_personality1,
-    trait_personality2,
-    trait_personality3
-  } = creature_meta_data_hashmap[tokenId]
+  const [showMetadata, setShowMetadata] = useState(false)
+  const [showChat, setShowChat] = useState(false)
+
+  const creatureMetadata = creature_metadata_hashmap[tokenId]
 
   const mintEvents = useEventListener(
     readContracts,
@@ -95,8 +70,8 @@ export default function CreaturePage({
     prefixedTokenId = `00${tokenId}`
   }
 
-  //const image = `https://talismoonstest.blob.core.windows.net/images/TALISMOONS_BATCH01.${tokenId}.jpeg`
-  const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+  const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+  //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
 
   const minted = !!mintEventsMap[tokenId]
 
@@ -117,75 +92,66 @@ export default function CreaturePage({
     )
   }
 
+  const iconStyle = {
+    margin: '0 20px',
+    cursor: 'pointer'
+  }
+
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <a
+          target='_blank'
+          rel='noopener noreferrer'
+          href='https://www.antgroup.com'
+        >
+          PNG (10mb)
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          target='_blank'
+          rel='noopener noreferrer'
+          href='https://www.aliyun.com'
+        >
+          OBJ (239kb)
+        </a>
+      </Menu.Item>
+    </Menu>
+  )
+
   return (
     <div style={{ backgroundColor: '#000' }}>
       <div
-        style={{ position: 'fixed', top: 90, left: 0, width: 600, padding: 20 }}
+        style={{
+          position: 'fixed',
+          top: 30,
+          left: 0,
+          width: 600,
+          padding: 20,
+          zIndex: 100
+        }}
       >
-        <div
-          style={{
-            float: 'left',
-            width: '20%',
-            paddingRight: 10,
-            fontFamily: 'UniversLTStd',
-            fontStyle: 'normal',
-            fontWeight: 'normal',
-            fontSize: '18px',
-            lineHeight: '24px',
-            textAlign: 'right',
-            color: '#fff',
-            opacity: 0.5
-          }}
-        >
-          <div className='creature-attribute-prefix'>Name</div>
-          <div className='creature-attribute-prefix'>Title</div>
-          <div className='creature-attribute-prefix'>From</div>
-          <div className='creature-attribute-prefix'>Personality</div>
-          <div className='creature-attribute-prefix'>Lunar Sign</div>
-          <div className='creature-attribute-prefix'>Age</div>
-          <div className='creature-attribute-prefix'>Rarity</div>
-        </div>
-        <div
-          style={{
-            float: 'left',
-            width: '75%',
-            fontFamily: 'UniversLTStd',
-            fontStyle: 'normal',
-            fontWeight: 'normal',
-            fontSize: '18px',
-            lineHeight: '24px',
-            textAlign: 'left',
-            color: '#fff'
-          }}
-        >
-          <div className='creature-attribute-value' style={{ fontSize: 30 }}>
-            {trait_name1} {trait_name2}
+        {showChat && (
+          <div style={{ width: '60%' }}>
+            <Chatbot />
           </div>
-          <div className='creature-attribute-value'>
-            <b>
-              {trait_jobField} {trait_jobTitle}
-            </b>
+        )}
+        {showMetadata && (
+          <div style={{ marginTop: 50 }}>
+            <Attributes creatureMetadata={creatureMetadata} />
           </div>
-          <div className='creature-attribute-value'>
-            <b>{lunarOriginName}</b>
-          </div>
-          <div className='creature-attribute-value'>
-            {trait_personality1}, {trait_personality2}, {trait_personality3}
-          </div>
-          <div className='creature-attribute-value'>{lunarOriginNameLatin}</div>
-          <div className='creature-attribute-value'>{age} years</div>
-          <div className='creature-attribute-value'>{rarity}</div>
-        </div>
+        )}
       </div>
       <Row>
-        <Col span={6}></Col>
-        <Col span={12}>
+        <Col xs={24} md={6} />
+        <Col xs={24} md={12}>
           <img src={image} width='100%' />
           <Row>
             <Col span={24}>
               <div style={{ float: 'left', width: '10%' }}>
-                <CheckmarkOutline32 style={{ fill: '#4589FF' }} />
-                <CheckmarkFilled32 style={{ fill: '#00FF74' }} />
+                {minted && <CheckmarkOutline32 style={{ fill: '#4589FF' }} />}
+                {!minted && <CheckmarkFilled32 style={{ fill: '#00FF74' }} />}
               </div>
               <div style={{ float: 'left', width: '80%' }}>
                 {minted && (
@@ -195,24 +161,26 @@ export default function CreaturePage({
                     rel='noreferrer'
                   >
                     <Button type='primary'>View on Opensea</Button>
-                    <Button
+                    {/*<Button
                       type='primary'
                       style={{
-                        marginTop: '20px',
                         backgroundColor: '#24A148',
                         borderColor: '#24A148'
                       }}
                     >
                       Make offer on Opensea
-                    </Button>
+                    </Button>*/}
                   </a>
                 )}
                 {!minted && (
                   <Button
-                    block
                     type='success'
+                    style={{
+                      backgroundColor: '#24A148',
+                      borderColor: '#24A148',
+                      color: '#fff'
+                    }}
                     onClick={() => mint()}
-                    style={{ marginTop: '20px' }}
                   >
                     Summon this Totem (0.1 Ξ)
                   </Button>
@@ -236,8 +204,65 @@ export default function CreaturePage({
               </div>
             </Col>
           </Row>
+          <Row>
+            <Col span={24}>
+              <div style={{ margin: '45px 0' }}>
+                <Filter32 aria-label='Filter' style={{ ...iconStyle }} />
+                <Apps32
+                  aria-label='Switch to area view'
+                  style={{ ...iconStyle }}
+                />
+                <CarouselHorizontal32 style={{ ...iconStyle }} />
+                <List32
+                  aria-label='Switch to list view'
+                  style={{ ...iconStyle }}
+                />
+                <Dropdown overlay={menu} placement='topCenter'>
+                  <Button id='downloadButton' style={{ padding: 0 }}>
+                    <Download32
+                      aria-label='Download'
+                      style={{ ...iconStyle, color: '#fff' }}
+                    />
+                  </Button>
+                </Dropdown>
+                {/*
+                <Dropdown
+                  ariaLabel='Dropdown'
+                  id='carbon-dropdown-example'
+                  items={['.jpg', '.png']}
+                  label={
+                    <Download32
+                      aria-label='Download'
+                      style={{ ...iconStyle, color: '#fff' }}
+                    />
+                  }
+                  titleText='Dropdown title'
+                  style={{ width: 'auto' }}
+                />
+                */}
+                <Information32
+                  aria-label='Show Info'
+                  style={{ ...iconStyle }}
+                  onClick={() => {
+                    setShowChat(false)
+                    setShowMetadata(!showMetadata)
+                  }}
+                />
+                <ChatBot32
+                  aria-label='Chat'
+                  style={{ ...iconStyle }}
+                  onClick={() => {
+                    setShowMetadata(false)
+                    setShowChat(!showChat)
+                  }}
+                />
+                <Edit32 style={{ ...iconStyle }} />
+                <ZoomIn32 aria-label='Zoom' style={{ ...iconStyle }} />
+              </div>
+            </Col>
+          </Row>
         </Col>
-        <Col span={6} />
+        <Col xs={24} md={6} />
       </Row>
     </div>
   )

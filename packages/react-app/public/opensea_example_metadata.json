@@ -1,0 +1,70 @@
+[
+  {
+    "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
+    "external_url": "https://openseacreatures.io/3",
+    "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png",
+    "background_color": "000000",
+    "name": "Dave Starbelly",
+    "attributes": [
+      {
+        "display_type": "number",
+        "trait_type": "Age",
+        "value": 8385
+      },
+      {
+        "display_type": "string",
+        "trait_type": "Name",
+        "value": "Moro Promen"
+      },
+      {
+        "display_type": "string",
+        "trait_type": "Job",
+        "value": "Underwater Mixer"
+      },
+      {
+        "display_type": "date",
+        "trait_type": "birthday",
+        "value": 1546360800
+      }
+    ]
+  }
+]
+
+{
+  "age":8385,
+  "birthDay":14,
+  "birthMonth":2,
+  "birthYear":-6364,
+  "birthYearStr":"6364 BC",
+  "edition":1,
+  "eyeAsymmetrical":0,
+  "eyeColor1":"(0.0, 0.0641002506017685, 0.128200501203537)",
+  "eyeColor2":"(-10.0, -10.0, -10.0)",
+  "eyeMulticolor":0,
+  "lunarOriginBatchId":144,
+  "lunarOriginId":10,
+  "lunarOriginName":"Bay of Success",
+  "lunarOriginNameLatin":"Sinus Successus",
+  "lunarOriginQuantity":234,
+  "moonMonth":"Thunder",
+  "moonMonthId":1,
+  "moonPhase":"Full",
+  "moonPhaseId":5,
+  "P":"(0.0, 0.0, 0.0)",
+  "rarity":2581,
+  "rarityOrigin":"2.59330415725708",
+  "seedGlobal":1517,
+  "seedLocal":800,
+  "spawn_DateDay":30,
+  "spawn_DateMonth":7,
+  "spawn_DateYear":2015,
+  "spawn_Hour":0,
+  "total":9458,
+  "trait_jobField":"Underwater",
+  "trait_jobTitle":"Mixer",
+  "trait_name1":"Moro",
+  "trait_name2":"Promen",
+  "trait_personality1":"Serene",
+  "trait_personality2":"Cautious",
+  "trait_personality3":"Crabby"
+}

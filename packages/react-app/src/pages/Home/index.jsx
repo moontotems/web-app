@@ -56,7 +56,10 @@ export default function Home({
         <p style={{ fontSize: 17, lineHeight: 2 }}>04:09:32</p>
       </div>
 
-      <img src='./images/creatures/JPG/TALISMOONS_G1.2.jpg' height='400px' />
+      <img
+        src='https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k00000.png'
+        height='400px'
+      />
 
       <Discription />
     </div>
