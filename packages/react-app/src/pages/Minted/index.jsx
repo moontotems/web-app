@@ -36,50 +36,49 @@ export default function Minted({
 
   return (
     <div style={{ backgroundColor: '#000' }}>
-      <div>
-        <h2>Minted</h2>
-        <Row>
-          {mintEvents?.map((event, index) => {
-            const { blockNumber, sender, _from, _to, _tokenId } = event
+      <Row>
+        <Col xs={24} md={4} />
+        <Col xs={24} md={16}>
+          <Row>
+            {mintEvents?.map((event, index) => {
+              const { blockNumber, sender, _from, _to, _tokenId } = event
 
-            const tokenId = _tokenId.toString()
-            const metaData = creature_metadata_hashmap[tokenId]
-            const isFavorite = checkIfIsFavorite(tokenId)
-            const key = `TALISMOON-${tokenId}-minted`
+              const tokenId = _tokenId.toString()
+              const metaData = creature_metadata_hashmap[tokenId]
+              const isFavorite = checkIfIsFavorite(tokenId)
+              const key = `TALISMOON-${tokenId}-minted`
 
-            return (
-              <Col key={key} xs={24} sm={16} md={8} lg={6}>
-                <Creature
-                  address={address}
-                  mainnetProvider={mainnetProvider}
-                  localProvider={localProvider}
-                  yourLocalBalance={localProvider}
-                  favorites={favorites}
-                  price={price}
-                  gasPrice={gasPrice}
-                  tx={tx}
-                  readContracts={readContracts}
-                  writeContracts={writeContracts}
-                  creature={{ tokenId, metaData, minted: true, isFavorite }}
-                />
-              </Col>
-            )
-          })}
-        </Row>
-      </div>
-
-      <Divider />
-
-      <div>
-        <Row>
-          <Col span={8} />
-          <Col span={8}>
-            <h3>Mint</h3>
-            <Mint gasPric={gasPrice} tx={tx} writeContracts={writeContracts} />
-          </Col>
-          <Col span={8} />
-        </Row>
-      </div>
+              return (
+                <Col key={key} xs={24} sm={16} md={8} lg={6}>
+                  <Creature
+                    address={address}
+                    mainnetProvider={mainnetProvider}
+                    localProvider={localProvider}
+                    yourLocalBalance={localProvider}
+                    favorites={favorites}
+                    price={price}
+                    gasPrice={gasPrice}
+                    tx={tx}
+                    readContracts={readContracts}
+                    writeContracts={writeContracts}
+                    creature={{ tokenId, metaData, minted: true, isFavorite }}
+                  />
+                </Col>
+              )
+            })}
+            <Col xs={24}>
+              <Divider />
+              <h3>Mint</h3>
+              <Mint
+                gasPric={gasPrice}
+                tx={tx}
+                writeContracts={writeContracts}
+              />
+            </Col>
+          </Row>
+        </Col>
+        <Col xs={24} md={4} />
+      </Row>
     </div>
   )
 }
