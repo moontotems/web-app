@@ -17,7 +17,7 @@ export default function Favorites({
   readContracts,
   writeContracts
 }) {
-  let creatures = []
+  let creatures = {}
   const INITIAL_TOKEN_ID = 1
   const MAX_TOKEN_ID = 1000
 
@@ -42,12 +42,12 @@ export default function Favorites({
     const isFavorite = checkIfIsFavorite(tokenId)
     const metaData = creature_metadata_hashmap[tokenId]
 
-    creatures.push({
+    creatures[`${tokenId}`] = {
       tokenId,
       metaData,
       isFavorite,
       minted
-    })
+    }
   }
 
   return (
@@ -59,7 +59,7 @@ export default function Favorites({
             {favoritedIds.map(favoritedId => {
               console.log({ favoritedId })
               console.log({ creatures })
-              const { tokenId } = creatures[favoritedId - 1]
+              const { tokenId } = creatures[favoritedId]
               console.log({ tokenId })
 
               const key = `TALISMOON-${tokenId}`

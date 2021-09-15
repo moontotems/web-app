@@ -395,7 +395,7 @@ function App() {
     _tokenId = parseInt(_tokenId)
     let _favoritedIds = persistantStore.get('favoritedIds') || []
     if (_favoritedIds.includes(_tokenId)) {
-      _favoritedIds.pop(_tokenId)
+      _favoritedIds = _favoritedIds.filter(val => val !== _tokenId)
     } else {
       _favoritedIds.push(_tokenId)
     }
