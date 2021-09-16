@@ -30,16 +30,6 @@ export default function SidebarLeft({ open }) {
         <SideNavLink href='javascript:void(0)'>
           <Link
             onClick={() => {
-              setRoute('/')
-            }}
-            to='/'
-          >
-            Home
-          </Link>
-        </SideNavLink>
-        <SideNavLink href='javascript:void(0)'>
-          <Link
-            onClick={() => {
               setRoute('/all')
             }}
             to='/all'
