@@ -14,7 +14,7 @@ import persistantStore from 'store'
 import './App.less'
 import './themes/config.js'
 import './themes/antd-adjustments.css'
-import './themes/carbon-design-adjustments.css'
+import './themes/carbon-design-adjustments.less'
 
 import Routes from './Routes'
 import SidebarLeft from './SidebarLeft'
