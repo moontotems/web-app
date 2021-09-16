@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import $ from 'jquery'
+import ReactRoundedImage from 'react-rounded-image'
 import { SpeechBubbleBot, SpeechBubbleUser } from './speechBubbles'
 
-export default function MessageList({ messages, typing }) {
+export default function MessageList({ messages, typing, image }) {
   const scrollToBottom = () => {
     let elementSelector = '#messageList'
     const { scrollHeight } = $(elementSelector)[0]
@@ -27,15 +28,47 @@ export default function MessageList({ messages, typing }) {
       {messages.map((message, index) => {
         const { sender, value } = message
         if (sender === 'user') {
-          return <SpeechBubbleUser text={value} />
+          return (
+            <div style={{ float: 'right', width: '100%' }}>
+              <SpeechBubbleUser text={value} />
+            </div>
+          )
         }
         if (sender === 'bot') {
-          return <SpeechBubbleBot text={value} />
+          return (
+            <div style={{ float: 'left', width: '100%' }}>
+              <div style={{ float: 'left', width: 100 }}>
+                <ReactRoundedImage
+                  image={image}
+                  imageWidth='100'
+                  imageHeight='100'
+                  roundedColor='#000'
+                  style={{ border: '1px solid #fff' }}
+                />
+              </div>
+              <div style={{ float: 'left', width: 'calc(100% - 100px)' }}>
+                <SpeechBubbleBot text={value} />
+              </div>
+            </div>
+          )
         }
       })}
-      <div style={{ float: 'right', width: '100%' }}>
-        {typing && 'Thinking ...'}
-      </div>
+      {typing && (
+        <div>
+          <div style={{ float: 'left', width: 100 }}>
+            <ReactRoundedImage
+              image={image}
+              imageWidth='100'
+              imageHeight='100'
+              roundedColor='#000'
+              style={{ border: '1px solid #fff' }}
+            />
+          </div>
+          <div style={{ float: 'left', width: 'calc(100% - 100px)' }}>
+            <SpeechBubbleBot text={'Thinking ...'} />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

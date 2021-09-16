@@ -6,7 +6,7 @@ import persistantStore from 'store'
 import MessageList from './MessageList'
 import ANSWER_LIST from './answerList'
 
-export default function Chatbot() {
+export default function Chatbot({ image }) {
   const initialMessages = persistantStore.get('chatbotMessages') || []
   if (initialMessages.length === 0) {
     initialMessages.push({
@@ -65,7 +65,7 @@ export default function Chatbot() {
         <ChatBot16 /> TOTEM CHAT
       </div>
       <Row>
-        <MessageList messages={messages} typing={typing} />
+        <MessageList messages={messages} typing={typing} image={image} />
       </Row>
       <Row>
         <Form onSubmit={e => onSubmit(e)}>

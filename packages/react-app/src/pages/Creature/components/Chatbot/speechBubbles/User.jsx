@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function SpeechBubbleUser({ text }) {
   return (
-    <div style={{ float: 'right', width: '60%' }}>
+    <div style={{ float: 'right' }}>
       <div
         style={{
           textAlign: 'left',

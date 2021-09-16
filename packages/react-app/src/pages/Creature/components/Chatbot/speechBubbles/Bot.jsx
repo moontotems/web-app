@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function SpeechBubbleBot({ text }) {
   return (
-    <div style={{ float: 'left', width: '60%' }}>
+    <div style={{ float: 'left' }}>
       <div
         style={{
           textAlign: 'left',
