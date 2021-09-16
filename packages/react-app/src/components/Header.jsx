@@ -49,6 +49,27 @@ export default function MyHeader({
     setRoute(window.location.pathname)
   }, [setRoute])
 
+  const getTitle = () => {
+    console.log(window.location.pathname)
+    if (window.location.pathname === '/') {
+      return ''
+    }
+    if (window.location.pathname === '/minted') {
+      return 'Minted'
+    }
+    if (window.location.pathname === '/wallet') {
+      return 'My Totems'
+    }
+    if (window.location.pathname === '/favorites') {
+      return 'Favorite Totems'
+    }
+    if (window.location.pathname === '/favorites') {
+      return 'Favorite Totems'
+    }
+  }
+
+  console.log({ getTitle: getTitle() })
+
   const dropdownContent = (
     <Menu>
       <Menu.Item>
@@ -108,10 +129,14 @@ export default function MyHeader({
           }}
           to='/'
         >
-          MOON TOTOEMS
+          MOON TOTEMS
         </Link>
       </HeaderName>
       <HeaderNavigation aria-label='Crypto Moons'>
+        <HeaderName href='#' prefix='' style={{ textAlign: 'center' }}>
+          {getTitle()}
+        </HeaderName>
+        <HeaderMenuItem></HeaderMenuItem>
         {/*
         <HeaderMenu aria-label='Subm' menuLinkName='Subm'>
           <HeaderMenuItem></HeaderMenuItem>
