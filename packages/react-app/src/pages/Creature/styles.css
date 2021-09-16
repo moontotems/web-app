@@ -6,8 +6,3 @@
 .creature-attribute-value {
   line-height: 40px;
 }
-
-#downloadButton,
-#downloadButton:hover {
-  border: none;
-}

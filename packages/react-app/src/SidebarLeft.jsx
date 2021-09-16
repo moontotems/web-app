@@ -26,6 +26,78 @@ export default function SidebarLeft({ open }) {
       }}
     >
       <SideNavItems>
+        <SideNavLink href='javascript:void(0)'></SideNavLink>
+        <SideNavLink href='javascript:void(0)'>
+          <Link
+            onClick={() => {
+              setRoute('/')
+            }}
+            to='/'
+          >
+            Home
+          </Link>
+        </SideNavLink>
+        <SideNavLink href='javascript:void(0)'>
+          <Link
+            onClick={() => {
+              setRoute('/all')
+            }}
+            to='/all'
+          >
+            All Moon Totems
+          </Link>
+        </SideNavLink>
+        <SideNavLink href='javascript:void(0)'>
+          <Link
+            onClick={() => {
+              setRoute('/favorites')
+            }}
+            to='/favorites'
+          >
+            My Favorite Totems
+          </Link>
+        </SideNavLink>
+        <SideNavLink href='javascript:void(0)'>
+          <Link
+            onClick={() => {
+              setRoute('/wallet')
+            }}
+            to='/wallet'
+          >
+            My Totems
+          </Link>
+        </SideNavLink>
+        <SideNavLink href='javascript:void(0)'>
+          <Link
+            onClick={() => {
+              setRoute('/minted')
+            }}
+            to='/minted'
+          >
+            Mint a new Totem
+          </Link>
+        </SideNavLink>
+        <SideNavLink href='javascript:void(0)'>
+          <Link
+            onClick={() => {
+              setRoute('/contract-events')
+            }}
+            to='/contract-events'
+          >
+            Contract Events
+          </Link>
+        </SideNavLink>
+        <SideNavLink href='javascript:void(0)'>
+          <Link
+            onClick={() => {
+              setRoute('/contract-interface')
+            }}
+            to='/contract-interface'
+          >
+            Contract Interface
+          </Link>
+        </SideNavLink>
+
         {/*<SideNavMenu title='L0 menu'>
           <SideNavMenuItem href='javascript:void(0)'>
             L0 menu item
@@ -48,39 +120,6 @@ export default function SidebarLeft({ open }) {
             L0 menu item
           </SideNavMenuItem>
         </SideNavMenu>*/}
-        <SideNavLink href='javascript:void(0)'></SideNavLink>
-        <SideNavLink href='javascript:void(0)'>
-          <Link
-            onClick={() => {
-              setRoute('/minted')
-            }}
-            to='/minted'
-          >
-            Mint a new Moon
-          </Link>
-        </SideNavLink>
-
-        <SideNavLink href='javascript:void(0)'>
-          {' '}
-          <Link
-            onClick={() => {
-              setRoute('/wallet')
-            }}
-            to='/wallet'
-          >
-            My Totems
-          </Link>
-        </SideNavLink>
-        <SideNavLink href='javascript:void(0)'>
-          <Link
-            onClick={() => {
-              setRoute('/favorites')
-            }}
-            to='/favorites'
-          >
-            My Favorite Moons
-          </Link>
-        </SideNavLink>
       </SideNavItems>
     </SideNav>
   )

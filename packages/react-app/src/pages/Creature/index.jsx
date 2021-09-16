@@ -21,7 +21,7 @@ import {
 import { useEventListener } from '../../hooks'
 import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 import { Attributes, Chatbot } from './components'
-import './styles.less'
+import './styles.css'
 
 export default function CreaturePage({
   address,
@@ -153,7 +153,7 @@ export default function CreaturePage({
                 {minted && <CheckmarkOutline32 style={{ fill: '#4589FF' }} />}
                 {!minted && <CheckmarkFilled32 style={{ fill: '#00FF74' }} />}
               </div>
-              <div style={{ float: 'left', width: '80%' }}>
+              <div style={{ float: 'left', width: '80%', textAlign: 'center' }}>
                 {minted && (
                   <a
                     href='https://opensea.io/'
@@ -206,7 +206,7 @@ export default function CreaturePage({
           </Row>
           <Row>
             <Col span={24}>
-              <div style={{ margin: '45px 0' }}>
+              <div style={{ margin: '45px 0', textAlign: 'center' }}>
                 <Filter32 aria-label='Filter' style={{ ...iconStyle }} />
                 <Apps32
                   aria-label='Switch to area view'
@@ -218,7 +218,10 @@ export default function CreaturePage({
                   style={{ ...iconStyle }}
                 />
                 <Dropdown overlay={menu} placement='topCenter'>
-                  <Button id='downloadButton' style={{ padding: 0 }}>
+                  <Button
+                    id='downloadButton'
+                    style={{ padding: 0, border: 'none' }}
+                  >
                     <Download32
                       aria-label='Download'
                       style={{ ...iconStyle, color: '#fff' }}

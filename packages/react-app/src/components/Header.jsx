@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Search20 from '@carbon/icons-react/lib/search/20'
-import Notification20 from '@carbon/icons-react/lib/notification/20'
-import AppSwitcher20 from '@carbon/icons-react/lib/app-switcher/20'
+import { Menu, Button, Dropdown } from 'antd'
+//import Search20 from '@carbon/icons-react/lib/search/20'
+//import Notification20 from '@carbon/icons-react/lib/notification/20'
+//import AppSwitcher20 from '@carbon/icons-react/lib/app-switcher/20'
+import {
+  CheckmarkOutline16,
+  Search20,
+  Notification20,
+  AppSwitcher20,
+  TextAlignJustify32,
+  QueryQueue32
+} from '@carbon/icons-react'
+
 import {
   Header,
   HeaderName,
@@ -13,9 +23,11 @@ import {
   HeaderMenuItem
 } from 'carbon-components-react/lib/components/UIShell'
 
-import Account from './Account'
+import Address from './HeaderAddress'
 
 export default function MyHeader({
+  setSidebarLeftOpen,
+  sidebarLeftOpen,
   address,
   userSigner,
   mainnetProvider,
@@ -37,8 +49,58 @@ export default function MyHeader({
     setRoute(window.location.pathname)
   }, [setRoute])
 
+  const dropdownContent = (
+    <Menu>
+      <Menu.Item>
+        <Address
+          size='medium'
+          address={address}
+          ensProvider={mainnetProvider}
+          blockExplorer={blockExplorer}
+        />
+      </Menu.Item>
+      <Menu.Item>
+        <Link
+          onClick={() => {
+            setRoute('/minted')
+          }}
+          to='/minted'
+        >
+          Mint a new Totem
+        </Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link
+          onClick={() => {
+            setRoute('/wallet')
+          }}
+          to='/wallet'
+        >
+          My Totems
+        </Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link
+          onClick={() => {
+            setRoute('/favorites')
+          }}
+          to='/favorites'
+        >
+          My Favorite Totems
+        </Link>
+      </Menu.Item>
+    </Menu>
+  )
+
   return (
-    <Header aria-label='Talismoons'>
+    <Header aria-label='Moon Totems'>
+      <HeaderGlobalAction
+        aria-label='Navigation'
+        onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
+      >
+        {/*<QueryQueue32 />*/}
+        <TextAlignJustify32 />
+      </HeaderGlobalAction>
       <HeaderName href='#' prefix=''>
         <Link
           onClick={() => {
@@ -46,132 +108,43 @@ export default function MyHeader({
           }}
           to='/'
         >
-          Talismoons
+          MOON TOTOEMS
         </Link>
       </HeaderName>
       <HeaderNavigation aria-label='Crypto Moons'>
-        <HeaderMenuItem>
-          <Link
-            onClick={() => {
-              setRoute('/')
-            }}
-            to='/'
-          >
-            Home
-          </Link>
-        </HeaderMenuItem>
-        <HeaderMenuItem>
-          <Link
-            onClick={() => {
-              setRoute('/all')
-            }}
-            to='/all'
-          >
-            All Talismoons
-          </Link>
-        </HeaderMenuItem>
-        <HeaderMenuItem>
-          <Link
-            onClick={() => {
-              setRoute('/favorites')
-            }}
-            to='/favorites'
-          >
-            Favorites
-          </Link>
-        </HeaderMenuItem>
-        <HeaderMenuItem>
-          <Link
-            onClick={() => {
-              setRoute('/contract-events')
-            }}
-            to='/contract-events'
-          >
-            Contract Events
-          </Link>
-        </HeaderMenuItem>
-        <HeaderMenuItem>
-          <Link
-            onClick={() => {
-              setRoute('/contract-interface')
-            }}
-            to='/contract-interface'
-          >
-            C Interface
-          </Link>
-        </HeaderMenuItem>
+        {/*
         <HeaderMenu aria-label='Subm' menuLinkName='Subm'>
-          <HeaderMenuItem href='#'>
-            <Link
-              onClick={() => {
-                setRoute('/wallet')
-              }}
-              to='/wallet'
-            >
-              My Totems
-            </Link>
-          </HeaderMenuItem>
-          <HeaderMenuItem href='#'>
-            <Link
-              onClick={() => {
-                setRoute('/minted')
-              }}
-              to='/minted'
-            >
-              My Favorite Moons
-            </Link>
-          </HeaderMenuItem>
-          <HeaderMenuItem href='#'>
-            <Link
-              onClick={() => {
-                setRoute('/minted')
-              }}
-              to='/minted'
-            >
-              Minted Totems
-            </Link>
-          </HeaderMenuItem>
-          <HeaderMenuItem href='#'>
-            <Link
-              onClick={() => {
-                setRoute('/contract-events')
-              }}
-              to='/contract-events'
-            >
-              Contract Events
-            </Link>
-          </HeaderMenuItem>
-
-          <HeaderMenuItem href='#'>
-            {' '}
-            <Link
-              onClick={() => {
-                setRoute('/contract-interface')
-              }}
-              to='/contract-interface'
-            >
-              C Interface
-            </Link>
-          </HeaderMenuItem>
+          <HeaderMenuItem></HeaderMenuItem>
         </HeaderMenu>
+        */}
       </HeaderNavigation>
       <HeaderGlobalBar>
         <span style={{ marginTop: 13 }}>
           <div style={{ marginRight: 15 }}>{networkDisplay}</div>
         </span>
 
-        <span style={{ marginTop: 13 }}>
-          <Account
-            address={address}
-            localProvider={localProvider}
-            userSigner={userSigner}
-            mainnetProvider={mainnetProvider}
-            price={ethPriceDollar}
-            web3Modal={web3Modal}
-            loadWeb3Modal={loadWeb3Modal}
-            logoutOfWeb3Modal={logoutOfWeb3Modal}
-            blockExplorer={blockExplorer}
-          />
+        <span style={{ marginTop: 6 }}>
+          <Dropdown overlay={dropdownContent} placement='bottomCenter'>
+            <Button id='accountDropdown' style={{ padding: 0, border: 'none' }}>
+              <Address
+                size='medium'
+                address={address}
+                ensProvider={mainnetProvider}
+                blockExplorer={blockExplorer}
+              />
+              {/*<Account
+                address={address}
+                localProvider={localProvider}
+                userSigner={userSigner}
+                mainnetProvider={mainnetProvider}
+                price={ethPriceDollar}
+                web3Modal={web3Modal}
+                loadWeb3Modal={loadWeb3Modal}
+                logoutOfWeb3Modal={logoutOfWeb3Modal}
+                blockExplorer={blockExplorer}
+              />*/}
+            </Button>
+          </Dropdown>
         </span>
         <HeaderGlobalAction aria-label='Search' onClick={() => {}}>
           <Search20 />

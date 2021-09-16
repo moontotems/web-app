@@ -50,7 +50,7 @@ export default function Home({
   }
 
   return (
-    <div style={{ backgroundColor: '#000' }}>
+    <div style={{ backgroundColor: '#000', textAlign: 'center' }}>
       <div>
         <p style={{ fontSize: 17, lineHeight: 2 }}>Next hatching #13</p>
         <p style={{ fontSize: 17, lineHeight: 2 }}>04:09:32</p>
