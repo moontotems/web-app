@@ -149,11 +149,17 @@ export default function CreaturePage({
           <img src={image} width='100%' />
           <Row>
             <Col span={24}>
-              <div style={{ float: 'left', width: '10%' }}>
+              <div style={{ float: 'left' }}>
                 {minted && <CheckmarkOutline32 style={{ fill: '#4589FF' }} />}
                 {!minted && <CheckmarkFilled32 style={{ fill: '#00FF74' }} />}
               </div>
-              <div style={{ float: 'left', width: '80%', textAlign: 'center' }}>
+              <div
+                style={{
+                  float: 'left',
+                  width: 'calc(100% - 64px)',
+                  textAlign: 'center'
+                }}
+              >
                 {minted && (
                   <a
                     href='https://opensea.io/'
@@ -186,7 +192,7 @@ export default function CreaturePage({
                   </Button>
                 )}
               </div>
-              <div style={{ float: 'left', width: '10%' }}>
+              <div style={{ float: 'left' }}>
                 {!isFavorite && (
                   <Favorite32
                     role='button'
