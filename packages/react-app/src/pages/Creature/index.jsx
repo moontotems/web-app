@@ -21,7 +21,7 @@ import {
 import { useEventListener } from '../../hooks'
 import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 import { Attributes, Chatbot } from './components'
-import './styles.css'
+import './styles.less'
 
 export default function CreaturePage({
   address,

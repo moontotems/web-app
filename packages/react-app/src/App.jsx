@@ -2,6 +2,7 @@ import WalletConnectProvider from '@walletconnect/web3-provider'
 import WalletLink from 'walletlink'
 
 import { Alert, Button } from 'antd'
+//import {} from 'carbon-components-react'
 import 'antd/dist/antd.css'
 import 'carbon-components/css/carbon-components.min.css'
 
@@ -10,10 +11,12 @@ import { BrowserRouter } from 'react-router-dom'
 import Web3Modal from 'web3modal'
 import persistantStore from 'store'
 
-import './App.css'
+import './App.less'
 import './themes/config.js'
+import './themes/antd-adjustments.css'
 
 import Routes from './Routes'
+import SidebarLeft from './SidebarLeft'
 import Footer from './Footer'
 import { Header } from './components'
 
@@ -403,10 +406,18 @@ function App() {
     setFavoritedIds(_favoritedIds)
   }
 
+  const [sidebarLeftOpen, setSidebarLeftOpen] = useState(false)
+
+  console.log({ sidebarLeftOpen })
+
   return (
     <div id='App'>
       <BrowserRouter>
+        <SidebarLeft open={sidebarLeftOpen} />
+
         <Header
+          setSidebarLeftOpen={setSidebarLeftOpen}
+          sidebarLeftOpen={sidebarLeftOpen}
           address={address}
           localProvider={localProvider}
           userSigner={userSigner}

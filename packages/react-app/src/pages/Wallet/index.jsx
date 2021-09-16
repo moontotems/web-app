@@ -14,7 +14,7 @@ import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 
 import { useContractReader } from '../../hooks'
 
-import './styles.css'
+import './styles.less'
 
 export default function Wallet({
   address,
@@ -143,6 +143,7 @@ export default function Wallet({
 
   return (
     <div style={{ backgroundColor: '#000' }}>
+      {/*
       <Row>
         <DataTable rows={rows} headers={headers}>
           {({ rows, headers, getTableProps, getHeaderProps, getRowProps }) => (
@@ -178,6 +179,7 @@ export default function Wallet({
           )}
         </DataTable>
       </Row>
+      */}
       <Row>
         {usersCreatures.map(usersCreature => {
           const tokenId = usersCreature.id
