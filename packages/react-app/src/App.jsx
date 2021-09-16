@@ -13,7 +13,7 @@ import persistantStore from 'store'
 
 import './App.less'
 import './themes/config.js'
-import './themes/antd-adjustments.css'
+import './themes/antd-adjustments.less'
 import './themes/carbon-design-adjustments.less'
 
 import Routes from './Routes'
