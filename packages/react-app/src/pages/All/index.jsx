@@ -69,8 +69,8 @@ export default function All({
         //endMessage={}
       >
         <Row>
-          <Col xs={24} md={4} />
-          <Col xs={24} md={16}>
+          <Col xs={24} sm={24} md={4} />
+          <Col xs={24} sm={24} md={16}>
             <Row>
               {creatures.map(creature => {
                 const { tokenId } = creature
@@ -78,7 +78,7 @@ export default function All({
                 const key = `TALISMOON-${tokenId}`
 
                 return (
-                  <Col key={key} xs={24} sm={16} md={8} lg={8}>
+                  <Col key={key} xs={24} sm={24} md={8} lg={8}>
                     <Creature
                       address={address}
                       mainnetProvider={mainnetProvider}
@@ -97,7 +97,7 @@ export default function All({
               })}
             </Row>
           </Col>
-          <Col xs={24} md={4} />
+          <Col xs={24} sm={24} md={4} />
         </Row>
       </InfiniteScroll>
     </div>
