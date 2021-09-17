@@ -17,7 +17,7 @@ export default function MyFooter() {
         paddingBottom: 50
       }}
     >
-      <Col span={8}>
+      <Col xs={24} sm={24} md={8} lg={8}>
         <div style={{ fontWeight: 'bold', marginBottom: 25 }}>The Project</div>
         <div style={{ marginTop: 15 }}>
           <Link
@@ -40,10 +40,10 @@ export default function MyFooter() {
           </Link>
         </div>
       </Col>
-      <Col span={8}>
+      <Col xs={12} sm={24} md={8} lg={8}>
         <div style={{ fontWeight: 'bold', marginBottom: 25 }}>Resources</div>
       </Col>
-      <Col span={8}>
+      <Col xs={12} sm={24} md={8} lg={8}>
         <div style={{ fontWeight: 'bold', marginBottom: 25 }}>Legal</div>
         <div style={{ marginTop: 15 }}>
           <Link
