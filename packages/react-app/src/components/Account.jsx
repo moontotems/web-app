@@ -18,6 +18,7 @@ export default function Account({
   const modalButtons = []
   if (web3Modal) {
     if (web3Modal.cachedProvider) {
+      /*
       modalButtons.push(
         <Button
           key='logoutbutton'
@@ -34,6 +35,7 @@ export default function Account({
           logout
         </Button>
       )
+      */
     } else {
       modalButtons.push(
         <div

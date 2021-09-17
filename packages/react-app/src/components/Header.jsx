@@ -128,7 +128,7 @@ export default function MyHeader({
         <div style={{ float: 'left' }}>
           <Link
             onClick={() => {
-              console.log('logout')
+              logoutOfWeb3Modal()
             }}
           >
             Logout
