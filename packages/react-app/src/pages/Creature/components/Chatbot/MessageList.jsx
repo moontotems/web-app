@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import $ from 'jquery'
-import ReactRoundedImage from 'react-rounded-image'
-import { SpeechBubbleBot, SpeechBubbleUser } from './speechBubbles'
+import { SpeechBubbleUser } from './speechBubbles'
 import BotMessageContainer from './BotMessageContainer'
 
 export default function MessageList({ messages, typing, image }) {
@@ -26,7 +25,7 @@ export default function MessageList({ messages, typing, image }) {
         textAlign: 'left'
       }}
     >
-      {messages.map((message, index) => {
+      {messages.map(message => {
         const { sender, value } = message
         if (sender === 'user') {
           return (
