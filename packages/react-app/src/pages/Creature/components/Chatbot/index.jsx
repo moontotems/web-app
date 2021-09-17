@@ -4,6 +4,7 @@ import { ChatBot16 } from '@carbon/icons-react'
 import { Input } from 'antd'
 const { Search } = Input
 import persistantStore from 'store'
+import $ from 'jquery'
 import MessageList from './MessageList'
 import ANSWER_LIST from './answerList'
 
@@ -46,6 +47,10 @@ export default function Chatbot({ image, tokenId }) {
     const message = { sender: 'user', value }
     addMessage(message)
 
+    console.log('now clearing input')
+    document.getElementById('chatInput').value = ''
+    $('#chatInput').val('')
+
     generateChatbotResponse()
   }
 
@@ -67,8 +72,9 @@ export default function Chatbot({ image, tokenId }) {
       <Row>
         <Form style={{ width: '100%' }}>
           <Search
+            id='chatInput'
             placeholder='Ask a question'
-            allowClear
+            //allowClear
             enterButton='Ask'
             size='large'
             submit

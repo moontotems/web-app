@@ -46,7 +46,13 @@ export default function MessageList({ messages, typing, image }) {
                   style={{ border: '1px solid #fff' }}
                 />
               </div>
-              <div style={{ float: 'left', width: 'calc(100% - 100px)' }}>
+              <div
+                style={{
+                  float: 'left',
+                  width: 'calc(100% - 100px)',
+                  minHeight: 100
+                }}
+              >
                 <SpeechBubbleBot text={value} />
               </div>
             </div>

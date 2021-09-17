@@ -1,4 +1,4 @@
-import { Skeleton, Typography } from 'antd'
+import { Typography } from 'antd'
 import React from 'react'
 import Blockies from 'react-blockies'
 import { useThemeSwitcher } from 'react-css-theme-switcher'
@@ -17,7 +17,25 @@ export default function HeaderAddress(props) {
   const { currentTheme } = useThemeSwitcher()
 
   if (!address) {
-    return <span>Connect</span>
+    return (
+      <span
+        style={{
+          padding: '6px 10px',
+          backgroundColor: 'red',
+          lineHeight: '18px'
+        }}
+      >
+        <span
+          style={{
+            verticalAlign: 'middle',
+            paddingLeft: 5,
+            fontSize: 14
+          }}
+        >
+          connect
+        </span>
+      </span>
+    )
   }
 
   let displayAddress = address.substr(0, 6)

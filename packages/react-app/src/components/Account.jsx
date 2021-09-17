@@ -1,6 +1,5 @@
 import { Button } from 'antd'
 import React from 'react'
-import { useThemeSwitcher } from 'react-css-theme-switcher'
 import Address from './Address'
 import Balance from './Balance'
 
@@ -22,7 +21,12 @@ export default function Account({
       modalButtons.push(
         <Button
           key='logoutbutton'
-          style={{ verticalAlign: 'top', marginLeft: 8, marginTop: 0 }}
+          style={{
+            verticalAlign: 'top',
+            marginLeft: 8,
+            marginTop: 0,
+            backgroundColor: '#4589FF'
+          }}
           type='primary'
           size='small'
           onClick={logoutOfWeb3Modal}
@@ -32,16 +36,28 @@ export default function Account({
       )
     } else {
       modalButtons.push(
-        <Button
+        <div
           key='loginbutton'
-          style={{ verticalAlign: 'top', marginLeft: 8, marginTop: 0 }}
-          type='primary'
-          size='small'
-          //type={minimized ? "default" : "primary"}
+          role='button'
+          style={{
+            height: 32,
+            marginTop: 8,
+            padding: '5px 17px',
+            backgroundColor: 'red',
+            cursor: 'pointer'
+          }}
           onClick={loadWeb3Modal}
         >
-          connect wallet
-        </Button>
+          <span
+            style={{
+              verticalAlign: 'middle',
+              fontSize: 15,
+              fontWeight: 500
+            }}
+          >
+            connect wallet
+          </span>
+        </div>
       )
     }
   }
@@ -52,19 +68,36 @@ export default function Account({
     <span>
       {address && (
         <>
-          <Address
-            size='medium'
-            address={address}
-            ensProvider={mainnetProvider}
-            blockExplorer={blockExplorer}
-            fontSize={12}
-          />
+          <span
+            style={{
+              padding: '9px 17px',
+              backgroundColor: '#4589FF'
+            }}
+          >
+            <span
+              style={{
+                verticalAlign: 'middle',
+                fontSize: 14,
+                fontWeight: 500
+              }}
+            >
+              <Address
+                size='medium'
+                address={address}
+                ensProvider={mainnetProvider}
+                blockExplorer={blockExplorer}
+              />
+            </span>
+          </span>
+
+          {/*
           <Balance
             address={address}
             provider={localProvider}
             price={price}
             fontSize={12}
           />
+          */}
         </>
       )}
       {/*

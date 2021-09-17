@@ -116,12 +116,13 @@ export default function Creature({
           <div style={{ float: 'left', width: '80%' }}>
             <div
               style={{
-                //fontFamily: 'Univers LT Std',
-                fontSize: '14px',
+                fontFamily: 'IBM Plex Sans',
+                fontSize: 16,
                 fontStyle: 'normal',
-                fontWeight: '400',
-                lineHeight: '25px',
-                letterSpacing: '0.04em',
+                fontWeight: 400,
+                //lineHeight: '3em',
+                marginBottom: 2,
+                //letterSpacing: '0.04em',
                 textAlign: 'center'
               }}
             >
@@ -129,12 +130,12 @@ export default function Creature({
             </div>
             <div
               style={{
-                //fontFamily: 'Univers LT Std',
-                fontSize: '10px',
+                fontFamily: 'IBM Plex Sans',
+                fontSize: 13,
                 fontStyle: 'normal',
-                fontWeight: '400',
-                lineHeight: '25px',
-                letterSpacing: '0.04em',
+                fontWeight: 300,
+                //lineHeight: 5,
+                //letterSpacing: '0.04em',
                 textAlign: 'center'
               }}
             >

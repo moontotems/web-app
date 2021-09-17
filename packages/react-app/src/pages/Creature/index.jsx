@@ -167,7 +167,8 @@ export default function CreaturePage({
                     rel='noreferrer'
                   >
                     <Button type='primary'>View on Opensea</Button>
-                    {/*<Button
+                    {/*
+                    <Button
                       type='primary'
                       style={{
                         backgroundColor: '#24A148',
@@ -175,7 +176,8 @@ export default function CreaturePage({
                       }}
                     >
                       Make offer on Opensea
-                    </Button>*/}
+                    </Button>
+                    */}
                   </a>
                 )}
                 {!minted && (

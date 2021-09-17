@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Button, Dropdown } from 'antd'
-//import Search20 from '@carbon/icons-react/lib/search/20'
-//import Notification20 from '@carbon/icons-react/lib/notification/20'
-//import AppSwitcher20 from '@carbon/icons-react/lib/app-switcher/20'
 import {
   CheckmarkOutline16,
   Search20,
@@ -23,6 +20,7 @@ import {
   HeaderMenuItem
 } from 'carbon-components-react/lib/components/UIShell'
 
+import Account from './Account'
 import Address from './HeaderAddress'
 
 export default function MyHeader({
@@ -50,7 +48,6 @@ export default function MyHeader({
   }, [setRoute])
 
   const getTitle = () => {
-    console.log(window.location.pathname)
     if (window.location.pathname === '/') {
       return ''
     }
@@ -67,8 +64,6 @@ export default function MyHeader({
       return 'Favorite Totems'
     }
   }
-
-  console.log({ getTitle: getTitle() })
 
   const dropdownContent = (
     <Menu>
@@ -114,7 +109,7 @@ export default function MyHeader({
   )
 
   return (
-    <Header aria-label='Moon Totems'>
+    <Header aria-label='Moon Totems' style={{ height: 48 }}>
       <HeaderGlobalAction
         aria-label='Navigation'
         onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
@@ -129,11 +124,19 @@ export default function MyHeader({
           }}
           to='/'
         >
-          MOON TOTEMS
+          <span style={{ fontWeight: 400 }}>MOON TOTEMS</span>
         </Link>
       </HeaderName>
       <HeaderNavigation aria-label='Crypto Moons'>
-        <HeaderName href='#' prefix='' style={{ textAlign: 'center' }}>
+        <HeaderName
+          href='#'
+          prefix=''
+          style={{
+            fontFamily: 'IBM Plex Sans',
+            fontSize: 20,
+            fontWeight: 400
+          }}
+        >
           {getTitle()}
         </HeaderName>
         <HeaderMenuItem></HeaderMenuItem>
@@ -144,38 +147,51 @@ export default function MyHeader({
         */}
       </HeaderNavigation>
       <HeaderGlobalBar>
-        <span style={{ marginTop: 13 }}>
+        <span style={{ marginTop: 14 }}>
           <div style={{ marginRight: 15 }}>{networkDisplay}</div>
         </span>
 
-        <span style={{ marginTop: 6 }}>
-          <Dropdown overlay={dropdownContent} placement='bottomCenter'>
-            <Button id='accountDropdown' style={{ padding: 0, border: 'none' }}>
-              <Address
-                size='medium'
-                address={address}
-                ensProvider={mainnetProvider}
-                blockExplorer={blockExplorer}
-              />
-              {/*<Account
-                address={address}
-                localProvider={localProvider}
-                userSigner={userSigner}
-                mainnetProvider={mainnetProvider}
-                price={ethPriceDollar}
-                web3Modal={web3Modal}
-                loadWeb3Modal={loadWeb3Modal}
-                logoutOfWeb3Modal={logoutOfWeb3Modal}
-                blockExplorer={blockExplorer}
-              />*/}
-            </Button>
-          </Dropdown>
+        <span style={{ marginRight: 25 }}>
+          {!address && (
+            <Account
+              address={address}
+              localProvider={localProvider}
+              userSigner={userSigner}
+              mainnetProvider={mainnetProvider}
+              price={ethPriceDollar}
+              web3Modal={web3Modal}
+              loadWeb3Modal={loadWeb3Modal}
+              logoutOfWeb3Modal={logoutOfWeb3Modal}
+              blockExplorer={blockExplorer}
+            />
+          )}
+          {address && (
+            <Dropdown overlay={dropdownContent} placement='bottomCenter'>
+              <div
+                id='accountDropdown'
+                style={{
+                  marginTop: 13,
+                  padding: 0,
+                  border: 'none'
+                }}
+              >
+                <Account
+                  address={address}
+                  localProvider={localProvider}
+                  userSigner={userSigner}
+                  mainnetProvider={mainnetProvider}
+                  price={ethPriceDollar}
+                  web3Modal={web3Modal}
+                  loadWeb3Modal={loadWeb3Modal}
+                  logoutOfWeb3Modal={logoutOfWeb3Modal}
+                  blockExplorer={blockExplorer}
+                />
+              </div>
+            </Dropdown>
+          )}
         </span>
         <HeaderGlobalAction aria-label='Search' onClick={() => {}}>
           <Search20 />
-        </HeaderGlobalAction>
-        <HeaderGlobalAction aria-label='Notifications' onClick={() => {}}>
-          <Notification20 />
         </HeaderGlobalAction>
         <HeaderGlobalAction aria-label='App Switcher' onClick={() => {}}>
           <AppSwitcher20 />
