@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { Row, Col, Menu, Button, Dropdown } from 'antd'
 import $ from 'jquery'
 import { ethers } from 'ethers'
@@ -43,9 +43,6 @@ export default function CreaturePage({
   }, [])
 
   const { id: tokenId } = useParams()
-
-  const [showMetadata, setShowMetadata] = useState(false)
-  const [showChat, setShowChat] = useState(false)
 
   const creatureMetadata = creature_metadata_hashmap[tokenId]
 
