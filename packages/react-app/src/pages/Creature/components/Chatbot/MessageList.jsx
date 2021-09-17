@@ -21,7 +21,7 @@ export default function MessageList({ messages, typing, image }) {
       style={{
         float: 'left',
         width: '100%',
-        height: 400,
+        maxHeight: 400,
         overflowY: 'scroll',
         textAlign: 'left'
       }}
