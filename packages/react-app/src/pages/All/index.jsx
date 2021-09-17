@@ -20,11 +20,10 @@ export default function All({
 }) {
   console.log('in All:')
   console.log({ favoritedIds })
-  const [numberOfVisibleCreatures, setNumberOfVisibleCreatures] = useState(50)
+  const [numberOfVisibleCreatures, setNumberOfVisibleCreatures] = useState(27)
 
   let creatures = []
-  // TODO: change this to 0
-  const INITIAL_TOKEN_ID = 1
+  const INITIAL_TOKEN_ID = 0
   const MAX_TOKEN_ID = 1000
 
   const mintEvents = useEventListener(
@@ -64,7 +63,7 @@ export default function All({
     <div style={{ backgroundColor: '#000' }}>
       <InfiniteScroll
         dataLength={numberOfVisibleCreatures}
-        next={() => setNumberOfVisibleCreatures(numberOfVisibleCreatures + 50)}
+        next={() => setNumberOfVisibleCreatures(numberOfVisibleCreatures + 51)}
         hasMore={numberOfVisibleCreatures < MAX_TOKEN_ID}
         loader={<h4>Loading...</h4>}
         //endMessage={}
