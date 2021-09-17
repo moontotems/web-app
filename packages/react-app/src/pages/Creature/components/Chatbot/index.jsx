@@ -1,29 +1,32 @@
 import React, { useState } from 'react'
-import { Row, Form, TextInput, Button } from 'carbon-components-react'
+import { Row, Form } from 'carbon-components-react'
 import { ChatBot16 } from '@carbon/icons-react'
-import $ from 'jquery'
+import { Input } from 'antd'
+const { Search } = Input
 import persistantStore from 'store'
 import MessageList from './MessageList'
 import ANSWER_LIST from './answerList'
 
-export default function Chatbot({ image }) {
-  const initialMessages = persistantStore.get('chatbotMessages') || []
+export default function Chatbot({ image, tokenId }) {
+  const localStorageId = `chatbotMessages-${tokenId}`
+
+  const initialMessages = persistantStore.get(localStorageId) || []
   if (initialMessages.length === 0) {
     initialMessages.push({
       sender: 'bot',
       value: 'Hello! I can answer your questions ...'
     })
-    persistantStore.set('chatbotMessages', initialMessages)
+    persistantStore.set(localStorageId, initialMessages)
   }
 
   const [messages, setMessages] = useState(initialMessages)
   const [typing, setTyping] = useState(false)
 
   const addMessage = message => {
-    const _messages = persistantStore.get('chatbotMessages')
+    const _messages = persistantStore.get(localStorageId) || []
     const updatedMessageList = [..._messages, message]
     setMessages(updatedMessageList)
-    persistantStore.set('chatbotMessages', updatedMessageList)
+    persistantStore.set(localStorageId, updatedMessageList)
   }
 
   const generateChatbotResponse = async () => {
@@ -37,17 +40,11 @@ export default function Chatbot({ image }) {
     setTyping(false)
   }
 
-  const onSubmit = e => {
-    e.preventDefault()
-
-    const inputField = $('#chatbotInput')
-    const value = inputField.val()
+  const onSubmit = value => {
     if (value == '') return
 
     const message = { sender: 'user', value }
     addMessage(message)
-
-    inputField.val('')
 
     generateChatbotResponse()
   }
@@ -68,17 +65,15 @@ export default function Chatbot({ image }) {
         <MessageList messages={messages} typing={typing} image={image} />
       </Row>
       <Row>
-        <Form onSubmit={e => onSubmit(e)}>
-          <TextInput
-            //helperText='Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)'
-            id='chatbotInput'
-            //invalidText='Invalid error message.'
-            //labelText='Text input label'
+        <Form style={{ width: '100%' }}>
+          <Search
             placeholder='Ask a question'
+            allowClear
+            enterButton='Ask'
+            size='large'
+            submit
+            onSearch={onSubmit}
           />
-          <Button kind='primary' type='submit'>
-            Submit
-          </Button>
         </Form>
       </Row>
     </div>

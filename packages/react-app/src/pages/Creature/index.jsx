@@ -134,7 +134,7 @@ export default function CreaturePage({
       >
         {showChat && (
           <div style={{ width: '60%' }}>
-            <Chatbot image={image} />
+            <Chatbot image={image} tokenId={tokenId} />
           </div>
         )}
         {showMetadata && (
