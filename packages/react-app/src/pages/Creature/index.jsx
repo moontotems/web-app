@@ -38,6 +38,8 @@ export default function CreaturePage({
 }) {
   useEffect(() => {
     window.scrollTo(0, 0)
+    $('#chatbot').hide()
+    $('#creatureAttributes').hide()
   }, [])
 
   const { id: tokenId } = useParams()
@@ -133,16 +135,12 @@ export default function CreaturePage({
           zIndex: 100
         }}
       >
-        {showChat && (
-          <div style={{ width: '60%' }}>
-            <Chatbot image={image} tokenId={tokenId} />
-          </div>
-        )}
-        {showMetadata && (
-          <div style={{ marginTop: 50 }}>
-            <Attributes creatureMetadata={creatureMetadata} />
-          </div>
-        )}
+        <div style={{ width: '60%' }}>
+          <Chatbot image={image} tokenId={tokenId} />
+        </div>
+        <div style={{ marginTop: 50 }}>
+          <Attributes creatureMetadata={creatureMetadata} />
+        </div>
       </div>
       <Row>
         <Col xs={24} md={6} />
@@ -256,18 +254,22 @@ export default function CreaturePage({
                   aria-label='Show Info'
                   style={{ ...iconStyle }}
                   onClick={() => {
-                    setShowChat(false)
-                    //$('#creatureAttributes').toggle(500)
-                    setShowMetadata(!showMetadata)
+                    console.log('click')
+                    //setShowChat(false)
+                    $('#chatbot').hide()
+                    $('#creatureAttributes').toggle(500)
+                    //setShowMetadata(!showMetadata)
                   }}
                 />
                 <ChatBot32
                   aria-label='Chat'
                   style={{ ...iconStyle }}
                   onClick={() => {
-                    setShowMetadata(false)
-                    //$('#chatbot').toggle(500)
-                    setShowChat(!showChat)
+                    console.log('click')
+                    //setShowMetadata(false)
+                    $('#creatureAttributes').hide()
+                    $('#chatbot').toggle(500)
+                    //setShowChat(!showChat)
                   }}
                 />
                 <Edit32 style={{ ...iconStyle }} />
