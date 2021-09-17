@@ -29,7 +29,7 @@ export default function MessageList({ messages, typing, image }) {
         const { sender, value } = message
         if (sender === 'user') {
           return (
-            <div style={{ float: 'right', width: '100%' }}>
+            <div style={{ float: 'right', width: 'calc(100% - 120px)' }}>
               <SpeechBubbleUser text={value} />
             </div>
           )
@@ -49,7 +49,7 @@ export default function MessageList({ messages, typing, image }) {
               <div
                 style={{
                   float: 'left',
-                  width: 'calc(100% - 100px)',
+                  width: 'calc(100% - 120px)',
                   minHeight: 100
                 }}
               >
@@ -70,7 +70,7 @@ export default function MessageList({ messages, typing, image }) {
               style={{ border: '1px solid #fff' }}
             />
           </div>
-          <div style={{ float: 'left', width: 'calc(100% - 100px)' }}>
+          <div style={{ float: 'left', width: 'calc(100% - 120px)' }}>
             <SpeechBubbleBot text={'Thinking ...'} />
           </div>
         </div>

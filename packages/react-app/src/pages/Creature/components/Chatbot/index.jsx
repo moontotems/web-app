@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import { Row, Form } from 'carbon-components-react'
-import { ChatBot16 } from '@carbon/icons-react'
-import { Input } from 'antd'
-const { Search } = Input
+import { Row } from 'carbon-components-react'
+import { ChatBot32 } from '@carbon/icons-react'
+import { Form, Input } from 'antd'
 import persistantStore from 'store'
-import $ from 'jquery'
+import './index.less'
 import MessageList from './MessageList'
 import ANSWER_LIST from './answerList'
 
 export default function Chatbot({ image, tokenId }) {
   const localStorageId = `chatbotMessages-${tokenId}`
+  const [form] = Form.useForm()
 
   const initialMessages = persistantStore.get(localStorageId) || []
   if (initialMessages.length === 0) {
@@ -41,45 +41,73 @@ export default function Chatbot({ image, tokenId }) {
     setTyping(false)
   }
 
-  const onSubmit = value => {
-    if (value == '') return
+  const onSubmit = ({ inputValue }) => {
+    if (inputValue == '') return
 
-    const message = { sender: 'user', value }
+    const message = { sender: 'user', value: inputValue }
     addMessage(message)
 
-    console.log('now clearing input')
-    document.getElementById('chatInput').value = ''
-    $('#chatInput').val('')
+    form.resetFields()
 
     generateChatbotResponse()
   }
 
   return (
     <div
+      id='chatbot'
       style={{
         float: 'left',
         width: '100%',
         textAlign: 'left',
-        padding: 20
+        marginTop: 40,
+        marginLeft: 10
       }}
     >
-      <div style={{ marginBottom: 15 }}>
-        <ChatBot16 /> TOTEM CHAT
+      <div style={{ float: 'left', width: '100%', marginBottom: 15 }}>
+        <ChatBot32 style={{ float: 'left' }} />
+        <div
+          style={{ float: 'left', height: 32, marginTop: 2, marginLeft: 10 }}
+        >
+          TOTEM CHAT
+        </div>
       </div>
       <Row>
-        <MessageList messages={messages} typing={typing} image={image} />
+        <div style={{ marginTop: 0 }}>
+          <MessageList messages={messages} typing={typing} image={image} />
+        </div>
       </Row>
       <Row>
-        <Form style={{ width: '100%' }}>
-          <Search
-            id='chatInput'
-            placeholder='Ask a question'
-            //allowClear
-            enterButton='Ask'
-            size='large'
-            submit
-            onSearch={onSubmit}
-          />
+        <Form form={form} onFinish={onSubmit} style={{ width: '100%' }}>
+          <Form.Item name='inputValue'>
+            <Input
+              placeholder={'Ask a question...'}
+              style={{
+                float: 'right',
+                width: '80%',
+                margin: '0 auto 1rem',
+                padding: '0.8rem 0.8rem',
+                textAlign: 'left',
+                backgroundColor: '#4589FF',
+                color: '#fff',
+                border: '1px solid #4589FF',
+                borderRadius: '0.80rem',
+                fontSize: 16,
+                fontWeight: 400,
+                lineHeight: '28px',
+                letterSpacing: '0.1599999964237213px'
+              }}
+            />
+            {/*
+              <Search
+              id='chatInput'
+              placeholder='Ask a question'
+              //allowClear
+              enterButton='Ask'
+              size='large'
+              submit
+            />
+            */}
+          </Form.Item>
         </Form>
       </Row>
     </div>
