@@ -65,6 +65,14 @@ export default function MyHeader({
     if (window.location.pathname === '/favorites') {
       return 'Favorite Totems'
     }
+    if (window.location.pathname.includes('totem')) {
+      let tokenId = window.location.pathname.match(/\d+/g)
+      if (tokenId.length) tokenId = tokenId[0]
+      console.log({ tokenId })
+      const title = `Moon Totem #${tokenId}`
+      console.log({ title })
+      return title
+    }
   }
 
   const dropdownContent = (

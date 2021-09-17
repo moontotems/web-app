@@ -61,7 +61,7 @@ export default function Routes({
           readContracts={readContracts}
         />
       </Route>
-      <Route exact path='/creature/:id'>
+      <Route exact path='/totem/:id'>
         <Creature
           address={address}
           userSigner={userSigner}

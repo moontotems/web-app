@@ -101,9 +101,9 @@ export default function Creature({
       >
         <Link
           onClick={() => {
-            setRoute('/creature')
+            setRoute('/totem')
           }}
-          to={`/creature/${tokenId}`}
+          to={`/totem/${tokenId}`}
         >
           <img src={image} width='100%' />
         </Link>
