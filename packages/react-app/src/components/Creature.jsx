@@ -139,7 +139,7 @@ export default function Creature({
                 textAlign: 'center'
               }}
             >
-              {trait_jobTitle} {trait_jobField}
+              {trait_jobField} {trait_jobTitle}
             </div>
           </div>
           <div style={{ float: 'left', width: '10%' }}>

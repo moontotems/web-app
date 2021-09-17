@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, Button, Dropdown } from 'antd'
+import { Menu, Dropdown } from 'antd'
 import {
   CheckmarkOutline16,
   Search20,
-  Notification20,
   AppSwitcher20,
   TextAlignJustify32,
-  QueryQueue32
+  Moon16,
+  FavoriteFilled16,
+  JoinRight16,
+  Logout16
 } from '@carbon/icons-react'
 
 import {
@@ -75,35 +77,56 @@ export default function MyHeader({
           blockExplorer={blockExplorer}
         />
       </Menu.Item>
-      <Menu.Item>
-        <Link
-          onClick={() => {
-            setRoute('/minted')
-          }}
-          to='/minted'
-        >
-          Mint a new Totem
-        </Link>
+      <Menu.Item style={{ float: 'left', width: '100%' }}>
+        <div style={{ float: 'left' }}>
+          <Link
+            onClick={() => {
+              setRoute('/minted')
+            }}
+            to='/minted'
+          >
+            Mint a new Totem
+          </Link>
+        </div>
+        <JoinRight16 style={{ float: 'right' }} />
       </Menu.Item>
-      <Menu.Item>
-        <Link
-          onClick={() => {
-            setRoute('/wallet')
-          }}
-          to='/wallet'
-        >
-          My Totems
-        </Link>
+      <Menu.Item style={{ float: 'left', width: '100%' }}>
+        <div style={{ float: 'left' }}>
+          <Link
+            onClick={() => {
+              setRoute('/wallet')
+            }}
+            to='/wallet'
+          >
+            My Totems
+          </Link>
+        </div>
+        <Moon16 style={{ float: 'right' }} />
       </Menu.Item>
-      <Menu.Item>
-        <Link
-          onClick={() => {
-            setRoute('/favorites')
-          }}
-          to='/favorites'
-        >
-          My Favorite Totems
-        </Link>
+      <Menu.Item style={{ float: 'left', width: '100%' }}>
+        <div style={{ float: 'left' }}>
+          <Link
+            onClick={() => {
+              setRoute('/favorites')
+            }}
+            to='/favorites'
+          >
+            My Favorite Totems
+          </Link>
+        </div>
+        <FavoriteFilled16 style={{ float: 'right' }} />
+      </Menu.Item>
+      <Menu.Item style={{ float: 'left', width: '100%' }}>
+        <div style={{ float: 'left' }}>
+          <Link
+            onClick={() => {
+              console.log('logout')
+            }}
+          >
+            Logout
+          </Link>
+        </div>
+        <Logout16 style={{ float: 'right' }} />
       </Menu.Item>
     </Menu>
   )

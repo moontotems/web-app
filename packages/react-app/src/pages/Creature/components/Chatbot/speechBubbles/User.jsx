@@ -6,7 +6,7 @@ export default function SpeechBubbleUser({ text }) {
       <div
         style={{
           //minHeight: 100,
-          margin: '0 auto 1rem',
+          margin: '0 auto 0rem',
           padding: '0.8rem 0.8rem',
           textAlign: 'left',
           backgroundColor: '#4589FF',

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Row, Col, Menu, Button, Dropdown } from 'antd'
+import $ from 'jquery'
 import { ethers } from 'ethers'
 import {
   CheckmarkOutline32,
@@ -256,6 +257,7 @@ export default function CreaturePage({
                   style={{ ...iconStyle }}
                   onClick={() => {
                     setShowChat(false)
+                    //$('#creatureAttributes').toggle(500)
                     setShowMetadata(!showMetadata)
                   }}
                 />
@@ -264,6 +266,7 @@ export default function CreaturePage({
                   style={{ ...iconStyle }}
                   onClick={() => {
                     setShowMetadata(false)
+                    //$('#chatbot').toggle(500)
                     setShowChat(!showChat)
                   }}
                 />

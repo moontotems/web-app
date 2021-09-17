@@ -41,7 +41,7 @@ export default function Attributes({
   }
 }) {
   return (
-    <div>
+    <div id='creatureAttributes'>
       <div
         style={{
           float: 'left',
