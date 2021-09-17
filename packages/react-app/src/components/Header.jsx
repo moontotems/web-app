@@ -140,94 +140,102 @@ export default function MyHeader({
   )
 
   return (
-    <Header aria-label='Moon Totems' style={{ height: 48 }}>
-      <HeaderGlobalAction
-        aria-label='Navigation'
-        onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
+    <>
+      <div
+        style={{
+          position: 'fixed',
+          top: 7,
+          height: 48,
+          width: '100%',
+          zIndex: 9000,
+          pointerEvents: 'none',
+          textAlign: 'center',
+          fontFamily: 'IBM Plex Sans',
+          fontSize: 20,
+          fontWeight: 400
+        }}
       >
-        {/*<QueryQueue32 />*/}
-        <TextAlignJustify32 />
-      </HeaderGlobalAction>
-      <HeaderName href='#' prefix=''>
-        <Link
-          onClick={() => {
-            setRoute('/')
-          }}
-          to='/'
+        {getTitle()}
+      </div>
+      <Header aria-label='Moon Totems' style={{ height: 48 }}>
+        <HeaderGlobalAction
+          aria-label='Navigation'
+          onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
         >
-          <span style={{ fontWeight: 400 }}>MOON TOTEMS</span>
-        </Link>
-      </HeaderName>
-      <HeaderNavigation aria-label='Crypto Moons'>
-        <HeaderName
-          href='#'
-          prefix=''
-          style={{
-            fontFamily: 'IBM Plex Sans',
-            fontSize: 20,
-            fontWeight: 400
-          }}
-        >
-          {getTitle()}
+          {/*<QueryQueue32 />*/}
+          <TextAlignJustify32 />
+        </HeaderGlobalAction>
+        <HeaderName href='#' prefix=''>
+          <Link
+            onClick={() => {
+              setRoute('/')
+            }}
+            to='/'
+          >
+            <span style={{ fontWeight: 400 }}>MOON TOTEMS</span>
+          </Link>
         </HeaderName>
-        <HeaderMenuItem></HeaderMenuItem>
-        {/*
+        <HeaderNavigation aria-label='Crypto Moons'>
+          <HeaderName href='#' prefix=''></HeaderName>
+          <HeaderMenuItem></HeaderMenuItem>
+          {/*
         <HeaderMenu aria-label='Subm' menuLinkName='Subm'>
           <HeaderMenuItem></HeaderMenuItem>
         </HeaderMenu>
         */}
-      </HeaderNavigation>
-      <HeaderGlobalBar>
-        <span style={{ marginTop: 14 }}>
-          <div style={{ marginRight: 15 }}>{networkDisplay}</div>
-        </span>
+        </HeaderNavigation>
+        <HeaderGlobalBar>
+          <span style={{ marginTop: 14 }}>
+            <div style={{ marginRight: 15 }}>{networkDisplay}</div>
+          </span>
 
-        <span style={{ marginRight: 25 }}>
-          {!address && (
-            <Account
-              address={address}
-              localProvider={localProvider}
-              userSigner={userSigner}
-              mainnetProvider={mainnetProvider}
-              price={ethPriceDollar}
-              web3Modal={web3Modal}
-              loadWeb3Modal={loadWeb3Modal}
-              logoutOfWeb3Modal={logoutOfWeb3Modal}
-              blockExplorer={blockExplorer}
-            />
-          )}
-          {address && (
-            <Dropdown overlay={dropdownContent} placement='bottomCenter'>
-              <div
-                id='accountDropdown'
-                style={{
-                  marginTop: 13,
-                  padding: 0,
-                  border: 'none'
-                }}
-              >
-                <Account
-                  address={address}
-                  localProvider={localProvider}
-                  userSigner={userSigner}
-                  mainnetProvider={mainnetProvider}
-                  price={ethPriceDollar}
-                  web3Modal={web3Modal}
-                  loadWeb3Modal={loadWeb3Modal}
-                  logoutOfWeb3Modal={logoutOfWeb3Modal}
-                  blockExplorer={blockExplorer}
-                />
-              </div>
-            </Dropdown>
-          )}
-        </span>
-        <HeaderGlobalAction aria-label='Search' onClick={() => {}}>
-          <Search20 />
-        </HeaderGlobalAction>
-        <HeaderGlobalAction aria-label='App Switcher' onClick={() => {}}>
-          <AppSwitcher20 />
-        </HeaderGlobalAction>
-      </HeaderGlobalBar>
-    </Header>
+          <span style={{ marginRight: 25 }}>
+            {!address && (
+              <Account
+                address={address}
+                localProvider={localProvider}
+                userSigner={userSigner}
+                mainnetProvider={mainnetProvider}
+                price={ethPriceDollar}
+                web3Modal={web3Modal}
+                loadWeb3Modal={loadWeb3Modal}
+                logoutOfWeb3Modal={logoutOfWeb3Modal}
+                blockExplorer={blockExplorer}
+              />
+            )}
+            {address && (
+              <Dropdown overlay={dropdownContent} placement='bottomCenter'>
+                <div
+                  id='accountDropdown'
+                  style={{
+                    marginTop: 13,
+                    padding: 0,
+                    border: 'none'
+                  }}
+                >
+                  <Account
+                    address={address}
+                    localProvider={localProvider}
+                    userSigner={userSigner}
+                    mainnetProvider={mainnetProvider}
+                    price={ethPriceDollar}
+                    web3Modal={web3Modal}
+                    loadWeb3Modal={loadWeb3Modal}
+                    logoutOfWeb3Modal={logoutOfWeb3Modal}
+                    blockExplorer={blockExplorer}
+                  />
+                </div>
+              </Dropdown>
+            )}
+          </span>
+          <HeaderGlobalAction aria-label='Search' onClick={() => {}}>
+            <Search20 />
+          </HeaderGlobalAction>
+          <HeaderGlobalAction aria-label='App Switcher' onClick={() => {}}>
+            <AppSwitcher20 />
+          </HeaderGlobalAction>
+        </HeaderGlobalBar>
+      </Header>
+    </>
   )
 }
