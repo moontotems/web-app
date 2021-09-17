@@ -17,9 +17,7 @@ export default function Favorites({
   readContracts,
   writeContracts
 }) {
-  let creatures = {}
-  const INITIAL_TOKEN_ID = 1
-  const MAX_TOKEN_ID = 1000
+  const INITIAL_TOKEN_ID = 0
 
   const mintEvents = useEventListener(
     readContracts,
@@ -37,30 +35,22 @@ export default function Favorites({
       mintEventsMap[mintEvent._tokenId]['1'].toString()
   })
 
-  for (let tokenId = INITIAL_TOKEN_ID; tokenId < MAX_TOKEN_ID; tokenId++) {
-    const minted = !!mintEventsMap[tokenId]
-    const isFavorite = checkIfIsFavorite(tokenId)
-    const metaData = creature_metadata_hashmap[tokenId]
-
-    creatures[`${tokenId}`] = {
-      tokenId,
-      metaData,
-      isFavorite,
-      minted
-    }
-  }
-
   return (
     <div style={{ backgroundColor: '#000' }}>
       <Row>
         <Col xs={24} md={4} />
         <Col xs={24} md={16}>
           <Row>
-            {favoritedIds.map(favoritedId => {
-              console.log({ favoritedId })
-              console.log({ creatures })
-              const { tokenId } = creatures[favoritedId]
-              console.log({ tokenId })
+            {favoritedIds.map(tokenId => {
+              const minted = !!mintEventsMap[tokenId]
+              const isFavorite = checkIfIsFavorite(tokenId)
+              const metaData = creature_metadata_hashmap[tokenId]
+              const creature = {
+                tokenId,
+                metaData,
+                isFavorite,
+                minted
+              }
 
               const key = `TALISMOON-${tokenId}`
 
@@ -77,7 +67,7 @@ export default function Favorites({
                     tx={tx}
                     readContracts={readContracts}
                     writeContracts={writeContracts}
-                    creature={creatures[favoritedId]}
+                    creature={creature}
                   />
                 </Col>
               )
