@@ -45,6 +45,7 @@ export default function Account({
             height: 32,
             marginTop: 8,
             padding: '5px 17px',
+            paddingTop: 4,
             backgroundColor: 'red',
             cursor: 'pointer'
           }}
