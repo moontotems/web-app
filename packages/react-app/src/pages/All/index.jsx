@@ -4,6 +4,8 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { Creature } from '../../components'
 import { useEventListener } from '../../hooks'
 import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
+import ActionBar from './ActionBar'
+import FILTERS from './filters'
 
 export default function All({
   address,
@@ -18,9 +20,8 @@ export default function All({
   readContracts,
   writeContracts
 }) {
-  console.log('in All:')
-  console.log({ favoritedIds })
   const [numberOfVisibleCreatures, setNumberOfVisibleCreatures] = useState(27)
+  const [activeFilter, setActiveFilter] = useState('')
 
   let creatures = []
   const INITIAL_TOKEN_ID = 0
@@ -51,12 +52,22 @@ export default function All({
     const isFavorite = checkIfIsFavorite(tokenId)
     const metaData = creature_metadata_hashmap[tokenId]
 
-    creatures.push({
+    const creature = {
       tokenId,
       metaData,
       isFavorite,
       minted
-    })
+    }
+
+    if (!activeFilter) {
+      creatures.push(creature)
+    } else if (activeFilter === FILTERS.available && !minted) {
+      creatures.push(creature)
+    } else if (activeFilter === FILTERS.taken && minted) {
+      creatures.push(creature)
+    } else if (activeFilter === FILTERS.favorites && isFavorite) {
+      creatures.push(creature)
+    }
   }
 
   return (
@@ -107,6 +118,21 @@ export default function All({
           <Col xs={24} sm={24} md={4} />
         </Row>
       </InfiniteScroll>
+
+      <ActionBar
+        setActiveFilter={setActiveFilter}
+        activeFilter={activeFilter}
+        address={address}
+        mainnetProvider={mainnetProvider}
+        localProvider={localProvider}
+        yourLocalBalance={localProvider}
+        favorites={favorites}
+        price={price}
+        gasPrice={gasPrice}
+        tx={tx}
+        readContracts={readContracts}
+        writeContracts={writeContracts}
+      />
     </div>
   )
 }
