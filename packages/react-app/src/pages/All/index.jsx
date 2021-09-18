@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Row, Col } from 'antd'
+import { Loading } from 'carbon-components-react'
 import InfiniteScroll from 'react-infinite-scroll-component'
+
 import { Creature } from '../../components'
 import { useEventListener } from '../../hooks'
 import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
@@ -76,7 +78,23 @@ export default function All({
         dataLength={numberOfVisibleCreatures}
         next={() => setNumberOfVisibleCreatures(numberOfVisibleCreatures + 51)}
         hasMore={numberOfVisibleCreatures < MAX_TOKEN_ID}
-        loader={<h4>Loading...</h4>}
+        loader={
+          <div
+            style={{
+              margin: '3rem auto',
+              border: '2px solid #000000',
+              width: '1rem'
+            }}
+          >
+            <Loading
+              active={true}
+              withOverlay={false}
+              small={true}
+              //description={''}
+              //className={''}
+            />
+          </div>
+        }
         //endMessage={}
       >
         <Row>
