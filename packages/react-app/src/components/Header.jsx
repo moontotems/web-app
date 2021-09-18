@@ -75,66 +75,79 @@ export default function MyHeader({
     }
   }
 
+  const menuItemStyle = {
+    float: 'left',
+    width: '100%'
+  }
+  const menuTextStyle = {
+    float: 'left',
+    marginRight: 50,
+    fontFamily: 'IBM Plex Sans',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    letterSpacing: '0.1599999964237213px',
+    color: '#C6C6C6'
+  }
+  const menuIconStyle = {
+    float: 'right'
+  }
+
   const dropdownContent = (
     <Menu>
-      <Menu.Item>
-        <Address
-          size='medium'
-          address={address}
-          ensProvider={mainnetProvider}
-          blockExplorer={blockExplorer}
-        />
-      </Menu.Item>
-      <Menu.Item style={{ float: 'left', width: '100%' }}>
+      <Menu.Item style={{ ...menuItemStyle }}>
         <div style={{ float: 'left' }}>
           <Link
             onClick={() => {
               setRoute('/minted')
             }}
             to='/minted'
+            style={{ ...menuTextStyle }}
           >
             Mint a new Totem
           </Link>
         </div>
-        <JoinRight16 style={{ float: 'right' }} />
+        <JoinRight16 style={{ ...menuIconStyle }} />
       </Menu.Item>
-      <Menu.Item style={{ float: 'left', width: '100%' }}>
+      <Menu.Item style={{ ...menuItemStyle }}>
         <div style={{ float: 'left' }}>
           <Link
             onClick={() => {
               setRoute('/wallet')
             }}
             to='/wallet'
+            style={{ ...menuTextStyle }}
           >
             My Totems
           </Link>
         </div>
-        <Moon16 style={{ float: 'right' }} />
+        <Moon16 style={{ ...menuIconStyle }} />
       </Menu.Item>
-      <Menu.Item style={{ float: 'left', width: '100%' }}>
+      <Menu.Item style={{ ...menuItemStyle }}>
         <div style={{ float: 'left' }}>
           <Link
             onClick={() => {
               setRoute('/favorites')
             }}
             to='/favorites'
+            style={{ ...menuTextStyle }}
           >
             My Favorite Totems
           </Link>
         </div>
-        <FavoriteFilled16 style={{ float: 'right' }} />
+        <FavoriteFilled16 style={{ ...menuIconStyle }} />
       </Menu.Item>
-      <Menu.Item style={{ float: 'left', width: '100%' }}>
+      <Menu.Item style={{ ...menuItemStyle }}>
         <div style={{ float: 'left' }}>
           <Link
             onClick={() => {
               logoutOfWeb3Modal()
             }}
+            style={{ ...menuTextStyle }}
           >
             Logout
           </Link>
         </div>
-        <Logout16 style={{ float: 'right' }} />
+        <Logout16 style={{ ...menuIconStyle }} />
       </Menu.Item>
     </Menu>
   )
@@ -204,7 +217,7 @@ export default function MyHeader({
               />
             )}
             {address && (
-              <Dropdown overlay={dropdownContent} placement='bottomCenter'>
+              <Dropdown overlay={dropdownContent} placement='bottomLeft'>
                 <div
                   id='accountDropdown'
                   style={{
