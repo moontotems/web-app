@@ -6,7 +6,7 @@ import {
   Favorite16,
   FavoriteFilled16
 } from '@carbon/icons-react'
-// TODO: this is not doing anything
+// NOTE: this is not doing anything
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { ethers } from 'ethers'
 
