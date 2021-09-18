@@ -71,14 +71,21 @@ export default function All({
         <Row>
           <Col xs={24} sm={24} md={4} />
           <Col xs={24} sm={24} md={16}>
-            <Row>
+            <Row style={{ scrollSnapType: 'x mandatory' }}>
               {creatures.map(creature => {
                 const { tokenId } = creature
 
                 const key = `TALISMOON-${tokenId}`
 
                 return (
-                  <Col key={key} xs={24} sm={24} md={8} lg={8}>
+                  <Col
+                    key={key}
+                    xs={24}
+                    sm={8}
+                    md={8}
+                    lg={8}
+                    style={{ scrollSnapAlign: 'start' }}
+                  >
                     <Creature
                       address={address}
                       mainnetProvider={mainnetProvider}
