@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ethers } from 'ethers'
 import {
   CheckmarkOutline16,
   CheckmarkFilled16,
   Favorite16,
   FavoriteFilled16
 } from '@carbon/icons-react'
+// TODO: this is not doing anything
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { ethers } from 'ethers'
 
 export default function Creature({
   address,
@@ -105,7 +107,12 @@ export default function Creature({
           }}
           to={`/totem/${tokenId}`}
         >
-          <img src={image} width='100%' />
+          <LazyLoadImage
+            alt={`Moon Totem ${tokenId}`}
+            height={'auto'}
+            src={image}
+            width={'100%'}
+          />
         </Link>
 
         <div style={{ width: '100%' }}>
