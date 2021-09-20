@@ -13,13 +13,13 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
 
   return (
     <>
-      {!isMobile && (
+      {false && (
         <CreaturePageDesktop
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       )}
-      {isMobile && (
+      {true && (
         <CreaturePageMobile
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
