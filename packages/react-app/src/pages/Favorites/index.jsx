@@ -1,39 +1,12 @@
 import React from 'react'
 import { Row, Col } from 'antd'
-import { Creature } from '../../components'
-import { useEventListener } from '../../hooks'
+import { Creature } from '../../sharedComponents'
+import { getTokenPrefixZeros } from '../../helpers'
 import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 
-export default function Favorites({
-  address,
-  mainnetProvider,
-  localProvider,
-  yourLocalBalance,
-  favorites,
-  favorites: { favoritedIds, checkIfIsFavorite, updateFavorites },
-  price,
-  gasPrice,
-  tx,
-  readContracts,
-  writeContracts
-}) {
-  const INITIAL_TOKEN_ID = 0
-
-  const mintEvents = useEventListener(
-    readContracts,
-    'NFTokenMetadataEnumerableMock',
-    'Mint',
-    localProvider,
-    1
-  )
-
-  const mintEventsMap = {}
-  mintEvents.map(mintEvent => {
-    mintEventsMap[mintEvent._tokenId] = mintEvent
-    // convert _tokenId from bigNumber to string
-    mintEventsMap[mintEvent._tokenId]['1'] =
-      mintEventsMap[mintEvent._tokenId]['1'].toString()
-  })
+export default function Favorites({ ethereumProps, nftAppProps }) {
+  const { favorites, mintEventsMap } = nftAppProps
+  const { favoritedIds } = favorites
 
   return (
     <div style={{ backgroundColor: '#000' }}>
@@ -43,12 +16,16 @@ export default function Favorites({
           <Row>
             {favoritedIds.map(tokenId => {
               const minted = !!mintEventsMap[tokenId]
-              const isFavorite = checkIfIsFavorite(tokenId)
               const metaData = creature_metadata_hashmap[tokenId]
+              const prefixedTokenId = getTokenPrefixZeros(tokenId)
+              const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+              //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+
               const creature = {
                 tokenId,
                 metaData,
-                isFavorite,
+                image,
+                isFavorite: true,
                 minted
               }
 
@@ -57,16 +34,8 @@ export default function Favorites({
               return (
                 <Col key={key} xs={24} sm={16} md={8} lg={8}>
                   <Creature
-                    address={address}
-                    mainnetProvider={mainnetProvider}
-                    localProvider={localProvider}
-                    yourLocalBalance={localProvider}
-                    favorites={favorites}
-                    price={price}
-                    gasPrice={gasPrice}
-                    tx={tx}
-                    readContracts={readContracts}
-                    writeContracts={writeContracts}
+                    ethereumProps={ethereumProps}
+                    nftAppProps={nftAppProps}
                     creature={creature}
                   />
                 </Col>

@@ -1,21 +1,13 @@
 import React from 'react'
 import { Row, Col, List } from 'antd'
-import { Address } from '../../components'
+import { Address } from '../../sharedComponents'
 
 import { useEventListener } from '../../hooks'
 
-export default function ContractEvents({
-  address,
-  mainnetProvider,
-  localProvider,
-  yourLocalBalance,
-  favorites,
-  price,
-  gasPrice,
-  tx,
-  readContracts,
-  writeContracts
-}) {
+export default function ContractEvents({ ethereumProps }) {
+  const { mainnetProvider, localProvider, readContracts, writeContracts } =
+    ethereumProps
+
   const mintEvents = useEventListener(
     readContracts,
     'NFTokenMetadataEnumerableMock',

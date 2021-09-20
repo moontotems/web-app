@@ -1,38 +1,16 @@
 import React from 'react'
 import { Row, Col, Divider } from 'antd'
-import { useEventListener } from '../../hooks'
-import { Creature } from '../../components'
+import { getTokenPrefixZeros } from '../../helpers'
+import { Creature } from '../../sharedComponents'
 import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 import { Mint } from './components'
 
-export default function Minted({
-  address,
-  mainnetProvider,
-  localProvider,
-  yourLocalBalance,
-  favorites,
-  favorites: { favoritedIds, checkIfIsFavorite, updateFavorites },
-  price,
-  gasPrice,
-  tx,
-  readContracts,
-  writeContracts
-}) {
-  const mintEvents = useEventListener(
-    readContracts,
-    'NFTokenMetadataEnumerableMock',
-    'Mint',
-    localProvider,
-    1
-  )
+export default function Minted({ ethereumProps, nftAppProps }) {
+  const { gasPrice, tx, writeContracts } = ethereumProps
 
-  const mintEventsMap = {}
-  mintEvents.map(mintEvent => {
-    mintEventsMap[mintEvent._tokenId] = mintEvent
-    // convert _tokenId from bigNumber to string
-    mintEventsMap[mintEvent._tokenId]['1'] =
-      mintEventsMap[mintEvent._tokenId]['1'].toString()
-  })
+  const { favorites, mintEvents, mintEventsMap } = nftAppProps
+
+  const { checkIfIsFavorite } = favorites
 
   return (
     <div style={{ backgroundColor: '#000' }}>
@@ -40,28 +18,35 @@ export default function Minted({
         <Col xs={24} md={4} />
         <Col xs={24} md={16}>
           <Row>
-            {mintEvents?.map((event, index) => {
+            {mintEvents.map(event => {
               const { blockNumber, sender, _from, _to, _tokenId } = event
 
               const tokenId = _tokenId.toString()
+
+              const minted = !!mintEventsMap[tokenId]
               const metaData = creature_metadata_hashmap[tokenId]
-              const isFavorite = checkIfIsFavorite(tokenId)
+              const isFavorite = checkIfIsFavorite()
+
+              const prefixedTokenId = getTokenPrefixZeros(tokenId)
+              const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+              //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+
+              const creature = {
+                tokenId,
+                metaData,
+                image,
+                isFavorite,
+                minted
+              }
+
               const key = `TALISMOON-${tokenId}-minted`
 
               return (
                 <Col key={key} xs={24} sm={16} md={8} lg={6}>
                   <Creature
-                    address={address}
-                    mainnetProvider={mainnetProvider}
-                    localProvider={localProvider}
-                    yourLocalBalance={localProvider}
-                    favorites={favorites}
-                    price={price}
-                    gasPrice={gasPrice}
-                    tx={tx}
-                    readContracts={readContracts}
-                    writeContracts={writeContracts}
-                    creature={{ tokenId, metaData, minted: true, isFavorite }}
+                    ethereumProps={ethereumProps}
+                    nftAppProps={nftAppProps}
+                    creature={creature}
                   />
                 </Col>
               )

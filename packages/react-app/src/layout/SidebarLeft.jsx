@@ -8,12 +8,26 @@ import {
   SideNavLink
 } from 'carbon-components-react'
 
-export default function SidebarLeft({ open }) {
-  const [route, setRoute] = useState()
-  useEffect(() => {
-    setRoute(window.location.pathname)
-  }, [setRoute])
+export default function SidebarLeft({
+  ethereumProps,
+  nftAppProps,
+  setSidebarLeftOpen,
+  open
+}) {
+  const { isMobile, setRoute } = nftAppProps
 
+  let menuItemStyle = {}
+  if (isMobile) {
+    menuItemStyle = {
+      paddingTop: 10,
+      paddingBottom: 10,
+      fontSize: 20
+    }
+  } else {
+    menuItemStyle = {
+      fontSize: 14
+    }
+  }
   return (
     <SideNav
       isFixedNav
@@ -31,8 +45,10 @@ export default function SidebarLeft({ open }) {
           <Link
             onClick={() => {
               setRoute('/all')
+              setSidebarLeftOpen(false)
             }}
             to='/all'
+            style={{ ...menuItemStyle }}
           >
             All Moon Totems
           </Link>
@@ -41,8 +57,10 @@ export default function SidebarLeft({ open }) {
           <Link
             onClick={() => {
               setRoute('/favorites')
+              setSidebarLeftOpen(false)
             }}
             to='/favorites'
+            style={{ ...menuItemStyle }}
           >
             My Favorite Totems
           </Link>
@@ -51,8 +69,10 @@ export default function SidebarLeft({ open }) {
           <Link
             onClick={() => {
               setRoute('/wallet')
+              setSidebarLeftOpen(false)
             }}
             to='/wallet'
+            style={{ ...menuItemStyle }}
           >
             My Totems
           </Link>
@@ -61,8 +81,10 @@ export default function SidebarLeft({ open }) {
           <Link
             onClick={() => {
               setRoute('/minted')
+              setSidebarLeftOpen(false)
             }}
             to='/minted'
+            style={{ ...menuItemStyle }}
           >
             Mint a new Totem
           </Link>
@@ -71,8 +93,10 @@ export default function SidebarLeft({ open }) {
           <Link
             onClick={() => {
               setRoute('/contract-events')
+              setSidebarLeftOpen(false)
             }}
             to='/contract-events'
+            style={{ ...menuItemStyle }}
           >
             Contract Events
           </Link>
@@ -81,8 +105,10 @@ export default function SidebarLeft({ open }) {
           <Link
             onClick={() => {
               setRoute('/contract-interface')
+              setSidebarLeftOpen(false)
             }}
             to='/contract-interface'
+            style={{ ...menuItemStyle }}
           >
             Contract Interface
           </Link>

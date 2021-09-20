@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Dropdown } from 'antd'
 import {
@@ -22,32 +22,24 @@ import {
   HeaderMenuItem
 } from 'carbon-components-react/lib/components/UIShell'
 
-import Account from './Account'
-import Address from './HeaderAddress'
+import { Account } from '../../sharedComponents'
 
-export default function MyHeader({
-  setSidebarLeftOpen,
+export default function HeaderDesktop({
+  ethereumProps,
+  nftAppProps,
   sidebarLeftOpen,
-  address,
+  setSidebarLeftOpen,
   userSigner,
-  mainnetProvider,
-  localProvider,
-  yourLocalBalance,
-  ethPriceDollar,
-  gasPrice,
-  tx,
-  writeContracts,
-  readContracts,
-  blockExplorer,
   web3Modal,
   loadWeb3Modal,
   logoutOfWeb3Modal,
+  blockExplorer,
   networkDisplay
 }) {
-  const [route, setRoute] = useState()
-  useEffect(() => {
-    setRoute(window.location.pathname)
-  }, [setRoute])
+  const { address, mainnetProvider, localProvider, ethPriceDollar } =
+    ethereumProps
+
+  const { setRoute } = nftAppProps
 
   const getTitle = () => {
     if (window.location.pathname === '/') {
@@ -79,6 +71,7 @@ export default function MyHeader({
     float: 'left',
     width: '100%'
   }
+
   const menuTextStyle = {
     float: 'left',
     marginRight: 50,
@@ -88,6 +81,7 @@ export default function MyHeader({
     letterSpacing: '0.1599999964237213px',
     color: '#C6C6C6'
   }
+
   const menuIconStyle = {
     float: 'right'
   }
@@ -152,13 +146,15 @@ export default function MyHeader({
     </Menu>
   )
 
+  const headerHeight = 48
   return (
     <>
       <div
+        id='header'
         style={{
           position: 'fixed',
           top: 9,
-          height: 48,
+          height: headerHeight,
           width: '100%',
           zIndex: 9000,
           pointerEvents: 'none',
@@ -170,14 +166,15 @@ export default function MyHeader({
       >
         {getTitle()}
       </div>
-      <Header aria-label='Moon Totems' style={{ height: 48 }}>
+      <Header aria-label={'Moon Totems'} style={{ height: headerHeight }}>
         <HeaderGlobalAction
           aria-label='Navigation'
           onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
         >
-          {/*<QueryQueue32 />*/}
+          {/* <QueryQueue32 /> */}
           <TextAlignJustify32 />
         </HeaderGlobalAction>
+
         <HeaderName href='#' prefix=''>
           <Link
             onClick={() => {
@@ -190,12 +187,11 @@ export default function MyHeader({
         </HeaderName>
         <HeaderNavigation aria-label='Crypto Moons'>
           <HeaderName href='#' prefix=''></HeaderName>
-          <HeaderMenuItem></HeaderMenuItem>
           {/*
-        <HeaderMenu aria-label='Subm' menuLinkName='Subm'>
-          <HeaderMenuItem></HeaderMenuItem>
-        </HeaderMenu>
-        */}
+            <HeaderMenu aria-label='Subm' menuLinkName='Subm'>
+              <HeaderMenuItem></HeaderMenuItem>
+            </HeaderMenu>
+          */}
         </HeaderNavigation>
         <HeaderGlobalBar>
           <span style={{ marginTop: 14 }}>

@@ -2,7 +2,7 @@ import { Skeleton, Typography } from 'antd'
 import React from 'react'
 import Blockies from 'react-blockies'
 import { useThemeSwitcher } from 'react-css-theme-switcher'
-import { useLookupAddress } from '../hooks'
+import { useLookupAddress } from '../../hooks'
 
 const { Text } = Typography
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import {
   CheckmarkOutline16,
@@ -6,93 +6,16 @@ import {
   Favorite16,
   FavoriteFilled16
 } from '@carbon/icons-react'
-// NOTE: this is not doing anything
+// TODO: this is not doing anything
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { ethers } from 'ethers'
 
-export default function Creature({
-  address,
-  mainnetProvider,
-  localProvider,
-  yourLocalBalance,
-  favorites: { favoritedIds, checkIfIsFavorite, updateFavorites },
-  price,
-  gasPrice,
-  tx,
-  readContracts,
-  writeContracts,
-  creature: { tokenId, minted, isFavorite, metaData }
-}) {
-  const [route, setRoute] = useState()
-  useEffect(() => {
-    setRoute(window.location.pathname)
-  }, [setRoute])
+export default function Creature({ ethereumProps, nftAppProps, creature }) {
+  const { route, setRoute, favorites } = nftAppProps
+  const { updateFavorites } = favorites
+  const { tokenId, image, minted, isFavorite, metaData } = creature
 
-  let prefixedTokenId = ''
-  if (tokenId < 10) {
-    prefixedTokenId = `0000${tokenId}`
-  } else if (tokenId < 100) {
-    prefixedTokenId = `000${tokenId}`
-  } else if (tokenId < 1000) {
-    prefixedTokenId = `00${tokenId}`
-  }
-
-  const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
-  //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
-
-  const {
-    age,
-    birthDay,
-    birthMonth,
-    birthYear,
-    birthYearStr,
-    edition,
-    eyeAsymmetrical,
-    eyeColor1,
-    eyeColor2,
-    eyeMulticolor,
-    lunarOriginBatchId,
-    lunarOriginId,
-    lunarOriginName,
-    lunarOriginNameLatin,
-    lunarOriginQuantity,
-    moonMonth,
-    moonMonthId,
-    moonPhase,
-    moonPhaseId,
-    P,
-    rarity,
-    rarityOrigin,
-    seedGlobal,
-    seedLocal,
-    spawn_DateDay,
-    spawn_DateMonth,
-    spawn_DateYear,
-    spawn_Hour,
-    total,
-    trait_jobField,
-    trait_jobTitle,
-    trait_name1,
-    trait_name2,
-    trait_personality1,
-    trait_personality2,
-    trait_personality3
-  } = metaData || {}
-
-  const mint = () => {
-    const to = address
-    const value = ethers.utils.parseEther('0.1')
-    console.log({ to, tokenId, value })
-
-    tx(
-      writeContracts.NFTokenMetadataEnumerableMock.mint(to, tokenId, {
-        gasPrice,
-        // gasLimit: 1000000
-        value
-        // nonce:
-      })
-    )
-  }
+  const { trait_jobField, trait_jobTitle, trait_name1, trait_name2 } =
+    metaData || {}
 
   return (
     <>

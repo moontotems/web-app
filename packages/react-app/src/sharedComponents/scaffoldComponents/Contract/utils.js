@@ -1,6 +1,6 @@
 import React from 'react'
-import { Address } from '..'
 const { utils } = require('ethers')
+import Address from '../Address'
 
 const tryToDisplay = thing => {
   if (thing && thing.toNumber) {

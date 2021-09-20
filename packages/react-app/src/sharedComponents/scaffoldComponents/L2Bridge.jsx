@@ -1,9 +1,9 @@
 import { utils, ethers } from 'ethers'
 import { Button, Input, Form, Select, InputNumber, Table, Radio } from 'antd'
 import React, { useState, useEffect } from 'react'
-import { useContractLoader, useOnBlock } from '../hooks'
-import { NETWORKS } from '../constants'
-import { Transactor } from '../helpers'
+import { useContractLoader, useOnBlock } from '../../hooks'
+import { NETWORKS } from '../../constants'
+import { Transactor } from '../../helpers'
 
 /*
 This is a component for bridging between L1 & L2

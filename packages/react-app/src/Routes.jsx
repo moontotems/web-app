@@ -13,136 +13,40 @@ import {
   PrivacyPolicy,
   TermsAndConditions
 } from './pages'
-import { Contract } from './components'
+import { Contract } from './sharedComponents'
 
-export default function Routes({
-  address,
-  userSigner,
-  mainnetProvider,
-  localProvider,
-  yourLocalBalance,
-  favorites,
-  ethPriceDollar,
-  gasPrice,
-  tx,
-  writeContracts,
-  readContracts,
-  blockExplorer
-}) {
+export default function Routes({ ethereumProps, nftAppProps }) {
   return (
     <Switch>
       <Route exact path='/'>
-        <Home
-          address={address}
-          userSigner={userSigner}
-          mainnetProvider={mainnetProvider}
-          localProvider={localProvider}
-          yourLocalBalance={yourLocalBalance}
-          favorites={favorites}
-          price={ethPriceDollar}
-          gasPrice={gasPrice}
-          tx={tx}
-          writeContracts={writeContracts}
-          readContracts={readContracts}
-        />
+        <Home ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
       <Route exact path='/all'>
-        <All
-          address={address}
-          userSigner={userSigner}
-          mainnetProvider={mainnetProvider}
-          localProvider={localProvider}
-          yourLocalBalance={yourLocalBalance}
-          favorites={favorites}
-          price={ethPriceDollar}
-          gasPrice={gasPrice}
-          tx={tx}
-          writeContracts={writeContracts}
-          readContracts={readContracts}
-        />
+        <All ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
       <Route exact path='/totem/:id'>
-        <Creature
-          address={address}
-          userSigner={userSigner}
-          mainnetProvider={mainnetProvider}
-          localProvider={localProvider}
-          yourLocalBalance={yourLocalBalance}
-          favorites={favorites}
-          price={ethPriceDollar}
-          gasPrice={gasPrice}
-          tx={tx}
-          writeContracts={writeContracts}
-          readContracts={readContracts}
-        />
+        <Creature ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
       <Route exact path='/favorites'>
-        <Favorites
-          address={address}
-          userSigner={userSigner}
-          mainnetProvider={mainnetProvider}
-          localProvider={localProvider}
-          yourLocalBalance={yourLocalBalance}
-          favorites={favorites}
-          price={ethPriceDollar}
-          gasPrice={gasPrice}
-          tx={tx}
-          writeContracts={writeContracts}
-          readContracts={readContracts}
-        />
+        <Favorites ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
       <Route exact path='/minted'>
-        <Minted
-          address={address}
-          userSigner={userSigner}
-          mainnetProvider={mainnetProvider}
-          localProvider={localProvider}
-          yourLocalBalance={yourLocalBalance}
-          favorites={favorites}
-          price={ethPriceDollar}
-          gasPrice={gasPrice}
-          tx={tx}
-          writeContracts={writeContracts}
-          readContracts={readContracts}
-        />
+        <Minted ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
       <Route exact path='/wallet'>
-        <Wallet
-          address={address}
-          userSigner={userSigner}
-          mainnetProvider={mainnetProvider}
-          localProvider={localProvider}
-          yourLocalBalance={yourLocalBalance}
-          favorites={favorites}
-          price={ethPriceDollar}
-          gasPrice={gasPrice}
-          tx={tx}
-          writeContracts={writeContracts}
-          readContracts={readContracts}
-        />
+        <Wallet ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
       <Route exact path='/contract-events'>
         <ContractEvents
-          address={address}
-          userSigner={userSigner}
-          mainnetProvider={mainnetProvider}
-          localProvider={localProvider}
-          yourLocalBalance={yourLocalBalance}
-          favorites={favorites}
-          price={ethPriceDollar}
-          gasPrice={gasPrice}
-          tx={tx}
-          writeContracts={writeContracts}
-          readContracts={readContracts}
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
         />
       </Route>
       <Route exact path='/contract-interface'>
         <Contract
           name='NFTokenMetadataEnumerableMock'
-          signer={userSigner}
-          provider={localProvider}
-          address={address}
-          blockExplorer={blockExplorer}
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
         />
       </Route>
 

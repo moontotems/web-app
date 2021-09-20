@@ -11,27 +11,13 @@ import {
 } from '@carbon/icons-react'
 import FILTERS from './filters'
 
-export default function ActionBar({
-  setActiveFilter,
-  activeFilter,
+export default function ActionBar({ ethereumProps, nftAppProps }) {
+  const { setActiveFilter, activeFilter, setShowGrid } = nftAppProps
 
-  address,
-  mainnetProvider,
-  localProvider,
-  yourLocalBalance,
-  favorites,
-  favorites: { favoritedIds, checkIfIsFavorite, updateFavorites },
-  price,
-  gasPrice,
-  tx,
-  readContracts,
-  writeContracts
-}) {
   const iconStyle = {
     margin: '0 20px',
     cursor: 'pointer'
   }
-
   const menuItemStyle = {
     float: 'left',
     width: '100%',
@@ -115,7 +101,7 @@ export default function ActionBar({
     <div
       style={{
         position: 'fixed',
-        bottom: 0,
+        bottom: 25,
         width: '100%',
         display: 'flex',
         justifyContent: 'center'
@@ -130,9 +116,19 @@ export default function ActionBar({
             />
           </Button>
         </Dropdown>
-        <Apps32 aria-label='Switch to area view' style={{ ...iconStyle }} />
-        <CarouselHorizontal32 style={{ ...iconStyle }} />
+        {/*
+        <Apps32
+          aria-label='Switch to area view'
+          style={{ ...iconStyle }}
+          onClick={() => setShowGrid(true)}
+        />
+        <CarouselHorizontal32
+          aria-label='Switch to carousel view'
+          style={{ ...iconStyle }}
+          onClick={() => setShowGrid(false)}
+        />
         <List32 aria-label='Switch to list view' style={{ ...iconStyle }} />
+        */}
       </div>
     </div>
   )

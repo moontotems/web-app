@@ -1,12 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'antd'
 
-export default function MyFooter() {
-  const [route, setRoute] = useState()
-  useEffect(() => {
-    setRoute(window.location.pathname)
-  }, [setRoute])
+export default function MyFooter({ ethereumProps, nftAppProps }) {
+  const { isMobile, setRoute } = nftAppProps
+
+  let headerStyle = {}
+  if (isMobile) {
+    headerStyle = {
+      fontWeight: 'bold',
+      fontSize: 25,
+      marginTop: 40,
+      marginBottom: 15
+    }
+  } else {
+    headerStyle = {
+      fontWeight: 'bold',
+      marginBottom: 10
+    }
+  }
+
+  let contentStyle = {}
+  if (isMobile) {
+    contentStyle = {
+      fontSize: 25,
+      marginTop: 15
+    }
+  } else {
+    contentStyle = {
+      marginTop: 15
+    }
+  }
 
   return (
     <Row
@@ -17,9 +41,9 @@ export default function MyFooter() {
         paddingBottom: 50
       }}
     >
-      <Col xs={24} sm={24} md={8} lg={8}>
-        <div style={{ fontWeight: 'bold', marginBottom: 25 }}>The Project</div>
-        <div style={{ marginTop: 15 }}>
+      <Col xs={24} lg={8}>
+        <div style={{ ...headerStyle }}>The Project</div>
+        <div style={{ ...contentStyle }}>
           <Link
             onClick={() => {
               setRoute('/press')
@@ -29,7 +53,7 @@ export default function MyFooter() {
             Press
           </Link>
         </div>
-        <div style={{ marginTop: 15 }}>
+        <div style={{ ...contentStyle }}>
           <Link
             onClick={() => {
               setRoute('/contact')
@@ -40,12 +64,12 @@ export default function MyFooter() {
           </Link>
         </div>
       </Col>
-      <Col xs={12} sm={24} md={8} lg={8}>
-        <div style={{ fontWeight: 'bold', marginBottom: 25 }}>Resources</div>
+      <Col xs={24} lg={8}>
+        <div style={{ ...headerStyle }}>Resources</div>
       </Col>
-      <Col xs={12} sm={24} md={8} lg={8}>
-        <div style={{ fontWeight: 'bold', marginBottom: 25 }}>Legal</div>
-        <div style={{ marginTop: 15 }}>
+      <Col xs={24} lg={8}>
+        <div style={{ ...headerStyle }}>Legal</div>
+        <div style={{ ...contentStyle }}>
           <Link
             onClick={() => {
               setRoute('/terms-and-conditions')
@@ -55,7 +79,7 @@ export default function MyFooter() {
             Terms & Conditions
           </Link>
         </div>
-        <div style={{ marginTop: 15 }}>
+        <div style={{ ...contentStyle }}>
           <Link
             onClick={() => {
               setRoute('/legal-notice')
@@ -65,7 +89,7 @@ export default function MyFooter() {
             Legal Notice
           </Link>
         </div>
-        <div style={{ marginTop: 15 }}>
+        <div style={{ ...contentStyle }}>
           <Link
             onClick={() => {
               setRoute('/imprint-privacy-policy')

@@ -3,7 +3,7 @@ import { Button, Input, Tooltip } from 'antd'
 import { useLookupAddress } from 'eth-hooks'
 import React, { useCallback, useState, useEffect } from 'react'
 import Blockies from 'react-blockies'
-import { Transactor } from '../helpers'
+import { Transactor } from '../../helpers'
 import Wallet from './Wallet'
 
 const { utils } = require('ethers')

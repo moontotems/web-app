@@ -9,25 +9,17 @@ import {
   TableBody,
   TableCell
 } from 'carbon-components-react'
-import { Creature } from '../../components'
+import { Creature } from '../../sharedComponents'
 import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 
 import { useContractReader } from '../../hooks'
+import { getTokenPrefixZeros } from '../../helpers'
 
 import './styles.less'
 
-export default function Wallet({
-  address,
-  mainnetProvider,
-  localProvider,
-  yourLocalBalance,
-  favorites,
-  price,
-  gasPrice,
-  tx,
-  readContracts,
-  writeContracts
-}) {
+export default function Wallet({ ethereumProps, nftAppProps }) {
+  const { address, readContracts } = ethereumProps
+
   const balanceOf =
     useContractReader(
       readContracts,
@@ -37,7 +29,6 @@ export default function Wallet({
     ) || {}
 
   const balanceOfUser = parseInt(balanceOf.toString()) || 0
-
   console.log({ balanceOfUser })
 
   const [usersCreatures, setUsersCreatures] = useState([])
@@ -47,7 +38,7 @@ export default function Wallet({
       const usersCreaturesUpdate = []
       for (let tokenIndex = 0; tokenIndex < balanceOfUser; tokenIndex++) {
         try {
-          console.log('Getting token index', tokenIndex)
+          console.log('etting token index', tokenIndex)
           const tokenId =
             await readContracts.NFTokenMetadataEnumerableMock.tokenOfOwnerByIndex(
               address,
@@ -84,6 +75,7 @@ export default function Wallet({
     getUsersCreatures()
   }, [address, balanceOfUser])
 
+  /*
   const headers = [
     {
       key: 'state',
@@ -140,6 +132,7 @@ export default function Wallet({
       status: 'Active'
     }
   ]
+  */
 
   return (
     <div style={{ backgroundColor: '#000' }}>
@@ -186,22 +179,25 @@ export default function Wallet({
           const minted = true
           const metaData = creature_metadata_hashmap[tokenId]
 
+          const prefixedTokenId = getTokenPrefixZeros(tokenId)
+          const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+          //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+
+          const creature = {
+            tokenId,
+            metaData,
+            image,
+            isFavorite: true,
+            minted
+          }
           const key = `TALISMOON-${tokenId}`
 
           return (
             <Col key={key} xs={24} sm={16} md={8} lg={6}>
               <Creature
-                address={address}
-                mainnetProvider={mainnetProvider}
-                localProvider={localProvider}
-                yourLocalBalance={localProvider}
-                favorites={favorites}
-                price={price}
-                gasPrice={gasPrice}
-                tx={tx}
-                readContracts={readContracts}
-                writeContracts={writeContracts}
-                creature={{ tokenId, metaData, minted }}
+                ethereumProps={ethereumProps}
+                nftAppProps={nftAppProps}
+                creature={creature}
               />
             </Col>
           )

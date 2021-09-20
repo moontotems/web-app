@@ -1,26 +1,23 @@
+import React, { useCallback, useEffect, useState } from 'react'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import WalletLink from 'walletlink'
 
 import { Alert, Button } from 'antd'
-//import {} from 'carbon-components-react'
+import { Loading } from 'carbon-components-react'
 import 'antd/dist/antd.css'
 import 'carbon-components/css/carbon-components.min.css'
 
-import React, { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Web3Modal from 'web3modal'
+import { ethers } from 'ethers'
 import persistantStore from 'store'
 
-import './App.less'
-
 import Routes from './Routes'
-import SidebarLeft from './SidebarLeft'
-import Footer from './Footer'
-import { Header } from './components'
-
+import { Header, SidebarLeft, Footer } from './layout'
+import { ActionBar } from './sharedComponents'
+import FILTERS from './sharedComponents/ActionBar/filters'
 import { INFURA_ID, NETWORK, NETWORKS } from './constants'
-
-import { Transactor } from './helpers'
+import { Transactor, getTokenPrefixZeros } from './helpers'
 import {
   useBalance,
   useContractLoader,
@@ -31,8 +28,9 @@ import {
   useOnBlock,
   useUserSigner
 } from './hooks'
+import creature_metadata_hashmap from './creature_metadata_hashmap.json'
 
-const { ethers } = require('ethers')
+import './App.less'
 
 // 📡 What chain are your contracts deployed to?
 const targetNetwork = NETWORKS.localhost // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
@@ -382,6 +380,30 @@ function App() {
     }
   }, [loadWeb3Modal])
 
+  const initialTokenId = 0
+  const maxTokenId = 1000 // TODO:
+
+  const totalSupply =
+    useContractReader(
+      readContracts,
+      'NFTokenMetadataEnumerableMock',
+      'totalSupply'
+    ) || {}
+
+  //////
+  const [width, setWidth] = useState(window.innerWidth)
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth)
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange)
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange)
+    }
+  }, [])
+  const isMobile = width <= 768
+  //////
+
   const favoritedIdsStore = persistantStore.get('favoritedIds') || []
 
   const [favoritedIds, setFavoritedIds] = useState(favoritedIdsStore)
@@ -405,55 +427,192 @@ function App() {
   }
 
   const [sidebarLeftOpen, setSidebarLeftOpen] = useState(false)
+  const [activeFilter, setActiveFilter] = useState('')
+  const [showGrid, setShowGrid] = useState(true)
 
-  console.log({ sidebarLeftOpen })
+  const mintEvents = useEventListener(
+    readContracts,
+    'NFTokenMetadataEnumerableMock',
+    'Mint',
+    localProvider,
+    1
+  )
+
+  const mintEventsMap = {}
+  mintEvents.map(mintEvent => {
+    mintEventsMap[mintEvent._tokenId] = mintEvent
+    // convert _tokenId from bigNumber to string
+    mintEventsMap[mintEvent._tokenId]['1'] =
+      mintEventsMap[mintEvent._tokenId]['1'].toString()
+  })
+
+  let initialValue_visibleCreaturesRangeStart = 0
+  if (window.location.pathname.includes('totem')) {
+    const tokenId = window.location.pathname.match(/\d+/g)
+    if (tokenId.length) {
+      initialValue_visibleCreaturesRangeStart = tokenId[0]
+    }
+  }
+
+  let initialValue_visibleCreaturesRangeEnd =
+    initialValue_visibleCreaturesRangeStart + 27 // TODO: test if result%3 === 0
+
+  const [visibleCreaturesRangeStart, setVisibleCreaturesRangeStart] = useState(
+    initialValue_visibleCreaturesRangeStart
+  )
+  const [visibleCreaturesRangeEnd, setVisibleCreaturesRangeEnd] = useState(
+    initialValue_visibleCreaturesRangeEnd
+  )
+
+  let creatures = []
+
+  for (let tokenId = 0; tokenId < visibleCreaturesRangeEnd; tokenId++) {
+    const minted = !!mintEventsMap[tokenId]
+    const isFavorite = checkIfIsFavorite(tokenId)
+    const metaData = creature_metadata_hashmap[tokenId]
+
+    const prefixedTokenId = getTokenPrefixZeros(tokenId)
+
+    const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+    //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+
+    const creature = {
+      tokenId,
+      metaData,
+      image,
+      isFavorite,
+      minted
+    }
+
+    if (!activeFilter) {
+      creatures.push(creature)
+    } else if (activeFilter === FILTERS.available && !minted) {
+      creatures.push(creature)
+    } else if (activeFilter === FILTERS.taken && minted) {
+      creatures.push(creature)
+    } else if (activeFilter === FILTERS.favorites && isFavorite) {
+      creatures.push(creature)
+    }
+  }
+
+  const infiniteScroll = {
+    visibleCreaturesRangeStart,
+    setVisibleCreaturesRangeStart,
+    visibleCreaturesRangeEnd,
+    setVisibleCreaturesRangeEnd,
+    next: () => {
+      setVisibleCreaturesRangeEnd(visibleCreaturesRangeEnd + 50)
+    },
+    hasMore: visibleCreaturesRangeEnd < creatures.length,
+    loader: (
+      <div
+        style={{
+          margin: '3rem auto',
+          border: '2px solid #000000',
+          width: '1rem'
+        }}
+      >
+        <Loading
+          active={true}
+          withOverlay={false}
+          small={true}
+          //description={''}
+          //className={''}
+        />
+      </div>
+    )
+  }
+
+  const mint = tokenId => {
+    const to = address
+    const value = ethers.utils.parseEther('0.1')
+    console.log({ to, tokenId, value })
+
+    tx(
+      writeContracts.NFTokenMetadataEnumerableMock.mint(to, tokenId, {
+        gasPrice,
+        // gasLimit: 1000000
+        value
+        // nonce:
+      })
+    )
+  }
+
+  const [route, setRoute] = useState()
+  useEffect(() => {
+    setRoute(window.location.pathname)
+  }, [setRoute])
+
+  const favorites = {
+    favoritedIds,
+    checkIfIsFavorite,
+    updateFavorites
+  }
+
+  const ethereumProps = {
+    address,
+    mainnetProvider,
+    localProvider,
+    yourLocalBalance,
+    ethPriceDollar,
+    gasPrice,
+    tx,
+    readContracts,
+    writeContracts
+  }
+
+  const nftAppProps = {
+    isMobile,
+    route,
+    setRoute,
+    creatures,
+    updateFavorites,
+    favorites,
+    infiniteScroll,
+    mintEvents,
+    mintEventsMap,
+    mint,
+    showGrid,
+    setShowGrid,
+    activeFilter,
+    setActiveFilter
+  }
 
   return (
     <div id='App'>
       <BrowserRouter>
-        <SidebarLeft open={sidebarLeftOpen} />
+        <SidebarLeft
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+          setSidebarLeftOpen={setSidebarLeftOpen}
+          open={sidebarLeftOpen}
+        />
 
         <Header
-          setSidebarLeftOpen={setSidebarLeftOpen}
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
           sidebarLeftOpen={sidebarLeftOpen}
-          address={address}
-          localProvider={localProvider}
+          setSidebarLeftOpen={setSidebarLeftOpen}
           userSigner={userSigner}
-          mainnetProvider={mainnetProvider}
-          price={ethPriceDollar}
-          blockExplorer={blockExplorer}
           web3Modal={web3Modal}
           loadWeb3Modal={loadWeb3Modal}
           logoutOfWeb3Modal={logoutOfWeb3Modal}
+          blockExplorer={blockExplorer}
           networkDisplay={networkDisplay}
         />
 
         <div
           style={{
-            marginTop: 48
+            marginTop: isMobile ? 48 : 60
           }}
+          onClick={() => setSidebarLeftOpen(false)}
         >
-          <Routes
-            address={address}
-            userSigner={userSigner}
-            mainnetProvider={mainnetProvider}
-            localProvider={localProvider}
-            yourLocalBalance={yourLocalBalance}
-            favorites={{
-              favoritedIds,
-              checkIfIsFavorite,
-              updateFavorites
-            }}
-            price={ethPriceDollar}
-            gasPrice={gasPrice}
-            tx={tx}
-            writeContracts={writeContracts}
-            readContracts={readContracts}
-            blockExplorer={blockExplorer}
-          />
+          <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>
 
-        <Footer />
+        <ActionBar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+
+        <Footer ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </BrowserRouter>
     </div>
   )

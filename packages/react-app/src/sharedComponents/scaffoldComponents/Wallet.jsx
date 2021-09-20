@@ -1,14 +1,14 @@
+import React, { useState, useEffect } from 'react'
+import { Button, Modal, Spin, Tooltip, Typography } from 'antd'
 import {
   KeyOutlined,
   QrcodeOutlined,
   SendOutlined,
   WalletOutlined
 } from '@ant-design/icons'
-import { Button, Modal, Spin, Tooltip, Typography } from 'antd'
 import { ethers } from 'ethers'
 import QR from 'qrcode.react'
-import React, { useState, useEffect } from 'react'
-import { Transactor } from '../helpers'
+import { Transactor } from '../../helpers'
 import Address from './Address'
 import AddressInput from './AddressInput'
 import Balance from './Balance'
