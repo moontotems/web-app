@@ -22,13 +22,15 @@ import {
   HeaderMenuItem
 } from 'carbon-components-react/lib/components/UIShell'
 
-import { Account } from '../../sharedComponents'
+import { Account } from '../../../sharedComponents'
 
 export default function HeaderDesktop({
   ethereumProps,
   nftAppProps,
   sidebarLeftOpen,
   setSidebarLeftOpen,
+  headerTitle,
+  setHeaderTitle,
   userSigner,
   web3Modal,
   loadWeb3Modal,
@@ -60,9 +62,7 @@ export default function HeaderDesktop({
     if (window.location.pathname.includes('totem')) {
       let tokenId = window.location.pathname.match(/\d+/g)
       if (tokenId.length) tokenId = tokenId[0]
-      console.log({ tokenId })
       const title = `Moon Totem #${tokenId}`
-      console.log({ title })
       return title
     }
   }
@@ -164,7 +164,7 @@ export default function HeaderDesktop({
           fontWeight: 400
         }}
       >
-        {getTitle()}
+        {headerTitle}
       </div>
       <Header aria-label={'Moon Totems'} style={{ height: headerHeight }}>
         <HeaderGlobalAction

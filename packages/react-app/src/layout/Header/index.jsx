@@ -8,6 +8,8 @@ export default function Header({
   nftAppProps,
   sidebarLeftOpen,
   setSidebarLeftOpen,
+  headerTitle,
+  setHeaderTitle,
   userSigner,
   web3Modal,
   loadWeb3Modal,
@@ -24,6 +26,8 @@ export default function Header({
           nftAppProps={nftAppProps}
           sidebarLeftOpen={sidebarLeftOpen}
           setSidebarLeftOpen={setSidebarLeftOpen}
+          headerTitle={headerTitle}
+          setHeaderTitle={setHeaderTitle}
           userSigner={userSigner}
           web3Modal={web3Modal}
           loadWeb3Modal={loadWeb3Modal}
@@ -39,6 +43,8 @@ export default function Header({
           nftAppProps={nftAppProps}
           sidebarLeftOpen={sidebarLeftOpen}
           setSidebarLeftOpen={setSidebarLeftOpen}
+          headerTitle={headerTitle}
+          setHeaderTitle={setHeaderTitle}
           userSigner={userSigner}
           web3Modal={web3Modal}
           loadWeb3Modal={loadWeb3Modal}

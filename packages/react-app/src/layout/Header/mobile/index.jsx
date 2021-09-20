@@ -19,13 +19,15 @@ import {
   HeaderMenuItem
 } from 'carbon-components-react/lib/components/UIShell'
 
-import { Account } from '../../sharedComponents'
+import { Account } from '../../../sharedComponents'
 
 export default function HeaderMobile({
   ethereumProps,
   nftAppProps,
   sidebarLeftOpen,
   setSidebarLeftOpen,
+  headerTitle,
+  setHeaderTitle,
   userSigner,
   web3Modal,
   loadWeb3Modal,
