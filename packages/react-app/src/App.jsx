@@ -538,6 +538,8 @@ function App() {
     )
   }
 
+  const [headerTitle, setHeaderTitle] = useState('')
+
   const [route, setRoute] = useState()
   useEffect(() => {
     setRoute(window.location.pathname)
@@ -575,7 +577,8 @@ function App() {
     showGrid,
     setShowGrid,
     activeFilter,
-    setActiveFilter
+    setActiveFilter,
+    setHeaderTitle
   }
 
   return (
@@ -593,6 +596,8 @@ function App() {
           nftAppProps={nftAppProps}
           sidebarLeftOpen={sidebarLeftOpen}
           setSidebarLeftOpen={setSidebarLeftOpen}
+          headerTitle={headerTitle}
+          setHeaderTitle={setHeaderTitle}
           userSigner={userSigner}
           web3Modal={web3Modal}
           loadWeb3Modal={loadWeb3Modal}

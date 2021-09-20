@@ -17,25 +17,67 @@ import {
 } from '@carbon/icons-react'
 // https://www.npmjs.com/package/react-slick
 import Slider from 'react-slick'
-import SwipeableViews from 'react-swipeable-views'
-import bindKeyboard from 'react-swipeable-views-utils/lib/bindKeyboard'
 import $ from 'jquery'
+import FILTERS from '../../sharedComponents/ActionBar/filters'
+import { getTokenPrefixZeros } from '../../helpers'
+import creature_metadata_hashmap from './creature_metadata_hashmap.json'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
-  const {
-    creaturesMap,
-    creatures,
-    infiniteScroll: {
-      visibleCreaturesRangeStart,
-      setVisibleCreaturesRangeStart,
-      visibleCreaturesRangeEnd,
-      setVisibleCreaturesRangeEnd
-    },
-    updateFavorites,
-    mint
-  } = nftAppProps
+  const { favorites, activeFilter, mintEventsMap, mint } = nftAppProps
+
+  const { checkIfIsFavorite, updateFavorites } = favorites
+
+  let urlTokenId = window.location.pathname.match(/\d+/g)
+  if (urlTokenId.length) {
+    urlTokenId = parseInt(urlTokenId[0])
+  } else {
+    urlTokenId = 0
+  }
+
+  const [activeTokenId, setActiveTokenId] = useState(urlTokenId)
+  const [lastVisibleTokenId, setLastVisibleTokenId] = useState(
+    (activeTokenId || urlTokenId) + 3
+  )
+
+  let creatures = []
+  let creaturesMap = {}
+
+  let startId = activeTokenId - 3 > 0 ? activeTokenId - 3 : 0
+
+  for (let tokenId = startId; tokenId < lastVisibleTokenId; tokenId++) {
+    const minted = !!mintEventsMap[tokenId]
+    const isFavorite = checkIfIsFavorite(tokenId)
+    const metaData = creature_metadata_hashmap[tokenId]
+
+    const prefixedTokenId = getTokenPrefixZeros(tokenId)
+
+    const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+    //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+
+    const creature = {
+      tokenId,
+      metaData,
+      image,
+      isFavorite,
+      minted
+    }
+
+    if (!activeFilter) {
+      creatures.push(creature)
+      creaturesMap[`${tokenId}`] = creature
+    } else if (activeFilter === FILTERS.available && !minted) {
+      creatures.push(creature)
+      creaturesMap[`${tokenId}`] = creature
+    } else if (activeFilter === FILTERS.taken && minted) {
+      creatures.push(creature)
+      creaturesMap[`${tokenId}`] = creature
+    } else if (activeFilter === FILTERS.favorites && isFavorite) {
+      creatures.push(creature)
+      creaturesMap[`${tokenId}`] = creature
+    }
+  }
 
   const iconStyle = {
     margin: '0 20px',
@@ -65,15 +107,9 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     </Menu>
   )
 
-  let tokenId = parseInt(window.location.pathname.match(/\d+/g))
-  if (isNaN(tokenId)) tokenId = visibleCreaturesRangeStart
-  console.log({ tokenId })
-
   console.log({ creaturesMap })
-  //const { isFavorite, minted } = creaturesMap[`${tokenId}`]
-  const { isFavorite, minted } = creatures[0]
+  const { isFavorite, minted } = creaturesMap[`${activeTokenId}`]
 
-  /*
   const updateUrl = creatureIndex => {
     console.log('in updateUrl')
     console.log({ creatureIndex })
@@ -85,9 +121,10 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
   }
 
   useEffect(() => {
-    updateUrl(currentCreatureIndex)
-  }, [currentCreatureIndex])
-  */
+    //updateUrl(activeTokenId)
+  }, [activeTokenId])
+
+  console.log({ activeTokenId })
 
   const [sliderRef, setSliderRef] = useState()
 
@@ -109,7 +146,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
   const sliderSettings = {
     ref: slider => setSliderRef(slider),
     infinite: false,
-    initialSlide: 0, // TODO:
+    initialSlide: 3, // TODO:
     speed: 800,
     slidesToShow: 1,
     //slidesToShow: 3,
@@ -124,18 +161,28 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     // afterChange: () => this.setState(state => ({ updateCount: state.updateCount + 1 })),
     // beforeChange: (current, next) => this.setState({ slideIndex: next })
     // afterChange: () => setCurrentCreatureIndex(currentCreatureIndex + 1),
-    beforeChange: (current, next) => {
-      /*
-      console.log({ current, next })
-      console.log({ creatures })
-      const reachedLeftEnd = next === 0
-      const reachedRightEnd = next === creatures.length - 1
+    afterChange: current => {
+      const reachedLeftEnd = current === 0
+      const reachedRightEnd = current === creatures.length - 1
       console.log({ reachedLeftEnd, reachedRightEnd })
+      if (reachedRightEnd) {
+        setLastVisibleTokenId(lastVisibleTokenId + 1)
+      }
+      //setActiveTokenId(current)
+      //updateUrl(activeTokenId)
+      /*
       if (reachedLeftEnd || reachedRightEnd) {
         console.log('now calling updateVisibleCreatureRange()')
-        updateVisibleCreatureRange({ newCenter: tokenId })
       }
       */
+    },
+    beforeChange: (current, next) => {
+      if (next > current) {
+        //updateUrl(activeTokenId + 1)
+      }
+      if (next < current) {
+        //updateUrl(activeTokenId - 1)
+      }
     }
   }
 
@@ -181,14 +228,14 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
                 <Favorite32
                   role='button'
                   style={{ fill: 'white', cursor: 'pointer' }}
-                  onClick={() => updateFavorites(tokenId)}
+                  onClick={() => updateFavorites(activeTokenId)}
                 />
               )}
               {isFavorite && (
                 <FavoriteFilled32
                   role='button'
                   style={{ fill: '#DA1E28', cursor: 'pointer' }}
-                  onClick={() => updateFavorites(tokenId)}
+                  onClick={() => updateFavorites(activeTokenId)}
                 />
               )}
             </div>
@@ -231,7 +278,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
                   borderColor: '#24A148',
                   color: '#fff'
                 }}
-                onClick={() => mint(tokenId)}
+                onClick={() => mint(activeTokenId)}
               >
                 Summon this Totem (0.1 Ξ)
               </Button>
