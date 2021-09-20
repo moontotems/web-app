@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Divider } from 'antd'
-import { getTokenPrefixZeros } from '../../helpers'
+import { getImageUrl } from '../../helpers'
 import { Creature } from '../../sharedComponents'
 import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 import { Mint } from './components'
@@ -26,10 +26,7 @@ export default function Minted({ ethereumProps, nftAppProps }) {
               const minted = !!mintEventsMap[tokenId]
               const metaData = creature_metadata_hashmap[tokenId]
               const isFavorite = checkIfIsFavorite()
-
-              const prefixedTokenId = getTokenPrefixZeros(tokenId)
-              const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
-              //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+              const image = getImageUrl(tokenId)
 
               const creature = {
                 tokenId,

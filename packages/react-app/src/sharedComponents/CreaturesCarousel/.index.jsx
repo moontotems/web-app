@@ -20,6 +20,7 @@ import {
 } from '@carbon/icons-react'
 
 import { useEventListener } from '../../../hooks'
+import { getImageUrl } from '../../../helpers'
 import creature_metadata_hashmap from '../../../creature_metadata_hashmap.json'
 import { Attributes, Chatbot } from './components'
 import './styles.css'
@@ -61,20 +62,8 @@ export default function CreaturePage({
       mintEventsMap[mintEvent._tokenId]['1'].toString()
   })
 
-  let prefixedTokenId = ''
-  if (tokenId < 10) {
-    prefixedTokenId = `0000${tokenId}`
-  } else if (tokenId < 100) {
-    prefixedTokenId = `000${tokenId}`
-  } else if (tokenId < 1000) {
-    prefixedTokenId = `00${tokenId}`
-  }
-
-  const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
-  //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
-
+  const image = getImageUrl(tokenId)
   const minted = !!mintEventsMap[tokenId]
-
   const isFavorite = checkIfIsFavorite(tokenId)
 
   const mint = () => {

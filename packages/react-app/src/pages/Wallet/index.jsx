@@ -13,7 +13,7 @@ import { Creature } from '../../sharedComponents'
 import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
 
 import { useContractReader } from '../../hooks'
-import { getTokenPrefixZeros } from '../../helpers'
+import { getImageUrl } from '../../helpers'
 
 import './styles.less'
 
@@ -178,10 +178,7 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
           const tokenId = usersCreature.id
           const minted = true
           const metaData = creature_metadata_hashmap[tokenId]
-
-          const prefixedTokenId = getTokenPrefixZeros(tokenId)
-          const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
-          //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+          const image = getImageUrl(tokenId)
 
           const creature = {
             tokenId,

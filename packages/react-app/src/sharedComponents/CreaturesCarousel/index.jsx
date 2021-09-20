@@ -19,7 +19,7 @@ import {
 import Slider from 'react-slick'
 import $ from 'jquery'
 import FILTERS from '../../sharedComponents/ActionBar/filters'
-import { getTokenPrefixZeros } from '../../helpers'
+import { getImageUrl } from '../../helpers'
 import creature_metadata_hashmap from './creature_metadata_hashmap.json'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -50,11 +50,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     const minted = !!mintEventsMap[tokenId]
     const isFavorite = checkIfIsFavorite(tokenId)
     const metaData = creature_metadata_hashmap[tokenId]
-
-    const prefixedTokenId = getTokenPrefixZeros(tokenId)
-
-    const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
-    //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+    const image = getImageUrl(tokenId)
 
     const creature = {
       tokenId,
@@ -147,7 +143,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     ref: slider => setSliderRef(slider),
     infinite: false,
     initialSlide: 3, // TODO:
-    speed: 800,
+    speed: 0,
     slidesToShow: 1,
     //slidesToShow: 3,
     slidesToScroll: 1,
