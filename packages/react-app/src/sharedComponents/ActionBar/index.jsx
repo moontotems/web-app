@@ -58,6 +58,15 @@ export default function ActionBar({ ethereumProps, nftAppProps }) {
       <Menu.Item
         style={{
           ...menuItemStyle,
+          borderColor: getMenuColorSelect('')
+        }}
+        onClick={() => setActiveFilter(FILTERS.shuffle)}
+      >
+        <div style={{ ...menuTextStyle }}>Shuffle</div>
+      </Menu.Item>
+      <Menu.Item
+        style={{
+          ...menuItemStyle,
           borderColor: getMenuColorSelect(FILTERS.available)
         }}
         onClick={() => setActiveFilter(FILTERS.available)}

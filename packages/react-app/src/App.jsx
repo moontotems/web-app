@@ -17,7 +17,7 @@ import { Header, SidebarLeft, Footer } from './layout'
 import { ActionBar } from './sharedComponents'
 import FILTERS from './sharedComponents/ActionBar/filters'
 import { INFURA_ID, NETWORK, NETWORKS } from './constants'
-import { Transactor, getTokenPrefixZeros } from './helpers'
+import { Transactor, getImageUrl, getRandomArray } from './helpers'
 import {
   useBalance,
   useContractLoader,
@@ -466,15 +466,11 @@ function App() {
 
   let creatures = []
 
-  for (let tokenId = 0; tokenId < visibleCreaturesRangeEnd; tokenId++) {
+  const assembleCreature = tokenId => {
     const minted = !!mintEventsMap[tokenId]
     const isFavorite = checkIfIsFavorite(tokenId)
     const metaData = creature_metadata_hashmap[tokenId]
-
-    const prefixedTokenId = getTokenPrefixZeros(tokenId)
-
-    const image = `https://talismoonstest.blob.core.windows.net/finalrenders/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
-    //const image = `/images/creatures/TALISMOONS_GEN01_2k/TALISMOONS_GEN01_2k${prefixedTokenId}.png`
+    const image = getImageUrl(tokenId)
 
     const creature = {
       tokenId,
@@ -483,16 +479,40 @@ function App() {
       isFavorite,
       minted
     }
+    return creature
+  }
+
+  for (let tokenId = 0; tokenId < visibleCreaturesRangeEnd; tokenId++) {
+    const creature = assembleCreature(tokenId)
 
     if (!activeFilter) {
       creatures.push(creature)
-    } else if (activeFilter === FILTERS.available && !minted) {
+    } else if (activeFilter === FILTERS.available && !creature.minted) {
       creatures.push(creature)
-    } else if (activeFilter === FILTERS.taken && minted) {
+    } else if (activeFilter === FILTERS.taken && creature.minted) {
       creatures.push(creature)
-    } else if (activeFilter === FILTERS.favorites && isFavorite) {
+    } else if (activeFilter === FILTERS.favorites && creature.isFavorite) {
       creatures.push(creature)
     }
+
+    if (activeFilter === FILTERS.shuffle) {
+      const randomTokenIds = getRandomArray({
+        min: initialTokenId,
+        max: maxTokenId,
+        numOfRandoms: 100,
+        unique: true
+      })
+      console.log({ randomTokenIds })
+      randomTokenIds.map(randomId => {
+        const creature = assembleCreature(randomId)
+        creatures.push(creature)
+      })
+      // prevent infint loop
+      setActiveFilter('shuffle-done')
+      break
+    }
+    //if (activeFilter === 'shuffle-done') {
+    //}
   }
 
   const infiniteScroll = {
