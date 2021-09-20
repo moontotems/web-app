@@ -6,11 +6,9 @@ import {
   Favorite16,
   FavoriteFilled16
 } from '@carbon/icons-react'
-// TODO: this is not doing anything
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 export default function Creature({ ethereumProps, nftAppProps, creature }) {
-  const { route, setRoute, favorites } = nftAppProps
+  const { setRoute, favorites } = nftAppProps
   const { updateFavorites } = favorites
   const { tokenId, image, minted, isFavorite, metaData } = creature
 
@@ -30,11 +28,11 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
           }}
           to={`/totem/${tokenId}`}
         >
-          <LazyLoadImage
+          <img
             alt={`Moon Totem ${tokenId}`}
             height={'auto'}
-            src={image}
             width={'100%'}
+            src={image}
           />
         </Link>
 
