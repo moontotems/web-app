@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { ActionBar } from '../../sharedComponents'
 import AllPageDesktop from './desktop'
 import AllPageMobile from './mobile'
 
 export default function All({ ethereumProps, nftAppProps }) {
-  const { isMobile } = nftAppProps
+  const { setActiveFilter, isMobile } = nftAppProps
+
+  useEffect(() => {
+    if (window.location.pathname === '/all') {
+      setActiveFilter('')
+    }
+  }, [])
+
   return (
     <>
       {!isMobile && (

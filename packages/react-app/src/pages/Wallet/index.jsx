@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Row, Col } from 'antd'
+import React, { useEffect } from 'react'
+/*
 import {
   DataTable,
   Table,
@@ -9,17 +9,27 @@ import {
   TableBody,
   TableCell
 } from 'carbon-components-react'
-import { Creature } from '../../sharedComponents'
-import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
-
-import { useContractReader } from '../../hooks'
-import { getImageUrl } from '../../helpers'
-
+*/
+import FILTERS from '../../sharedComponents/ActionBar/filters'
+import PagesAll from '../All'
 import './styles.less'
 
 export default function Wallet({ ethereumProps, nftAppProps }) {
-  const { address, readContracts } = ethereumProps
+  const { address } = ethereumProps
+  const { setActiveFilter } = nftAppProps
 
+  useEffect(() => {
+    setActiveFilter(FILTERS.myTotems)
+  }, [])
+
+  if (!address) {
+    // TODO:
+    return <div>Please connect wallet</div>
+  }
+
+  return <PagesAll ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+
+  /*
   const balanceOf =
     useContractReader(
       readContracts,
@@ -38,7 +48,7 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
       const usersCreaturesUpdate = []
       for (let tokenIndex = 0; tokenIndex < balanceOfUser; tokenIndex++) {
         try {
-          console.log('etting token index', tokenIndex)
+          console.log('setting token index', tokenIndex)
           const tokenId =
             await readContracts.NFTokenMetadataEnumerableMock.tokenOfOwnerByIndex(
               address,
@@ -75,104 +85,8 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
     getUsersCreatures()
   }, [address, balanceOfUser])
 
-  /*
-  const headers = [
-    {
-      key: 'state',
-      header: 'State'
-    },
-    {
-      key: 'image',
-      header: 'Image'
-    },
-    {
-      key: 'name',
-      header: 'Name'
-    },
-    {
-      key: 'title',
-      header: 'Title'
-    },
-    {
-      key: 'personality',
-      header: 'Personality'
-    },
-    {
-      key: 'origin',
-      header: 'Origin'
-    },
-    {
-      key: 'lunar-phase',
-      header: 'Lunar Phase'
-    },
-    {
-      key: 'age',
-      header: 'Age'
-    },
-    {
-      key: 'value',
-      header: 'Value'
-    }
-  ]
-
-  const rows = [
-    {
-      id: 'a',
-      name: 'Load balancer 1',
-      status: 'Disabled'
-    },
-    {
-      id: 'b',
-      name: 'Load balancer 2',
-      status: 'Starting'
-    },
-    {
-      id: 'c',
-      name: 'Load balancer 3',
-      status: 'Active'
-    }
-  ]
-  */
-
   return (
     <div style={{ backgroundColor: '#000' }}>
-      {/*
-      <Row>
-        <DataTable rows={rows} headers={headers}>
-          {({ rows, headers, getTableProps, getHeaderProps, getRowProps }) => (
-            <Table
-              {...getTableProps()}
-              size='lg'
-              stickyHeader
-              useZebraStyles
-              useStaticWidth={false}
-            >
-              <TableHead>
-                <TableRow>
-                  {headers.map((header, index) => (
-                    <TableHeader
-                      key={`header-${index}`}
-                      {...getHeaderProps({ header })}
-                    >
-                      {header.header}
-                    </TableHeader>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row, index) => (
-                  <TableRow key={`row-${index}`} {...getRowProps({ row })}>
-                    {row.cells.map(cell => (
-                      <TableCell key={cell.id}>{cell.value}</TableCell>
-                    ))}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </DataTable>
-      </Row>
-      */}
       <Row>
         {usersCreatures.map(usersCreature => {
           const tokenId = usersCreature.id
@@ -202,4 +116,5 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
       </Row>
     </div>
   )
+  */
 }

@@ -13,7 +13,8 @@ export default function Account({
   web3Modal,
   loadWeb3Modal,
   logoutOfWeb3Modal,
-  blockExplorer
+  blockExplorer,
+  isMobile
 }) {
   const modalButtons = []
   if (web3Modal) {
@@ -43,7 +44,7 @@ export default function Account({
           role='button'
           style={{
             height: 32,
-            marginTop: 8,
+            marginTop: isMobile ? 25 : 8,
             padding: '5px 17px',
             paddingTop: 4,
             backgroundColor: 'red',

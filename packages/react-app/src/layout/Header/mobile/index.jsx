@@ -157,7 +157,7 @@ export default function HeaderMobile({
           fontWeight: 400
         }}
       >
-        {getTitle()}
+        {/*getTitle()*/}
       </div>
       <Header aria-label={''} style={{ height: headerHeight }}>
         <HeaderGlobalAction
@@ -174,7 +174,16 @@ export default function HeaderMobile({
             }}
             to='/'
           >
-            <span style={{ fontWeight: 400 }}>MOON TOTEMS</span>
+            <span
+              style={{
+                float: 'left',
+                fontFamily: 'IBM Plex Sans',
+                fontSize: 30,
+                fontWeight: 400
+              }}
+            >
+              MOON TOTEMS
+            </span>
           </Link>
         </HeaderName>
         <HeaderNavigation aria-label='Crypto Moons'>
@@ -199,6 +208,7 @@ export default function HeaderMobile({
                 loadWeb3Modal={loadWeb3Modal}
                 logoutOfWeb3Modal={logoutOfWeb3Modal}
                 blockExplorer={blockExplorer}
+                isMobile={true}
               />
             )}
             {address && (
@@ -221,6 +231,7 @@ export default function HeaderMobile({
                     loadWeb3Modal={loadWeb3Modal}
                     logoutOfWeb3Modal={logoutOfWeb3Modal}
                     blockExplorer={blockExplorer}
+                    isMobile={true}
                   />
                 </div>
               </Dropdown>
