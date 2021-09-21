@@ -240,7 +240,14 @@ export default function HeaderDesktop({
             <Search20 />
           </HeaderGlobalAction>
           <HeaderGlobalAction aria-label='App Switcher' onClick={() => {}}>
-            <AppSwitcher20 />
+            <Link
+              onClick={() => {
+                setRoute('/all')
+              }}
+              to='/all'
+            >
+              <AppSwitcher20 />
+            </Link>
           </HeaderGlobalAction>
         </HeaderGlobalBar>
       </Header>
