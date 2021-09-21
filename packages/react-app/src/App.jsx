@@ -476,6 +476,59 @@ function App() {
     initialValue_visibleCreaturesRangeEnd
   )
 
+  const [usersCreatures, setUsersCreatures] = useState([])
+  const balanceOf =
+    useContractReader(
+      readContracts,
+      'NFTokenMetadataEnumerableMock',
+      'balanceOf',
+      [address]
+    ) || {}
+
+  const balanceOfUser = parseInt(balanceOf.toString()) || 0
+  console.log({ balanceOfUser })
+
+  useEffect(() => {
+    const getUsersCreatures = async () => {
+      const usersCreaturesUpdate = []
+      for (let tokenIndex = 0; tokenIndex < balanceOfUser; tokenIndex++) {
+        try {
+          console.log('setting token index', tokenIndex)
+          let tokenId =
+            await readContracts.NFTokenMetadataEnumerableMock.tokenOfOwnerByIndex(
+              address,
+              tokenIndex
+            )
+          tokenId = tokenId.toString()
+          console.log('tokenId', tokenId)
+          /*
+          const tokenURI =
+            await readContracts.NFTokenMetadataEnumerableMock.tokenURI(tokenId)
+          console.log('tokenURI', tokenURI)
+          */
+
+          //const ipfsHash = tokenURI.replace('https://ipfs.io/ipfs/', '')
+          //console.log('ipfsHash', ipfsHash)
+
+          //const jsonManifestBuffer = await getFromIPFS(ipfsHash)
+
+          try {
+            //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
+            //console.log('jsonManifest', jsonManifest)
+            const creature = assembleCreature(tokenId)
+            usersCreaturesUpdate.push({ ...creature, ownedByUser: true })
+          } catch (e) {
+            console.log(e)
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      }
+      setUsersCreatures(usersCreaturesUpdate)
+    }
+    getUsersCreatures()
+  }, [address, balanceOfUser])
+
   let creatures = []
 
   const assembleCreature = tokenId => {
@@ -503,6 +556,9 @@ function App() {
       creatures.push(creature)
     } else if (activeFilter === FILTERS.taken && creature.minted) {
       creatures.push(creature)
+    } else if (activeFilter === FILTERS.myTotems) {
+      creatures = usersCreatures
+      break
     } else if (activeFilter === FILTERS.favorites && creature.isFavorite) {
       creatures.push(creature)
     }
@@ -640,7 +696,10 @@ function App() {
 
         <div
           style={{
-            marginTop: isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT
+            marginTop: isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT,
+            minHeight: `calc(100vh - ${
+              isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT
+            }px)`
           }}
           onClick={() => setSidebarLeftOpen(false)}
         >
