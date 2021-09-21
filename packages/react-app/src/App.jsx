@@ -4,13 +4,12 @@ import WalletLink from 'walletlink'
 
 import { Alert, Button } from 'antd'
 import { Loading } from 'carbon-components-react'
-import 'antd/dist/antd.css'
-import 'carbon-components/css/carbon-components.min.css'
 
 import { BrowserRouter } from 'react-router-dom'
 import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
 import persistantStore from 'store'
+import eruda from 'eruda/eruda'
 
 import Routes from './Routes'
 import { Header, SidebarLeft, Footer } from './layout'
@@ -127,6 +126,13 @@ const web3Modal = new Web3Modal({
 })
 
 function App() {
+  useEffect(() => {
+    if (document) {
+      eruda.init()
+      eruda.position({ x: 350, y: 30 })
+    }
+  }, [])
+
   const mainnetProvider =
     poktMainnetProvider && poktMainnetProvider._isProvider
       ? poktMainnetProvider
