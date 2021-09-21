@@ -38,14 +38,15 @@ export default function Attributes({
     trait_personality1,
     trait_personality2,
     trait_personality3
-  }
+  },
+  isMobile
 }) {
   return (
     <div id='creatureAttributes'>
       <div
         style={{
           float: 'left',
-          width: '20%',
+          width: isMobile ? '40%' : '20%',
           paddingRight: 10,
           fontSize: '18px',
           lineHeight: '48px',
@@ -65,7 +66,7 @@ export default function Attributes({
       <div
         style={{
           float: 'left',
-          width: '75%',
+          width: isMobile ? '60%' : '75%',
           fontSize: '18px',
           lineHeight: '45px',
           textAlign: 'left',

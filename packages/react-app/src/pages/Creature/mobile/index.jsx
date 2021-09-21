@@ -18,7 +18,6 @@ import {
   ZoomIn32
 } from '@carbon/icons-react'
 // https://www.npmjs.com/package/react-slick
-import Slider from 'react-slick'
 import { useSwipeable } from 'react-swipeable'
 import $ from 'jquery'
 import { getImageUrl } from '../../../helpers'
@@ -51,6 +50,12 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   const [activeTokenId, setActiveTokenId] = useState(urlTokenId)
 
   console.log({ activeTokenId })
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    $('#chatbot').hide()
+    $('#creatureAttributes').hide()
+  }, [])
 
   const getNexTokenId = ({ direction }) => {
     console.log('in getNexTokenId() :')
@@ -346,6 +351,26 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
             <ZoomIn32 aria-label='Zoom' style={{ ...iconStyle }} />
           </div>
         </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <div
+            style={{
+              float: 'left',
+              width: '100%',
+              textAlign: 'center'
+            }}
+          >
+            <CreatureAttributes creatureMetadata={metaData} isMobile={true} />
+          </div>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={2} />
+        <Col span={20} style={{ margin: '0 50px' }}>
+          <Chatbot image={image} tokenId={activeTokenId} />
+        </Col>
+        <Col span={2} />
       </Row>
     </div>
   )

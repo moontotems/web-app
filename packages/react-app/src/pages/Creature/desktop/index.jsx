@@ -18,7 +18,7 @@ import {
   ZoomIn32
 } from '@carbon/icons-react'
 import $ from 'jquery'
-import { MOBILE_HEADER_HEIGHT } from '../../..//constants'
+import { DESKTOP_HEADER_HEIGHT } from '../../..//constants'
 import { getImageUrl } from '../../../helpers'
 import { Chatbot, CreatureAttributes } from '../../../sharedComponents'
 import creature_metadata_hashmap from './creature_metadata_hashmap.json'
@@ -257,7 +257,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           <div
             style={{
               position: 'fixed',
-              top: MOBILE_HEADER_HEIGHT,
+              top: DESKTOP_HEADER_HEIGHT,
               width: '20%'
             }}
           >
@@ -266,7 +266,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           <div
             style={{
               position: 'fixed',
-              top: MOBILE_HEADER_HEIGHT,
+              top: DESKTOP_HEADER_HEIGHT,
               width: '40%'
             }}
           >
