@@ -55,6 +55,9 @@ export const NFT_CONTRACT_ERROR_CODE_MAP = {
   }
 }
 
+export const DESKTOP_HEADER_HEIGHT = 60
+export const MOBILE_HEADER_HEIGHT = 80
+
 export const NETWORKS = {
   localhost: {
     name: 'localhost',

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Menu, Button, Dropdown } from 'antd'
+import { Row, Col, Menu, Dropdown, Button as AntdButton } from 'antd'
+import { Button } from 'antd-mobile'
+
 import {
   CheckmarkOutline32,
   CheckmarkFilled32,
@@ -17,17 +19,27 @@ import {
 } from '@carbon/icons-react'
 // https://www.npmjs.com/package/react-slick
 import Slider from 'react-slick'
+import { useSwipeable } from 'react-swipeable'
 import $ from 'jquery'
-import FILTERS from '../../../sharedComponents/ActionBar/filters'
 import { getImageUrl } from '../../../helpers'
+import { Chatbot, CreatureAttributes } from '../../../sharedComponents'
 import creature_metadata_hashmap from './creature_metadata_hashmap.json'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
+  const { account } = ethereumProps
   const { favorites, activeFilter, mintEventsMap, mint } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
+
+  const updateUrl = creatureIndex => {
+    window.history.replaceState(
+      null,
+      `Moon Totem ${creatureIndex}`,
+      `/totem/${creatureIndex}`
+    )
+  }
 
   let urlTokenId = window.location.pathname.match(/\d+/g)
   if (urlTokenId.length) {
@@ -38,66 +50,48 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
 
   const [activeTokenId, setActiveTokenId] = useState(urlTokenId)
 
-  let creaturesMap = {}
+  console.log({ activeTokenId })
 
-  /*
-  for (let tokenId = startId; tokenId < lastVisibleTokenId; tokenId++) {
-    const minted = !!mintEventsMap[tokenId]
-    const isFavorite = checkIfIsFavorite(tokenId)
-    const metaData = creature_metadata_hashmap[tokenId]
-    const image = getImageUrl(tokenId)
+  const getNexTokenId = ({ direction }) => {
+    console.log('in getNexTokenId() :')
+    console.log({ activeTokenId })
+    console.log({ direction })
 
-    const creature = {
-      tokenId,
-      metaData,
-      image,
-      isFavorite,
-      minted
+    // TODO: move this into constants file
+    const MAX_TOKEN_ID = 1000 // TODO: set corerct number
+    const MIN_TOKEN_ID = 0
+    if (!(activeTokenId === 0) && !activeTokenId) return MIN_TOKEN_ID
+
+    let newActiveTokenId
+    if (direction === 'left') {
+      if (activeTokenId > MIN_TOKEN_ID) {
+        newActiveTokenId = activeTokenId - 1
+        return newActiveTokenId
+      }
+      return newActiveTokenId
     }
-
-    if (!activeFilter) {
-      creatures.push(creature)
-      creaturesMap[`${tokenId}`] = creature
-    } else if (activeFilter === FILTERS.available && !minted) {
-      creatures.push(creature)
-      creaturesMap[`${tokenId}`] = creature
-    } else if (activeFilter === FILTERS.taken && minted) {
-      creatures.push(creature)
-      creaturesMap[`${tokenId}`] = creature
-    } else if (activeFilter === FILTERS.favorites && isFavorite) {
-      creatures.push(creature)
-      creaturesMap[`${tokenId}`] = creature
+    if (direction === 'right') {
+      if (activeTokenId !== MAX_TOKEN_ID) {
+        newActiveTokenId = activeTokenId + 1
+        return newActiveTokenId
+      } else {
+        return activeTokenId
+      }
     }
   }
-  */
 
-  const iconStyle = {
-    margin: '0 20px',
-    cursor: 'pointer'
-  }
-
-  const menu = (
-    <Menu>
-      <Menu.Item>
-        <a
-          target='_blank'
-          rel='noopener noreferrer'
-          href='https://www.antgroup.com'
-        >
-          PNG (10mb)
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a
-          target='_blank'
-          rel='noopener noreferrer'
-          href='https://www.aliyun.com'
-        >
-          OBJ (239kb)
-        </a>
-      </Menu.Item>
-    </Menu>
-  )
+  // pre-load 10 images
+  useEffect(() => {
+    const preloadSize = 10
+    for (
+      let futureTokenId = activeTokenId + 1;
+      futureTokenId < preloadSize + 1;
+      futureTokenId++
+    ) {
+      const img = new Image()
+      img.src = getImageUrl(futureTokenId)
+    }
+  }, [activeTokenId])
 
   const assembleCreature = tokenId => {
     const minted = !!mintEventsMap[tokenId]
@@ -115,112 +109,88 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     return creature
   }
 
-  console.log({ creaturesMap })
   const { metaData, image, isFavorite, minted } =
     assembleCreature(activeTokenId)
+  const { trait_name1, trait_name2, trait_jobField, trait_jobTitle } = metaData
 
-  const updateUrl = creatureIndex => {
-    console.log('in updateUrl')
-    console.log({ creatureIndex })
-    window.history.replaceState(
-      null,
-      `Moon Totem ${creatureIndex}`,
-      `/totem/${creatureIndex}`
-    )
-  }
-
-  useEffect(() => {
-    //updateUrl(activeTokenId)
-  }, [activeTokenId])
-
-  console.log({ activeTokenId })
-
-  const getNexTokenId = ({ currentTokenId, direction }) => {
-    const MAX_TOKEN_ID = 1000 // TODO: set corerct number
-    let newActiveTokenId
-    if (direction === 'left') {
-      if (activeTokenId > 0) {
-        newActiveTokenId = activeTokenId - 1
-        return newActiveTokenId
-      }
-      return newActiveTokenId
-    }
-    if (direction === 'right') {
-      if (activeTokenId !== MAX_TOKEN_ID) {
-        newActiveTokenId = activeTokenId + 1
-        return newActiveTokenId
-      } else {
-        return activeTokenId
-      }
-    }
-  }
-
-  useEffect(() => {
-    document.onkeydown = e => {
-      e.preventDefault()
-      const LEFT_KEY = 37
-      const RIGHT_KEY = 39
-
-      let newActiveTokenId = activeTokenId
-
-      if (e.which == LEFT_KEY) {
-        console.log('click LEFT_KEY')
-        newActiveTokenId = getNexTokenId({
-          currentTokenId: activeTokenId,
-          direction: 'left'
-        })
-      }
-
-      if (e.which == RIGHT_KEY) {
-        console.log('click RIGHT_KEY')
-        newActiveTokenId = getNexTokenId({
-          currentTokenId: activeTokenId,
-          direction: 'right'
-        })
-      }
-
+  const swipeableHandler = useSwipeable({
+    trackMouse: true,
+    trackTouch: true,
+    //onSwiped: eventData => console.log('User Swiped!', eventData),
+    onSwipedLeft: eventData => {
+      console.log('in onSwipedLeft()')
+      const newActiveTokenId = getNexTokenId({
+        direction: 'right'
+      })
+      console.log('in onSwipedLeft()')
+      console.log({ newActiveTokenId })
+      setActiveTokenId(newActiveTokenId)
+      updateUrl(newActiveTokenId)
+    },
+    onSwipedRight: eventData => {
+      console.log('in onSwipedRight()')
+      const newActiveTokenId = getNexTokenId({
+        direction: 'left'
+      })
+      console.log('in onSwipedLeft()')
+      console.log({ newActiveTokenId })
       setActiveTokenId(newActiveTokenId)
       updateUrl(newActiveTokenId)
     }
-  }, [activeTokenId])
+    //onTap: ({ event }) =>
+  })
+
+  const iconStyle = {
+    margin: '0 20px',
+    cursor: 'pointer'
+  }
 
   return (
-    <div style={{ backgroundColor: '#000' }}>
-      {/*
-      <div style={{ width: '60%' }}>
-        <Chatbot image={image} tokenId={tokenId} />
-      </div>
-      <div style={{ marginTop: 50 }}>
-        <Attributes creatureMetadata={creatureMetadata} />
-      </div>
-      */}
+    <div style={{ height: '100vh', backgroundColor: '#000' }}>
       <Row>
-        <Col xs={0} md={6} />
-        <Col xs={24} md={12}>
+        <Col xs={0} />
+        <Col xs={24}>
           <img
+            {...swipeableHandler}
             src={image}
             width='100%'
             onClick={() =>
               setActiveTokenId(
                 getNexTokenId({
-                  currentTokenId: activeTokenId,
                   direction: 'right'
                 })
               )
             }
+            style={{
+              marginTop: 120,
+              marginBottom: 80
+            }}
           />
         </Col>
-        <Col xs={0} md={6} />
+        <Col xs={0} />
       </Row>
       <Row>
-        <Col xs={10} />
-        <Col xs={4}>
+        <Col xs={6}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ float: 'left' }}>
+            <div>
               {minted && <CheckmarkOutline32 style={{ fill: '#4589FF' }} />}
               {!minted && <CheckmarkFilled32 style={{ fill: '#00FF74' }} />}
             </div>
-            <div style={{ float: 'right' }}>
+          </div>
+        </Col>
+        <Col xs={12}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: 40 }}>
+              {trait_name1} {trait_name2}
+            </div>
+            <div style={{ fontSize: 30, fontWeight: 600 }}>
+              {trait_jobField} {trait_jobTitle}
+            </div>
+          </div>
+        </Col>
+        <Col xs={6}>
+          <div style={{ textAlign: 'center' }}>
+            <div>
               {!isFavorite && (
                 <Favorite32
                   role='button'
@@ -238,21 +208,19 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
             </div>
           </div>
         </Col>
-        <Col xs={10} />
       </Row>
       <Row>
-        <Col xs={10} />
-        <Col xs={4}>
+        <Col xs={6} />
+        <Col xs={12}>
           <div
             style={{
+              marginTop: 30,
               textAlign: 'center'
             }}
           >
             {minted && (
               <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
-                <Button type='primary' block>
-                  View on Opensea
-                </Button>
+                <Button style={{ borderRadius: 0 }}>View on Opensea</Button>
                 {/*
                 <Button
                   type='primary'
@@ -266,12 +234,11 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                 */}
               </a>
             )}
-            {!minted && (
+            {account && !minted && (
               <Button
-                type='success'
-                block
                 style={{
                   backgroundColor: '#24A148',
+                  borderRadius: 0,
                   borderColor: '#24A148',
                   color: '#fff'
                 }}
@@ -282,7 +249,19 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
             )}
           </div>
         </Col>
-        <Col xs={10} />
+        <Col xs={6} />
+      </Row>
+      <Row>
+        <Col span={24}>
+          {/*
+            <div style={{ width: '60%' }}>
+              <Chatbot image={image} tokenId={tokenId} />
+            </div>
+            <div style={{ marginTop: 50 }}>
+              <Attributes creatureMetadata={creatureMetadata} />
+            </div>
+          */}
+        </Col>
       </Row>
       <Row>
         <Col span={24}>
@@ -291,8 +270,32 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
             {/* <Apps32 aria-label='Switch to area view' style={{ ...iconStyle }} /> */}
             {/* <CarouselHorizontal32 style={{ ...iconStyle }} />*/}
             {/* <List32 aria-label='Switch to list view' style={{ ...iconStyle }} /> */}
-            <Dropdown overlay={menu} placement='topCenter'>
-              <Button
+            <Dropdown
+              overlay={
+                <Menu>
+                  <Menu.Item>
+                    <a
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      href='https://www.antgroup.com'
+                    >
+                      PNG (10mb)
+                    </a>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <a
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      href='https://www.aliyun.com'
+                    >
+                      OBJ (239kb)
+                    </a>
+                  </Menu.Item>
+                </Menu>
+              }
+              placement='topCenter'
+            >
+              <AntdButton
                 id='downloadButton'
                 style={{ padding: 0, border: 'none' }}
               >
@@ -300,7 +303,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                   aria-label='Download'
                   style={{ ...iconStyle, color: '#fff' }}
                 />
-              </Button>
+              </AntdButton>
             </Dropdown>
             {/*
               <Dropdown

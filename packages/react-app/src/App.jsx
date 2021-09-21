@@ -15,7 +15,13 @@ import Routes from './Routes'
 import { Header, SidebarLeft, Footer } from './layout'
 import { ActionBar } from './sharedComponents'
 import FILTERS from './sharedComponents/ActionBar/filters'
-import { INFURA_ID, NETWORK, NETWORKS } from './constants'
+import {
+  INFURA_ID,
+  NETWORK,
+  NETWORKS,
+  MOBILE_HEADER_HEIGHT,
+  DESKTOP_HEADER_HEIGHT
+} from './constants'
 import { Transactor, getImageUrl, getRandomArray } from './helpers'
 import {
   useBalance,
@@ -634,7 +640,7 @@ function App() {
 
         <div
           style={{
-            marginTop: isMobile ? 48 : 60
+            marginTop: isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT
           }}
           onClick={() => setSidebarLeftOpen(false)}
         >

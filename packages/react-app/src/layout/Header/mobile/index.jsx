@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, Dropdown } from 'antd'
 import {
-  TextAlignJustify16,
+  TextAlignJustify32,
+  AppSwitcher32,
   Moon16,
   FavoriteFilled16,
   JoinRight16,
@@ -20,6 +21,7 @@ import {
 } from 'carbon-components-react/lib/components/UIShell'
 
 import { Account } from '../../../sharedComponents'
+import { MOBILE_HEADER_HEIGHT } from '../../../constants'
 
 export default function HeaderMobile({
   ethereumProps,
@@ -55,14 +57,6 @@ export default function HeaderMobile({
     }
     if (window.location.pathname === '/favorites') {
       return 'Favorite Totems'
-    }
-    if (window.location.pathname.includes('totem')) {
-      let tokenId = window.location.pathname.match(/\d+/g)
-      if (tokenId.length) tokenId = tokenId[0]
-      console.log({ tokenId })
-      const title = `Moon Totem #${tokenId}`
-      console.log({ title })
-      return title
     }
   }
 
@@ -145,7 +139,7 @@ export default function HeaderMobile({
     </Menu>
   )
 
-  const headerHeight = 80
+  const headerHeight = MOBILE_HEADER_HEIGHT
   return (
     <>
       <div
@@ -171,20 +165,18 @@ export default function HeaderMobile({
           onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
         >
           {/* <QueryQueue12 /> */}
-          <TextAlignJustify16 />
+          <TextAlignJustify32 />
         </HeaderGlobalAction>
-        {!isMobile && (
-          <HeaderName href='#' prefix=''>
-            <Link
-              onClick={() => {
-                setRoute('/')
-              }}
-              to='/'
-            >
-              <span style={{ fontWeight: 400 }}>MOON TOTEMS</span>
-            </Link>
-          </HeaderName>
-        )}
+        <HeaderName href='#' prefix=''>
+          <Link
+            onClick={() => {
+              setRoute('/')
+            }}
+            to='/'
+          >
+            <span style={{ fontWeight: 400 }}>MOON TOTEMS</span>
+          </Link>
+        </HeaderName>
         <HeaderNavigation aria-label='Crypto Moons'>
           <HeaderName href='#' prefix=''></HeaderName>
           {/*
@@ -193,11 +185,8 @@ export default function HeaderMobile({
             </HeaderMenu>
           */}
         </HeaderNavigation>
-        <HeaderGlobalBar>
-          <span style={{ marginTop: 14 }}>
-            <div style={{ marginRight: 15 }}>{networkDisplay}</div>
-          </span>
 
+        <HeaderGlobalBar>
           <span style={{ marginRight: 25 }}>
             {!address && (
               <Account
@@ -238,6 +227,16 @@ export default function HeaderMobile({
             )}
           </span>
         </HeaderGlobalBar>
+        <HeaderGlobalAction aria-label='App Switcher'>
+          <Link
+            onClick={() => {
+              setRoute('/all')
+            }}
+            to='/all'
+          >
+            <AppSwitcher32 />
+          </Link>
+        </HeaderGlobalAction>
       </Header>
     </>
   )

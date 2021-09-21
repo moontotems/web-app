@@ -174,7 +174,6 @@ export default function HeaderDesktop({
           {/* <QueryQueue32 /> */}
           <TextAlignJustify32 />
         </HeaderGlobalAction>
-
         <HeaderName href='#' prefix=''>
           <Link
             onClick={() => {

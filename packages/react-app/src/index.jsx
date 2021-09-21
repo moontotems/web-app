@@ -2,6 +2,11 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import React from 'react'
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher'
 import ReactDOM from 'react-dom'
+
+import 'antd/dist/antd.css'
+import 'antd-mobile/dist/antd-mobile.min.css'
+import 'carbon-components/css/carbon-components.min.css'
+
 import App from './App'
 import './index.less'
 

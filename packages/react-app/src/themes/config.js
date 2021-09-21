@@ -1,4 +1,5 @@
 import { notification } from 'antd'
+import { DESKTOP_HEADER_HEIGHT } from '../constants'
 
 // https://ant.design/components/notification/
 
@@ -8,6 +9,6 @@ notification.config({
   duration: 10, // in seconds
   //getContainer:
   placement: 'topRight',
-  top: 60
+  top: DESKTOP_HEADER_HEIGHT
   //rtl: true,
 })

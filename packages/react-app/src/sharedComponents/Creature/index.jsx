@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Row, Col } from 'antd'
 import {
   CheckmarkOutline16,
   CheckmarkFilled16,
@@ -35,13 +36,14 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
             src={image}
           />
         </Link>
-
-        <div style={{ width: '100%' }}>
-          <div style={{ float: 'left', width: '10%' }}>
-            {minted && <CheckmarkOutline16 style={{ fill: '#4589FF' }} />}
-            {!minted && <CheckmarkFilled16 style={{ fill: '#00FF74' }} />}
-          </div>
-          <div style={{ float: 'left', width: '80%' }}>
+        <Row>
+          <Col xs={6}>
+            <div style={{ textAlign: 'center' }}>
+              {minted && <CheckmarkOutline16 style={{ fill: '#4589FF' }} />}
+              {!minted && <CheckmarkFilled16 style={{ fill: '#00FF74' }} />}
+            </div>
+          </Col>
+          <Col xs={12}>
             <div
               style={{
                 fontFamily: 'IBM Plex Sans',
@@ -69,26 +71,28 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
             >
               {trait_jobField} {trait_jobTitle}
             </div>
-          </div>
-          <div style={{ float: 'left', width: '10%' }}>
-            {!isFavorite && (
-              <Favorite16
-                role='button'
-                style={{ fill: 'white', cursor: 'pointer' }}
-                onClick={() => updateFavorites(tokenId)}
-              />
-            )}
-            {isFavorite && (
-              <FavoriteFilled16
-                role='button'
-                style={{ fill: '#DA1E28', cursor: 'pointer' }}
-                onClick={() => updateFavorites(tokenId)}
-              />
-            )}
+          </Col>
+          <Col xs={6}>
+            <div style={{ textAlign: 'center' }}>
+              {!isFavorite && (
+                <Favorite16
+                  role='button'
+                  style={{ fill: 'white', cursor: 'pointer' }}
+                  onClick={() => updateFavorites(tokenId)}
+                />
+              )}
+              {isFavorite && (
+                <FavoriteFilled16
+                  role='button'
+                  style={{ fill: '#DA1E28', cursor: 'pointer' }}
+                  onClick={() => updateFavorites(tokenId)}
+                />
+              )}
 
-            {/*<FavoriteFilled32 style={{ fill: 'red' }} />*/}
-          </div>
-        </div>
+              {/*<FavoriteFilled32 style={{ fill: 'red' }} />*/}
+            </div>
+          </Col>
+        </Row>
         {/*!minted && <Button onClick={() => mint()}>Adopt for {0.1} Ξ</Button>*/}
       </div>
     </>
