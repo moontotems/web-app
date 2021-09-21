@@ -59,7 +59,6 @@ export default function Chatbot({ image, tokenId }) {
         float: 'left',
         width: '100%',
         textAlign: 'left',
-        marginTop: 40,
         marginLeft: 10
       }}
     >

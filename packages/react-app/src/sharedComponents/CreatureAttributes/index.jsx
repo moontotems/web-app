@@ -48,7 +48,7 @@ export default function Attributes({
           width: '20%',
           paddingRight: 10,
           fontSize: '18px',
-          lineHeight: '24px',
+          lineHeight: '48px',
           textAlign: 'right',
           color: '#fff',
           opacity: 0.5
@@ -67,7 +67,7 @@ export default function Attributes({
           float: 'left',
           width: '75%',
           fontSize: '18px',
-          lineHeight: '24px',
+          lineHeight: '45px',
           textAlign: 'left',
           color: '#fff'
         }}
