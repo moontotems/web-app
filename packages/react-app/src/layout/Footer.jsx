@@ -41,7 +41,7 @@ export default function MyFooter({ ethereumProps, nftAppProps }) {
         paddingBottom: 50
       }}
     >
-      <Col xs={12} lg={8}>
+      <Col xs={24} lg={8}>
         <div style={{ ...headerStyle }}>The Project</div>
         <div style={{ ...contentStyle }}>
           <Link
@@ -64,7 +64,7 @@ export default function MyFooter({ ethereumProps, nftAppProps }) {
           </Link>
         </div>
       </Col>
-      <Col xs={12} lg={8}>
+      <Col xs={24} lg={8}>
         <div style={{ ...headerStyle }}>Resources</div>
       </Col>
       <Col xs={24} lg={8}>
