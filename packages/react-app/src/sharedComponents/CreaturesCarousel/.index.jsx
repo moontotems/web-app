@@ -22,7 +22,8 @@ import {
 import { useEventListener } from '../../../hooks'
 import { getImageUrl } from '../../../helpers'
 import creature_metadata_hashmap from '../../../creature_metadata_hashmap.json'
-import { Attributes, Chatbot } from './components'
+import Chatbot from '../Chatbot'
+import Attributes from '../CreatureAttributes'
 import './styles.css'
 
 export default function CreaturePage({
