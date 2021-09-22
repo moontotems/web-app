@@ -132,13 +132,6 @@ const web3Modal = new Web3Modal({
 })
 
 function App() {
-  useEffect(() => {
-    if (document) {
-      eruda.init()
-      eruda.position({ x: 350, y: 30 })
-    }
-  }, [])
-
   const mainnetProvider =
     poktMainnetProvider && poktMainnetProvider._isProvider
       ? poktMainnetProvider
@@ -414,6 +407,13 @@ function App() {
     }
   }, [])
   const isMobile = width <= 768
+
+  useEffect(() => {
+    if (document && isMobile) {
+      eruda.init()
+      eruda.position({ x: 350, y: 30 })
+    }
+  }, [])
   //////
 
   const favoritedIdsStore = persistantStore.get('favoritedIds') || []
