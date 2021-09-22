@@ -69,7 +69,6 @@
     "react-scripts": "4.0.0",
     "react-slick": "^0.28.1",
     "react-swipeable": "^6.2.0",
-    "slick-carousel": "^1.8.1",
     "store": "^2.0.12",
     "walletlink": "^2.1.5",
     "web3modal": "^1.9.1",

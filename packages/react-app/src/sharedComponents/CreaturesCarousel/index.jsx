@@ -22,8 +22,6 @@ import { getImageUrl } from '../../helpers'
 import Icons from '../icons'
 const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
 import creature_metadata_hashmap from './creature_metadata_hashmap.json'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
 export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
   const { favorites, activeFilter, mintEventsMap, mint } = nftAppProps
