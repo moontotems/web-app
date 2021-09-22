@@ -55,6 +55,9 @@ export const NFT_CONTRACT_ERROR_CODE_MAP = {
   }
 }
 
+export const MIN_TOKEN_ID = 0
+export const MAX_TOKEN_ID = 9458
+
 export const DESKTOP_HEADER_HEIGHT = 60
 export const MOBILE_HEADER_HEIGHT = 80
 

@@ -20,6 +20,7 @@ import {
 // https://www.npmjs.com/package/react-slick
 import { useSwipeable } from 'react-swipeable'
 import $ from 'jquery'
+import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
 import { Chatbot, CreatureAttributes, Icons } from '../../../sharedComponents'
 const { MintedIcon32x32, NotMintedIcon32x32 } = Icons
@@ -57,10 +58,6 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   }, [])
 
   const getNextTokenId = ({ direction }) => {
-    // TODO: move this into constants file
-    const MAX_TOKEN_ID = 1000 // TODO: set correct number
-    const MIN_TOKEN_ID = 0
-    // eslint-disable-next-line no-empty
     if (typeof activeTokenId !== 'number') {
       return MIN_TOKEN_ID
     }
