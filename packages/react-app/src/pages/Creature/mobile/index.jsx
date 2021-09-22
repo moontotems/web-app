@@ -56,30 +56,30 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     $('#creatureAttributes').hide()
   }, [])
 
-  const getNexTokenId = ({ direction }) => {
-    console.log('in getNexTokenId() :')
-    console.log({ activeTokenId })
-    console.log({ direction })
-
+  const getNextTokenId = ({ direction }) => {
     // TODO: move this into constants file
-    const MAX_TOKEN_ID = 1000 // TODO: set corerct number
+    const MAX_TOKEN_ID = 1000 // TODO: set correct number
     const MIN_TOKEN_ID = 0
-    if (!(activeTokenId === 0) && !activeTokenId) return MIN_TOKEN_ID
+    // eslint-disable-next-line no-empty
+    if (typeof activeTokenId !== 'number') {
+      return MIN_TOKEN_ID
+    }
 
     let newActiveTokenId
     if (direction === 'left') {
       if (activeTokenId > MIN_TOKEN_ID) {
         newActiveTokenId = activeTokenId - 1
         return newActiveTokenId
+      } else {
+        return MIN_TOKEN_ID
       }
-      return newActiveTokenId
     }
     if (direction === 'right') {
-      if (activeTokenId !== MAX_TOKEN_ID) {
+      if (activeTokenId === MAX_TOKEN_ID) {
+        return activeTokenId
+      } else {
         newActiveTokenId = activeTokenId + 1
         return newActiveTokenId
-      } else {
-        return activeTokenId
       }
     }
   }
@@ -123,7 +123,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     //onSwiped: eventData => console.log('User Swiped!', eventData),
     onSwipedLeft: eventData => {
       console.log('in onSwipedLeft()')
-      const newActiveTokenId = getNexTokenId({
+      const newActiveTokenId = getNextTokenId({
         direction: 'right'
       })
       console.log('in onSwipedLeft()')
@@ -133,7 +133,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     },
     onSwipedRight: eventData => {
       console.log('in onSwipedRight()')
-      const newActiveTokenId = getNexTokenId({
+      const newActiveTokenId = getNextTokenId({
         direction: 'left'
       })
       console.log('in onSwipedLeft()')
@@ -160,7 +160,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
             width='100%'
             onClick={() =>
               setActiveTokenId(
-                getNexTokenId({
+                getNextTokenId({
                   direction: 'right'
                 })
               )

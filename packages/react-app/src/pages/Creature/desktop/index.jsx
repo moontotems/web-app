@@ -49,30 +49,30 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
 
   console.log({ activeTokenId })
 
-  const getNexTokenId = ({ direction }) => {
-    console.log('in getNexTokenId() :')
-    console.log({ activeTokenId })
-    console.log({ direction })
-
+  const getNextTokenId = ({ direction }) => {
     // TODO: move this into constants file
-    const MAX_TOKEN_ID = 1000 // TODO: set corerct number
+    const MAX_TOKEN_ID = 1000 // TODO: set correct number
     const MIN_TOKEN_ID = 0
-    if (!(activeTokenId === 0) && !activeTokenId) return MIN_TOKEN_ID
+    // eslint-disable-next-line no-empty
+    if (typeof activeTokenId !== 'number') {
+      return MIN_TOKEN_ID
+    }
 
     let newActiveTokenId
     if (direction === 'left') {
       if (activeTokenId > MIN_TOKEN_ID) {
         newActiveTokenId = activeTokenId - 1
         return newActiveTokenId
+      } else {
+        return MIN_TOKEN_ID
       }
-      return newActiveTokenId
     }
     if (direction === 'right') {
-      if (activeTokenId !== MAX_TOKEN_ID) {
+      if (activeTokenId === MAX_TOKEN_ID) {
+        return activeTokenId
+      } else {
         newActiveTokenId = activeTokenId + 1
         return newActiveTokenId
-      } else {
-        return activeTokenId
       }
     }
   }
@@ -123,21 +123,16 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       const RIGHT_KEY = 39
 
       if (e.which == LEFT_KEY) {
-        console.log('in onSwipedRight()')
-        const newActiveTokenId = getNexTokenId({
+        const newActiveTokenId = getNextTokenId({
           direction: 'left'
         })
-        console.log('in onSwipedLeft()')
-        console.log({ newActiveTokenId })
         setActiveTokenId(newActiveTokenId)
         updateUrl(newActiveTokenId)
       }
       if (e.which == RIGHT_KEY) {
-        const newActiveTokenId = getNexTokenId({
+        const newActiveTokenId = getNextTokenId({
           direction: 'right'
         })
-        console.log('in onSwipedLeft()')
-        console.log({ newActiveTokenId })
         setActiveTokenId(newActiveTokenId)
         updateUrl(newActiveTokenId)
       }
@@ -156,13 +151,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         <Col md={10}>
           <img
             src={image}
-            onClick={() =>
-              setActiveTokenId(
-                getNexTokenId({
-                  direction: 'right'
-                })
-              )
-            }
             style={{
               float: 'left',
               width: '100%'
