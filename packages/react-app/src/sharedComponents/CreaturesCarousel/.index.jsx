@@ -21,7 +21,7 @@ import {
 
 import { useEventListener } from '../../../hooks'
 import { getImageUrl } from '../../../helpers'
-import creature_metadata_hashmap from '../../../creature_metadata_hashmap.json'
+import creature_metadata_hashmap from '../../assets/creature_metadata_hashmap.json'
 import Chatbot from '../Chatbot'
 import Attributes from '../CreatureAttributes'
 import Icons from '../icons'

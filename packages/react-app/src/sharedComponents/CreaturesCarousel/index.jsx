@@ -19,9 +19,9 @@ import $ from 'jquery'
 
 import FILTERS from '../../sharedComponents/ActionBar/filters'
 import { getImageUrl } from '../../helpers'
+import creature_metadata_hashmap from '../../assets/creature_metadata_hashmap.json'
 import Icons from '../icons'
 const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
-import creature_metadata_hashmap from './creature_metadata_hashmap.json'
 
 export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
   const { favorites, activeFilter, mintEventsMap, mint } = nftAppProps

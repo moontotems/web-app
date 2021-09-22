@@ -33,7 +33,7 @@ import {
   useOnBlock,
   useUserSigner
 } from './hooks'
-import creature_metadata_hashmap from './creature_metadata_hashmap.json'
+import creature_metadata_hashmap from './assets/creature_metadata_hashmap.json'
 
 import './App.less'
 

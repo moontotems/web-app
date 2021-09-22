@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Divider } from 'antd'
 import { getImageUrl } from '../../helpers'
 import { Creature } from '../../sharedComponents'
-import creature_metadata_hashmap from '../../creature_metadata_hashmap.json'
+import creature_metadata_hashmap from '../../assets/creature_metadata_hashmap.json'
 import { Mint } from './components'
 
 export default function Minted({ ethereumProps, nftAppProps }) {

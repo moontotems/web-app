@@ -26,7 +26,7 @@ import {
 import { getImageUrl } from '../../../helpers'
 import { Chatbot, CreatureAttributes, Icons } from '../../../sharedComponents'
 const { MintedIcon32x32, NotMintedIcon32x32 } = Icons
-import creature_metadata_hashmap from './creature_metadata_hashmap.json'
+import creature_metadata_hashmap from '../../../assets/creature_metadata_hashmap.json'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   const { account } = ethereumProps
