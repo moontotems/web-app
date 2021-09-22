@@ -10,6 +10,8 @@ import {
   Locked16
 } from '@carbon/icons-react'
 import FILTERS from './filters'
+import Icons from '../icons'
+const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
 
 export default function ActionBar({ ethereumProps, nftAppProps }) {
   const { setActiveFilter, activeFilter, setShowGrid } = nftAppProps
@@ -72,7 +74,11 @@ export default function ActionBar({ ethereumProps, nftAppProps }) {
         onClick={() => setActiveFilter(FILTERS.available)}
       >
         <div style={{ ...menuTextStyle }}>Show Available</div>
-        <CheckmarkOutline16 style={{ ...menuIconStyle, fill: '#00FF74' }} />
+        <img
+          src={NotMintedIcon16x16}
+          style={{ ...menuIconStyle }}
+          alt='Not Minted'
+        />
       </Menu.Item>
       <Menu.Item
         style={{
@@ -102,7 +108,7 @@ export default function ActionBar({ ethereumProps, nftAppProps }) {
         onClick={() => setActiveFilter(FILTERS.myTotems)}
       >
         <div style={{ ...menuTextStyle }}>Show My Totems</div>
-        <CheckmarkOutline16 style={{ ...menuIconStyle, fill: '#4589FF' }} />
+        <img src={MintedIcon16x16} style={{ ...menuIconStyle }} alt='Minted' />
       </Menu.Item>
     </Menu>
   )

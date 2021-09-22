@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Menu, Button, Dropdown } from 'antd'
 import {
-  CheckmarkOutline32,
-  CheckmarkFilled32,
   Favorite32,
   FavoriteFilled32,
   Filter32,
@@ -18,8 +16,11 @@ import {
 // https://www.npmjs.com/package/react-slick
 import Slider from 'react-slick'
 import $ from 'jquery'
+
 import FILTERS from '../../sharedComponents/ActionBar/filters'
 import { getImageUrl } from '../../helpers'
+import Icons from '../icons'
+const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
 import creature_metadata_hashmap from './creature_metadata_hashmap.json'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -216,8 +217,8 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
         <Col xs={4}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ float: 'left' }}>
-              {minted && <CheckmarkOutline32 style={{ fill: '#4589FF' }} />}
-              {!minted && <CheckmarkFilled32 style={{ fill: '#00FF74' }} />}
+              {minted && <img src={MintedIcon16x16} alt='Minted' />}
+              {!minted && <img src={NotMintedIcon16x16} alt='Not Minted' />}
             </div>
             <div style={{ float: 'right' }}>
               {!isFavorite && (

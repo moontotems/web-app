@@ -4,6 +4,7 @@ export { default as CreaturesGrid } from './CreaturesGrid'
 export { default as Creature } from './Creature'
 export { default as Chatbot } from './Chatbot'
 export { default as CreatureAttributes } from './CreatureAttributes'
+export { default as Icons } from './icons'
 
 export { default as Account } from './scaffoldComponents/Account'
 export { default as Address } from './scaffoldComponents/Address'

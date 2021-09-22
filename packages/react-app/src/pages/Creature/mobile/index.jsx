@@ -21,10 +21,9 @@ import {
 import { useSwipeable } from 'react-swipeable'
 import $ from 'jquery'
 import { getImageUrl } from '../../../helpers'
-import { Chatbot, CreatureAttributes } from '../../../sharedComponents'
+import { Chatbot, CreatureAttributes, Icons } from '../../../sharedComponents'
+const { MintedIcon32x32, NotMintedIcon32x32 } = Icons
 import creature_metadata_hashmap from './creature_metadata_hashmap.json'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
 export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   const { account } = ethereumProps
@@ -178,8 +177,8 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Col xs={6}>
           <div style={{ textAlign: 'center' }}>
             <div>
-              {minted && <CheckmarkOutline32 style={{ fill: '#4589FF' }} />}
-              {!minted && <CheckmarkFilled32 style={{ fill: '#00FF74' }} />}
+              {minted && <img src={MintedIcon32x32} alt='Minted' />}
+              {!minted && <img src={NotMintedIcon32x32} alt='Not Minted' />}
             </div>
           </div>
         </Col>

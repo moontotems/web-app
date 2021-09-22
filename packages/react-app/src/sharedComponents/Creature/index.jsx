@@ -1,12 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'antd'
-import {
-  CheckmarkOutline16,
-  CheckmarkFilled16,
-  Favorite16,
-  FavoriteFilled16
-} from '@carbon/icons-react'
+import { Favorite16, FavoriteFilled16 } from '@carbon/icons-react'
+import Icons from '../icons'
+const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
 
 export default function Creature({ ethereumProps, nftAppProps, creature }) {
   const { setRoute, favorites } = nftAppProps
@@ -39,8 +36,8 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
         <Row>
           <Col xs={6}>
             <div style={{ textAlign: 'center' }}>
-              {minted && <CheckmarkOutline16 style={{ fill: '#4589FF' }} />}
-              {!minted && <CheckmarkFilled16 style={{ fill: '#00FF74' }} />}
+              {minted && <img src={MintedIcon16x16} alt='Minted' />}
+              {!minted && <img src={NotMintedIcon16x16} alt='Not Minted' />}
             </div>
           </Col>
           <Col xs={12}>

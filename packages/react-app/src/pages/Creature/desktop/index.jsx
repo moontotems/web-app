@@ -18,9 +18,10 @@ import {
   ZoomIn32
 } from '@carbon/icons-react'
 import $ from 'jquery'
-import { DESKTOP_HEADER_HEIGHT } from '../../..//constants'
+import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
-import { Chatbot, CreatureAttributes } from '../../../sharedComponents'
+import { Chatbot, CreatureAttributes, Icons } from '../../../sharedComponents'
+const { MintedIcon32x32, NotMintedIcon32x32 } = Icons
 import creature_metadata_hashmap from './creature_metadata_hashmap.json'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
@@ -174,8 +175,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         <Col xs={6}>
           <div style={{ textAlign: 'center' }}>
             <div>
-              {minted && <CheckmarkOutline32 style={{ fill: '#4589FF' }} />}
-              {!minted && <CheckmarkFilled32 style={{ fill: '#00FF74' }} />}
+              {minted && <img src={MintedIcon32x32} alt='Minted' />}
+              {!minted && <img src={NotMintedIcon32x32} alt='Not Minted' />}
             </div>
           </div>
         </Col>
