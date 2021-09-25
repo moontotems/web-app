@@ -38,10 +38,11 @@ import creature_metadata_hashmap from './assets/creature_metadata_hashmap.json'
 import './App.less'
 
 // 📡 What chain are your contracts deployed to?
-const targetNetwork = NETWORKS.localhost // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+//const targetNetwork = NETWORKS.localhost // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const targetNetwork = NETWORKS.ropsten // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
-const DEBUG = false
+const DEBUG = true
 const NETWORKCHECK = true
 
 // 🛰 providers
@@ -388,12 +389,14 @@ function App() {
   const initialTokenId = 0
   const maxTokenId = 1000 // TODO:
 
+  /*
   const totalSupply =
     useContractReader(
       readContracts,
       'NFTokenMetadataEnumerableMock',
       'totalSupply'
     ) || {}
+  */
 
   //////
   const [width, setWidth] = useState(window.innerWidth)
