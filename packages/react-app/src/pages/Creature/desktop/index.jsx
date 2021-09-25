@@ -29,7 +29,7 @@ const { MintedIcon32x32, NotMintedIcon32x32 } = Icons
 import creature_metadata_hashmap from '../../../assets/creature_metadata_hashmap.json'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
-  const { account } = ethereumProps
+  const { address } = ethereumProps
   const { favorites, activeFilter, mintEventsMap, mint } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
@@ -224,7 +224,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
                 */}
               </a>
             )}
-            {account && !minted && (
+            {address && !minted && (
               <Button
                 style={{
                   backgroundColor: '#24A148',
