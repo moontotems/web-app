@@ -22,7 +22,7 @@ import {
   MOBILE_HEADER_HEIGHT,
   DESKTOP_HEADER_HEIGHT
 } from './constants'
-import { Transactor, getImageUrl, getRandomArray } from './helpers'
+import { Transactor, getImageUrl, getRandomTokenIdsArray } from './helpers'
 import {
   useBalance,
   useContractLoader,
@@ -386,9 +386,6 @@ function App() {
     }
   }, [loadWeb3Modal])
 
-  const initialTokenId = 0
-  const maxTokenId = 1000 // TODO:
-
   /*
   const totalSupply =
     useContractReader(
@@ -445,6 +442,7 @@ function App() {
   const [activeFilter, setActiveFilter] = useState('')
   const [showGrid, setShowGrid] = useState(true)
 
+  // TODO: reduce number of calls
   const mintEvents = useEventListener(
     readContracts,
     'NFTokenMetadataEnumerableMock',
@@ -479,7 +477,12 @@ function App() {
     initialValue_visibleCreaturesRangeEnd
   )
 
+  const [randomTokenIds, setRandomTokenIds] = useState(getRandomTokenIdsArray())
+
   const [usersCreatures, setUsersCreatures] = useState([])
+
+  // TODO: reduce number of calls
+  //       move this into useEffect hook
   const balanceOf =
     useContractReader(
       readContracts,
@@ -551,7 +554,15 @@ function App() {
   }
 
   for (let tokenId = 0; tokenId < visibleCreaturesRangeEnd; tokenId++) {
-    const creature = assembleCreature(tokenId)
+    let creature
+
+    if (activeFilter === FILTERS.shuffle) {
+      const index = tokenId
+      const randomTokenId = randomTokenIds[index]
+      creatures.push(assembleCreature(randomTokenId))
+    } else {
+      creature = assembleCreature(tokenId)
+    }
 
     if (!activeFilter) {
       creatures.push(creature)
@@ -565,25 +576,6 @@ function App() {
     } else if (activeFilter === FILTERS.favorites && creature.isFavorite) {
       creatures.push(creature)
     }
-
-    if (activeFilter === FILTERS.shuffle) {
-      const randomTokenIds = getRandomArray({
-        min: initialTokenId,
-        max: maxTokenId,
-        numOfRandoms: 100,
-        unique: true
-      })
-      console.log({ randomTokenIds })
-      randomTokenIds.map(randomId => {
-        const creature = assembleCreature(randomId)
-        creatures.push(creature)
-      })
-      // prevent infint loop
-      setActiveFilter('shuffle-done')
-      break
-    }
-    //if (activeFilter === 'shuffle-done') {
-    //}
   }
 
   const infiniteScroll = {
