@@ -94,6 +94,7 @@
     "husky": "^7.0.1",
     "ipfs-http-client": "^45.0.0",
     "less-plugin-npm-import": "^2.1.0",
+    "pm2": "^5.1.2",
     "prettier": "^2.0.5",
     "s3-folder-upload": "^2.3.1",
     "surge": "^0.21.5"
@@ -105,6 +106,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "prestart": "node ./scripts/create_contracts.js",
+    "pm2:start": "pm2 start ./pm2/development.config.js",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src/**/*",
