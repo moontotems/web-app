@@ -703,7 +703,9 @@ function App() {
           <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>
 
-        <ActionBar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        {route !== '/totem' && (
+          <ActionBar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        )}
 
         <Footer ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </BrowserRouter>
