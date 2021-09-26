@@ -118,7 +118,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
 
   useEffect(() => {
     document.onkeydown = e => {
-      e.preventDefault()
       const LEFT_KEY = 37
       const RIGHT_KEY = 39
 
