@@ -42,7 +42,7 @@ export default function ActionBar({ ethereumProps, nftAppProps }) {
 
   const getMenuColorSelect = _filter => {
     let color = '#161616'
-    if (_filter === activeFilter) color = '#4589FF'
+    if (_filter === activeFilter) color = '#1062FE'
     return color
   }
 

@@ -153,84 +153,59 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             src={image}
             style={{
               float: 'left',
-              width: '100%'
+              width: '100%',
+              marginTop: 9
             }}
           />
         </Col>
         <Col md={7} />
       </Row>
-      <Row>
-        <Col xs={6}>
-          <div style={{ textAlign: 'center' }}>
-            <div>
-              {minted && <img src={MintedIcon32x32} alt='Minted' />}
-              {!minted && <img src={NotMintedIcon32x32} alt='Not Minted' />}
-            </div>
-          </div>
-        </Col>
-        <Col xs={12}>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 30 }}>
-              {trait_name1} {trait_name2}
-            </div>
-            <div style={{ fontSize: 20, fontWeight: 600 }}>
-              {trait_jobField} {trait_jobTitle}
-            </div>
-          </div>
-        </Col>
-        <Col xs={6}>
-          <div style={{ textAlign: 'center' }}>
-            <div>
-              {!isFavorite && (
-                <Favorite32
-                  role='button'
-                  style={{ fill: 'white', cursor: 'pointer' }}
-                  onClick={() => updateFavorites(activeTokenId)}
-                />
-              )}
-              {isFavorite && (
-                <FavoriteFilled32
-                  role='button'
-                  style={{ fill: '#DA1E28', cursor: 'pointer' }}
-                  onClick={() => updateFavorites(activeTokenId)}
-                />
-              )}
-            </div>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={6} />
-        <Col xs={12}>
+      <Row style={{ marginTop: 25 }}>
+        <Col xs={10}>
           <div
             style={{
-              marginTop: 30,
-              textAlign: 'center'
+              textAlign: 'right',
+              paddingRight: '12%',
+              marginTop: '2px'
             }}
           >
+            {minted && <img src={MintedIcon32x32} alt='Minted' />}
+            {!minted && <img src={NotMintedIcon32x32} alt='Not Minted' />}
+          </div>
+        </Col>
+        <Col xs={4} style={{ padding: minted ? '0 3%' : 'auto' }}>
+          <div style={{ textAlign: 'center' }}>
             {minted && (
               <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
-                <Button style={{ borderRadius: 0 }}>View on Opensea</Button>
-                {/*
                 <Button
                   type='primary'
+                  size='small'
                   style={{
-                    backgroundColor: '#24A148',
-                    borderColor: '#24A148'
+                    height: 34,
+                    lineHeight: '34px',
+                    fontSize: 16,
+                    padding: '0 15px',
+                    borderRadius: 0,
+                    backgroundColor: '#1062FE',
+                    borderColor: '#1062FE'
                   }}
                 >
-                  Make offer on Opensea
+                  View on Opensea
                 </Button>
-                */}
               </a>
             )}
             {address && !minted && (
               <Button
+                type='primary'
+                size='small'
                 style={{
-                  backgroundColor: '#24A148',
+                  height: 34,
+                  lineHeight: '34px',
+                  fontSize: 16,
+                  padding: '0 15px',
                   borderRadius: 0,
-                  borderColor: '#24A148',
-                  color: '#fff'
+                  backgroundColor: '#24A148',
+                  borderColor: '#24A148'
                 }}
                 onClick={() => mint(activeTokenId)}
               >
@@ -239,14 +214,52 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             )}
           </div>
         </Col>
-        <Col xs={6} />
+        <Col xs={10}>
+          <div
+            style={{ textAlign: 'left', paddingLeft: '12%', marginTop: '2px' }}
+          >
+            {!isFavorite && (
+              <Favorite32
+                role='button'
+                style={{ fill: 'white', cursor: 'pointer' }}
+                onClick={() => updateFavorites(activeTokenId)}
+              />
+            )}
+            {isFavorite && (
+              <FavoriteFilled32
+                role='button'
+                style={{ fill: '#DA1E28', cursor: 'pointer' }}
+                onClick={() => updateFavorites(activeTokenId)}
+              />
+            )}
+          </div>
+        </Col>
       </Row>
       <Row>
         <Col span={24}>
           <div
+            id='creatureName'
             style={{
               position: 'fixed',
-              top: DESKTOP_HEADER_HEIGHT,
+              top: '15%',
+              width: '20%'
+            }}
+          >
+            <div style={{ marginLeft: '20%' }}>
+              <div style={{ fontSize: 30 }}>
+                {trait_name1} {trait_name2}
+              </div>
+              <div style={{ fontSize: 20, fontWeight: 600 }}>
+                {trait_jobField} {trait_jobTitle}
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              position: 'fixed',
+              //top: DESKTOP_HEADER_HEIGHT,
+              top: 90,
+              left: 10,
               width: '20%'
             }}
           >
@@ -255,7 +268,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           <div
             style={{
               position: 'fixed',
-              top: DESKTOP_HEADER_HEIGHT,
+              top: 110,
               width: '40%'
             }}
           >
@@ -324,22 +337,18 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
               aria-label='Show Info'
               style={{ ...iconStyle }}
               onClick={() => {
-                console.log('click')
-                //setShowChat(false)
+                $('#creatureName').hide()
                 $('#chatbot').hide()
                 $('#creatureAttributes').toggle(500)
-                //setShowMetadata(!showMetadata)
               }}
             />
             <ChatBot32
               aria-label='Chat'
               style={{ ...iconStyle }}
               onClick={() => {
-                console.log('click')
-                //setShowMetadata(false)
+                $('#creatureName').hide()
                 $('#creatureAttributes').hide()
                 $('#chatbot').toggle(500)
-                //setShowChat(!showChat)
               }}
             />
             <Edit32 style={{ ...iconStyle }} />

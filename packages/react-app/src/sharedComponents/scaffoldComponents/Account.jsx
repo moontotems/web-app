@@ -27,7 +27,7 @@ export default function Account({
             verticalAlign: 'top',
             marginLeft: 8,
             marginTop: 0,
-            backgroundColor: '#4589FF'
+            backgroundColor: '#1062FE'
           }}
           type='primary'
           size='small'
@@ -75,7 +75,7 @@ export default function Account({
           <span
             style={{
               padding: '9px 17px',
-              backgroundColor: '#4589FF'
+              backgroundColor: '#1062FE'
             }}
           >
             <span
