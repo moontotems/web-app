@@ -76,19 +76,38 @@ export default function Attributes({
         <div className='creature-attribute-value' style={{ fontSize: 30 }}>
           {trait_name1} {trait_name2}
         </div>
-        <div className='creature-attribute-value'>
+        <div
+          className='creature-attribute-value'
+          style={{ lineHeight: '55px' }}
+        >
           <b>
             {trait_jobField} {trait_jobTitle}
           </b>
         </div>
-        <div className='creature-attribute-value'>
+        <div
+          className='creature-attribute-value'
+          style={{ lineHeight: '45px' }}
+        >
           <b>{lunarOriginName}</b>
         </div>
-        <div className='creature-attribute-value'>
+        <div
+          className='creature-attribute-value'
+          style={{ lineHeight: '53px' }}
+        >
           {trait_personality1}, {trait_personality2}, {trait_personality3}
         </div>
-        <div className='creature-attribute-value'>{lunarOriginNameLatin}</div>
-        <div className='creature-attribute-value'>{age} years</div>
+        <div
+          className='creature-attribute-value'
+          style={{ lineHeight: '39px' }}
+        >
+          {lunarOriginNameLatin}
+        </div>
+        <div
+          className='creature-attribute-value'
+          style={{ lineHeight: '56px' }}
+        >
+          {age} years
+        </div>
         <div className='creature-attribute-value'>{rarity}</div>
       </div>
     </div>
