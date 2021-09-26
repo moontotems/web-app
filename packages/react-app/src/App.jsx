@@ -42,8 +42,8 @@ import './App.less'
 const targetNetwork = NETWORKS.ropsten // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
-const DEBUG = true
-const NETWORKCHECK = true
+const DEBUG = false
+const NETWORKCHECK = false
 
 // 🛰 providers
 if (DEBUG) console.log('📡 Connecting to Mainnet Ethereum')
@@ -586,7 +586,8 @@ function App() {
     next: () => {
       setVisibleCreaturesRangeEnd(visibleCreaturesRangeEnd + 50)
     },
-    hasMore: visibleCreaturesRangeEnd < creatures.length,
+    hasMore: visibleCreaturesRangeEnd < creatures.length
+    /*
     loader: (
       <div
         style={{
@@ -604,6 +605,7 @@ function App() {
         />
       </div>
     )
+    */
   }
 
   const mint = tokenId => {
