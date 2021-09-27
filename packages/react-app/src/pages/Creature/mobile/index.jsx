@@ -14,6 +14,7 @@ import {
   Download32,
   Information32,
   ChatBot32,
+  CloseFilled32,
   Edit32,
   ZoomIn32
 } from '@carbon/icons-react'
@@ -147,7 +148,21 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   }
 
   return (
-    <div style={{ height: '100vh', backgroundColor: '#000' }}>
+    <div style={{ backgroundColor: '#000' }}>
+      <div
+        style={{
+          position: 'fixed',
+          left: 0,
+          minHeight: '100vh',
+          width: '100%',
+          marginTop: '10%',
+          textAlign: 'center',
+          zIndex: 100,
+          pointerEvents: 'none'
+        }}
+      >
+        <Chatbot image={image} tokenId={activeTokenId} />
+      </div>
       <Row>
         <Col xs={0} />
         <Col xs={24}>
@@ -172,7 +187,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
       </Row>
       <Row>
         <Col xs={6}>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center', marginTop: '15px' }}>
             <div>
               {minted && <img src={MintedIcon32x32} alt='Minted' />}
               {!minted && <img src={NotMintedIcon32x32} alt='Not Minted' />}
@@ -190,7 +205,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
           </div>
         </Col>
         <Col xs={6}>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center', marginTop: '15px' }}>
             <div>
               {!isFavorite && (
                 <Favorite32
@@ -221,27 +236,35 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
           >
             {minted && (
               <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
-                <Button style={{ borderRadius: 0 }}>View on Opensea</Button>
-                {/*
                 <Button
                   type='primary'
+                  size='small'
                   style={{
-                    backgroundColor: '#24A148',
-                    borderColor: '#24A148'
+                    height: 34,
+                    lineHeight: '34px',
+                    fontSize: 16,
+                    padding: '0 15px',
+                    borderRadius: 0,
+                    backgroundColor: '#1062FE',
+                    borderColor: '#1062FE'
                   }}
                 >
-                  Make offer on Opensea
+                  View on Opensea
                 </Button>
-                */}
               </a>
             )}
             {address && !minted && (
               <Button
+                type='primary'
+                size='small'
                 style={{
-                  backgroundColor: '#24A148',
+                  height: 34,
+                  lineHeight: '34px',
+                  fontSize: 16,
+                  padding: '0 15px',
                   borderRadius: 0,
-                  borderColor: '#24A148',
-                  color: '#fff'
+                  backgroundColor: '#24A148',
+                  borderColor: '#24A148'
                 }}
                 onClick={() => mint(activeTokenId)}
               >
@@ -349,7 +372,19 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         </Col>
       </Row>
       <Row>
-        <Col span={24}>
+        <Col span={24} id='creatureAttributes'>
+          <Information32
+            aria-label='Show Info'
+            style={{ ...iconStyle, float: 'left' }}
+          />{' '}
+          <span style={{ float: 'left', fontSize: 18, marginTop: 2 }}>
+            INFO
+          </span>
+          <CloseFilled32
+            aria-label='Close'
+            style={{ ...iconStyle, float: 'right' }}
+            onClick={() => $('#creatureAttributes').toggle(500)}
+          />
           <div
             style={{
               float: 'left',
@@ -360,13 +395,6 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
             <CreatureAttributes creatureMetadata={metaData} isMobile={true} />
           </div>
         </Col>
-      </Row>
-      <Row>
-        <Col span={2} />
-        <Col span={20} style={{ margin: '0 50px' }}>
-          <Chatbot image={image} tokenId={activeTokenId} />
-        </Col>
-        <Col span={2} />
       </Row>
     </div>
   )
