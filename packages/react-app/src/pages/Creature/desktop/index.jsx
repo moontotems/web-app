@@ -24,7 +24,12 @@ import {
   MAX_TOKEN_ID
 } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
-import { Chatbot, CreatureAttributes, Icons } from '../../../sharedComponents'
+import {
+  Chatbot,
+  CreatureAttributes,
+  Icons,
+  FilterDropdown
+} from '../../../sharedComponents'
 const { MintedIcon32x32, NotMintedIcon32x32 } = Icons
 import creature_metadata_hashmap from '../../../assets/creature_metadata_hashmap.json'
 
@@ -278,7 +283,10 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       <Row>
         <Col span={24}>
           <div style={{ margin: '45px 0', textAlign: 'center' }}>
-            <Filter32 aria-label='Filter' style={{ ...iconStyle }} />
+            <FilterDropdown
+              ethereumProps={ethereumProps}
+              nftAppProps={nftAppProps}
+            />
             {/* <Apps32 aria-label='Switch to area view' style={{ ...iconStyle }} /> */}
             {/* <CarouselHorizontal32 style={{ ...iconStyle }} />*/}
             {/* <List32 aria-label='Switch to list view' style={{ ...iconStyle }} /> */}

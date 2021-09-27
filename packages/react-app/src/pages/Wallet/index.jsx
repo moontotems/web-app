@@ -10,7 +10,7 @@ import {
   TableCell
 } from 'carbon-components-react'
 */
-import FILTERS from '../../sharedComponents/ActionBar/filters'
+import FILTERS from '../../sharedComponents/FilterDropdown/filters'
 import PagesAll from '../All'
 import './styles.less'
 

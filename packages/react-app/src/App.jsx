@@ -14,7 +14,7 @@ import eruda from 'eruda/eruda'
 import Routes from './Routes'
 import { Header, SidebarLeft, Footer } from './layout'
 import { ActionBar } from './sharedComponents'
-import FILTERS from './sharedComponents/ActionBar/filters'
+import FILTERS from './sharedComponents/FilterDropdown/filters'
 import {
   INFURA_ID,
   NETWORK,
@@ -703,7 +703,7 @@ function App() {
           <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>
 
-        {route !== '/totem' && (
+        {(route === '/all' || route === '/favorites') && (
           <ActionBar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         )}
 

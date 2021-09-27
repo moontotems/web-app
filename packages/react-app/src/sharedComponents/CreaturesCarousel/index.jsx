@@ -17,7 +17,7 @@ import {
 import Slider from 'react-slick'
 import $ from 'jquery'
 
-import FILTERS from '../../sharedComponents/ActionBar/filters'
+import FILTERS from '../../sharedComponents/FilterDropdown/filters'
 import { getImageUrl } from '../../helpers'
 import creature_metadata_hashmap from '../../assets/creature_metadata_hashmap.json'
 import Icons from '../icons'
