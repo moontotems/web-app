@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Menu, Dropdown, Button as AntdButton } from 'antd'
-import { Button } from 'antd-mobile'
+import { Button } from 'antd'
 
 import {
   CheckmarkOutline32,
@@ -18,15 +18,12 @@ import {
   ZoomIn32
 } from '@carbon/icons-react'
 import $ from 'jquery'
-import {
-  DESKTOP_HEADER_HEIGHT,
-  MIN_TOKEN_ID,
-  MAX_TOKEN_ID
-} from '../../../constants'
+import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
 import {
   Chatbot,
   CreatureAttributes,
+  CreatureFileDownloads,
   Icons,
   FilterDropdown
 } from '../../../sharedComponents'
@@ -97,6 +94,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    $('#creatureDownloads').hide()
     $('#chatbot').hide()
     $('#creatureAttributes').hide()
   }, [])
@@ -148,8 +146,71 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     cursor: 'pointer'
   }
 
+  const buttonStyle = {
+    height: 34,
+    lineHeight: '34px',
+    fontSize: 16,
+    padding: '0 15px',
+    borderRadius: 0,
+    backgroundColor: '#1062FE',
+    borderColor: '#1062FE'
+  }
+
   return (
     <div style={{ backgroundColor: '#000' }}>
+      <div
+        id='creatureName'
+        style={{
+          position: 'fixed',
+          top: '15%',
+          width: '20%',
+          zIndex: 1000
+        }}
+      >
+        <div style={{ marginLeft: '20%' }}>
+          <div style={{ fontSize: 30 }}>
+            {trait_name1} {trait_name2}
+          </div>
+          <div style={{ fontSize: 20, fontWeight: 600 }}>
+            {trait_jobField} {trait_jobTitle}
+          </div>
+        </div>
+      </div>
+      <div
+        style={{
+          position: 'fixed',
+          top: 110,
+          width: '40%',
+          zIndex: 1000
+        }}
+      >
+        <CreatureFileDownloads
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
+      </div>
+
+      <div
+        style={{
+          position: 'fixed',
+          top: 90,
+          left: 10,
+          width: '20%',
+          zIndex: 1000
+        }}
+      >
+        <Chatbot image={image} tokenId={activeTokenId} />
+      </div>
+      <div
+        style={{
+          position: 'fixed',
+          top: 110,
+          width: '40%',
+          zIndex: 1000
+        }}
+      >
+        <CreatureAttributes creatureMetadata={metaData} />
+      </div>
       <Row>
         <Col md={7} />
         <Col md={10}>
@@ -182,16 +243,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             {minted && (
               <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
                 <Button
-                  type='primary'
-                  size='small'
                   style={{
-                    height: 34,
-                    lineHeight: '34px',
-                    fontSize: 16,
-                    padding: '0 15px',
-                    borderRadius: 0,
-                    backgroundColor: '#1062FE',
-                    borderColor: '#1062FE'
+                    ...buttonStyle
                   }}
                 >
                   View on Opensea
@@ -200,14 +253,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             )}
             {address && !minted && (
               <Button
-                type='primary'
-                size='small'
                 style={{
-                  height: 34,
-                  lineHeight: '34px',
-                  fontSize: 16,
-                  padding: '0 15px',
-                  borderRadius: 0,
+                  ...buttonStyle,
                   backgroundColor: '#24A148',
                   borderColor: '#24A148'
                 }}
@@ -241,47 +288,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       </Row>
       <Row>
         <Col span={24}>
-          <div
-            id='creatureName'
-            style={{
-              position: 'fixed',
-              top: '15%',
-              width: '20%'
-            }}
-          >
-            <div style={{ marginLeft: '20%' }}>
-              <div style={{ fontSize: 30 }}>
-                {trait_name1} {trait_name2}
-              </div>
-              <div style={{ fontSize: 20, fontWeight: 600 }}>
-                {trait_jobField} {trait_jobTitle}
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              position: 'fixed',
-              //top: DESKTOP_HEADER_HEIGHT,
-              top: 90,
-              left: 10,
-              width: '20%'
-            }}
-          >
-            <Chatbot image={image} tokenId={activeTokenId} />
-          </div>
-          <div
-            style={{
-              position: 'fixed',
-              top: 110,
-              width: '40%'
-            }}
-          >
-            <CreatureAttributes creatureMetadata={metaData} />
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
           <div style={{ margin: '45px 0', textAlign: 'center' }}>
             <FilterDropdown
               ethereumProps={ethereumProps}
@@ -290,41 +296,16 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             {/* <Apps32 aria-label='Switch to area view' style={{ ...iconStyle }} /> */}
             {/* <CarouselHorizontal32 style={{ ...iconStyle }} />*/}
             {/* <List32 aria-label='Switch to list view' style={{ ...iconStyle }} /> */}
-            <Dropdown
-              overlay={
-                <Menu>
-                  <Menu.Item>
-                    <a
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      href='https://www.antgroup.com'
-                    >
-                      PNG (10mb)
-                    </a>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <a
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      href='https://www.aliyun.com'
-                    >
-                      OBJ (239kb)
-                    </a>
-                  </Menu.Item>
-                </Menu>
-              }
-              placement='topCenter'
-            >
-              <AntdButton
-                id='downloadButton'
-                style={{ padding: 0, border: 'none' }}
-              >
-                <Download32
-                  aria-label='Download'
-                  style={{ ...iconStyle, color: '#fff' }}
-                />
-              </AntdButton>
-            </Dropdown>
+            <Download32
+              aria-label='Download'
+              style={{ ...iconStyle }}
+              onClick={() => {
+                $('#creatureName').hide()
+                $('#chatbot').hide()
+                $('#creatureAttributes').hide()
+                $('#creatureDownloads').toggle(500)
+              }}
+            />
             {/*
               <Dropdown
                 ariaLabel='Dropdown'
@@ -346,6 +327,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
               onClick={() => {
                 $('#creatureName').hide()
                 $('#chatbot').hide()
+                $('#creatureDownloads').hide()
                 $('#creatureAttributes').toggle(500)
               }}
             />
@@ -355,6 +337,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
               onClick={() => {
                 $('#creatureName').hide()
                 $('#creatureAttributes').hide()
+                $('#creatureDownloads').hide()
                 $('#chatbot').toggle(500)
               }}
             />

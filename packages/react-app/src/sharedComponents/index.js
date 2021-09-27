@@ -3,8 +3,10 @@ export { default as CreaturesCarousel } from './CreaturesCarousel'
 export { default as CreaturesGrid } from './CreaturesGrid'
 export { default as Creature } from './Creature'
 export { default as Chatbot } from './Chatbot'
-export { default as CreatureAttributes } from './CreatureAttributes'
 export { default as FilterDropdown } from './FilterDropdown'
+export { default as CreatureAttributes } from './CreatureAttributes'
+export { default as CreatureFileDownloads } from './CreatureFileDownloads'
+
 export { default as Icons } from './icons'
 
 export { default as Account } from './scaffoldComponents/Account'
