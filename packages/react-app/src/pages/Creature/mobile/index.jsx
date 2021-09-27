@@ -178,7 +178,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
               )
             }
             style={{
-              marginTop: 120,
+              //marginTop: 120,
               marginBottom: 80
             }}
           />

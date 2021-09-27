@@ -1,6 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { SideNav, SideNavItems, SideNavLink } from 'carbon-components-react'
+import {
+  SideNav,
+  SideNavItems,
+  SideNavMenu,
+  SideNavMenuItem,
+  SideNavLink
+} from 'carbon-components-react'
+import {
+  FacePendingFilled16,
+  AsleepFilled16,
+  ChartMultitype16,
+  HelpFilled16,
+  LogoInstagram16,
+  LogoTwitter16,
+  LogoDiscord16,
+  Launch16,
+  FavoriteFilled16
+} from '@carbon/icons-react'
+import { Icons } from '../../../sharedComponents'
+const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
 
 export default function SidebarLeftDesktopView({
   ethereumProps,
@@ -9,7 +28,20 @@ export default function SidebarLeftDesktopView({
   open
 }) {
   const { setRoute } = nftAppProps
-  const menuItemStyle = { fontSize: 14 }
+  // TODO: set aria-current='page'
+  /*
+    <SideNavMenuItem aria-current='page' href='javascript:void(0)'>
+      Twitter
+    </SideNavMenuItem>
+  */
+
+  const menuItemStyle = {
+    fontSize: 14
+  }
+
+  const iconStyle = {
+    float: 'right'
+  }
 
   return (
     <SideNav
@@ -24,53 +56,82 @@ export default function SidebarLeftDesktopView({
     >
       <SideNavItems>
         <SideNavLink href='javascript:void(0)'></SideNavLink>
+        <SideNavMenu title='About' aria-expanded>
+          <SideNavMenuItem href='javascript:void(0)'>
+            What are Moon Totems?{' '}
+            <FacePendingFilled16 style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            Key Stats <ChartMultitype16 style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            FAQ <HelpFilled16 style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+        </SideNavMenu>
+        <SideNavMenu title='Lates News' aria-expanded={true}>
+          <SideNavMenuItem href='javascript:void(0)'>
+            Instagram <LogoInstagram16 style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            Twitter <LogoTwitter16 style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            Discord <LogoDiscord16 style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+        </SideNavMenu>
+        <SideNavMenu title='Explore Moon Totems' aria-expanded={true}>
+          <SideNavMenuItem href='javascript:void(0)'>
+            <Link
+              onClick={() => {
+                setRoute('/all')
+                setSidebarLeftOpen(false)
+              }}
+              to='/all'
+              style={{ ...menuItemStyle }}
+            >
+              All Moon Totems
+            </Link>
+            <AsleepFilled16 style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            Available Moon Totems{' '}
+            <img
+              src={NotMintedIcon16x16}
+              alt='Minted'
+              style={{ ...iconStyle }}
+            />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            <Link
+              onClick={() => {
+                setRoute('/favorites')
+                setSidebarLeftOpen(false)
+              }}
+              to='/favorites'
+              style={{ ...menuItemStyle }}
+            >
+              Favorite Moon Totems
+            </Link>
+            <FavoriteFilled16 style={{ ...iconStyle, color: 'red' }} />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            <Link
+              onClick={() => {
+                setRoute('/wallet')
+                setSidebarLeftOpen(false)
+              }}
+              to='/wallet'
+              style={{ ...menuItemStyle }}
+            >
+              {' '}
+              My Moon Totems
+            </Link>
+            <img src={MintedIcon16x16} alt='Minted' style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+        </SideNavMenu>
         <SideNavLink href='javascript:void(0)'>
-          <Link
-            onClick={() => {
-              setRoute('/all')
-              setSidebarLeftOpen(false)
-            }}
-            to='/all'
-            style={{ ...menuItemStyle }}
-          >
-            All Moon Totems
-          </Link>
-        </SideNavLink>
-        <SideNavLink href='javascript:void(0)'>
-          <Link
-            onClick={() => {
-              setRoute('/favorites')
-              setSidebarLeftOpen(false)
-            }}
-            to='/favorites'
-            style={{ ...menuItemStyle }}
-          >
-            My Favorite Totems
-          </Link>
-        </SideNavLink>
-        <SideNavLink href='javascript:void(0)'>
-          <Link
-            onClick={() => {
-              setRoute('/wallet')
-              setSidebarLeftOpen(false)
-            }}
-            to='/wallet'
-            style={{ ...menuItemStyle }}
-          >
-            My Totems
-          </Link>
-        </SideNavLink>
-        <SideNavLink href='javascript:void(0)'>
-          <Link
-            onClick={() => {
-              setRoute('/minted')
-              setSidebarLeftOpen(false)
-            }}
-            to='/minted'
-            style={{ ...menuItemStyle }}
-          >
-            Mint a new Totem
-          </Link>
+          <Link>Explore on OpenSea</Link>
+          <Launch16 style={{ ...iconStyle }} />
         </SideNavLink>
         <SideNavLink href='javascript:void(0)'>
           <Link
@@ -96,29 +157,6 @@ export default function SidebarLeftDesktopView({
             Contract Interface
           </Link>
         </SideNavLink>
-
-        {/*<SideNavMenu title='L0 menu'>
-          <SideNavMenuItem href='javascript:void(0)'>
-            L0 menu item
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            L0 menu item
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            L0 menu item
-          </SideNavMenuItem>
-        </SideNavMenu>
-        <SideNavMenu title='L0 menu'>
-          <SideNavMenuItem href='javascript:void(0)'>
-            L0 menu item
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            L0 menu item
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            L0 menu item
-          </SideNavMenuItem>
-        </SideNavMenu>*/}
       </SideNavItems>
     </SideNav>
   )

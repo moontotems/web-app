@@ -33,7 +33,10 @@ export default function Chatbot({ image, tokenId }) {
   const generateChatbotResponse = async () => {
     const delay = seconds => new Promise(res => setTimeout(res, 1000 * seconds))
     const randomIndex = Math.floor(Math.random() * ANSWER_LIST.length)
-    const message = { sender: 'bot', value: ANSWER_LIST[randomIndex] }
+    const message = {
+      sender: 'bot',
+      value: ANSWER_LIST[randomIndex]
+    }
     await delay(4)
     setTyping(true)
     await delay(4)
