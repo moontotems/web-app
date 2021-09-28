@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   SideNav,
@@ -18,6 +18,7 @@ import {
   Launch16,
   FavoriteFilled16
 } from '@carbon/icons-react'
+import $ from 'jquery'
 import { Icons } from '../../../sharedComponents'
 const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
 
@@ -34,6 +35,11 @@ export default function SidebarLeftDesktopView({
       Twitter
     </SideNavMenuItem>
   */
+
+  useEffect(() => {
+    // open all submenus
+    $('.bx--side-nav__submenu').attr('aria-expanded', 'true')
+  }, [])
 
   const menuItemStyle = {
     fontSize: 14
@@ -56,7 +62,7 @@ export default function SidebarLeftDesktopView({
     >
       <SideNavItems>
         <SideNavLink href='javascript:void(0)'></SideNavLink>
-        <SideNavMenu title='About' aria-expanded>
+        <SideNavMenu title='About'>
           <SideNavMenuItem href='javascript:void(0)'>
             What are Moon Totems?{' '}
             <FacePendingFilled16 style={{ ...iconStyle }} />
@@ -68,7 +74,7 @@ export default function SidebarLeftDesktopView({
             FAQ <HelpFilled16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
         </SideNavMenu>
-        <SideNavMenu title='Lates News' aria-expanded={true}>
+        <SideNavMenu title='Lates News'>
           <SideNavMenuItem href='javascript:void(0)'>
             Instagram <LogoInstagram16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
@@ -79,7 +85,7 @@ export default function SidebarLeftDesktopView({
             Discord <LogoDiscord16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
         </SideNavMenu>
-        <SideNavMenu title='Explore Moon Totems' aria-expanded={true}>
+        <SideNavMenu title='Explore Moon Totems'>
           <SideNavMenuItem href='javascript:void(0)'>
             <Link
               onClick={() => {
