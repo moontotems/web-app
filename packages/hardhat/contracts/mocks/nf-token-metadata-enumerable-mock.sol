@@ -10,6 +10,9 @@ import "../ownership/ownable.sol";
  * extensions.
  */
 contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ownable {
+
+  uint256 public constant MIN_TOKEN_ID = 0;
+  uint256 public constant MAX_TOKEN_ID = 9457;
   /**
    * @dev Contract constructor.
    * @param _name A descriptive name for a collection of NFTs.
@@ -36,8 +39,10 @@ contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ow
    * @param _tokenId of the NFT to be minted by the msg.sender.
    */
   function mint(address _to, uint256 _tokenId) external payable {
-    super._mint(_to, _tokenId);
+    require(_tokenId >= MIN_TOKEN_ID);
+    require(_tokenId <= MAX_TOKEN_ID);
     _transferEther(owner);
+    super._mint(_to, _tokenId);
     emit Mint(msg.sender, _tokenId);
   }
 
