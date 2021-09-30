@@ -11,6 +11,18 @@ yarn theme
 yarn watch-theme
 ```
 
+## Deploy contracts
+
+```bash
+yarn deploy
+```
+
+## Verify contracts on etherscan.io
+
+```bash
+yarn verify
+```
+
 ## Notes
 
 * [csv-to-json converter](https://www.convertcsv.com/csv-to-json.htm)
