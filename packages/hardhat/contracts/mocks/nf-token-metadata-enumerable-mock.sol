@@ -41,6 +41,7 @@ contract NFTokenMetadataEnumerableMock is NFTokenEnumerable, NFTokenMetadata, Ow
   function mint(address _to, uint256 _tokenId) external payable {
     require(_tokenId >= MIN_TOKEN_ID, "TokenId needs to be >= MIN_TOKEN_ID");
     require(_tokenId <= MAX_TOKEN_ID, "TokenId needs to be <= MAX_TOKEN_ID");
+    require(msg.value == 0.1 ether, "Amount needs to be equal to 0.1 Ether");
     _transferEther(owner);
     super._mint(_to, _tokenId);
     emit Mint(msg.sender, _tokenId);
