@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import {
   Home,
+  LunarMap,
   All,
   Creature,
   Favorites,
@@ -20,6 +21,9 @@ export default function Routes({ ethereumProps, nftAppProps }) {
     <Switch>
       <Route exact path='/'>
         <Home ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+      </Route>
+      <Route exact path='/lunar-map'>
+        <LunarMap ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
       <Route exact path='/all'>
         <All ethereumProps={ethereumProps} nftAppProps={nftAppProps} />

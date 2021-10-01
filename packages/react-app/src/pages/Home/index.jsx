@@ -28,7 +28,7 @@ export default function Home({ ethereumProps, nftAppProps }) {
               backgroundColor: '#000'
             }}
           >
-            <div style={{ fontSize: '20px' }}>Get your TALSIMOON!</div>
+            <div style={{ fontSize: '20px' }}>Get your TALISMOON!</div>
           </Link>
         </Col>
       </Row>

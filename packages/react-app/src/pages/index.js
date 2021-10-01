@@ -1,4 +1,5 @@
 export { default as Home } from './Home/'
+export { default as LunarMap } from './LunarMap/'
 export { default as All } from './All/'
 export { default as Creature } from './Creature/'
 export { default as Favorites } from './Favorites/'
