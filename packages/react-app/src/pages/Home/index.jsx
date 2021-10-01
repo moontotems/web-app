@@ -220,7 +220,7 @@ export default function Home({ ethereumProps, nftAppProps }) {
         <Col xs={24} md={5}>
           <Col xs={24}>
             <img
-              src='/home/MOONPHASECYCLE_rgba_0043.jpeg'
+              src='/home/MOONPHASE.gif'
               style={{
                 width: '100%'
               }}
