@@ -46,7 +46,7 @@ const DEBUG = false
 const NETWORKCHECK = false
 
 // 🛰 providers
-if (DEBUG) console.log('📡 Connecting to Mainnet Ethereum')
+//if (DEBUG) console.log('📡 Connecting to Mainnet Ethereum')
 // const mainnetProvider = getDefaultProvider("mainnet", { infura: INFURA_ID, etherscan: ETHERSCAN_KEY, quorum: 1 });
 // const mainnetProvider = new InfuraProvider("mainnet", INFURA_ID);
 //
@@ -483,6 +483,7 @@ function App() {
 
   // TODO: reduce number of calls
   //       move this into useEffect hook
+  /*
   const balanceOf =
     useContractReader(
       readContracts,
@@ -490,6 +491,8 @@ function App() {
       'balanceOf',
       [address]
     ) || {}
+  */
+  const balanceOf = 0
 
   const balanceOfUser = parseInt(balanceOf.toString()) || 0
   console.log({ balanceOfUser })
