@@ -4,6 +4,7 @@ import {
   Home,
   LunarMap,
   LunarCalendar,
+  Attributes,
   All,
   Creature,
   Favorites,
@@ -31,6 +32,9 @@ export default function Routes({ ethereumProps, nftAppProps }) {
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
+      </Route>
+      <Route exact path='/attributes'>
+        <Attributes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
       <Route exact path='/all'>
         <All ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
