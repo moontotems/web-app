@@ -42,24 +42,6 @@ export default function HeaderMobile({
 
   const { isMobile, setRoute } = nftAppProps
 
-  const getTitle = () => {
-    if (window.location.pathname === '/') {
-      return ''
-    }
-    if (window.location.pathname === '/minted') {
-      return 'Minted'
-    }
-    if (window.location.pathname === '/wallet') {
-      return 'My Totems'
-    }
-    if (window.location.pathname === '/favorites') {
-      return 'Favorite Totems'
-    }
-    if (window.location.pathname === '/favorites') {
-      return 'Favorite Totems'
-    }
-  }
-
   const menuItemStyle = {
     float: 'left',
     width: '100%'
@@ -90,7 +72,7 @@ export default function HeaderMobile({
             to='/minted'
             style={{ ...menuTextStyle }}
           >
-            Mint a new Totem
+            Mint a new Talismoon
           </Link>
         </div>
         <JoinRight16 style={{ ...menuIconStyle }} />
@@ -104,7 +86,7 @@ export default function HeaderMobile({
             to='/wallet'
             style={{ ...menuTextStyle }}
           >
-            My Totems
+            My Talismoons
           </Link>
         </div>
         <Moon16 style={{ ...menuIconStyle }} />
@@ -118,7 +100,7 @@ export default function HeaderMobile({
             to='/favorites'
             style={{ ...menuTextStyle }}
           >
-            My Favorite Totems
+            My Favorite Talismoons
           </Link>
         </div>
         <FavoriteFilled16 style={{ ...menuIconStyle }} />
@@ -182,7 +164,7 @@ export default function HeaderMobile({
                 fontWeight: 400
               }}
             >
-              MOON TOTEMS
+              TALISMOONS
             </span>
           </Link>
         </HeaderName>

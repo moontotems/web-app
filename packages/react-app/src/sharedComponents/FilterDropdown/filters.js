@@ -2,7 +2,7 @@ const filters = {
   available: 'available',
   taken: 'taken',
   favorites: 'favorites',
-  myTotems: 'myTotems',
+  myTalismoons: 'myTalismoons',
   shuffle: 'shuffle'
 }
 

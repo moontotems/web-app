@@ -64,7 +64,7 @@ export default function SidebarLeftDesktopView({
         <SideNavLink href='javascript:void(0)'></SideNavLink>
         <SideNavMenu title='About'>
           <SideNavMenuItem href='javascript:void(0)'>
-            What are Moon Totems?{' '}
+            What are Talismoons?{' '}
             <FacePendingFilled16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
@@ -85,7 +85,7 @@ export default function SidebarLeftDesktopView({
             Discord <LogoDiscord16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
         </SideNavMenu>
-        <SideNavMenu title='Explore Moon Totems'>
+        <SideNavMenu title='Explore Talismoons'>
           <SideNavMenuItem href='javascript:void(0)'>
             <Link
               onClick={() => {
@@ -95,12 +95,21 @@ export default function SidebarLeftDesktopView({
               to='/all'
               style={{ ...menuItemStyle }}
             >
-              All Moon Totems
+              All Talismoons
             </Link>
             <AsleepFilled16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
-            Available Moon Totems{' '}
+            <Link
+              onClick={() => {
+                setRoute('/all')
+                setSidebarLeftOpen(false)
+              }}
+              to='/all'
+              style={{ ...menuItemStyle }}
+            >
+              Available Talismoons
+            </Link>{' '}
             <img
               src={NotMintedIcon16x16}
               alt='Minted'
@@ -116,7 +125,7 @@ export default function SidebarLeftDesktopView({
               to='/favorites'
               style={{ ...menuItemStyle }}
             >
-              Favorite Moon Totems
+              Favorite Talismoons
             </Link>
             <FavoriteFilled16 style={{ ...iconStyle, color: 'red' }} />
           </SideNavMenuItem>
@@ -130,7 +139,7 @@ export default function SidebarLeftDesktopView({
               style={{ ...menuItemStyle }}
             >
               {' '}
-              My Moon Totems
+              My Talismoons
             </Link>
             <img src={MintedIcon16x16} alt='Minted' style={{ ...iconStyle }} />
           </SideNavMenuItem>

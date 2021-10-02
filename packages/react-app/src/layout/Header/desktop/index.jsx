@@ -43,30 +43,6 @@ export default function HeaderDesktop({
 
   const { setRoute } = nftAppProps
 
-  const getTitle = () => {
-    if (window.location.pathname === '/') {
-      return ''
-    }
-    if (window.location.pathname === '/minted') {
-      return 'Minted'
-    }
-    if (window.location.pathname === '/wallet') {
-      return 'My Totems'
-    }
-    if (window.location.pathname === '/favorites') {
-      return 'Favorite Totems'
-    }
-    if (window.location.pathname === '/favorites') {
-      return 'Favorite Totems'
-    }
-    if (window.location.pathname.includes('totem')) {
-      let tokenId = window.location.pathname.match(/\d+/g)
-      if (tokenId.length) tokenId = tokenId[0]
-      const title = `Moon Totem #${tokenId}`
-      return title
-    }
-  }
-
   const menuItemStyle = {
     float: 'left',
     width: '100%'
@@ -97,7 +73,7 @@ export default function HeaderDesktop({
             to='/minted'
             style={{ ...menuTextStyle }}
           >
-            Mint a new Totem
+            Mint a new Talismoon
           </Link>
         </div>
         <JoinRight16 style={{ ...menuIconStyle }} />
@@ -111,7 +87,7 @@ export default function HeaderDesktop({
             to='/wallet'
             style={{ ...menuTextStyle }}
           >
-            My Totems
+            My Talismoons
           </Link>
         </div>
         <Moon16 style={{ ...menuIconStyle }} />
@@ -125,7 +101,7 @@ export default function HeaderDesktop({
             to='/favorites'
             style={{ ...menuTextStyle }}
           >
-            My Favorite Totems
+            My Favorite Talismoons
           </Link>
         </div>
         <FavoriteFilled16 style={{ ...menuIconStyle }} />
@@ -166,7 +142,7 @@ export default function HeaderDesktop({
       >
         {headerTitle}
       </div>
-      <Header aria-label={'Moon Totems'} style={{ height: headerHeight }}>
+      <Header aria-label={'Talismoons'} style={{ height: headerHeight }}>
         <HeaderGlobalAction
           aria-label='Navigation'
           onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
@@ -181,10 +157,10 @@ export default function HeaderDesktop({
             }}
             to='/'
           >
-            <span style={{ fontWeight: 400 }}>MOON TOTEMS</span>
+            <span style={{ fontWeight: 400 }}>TALISMOONS</span>
           </Link>
         </HeaderName>
-        <HeaderNavigation aria-label='Crypto Moons'>
+        <HeaderNavigation aria-label='Talismoons'>
           <HeaderName href='#' prefix=''></HeaderName>
           {/*
             <HeaderMenu aria-label='Subm' menuLinkName='Subm'>

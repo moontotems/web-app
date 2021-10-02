@@ -178,7 +178,7 @@ export default function CreaturePage({
                     }}
                     onClick={() => mint()}
                   >
-                    Summon this Totem (0.1 Ξ)
+                    Summon this Talismoon (0.1 Ξ)
                   </Button>
                 )}
               </div>

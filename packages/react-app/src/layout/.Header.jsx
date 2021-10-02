@@ -49,18 +49,18 @@ export default function MyHeader({
       return 'Minted'
     }
     if (window.location.pathname === '/wallet') {
-      return 'My Totems'
+      return 'My Talismoons'
     }
     if (window.location.pathname === '/favorites') {
-      return 'Favorite Totems'
+      return 'Favorite Talismoons'
     }
     if (window.location.pathname === '/favorites') {
-      return 'Favorite Totems'
+      return 'Favorite Talismoons'
     }
-    if (window.location.pathname.includes('totem')) {
+    if (window.location.pathname.includes('talismoon')) {
       let tokenId = window.location.pathname.match(/\d+/g)
       if (tokenId.length) tokenId = tokenId[0]
-      const title = `Moon Totem #${tokenId}`
+      const title = `Talismoon #${tokenId}`
       return title
     }
   }
@@ -95,7 +95,7 @@ export default function MyHeader({
             to='/minted'
             style={{ ...menuTextStyle }}
           >
-            Mint a new Totem
+            Mint a new Talismoon
           </Link>
         </div>
         <JoinRight16 style={{ ...menuIconStyle }} />
@@ -109,7 +109,7 @@ export default function MyHeader({
             to='/wallet'
             style={{ ...menuTextStyle }}
           >
-            My Totems
+            My Talismoons
           </Link>
         </div>
         <Moon16 style={{ ...menuIconStyle }} />
@@ -123,7 +123,7 @@ export default function MyHeader({
             to='/favorites'
             style={{ ...menuTextStyle }}
           >
-            My Favorite Totems
+            My Favorite Talismoons
           </Link>
         </div>
         <FavoriteFilled16 style={{ ...menuIconStyle }} />
@@ -164,7 +164,7 @@ export default function MyHeader({
         {getTitle()}
       </div>
       <Header
-        aria-label={isMobile ? '' : 'Moon Totems'}
+        aria-label={isMobile ? '' : 'Talismoons'}
         style={{ height: isMobile ? 80 : 48 }}
       >
         <HeaderGlobalAction
@@ -183,7 +183,7 @@ export default function MyHeader({
               }}
               to='/'
             >
-              <span style={{ fontWeight: 400 }}>MOON TOTEMS</span>
+              <span style={{ fontWeight: 400 }}>TALISMOONS</span>
             </Link>
           </HeaderName>
         )}

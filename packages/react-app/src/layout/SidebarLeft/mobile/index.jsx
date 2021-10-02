@@ -32,7 +32,7 @@ export default function SidebarLeftMobileView({
           to='/all'
           style={{ ...menuItemStyle }}
         >
-          All Moon Totems
+          All Talismoons
         </Link>
       </List.Item>
       <List.Item multipleLine>
@@ -44,7 +44,7 @@ export default function SidebarLeftMobileView({
           to='/favorites'
           style={{ ...menuItemStyle }}
         >
-          My Favorite Totems
+          My Favorite Talismoons
         </Link>
       </List.Item>
       <List.Item multipleLine>
@@ -56,7 +56,7 @@ export default function SidebarLeftMobileView({
           to='/wallet'
           style={{ ...menuItemStyle }}
         >
-          My Totems
+          My Talismoons
         </Link>
       </List.Item>
       <List.Item multipleLine>
@@ -68,7 +68,7 @@ export default function SidebarLeftMobileView({
           to='/minted'
           style={{ ...menuItemStyle }}
         >
-          Mint a new Totem
+          Mint a new Talismoon
         </Link>
       </List.Item>
       <List.Item multipleLine>

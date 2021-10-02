@@ -22,12 +22,12 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
       >
         <Link
           onClick={() => {
-            setRoute('/totem')
+            setRoute('/talismoon')
           }}
-          to={`/totem/${tokenId}`}
+          to={`/talismoon/${tokenId}`}
         >
           <img
-            alt={`Moon Totem ${tokenId}`}
+            alt={`Talismoon ${tokenId}`}
             height={'auto'}
             width={'100%'}
             src={image}

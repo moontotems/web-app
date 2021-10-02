@@ -408,6 +408,7 @@ function App() {
   }, [])
   const isMobile = width <= 768
 
+  // TODO: remove this in prod
   useEffect(() => {
     if (document && isMobile) {
       eruda.init()
@@ -460,7 +461,7 @@ function App() {
   })
 
   let initialValue_visibleCreaturesRangeStart = 0
-  if (window.location.pathname.includes('totem')) {
+  if (window.location.pathname.includes('talismoon')) {
     const tokenId = window.location.pathname.match(/\d+/g)
     if (tokenId.length) {
       initialValue_visibleCreaturesRangeStart = tokenId[0]
@@ -573,7 +574,7 @@ function App() {
       creatures.push(creature)
     } else if (activeFilter === FILTERS.taken && creature.minted) {
       creatures.push(creature)
-    } else if (activeFilter === FILTERS.myTotems) {
+    } else if (activeFilter === FILTERS.myTalismoons) {
       creatures = usersCreatures
       break
     } else if (activeFilter === FILTERS.favorites && creature.isFavorite) {

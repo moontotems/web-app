@@ -19,7 +19,7 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
   const { setActiveFilter } = nftAppProps
 
   useEffect(() => {
-    setActiveFilter(FILTERS.myTotems)
+    setActiveFilter(FILTERS.myTalismoons)
   }, [])
 
   if (!address) {
