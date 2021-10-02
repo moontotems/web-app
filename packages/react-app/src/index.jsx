@@ -2,6 +2,8 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import React from 'react'
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher'
 import ReactDOM from 'react-dom'
+import { ConfigProvider } from 'antd'
+import enUS from 'antd/lib/locale/en_US'
 
 import 'antd/dist/antd.css'
 import 'antd-mobile/dist/antd-mobile.min.css'
@@ -29,7 +31,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <ThemeSwitcherProvider themeMap={themes} defaultTheme={defaultTheme}>
-      <App subgraphUri={subgraphUri} />
+      <ConfigProvider locale={enUS}>
+        <App subgraphUri={subgraphUri} />
+      </ConfigProvider>
     </ThemeSwitcherProvider>
   </ApolloProvider>,
   document.getElementById('root')

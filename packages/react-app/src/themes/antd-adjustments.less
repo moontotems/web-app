@@ -26,5 +26,39 @@
   border: 0px !important;
 }
 
+//////////////////////
+// antd table
+
+// table header
+.ant-table-footer,
+.ant-table-thead>tr>th {
+  background: #393939;
+  font-weight: 600;
+}
+// set width of all table column header
+// TODO: remove this and do it individual
+.ant-table-column-sorters {
+  width: 100px;
+}
+// table row header sorted
+.ant-table-thead th.ant-table-column-sort {
+  background: #262626;
+}
+// table row
+.ant-table-row {
+  background: #262626;
+}
+// fixed parts of a table row
+.ant-table-cell-fix-left, .ant-table-cell-fix-right {
+  background: #262626;
+}
+// table row hover
+.ant-table-tbody>tr.ant-table-row:hover>td,
+.ant-transfer-customize-list .ant-table-wrapper .ant-table-small>.ant-table-content>.ant-table-body>table>.ant-table-thead>tr>th,
+td.ant-table-column-sort {
+  background: #393939;
+}
+//////////////////////
+
 // idk why we need to import this here ...
 @import "./carbon-design-adjustments.less";
