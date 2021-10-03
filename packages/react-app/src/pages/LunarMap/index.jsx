@@ -1,10 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { Row, Col } from 'antd'
 import { MoonColumn } from './components'
 
 export default function LunarMap({ ethereumProps, nftAppProps }) {
-  const { route, setRoute } = nftAppProps
+  // scroll to top on load
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <>
       <Row>
