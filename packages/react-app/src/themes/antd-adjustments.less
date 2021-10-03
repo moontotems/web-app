@@ -28,19 +28,39 @@
 
 //////////////////////
 // antd table
-
+// table container
+.ant-pro-table .ant-card-body {
+  padding: 0px !important;
+}
+// toolbar
+.ant-pro-table-list-toolbar-right {
+  float:right;
+}
 // table header
+.ant-table-small .ant-table-thead>tr>th,
 .ant-table-footer,
 .ant-table-thead>tr>th {
   background: #393939;
   font-weight: 600;
 }
+// table header: fix stick header glitch
+.ant-table-header.ant-table-sticky-holder {
+  overflow: visible !important;
+}
 // set width of all table column header
 // TODO: remove this and do it individual
 .ant-table-column-sorters {
-  width: 100px;
+  //width: 100px;
+  min-width: 200px;
 }
-// table row header sorted
+.ant-table-cell {
+  background: #262626;
+}
+// column header hover
+.ant-table-thead th.ant-table-column-has-sorters:hover {
+  background: #262626;
+}
+// table column header sorted
 .ant-table-thead th.ant-table-column-sort {
   background: #262626;
 }
@@ -57,6 +77,15 @@
 .ant-transfer-customize-list .ant-table-wrapper .ant-table-small>.ant-table-content>.ant-table-body>table>.ant-table-thead>tr>th,
 td.ant-table-column-sort {
   background: #393939;
+}
+// pagination
+.ant-pagination-item-ellipsis {
+  color: #fff !important;
+}
+// hover pagination options
+.ant-select-item-option-active:not(.ant-select-item-option-disabled),
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: #262626 !important;
 }
 //////////////////////
 

@@ -92,7 +92,6 @@ export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
           .toString()
           .toLowerCase()
           .includes(value.toLowerCase())
-        //.includes(value)
       } else {
         return ''
       }
@@ -113,9 +112,8 @@ export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
             textToHighlight={text ? text.toString() : ''}
           />
         )
-      } else {
-        return text
       }
+      return text
     }
   })
 
@@ -125,8 +123,45 @@ export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
     <>
       <ProTable
         columns={columns}
+        //actionRef={actionRef}
         dataSource={talismoon_metadata}
         search={false}
+        //filterForm={filterForm}
+        //loading={loading}
+        //rowKey={rowKey}
+        options={{
+          fullScreen: false,
+          reload: false,
+          setting: true,
+          density: true
+        }}
+        // sticky // TODO:
+        pagination={{
+          // https://2x.ant.design/components/pagination/#API
+          showSizeChanger: true,
+          showQuickJumper: true,
+
+          pageSize: 50,
+          pageSizeOptions: ['50', '100', '500', '1000'],
+          current: 1,
+          rowSize: 'small',
+          onShowSizeChange: (current, pageSize) => {},
+          onChange: page => {},
+          showTotal: (total, range) => (
+            <div>{`${range[0]}-${range[1]} of ${total} total items`}</div>
+          )
+        }}
+        onSizeChange={(newSize, current) => {}}
+        //size={rowSize}
+        //request={request}
+        //toolBarRender={toolBarRender}
+        /*
+        tableStyle={{
+          border: '1px solid ##888'
+        }}
+        */
+        //expandable={true}
+        //rowSelection={true}
       />
     </>
   )

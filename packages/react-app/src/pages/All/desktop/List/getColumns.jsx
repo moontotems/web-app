@@ -37,22 +37,7 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
         />
       )
     },
-    {
-      title: 'Show',
-      fixed: 'right',
-      render: (value, record) => (
-        <Link
-          onClick={() => {
-            setRoute('/talismoon')
-          }}
-          to={`/talismoon/${record.id}`}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <Launch16 />
-        </Link>
-      )
-    },
+
     {
       title: 'Name',
       dataIndex: 'trait_name1',
@@ -78,14 +63,13 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'No of Colors',
       dataIndex: 'colorsTotal',
-      width: 220,
       filters: true,
-      sorter: (a, b) => a.complexityFactor - b.complexityFactor
+      sorter: (a, b) => a.colorsTotal - b.colorsTotal
     },
     {
       title: 'Complexity Factor',
       dataIndex: 'complexityFactor',
-      tip: 'This is a cool tip ...',
+      // tip: 'This is a cool tip ...',
       filters: true,
       sorter: (a, b) => a.complexityFactor - b.complexityFactor
     },
@@ -109,8 +93,15 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'Eye Shape',
       dataIndex: 'eyeShape',
+      sorter: (a, b) => a.eyeShape?.localeCompare(b.eyeShape),
+
       filters: true,
-      onFilter: true,
+      onFilter: (value, record) => {
+        return record['eyeShape']
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase())
+      },
       valueType: 'select',
       valueEnum: {
         crescent: { text: 'Crescent', status: 'Crescent' },
@@ -125,7 +116,20 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       title: 'Blobby Holes',
       dataIndex: 'holesBlobby',
       render: (value, record) => convertBoolNumToString(value),
-      sorter: (a, b) => a.holesBlobby - b.holesBlobby
+      sorter: (a, b) => a.holesBlobby - b.holesBlobby,
+
+      filters: true,
+      onFilter: (value, record) => {
+        return (
+          (record['holesBlobby'] === 0 && value === 'no') ||
+          (record['holesBlobby'] === 1 && value === 'yes')
+        )
+      },
+      valueType: 'select',
+      valueEnum: {
+        yes: { text: 'Yes', status: 'yes' },
+        no: { text: 'No', status: 'no' }
+      }
     },
     {
       title: 'Cut Holes',
@@ -136,8 +140,62 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'Lunar Origin Name',
       dataIndex: 'lunarOriginName',
-      ...getColumnSearchProps('lunarOriginName'),
-      sorter: (a, b) => a.lunarOriginName?.localeCompare(b.lunarOriginName)
+      //...getColumnSearchProps('lunarOriginName'),
+      sorter: (a, b) => a.lunarOriginName?.localeCompare(b.lunarOriginName),
+
+      filters: true,
+      onFilter: (value, record, ...rest) => {
+        console.log({ ...rest })
+        console.log({ value })
+        console.log({ record })
+        console.log('---')
+        return record['lunarOriginName']
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase())
+      },
+      valueType: 'select',
+      valueEnum: {
+        seaOfRains: { text: 'Sea of Rains', status: 'Sea of Rains' },
+        seaOfFertility: {
+          text: 'Sea of Fertility',
+          status: 'Sea of Fertility'
+        },
+        seaOfTranquility: {
+          text: 'Sea of Tranquility',
+          status: 'Sea of Tranquility'
+        },
+        seaOfClouds: { text: 'Sea of Clouds', status: 'Sea of Clouds' },
+        seaOfIslands: { text: 'Sea of Islands', status: 'Sea of Islands' },
+        lakeOfDreams: { text: 'Lake of Dreams', status: 'Lake of Dreams' },
+        bayOfRainbows: { text: 'Bay of Rainbows', status: 'Bay of Rainbows' },
+        peninsulaOfThunder: {
+          text: 'Peninsula of Thunder',
+          status: 'Peninsula of Thunder'
+        },
+        bayOfHarmony: { text: 'Bay of Harmony', status: 'Bay of Harmony' },
+        bayOfSuccess: { text: 'Bay of Success', status: 'Bay of Success' },
+        bayOfLove: { text: 'Bay of Love', status: 'Bay of Love' },
+        lakeOfTime: { text: 'Lake of Time', status: 'Lake of Time' },
+        lakeOfHappiness: {
+          text: 'Lake of Happiness',
+          status: 'Lake of Happiness'
+        },
+        lakeOfHope: { text: 'Lake of Hope', status: 'Lake of Hope' },
+        lakeOfSoftness: {
+          text: 'Lake of Softness',
+          status: 'Lake of Softness'
+        },
+        lakeOfPerseverance: {
+          text: 'Lake of Perseverance',
+          status: 'Lake of Perseverance'
+        },
+        lakeOfForgetfulness: {
+          text: 'Lake of Forgetfulness',
+          status: 'Lake of Forgetfulness'
+        },
+        lakeOfLuxury: { text: 'Lake of Luxury', status: 'Lake of Luxury' }
+      }
     },
     {
       title: 'Lunar Origin Name Latin',
@@ -149,12 +207,28 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'Lunar Origin Quantity',
       dataIndex: 'lunarOriginQuantity',
-      sorter: (a, b) => a.complexityFactor - b.complexityFactor
+      sorter: (a, b) => a.lunarOriginQuantity - b.lunarOriginQuantity
     },
     {
       title: 'Material',
       dataIndex: 'Material',
-      sorter: (a, b) => a.Material?.localeCompare(b.Material)
+      sorter: (a, b) => a.Material?.localeCompare(b.Material),
+
+      filters: true,
+      onFilter: (value, record) => {
+        return record['Material']
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase())
+      },
+      valueType: 'select',
+      valueEnum: {
+        textured: { text: 'Textured', status: 'Textured' },
+        smooth: { text: 'Smooth', status: 'Smooth' },
+        saucer: { text: 'Saucer', status: 'Saucer' },
+        slot: { text: 'Slot', status: 'Slot' },
+        unknown: { text: 'Unknown', status: 'Unknown' }
+      }
     },
     {
       title: 'mat_patternBump',
@@ -254,6 +328,17 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       sorter: (a, b) => a.trait_jobField?.localeCompare(b.trait_jobField)
     },
     {
+      title: 'Personality',
+      dataIndex: 'trait_personality1',
+      render: (value, record) =>
+        `${record.trait_personality1}, ${record.trait_personality2} & ${record.trait_personality3}`,
+      sorter: (a, b) => {
+        const personalityStringA = `${a.trait_personality1}, ${a.trait_personality2} & ${a.trait_personality3}`
+        const personalityStringB = `${b.trait_personality1}, ${b.trait_personality2} & ${b.trait_personality3}`
+        return personalityStringA?.localeCompare(personalityStringB)
+      }
+    },
+    {
       title: 'Personality Trait 1',
       dataIndex: 'trait_personality1',
       sorter: (a, b) =>
@@ -270,6 +355,22 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       dataIndex: 'trait_personality3',
       sorter: (a, b) =>
         a.trait_personality3?.localeCompare(b.trait_personality3)
+    },
+    {
+      title: 'Show',
+      fixed: 'right',
+      render: (value, record) => (
+        <Link
+          onClick={() => {
+            setRoute('/talismoon')
+          }}
+          to={`/talismoon/${record.id}`}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <Launch16 />
+        </Link>
+      )
     }
   ]
 }

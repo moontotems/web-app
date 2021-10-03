@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import GridView from './Grid'
 import ListView from './List'
@@ -6,7 +6,6 @@ import ListView from './List'
 export default function AllDesktopView({ ethereumProps, nftAppProps }) {
   const { showGrid } = nftAppProps
 
-  console.log({ showGrid })
   return (
     <>
       {showGrid && (
