@@ -37,7 +37,7 @@ export default function MyFooter({ ethereumProps, nftAppProps }) {
       style={{
         textAlign: 'center',
         minHeight: 200,
-        paddingTop: 50,
+        paddingTop: '20vh',
         paddingBottom: 50
       }}
     >
