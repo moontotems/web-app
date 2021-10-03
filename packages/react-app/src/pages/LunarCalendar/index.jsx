@@ -40,22 +40,22 @@ export default function LunarCalendar({ ethereumProps, nftAppProps }) {
         }}
       >
         <Column
-          image='/lunarCalendar/new_moon.svg'
+          image='/lunarCalendar/lunarPhases/new_moon.svg'
           title='New Moon'
           description='New Begging, Virgninal'
         />
         <Column
-          image='/lunarCalendar/waxing_crescent.svg'
+          image='/lunarCalendar/lunarPhases/waxing_crescent.svg'
           title='Waxing Crescent'
           description='Youth, Open'
         />
         <Column
-          image='/lunarCalendar/first_quarter.svg'
+          image='/lunarCalendar/lunarPhases/first_quarter.svg'
           title='First Quarter'
           description='Surrounded by three concentric rings of mountains, uplifted by the colossal impact event that excavated it.'
         />
         <Column
-          image='/lunarCalendar/waxing_gibbous.svg'
+          image='/lunarCalendar/lunarPhases/waxing_gibbous.svg'
           title='Waxing Gibbous'
           description='Exhuberance, excitement, fertile'
         />
@@ -70,25 +70,36 @@ export default function LunarCalendar({ ethereumProps, nftAppProps }) {
         }}
       >
         <Column
-          image='/lunarCalendar/full_moon.svg'
+          image='/lunarCalendar/lunarPhases/full_moon.svg'
           title='Full Moon'
           description='Pinnacle, peak, climax'
         />
         <Column
-          image='/lunarCalendar/waning_gibbous.svg'
+          image='/lunarCalendar/lunarPhases/waning_gibbous.svg'
           title='Waning Gibbous'
           description='The Day after, Reflection'
         />
         <Column
-          image='/lunarCalendar/last_quarter.svg'
+          image='/lunarCalendar/lunarPhases/last_quarter.svg'
           title='Last Quarter'
           description='Last Hurrah, Realization Dawning of the Mind'
         />
         <Column
-          image='/lunarCalendar/waxing_crescent.svg'
+          image='/lunarCalendar/lunarPhases/waxing_crescent.svg'
           title='Waning Crescent'
           description='Old, Wise, Calm, Enlightenment'
         />
+      </Row>
+
+      <Row>
+        <Col xs={24} md={5}>
+          <div style={{ padding: '20px', fontSize: '20px' }}>Origins</div>
+        </Col>
+        <Col xs={24} md={10}>
+          <div style={{ padding: '20px', fontSize: '25px', fontWeight: 300 }}>
+            Talismoons come from the Moon
+          </div>
+        </Col>
       </Row>
     </>
   )

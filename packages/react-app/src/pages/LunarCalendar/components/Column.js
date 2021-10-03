@@ -6,22 +6,35 @@ export default function Column({ image, title, description }) {
     <>
       <Col xs={24} md={6}>
         <Col xs={24}>
-          <img src={image} style={{ width: '100%', marginBottom: '20px' }} />
+          <img
+            src={image}
+            style={{
+              width: '100%'
+            }}
+          />
         </Col>
-        <Row
+        <div
           style={{
-            minHeight: '300px',
-            paddingLeft: '20px',
-            borderLeft: '1px solid white'
+            borderLeft: '1px solid #888',
+            marginTop: '20px',
+            paddingLeft: '15px'
           }}
         >
           <Col xs={24}>
-            <div style={{ fontSize: '25px', marginBottom: '5px' }}>{title}</div>
+            <div style={{ fontSize: '22px', fontWeight: 400 }}>{title}</div>
           </Col>
           <Col xs={24}>
-            <div>{description}</div>
+            <div
+              style={{
+                marginTop: '40px',
+                marginBottom: '40px',
+                fontSize: '17px'
+              }}
+            >
+              {description}
+            </div>
           </Col>
-        </Row>
+        </div>
       </Col>
     </>
   )
