@@ -32,7 +32,7 @@ import creature_metadata_hashmap from '../../../assets/creature_metadata_hashmap
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
-  const { favorites, activeFilter, mintEventsMap, mint } = nftAppProps
+  const { favorites, activeFilter, mintEventsMap, mint, isMobile } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
 
@@ -148,12 +148,11 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
 
   const buttonStyle = {
     height: 34,
+    width: '100%',
     lineHeight: '34px',
-    fontSize: 16,
     padding: '0 15px',
-    borderRadius: 0,
-    backgroundColor: '#1062FE',
-    borderColor: '#1062FE'
+    fontSize: '14px',
+    borderRadius: 0
   }
 
   return (
@@ -163,10 +162,11 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         style={{
           position: 'fixed',
           top: '15%',
-          width: '20%',
+          width: isMobile ? '20%' : '30%',
           zIndex: 1000
         }}
       >
+        {/*
         <div style={{ marginLeft: '20%' }}>
           <div style={{ fontSize: 30 }}>
             {trait_name1} {trait_name2}
@@ -175,7 +175,9 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             {trait_jobField} {trait_jobTitle}
           </div>
         </div>
+        */}
       </div>
+
       <div
         style={{
           position: 'fixed',
@@ -238,13 +240,23 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             {!minted && <img src={NotMintedIcon32x32} alt='Not Minted' />}
           </div>
         </Col>
-        <Col xs={4} style={{ padding: minted ? '0 3%' : 'auto' }}>
+        <Col xs={4}>
           <div style={{ textAlign: 'center' }}>
+            <div style={{ marginBottom: '25px' }}>
+              <div style={{ fontSize: 20 }}>
+                {trait_name1} {trait_name2}
+              </div>
+              <div style={{ fontSize: 14, fontWeight: 600 }}>
+                {trait_jobField} {trait_jobTitle}
+              </div>
+            </div>
             {minted && (
               <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
                 <Button
                   style={{
-                    ...buttonStyle
+                    ...buttonStyle,
+                    backgroundColor: '#1062FE',
+                    borderColor: '#1062FE'
                   }}
                 >
                   View on Opensea

@@ -73,7 +73,7 @@ export default function Address(props) {
     text = (
       <Text copyable={{ text: address }}>
         <a
-          style={{ color: '#fff', fontSize: 14 }}
+          style={{ color: '#fff', fontSize: '13px' }}
           target='_blank'
           href={etherscanLink}
           rel='noopener noreferrer'

@@ -150,15 +150,17 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   return (
     <div style={{ backgroundColor: '#000' }}>
       <div
+        id='chatbot'
         style={{
           position: 'fixed',
           left: 0,
           minHeight: '100vh',
           width: '100%',
-          marginTop: '10%',
+          //marginTop: '10%',
           textAlign: 'center',
-          zIndex: 100,
-          pointerEvents: 'none'
+          padding: '10%',
+          zIndex: 100
+          //pointerEvents: 'none'
         }}
       >
         <Chatbot image={image} tokenId={activeTokenId} />

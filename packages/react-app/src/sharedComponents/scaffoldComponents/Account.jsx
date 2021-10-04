@@ -81,7 +81,7 @@ export default function Account({
             <span
               style={{
                 verticalAlign: 'middle',
-                fontSize: 14,
+                fontSize: 12,
                 fontWeight: 500
               }}
             >
