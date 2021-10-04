@@ -122,6 +122,7 @@ export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
   return (
     <>
       <ProTable
+        sticky
         columns={columns}
         //actionRef={actionRef}
         dataSource={talismoon_metadata}
@@ -130,7 +131,7 @@ export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
         //loading={loading}
         //rowKey={rowKey}
         options={{
-          fullScreen: false,
+          fullScreen: true,
           reload: false,
           setting: true,
           density: true

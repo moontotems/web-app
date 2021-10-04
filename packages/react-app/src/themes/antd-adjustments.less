@@ -45,7 +45,11 @@
 }
 // toolbar
 .ant-pro-table-list-toolbar-right {
-  float:right;
+  float: right;
+}
+// table header
+.ant-table-sticky-holder {
+  top: 48px !important;
 }
 // table header
 .ant-table-small .ant-table-thead>tr>th,
@@ -97,6 +101,14 @@ td.ant-table-column-sort {
 .ant-select-item-option-active:not(.ant-select-item-option-disabled),
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
   background-color: #262626 !important;
+}
+// TODO: attempt to fix table header width problem
+// https://stackoverflow.com/questions/61191372/antd-table-column-width-issue
+.ant-table-thead th,
+.ant-table-tbody td {
+  white-space: nowrap;
+  word-break: break-word;
+  word-break: break-all;
 }
 //////////////////////
 
