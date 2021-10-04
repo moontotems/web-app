@@ -15,7 +15,7 @@ export default function LunarCalendar({ ethereumProps, nftAppProps }) {
           <div style={{ padding: '20px', fontSize: '20px' }}>Origins</div>
         </Col>
         <Col xs={24} md={10}>
-          <div style={{ padding: '20px', fontSize: '25px', fontWeight: 300 }}>
+          <div style={{ padding: '20px', fontSize: '27px', fontWeight: 300 }}>
             Talismoons come from the Moon
           </div>
         </Col>
@@ -29,7 +29,7 @@ export default function LunarCalendar({ ethereumProps, nftAppProps }) {
           <div style={{ padding: '20px', fontSize: '20px' }}>Lunar Phases</div>
         </Col>
         <Col xs={24} md={10}>
-          <div style={{ padding: '20px', fontSize: '25px', fontWeight: 300 }}>
+          <div style={{ padding: '20px', fontSize: '27px', fontWeight: 300 }}>
             Talismoons come from the Moon
           </div>
         </Col>

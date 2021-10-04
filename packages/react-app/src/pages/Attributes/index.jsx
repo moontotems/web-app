@@ -32,12 +32,12 @@ export default function AttributesPage({ ethereumProps, nftAppProps }) {
     <>
       <Row>
         <Col xs={24} md={5}>
-          <div style={{ padding: '40px', fontSize: '25px' }}>
+          <div style={{ padding: '40px', fontSize: '20px' }}>
             Characteristics
           </div>
         </Col>
         <Col xs={24} md={10}>
-          <div style={{ padding: '40px', fontSize: '30px', fontWeight: 300 }}>
+          <div style={{ padding: '40px', fontSize: '27px', fontWeight: 300 }}>
             Unique DNA combination of attributes
           </div>
         </Col>
