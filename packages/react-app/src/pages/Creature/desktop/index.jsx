@@ -3,6 +3,7 @@ import { Row, Col, Menu, Dropdown, Button as AntdButton } from 'antd'
 import { Button } from 'antd'
 
 import {
+  AsleepFilled32,
   CheckmarkOutline32,
   CheckmarkFilled32,
   Favorite32,
@@ -27,7 +28,7 @@ import {
   Icons,
   FilterDropdown
 } from '../../../sharedComponents'
-const { MintedIcon32x32, NotMintedIcon32x32 } = Icons
+const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
 import creature_metadata_hashmap from '../../../assets/creature_metadata_hashmap.json'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
@@ -236,7 +237,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
               marginTop: '2px'
             }}
           >
-            {minted && <img src={MintedIcon32x32} alt='Minted' />}
+            {minted && <AsleepFilled32 />}
             {!minted && <img src={NotMintedIcon32x32} alt='Not Minted' />}
           </div>
         </Col>

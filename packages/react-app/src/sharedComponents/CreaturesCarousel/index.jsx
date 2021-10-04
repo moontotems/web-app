@@ -21,7 +21,7 @@ import FILTERS from '../../sharedComponents/FilterDropdown/filters'
 import { getImageUrl } from '../../helpers'
 import creature_metadata_hashmap from '../../assets/creature_metadata_hashmap.json'
 import Icons from '../icons'
-const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
+const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
 export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
   const { favorites, activeFilter, mintEventsMap, mint } = nftAppProps
@@ -215,7 +215,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
         <Col xs={4}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ float: 'left' }}>
-              {minted && <img src={MintedIcon16x16} alt='Minted' />}
+              {minted && <img src={OwnedByUserIcon16x16} alt='Minted' />}
               {!minted && <img src={NotMintedIcon16x16} alt='Not Minted' />}
             </div>
             <div style={{ float: 'right' }}>

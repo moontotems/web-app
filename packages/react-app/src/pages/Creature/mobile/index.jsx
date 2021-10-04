@@ -3,6 +3,7 @@ import { Row, Col, Menu, Dropdown, Button as AntdButton } from 'antd'
 import { Button } from 'antd-mobile'
 
 import {
+  AsleepFilled32,
   CheckmarkOutline32,
   CheckmarkFilled32,
   Favorite32,
@@ -24,7 +25,7 @@ import $ from 'jquery'
 import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
 import { Chatbot, CreatureAttributes, Icons } from '../../../sharedComponents'
-const { MintedIcon32x32, NotMintedIcon32x32 } = Icons
+const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
 import creature_metadata_hashmap from '../../../assets/creature_metadata_hashmap.json'
 
 export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
@@ -191,7 +192,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Col xs={6}>
           <div style={{ textAlign: 'center', marginTop: '15px' }}>
             <div>
-              {minted && <img src={MintedIcon32x32} alt='Minted' />}
+              {minted && <AsleepFilled32 />}
               {!minted && <img src={NotMintedIcon32x32} alt='Not Minted' />}
             </div>
           </div>

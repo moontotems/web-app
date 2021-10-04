@@ -1,120 +1,71 @@
-import React, { useEffect } from 'react'
-/*
-import {
-  DataTable,
-  Table,
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableBody,
-  TableCell
-} from 'carbon-components-react'
-*/
-import FILTERS from '../../sharedComponents/FilterDropdown/filters'
+import React, { useEffect, useState } from 'react'
 import PagesAll from '../All'
 import './styles.less'
 
 export default function Wallet({ ethereumProps, nftAppProps }) {
-  const { address } = ethereumProps
-  const { setActiveFilter } = nftAppProps
-
-  useEffect(() => {
-    setActiveFilter(FILTERS.myTalismoons)
-  }, [])
+  const { readContracts, address } = ethereumProps
+  const { setActiveFilter, assembleCreature } = nftAppProps
 
   if (!address) {
     // TODO:
     return <div>Please connect wallet</div>
   }
 
-  return <PagesAll ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
-
-  /*
-  const balanceOf =
-    useContractReader(
-      readContracts,
-      'NFTokenMetadataEnumerableMock',
-      'balanceOf',
-      [address]
-    ) || {}
-
-  const balanceOfUser = parseInt(balanceOf.toString()) || 0
-  console.log({ balanceOfUser })
-
   const [usersCreatures, setUsersCreatures] = useState([])
+  const [balanceOfUser, setBalanceOfUser] = useState(0)
 
   useEffect(() => {
     const getUsersCreatures = async () => {
-      const usersCreaturesUpdate = []
-      for (let tokenIndex = 0; tokenIndex < balanceOfUser; tokenIndex++) {
-        try {
-          console.log('setting token index', tokenIndex)
-          const tokenId =
+      try {
+        console.log('now calling infura: balanceOf')
+        let balanceOf =
+          await readContracts.NFTokenMetadataEnumerableMock.balanceOf(address)
+        console.log({ address })
+        console.log({ balanceOf })
+        balanceOf = parseInt(balanceOf.toString()) || 0
+        console.log({ balanceOf })
+        setBalanceOfUser(balanceOf)
+
+        const usersCreaturesUpdate = []
+        for (let tokenIndex = 0; tokenIndex < balanceOfUser; tokenIndex++) {
+          console.log('now calling infura: tokenOfOwnerByIndex')
+          let tokenId =
             await readContracts.NFTokenMetadataEnumerableMock.tokenOfOwnerByIndex(
               address,
               tokenIndex
             )
-          console.log('tokenId', tokenId)
+          tokenId = tokenId.toString()
+          console.log({ tokenId })
+          /*
           const tokenURI =
             await readContracts.NFTokenMetadataEnumerableMock.tokenURI(tokenId)
           console.log('tokenURI', tokenURI)
+          */
 
           //const ipfsHash = tokenURI.replace('https://ipfs.io/ipfs/', '')
           //console.log('ipfsHash', ipfsHash)
 
           //const jsonManifestBuffer = await getFromIPFS(ipfsHash)
 
-          try {
-            //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
-            //console.log('jsonManifest', jsonManifest)
-            usersCreaturesUpdate.push({
-              id: tokenId.toString(),
-              uri: tokenURI,
-              owner: address
-              //...jsonManifest
-            })
-          } catch (e) {
-            console.log(e)
-          }
-        } catch (e) {
-          console.log(e)
+          //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
+          //console.log('jsonManifest', jsonManifest)
+          const creature = assembleCreature(tokenId)
+          usersCreaturesUpdate.push({ ...creature, ownedByUser: true })
         }
+
+        console.log({ usersCreaturesUpdate })
+        setUsersCreatures(usersCreaturesUpdate)
+      } catch (e) {
+        console.log(e)
       }
-      setUsersCreatures(usersCreaturesUpdate)
     }
     getUsersCreatures()
-  }, [address, balanceOfUser])
+  }, [address, balanceOfUser, readContracts])
 
   return (
-    <div style={{ backgroundColor: '#000' }}>
-      <Row>
-        {usersCreatures.map(usersCreature => {
-          const tokenId = usersCreature.id
-          const minted = true
-          const metaData = creature_metadata_hashmap[tokenId]
-          const image = getImageUrl(tokenId)
-
-          const creature = {
-            tokenId,
-            metaData,
-            image,
-            isFavorite: true,
-            minted
-          }
-          const key = `TALISMOON-${tokenId}`
-
-          return (
-            <Col key={key} xs={24} sm={16} md={8} lg={6}>
-              <Creature
-                ethereumProps={ethereumProps}
-                nftAppProps={nftAppProps}
-                creature={creature}
-              />
-            </Col>
-          )
-        })}
-      </Row>
-    </div>
+    <PagesAll
+      ethereumProps={ethereumProps}
+      nftAppProps={{ ...nftAppProps, creatures: usersCreatures }}
+    />
   )
-  */
 }

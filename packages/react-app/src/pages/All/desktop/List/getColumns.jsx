@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Launch16 } from '@carbon/icons-react'
 import { getImageUrl } from '../../../../helpers'
 import { Icons } from '../../../../sharedComponents'
-const { MintedIcon16x16 } = Icons
+const { OwnedByUserIcon16x16 } = Icons
 
 const convertBoolNumToString = num => {
   if (num === 1) return 'Yes'
@@ -25,7 +25,7 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     },
     {
       title: 'State',
-      render: (value, record) => <img src={MintedIcon16x16} alt='Minted' />
+      render: (value, record) => <img src={OwnedByUserIcon16x16} alt='Minted' />
     },
     {
       title: 'Image',

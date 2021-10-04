@@ -25,7 +25,7 @@ import creature_metadata_hashmap from '../../assets/creature_metadata_hashmap.js
 import Chatbot from '../Chatbot'
 import Attributes from '../CreatureAttributes'
 import Icons from '../icons'
-const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
+const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 import './styles.css'
 
 export default function CreaturePage({
@@ -138,7 +138,7 @@ export default function CreaturePage({
           <Row>
             <Col span={24}>
               <div style={{ float: 'left' }}>
-                {minted && <img src={MintedIcon} alt='Minted' />}
+                {minted && <img src={OwnedByUserIcon} alt='Minted' />}
                 {!minted && <img src={NotMintedIcon} alt='Not Minted' />}
               </div>
               <div

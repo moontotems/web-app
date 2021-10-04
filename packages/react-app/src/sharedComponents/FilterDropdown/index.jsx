@@ -3,7 +3,7 @@ import { Menu, Button, Dropdown } from 'antd'
 import { Filter32, FavoriteFilled16, Locked16 } from '@carbon/icons-react'
 import FILTERS from './filters'
 import Icons from '../icons'
-const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
+const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
 export default function FilterDropdown({ ethereumProps, nftAppProps }) {
   const { setActiveFilter, activeFilter } = nftAppProps
@@ -100,7 +100,11 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
         onClick={() => setActiveFilter(FILTERS.myTalismoons)}
       >
         <div style={{ ...menuTextStyle }}>Show My Talismoons</div>
-        <img src={MintedIcon16x16} style={{ ...menuIconStyle }} alt='Minted' />
+        <img
+          src={OwnedByUserIcon16x16}
+          style={{ ...menuIconStyle }}
+          alt='Minted'
+        />
       </Menu.Item>
     </Menu>
   )

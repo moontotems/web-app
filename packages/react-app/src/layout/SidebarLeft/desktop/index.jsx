@@ -20,7 +20,7 @@ import {
 } from '@carbon/icons-react'
 import $ from 'jquery'
 import { Icons } from '../../../sharedComponents'
-const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
+const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
 export default function SidebarLeftDesktopView({
   ethereumProps,
@@ -141,7 +141,11 @@ export default function SidebarLeftDesktopView({
               {' '}
               My Talismoons
             </Link>
-            <img src={MintedIcon16x16} alt='Minted' style={{ ...iconStyle }} />
+            <img
+              src={OwnedByUserIcon16x16}
+              alt='Minted'
+              style={{ ...iconStyle }}
+            />
           </SideNavMenuItem>
         </SideNavMenu>
         <SideNavLink href='javascript:void(0)'>

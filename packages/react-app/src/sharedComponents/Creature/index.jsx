@@ -1,14 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'antd'
-import { Favorite16, FavoriteFilled16 } from '@carbon/icons-react'
+import {
+  AsleepFilled16,
+  Favorite16,
+  FavoriteFilled16
+} from '@carbon/icons-react'
 import Icons from '../icons'
-const { MintedIcon16x16, NotMintedIcon16x16 } = Icons
+const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
 export default function Creature({ ethereumProps, nftAppProps, creature }) {
   const { setRoute, favorites } = nftAppProps
   const { updateFavorites } = favorites
-  const { tokenId, image, minted, isFavorite, metaData } = creature
+  const { tokenId, image, minted, ownedByUser, isFavorite, metaData } = creature
 
   const { trait_jobField, trait_jobTitle, trait_name1, trait_name2 } =
     metaData || {}
@@ -36,7 +40,8 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
         <Row>
           <Col xs={6}>
             <div style={{ textAlign: 'center' }}>
-              {minted && <img src={MintedIcon16x16} alt='Minted' />}
+              {!ownedByUser && minted && <AsleepFilled16 />}
+              {ownedByUser && <img src={OwnedByUserIcon16x16} alt='Minted' />}
               {!minted && <img src={NotMintedIcon16x16} alt='Not Minted' />}
             </div>
           </Col>
@@ -47,9 +52,7 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
                 fontSize: 16,
                 fontStyle: 'normal',
                 fontWeight: 400,
-                //lineHeight: '3em',
                 marginBottom: 2,
-                //letterSpacing: '0.04em',
                 textAlign: 'center'
               }}
             >
@@ -61,8 +64,6 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
                 fontSize: 13,
                 fontStyle: 'normal',
                 fontWeight: 300,
-                //lineHeight: 5,
-                //letterSpacing: '0.04em',
                 textAlign: 'center'
               }}
             >

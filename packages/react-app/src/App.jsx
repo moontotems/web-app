@@ -43,7 +43,7 @@ const targetNetwork = NETWORKS.rinkeby // <------- select your target frontend n
 
 // 😬 Sorry for all the console logging
 const DEBUG = false
-const NETWORKCHECK = false
+const NETWORKCHECK = true
 
 // 🛰 providers
 //if (DEBUG) console.log('📡 Connecting to Mainnet Ethereum')
@@ -158,7 +158,7 @@ function App() {
   }
 
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
-  const ethPriceDollar = useExchangePrice(targetNetwork, mainnetProvider)
+  //const ethPriceDollar = useExchangePrice(targetNetwork, mainnetProvider)
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
   const gasPrice = useGasPrice(targetNetwork, 'fast')
@@ -194,10 +194,10 @@ function App() {
   const faucetTx = Transactor(localProvider, gasPrice)
 
   // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
-  const yourLocalBalance = useBalance(localProvider, address)
+  //const yourLocalBalance = useBalance(localProvider, address)
 
   // Just plug in different 🛰 providers to get your balance on different chains:
-  const yourMainnetBalance = useBalance(mainnetProvider, address)
+  //const yourMainnetBalance = useBalance(mainnetProvider, address)
 
   // Load in your local 📝 contract and read a value from it:
   const readContracts = useContractLoader(localProvider)
@@ -213,11 +213,13 @@ function App() {
   const mainnetContracts = useContractLoader(mainnetProvider)
 
   // If you want to call a function on a new block
+  /*
   useOnBlock(mainnetProvider, () => {
     console.log(
       `⛓ A new mainnet block is here: ${mainnetProvider._lastBlockNumber}`
     )
   })
+  */
 
   //
   // 🧫 DEBUG 👨🏻‍🔬
@@ -228,8 +230,8 @@ function App() {
       mainnetProvider &&
       address &&
       selectedChainId &&
-      yourLocalBalance &&
-      yourMainnetBalance &&
+      //yourLocalBalance &&
+      //yourMainnetBalance &&
       readContracts &&
       writeContracts &&
       mainnetContracts
@@ -241,6 +243,7 @@ function App() {
       console.log('🏠 localChainId', localChainId)
       console.log('👩‍💼 selected address:', address)
       console.log('🕵🏻‍♂️ selectedChainId:', selectedChainId)
+      /*
       console.log(
         '💵 yourLocalBalance',
         yourLocalBalance ? ethers.utils.formatEther(yourLocalBalance) : '...'
@@ -251,6 +254,7 @@ function App() {
           ? ethers.utils.formatEther(yourMainnetBalance)
           : '...'
       )
+      */
       console.log('📝 readContracts', readContracts)
       console.log('🌍 DAI contract on mainnet:', mainnetContracts)
       console.log('🔐 writeContracts', writeContracts)
@@ -259,8 +263,8 @@ function App() {
     mainnetProvider,
     address,
     selectedChainId,
-    yourLocalBalance,
-    yourMainnetBalance,
+    //yourLocalBalance,
+    //yourMainnetBalance,
     readContracts,
     writeContracts,
     mainnetContracts
@@ -480,65 +484,6 @@ function App() {
 
   const [randomTokenIds, setRandomTokenIds] = useState(getRandomTokenIdsArray())
 
-  const [usersCreatures, setUsersCreatures] = useState([])
-
-  // TODO: reduce number of calls
-  //       move this into useEffect hook
-  /*
-  const balanceOf =
-    useContractReader(
-      readContracts,
-      'NFTokenMetadataEnumerableMock',
-      'balanceOf',
-      [address]
-    ) || {}
-  */
-  const balanceOf = 0
-
-  const balanceOfUser = parseInt(balanceOf.toString()) || 0
-  console.log({ balanceOfUser })
-
-  useEffect(() => {
-    const getUsersCreatures = async () => {
-      const usersCreaturesUpdate = []
-      for (let tokenIndex = 0; tokenIndex < balanceOfUser; tokenIndex++) {
-        try {
-          console.log('setting token index', tokenIndex)
-          let tokenId =
-            await readContracts.NFTokenMetadataEnumerableMock.tokenOfOwnerByIndex(
-              address,
-              tokenIndex
-            )
-          tokenId = tokenId.toString()
-          console.log('tokenId', tokenId)
-          /*
-          const tokenURI =
-            await readContracts.NFTokenMetadataEnumerableMock.tokenURI(tokenId)
-          console.log('tokenURI', tokenURI)
-          */
-
-          //const ipfsHash = tokenURI.replace('https://ipfs.io/ipfs/', '')
-          //console.log('ipfsHash', ipfsHash)
-
-          //const jsonManifestBuffer = await getFromIPFS(ipfsHash)
-
-          try {
-            //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
-            //console.log('jsonManifest', jsonManifest)
-            const creature = assembleCreature(tokenId)
-            usersCreaturesUpdate.push({ ...creature, ownedByUser: true })
-          } catch (e) {
-            console.log(e)
-          }
-        } catch (e) {
-          console.log(e)
-        }
-      }
-      setUsersCreatures(usersCreaturesUpdate)
-    }
-    getUsersCreatures()
-  }, [address, balanceOfUser])
-
   let creatures = []
 
   const assembleCreature = tokenId => {
@@ -575,7 +520,7 @@ function App() {
     } else if (activeFilter === FILTERS.taken && creature.minted) {
       creatures.push(creature)
     } else if (activeFilter === FILTERS.myTalismoons) {
-      creatures = usersCreatures
+      //creatures = usersCreatures
       break
     } else if (activeFilter === FILTERS.favorites && creature.isFavorite) {
       creatures.push(creature)
@@ -644,8 +589,8 @@ function App() {
     address,
     mainnetProvider,
     localProvider,
-    yourLocalBalance,
-    ethPriceDollar,
+    //yourLocalBalance,
+    //ethPriceDollar,
     gasPrice,
     tx,
     readContracts,
@@ -657,6 +602,7 @@ function App() {
     route,
     setRoute,
     creatures,
+    assembleCreature,
     updateFavorites,
     favorites,
     infiniteScroll,
