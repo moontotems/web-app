@@ -126,7 +126,7 @@ export default function HeaderDesktop({
   return (
     <>
       <div
-        id='header'
+        id='headerTitle'
         style={{
           position: 'fixed',
           top: 9,
