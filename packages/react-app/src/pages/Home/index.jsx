@@ -81,8 +81,7 @@ export default function Home({ ethereumProps, nftAppProps }) {
         style={{
           float: 'right',
           height: '100vh',
-          width: '100%',
-          marginTop: '10%'
+          width: '100%'
         }}
       >
         <MoonSection ethereumProps={ethereumProps} nftAppProps={nftAppProps} />

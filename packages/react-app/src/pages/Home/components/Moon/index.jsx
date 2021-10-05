@@ -14,7 +14,7 @@ export default function MoonSection({ ethereumProps, nftAppProps }) {
           <div
             style={{
               float: 'right',
-              height: '80vh',
+              height: 'calc(100vh - 60px)',
               width: '100%'
               //overflow: 'hidden'
               /*
