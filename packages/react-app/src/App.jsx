@@ -657,7 +657,9 @@ function App() {
           <ActionBar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         )}
 
-        <Footer ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        <div style={{ float: 'left', width: '100%' }}>
+          <Footer ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        </div>
       </BrowserRouter>
     </div>
   )
