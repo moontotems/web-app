@@ -14,8 +14,8 @@ export default function MoonSection({ ethereumProps, nftAppProps }) {
           <div
             style={{
               float: 'right',
-              height: 'calc(100vh - 60px)',
-              width: '100%'
+              height: 'calc(100vh - 60px)'
+              //width: '100%'
               //overflow: 'hidden'
               /*
               background:
@@ -24,10 +24,41 @@ export default function MoonSection({ ethereumProps, nftAppProps }) {
               */
             }}
           >
-            <img
-              src='/home/talismoon_origin_map_full.jpg'
-              style={{ float: 'left', height: '80vh', maxWidth: '100%' }}
-            />
+            <div
+              style={{
+                float: 'right',
+                height: '80vh'
+                //width: '100%'
+                //overflow: 'hidden'
+              }}
+            >
+              <iframe
+                src='https://player.vimeo.com/video/617410607?h=8893bbc9b4&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
+                frameBorder='0'
+                allow='autoplay; picture-in-picture'
+                //allowFullScreen
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '60%',
+                  height: '100%'
+                }}
+                title='Talismoons Moon Origin'
+              />
+              {/*
+              <img
+                src='/home/talismoon_origin_map_full.jpg'
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%'
+                }}
+              />
+              */}
+            </div>
 
             <div
               style={{

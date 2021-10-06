@@ -1,4 +1,5 @@
 import React from 'react'
+import Dots from './Dots'
 
 export default function Slide5({ ethereumProps, nftAppProps }) {
   return (
@@ -22,6 +23,18 @@ export default function Slide5({ ethereumProps, nftAppProps }) {
         }}
       >
         Each Talismoon has a Moon Phase and Moon Month symbol.
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          top: 'calc(30vh + 150px)',
+          right: '10%',
+          height: '150px',
+          width: '180px',
+          padding: '15px'
+        }}
+      >
+        <Dots activeDotNumber={5} />
       </div>
     </div>
   )

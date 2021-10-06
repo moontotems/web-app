@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { ArrowRight32 } from '@carbon/icons-react'
+import Dots from './Dots'
 
 export default function Slide6({ ethereumProps, nftAppProps }) {
   const { route, setRoute } = nftAppProps
@@ -26,6 +25,18 @@ export default function Slide6({ ethereumProps, nftAppProps }) {
         }}
       >
         Every Talismoon has a Child Moon pendant.
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          top: 'calc(30vh + 150px)',
+          right: '10%',
+          height: '150px',
+          width: '180px',
+          padding: '15px'
+        }}
+      >
+        <Dots activeDotNumber={7} />
       </div>
     </div>
   )

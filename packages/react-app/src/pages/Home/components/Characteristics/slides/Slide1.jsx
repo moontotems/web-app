@@ -1,16 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight32 } from '@carbon/icons-react'
+import Dots from './Dots'
 
 export default function Slide1({ ethereumProps, nftAppProps }) {
   const { route, setRoute } = nftAppProps
 
   return (
     <>
+      {/*
       <img
         src='/home/TALISMOON_CARD_SQUARE_03963.jpg'
         style={{ float: 'left', height: '80vh' }}
       />
+      */}
       <div
         style={{
           position: 'absolute',
@@ -28,6 +31,19 @@ export default function Slide1({ ethereumProps, nftAppProps }) {
         <br />
         <br />
         Look a little closer and you may find them.
+      </div>
+
+      <div
+        style={{
+          position: 'absolute',
+          top: 'calc(30vh + 150px)',
+          right: '10%',
+          height: '150px',
+          width: '180px',
+          padding: '15px'
+        }}
+      >
+        <Dots activeDotNumber={1} />
       </div>
 
       <Link

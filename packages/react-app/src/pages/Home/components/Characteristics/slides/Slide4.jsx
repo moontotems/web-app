@@ -1,4 +1,5 @@
 import React from 'react'
+import Dots from './Dots'
 
 export default function Slide4({ ethereumProps, nftAppProps }) {
   return (
@@ -23,6 +24,18 @@ export default function Slide4({ ethereumProps, nftAppProps }) {
       >
         Look closer and you can see that each Talismoon has a unique combination
         of textures, patterns and perforations.
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          top: 'calc(30vh + 150px)',
+          right: '10%',
+          height: '150px',
+          width: '180px',
+          padding: '15px'
+        }}
+      >
+        <Dots activeDotNumber={4} />
       </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import React from 'react'
+import Dots from './Dots'
 
 export default function Slide2({ ethereumProps, nftAppProps }) {
   return (
@@ -21,6 +22,18 @@ export default function Slide2({ ethereumProps, nftAppProps }) {
         }}
       >
         Every Talismoon has a unique name, title and personality traits.
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          top: 'calc(30vh + 150px)',
+          right: '10%',
+          height: '150px',
+          width: '180px',
+          padding: '15px'
+        }}
+      >
+        <Dots activeDotNumber={2} />
       </div>
     </>
   )

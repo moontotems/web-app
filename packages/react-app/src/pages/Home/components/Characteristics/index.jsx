@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'antd'
+import $ from 'jquery'
 // https://www.npmjs.com/package/react-slick
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -40,6 +41,7 @@ export default function CharacteristicsSection({ ethereumProps, nftAppProps }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     dots: true,
+    //appendDots: dots => $('#slickDots'),
     arrows: false,
     //nextArrow: null,
     //prevArrow: null,
