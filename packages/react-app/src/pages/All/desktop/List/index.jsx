@@ -81,7 +81,6 @@ export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
     onFilter: (value, record) => {
       /*
       console.log('in onFilter:')
-
       console.log({ value })
       console.log({ record })
       console.log({ dataIndex })
@@ -99,7 +98,8 @@ export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
     onFilterDropdownVisibleChange: visible => {
       if (visible) {
         // TODO: focus input on dropdown
-        //setTimeout(() => searchInputNode.select(), 100)
+        ///      this is not working
+        setTimeout(() => searchInputNode?.select(), 100)
       }
     },
     render: text => {
@@ -122,7 +122,7 @@ export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
   return (
     <>
       <ProTable
-        sticky
+        //sticky
         columns={columns}
         //actionRef={actionRef}
         dataSource={talismoon_metadata}
@@ -136,7 +136,6 @@ export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
           setting: true,
           density: true
         }}
-        // sticky // TODO:
         pagination={{
           // https://2x.ant.design/components/pagination/#API
           showSizeChanger: true,

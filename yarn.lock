@@ -20782,9 +20782,9 @@ swarm-js@^0.1.40:
     xhr-request "^1.0.1"
 
 swr@^1.1.0-beta.0:
-  version "1.1.0-beta.3"
-  resolved "https://registry.yarnpkg.com/swr/-/swr-1.1.0-beta.3.tgz#eac20fc9e4cda712d695024ac7f4c95eb5c8fc0f"
-  integrity sha512-1fR0VBmSewUMHtICnWg2Q6tzyV9tbL2b5MLEodBCO4AT50k51WYNLsDEzqu801vD6Sdhhqh+fmkubuRkOayYvQ==
+  version "1.1.0-beta.4"
+  resolved "https://registry.yarnpkg.com/swr/-/swr-1.1.0-beta.4.tgz#32424d24b76aa30bff84f71795cbfec55404b4e2"
+  integrity sha512-t5IzcNXzUCqlWpKj/+ATTTsogfvb7yRPUJZUaO9wa/70A39Jm9OM7il0eQfoEzH66Y2gDdQgxZaQAIx0RlH3Vg==
 
 symbol-observable@^1.0.2, symbol-observable@^1.0.4:
   version "1.2.0"

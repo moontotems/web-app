@@ -39,37 +39,31 @@
 
 //////////////////////
 // antd table
+table {
+  table-layout: auto;
+  table-layout: fixed;
+  // width: 100%;
+  white-space: nowrap;
+}
 // table container
 .ant-pro-table .ant-card-body {
   padding: 0px !important;
 }
-// toolbar
-.ant-pro-table-list-toolbar-right {
-  float: right;
+.ant-table-content {
+  overflow-y: scroll;
 }
 // table header
 .ant-table-sticky-holder {
   top: 48px !important;
 }
+.ant-table-column-sorter {
+  margin-left: 7px;
+}
 // table header
-.ant-table-small .ant-table-thead>tr>th,
 .ant-table-footer,
 .ant-table-thead>tr>th {
   background: #393939;
   font-weight: 600;
-}
-// table header: fix stick header glitch
-.ant-table-header.ant-table-sticky-holder {
-  overflow: visible !important;
-}
-// set width of all table column header
-// TODO: remove this and do it individual
-.ant-table-column-sorters {
-  //width: 100px;
-  min-width: 200px;
-}
-.ant-table-cell {
-  background: #262626;
 }
 // column header hover
 .ant-table-thead th.ant-table-column-has-sorters:hover {
@@ -77,14 +71,6 @@
 }
 // table column header sorted
 .ant-table-thead th.ant-table-column-sort {
-  background: #262626;
-}
-// table row
-.ant-table-row {
-  background: #262626;
-}
-// fixed parts of a table row
-.ant-table-cell-fix-left, .ant-table-cell-fix-right {
   background: #262626;
 }
 // table row hover
@@ -102,6 +88,45 @@ td.ant-table-column-sort {
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
   background-color: #262626 !important;
 }
+// center table row content
+.ant-table-thead th,
+.ant-table-tbody td {
+  //text-align: center;
+  //vertical-align: middle;
+}
+
+/*
+// toolbar
+.ant-pro-table-list-toolbar-right {
+  float: right;
+}
+// table header
+.ant-table-sticky-holder {
+  top: 48px !important;
+}
+
+// table header: fix stick header glitch
+.ant-table-header.ant-table-sticky-holder {
+  overflow: visible !important;
+}
+// set width of all table column header
+// TODO: remove this and do it individual
+.ant-table-column-sorters {
+  //width: 100px;
+  min-width: 200px;
+}
+.ant-table-cell {
+  background: #262626;
+}
+// table row
+.ant-table-row {
+  background: #262626;
+}
+// fixed parts of a table row
+.ant-table-cell-fix-left, .ant-table-cell-fix-right {
+  background: #262626;
+}
+
 // TODO: attempt to fix table header width problem
 // https://stackoverflow.com/questions/61191372/antd-table-column-width-issue
 .ant-table-thead th,
@@ -110,7 +135,10 @@ td.ant-table-column-sort {
   word-break: break-word;
   word-break: break-all;
 }
+*/
 //////////////////////
+
+
 
 // idk why we need to import this here ...
 @import "./carbon-design-adjustments.less";

@@ -19,16 +19,17 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       title: 'Token ID',
       dataIndex: 'id',
       key: 'id',
-      fixed: 'left',
-      ...getColumnSearchProps('id'),
+      ...getColumnSearchProps('Token ID'),
       sorter: (a, b) => a.id - b.id
     },
     {
       title: 'State',
+      fixed: 'right',
       render: (value, record) => <img src={OwnedByUserIcon16x16} alt='Minted' />
     },
     {
       title: 'Image',
+      fixed: 'left',
       render: (value, record) => (
         <img
           src={getImageUrl(record.id)}
@@ -37,7 +38,6 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
         />
       )
     },
-
     {
       title: 'Name',
       dataIndex: 'trait_name1',
@@ -57,7 +57,7 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'Birth Year',
       dataIndex: 'birthYearStr',
-      ...getColumnSearchProps('birthYearStr'),
+      ...getColumnSearchProps('Birth Year'),
       sorter: (a, b) => a.birthYearStr?.localeCompare(b.birthYearStr)
     },
     {
@@ -140,7 +140,6 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'Lunar Origin Name',
       dataIndex: 'lunarOriginName',
-      //...getColumnSearchProps('lunarOriginName'),
       sorter: (a, b) => a.lunarOriginName?.localeCompare(b.lunarOriginName),
 
       filters: true,
@@ -200,7 +199,7 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'Lunar Origin Name Latin',
       dataIndex: 'lunarOriginNameLatin',
-      ...getColumnSearchProps('lunarOriginNameLatin'),
+      ...getColumnSearchProps('Lunar Origin Name Latin'),
       sorter: (a, b) =>
         a.lunarOriginNameLatin?.localeCompare(b.lunarOriginNameLatin)
     },
@@ -318,13 +317,13 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'Job Title',
       dataIndex: 'trait_jobTitle',
-      ...getColumnSearchProps('trait_jobTitle'),
+      ...getColumnSearchProps('Job Title'),
       sorter: (a, b) => a.trait_jobTitle?.localeCompare(b.trait_jobTitle)
     },
     {
       title: 'Job Field',
       dataIndex: 'trait_jobField',
-      ...getColumnSearchProps('trait_jobField'),
+      ...getColumnSearchProps('Job Field'),
       sorter: (a, b) => a.trait_jobField?.localeCompare(b.trait_jobField)
     },
     {
@@ -358,7 +357,7 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     },
     {
       title: 'Show',
-      fixed: 'right',
+      //fixed: 'right',
       render: (value, record) => (
         <Link
           onClick={() => {
