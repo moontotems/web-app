@@ -26,7 +26,7 @@ export default function MoonSection({ ethereumProps, nftAppProps }) {
           >
             <img
               src='/home/talismoon_origin_map_full.jpg'
-              style={{ float: 'left', height: '80vh' }}
+              style={{ float: 'left', height: '80vh', maxWidth: '100%' }}
             />
 
             <div
