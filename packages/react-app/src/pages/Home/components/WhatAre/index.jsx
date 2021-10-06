@@ -24,6 +24,20 @@ export default function WhatAreSection({ ethereumProps, nftAppProps }) {
               */
             }}
           >
+            <iframe
+              src='https://player.vimeo.com/video/620510465?h=8893bbc9b4&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
+              frameBorder='0'
+              allow='autoplay; fullscreen; picture-in-picture'
+              allowFullScreen
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%'
+              }}
+              title='TALISMOONS_GEN01_BLINKYROTATE.COMP[0000-0832].mp4'
+            />
             <img
               src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg'
               style={{ float: 'left', height: '80vh' }}
