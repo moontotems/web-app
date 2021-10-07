@@ -3,6 +3,7 @@ import React from 'react'
 import {
   CharacteristicsSection,
   MoonSection,
+  LunarSignsSection,
   MoonOriginsSection,
   NFTTutorialSection,
   SocialMediaSection,
@@ -61,6 +62,19 @@ export default function Home({ ethereumProps, nftAppProps }) {
           marginTop: '10%'
         }}
       >
+        <LunarSignsSection
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
+      </div>
+      <div
+        style={{
+          float: 'right',
+          height: '100vh',
+          width: '100%',
+          marginTop: '10%'
+        }}
+      >
         <MoonOriginsSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
@@ -78,7 +92,7 @@ export default function Home({ ethereumProps, nftAppProps }) {
       <div
         style={{
           float: 'right',
-          height: '100vh',
+          //height: '100vh',
           width: '100%'
           //paddingTop: '10%'
         }}
@@ -88,6 +102,7 @@ export default function Home({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       </div>
+      {/*
       <div
         style={{
           float: 'right',
@@ -101,6 +116,7 @@ export default function Home({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       </div>
+      */}
     </>
   )
 }

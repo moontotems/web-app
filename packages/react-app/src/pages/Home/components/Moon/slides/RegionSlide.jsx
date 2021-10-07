@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col } from 'antd'
 import PageIndicator from './PageIndicator'
 
-export default function Slide2({
+export default function RegionSlide({
   image,
   icon,
   lunarOriginName,
