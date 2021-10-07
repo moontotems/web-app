@@ -85,7 +85,7 @@ export default function Columns({ ethereumProps, nftAppProps }) {
                   fontSize: '16px'
                 }}
               >
-                For connecting with the Totem Community.
+                For connecting with the Talismoon Community.
               </div>
             </Col>
             <Col xs={24}>

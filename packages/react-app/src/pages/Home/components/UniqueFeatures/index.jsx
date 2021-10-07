@@ -20,7 +20,7 @@ export default function UniqueFeaturesSection({ ethereumProps, nftAppProps }) {
               lineHeight: '43px'
             }}
           >
-            Moon Totems is a next generation NFT project that aims to expand the
+            Talismoons is a next generation NFT project that aims to expand the
             features and possibilities exclusive to holders.
           </div>
         </Col>

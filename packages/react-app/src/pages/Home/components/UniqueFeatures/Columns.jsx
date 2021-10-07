@@ -36,7 +36,7 @@ export default function Columns({ ethereumProps, nftAppProps }) {
                   fontSize: '16px'
                 }}
               >
-                Totems can answer questions and give advice on matters large and
+                Talismoons can answer questions and give advice on matters large and
                 small.
               </div>
             </Col>
