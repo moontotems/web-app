@@ -36,8 +36,8 @@ export default function Columns({ ethereumProps, nftAppProps }) {
                   fontSize: '16px'
                 }}
               >
-                Talismoons can answer questions and give advice on matters large and
-                small.
+                Talismoons can answer questions and give advice on matters large
+                and small.
               </div>
             </Col>
             <Col xs={24}>

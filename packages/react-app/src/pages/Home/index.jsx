@@ -1,15 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Row, Col } from 'antd'
-import {
-  ArrowRight32,
-  ChatBot32,
-  Edit32,
-  ZoomIn32,
-  LogoInstagram32,
-  LogoTwitter32,
-  LogoDiscord32
-} from '@carbon/icons-react'
 
 import {
   CharacteristicsSection,

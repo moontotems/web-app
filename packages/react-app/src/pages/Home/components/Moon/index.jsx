@@ -1,107 +1,200 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'antd'
-import { ArrowRight32 } from '@carbon/icons-react'
+// https://www.npmjs.com/package/react-slick
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import { Slide1, RegionSlide } from './slides'
 
-export default function MoonSection({ ethereumProps, nftAppProps }) {
-  const { route, setRoute } = nftAppProps
+export default function CMoonSection({ ethereumProps, nftAppProps }) {
+  const [sliderRef, setSliderRef] = useState()
+
+  useEffect(() => {
+    document.onkeydown = e => {
+      e.preventDefault()
+      const LEFT_KEY = 37
+      const RIGHT_KEY = 39
+
+      if (e.which == LEFT_KEY) {
+        sliderRef.slickPrev()
+      }
+      if (e.which == RIGHT_KEY) {
+        sliderRef.slickNext()
+      }
+    }
+  }, [sliderRef])
+
+  const sliderSettings = {
+    ref: slider => setSliderRef(slider),
+    infinite: true,
+    //initialSlide: 3, // TODO:
+    speed: 200,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: true,
+    //appendDots: dots => $('#slickDots'),
+    arrows: false,
+    //nextArrow: null,
+    //prevArrow: null,
+    // https://react-slick.neostack.com/docs/api/#lazyLoad
+    //lazyLoad: true,
+    onSwipe: () => console.log('onSwipe'),
+    // afterChange: () => this.setState(state => ({ updateCount: state.updateCount + 1 })),
+    // beforeChange: (current, next) => this.setState({ slideIndex: next })
+    // afterChange: () => setCurrentCreatureIndex(currentCreatureIndex + 1),
+    afterChange: current => {},
+    beforeChange: (current, next) => {}
+  }
 
   return (
     <>
       <Row>
-        <Col xs={2} md={1} />
-        <Col xs={24} md={23}>
+        <Col xs={24} md={5}>
+          <div style={{ padding: '24px', fontSize: '20px' }}>Lunar Origins</div>
+        </Col>
+        <Col xs={24} md={10}>
           <div
             style={{
-              float: 'right',
-              height: 'calc(100vh - 60px)'
-              //width: '100%'
-              //overflow: 'hidden'
-              /*
-              background:
-                'url(./home/TALISMOONS_GEN01_BLINKYROTATE.png) no-repeat center center fixed',
-              backgroundSize: 'cover'
-              */
+              padding: '20px',
+              fontSize: '27px',
+              fontWeight: 300,
+              lineHeight: '43px'
             }}
           >
-            <div
-              style={{
-                float: 'right',
-                height: '80vh'
-                //width: '100%'
-                //overflow: 'hidden'
-              }}
-            >
-              <iframe
-                src='https://player.vimeo.com/video/617410607?h=8893bbc9b4&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
-                frameBorder='0'
-                allow='autoplay; picture-in-picture'
-                //allowFullScreen
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '60%',
-                  height: '100%'
-                }}
-                title='Talismoons Moon Origin'
-              />
-              {/*
-              <img
-                src='/home/talismoon_origin_map_full.jpg'
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%'
-                }}
-              />
-              */}
-            </div>
-
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                right: '10%',
-                width: '400px',
-                padding: '15px',
-                fontSize: '27px',
-                fontWeight: 300,
-                lineHeight: '37px'
-              }}
-            >
-              Unique digital totems from the Moon discovered on the Ethereum
-              Blockchain. A next generation NFT project, richer experience more
-              features exclusive to holders
-            </div>
-            <Link
-              onClick={() => {
-                setRoute('/lunar-map')
-              }}
-              to='/all'
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                right: 0,
-                height: '150px',
-                width: '350px',
-                padding: '15px',
-                backgroundColor: '#171414'
-              }}
-            >
-              <div style={{ fontSize: '17px' }}>Explore the Lunar Origins</div>
-              <ArrowRight32
-                style={{
-                  position: 'absolute',
-                  bottom: 15,
-                  right: 15,
-                  color: '#00FF74'
-                }}
-              />
-            </Link>
+            Talsimoons come from the moon.
           </div>
+        </Col>
+        <Col xs={24}>
+          <Slider {...sliderSettings}>
+            <div style={{ float: 'left', width: '100%' }}>
+              <div style={{ position: 'relative' }}>
+                <Slide1
+                  ethereumProps={ethereumProps}
+                  nftAppProps={nftAppProps}
+                />
+              </div>
+            </div>
+            <div style={{ float: 'left', width: '100%' }}>
+              <div style={{ position: 'relative' }}>
+                <RegionSlide
+                  activePageNumber={1}
+                  image={'/home/moon/bay_of_harmony.jpeg'}
+                  icon={'/home/moon/bay_of_harmony.svg'}
+                  lunarOriginName={'Sea of Rains'}
+                  lunarOriginNameLatin={'Mare Imbrium'}
+                />
+              </div>
+            </div>
+            <div style={{ float: 'left', width: '100%' }}>
+              <div style={{ position: 'relative' }}>
+                <RegionSlide
+                  activePageNumber={2}
+                  image={'/home/moon/sea_of_fertility.jpeg'}
+                  icon={'/home/moon/sea_of_fertility.svg'}
+                  lunarOriginName={'Sea of Fertility'}
+                  lunarOriginNameLatin={'Mare Fecunditatis'}
+                />
+              </div>
+            </div>
+            <div style={{ float: 'left', width: '100%' }}>
+              <div style={{ position: 'relative' }}>
+                <RegionSlide
+                  activePageNumber={3}
+                  image={'/home/moon/sea_of_tranquility.jpeg'}
+                  icon={'/home/moon/sea_of_tranquility.svg'}
+                  lunarOriginName={'Sea of Tranquility'}
+                  lunarOriginNameLatin={'Mare Tranquillitatis'}
+                />
+              </div>
+            </div>
+            <div style={{ float: 'left', width: '100%' }}>
+              <div style={{ position: 'relative' }}>
+                <RegionSlide
+                  activePageNumber={4}
+                  image={'/home/moon/sea_of_clouds.jpeg'}
+                  icon={'/home/moon/sea_of_clouds.svg'}
+                  lunarOriginName={'Sea of Clouds'}
+                  lunarOriginNameLatin={'Mare Nubium'}
+                />
+              </div>
+            </div>
+            <div style={{ float: 'left', width: '100%' }}>
+              <div style={{ position: 'relative' }}>
+                <RegionSlide
+                  activePageNumber={5}
+                  image={'/home/moon/sea_of_islands.jpeg'}
+                  icon={'/home/moon/sea_of_islands.svg'}
+                  lunarOriginName={'Sea of Islands'}
+                  lunarOriginNameLatin={'Mare Insularum'}
+                />
+              </div>
+            </div>
+            <div style={{ float: 'left', width: '100%' }}>
+              <div style={{ position: 'relative' }}>
+                <RegionSlide
+                  activePageNumber={6}
+                  image={'/home/moon/lake_of_dreams.jpeg'}
+                  icon={'/home/moon/lake_of_dreams.svg'}
+                  lunarOriginName={'Lake of Dreams'}
+                  lunarOriginNameLatin={'Lacus Somniorum'}
+                />
+              </div>
+            </div>
+            <div style={{ position: 'relative' }}>
+              <RegionSlide
+                activePageNumber={7}
+                image={'/home/moon/bay_of_rainbows.jpeg'}
+                icon={'/home/moon/bay_of_rainbows.svg'}
+                lunarOriginName={'Bay of Rainbows'}
+                lunarOriginNameLatin={'Sinus Iridum'}
+              />
+            </div>
+            <div style={{ position: 'relative' }}>
+              <RegionSlide
+                activePageNumber={8}
+                image={'/home/moon/peninsula_of_thunder.jpeg'}
+                icon={'/home/moon/peninsula_of_thunder.svg'}
+                lunarOriginName={'Peninsula of Thunder'}
+                lunarOriginNameLatin={'Peninsula Fulminum'}
+              />
+            </div>
+            <div style={{ position: 'relative' }}>
+              <RegionSlide
+                activePageNumber={9}
+                image={'/home/moon/bay_of_harmony.jpeg'}
+                icon={'/home/moon/bay_of_harmony.svg'}
+                lunarOriginName={'Bay of Harmony'}
+                lunarOriginNameLatin={'Sinus Concordiae'}
+              />
+            </div>
+            <div style={{ position: 'relative' }}>
+              <RegionSlide
+                activePageNumber={10}
+                image={'/home/moon/bay_of_success.jpeg'}
+                icon={'/home/moon/bay_of_success.svg'}
+                lunarOriginName={'Bay of Success'}
+                lunarOriginNameLatin={'Sinus Successus'}
+              />
+            </div>
+            <div style={{ position: 'relative' }}>
+              <RegionSlide
+                activePageNumber={11}
+                image={'/home/moon/bay_of_love.jpeg'}
+                icon={'/home/moon/bay_of_love.svg'}
+                lunarOriginName={'Bay of Love'}
+                lunarOriginNameLatin={'Sinus Amoris'}
+              />
+            </div>
+            <div style={{ position: 'relative' }}>
+              <RegionSlide
+                activePageNumber={12}
+                image={'/home/moon/lake_of_time.jpeg'}
+                icon={'/home/moon/lake_of_time.svg'}
+                lunarOriginName={'Lake of Time'}
+                lunarOriginNameLatin={'Lacus Temporis'}
+              />
+            </div>
+          </Slider>
         </Col>
       </Row>
     </>
