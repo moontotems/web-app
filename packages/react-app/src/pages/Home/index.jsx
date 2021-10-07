@@ -44,9 +44,7 @@ export default function Home({ ethereumProps, nftAppProps }) {
         style={{
           float: 'right',
           height: '100vh',
-          width: '100%',
-          marginTop: '15%'
-          //paddingTop: '10%'
+          width: '100%'
         }}
       >
         <UniqueFeaturesSection
@@ -58,8 +56,7 @@ export default function Home({ ethereumProps, nftAppProps }) {
         style={{
           float: 'right',
           height: '100vh',
-          width: '100%',
-          marginTop: '10%'
+          width: '100%'
         }}
       >
         <LunarSignsSection
