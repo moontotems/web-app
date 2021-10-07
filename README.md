@@ -1,4 +1,4 @@
-# Crypto Moons
+# Talismoons WebApp
 
 ## Apply theme changes
 
