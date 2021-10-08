@@ -9,7 +9,7 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
   const { setActiveFilter, activeFilter } = nftAppProps
 
   const iconStyle = {
-    margin: '0 20px',
+    //margin: '0 20px',
     cursor: 'pointer'
   }
   const menuItemStyle = {
