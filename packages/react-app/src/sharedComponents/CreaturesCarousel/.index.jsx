@@ -21,7 +21,7 @@ import {
 
 import { useEventListener } from '../../../hooks'
 import { getImageUrl } from '../../../helpers'
-import creature_metadata_hashmap from '../../assets/creature_metadata_hashmap.json'
+import houdini_json_hashmap from '../../assets/houdini_json_hashmap.json'
 import Chatbot from '../Chatbot'
 import Attributes from '../CreatureAttributes'
 import Icons from '../icons'
@@ -48,7 +48,7 @@ export default function CreaturePage({
 
   const { id: tokenId } = useParams()
 
-  const creatureMetadata = creature_metadata_hashmap[tokenId]
+  const creatureMetadata = houdini_json_hashmap[tokenId]
 
   const mintEvents = useEventListener(
     readContracts,

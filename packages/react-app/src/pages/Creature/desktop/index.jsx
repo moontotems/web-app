@@ -29,7 +29,7 @@ import {
   FilterDropdown
 } from '../../../sharedComponents'
 const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
-import creature_metadata_hashmap from '../../../assets/creature_metadata_hashmap.json'
+import houdini_json_hashmap from '../../../assets/houdini_json_hashmap.json'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
@@ -103,7 +103,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   const assembleCreature = tokenId => {
     const minted = !!mintEventsMap[tokenId]
     const isFavorite = checkIfIsFavorite(tokenId)
-    const metaData = creature_metadata_hashmap[tokenId]
+    const metaData = houdini_json_hashmap[tokenId]
     const image = getImageUrl(tokenId)
 
     const creature = {

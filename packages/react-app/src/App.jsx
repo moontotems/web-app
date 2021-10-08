@@ -34,7 +34,7 @@ import {
   useOnBlock,
   useUserSigner
 } from './hooks'
-import creature_metadata_hashmap from './assets/creature_metadata_hashmap.json'
+import houdini_json_hashmap from './assets/houdini_json_hashmap.json'
 
 import './App.less'
 
@@ -492,7 +492,7 @@ function App() {
   const assembleCreature = tokenId => {
     const minted = !!mintEventsMap[tokenId]
     const isFavorite = checkIfIsFavorite(tokenId)
-    const metaData = creature_metadata_hashmap[tokenId]
+    const metaData = houdini_json_hashmap[tokenId]
     const image = getImageUrl(tokenId)
 
     const creature = {

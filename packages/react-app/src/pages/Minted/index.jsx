@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Divider } from 'antd'
 import { getImageUrl } from '../../helpers'
 import { Creature } from '../../sharedComponents'
-import creature_metadata_hashmap from '../../assets/creature_metadata_hashmap.json'
+import houdini_json_hashmap from '../../assets/houdini_json_hashmap.json'
 import { Mint } from './components'
 
 export default function Minted({ ethereumProps, nftAppProps }) {
@@ -24,7 +24,7 @@ export default function Minted({ ethereumProps, nftAppProps }) {
               const tokenId = _tokenId.toString()
 
               const minted = !!mintEventsMap[tokenId]
-              const metaData = creature_metadata_hashmap[tokenId]
+              const metaData = houdini_json_hashmap[tokenId]
               const isFavorite = checkIfIsFavorite()
               const image = getImageUrl(tokenId)
 

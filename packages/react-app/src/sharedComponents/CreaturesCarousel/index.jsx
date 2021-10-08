@@ -19,7 +19,7 @@ import $ from 'jquery'
 
 import FILTERS from '../../sharedComponents/FilterDropdown/filters'
 import { getImageUrl } from '../../helpers'
-import creature_metadata_hashmap from '../../assets/creature_metadata_hashmap.json'
+import houdini_json_hashmap from '../../assets/houdini_json_hashmap.json'
 import Icons from '../icons'
 const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
@@ -48,7 +48,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
   for (let tokenId = startId; tokenId < lastVisibleTokenId; tokenId++) {
     const minted = !!mintEventsMap[tokenId]
     const isFavorite = checkIfIsFavorite(tokenId)
-    const metaData = creature_metadata_hashmap[tokenId]
+    const metaData = houdini_json_hashmap[tokenId]
     const image = getImageUrl(tokenId)
 
     const creature = {

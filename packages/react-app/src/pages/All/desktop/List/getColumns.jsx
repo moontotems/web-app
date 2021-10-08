@@ -31,11 +31,19 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       title: 'Image',
       fixed: 'left',
       render: (value, record) => (
-        <img
-          src={getImageUrl(record.id)}
-          alt={`Talismoon #${record.id}`}
-          style={{ width: '100%' }}
-        />
+        <Link
+          onClick={() => {
+            setRoute('/talismoon')
+          }}
+          to={`/talismoon/${record.id}`}
+          target='_blank'
+        >
+          <img
+            src={getImageUrl(record.id)}
+            alt={`Talismoon #${record.id}`}
+            style={{ width: '100%' }}
+          />
+        </Link>
       )
     },
     {
@@ -67,11 +75,11 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       sorter: (a, b) => a.colorsTotal - b.colorsTotal
     },
     {
-      title: 'Complexity Factor',
-      dataIndex: 'complexityFactor',
+      title: 'Complexity Score',
+      dataIndex: 'complexityScore',
       // tip: 'This is a cool tip ...',
       filters: true,
-      sorter: (a, b) => a.complexityFactor - b.complexityFactor
+      sorter: (a, b) => a.complexityScore - b.complexityScore
     },
     {
       title: 'Complexity Pieces',
@@ -144,10 +152,6 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
 
       filters: true,
       onFilter: (value, record, ...rest) => {
-        console.log({ ...rest })
-        console.log({ value })
-        console.log({ record })
-        console.log('---')
         return record['lunarOriginName']
           .toString()
           .toLowerCase()
@@ -230,14 +234,16 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       }
     },
     {
-      title: 'mat_patternBump',
-      dataIndex: 'mat_patternBump',
-      sorter: (a, b) => a.mat_patternBump - b.mat_patternBump
+      title: 'mat_patterBumpName',
+      dataIndex: 'mat_patterBumpName',
+      sorter: (a, b) =>
+        a.mat_patterBumpName?.localeCompare(b.mat_patterBumpName)
     },
     {
-      title: 'mat_patternPerf',
-      dataIndex: 'mat_patternPerf',
-      sorter: (a, b) => a.mat_patternPerf - b.mat_patternPerf
+      title: 'mat_patterPerfName',
+      dataIndex: 'mat_patterPerfName',
+      sorter: (a, b) =>
+        a.mat_patterPerfName?.localeCompare(b.mat_patterPerfName)
     },
     {
       title: 'Moon Month',
@@ -251,68 +257,58 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     },
     {
       title: 'Age Rank',
-      dataIndex: 'RankAge',
-      sorter: (a, b) => a.RankAge - b.RankAge
+      dataIndex: 'ageRank',
+      sorter: (a, b) => a.ageRank - b.ageRank
+    },
+    {
+      title: 'No. of Distinct Colors',
+      dataIndex: 'colorsTotal',
+      sorter: (a, b) => a.colorsTotal - b.colorsTotal
     },
     {
       title: 'Color Quantity Rank',
-      dataIndex: 'RankColorsQuantity',
-      sorter: (a, b) => a.RankColorsQuantity - b.RankColorsQuantity
+      dataIndex: 'colorRank',
+      sorter: (a, b) => a.colorRank - b.colorRank
     },
     {
       title: 'Complexity Rank',
-      dataIndex: 'RankComplexity',
-      sorter: (a, b) => a.RankComplexity - b.RankComplexity
+      dataIndex: 'complexityRank',
+      sorter: (a, b) => a.complexityRank - b.complexityRank
     },
     {
       title: 'Rarity Rank',
-      dataIndex: 'RankRarity',
-      sorter: (a, b) => a.RankRarity - b.RankRarity
+      dataIndex: 'rarityRank',
+      sorter: (a, b) => a.rarityRank - b.rarityRank
     },
     {
-      title: 'Age Rarity',
-      dataIndex: 'rarityAge',
-      sorter: (a, b) => a.rarityAge - b.rarityAge
+      title: 'Age Score',
+      dataIndex: 'AgeScore',
+      sorter: (a, b) => a.ageScore - b.ageScore
     },
     {
-      title: 'Field Rarity',
-      dataIndex: 'rarityField',
-      sorter: (a, b) => a.rarityField - b.rarityField
+      title: 'Material Score',
+      dataIndex: 'materialScore',
+      sorter: (a, b) => a.materialScore - b.materialScore
     },
     {
-      title: 'Material Rarity',
-      dataIndex: 'rarityMaterial',
-      sorter: (a, b) => a.rarityMaterial - b.rarityMaterial
+      title: 'Moon Month Score',
+      dataIndex: 'moonMonthScore',
+      sorter: (a, b) => a.moonMonthScore - b.moonMonthScore
     },
     {
-      title: 'Moon Month Rarity',
-      dataIndex: 'raritymoonMonth',
-      sorter: (a, b) => a.raritymoonMonth - b.raritymoonMonth
+      title: 'Moon Phase Score',
+      dataIndex: 'moonPhaseScore',
+      sorter: (a, b) => a.moonPhaseScore - b.moonPhaseScore
     },
     {
-      title: 'Moon Phase Rarity',
-      dataIndex: 'raritymoonPhase',
-      sorter: (a, b) => a.raritymoonPhase - b.raritymoonPhase
-    },
-    {
-      title: 'Origin Rarity',
-      dataIndex: 'rarityOrigin',
-      sorter: (a, b) => a.rarityOrigin - b.rarityOrigin
-    },
-    {
-      title: 'Range Rarity',
-      dataIndex: 'rarityRange',
-      sorter: (a, b) => a.rarityRange - b.rarityRange
+      title: 'Lunar Origin Score',
+      dataIndex: 'lunarOriginScore',
+      sorter: (a, b) => a.lunarOriginScore - b.lunarOriginScore
     },
     {
       title: 'Rarity Score',
       dataIndex: 'rarityScore',
       sorter: (a, b) => a.rarityScore - b.rarityScore
-    },
-    {
-      title: 'Title Rarity',
-      dataIndex: 'rarityTitle',
-      sorter: (a, b) => a.rarityTitle - b.rarityTitle
     },
     {
       title: 'Job Title',

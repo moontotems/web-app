@@ -5,7 +5,7 @@ import ProTable, { TableDropdown } from '@ant-design/pro-table'
 import Highlighter from 'react-highlight-words'
 import { SearchOutlined } from '@ant-design/icons'
 
-import talismoon_metadata from '../../../../assets/TALISMOONS_GENERATION01_DATA_11.json'
+import talismoon_metadata from '../../../../assets/TALISMOONS_GENERATION01_DATA_13.json'
 import getColumns from './getColumns'
 
 export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
