@@ -14,7 +14,8 @@ const noContractDisplay = (
         className='highlight'
         style={{
           marginLeft: 4,
-          /* backgroundColor: "#f1f1f1", */ padding: 4,
+          /* backgroundColor: "#f1f1f1", */
+          padding: 4,
           borderRadius: 4,
           fontWeight: 'bolder'
         }}
@@ -26,7 +27,8 @@ const noContractDisplay = (
         className='highlight'
         style={{
           marginLeft: 4,
-          /* backgroundColor: "#f1f1f1", */ padding: 4,
+          /* backgroundColor: "#f1f1f1", */
+          padding: 4,
           borderRadius: 4,
           fontWeight: 'bolder'
         }}
@@ -44,7 +46,8 @@ const noContractDisplay = (
         className='highlight'
         style={{
           marginLeft: 4,
-          /* backgroundColor: "#f1f1f1", */ padding: 4,
+          /* backgroundColor: "#f1f1f1", */
+          padding: 4,
           borderRadius: 4,
           fontWeight: 'bolder'
         }}
@@ -73,7 +76,7 @@ export default function Contract({
   chainId,
   contractConfig
 }) {
-  const contracts = useContractLoader(provider, contractConfig, chainId)
+  const contracts = useContractLoader(provider)
   let contract
   if (!customContract) {
     contract = contracts ? contracts[name] : ''

@@ -34,6 +34,11 @@ import {
   useOnBlock,
   useUserSigner
 } from './hooks'
+
+// contracts
+//import deployedContracts from './contracts/hardhat_contracts.json'
+//import externalContracts from './contracts/external_contracts'
+
 import houdini_json_hashmap from './assets/houdini_json_hashmap.json'
 
 import './App.less'
@@ -200,7 +205,7 @@ function App() {
   // Just plug in different 🛰 providers to get your balance on different chains:
   //const yourMainnetBalance = useBalance(mainnetProvider, address)
 
-  const contractConfig = useContractConfig()
+  //const contractConfig = useContractConfig()
 
   // Load in your local 📝 contract and read a value from it:
   const readContracts = useContractLoader(localProvider)
@@ -653,15 +658,7 @@ function App() {
           }}
           onClick={() => setSidebarLeftOpen(false)}
         >
-          <Routes
-            ethereumProps={ethereumProps}
-            nftAppProps={nftAppProps}
-            userSigner={userSigner}
-            localProvider={localProvider}
-            address={address}
-            blockExplorer={blockExplorer}
-            contractConfig={contractConfig}
-          />
+          <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>
 
         {(route === '/all' || route === '/favorites') && (

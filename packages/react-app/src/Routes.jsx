@@ -10,7 +10,7 @@ import {
   Favorites,
   Minted,
   Wallet,
-  ContractUI,
+  //ContractUI,
   ContractEvents,
   Contact,
   LegalNotice,
@@ -18,15 +18,7 @@ import {
   TermsAndConditions
 } from './pages'
 
-export default function Routes({
-  ethereumProps,
-  nftAppProps,
-  userSigner,
-  localProvider,
-  address,
-  blockExplorer,
-  contractConfig
-}) {
+export default function Routes({ ethereumProps, nftAppProps }) {
   return (
     <Switch>
       <Route exact path='/'>
@@ -65,6 +57,7 @@ export default function Routes({
           nftAppProps={nftAppProps}
         />
       </Route>
+      {/*
       <Route exact path='/contract-interface'>
         <ContractUI
           userSigner={userSigner}
@@ -74,6 +67,7 @@ export default function Routes({
           contractConfig={contractConfig}
         />
       </Route>
+      */}
 
       <Route exact path='/contact'>
         <Contact />
