@@ -1,3 +1,4 @@
+/*
 const contractListPromise = import('../contracts/hardhat_contracts.json')
 
 const externalContractsPromise = import('../contracts/external_contracts')
@@ -8,3 +9,4 @@ export const loadAppContracts = async () => {
   config.externalContracts = (await externalContractsPromise).default ?? {}
   return config
 }
+*/
