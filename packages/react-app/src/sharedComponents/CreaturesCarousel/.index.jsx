@@ -52,7 +52,7 @@ export default function CreaturePage({
 
   const mintEvents = useEventListener(
     readContracts,
-    'NFTokenMetadataEnumerableMock',
+    'Moons',
     'Mint',
     localProvider,
     1
@@ -75,7 +75,7 @@ export default function CreaturePage({
     console.log({ to, tokenId, value })
 
     tx(
-      writeContracts.NFTokenMetadataEnumerableMock.mint(to, tokenId, {
+      writeContracts.Moons.mint(to, tokenId, {
         gasPrice,
         // gasLimit: 1000000
         value

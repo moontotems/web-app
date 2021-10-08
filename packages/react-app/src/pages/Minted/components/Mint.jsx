@@ -17,9 +17,9 @@ export default function Mint({ gasPrice, tx, writeContracts }) {
     console.log({ values })
     const { _to, _tokenId, _amount } = values
 
-    // writeContracts.NFTokenMetadataEnumerableMock
+    // writeContracts.Moons
     tx(
-      writeContracts.NFTokenMetadataEnumerableMock.mint(_to, _tokenId, {
+      writeContracts.Moons.mint(_to, _tokenId, {
         gasPrice,
         // gasLimit: 1000000
         value: utils.parseEther(_amount)

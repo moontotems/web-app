@@ -10,7 +10,7 @@ export default function ContractEvents({ ethereumProps }) {
 
   const mintEvents = useEventListener(
     readContracts,
-    'NFTokenMetadataEnumerableMock',
+    'Moons',
     'Mint',
     localProvider,
     1
@@ -18,7 +18,7 @@ export default function ContractEvents({ ethereumProps }) {
 
   const transferEvents = useEventListener(
     readContracts,
-    'NFTokenMetadataEnumerableMock',
+    'Moons',
     'Transfer',
     localProvider,
     1
@@ -26,7 +26,7 @@ export default function ContractEvents({ ethereumProps }) {
 
   const approvalEvents = useEventListener(
     readContracts,
-    'NFTokenMetadataEnumerableMock',
+    'Moons',
     'Approval',
     localProvider,
     1
@@ -34,7 +34,7 @@ export default function ContractEvents({ ethereumProps }) {
 
   const approvalForAllEvents = useEventListener(
     readContracts,
-    'NFTokenMetadataEnumerableMock',
+    'Moons',
     'ApprovalForAll',
     localProvider,
     1

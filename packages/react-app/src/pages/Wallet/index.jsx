@@ -18,8 +18,7 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
     const getUsersCreatures = async () => {
       try {
         console.log('now calling infura: balanceOf')
-        let balanceOf =
-          await readContracts.NFTokenMetadataEnumerableMock.balanceOf(address)
+        let balanceOf = await readContracts.Moons.balanceOf(address)
         console.log({ address })
         console.log({ balanceOf })
         balanceOf = parseInt(balanceOf.toString()) || 0
@@ -29,16 +28,15 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
         const usersCreaturesUpdate = []
         for (let tokenIndex = 0; tokenIndex < balanceOfUser; tokenIndex++) {
           console.log('now calling infura: tokenOfOwnerByIndex')
-          let tokenId =
-            await readContracts.NFTokenMetadataEnumerableMock.tokenOfOwnerByIndex(
-              address,
-              tokenIndex
-            )
+          let tokenId = await readContracts.Moons.tokenOfOwnerByIndex(
+            address,
+            tokenIndex
+          )
           tokenId = tokenId.toString()
           console.log({ tokenId })
           /*
           const tokenURI =
-            await readContracts.NFTokenMetadataEnumerableMock.tokenURI(tokenId)
+            await readContracts.Moons.tokenURI(tokenId)
           console.log('tokenURI', tokenURI)
           */
 
