@@ -6,7 +6,7 @@ export default function Slide2({ ethereumProps, nftAppProps }) {
     <>
       <img
         src='/home/TALISMOON_CARD_SQUARE_03963.jpg'
-        style={{ float: 'left', height: '80vh' }}
+        style={{ float: 'left', height: '80vh', padding: '5%' }}
       />
       <div
         style={{

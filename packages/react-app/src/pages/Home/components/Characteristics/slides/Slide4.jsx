@@ -6,7 +6,13 @@ export default function Slide4({ ethereumProps, nftAppProps }) {
     <div>
       <img
         src='/home/TALISMOONS_GEN01_ZOOMSYMBOLS0003.jpeg'
-        style={{ position: 'absolute', top: 0, left: 0, height: '80vh' }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          height: '80vh',
+          padding: '5%'
+        }}
       />
 
       <div

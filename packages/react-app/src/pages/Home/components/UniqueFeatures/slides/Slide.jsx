@@ -32,7 +32,7 @@ export default function Slide({
           <div
             style={{
               width: '350px',
-              fontSize: '25px',
+              fontSize: '21px',
               fontWeight: '300',
               lineHeight: '35px'
             }}
@@ -45,20 +45,30 @@ export default function Slide({
             <div
               style={{
                 width: '100%',
-                marginBottom: '25px',
-                fontSize: '17px',
+                marginBottom: '15px',
+                fontSize: '19px',
                 fontWeight: 400
               }}
             >
               {subtitle}
             </div>
             <div
-              style={{ width: '100%', marginBottom: '25px', fontSize: '17px' }}
+              style={{
+                width: '100%',
+                marginBottom: '25px',
+                fontSize: '17px',
+                lineHeight: '24px'
+              }}
             >
               {text1}
             </div>
             <div
-              style={{ width: '100%', marginBottom: '25px', fontSize: '17px' }}
+              style={{
+                width: '100%',
+                marginBottom: '25px',
+                fontSize: '17px',
+                lineHeight: '24px'
+              }}
             >
               {text2}
             </div>

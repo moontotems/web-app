@@ -22,28 +22,23 @@ export default function RegionSlide({
           >
             <div
               style={{
-                float: 'right',
-                height: '80vh'
+                float: 'left',
+                width: '50%'
               }}
             >
               <img
                 src={image}
                 style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  height: '90%'
+                  float: 'left',
+                  width: '90%'
                 }}
               />
             </div>
 
             <div
               style={{
-                position: 'absolute',
-                top: 0,
-                right: '10%',
-                width: '400px',
-                padding: '15px'
+                float: 'left',
+                width: '40%'
               }}
             >
               <img
