@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Menu, Dropdown, Button as AntdButton } from 'antd'
+import { Row, Col } from 'antd'
 import { Button } from 'antd'
 
 import {
   AsleepFilled32,
-  CheckmarkOutline32,
-  CheckmarkFilled32,
   Favorite32,
   FavoriteFilled32,
-  Filter32,
-  Apps32,
-  CarouselHorizontal32,
-  List32,
   Download32,
   Information32,
   ChatBot32,
@@ -28,12 +22,12 @@ import {
   Icons,
   FilterDropdown
 } from '../../../sharedComponents'
-const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
+const { NotMintedIcon32x32 } = Icons
 import houdini_json_hashmap from '../../../assets/houdini_json_hashmap.json'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
-  const { favorites, activeFilter, mintEventsMap, mint, isMobile } = nftAppProps
+  const { favorites, mintEventsMap, mint, isMobile } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
 
@@ -53,8 +47,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   }
 
   const [activeTokenId, setActiveTokenId] = useState(urlTokenId)
-
-  console.log({ activeTokenId })
 
   const getNextTokenId = ({ direction }) => {
     if (typeof activeTokenId !== 'number') {
