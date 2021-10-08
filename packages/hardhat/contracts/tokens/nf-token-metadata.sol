@@ -12,6 +12,7 @@ contract NFTokenMetadata is
   NFToken,
   ERC721Metadata
 {
+
   using Strings for uint256;
 
   /**
@@ -25,7 +26,7 @@ contract NFTokenMetadata is
   string internal nftSymbol;
 
   /**
-   * @dev A base prefix for all token uris.
+   * @dev A prefix for all token uris.
    */
   string internal nftBaseUri;
 
@@ -68,6 +69,7 @@ contract NFTokenMetadata is
    * @dev Base URI for computing {tokenURI}. If set, the resulting URI for each
    * token will be the concatenation of the `baseURI` and the `tokenId`. Empty
    * by default, can be overriden in child contracts.
+   * @return _baseUri Representing baseUri.
    */
   function baseUri()
     external
@@ -78,16 +80,19 @@ contract NFTokenMetadata is
   }
 
   /**
-   * @dev See {IERC721Metadata-tokenURI}.
+   * @dev A distinct URI (RFC 3986) for a given NFT.
+   * @param _tokenId Id for which we want uri.
+   * @return URI of _tokenId.
    */
-  function tokenURI(uint256 _tokenId)
+  function tokenURI(
+    uint256 _tokenId
+  )
     external
     override
     view
+    validNFToken(_tokenId)
     returns (string memory)
   {
-    // TODO: add check for _tokenId < totalSupply
-    //require(_tokenId >= this.totalSupply(), "ERC721: operator query for nonexistent token");
     string memory baseURI = nftBaseUri;
     return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, _tokenId.toString())) : "";
   }
@@ -121,7 +126,6 @@ contract NFTokenMetadata is
     string memory _baseUri
   )
     internal
-    virtual
   {
     nftBaseUri = _baseUri;
   }
