@@ -27,6 +27,7 @@ import {
   useBalance,
   useContractLoader,
   useContractReader,
+  useContractConfig,
   useEventListener,
   useExchangePrice,
   useGasPrice,
@@ -38,8 +39,8 @@ import creature_metadata_hashmap from './assets/creature_metadata_hashmap.json'
 import './App.less'
 
 // 📡 What chain are your contracts deployed to?
-//const targetNetwork = NETWORKS.localhost // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
-const targetNetwork = NETWORKS.rinkeby // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const targetNetwork = NETWORKS.localhost // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+//const targetNetwork = NETWORKS.rinkeby // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = false
@@ -198,6 +199,8 @@ function App() {
 
   // Just plug in different 🛰 providers to get your balance on different chains:
   //const yourMainnetBalance = useBalance(mainnetProvider, address)
+
+  const contractConfig = useContractConfig()
 
   // Load in your local 📝 contract and read a value from it:
   const readContracts = useContractLoader(localProvider)
@@ -394,7 +397,7 @@ function App() {
   const totalSupply =
     useContractReader(
       readContracts,
-      'NFTokenMetadataEnumerableMock',
+      'Moons',
       'totalSupply'
     ) || {}
   */
@@ -450,7 +453,7 @@ function App() {
   // TODO: reduce number of calls
   const mintEvents = useEventListener(
     readContracts,
-    'NFTokenMetadataEnumerableMock',
+    'Moons',
     'Mint',
     localProvider,
     1
@@ -563,7 +566,7 @@ function App() {
     console.log({ to, tokenId, value })
 
     tx(
-      writeContracts.NFTokenMetadataEnumerableMock.mint(to, tokenId, {
+      writeContracts.Moons.mint(to, tokenId, {
         gasPrice,
         // gasLimit: 1000000
         value
@@ -650,7 +653,15 @@ function App() {
           }}
           onClick={() => setSidebarLeftOpen(false)}
         >
-          <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+          <Routes
+            ethereumProps={ethereumProps}
+            nftAppProps={nftAppProps}
+            userSigner={userSigner}
+            localProvider={localProvider}
+            address={address}
+            blockExplorer={blockExplorer}
+            contractConfig={contractConfig}
+          />
         </div>
 
         {(route === '/all' || route === '/favorites') && (

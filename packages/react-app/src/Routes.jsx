@@ -10,15 +10,23 @@ import {
   Favorites,
   Minted,
   Wallet,
+  ContractUI,
   ContractEvents,
   Contact,
   LegalNotice,
   PrivacyPolicy,
   TermsAndConditions
 } from './pages'
-import { Contract } from './sharedComponents'
 
-export default function Routes({ ethereumProps, nftAppProps }) {
+export default function Routes({
+  ethereumProps,
+  nftAppProps,
+  userSigner,
+  localProvider,
+  address,
+  blockExplorer,
+  contractConfig
+}) {
   return (
     <Switch>
       <Route exact path='/'>
@@ -58,10 +66,12 @@ export default function Routes({ ethereumProps, nftAppProps }) {
         />
       </Route>
       <Route exact path='/contract-interface'>
-        <Contract
-          name='NFTokenMetadataEnumerableMock'
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
+        <ContractUI
+          userSigner={userSigner}
+          localProvider={localProvider}
+          address={address}
+          blockExplorer={blockExplorer}
+          contractConfig={contractConfig}
         />
       </Route>
 

@@ -1,6 +1,7 @@
 import React from 'react'
-const { utils } = require('ethers')
 import Address from '../Address'
+
+const { utils } = require('ethers')
 
 const tryToDisplay = thing => {
   if (thing && thing.toNumber) {

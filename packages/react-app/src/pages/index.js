@@ -7,6 +7,7 @@ export { default as Creature } from './Creature/'
 export { default as Favorites } from './Favorites/'
 export { default as Minted } from './Minted/'
 export { default as Wallet } from './Wallet/'
+export { default as ContractUI } from './ContractUI/'
 export { default as ContractEvents } from './ContractEvents/'
 
 export { default as Contact } from './Contact'

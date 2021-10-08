@@ -15,3 +15,5 @@ export { default as useResolveName } from './ResolveName'
 export { default as useTokenList } from './TokenList'
 export { default as useUserSigner } from './UserSigner'
 export { default as useBurnerSigner } from './BurnerSigner'
+
+export * from './useContractConfig'
