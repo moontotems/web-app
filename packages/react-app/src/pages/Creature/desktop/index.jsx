@@ -10,7 +10,12 @@ import {
   Information32,
   ChatBot32,
   Edit32,
-  ZoomIn32
+  ZoomIn32,
+  Email32,
+  SendAltFilled32,
+  LogoInstagram32,
+  LogoTwitter32,
+  LogoDiscord32
 } from '@carbon/icons-react'
 import $ from 'jquery'
 import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
@@ -149,26 +154,45 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   }
 
   return (
-    <div style={{ backgroundColor: '#000' }}>
+    <div>
       <div
-        id='creatureName'
         style={{
           position: 'fixed',
-          top: '15%',
-          width: isMobile ? '20%' : '30%',
+          top: '70px',
+          right: '50px',
           zIndex: 1000
         }}
       >
-        {/*
-        <div style={{ marginLeft: '20%' }}>
-          <div style={{ fontSize: 30 }}>
-            {trait_name1} {trait_name2}
-          </div>
-          <div style={{ fontSize: 20, fontWeight: 600 }}>
-            {trait_jobField} {trait_jobTitle}
-          </div>
-        </div>
-        */}
+        <LogoInstagram32
+          aria-label='Instagram'
+          style={{ ...iconStyle, margin: 15 }}
+        />
+        <LogoTwitter32
+          aria-label='Twitter'
+          style={{ ...iconStyle, margin: 15 }}
+        />
+        <LogoDiscord32 aria-label='Send' style={{ ...iconStyle, margin: 15 }} />
+      </div>
+      <div
+        style={{
+          position: 'fixed',
+          top: '50vh',
+          width: '5px',
+          zIndex: 1000
+        }}
+      >
+        <ZoomIn32
+          aria-label='Zoom'
+          style={{ ...iconStyle, marginBottom: '20px' }}
+        />
+        <Email32
+          aria-label='Message'
+          style={{ ...iconStyle, marginBottom: '20px' }}
+        />
+        <SendAltFilled32
+          aria-label='Send'
+          style={{ ...iconStyle, marginBottom: '20px' }}
+        />
       </div>
 
       <div
@@ -203,24 +227,40 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           width: '40%',
           zIndex: 1000
         }}
-      >
-        <CreatureAttributes creatureMetadata={metaData} />
-      </div>
+      ></div>
       <Row>
-        <Col md={7} />
-        <Col md={10}>
+        <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
           <img
             src={image}
             style={{
-              float: 'left',
-              width: '100%',
-              marginTop: 9
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: '90vh',
+              margin: 'auto',
+              marginTop: 0,
+              marginBottom: 0
             }}
           />
-        </Col>
-        <Col md={7} />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '10vh',
+              left: 0,
+              right: 0,
+              textAlign: 'center'
+            }}
+          >
+            <div style={{ fontSize: 40 }}>
+              {trait_name1} {trait_name2}
+            </div>
+          </div>
+        </div>
       </Row>
-      <Row style={{ marginTop: 25 }}>
+
+      <Row>
         <Col xs={10}>
           <div
             style={{
@@ -235,10 +275,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         </Col>
         <Col xs={4}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ marginBottom: '25px' }}>
-              <div style={{ fontSize: 20 }}>
-                {trait_name1} {trait_name2}
-              </div>
+            <div style={{ marginBottom: '25px', textAlign: 'center' }}>
               <div style={{ fontSize: 14, fontWeight: 600 }}>
                 {trait_jobField} {trait_jobTitle}
               </div>
@@ -290,6 +327,15 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             )}
           </div>
         </Col>
+      </Row>
+      <Row>
+        <Col xs={0} md={7} />
+        <Col xs={24} md={14}>
+          <div style={{ textAlign: 'center' }}>
+            <CreatureAttributes creatureMetadata={metaData} />
+          </div>
+        </Col>
+        <Col xs={0} md={7} />
       </Row>
       <Row>
         <Col span={24}>
