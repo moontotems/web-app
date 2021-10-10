@@ -69,8 +69,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/moon/sea_of_rains.jpeg'
-                  icon='/home/moon/sea_of_rains.svg'
+                  image='/home/lunarOrigins/sea_of_rains.jpeg'
+                  icon='/home/lunarOrigins/sea_of_rains.svg'
                   title='Sea of Rains'
                   subtitle='Mare Imbrium'
                   description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -81,8 +81,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/moon/sea_of_fertility.jpeg'
-                  icon='/home/moon/sea_of_fertility.svg'
+                  image='/home/lunarOrigins/sea_of_fertility.jpeg'
+                  icon='/home/lunarOrigins/sea_of_fertility.svg'
                   title='Sea of Fertility'
                   subtitle='Mare Fecunditatis'
                   description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -93,8 +93,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/moon/sea_of_tranquility.jpeg'
-                  icon='/home/moon/sea_of_tranquility.svg'
+                  image='/home/lunarOrigins/sea_of_tranquility.jpeg'
+                  icon='/home/lunarOrigins/sea_of_tranquility.svg'
                   title='Sea of Tranquility'
                   subtitle='Mare Tranquillitatis'
                   description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -105,8 +105,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/moon/sea_of_clouds.jpeg'
-                  icon='/home/moon/sea_of_clouds.svg'
+                  image='/home/lunarOrigins/sea_of_clouds.jpeg'
+                  icon='/home/lunarOrigins/sea_of_clouds.svg'
                   title='Sea of Clouds'
                   subtitle='Mare Nubium'
                   description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -117,8 +117,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/moon/sea_of_islands.jpeg'
-                  icon='/home/moon/sea_of_islands.svg'
+                  image='/home/lunarOrigins/sea_of_islands.jpeg'
+                  icon='/home/lunarOrigins/sea_of_islands.svg'
                   title='Sea of Islands'
                   subtitle='Mare Insularum'
                   description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -129,8 +129,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/moon/lake_of_dreams.jpeg'
-                  icon='/home/moon/lake_of_dreams.svg'
+                  image='/home/lunarOrigins/lake_of_dreams.jpeg'
+                  icon='/home/lunarOrigins/lake_of_dreams.svg'
                   title='Lake of Dreams'
                   subtitle='Lacus Somniorum'
                   description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -140,8 +140,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/moon/bay_of_rainbows.jpeg'
-                icon='/home/moon/bay_of_rainbows.svg'
+                image='/home/lunarOrigins/bay_of_rainbows.jpeg'
+                icon='/home/lunarOrigins/bay_of_rainbows.svg'
                 title='Bay of Rainbows'
                 subtitle='Sinus Iridum'
                 description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -150,8 +150,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/moon/peninsula_of_thunder.jpeg'
-                icon='/home/moon/peninsula_of_thunder.svg'
+                image='/home/lunarOrigins/peninsula_of_thunder.jpeg'
+                icon='/home/lunarOrigins/peninsula_of_thunder.svg'
                 title='Peninsula of Thunder'
                 subtitle='Peninsula Fulminum'
                 description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -160,8 +160,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/moon/bay_of_harmony.jpeg'
-                icon='/home/moon/bay_of_harmony.svg'
+                image='/home/lunarOrigins/bay_of_harmony.jpeg'
+                icon='/home/lunarOrigins/bay_of_harmony.svg'
                 title='Bay of Harmony'
                 subtitle='Sinus Concordiae'
                 description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -170,8 +170,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/moon/bay_of_success.jpeg'
-                icon='/home/moon/bay_of_success.svg'
+                image='/home/lunarOrigins/bay_of_success.jpeg'
+                icon='/home/lunarOrigins/bay_of_success.svg'
                 title='Bay of Success'
                 subtitle='Sinus Successus'
                 description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -180,8 +180,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/moon/bay_of_love.jpeg'
-                icon='/home/moon/bay_of_love.svg'
+                image='/home/lunarOrigins/bay_of_love.jpeg'
+                icon='/home/lunarOrigins/bay_of_love.svg'
                 title='Bay of Love'
                 subtitle='Sinus Amoris'
                 description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
@@ -190,8 +190,8 @@ export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/moon/lake_of_time.jpeg'
-                icon='/home/moon/lake_of_time.svg'
+                image='/home/lunarOrigins/lake_of_time.jpeg'
+                icon='/home/lunarOrigins/lake_of_time.svg'
                 title='Lake of Time'
                 subtitle='Lacus Temporis'
                 description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
