@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom'
 import { Row, Col } from 'antd'
 import { ArrowRight32 } from '@carbon/icons-react'
 
-export default function WhatAreSection({ ethereumProps, nftAppProps }) {
+export default function Section({ ethereumProps, nftAppProps }) {
   const { route, setRoute } = nftAppProps
 
   return (
     <>
       <Row>
-        <Col xs={2} md={5} />
-        <Col xs={24} md={19}>
+        <Col xs={2} md={1} />
+        <Col xs={24} md={23}>
           <div
             style={{
               float: 'right',
-              height: '80vh',
+              height: '65vh',
               width: '100%'
               //overflow: 'hidden'
               /*
@@ -72,7 +72,7 @@ export default function WhatAreSection({ ethereumProps, nftAppProps }) {
           </div>
         </Col>
       </Row>
-      <Row style={{ marginTop: '5vh' }}>
+      <Row style={{ height: '25vh', marginTop: '5vh' }}>
         <Col xs={24} md={5}>
           <div style={{ padding: '24px', fontSize: '20px' }}>
             What are Talismoons?
@@ -84,12 +84,12 @@ export default function WhatAreSection({ ethereumProps, nftAppProps }) {
               padding: '20px',
               fontSize: '27px',
               fontWeight: 300,
-              lineHeight: '43px'
+              lineHeight: '35px'
             }}
           >
-            Unique digital totems from the Moon discovered on the Ethereum
-            Blockchain. <br /> A next generation NFT project, richer experience
-            more features exclusive to holders
+            Talismoons are beautiful crypto talismans
+            <br /> from the moon and discovered on the
+            <br /> Ethereum blockchain.
           </div>
         </Col>
       </Row>

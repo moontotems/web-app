@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Row, Col } from 'antd'
 import { ArrowRight32 } from '@carbon/icons-react'
 
-export default function NFTTutorialSection({ ethereumProps, nftAppProps }) {
+export default function Section({ ethereumProps, nftAppProps }) {
   const { route, setRoute } = nftAppProps
 
   return (
@@ -16,9 +16,9 @@ export default function NFTTutorialSection({ ethereumProps, nftAppProps }) {
           <div
             style={{
               padding: '20px',
-              fontSize: '30px',
+              fontSize: '25px',
               fontWeight: 300,
-              lineHeight: '43px'
+              lineHeight: '33px'
             }}
           >
             A quick and easy demo of how you can get started with NFTs

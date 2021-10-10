@@ -10,12 +10,7 @@ import {
   Information32,
   ChatBot32,
   Edit32,
-  ZoomIn32,
-  Email32,
-  SendAltFilled32,
-  LogoInstagram32,
-  LogoTwitter32,
-  LogoDiscord32
+  ZoomIn32
 } from '@carbon/icons-react'
 import $ from 'jquery'
 import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
@@ -154,47 +149,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   }
 
   return (
-    <div>
-      <div
-        style={{
-          position: 'fixed',
-          top: '70px',
-          right: '50px',
-          zIndex: 1000
-        }}
-      >
-        <LogoInstagram32
-          aria-label='Instagram'
-          style={{ ...iconStyle, margin: 15 }}
-        />
-        <LogoTwitter32
-          aria-label='Twitter'
-          style={{ ...iconStyle, margin: 15 }}
-        />
-        <LogoDiscord32 aria-label='Send' style={{ ...iconStyle, margin: 15 }} />
-      </div>
-      <div
-        style={{
-          position: 'fixed',
-          top: '50vh',
-          width: '5px',
-          zIndex: 1000
-        }}
-      >
-        <ZoomIn32
-          aria-label='Zoom'
-          style={{ ...iconStyle, marginBottom: '20px' }}
-        />
-        <Email32
-          aria-label='Message'
-          style={{ ...iconStyle, marginBottom: '20px' }}
-        />
-        <SendAltFilled32
-          aria-label='Send'
-          style={{ ...iconStyle, marginBottom: '20px' }}
-        />
-      </div>
-
+    <div style={{ backgroundColor: '#000' }}>
       <div
         style={{
           position: 'fixed',
@@ -275,7 +230,10 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         </Col>
         <Col xs={4}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ marginBottom: '25px', textAlign: 'center' }}>
+            <div style={{ marginBottom: '25px' }}>
+              <div style={{ fontSize: 20 }}>
+                {trait_name1} {trait_name2}
+              </div>
               <div style={{ fontSize: 14, fontWeight: 600 }}>
                 {trait_jobField} {trait_jobTitle}
               </div>

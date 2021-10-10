@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'antd'
-import $ from 'jquery'
 // https://www.npmjs.com/package/react-slick
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -70,9 +69,9 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/characteristics/name_and_title.jpeg'
-                  title='Name & Title'
-                  text='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+                  image='/home/lunarPhases/new_moon.svg'
+                  title='New Moon'
+                  description='New Begging, Virgninal'
                 />
                 <Dots activeDotNumber={2} />
               </div>
@@ -80,19 +79,9 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/characteristics/eye.jpeg'
-                  title='Eyes'
-                  text='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
-                />
-                <Dots activeDotNumber={2} />
-              </div>
-            </div>
-            <div style={{ float: 'left', width: '100%' }}>
-              <div style={{ position: 'relative' }}>
-                <Slide
-                  image='/home/characteristics/texture.jpeg'
-                  title='Texture'
-                  text='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+                  image='/home/lunarPhases/waxing_crescent.svg'
+                  title='Waxing Crescent'
+                  description='Youth, open'
                 />
                 <Dots activeDotNumber={3} />
               </div>
@@ -100,9 +89,9 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/characteristics/symbol.jpeg'
-                  title='Symbol'
-                  text='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+                  image='/home/lunarPhases/first_quarter.svg'
+                  title='First Quarter'
+                  description='Surrounded by three concentric rings of mountains, uplifted by the colossal impact event that excavated it.'
                 />
                 <Dots activeDotNumber={4} />
               </div>
@@ -110,9 +99,9 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/characteristics/initials.jpeg'
-                  title='Initials'
-                  text='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+                  image='/home/lunarPhases/waxing_gibbous.svg'
+                  title='Waxing Gibbous'
+                  description='Exhuberance, excitement, fertile'
                 />
                 <Dots activeDotNumber={5} />
               </div>
@@ -120,12 +109,38 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/characteristics/child.jpeg'
-                  title='Child'
-                  text='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+                  image='/home/lunarPhases/full_moon.svg'
+                  title='Full Moon'
+                  description='Pinnacle, peak, climax'
                 />
                 <Dots activeDotNumber={6} />
               </div>
+            </div>
+            <div style={{ float: 'left', width: '100%' }}>
+              <div style={{ position: 'relative' }}>
+                <Slide
+                  image='/home/lunarPhases/waning_gibbous.svg'
+                  title='Waning Gibbous'
+                  description='The Day after, Reflection'
+                />
+                <Dots activeDotNumber={7} />
+              </div>
+            </div>
+            <div style={{ position: 'relative' }}>
+              <Slide
+                image='/home/lunarPhases/last_quarter.svg'
+                title='Last Quarter'
+                description='Last Hurrah, Realization Dawning of the Mind'
+              />
+              <Dots activeDotNumber={8} />
+            </div>
+            <div style={{ position: 'relative' }}>
+              <Slide
+                image='/home/lunarPhases/waning_crescent.svg'
+                title='Waning Crescent'
+                description='Old, Wise, Calm, Enlightenment'
+              />
+              <Dots activeDotNumber={9} />
             </div>
           </Slider>
         </Col>

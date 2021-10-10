@@ -1,2 +1,2 @@
-export { default as LunarPhaseSlider } from './LunarPhaseSlider'
-export { default as LunarMonthSlider } from './LunarMonthSlider'
+export { default as SlideStart } from './SlideStart'
+export { default as Slide } from './Slide'

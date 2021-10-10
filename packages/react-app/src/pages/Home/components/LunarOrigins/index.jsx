@@ -8,7 +8,7 @@ import { SlideStart, Slide } from './slides'
 import Dots from './Dots'
 import ExploreAllBox from './ExploreAllBox'
 
-export default function Section({ ethereumProps, nftAppProps }) {
+export default function LunarOriginsSection({ ethereumProps, nftAppProps }) {
   const [sliderRef, setSliderRef] = useState()
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
   const sliderSettings = {
     ref: slider => setSliderRef(slider),
     infinite: true,
-    //initialSlide: 3,
+    //initialSlide: 3
     speed: 200,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -69,9 +69,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/lunarMonths/01_ghost_moon.svg'
-                  title='Ghost Moon'
-                  description='Season of ancestry, remembering those who came before us, now living in our memories.'
+                  image='/home/moon/sea_of_rains.jpeg'
+                  icon='/home/moon/sea_of_rains.svg'
+                  title='Sea of Rains'
+                  subtitle='Mare Imbrium'
+                  description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
                 />
                 <Dots activeDotNumber={2} />
               </div>
@@ -79,9 +81,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/lunarMonths/02_snow_moon.svg'
-                  title='Snow Moon'
-                  description='Crystalize fluid situations'
+                  image='/home/moon/sea_of_fertility.jpeg'
+                  icon='/home/moon/sea_of_fertility.svg'
+                  title='Sea of Fertility'
+                  subtitle='Mare Fecunditatis'
+                  description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
                 />
                 <Dots activeDotNumber={3} />
               </div>
@@ -89,9 +93,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/lunarMonths/03_crow_moon.svg'
-                  title='Crow Moon'
-                  description='Opportunists, harbringers, and observers'
+                  image='/home/moon/sea_of_tranquility.jpeg'
+                  icon='/home/moon/sea_of_tranquility.svg'
+                  title='Sea of Tranquility'
+                  subtitle='Mare Tranquillitatis'
+                  description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
                 />
                 <Dots activeDotNumber={4} />
               </div>
@@ -99,9 +105,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/lunarMonths/04_fish_moon.svg'
-                  title='Fish Moon'
-                  description='Comfortable under pressure'
+                  image='/home/moon/sea_of_clouds.jpeg'
+                  icon='/home/moon/sea_of_clouds.svg'
+                  title='Sea of Clouds'
+                  subtitle='Mare Nubium'
+                  description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
                 />
                 <Dots activeDotNumber={5} />
               </div>
@@ -109,9 +117,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/lunarMonths/05_milk_moon.svg'
-                  title='Milk Moon'
-                  description='Fluid and maternal'
+                  image='/home/moon/sea_of_islands.jpeg'
+                  icon='/home/moon/sea_of_islands.svg'
+                  title='Sea of Islands'
+                  subtitle='Mare Insularum'
+                  description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
                 />
                 <Dots activeDotNumber={6} />
               </div>
@@ -119,60 +129,74 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <div style={{ float: 'left', width: '100%' }}>
               <div style={{ position: 'relative' }}>
                 <Slide
-                  image='/home/lunarMonths/06_honey_moon.svg'
-                  title='Honey Moon'
-                  description='Collective effort'
+                  image='/home/moon/lake_of_dreams.jpeg'
+                  icon='/home/moon/lake_of_dreams.svg'
+                  title='Lake of Dreams'
+                  subtitle='Lacus Somniorum'
+                  description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
                 />
                 <Dots activeDotNumber={7} />
               </div>
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/lunarMonths/07_thunder_moon.svg'
-                title='Thunder Moon'
-                description='Energetic, shocking'
+                image='/home/moon/bay_of_rainbows.jpeg'
+                icon='/home/moon/bay_of_rainbows.svg'
+                title='Bay of Rainbows'
+                subtitle='Sinus Iridum'
+                description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
               />
               <Dots activeDotNumber={8} />
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/lunarMonths/08_buck_moon.svg'
-                title='Buck Moon'
-                description='Easily provoked, horny'
+                image='/home/moon/peninsula_of_thunder.jpeg'
+                icon='/home/moon/peninsula_of_thunder.svg'
+                title='Peninsula of Thunder'
+                subtitle='Peninsula Fulminum'
+                description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
               />
               <Dots activeDotNumber={9} />
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/lunarMonths/09_harvest_moon.svg'
-                title='Harvest Moon'
-                description='Abundant'
+                image='/home/moon/bay_of_harmony.jpeg'
+                icon='/home/moon/bay_of_harmony.svg'
+                title='Bay of Harmony'
+                subtitle='Sinus Concordiae'
+                description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
               />
               <Dots activeDotNumber={10} />
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/lunarMonths/10_leaf_moon.svg'
-                title='Leaf Moon'
-                description='Traveller, nomadic'
+                image='/home/moon/bay_of_success.jpeg'
+                icon='/home/moon/bay_of_success.svg'
+                title='Bay of Success'
+                subtitle='Sinus Successus'
+                description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
               />
               <Dots activeDotNumber={11} />
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/lunarMonths/11_blood_moon.svg'
-                title='Blood Moon'
-                description='Surrounded by three concentric rings of mountains, uplifted by the colossal impact event that excavated it.'
+                image='/home/moon/bay_of_love.jpeg'
+                icon='/home/moon/bay_of_love.svg'
+                title='Bay of Love'
+                subtitle='Sinus Amoris'
+                description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
               />
               <Dots activeDotNumber={12} />
             </div>
             <div style={{ position: 'relative' }}>
               <Slide
-                image='/home/lunarMonths/12_oak_moon.svg'
-                title='Oak Moon'
-                description='Static, stoic, stable, solid'
+                image='/home/moon/lake_of_time.jpeg'
+                icon='/home/moon/lake_of_time.svg'
+                title='Lake of Time'
+                subtitle='Lacus Temporis'
+                description='Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
               />
-              <Dots activeDotNumber={13} />
+              <Dots activeDotNumber={12} />
             </div>
           </Slider>
         </Col>

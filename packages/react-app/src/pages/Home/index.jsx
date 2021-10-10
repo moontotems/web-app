@@ -1,10 +1,12 @@
 import React from 'react'
+import { Row, Col } from 'antd'
 
 import {
   CharacteristicsSection,
-  MoonSection,
   LunarSignsSection,
-  MoonOriginsSection,
+  LunarOriginsSection,
+  LunarPhasesSection,
+  SignColumnsSection,
   NFTTutorialSection,
   SocialMediaSection,
   UniqueFeaturesSection,
@@ -13,11 +15,10 @@ import {
 
 export default function Home({ ethereumProps, nftAppProps }) {
   return (
-    <>
+    <div style={{ fontFamily: 'IBM Plex Sans', fontStyle: 'normal' }}>
       <div
         style={{
           float: 'right',
-          //height: '100vh',
           width: '100%',
           overflowX: 'hidden'
         }}
@@ -30,15 +31,83 @@ export default function Home({ ethereumProps, nftAppProps }) {
       <div
         style={{
           float: 'right',
-          height: '100vh',
           width: '100%',
-          paddingTop: '5%'
+          overflowX: 'hidden'
+        }}
+      >
+        <Row>
+          <Col xs={24} md={5}>
+            <div style={{ padding: '24px', fontSize: '20px' }}>
+              Characteristics
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          float: 'right',
+          height: '100vh',
+          width: '100%'
         }}
       >
         <CharacteristicsSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
+      </div>
+      <div
+        style={{
+          float: 'right',
+          width: '100%',
+          marginTop: '40px',
+          overflowX: 'hidden'
+        }}
+      >
+        <Row>
+          <Col xs={24} md={5}>
+            <div style={{ padding: '24px', fontSize: '20px' }}>
+              Lunar Phases
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          float: 'right',
+          height: '100vh',
+          width: '100%'
+        }}
+      >
+        <LunarPhasesSection
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
+      </div>
+      <div
+        style={{
+          float: 'right',
+          width: '100%',
+          marginTop: '40px',
+          overflowX: 'hidden'
+        }}
+      >
+        <Row>
+          <Col xs={24} md={5}>
+            <div style={{ padding: '24px', fontSize: '20px' }}>
+              Unique Features
+            </div>
+          </Col>
+          <Col xs={24} md={10}>
+            <div
+              style={{
+                padding: '20px',
+                fontSize: '27px',
+                fontWeight: 300,
+                lineHeight: '33px'
+              }}
+            ></div>
+          </Col>
+        </Row>
       </div>
       <div
         style={{
@@ -55,6 +124,31 @@ export default function Home({ ethereumProps, nftAppProps }) {
       <div
         style={{
           float: 'right',
+          width: '100%',
+          marginTop: '40px',
+          marginBottom: '40px',
+          overflowX: 'hidden'
+        }}
+      >
+        <Row>
+          <Col xs={24} md={5}>
+            <div style={{ padding: '24px', fontSize: '20px' }}>Lunar Signs</div>
+          </Col>
+          <Col xs={24} md={10}>
+            <div
+              style={{
+                padding: '20px',
+                fontSize: '27px',
+                fontWeight: 300,
+                lineHeight: '33px'
+              }}
+            ></div>
+          </Col>
+        </Row>
+      </div>
+      <div
+        style={{
+          float: 'right',
           height: '100vh',
           width: '100%'
         }}
@@ -67,15 +161,29 @@ export default function Home({ ethereumProps, nftAppProps }) {
       <div
         style={{
           float: 'right',
-          height: '100vh',
           width: '100%',
-          marginTop: '10%'
+          marginTop: '40px',
+          marginBottom: '40px',
+          overflowX: 'hidden'
         }}
       >
-        <MoonOriginsSection
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-        />
+        <Row>
+          <Col xs={24} md={5}>
+            <div style={{ padding: '24px', fontSize: '20px' }}>
+              Lunar Origins
+            </div>
+          </Col>
+          <Col xs={24} md={10}>
+            <div
+              style={{
+                padding: '20px',
+                fontSize: '27px',
+                fontWeight: 300,
+                lineHeight: '33px'
+              }}
+            ></div>
+          </Col>
+        </Row>
       </div>
       <div
         style={{
@@ -84,7 +192,10 @@ export default function Home({ ethereumProps, nftAppProps }) {
           width: '100%'
         }}
       >
-        <MoonSection ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        <LunarOriginsSection
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
       </div>
       <div
         style={{
@@ -114,6 +225,6 @@ export default function Home({ ethereumProps, nftAppProps }) {
         />
       </div>
       */}
-    </>
+    </div>
   )
 }
