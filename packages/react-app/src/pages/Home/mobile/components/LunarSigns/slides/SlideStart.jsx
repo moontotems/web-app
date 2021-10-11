@@ -11,7 +11,7 @@ export default function SlideStart({ ethereumProps, nftAppProps }) {
           flexDirection: 'column'
         }}
       >
-        <img src='/home/lunarMonths/01_ghost_moon.svg' alt='Lunar Signs' />
+        <img src='/home/lunarMonths/512/01_ghost_moon.jpg' alt='Lunar Signs' />
       </div>
 
       <div style={{ height: '40vh', marginTop: '2%', overflow: 'hidden' }}>

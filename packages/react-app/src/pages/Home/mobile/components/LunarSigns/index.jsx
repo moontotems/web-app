@@ -59,7 +59,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/01_ghost_moon.svg'
+              image='/home/lunarMonths/512/01_ghost_moon.jpg'
               title='Ghost Moon'
               description='Season of ancestry, remembering those who came before us, now living in our memories.'
             />
@@ -68,7 +68,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/02_snow_moon.svg'
+              image='/home/lunarMonths/512/02_snow_moon.jpg'
               title='Snow Moon'
               description='Crystalize fluid situations'
             />
@@ -77,7 +77,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/03_crow_moon.svg'
+              image='/home/lunarMonths/512/03_crow_moon.jpg'
               title='Crow Moon'
               description='Opportunists, harbringers, and observers'
             />
@@ -86,7 +86,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/04_fish_moon.svg'
+              image='/home/lunarMonths/512/04_fish_moon.jpg'
               title='Fish Moon'
               description='Comfortable under pressure'
             />
@@ -95,7 +95,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/05_milk_moon.svg'
+              image='/home/lunarMonths/512/05_milk_moon.jpg'
               title='Milk Moon'
               description='Fluid and maternal'
             />
@@ -104,7 +104,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/06_honey_moon.svg'
+              image='/home/lunarMonths/512/06_honey_moon.jpg'
               title='Honey Moon'
               description='Collective effort'
             />
@@ -113,7 +113,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/07_thunder_moon.svg'
+              image='/home/lunarMonths/512/07_thunder_moon.jpg'
               title='Thunder Moon'
               description='Energetic, shocking'
             />
@@ -122,7 +122,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/08_buck_moon.svg'
+              image='/home/lunarMonths/512/08_buck_moon.jpg'
               title='Buck Moon'
               description='Easily provoked, horny'
             />
@@ -131,7 +131,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/10_leaf_moon.svg'
+              image='/home/lunarMonths/512/10_leaf_moon.jpg'
               title='Leaf Moon'
               description='Traveller, nomadic'
             />
@@ -140,7 +140,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/11_blood_moon.svg'
+              image='/home/lunarMonths/512/11_blood_moon.jpg'
               title='Blood Moon'
               description='Surrounded by three concentric rings of mountains, uplifted by the colossal impact event that excavated it.'
             />
@@ -149,7 +149,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarMonths/12_oak_moon.svg'
+              image='/home/lunarMonths/512/12_oak_moon.jpg'
               title='Oak Moon'
               description='Static, stoic, stable, solid'
             />

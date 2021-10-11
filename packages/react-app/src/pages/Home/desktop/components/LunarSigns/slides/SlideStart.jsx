@@ -13,8 +13,8 @@ export default function SlideStart({ ethereumProps, nftAppProps }) {
         }}
       >
         <img
-          src='/home/lunarMonths/01_ghost_moon.svg'
-          style={{ float: 'left', height: '100%', width: '100%' }}
+          src='/home/lunarMonths/1080/01_ghost_moon.jpg'
+          style={{ float: 'left', width: '100%' }}
         />
       </div>
       <div

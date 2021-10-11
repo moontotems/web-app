@@ -59,7 +59,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarPhases/new_moon.svg'
+              image='/home/lunarPhases/512/01_new_moon.jpg'
               title='New Moon'
               text='New Begging, Virgninal'
             />
@@ -68,7 +68,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarPhases/waxing_crescent.svg'
+              image='/home/lunarPhases/512/02_waxing_crescent.jpg'
               title='Waxing Crescent'
               text='Youth, open'
             />
@@ -77,7 +77,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarPhases/first_quarter.svg'
+              image='/home/lunarPhases/512/03_last_quarter.jpg'
               title='First Quarter'
               text='Surrounded by three concentric rings of mountains, uplifted by the colossal impact event that excavated it.'
             />
@@ -86,7 +86,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarPhases/waxing_gibbous.svg'
+              image='/home/lunarPhases/512/04_waxing_gibbous.jpg'
               title='Waxing Gibbous'
               text='Exhuberance, excitement, fertile'
             />
@@ -95,7 +95,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarPhases/full_moon.svg'
+              image='/home/lunarPhases/512/05_full_moon.jpg'
               title='Full Moon'
               text='Pinnacle, peak, climax'
             />
@@ -104,7 +104,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarPhases/waning_gibbous.svg'
+              image='/home/lunarPhases/512/06_waning_gibbous.jpg'
               title='Waning Gibbous'
               text='The Day after, Reflection'
             />
@@ -113,7 +113,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarPhases/last_quarter.svg'
+              image='/home/lunarPhases/512/07_last_quarter.jpg'
               title='Last Quarter'
               text='Last Hurrah, Realization Dawning of the Mind'
             />
@@ -122,7 +122,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div style={{ float: 'left', width: '100%', height: '100vh' }}>
           <div style={{ position: 'relative' }}>
             <Slide
-              image='/home/lunarPhases/waning_crescent.svg'
+              image='/home/lunarPhases/512/08_waning_crescent.jpg'
               title='Waning Crescent'
               text='Old, Wise, Calm, Enlightenment'
             />

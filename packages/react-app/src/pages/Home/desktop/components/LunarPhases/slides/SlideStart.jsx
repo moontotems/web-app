@@ -13,8 +13,8 @@ export default function Slide1({ ethereumProps, nftAppProps }) {
         }}
       >
         <img
-          src='/home/lunarPhases/waxing_crescent.svg'
-          style={{ float: 'left', height: '100%', width: '100%' }}
+          src='/home/lunarPhases/1080/02_waxing_crescent.jpg'
+          style={{ float: 'left', width: '100%' }}
         />
       </div>
       <div

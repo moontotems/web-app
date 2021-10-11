@@ -12,7 +12,7 @@ export default function SlideStart({ ethereumProps, nftAppProps }) {
         }}
       >
         <img
-          src='/home/lunarPhases/waxing_crescent.svg'
+          src='/home/lunarPhases/512/02_waxing_crescent.jpg'
           style={{ height: '100%', margin: 'auto' }}
         />
       </div>

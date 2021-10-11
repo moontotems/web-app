@@ -12,10 +12,7 @@ export default function PhaseSlide({ image, title, description }) {
           padding: '5%'
         }}
       >
-        <img
-          src={image}
-          style={{ float: 'left', height: '100%', width: '100%' }}
-        />
+        <img src={image} style={{ float: 'left', width: '100%' }} />
       </div>
       <div
         style={{
