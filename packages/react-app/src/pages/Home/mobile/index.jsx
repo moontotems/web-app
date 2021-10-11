@@ -1,10 +1,10 @@
 import React from 'react'
 
 import {
-  CharacteristicsSection,
+  UniqueCharactersSection,
+  LunarMonthsSection,
   LunarSignsSection,
   LunarOriginsSection,
-  LunarPhasesSection,
   SignColumnsSection,
   NFTTutorialSection,
   SocialMediaSection,
@@ -30,82 +30,23 @@ export default function HomePageMobile({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       </div>
-      <div style={{ ...containerStyle }}>
-        <CharacteristicsSection
+      <div style={{ ...containerStyle, height: 'auto' }}>
+        <UniqueCharactersSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div
-        style={{
-          float: 'right',
-          width: '100%',
-          marginTop: '40px',
-          overflowX: 'hidden'
-        }}
-      >
-        <div>
-          <div
-            style={{
-              padding: '5%',
-              paddingBottom: 0,
-              fontSize: '35px'
-            }}
-          >
-            Lunar Phases
-          </div>
-        </div>
-      </div>
-      <div style={{ ...containerStyle }}>
-        <LunarPhasesSection
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-        />
-      </div>
-      <div
-        style={{
-          float: 'right',
-          width: '100%'
-        }}
-      >
-        <div>
-          <div
-            style={{
-              padding: '5%',
-              paddingBottom: 0,
-              fontSize: '35px'
-            }}
-          >
-            Unique Features
-          </div>
-        </div>
-      </div>
-      <div style={{ ...containerStyle }}>
+      <div style={{ ...containerStyle, height: 'auto' }}>
         <UniqueFeaturesSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div
-        style={{
-          float: 'right',
-          width: '100%',
-          marginTop: '40px',
-          marginBottom: '40px',
-          overflowX: 'hidden'
-        }}
-      >
-        <div>
-          <div
-            style={{
-              padding: '5%',
-              paddingBottom: 0,
-              fontSize: '35px'
-            }}
-          >
-            Lunar Signs
-          </div>
-        </div>
+      <div style={{ ...containerStyle }}>
+        <LunarMonthsSection
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
       </div>
       <div style={{ ...containerStyle }}>
         <LunarSignsSection
@@ -113,34 +54,13 @@ export default function HomePageMobile({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       </div>
-      <div
-        style={{
-          float: 'right',
-          width: '100%',
-          marginTop: '40px',
-          marginBottom: '40px',
-          overflowX: 'hidden'
-        }}
-      >
-        <div>
-          <div
-            style={{
-              padding: '5%',
-              paddingBottom: 0,
-              fontSize: '35px'
-            }}
-          >
-            Lunar Origins
-          </div>
-        </div>
-      </div>
-      <div style={{ ...containerStyle }}>
+      <div style={{ ...containerStyle, height: 'auto' }}>
         <LunarOriginsSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div style={{ ...containerStyle }}>
+      <div style={{ ...containerStyle, height: 'auto' }}>
         <SocialMediaSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}

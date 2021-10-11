@@ -1,23 +1,20 @@
 import React from 'react'
-import { Row, Col } from 'antd'
 
 export default function Section({ ethereumProps, nftAppProps }) {
   return (
-    <>
-      <div style={{ padding: '5%', paddingBottom: 0, fontSize: '35px' }}>
-        @talismoons
-      </div>
+    <div style={{ padding: '5%', fontSize: '35px' }}>
+      <div style={{ paddingBottom: '5%', fontSize: '35px' }}>@talismoons</div>
       <div
         style={{
-          padding: '5%',
           fontSize: '50px',
           fontWeight: 300,
-          lineHeight: '60px'
+          lineHeight: '60px',
+          marginBottom: '10%'
         }}
       >
         Catch the latest announcements and engage with the community
       </div>
-      <div style={{ padding: '5%' }}>
+      <div>
         <img
           src='/home/icons/Logo-Instagram.svg'
           alt='Talismoons Instagram'
@@ -34,6 +31,6 @@ export default function Section({ ethereumProps, nftAppProps }) {
           style={{ width: '20%', marginRight: '5%' }}
         />
       </div>
-    </>
+    </div>
   )
 }

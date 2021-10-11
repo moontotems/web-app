@@ -9,10 +9,9 @@ export default function Section({ ethereumProps, nftAppProps }) {
     <>
       <div style={{ height: '60vh', overflow: 'hidden' }}>
         <div style={{ float: 'right', width: '100%' }}>
-          <img
-            src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg'
-            style={{ float: 'left', height: '60vh' }}
-          />
+          <div style={{ float: 'left', height: '60vh' }}>
+            <img src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg' />
+          </div>
 
           <Link
             onClick={() => {
@@ -21,15 +20,15 @@ export default function Section({ ethereumProps, nftAppProps }) {
             to='/all'
             style={{
               position: 'absolute',
-              top: 'calc(80vh - 216px)',
+              top: 'calc(60vh - 120px)',
               right: 0,
-              height: '150px',
-              width: '350px',
+              height: '200px',
+              width: '400px',
               padding: '15px',
               backgroundColor: '#171414'
             }}
           >
-            <div style={{ fontSize: '17px' }}>Get your TALISMOON!</div>
+            <div style={{ fontSize: '30px' }}>Get your TALISMOON</div>
             <ArrowRight32
               style={{
                 position: 'absolute',
@@ -41,13 +40,19 @@ export default function Section({ ethereumProps, nftAppProps }) {
           </Link>
         </div>
       </div>
-      <div style={{ height: '40vh', marginTop: '2%', overflow: 'hidden' }}>
-        <div style={{ padding: '5%', paddingBottom: 0, fontSize: '35px' }}>
+      <div
+        style={{
+          height: '40vh',
+          marginTop: '2%',
+          padding: '5%',
+          overflow: 'hidden'
+        }}
+      >
+        <div style={{ paddingBottom: '5%', fontSize: '35px' }}>
           What are Talismoons?
         </div>
         <div
           style={{
-            padding: '5%',
             fontSize: '50px',
             fontWeight: 300,
             lineHeight: '60px'

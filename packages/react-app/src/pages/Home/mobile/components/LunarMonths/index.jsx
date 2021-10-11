@@ -16,11 +16,10 @@ export default function Section({ ethereumProps, nftAppProps }) {
           fontSize: '35px'
         }}
       >
-        Lunar Phases
+        Lunar Months
       </div>
       <Slider
         slideContents={slideContents}
-        currentSlideIndex={currentSlideIndex}
         setCurrentSlideIndex={setCurrentSlideIndex}
       />
       <div
