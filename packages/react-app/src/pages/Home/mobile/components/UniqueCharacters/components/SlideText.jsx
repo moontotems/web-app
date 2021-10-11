@@ -14,7 +14,7 @@ export default function SlideText({ slideContents, currentSlideIndex }) {
           style={{
             fontSize: '30px',
             fontWeight: 300,
-            lineHeight: '40px'
+            lineHeight: '45px'
           }}
         >
           {text}

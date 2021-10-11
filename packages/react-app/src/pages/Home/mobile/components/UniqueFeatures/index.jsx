@@ -26,8 +26,8 @@ export default function Section({ ethereumProps, nftAppProps }) {
       <div
         style={{
           float: 'left',
-          width: '100%',
           height: '40vh',
+          width: '100%',
           fontSize: '50px',
           fontWeight: 300,
           lineHeight: '60px'

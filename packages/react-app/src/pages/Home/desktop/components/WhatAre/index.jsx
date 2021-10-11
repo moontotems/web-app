@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col } from 'antd'
 import { ArrowRight32 } from '@carbon/icons-react'
 
 export default function Section({ ethereumProps, nftAppProps }) {
@@ -8,91 +7,68 @@ export default function Section({ ethereumProps, nftAppProps }) {
 
   return (
     <>
-      <Row>
-        <Col xs={2} md={1} />
-        <Col xs={24} md={23}>
-          <div
-            style={{
-              float: 'right',
-              height: '65vh',
-              width: '100%'
-              //overflow: 'hidden'
-              /*
-              background:
-                'url(./home/TALISMOONS_GEN01_BLINKYROTATE.png) no-repeat center center fixed',
-              backgroundSize: 'cover'
-              */
-            }}
-          >
-            <iframe
-              src='https://player.vimeo.com/video/620510465?h=8893bbc9b4&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
-              frameBorder='0'
-              allow='autoplay;'
-              style={{
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                width: '100%',
-                height: '100%'
-              }}
-              title='TALISMOONS_GEN01_BLINKYROTATE.COMP[0000-0832].mp4'
-            />
-            {/*
-            <img
-              src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg'
-              style={{ float: 'left', height: '80vh' }}
-            />
-            */}
+      <div style={{ height: '70vh', overflow: 'hidden' }}>
+        <div style={{ float: 'right', width: '80%' }}>
+          <img src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg' />
 
-            <Link
-              onClick={() => {
-                setRoute('/all')
-              }}
-              to='/all'
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                right: 0,
-                height: '150px',
-                width: '350px',
-                padding: '15px',
-                backgroundColor: '#171414'
-              }}
-            >
-              <div style={{ fontSize: '17px' }}>Get your TALISMOON!</div>
-              <ArrowRight32
-                style={{
-                  position: 'absolute',
-                  bottom: 15,
-                  right: 15,
-                  color: '#00FF74'
-                }}
-              />
-            </Link>
-          </div>
-        </Col>
-      </Row>
-      <Row style={{ height: '25vh', marginTop: '5vh' }}>
-        <Col xs={24} md={5}>
-          <div style={{ padding: '24px', fontSize: '20px' }}>
-            What are Talismoons?
-          </div>
-        </Col>
-        <Col xs={24} md={10}>
-          <div
+          <Link
+            onClick={() => {
+              setRoute('/all')
+            }}
+            to='/all'
             style={{
-              padding: '20px',
-              fontSize: '27px',
-              fontWeight: 300,
-              lineHeight: '35px'
+              position: 'absolute',
+              top: 'calc(70vh - 100px)',
+              right: 0,
+              height: '150px',
+              width: '300px',
+              padding: '15px',
+              backgroundColor: '#171414'
             }}
           >
-            Talismoons are beautiful crypto talismans
-            <br /> from the moon and discovered on the
-            <br /> Ethereum blockchain.
-          </div>
-        </Col>
-      </Row>
+            <div style={{ fontSize: '17px' }}>Get your TALISMOON</div>
+            <ArrowRight32
+              style={{
+                position: 'absolute',
+                bottom: 15,
+                right: 15,
+                color: '#00FF74'
+              }}
+            />
+          </Link>
+        </div>
+      </div>
+      <div
+        style={{
+          height: '30vh',
+          marginTop: '2%',
+          overflow: 'hidden'
+        }}
+      >
+        <div
+          style={{
+            float: 'left',
+            width: '25%',
+            padding: '25px',
+            fontSize: '20px'
+          }}
+        >
+          What are Talismoons?
+        </div>
+        <div
+          style={{
+            float: 'left',
+            width: '40%',
+            padding: '20px',
+            fontSize: '27px',
+            fontWeight: 300,
+            lineHeight: '35px'
+          }}
+        >
+          Talismoons are beautiful crypto talismans from the moon and discovered
+          on the Ethereum blockchain.
+        </div>
+      </div>
     </>
   )
 }

@@ -5,7 +5,7 @@ import Columns from './Columns'
 export default function Section({ ethereumProps, nftAppProps }) {
   return (
     <>
-      <Row style={{ marginBottom: '100px' }}>
+      <div style={{ marginBottom: '100px' }}>
         <Col xs={24} md={5}>
           <div style={{ padding: '24px', fontSize: '20px' }}>Moon Origins</div>
         </Col>
@@ -21,7 +21,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
             Talismoons come from the Moon
           </div>
         </Col>
-      </Row>
+      </div>
       <Columns ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
     </>
   )

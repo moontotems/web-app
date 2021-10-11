@@ -16,10 +16,10 @@ export default function Columns({ ethereumProps, nftAppProps }) {
 
   return (
     <>
-      <Row gutter={[8, 24]} style={{ marginBottom: '250px' }}>
+      <div gutter={[8, 24]} style={{ marginBottom: '250px' }}>
         <Col xs={24} md={7} />
         <Col xs={24} md={5}>
-          <Row>
+          <div>
             <Col xs={24}>
               <img
                 src='/home/MOONPHASE.gif'
@@ -28,8 +28,8 @@ export default function Columns({ ethereumProps, nftAppProps }) {
                 }}
               />
             </Col>
-          </Row>
-          <Row>
+          </div>
+          <div>
             <Link
               onClick={() => {
                 setRoute('/lunar-calendar')
@@ -64,10 +64,10 @@ export default function Columns({ ethereumProps, nftAppProps }) {
                 />
               </Col>
             </Link>
-          </Row>
+          </div>
         </Col>
         <Col xs={24} md={5}>
-          <Row>
+          <div>
             <Col xs={24}>
               <img
                 src='/home/MOONMONTHS.gif'
@@ -76,8 +76,8 @@ export default function Columns({ ethereumProps, nftAppProps }) {
                 }}
               />
             </Col>
-          </Row>
-          <Row>
+          </div>
+          <div>
             <Link
               onClick={() => {
                 setRoute('/lunar-calendar')
@@ -112,11 +112,11 @@ export default function Columns({ ethereumProps, nftAppProps }) {
                 />
               </Col>
             </Link>
-          </Row>
+          </div>
         </Col>
 
         <Col xs={24} md={5}>
-          <Row>
+          <div>
             <Col xs={24}>
               <img
                 src='/home/MOONTURN_crop0146.jpeg'
@@ -125,8 +125,8 @@ export default function Columns({ ethereumProps, nftAppProps }) {
                 }}
               />
             </Col>
-          </Row>
-          <Row>
+          </div>
+          <div>
             <Link
               onClick={() => {
                 setRoute('/lunar-map')
@@ -161,11 +161,11 @@ export default function Columns({ ethereumProps, nftAppProps }) {
                 />
               </Col>
             </Link>
-          </Row>
+          </div>
         </Col>
 
         <Col xs={24} md={2} />
-      </Row>
+      </div>
     </>
   )
 }

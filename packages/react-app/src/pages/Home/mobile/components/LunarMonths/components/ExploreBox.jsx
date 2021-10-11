@@ -27,7 +27,7 @@ export default function ExploreBox() {
             lineHeight: '45px'
           }}
         >
-          Explore the characteristics of the Lunar Phases
+          Explore the characteristics of the Lunar Months
         </div>
         <div
           style={{

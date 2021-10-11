@@ -1,11 +1,10 @@
 import React from 'react'
-import { Row, Col } from 'antd'
 
 import {
-  CharacteristicsSection,
-  LunarSignsSection,
-  LunarOriginsSection,
+  UniqueCharactersSection,
   LunarPhasesSection,
+  LunarMonthsSection,
+  LunarOriginsSection,
   SignColumnsSection,
   NFTTutorialSection,
   SocialMediaSection,
@@ -13,218 +12,60 @@ import {
   WhatAreSection
 } from './components'
 
-export default function HomePageDesktop({ ethereumProps, nftAppProps }) {
+const HEADER_HEIGHT_DESKTOP = '48px'
+
+export default function HomePageDesktip({ ethereumProps, nftAppProps }) {
+  const containerStyle = {
+    float: 'right',
+    height: `calc(100vh - ${HEADER_HEIGHT_DESKTOP})`,
+    width: '100%',
+    backgroundColor: '#000'
+  }
+
   return (
     <div style={{ fontFamily: 'IBM Plex Sans', fontStyle: 'normal' }}>
-      <div
-        style={{
-          float: 'right',
-          width: '100%',
-          overflowX: 'hidden'
-        }}
-      >
+      <div style={{ ...containerStyle }}>
         <WhatAreSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div
-        style={{
-          float: 'right',
-          width: '100%',
-          overflowX: 'hidden'
-        }}
-      >
-        <Row>
-          <Col xs={24} md={5}>
-            <div style={{ padding: '24px', fontSize: '20px' }}>
-              Characteristics
-            </div>
-          </Col>
-        </Row>
-      </div>
-      <div
-        style={{
-          float: 'right',
-          height: '100vh',
-          width: '100%'
-        }}
-      >
-        <CharacteristicsSection
+      <div style={{ ...containerStyle, height: 'auto' }}>
+        <UniqueCharactersSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div
-        style={{
-          float: 'right',
-          width: '100%',
-          marginTop: '40px',
-          overflowX: 'hidden'
-        }}
-      >
-        <Row>
-          <Col xs={24} md={5}>
-            <div style={{ padding: '24px', fontSize: '20px' }}>
-              Lunar Phases
-            </div>
-          </Col>
-        </Row>
-      </div>
-      <div
-        style={{
-          float: 'right',
-          height: '100vh',
-          width: '100%'
-        }}
-      >
-        <LunarPhasesSection
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-        />
-      </div>
-      <div
-        style={{
-          float: 'right',
-          width: '100%',
-          marginTop: '40px',
-          overflowX: 'hidden'
-        }}
-      >
-        <Row>
-          <Col xs={24} md={5}>
-            <div style={{ padding: '24px', fontSize: '20px' }}>
-              Unique Features
-            </div>
-          </Col>
-          <Col xs={24} md={10}>
-            <div
-              style={{
-                padding: '20px',
-                fontSize: '27px',
-                fontWeight: 300,
-                lineHeight: '33px'
-              }}
-            ></div>
-          </Col>
-        </Row>
-      </div>
-      <div
-        style={{
-          float: 'right',
-          height: '100vh',
-          width: '100%'
-        }}
-      >
+      <div style={{ ...containerStyle, height: 'auto' }}>
         <UniqueFeaturesSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div
-        style={{
-          float: 'right',
-          width: '100%',
-          marginTop: '40px',
-          marginBottom: '40px',
-          overflowX: 'hidden'
-        }}
-      >
-        <Row>
-          <Col xs={24} md={5}>
-            <div style={{ padding: '24px', fontSize: '20px' }}>Lunar Signs</div>
-          </Col>
-          <Col xs={24} md={10}>
-            <div
-              style={{
-                padding: '20px',
-                fontSize: '27px',
-                fontWeight: 300,
-                lineHeight: '33px'
-              }}
-            ></div>
-          </Col>
-        </Row>
-      </div>
-      <div
-        style={{
-          float: 'right',
-          height: '100vh',
-          width: '100%'
-        }}
-      >
-        <LunarSignsSection
+      <div style={{ ...containerStyle, height: 'auto' }}>
+        <LunarMonthsSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div
-        style={{
-          float: 'right',
-          width: '100%',
-          marginTop: '40px',
-          marginBottom: '40px',
-          overflowX: 'hidden'
-        }}
-      >
-        <Row>
-          <Col xs={24} md={5}>
-            <div style={{ padding: '24px', fontSize: '20px' }}>
-              Lunar Origins
-            </div>
-          </Col>
-          <Col xs={24} md={10}>
-            <div
-              style={{
-                padding: '20px',
-                fontSize: '27px',
-                fontWeight: 300,
-                lineHeight: '33px'
-              }}
-            ></div>
-          </Col>
-        </Row>
+      <div style={{ ...containerStyle, height: 'auto' }}>
+        <LunarPhasesSection
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
       </div>
-      <div
-        style={{
-          float: 'right',
-          height: '100vh',
-          width: '100%'
-        }}
-      >
+      <div style={{ ...containerStyle, height: 'auto' }}>
         <LunarOriginsSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div
-        style={{
-          float: 'right',
-          //height: '100vh',
-          width: '100%'
-          //paddingTop: '10%'
-        }}
-      >
+      <div style={{ ...containerStyle, height: 'auto' }}>
         <SocialMediaSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      {/*
-      <div
-        style={{
-          float: 'right',
-          height: '100vh',
-          width: '100%'
-          //paddingTop: '10%'
-        }}
-      >
-        <NFTTutorialSection
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-        />
-      </div>
-      */}
     </div>
   )
 }

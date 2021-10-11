@@ -2,8 +2,8 @@ import React from 'react'
 
 import {
   UniqueCharactersSection,
+  LunarPhasesSection,
   LunarMonthsSection,
-  LunarSignsSection,
   LunarOriginsSection,
   SignColumnsSection,
   NFTTutorialSection,
@@ -42,14 +42,14 @@ export default function HomePageMobile({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       </div>
-      <div style={{ ...containerStyle }}>
+      <div style={{ ...containerStyle, height: 'auto' }}>
         <LunarMonthsSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div style={{ ...containerStyle }}>
-        <LunarSignsSection
+      <div style={{ ...containerStyle, height: 'auto' }}>
+        <LunarPhasesSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />

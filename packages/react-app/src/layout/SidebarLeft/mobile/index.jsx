@@ -8,19 +8,19 @@ import {
   SideNavLink
 } from 'carbon-components-react'
 import {
-  FacePendingFilled16,
-  AsleepFilled16,
-  ChartMultitype16,
-  HelpFilled16,
-  LogoInstagram16,
-  LogoTwitter16,
-  LogoDiscord16,
-  Launch16,
-  FavoriteFilled16
+  FacePendingFilled32,
+  AsleepFilled32,
+  ChartMultitype32,
+  HelpFilled32,
+  LogoInstagram32,
+  LogoTwitter32,
+  LogoDiscord32,
+  Launch32,
+  FavoriteFilled32
 } from '@carbon/icons-react'
 import $ from 'jquery'
 import { Icons } from '../../../sharedComponents'
-const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
+const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
 
 export default function SidebarLeftMobileView({
   ethereumProps,
@@ -65,24 +65,24 @@ export default function SidebarLeftMobileView({
         <SideNavMenu title='About'>
           <SideNavMenuItem href='javascript:void(0)'>
             What are Talismoons?{' '}
-            <FacePendingFilled16 style={{ ...iconStyle }} />
+            <FacePendingFilled32 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
-            Key Stats <ChartMultitype16 style={{ ...iconStyle }} />
+            Key Stats <ChartMultitype32 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
-            FAQ <HelpFilled16 style={{ ...iconStyle }} />
+            FAQ <HelpFilled32 style={{ ...iconStyle }} />
           </SideNavMenuItem>
         </SideNavMenu>
         <SideNavMenu title='Lates News'>
           <SideNavMenuItem href='javascript:void(0)'>
-            Instagram <LogoInstagram16 style={{ ...iconStyle }} />
+            Instagram <LogoInstagram32 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
-            Twitter <LogoTwitter16 style={{ ...iconStyle }} />
+            Twitter <LogoTwitter32 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
-            Discord <LogoDiscord16 style={{ ...iconStyle }} />
+            Discord <LogoDiscord32 style={{ ...iconStyle }} />
           </SideNavMenuItem>
         </SideNavMenu>
         <SideNavMenu title='Explore Talismoons'>
@@ -97,7 +97,7 @@ export default function SidebarLeftMobileView({
             >
               All Talismoons
             </Link>
-            <AsleepFilled16 style={{ ...iconStyle }} />
+            <AsleepFilled32 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
             <Link
@@ -111,7 +111,7 @@ export default function SidebarLeftMobileView({
               Available Talismoons
             </Link>{' '}
             <img
-              src={NotMintedIcon16x16}
+              src={NotMintedIcon32x32}
               alt='Minted'
               style={{ ...iconStyle }}
             />
@@ -127,7 +127,7 @@ export default function SidebarLeftMobileView({
             >
               Favorite Talismoons
             </Link>
-            <FavoriteFilled16 style={{ ...iconStyle, color: 'red' }} />
+            <FavoriteFilled32 style={{ ...iconStyle, color: 'red' }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
             <Link
@@ -142,7 +142,7 @@ export default function SidebarLeftMobileView({
               My Talismoons
             </Link>
             <img
-              src={OwnedByUserIcon16x16}
+              src={OwnedByUserIcon32x32}
               alt='Minted'
               style={{ ...iconStyle }}
             />
@@ -150,7 +150,7 @@ export default function SidebarLeftMobileView({
         </SideNavMenu>
         <SideNavLink href='javascript:void(0)'>
           <Link>Explore on OpenSea</Link>
-          <Launch16 style={{ ...iconStyle }} />
+          <Launch32 style={{ ...iconStyle }} />
         </SideNavLink>
         <SideNavLink href='javascript:void(0)'>
           <Link

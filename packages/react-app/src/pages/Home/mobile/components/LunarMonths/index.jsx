@@ -20,6 +20,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
       </div>
       <Slider
         slideContents={slideContents}
+        currentSlideIndex={currentSlideIndex}
         setCurrentSlideIndex={setCurrentSlideIndex}
       />
       <div

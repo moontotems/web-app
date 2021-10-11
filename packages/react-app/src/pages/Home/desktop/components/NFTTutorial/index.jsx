@@ -8,7 +8,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
 
   return (
     <>
-      <Row>
+      <div>
         <Col xs={24} md={5}>
           <div style={{ padding: '24px', fontSize: '23px' }}>NFT Tutorial</div>
         </Col>
@@ -24,8 +24,8 @@ export default function Section({ ethereumProps, nftAppProps }) {
             A quick and easy demo of how you can get started with NFTs
           </div>
         </Col>
-      </Row>
-      <Row>
+      </div>
+      <div>
         <Col xs={2} md={5} />
         <Col xs={24} md={19}>
           <img
@@ -58,7 +58,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
             />
           </Link>
         </Col>
-      </Row>
+      </div>
     </>
   )
 }
