@@ -2,10 +2,15 @@ import React from 'react'
 
 export default function Slide({ image }) {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={{ width: '100%' }}>
       <img
         src={image}
-        style={{ float: 'left', height: 'calc(100vh - 47px)' }}
+        style={{
+          display: 'block',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          width: '100%'
+        }}
       />
     </div>
   )

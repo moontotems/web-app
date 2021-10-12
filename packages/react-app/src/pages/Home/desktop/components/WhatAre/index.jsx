@@ -9,7 +9,15 @@ export default function Section({ ethereumProps, nftAppProps }) {
     <>
       <div style={{ height: '70vh', overflow: 'hidden' }}>
         <div style={{ float: 'right', width: '80%' }}>
-          <img src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg' />
+          <img
+            src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg'
+            style={{
+              display: 'block',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: '100%'
+            }}
+          />
 
           <Link
             className='explore-box'
