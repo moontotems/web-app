@@ -6,22 +6,21 @@ export default function Slide0() {
   return (
     <div style={{ width: '100%' }}>
       <div
-        style={
-          {
-            //float: 'left'
-            //height: 'calc(100vh - 47px)',
-            //height: '100%'
-          }
-        }
+        style={{
+          float: 'left',
+          //height: 'calc(100vh - 47px)',
+          height: '100%'
+        }}
       >
         {/*
+
         <ReactPlayer
           url='https://player.vimeo.com/video/617410607'
           playing={true}
           loop={true}
           controls={false}
           style={{
-            //float: 'left'
+            float: 'left',
             height: '100vh'
             //width: '100%'
           }}
@@ -32,7 +31,7 @@ export default function Slide0() {
             }
           }}
         />
-        {/*
+        */}
         <iframe
           preload
           // eslint-disable-next-line react/no-unknown-property
@@ -48,7 +47,6 @@ export default function Slide0() {
           }}
           title='Talismoons Moon Origin'
         />
-        */}
         {/*
          <iframe
           preload

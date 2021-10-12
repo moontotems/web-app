@@ -1,7 +1,7 @@
 export default [
   {
     index: 0,
-    image: '/home/lunarOrigins/moonSectors/lunar_origin_00001.jpg',
+    image: '',
     title: '',
     text: 'Each Talismoon is born under a particular Lunar Month.'
   },
