@@ -24,7 +24,7 @@ export default function HomePageMobile({ ethereumProps, nftAppProps }) {
 
   return (
     <div style={{ fontFamily: 'IBM Plex Sans', fontStyle: 'normal' }}>
-      <div style={{ ...containerStyle }}>
+      <div style={{ ...containerStyle, height: 'auto' }}>
         <WhatAreSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
