@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function SlideText({ slideContents, currentSlideIndex }) {
-  const { title, text } = slideContents[`${currentSlideIndex}`]
+  const { icon, title, text } = slideContents[`${currentSlideIndex}`]
   return (
     <div
       style={{
@@ -10,18 +10,48 @@ export default function SlideText({ slideContents, currentSlideIndex }) {
       }}
     >
       <div
-        style={{ paddingBottom: '5%', fontSize: '35px', fontWeight: 'bold' }}
+        style={{
+          float: 'left',
+          height: '100%',
+          width: '70px',
+          margin: '15px'
+        }}
       >
-        {title}
+        <img
+          src={icon}
+          style={{
+            height: '70px',
+            marginBottom: '15px'
+          }}
+        />
       </div>
       <div
         style={{
-          fontSize: '30px',
-          fontWeight: '300',
-          lineHeight: '45px'
+          float: 'left',
+          height: '100%',
+          width: 'calc(100% - 135px)',
+          margin: '15px'
         }}
       >
-        {text}
+        <div
+          style={{
+            fontSize: '35px',
+            fontWeight: 'bold',
+            width: '100%'
+          }}
+        >
+          {title}
+        </div>
+        <div
+          style={{
+            width: '100%',
+            fontSize: '27px',
+            fontWeight: 300,
+            lineHeight: '35px'
+          }}
+        >
+          {text}
+        </div>
       </div>
     </div>
   )

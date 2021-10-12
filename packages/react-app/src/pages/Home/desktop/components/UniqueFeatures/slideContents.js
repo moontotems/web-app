@@ -2,12 +2,14 @@ export default [
   {
     index: 0,
     image: '/home/uniqueFeatures/talismoon_chat.jpg',
+    icon: '/home/uniqueFeatures/talismoon_chat.jpg',
     title: '',
     text: 'Talismoons is a next generation NFT project that aims to expand the features and possibilities exclusive to holders.'
   },
   {
     index: 1,
     image: '/home/uniqueFeatures/talismoon_chat.jpg',
+    icon: '/home/uniqueFeatures/talismoon_chat.jpg',
     title: 'TALISMOON CHAT',
     text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
   },

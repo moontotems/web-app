@@ -1,14 +1,35 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight32 } from '@carbon/icons-react'
+import videojs from 'video.js'
+// https://www.npmjs.com/package/videojs-react-enhanced
+import VREPlayer from 'videojs-react-enhanced'
+import 'video.js/dist/video-js.css'
 
 export default function Section({ ethereumProps, nftAppProps }) {
   const { route, setRoute } = nftAppProps
+
+  const playerOptions = {
+    src: 'https://talismoonstest.blob.core.windows.net/creatures/TALISMOONS_GEN01_BLINKYROTATE.COMP[0000-0832].mp4',
+    controls: false,
+    autoplay: 'play',
+    muted: true,
+    preload: true
+  }
+  const videojsOptions = {
+    fluid: true
+  }
 
   return (
     <>
       <div style={{ height: '70vh', overflow: 'hidden' }}>
         <div style={{ float: 'right', width: '80%' }}>
+          <VREPlayer
+            playerOptions={playerOptions}
+            videojsOptions={videojsOptions}
+            onReady={player => console.log(player)}
+          />
+
           <img
             src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg'
             style={{

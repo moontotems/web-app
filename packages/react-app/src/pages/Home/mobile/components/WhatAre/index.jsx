@@ -10,7 +10,16 @@ export default function Section({ ethereumProps, nftAppProps }) {
       <div style={{ height: '60vh', overflow: 'hidden' }}>
         <div style={{ float: 'right', width: '100%' }}>
           <div style={{ float: 'left', height: '60vh' }}>
-            <img src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg' />
+            <img
+              src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg'
+              style={{
+                display: 'block',
+                marginTop: 'auto',
+                marginBottom: 'auto',
+                //width: '100%',
+                height: '100%'
+              }}
+            />
           </div>
 
           <Link
