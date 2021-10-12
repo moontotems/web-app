@@ -13,7 +13,8 @@ import App from './App'
 import './index.less'
 
 const themes = {
-  dark: `${process.env.PUBLIC_URL}/dark-theme.css`,
+  dark: `${process.env.PUBLIC_URL}/index.css`,
+  // TODO: this is not used
   light: `${process.env.PUBLIC_URL}/light-theme.css`
 }
 

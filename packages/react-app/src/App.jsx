@@ -41,7 +41,7 @@ import {
 
 import houdini_json_hashmap from './assets/houdini_json_hashmap.json'
 
-import './App.less'
+import './themes/configs.js'
 
 // 📡 What chain are your contracts deployed to?
 const targetNetwork = NETWORKS.localhost // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
