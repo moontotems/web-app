@@ -30,10 +30,12 @@ export default function Slide0() {
           width: '100%'
         }}
       >
+        {/*
         <VREPlayer
           playerOptions={playerOptions}
           videojsOptions={videojsOptions}
         />
+        */}
       </div>
     </div>
   )

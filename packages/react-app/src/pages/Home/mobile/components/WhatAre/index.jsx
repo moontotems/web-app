@@ -29,10 +29,12 @@ export default function Section({ ethereumProps, nftAppProps }) {
             style={{
               float: 'left',
               display: 'block',
-              height: '60vh',
-              width: '100%',
-              marginLeft: 'auto',
-              marginRight: 'auto'
+              height: '100%',
+              //width: '100%',
+              //marginLeft: 'auto',
+              //marginRight: 'auto'
+              marginLeft: '50%',
+              transform: 'translateX(-50%)'
             }}
           >
             <VREPlayer
