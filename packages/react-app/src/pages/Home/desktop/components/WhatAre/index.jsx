@@ -12,6 +12,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
           <img src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg' />
 
           <Link
+            className='explore-box'
             onClick={() => {
               setRoute('/all')
             }}
@@ -22,8 +23,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
               right: 0,
               height: '150px',
               width: '300px',
-              padding: '15px',
-              backgroundColor: '#171414'
+              padding: '15px'
             }}
           >
             <div style={{ fontSize: '17px' }}>Get your TALISMOON</div>

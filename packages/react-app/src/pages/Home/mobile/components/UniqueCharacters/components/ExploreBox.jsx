@@ -10,7 +10,6 @@ export default function ExploreBox({ sliderRef }) {
         height: '250px',
         width: '75%',
         padding: '25px',
-        backgroundColor: '#171414',
         cursor: 'pointer'
       }}
       onClick={() => sliderRef.slickNext()}

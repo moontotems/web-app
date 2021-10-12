@@ -14,6 +14,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
           </div>
 
           <Link
+            className='explore-box'
             onClick={() => {
               setRoute('/all')
             }}
@@ -24,8 +25,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
               right: 0,
               height: '200px',
               width: '400px',
-              padding: '15px',
-              backgroundColor: '#171414'
+              padding: '15px'
             }}
           >
             <div style={{ fontSize: '30px' }}>Get your TALISMOON</div>
