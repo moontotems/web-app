@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight32 } from '@carbon/icons-react'
-import videojs from 'video.js'
 // https://www.npmjs.com/package/videojs-react-enhanced
+import videojs from 'video.js'
 import VREPlayer from 'videojs-react-enhanced'
 import 'video.js/dist/video-js.css'
 
@@ -27,17 +27,6 @@ export default function Section({ ethereumProps, nftAppProps }) {
           <VREPlayer
             playerOptions={playerOptions}
             videojsOptions={videojsOptions}
-            onReady={player => console.log(player)}
-          />
-
-          <img
-            src='/home/TALISMOONS_GEN01_BLINKYROTATE.jpg'
-            style={{
-              display: 'block',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              width: '100%'
-            }}
           />
 
           <Link
