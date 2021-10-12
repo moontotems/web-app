@@ -1,16 +1,19 @@
 import React from 'react'
 import { ArrowRight32 } from '@carbon/icons-react'
 
-export default function ExploreAllBox() {
+export default function ExploreBox({ sliderRef }) {
   return (
     <div
+      className='explore-box'
       style={{
         float: 'right',
         height: '250px',
         width: '75%',
-        padding: '5%',
-        backgroundColor: '#171414'
+        padding: '25px',
+        backgroundColor: '#171414',
+        cursor: 'pointer'
       }}
+      onClick={() => sliderRef.slickNext()}
     >
       <div
         style={{

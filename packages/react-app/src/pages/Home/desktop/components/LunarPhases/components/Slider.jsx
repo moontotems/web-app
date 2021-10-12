@@ -5,9 +5,12 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slide from './Slide'
 
-export default function MySlider({ slideContents, setCurrentSlideIndex }) {
-  const [sliderRef, setSliderRef] = useState()
-
+export default function MySlider({
+  slideContents,
+  setCurrentSlideIndex,
+  sliderRef,
+  setSliderRef
+}) {
   useEffect(() => {
     document.onkeydown = e => {
       e.preventDefault()

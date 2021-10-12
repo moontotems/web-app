@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 // https://www.npmjs.com/package/react-slick
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slide from './Slide'
 
-export default function MySlider({ slideContents, setCurrentSlideIndex }) {
-  const [sliderRef, setSliderRef] = useState()
-
+export default function MySlider({
+  slideContents,
+  setCurrentSlideIndex,
+  sliderRef,
+  setSliderRef
+}) {
   useEffect(() => {
     document.onkeydown = e => {
       e.preventDefault()
@@ -25,7 +28,7 @@ export default function MySlider({ slideContents, setCurrentSlideIndex }) {
 
   const sliderSettings = {
     ref: slider => setSliderRef(slider),
-    infinite: true,
+    infinite: false,
     //initialSlide: 3,
     speed: 200,
     slidesToShow: 1,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 // https://www.npmjs.com/package/react-slick
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -8,11 +8,11 @@ import Slide from './Slide'
 
 export default function MySlider({
   slideContents,
+  setCurrentSlideIndex,
   currentSlideIndex,
-  setCurrentSlideIndex
+  sliderRef,
+  setSliderRef
 }) {
-  const [sliderRef, setSliderRef] = useState()
-
   useEffect(() => {
     document.onkeydown = e => {
       e.preventDefault()

@@ -8,6 +8,7 @@ import slideContents from './slideContents'
 
 export default function Section({ ethereumProps, nftAppProps }) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+  const [sliderRef, setSliderRef] = useState()
 
   return (
     <div style={{ height: '100vh', overflow: 'hidden' }}>
@@ -27,8 +28,9 @@ export default function Section({ ethereumProps, nftAppProps }) {
       >
         <Slider
           slideContents={slideContents}
-          currentSlideIndex={currentSlideIndex}
           setCurrentSlideIndex={setCurrentSlideIndex}
+          sliderRef={sliderRef}
+          setSliderRef={setSliderRef}
         />
       </div>
       <div
@@ -66,13 +68,15 @@ export default function Section({ ethereumProps, nftAppProps }) {
               padding: '15px'
             }}
           >
-            <Dots
-              slideContents={slideContents}
-              activeDotNumber={currentSlideIndex}
-            />
+            {currentSlideIndex !== 0 && (
+              <Dots
+                slideContents={slideContents}
+                activeDotNumber={currentSlideIndex}
+              />
+            )}
           </div>
 
-          {currentSlideIndex === 0 && <ExploreBox />}
+          {currentSlideIndex === 0 && <ExploreBox sliderRef={sliderRef} />}
         </div>
       </div>
     </div>

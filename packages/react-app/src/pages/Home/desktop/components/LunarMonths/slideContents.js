@@ -55,18 +55,24 @@ export default [
   },
   {
     index: 9,
+    image: '/home/lunarMonths/512/09_harvest_moon.jpg',
+    title: 'Harvest Moon',
+    text: 'Abundant'
+  },
+  {
+    index: 10,
     image: '/home/lunarMonths/512/10_leaf_moon.jpg',
     title: 'Leaf Moon',
     text: 'Traveller, nomadic'
   },
   {
-    index: 10,
+    index: 11,
     image: '/home/lunarMonths/512/11_blood_moon.jpg',
     title: 'Blood Moon',
     text: 'Surrounded by three concentric rings of mountains, uplifted by the colossal impact event that excavated it.'
   },
   {
-    index: 11,
+    index: 12,
     image: '/home/lunarMonths/512/12_oak_moon.jpg',
     title: 'Oak Moon',
     text: 'Static, stoic, stable, solid'
