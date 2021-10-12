@@ -9,7 +9,6 @@ import { BrowserRouter } from 'react-router-dom'
 import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
 import persistantStore from 'store'
-import eruda from 'eruda/eruda'
 
 import Routes from './Routes'
 import { Header, SidebarLeft, Footer } from './layout'
@@ -419,15 +418,6 @@ function App() {
     }
   }, [])
   const isMobile = width <= 768
-
-  // TODO: remove this in prod
-  useEffect(() => {
-    if (document && isMobile) {
-      eruda.init()
-      eruda.position({ x: 350, y: 30 })
-    }
-  }, [])
-  //////
 
   const favoritedIdsStore = persistantStore.get('favoritedIds') || []
 
