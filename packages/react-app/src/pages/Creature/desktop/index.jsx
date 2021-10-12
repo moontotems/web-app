@@ -287,15 +287,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         </Col>
       </Row>
       <Row>
-        <Col xs={0} md={7} />
-        <Col xs={24} md={14}>
-          <div style={{ textAlign: 'center' }}>
-            <CreatureAttributes creatureMetadata={metaData} />
-          </div>
-        </Col>
-        <Col xs={0} md={7} />
-      </Row>
-      <Row>
         <Col span={24}>
           <div style={{ margin: '45px 0', textAlign: 'center' }}>
             <FilterDropdown
@@ -354,6 +345,15 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             <ZoomIn32 aria-label='Zoom' style={{ ...iconStyle }} />
           </div>
         </Col>
+      </Row>
+      <Row>
+        <Col xs={0} md={7} />
+        <Col xs={24} md={14}>
+          <div style={{ textAlign: 'center' }}>
+            <CreatureAttributes creatureMetadata={metaData} />
+          </div>
+        </Col>
+        <Col xs={0} md={7} />
       </Row>
     </div>
   )
