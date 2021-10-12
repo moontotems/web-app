@@ -74,7 +74,10 @@ export default function Section({ ethereumProps, nftAppProps }) {
             />
           </div>
 
-          {currentSlideIndex === 0 && <ExploreBox sliderRef={sliderRef} />}
+          <ExploreBox
+            sliderRef={sliderRef}
+            currentSlideIndex={currentSlideIndex}
+          />
         </div>
       </div>
     </div>
