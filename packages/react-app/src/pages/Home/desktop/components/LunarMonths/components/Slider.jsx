@@ -140,7 +140,7 @@ export default function MySlider({
     ref: slider => setSliderRef(slider),
     infinite: false,
     //initialSlide: 3,
-    speed: 200,
+    speed: 750,
     slidesToShow: 1,
     slidesToScroll: 1,
     dots: false,
