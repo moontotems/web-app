@@ -66,7 +66,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
                 paddingLeft: '15px'
               }}
             >
-              <div style={{ fontSize: '22px', fontWeight: 400 }}>Instagram</div>
+              <a href='https://instagram.com/' target='_blank' rel='noreferrer'>
+                <div style={{ fontSize: '22px', fontWeight: 400 }}>
+                  Instagram
+                </div>
+              </a>
               <div
                 style={{
                   marginTop: '40px',
@@ -76,10 +80,12 @@ export default function Section({ ethereumProps, nftAppProps }) {
               >
                 For visual stories and explorations into the art.
               </div>
-              <img
-                src='/home/icons/Logo-Instagram.svg'
-                alt='Talismoons Instagram'
-              />
+              <a href='https://instagram.com/' target='_blank' rel='noreferrer'>
+                <img
+                  src='/home/icons/Logo-Instagram.svg'
+                  alt='Talismoons Instagram'
+                />
+              </a>
             </div>
           </div>
           <div style={{ float: 'left', width: '33%' }}>
@@ -90,7 +96,9 @@ export default function Section({ ethereumProps, nftAppProps }) {
                 paddingLeft: '15px'
               }}
             >
-              <div style={{ fontSize: '22px', fontWeight: 400 }}>Twitter</div>
+              <a href='https://twitter.com/' target='_blank' rel='noreferrer'>
+                <div style={{ fontSize: '22px', fontWeight: 400 }}>Twitter</div>
+              </a>
               <div
                 style={{
                   marginTop: '40px',
@@ -100,10 +108,12 @@ export default function Section({ ethereumProps, nftAppProps }) {
               >
                 For the latest announcements and updates.
               </div>
-              <img
-                src='/home/icons/Logo-Twitter.svg'
-                alt='Talismoons Twitter'
-              />
+              <a href='https://twitter.com/' target='_blank' rel='noreferrer'>
+                <img
+                  src='/home/icons/Logo-Twitter.svg'
+                  alt='Talismoons Twitter'
+                />
+              </a>
             </div>
           </div>
           <div style={{ float: 'left', width: '33%' }}>
@@ -114,7 +124,9 @@ export default function Section({ ethereumProps, nftAppProps }) {
                 paddingLeft: '15px'
               }}
             >
-              <div style={{ fontSize: '22px', fontWeight: 400 }}>Discord</div>
+              <a href='https://discord.com/' target='_blank' rel='noreferrer'>
+                <div style={{ fontSize: '22px', fontWeight: 400 }}>Discord</div>
+              </a>
               <div
                 style={{
                   marginTop: '40px',
@@ -124,10 +136,12 @@ export default function Section({ ethereumProps, nftAppProps }) {
               >
                 For connecting with the Talismoon Community.
               </div>
-              <img
-                src='/home/icons/Logo-Discord.svg'
-                alt='Talismoons Discord'
-              />
+              <a href='https://discord.com/' target='_blank' rel='noreferrer'>
+                <img
+                  src='/home/icons/Logo-Discord.svg'
+                  alt='Talismoons Discord'
+                />
+              </a>
             </div>
           </div>
         </div>
