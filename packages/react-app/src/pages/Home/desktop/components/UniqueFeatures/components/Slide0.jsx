@@ -6,7 +6,7 @@ import 'video.js/dist/video-js.css'
 
 export default function Slide0() {
   const playerOptions = {
-    src: 'https://talismoonstest.blob.core.windows.net/creatures/TALISMOON_OUTLINE_LOOP.mp4',
+    src: 'https://talismoonstest.blob.core.windows.net/creatures/TALISMOON_OUTLINE_LOOP_VIMEO.mp4',
     preload: true,
     controls: false,
     autoplay: 'play',
@@ -30,12 +30,10 @@ export default function Slide0() {
           width: '100%'
         }}
       >
-        {/*
         <VREPlayer
           playerOptions={playerOptions}
           videojsOptions={videojsOptions}
         />
-        */}
       </div>
     </div>
   )
