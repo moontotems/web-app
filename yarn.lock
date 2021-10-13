@@ -18647,6 +18647,11 @@ react-infinite-scroll-component@^6.1.0:
   dependencies:
     throttle-debounce "^2.1.0"
 
+react-inner-image-zoom@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-inner-image-zoom/-/react-inner-image-zoom-2.1.0.tgz#d799f9be79ea25f42627ecd0f66b58c82af55c14"
+  integrity sha512-LT3hxk4LZDJakUBAtpNsoVFGScyZXrRnerXZ7hgWOaUTKkRB88LI5cWmNukf9iEI0fnYLl6gybjzE+N9rvC2pQ==
+
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"

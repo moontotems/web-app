@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'antd'
 import { Button } from 'antd'
-
 import {
   AsleepFilled32,
   Favorite32,
@@ -13,6 +12,10 @@ import {
   ZoomIn32
 } from '@carbon/icons-react'
 import $ from 'jquery'
+// https://www.npmjs.com/package/react-inner-image-zoom
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
+import InnerImageZoom from 'react-inner-image-zoom'
+
 import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
 import {
@@ -24,6 +27,7 @@ import {
 } from '../../../sharedComponents'
 const { NotMintedIcon32x32 } = Icons
 import houdini_json_hashmap from '../../../assets/houdini_json_hashmap.json'
+import './styles.css'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
@@ -185,19 +189,13 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       ></div>
       <Row>
         <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
-          <img
+          <InnerImageZoom
             src={image}
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              height: '90vh',
-              margin: 'auto',
-              marginTop: 0,
-              marginBottom: 0
-            }}
+            zoomSrc={image}
+            zoomScale={3}
+            //moveType='drag'
+            hideCloseButton={true}
+            hideHint={true}
           />
           <div
             style={{
