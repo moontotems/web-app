@@ -18,7 +18,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
           fontSize: '20px'
         }}
       >
-        Unique Features
+        Innovative Features
       </div>
       <div
         style={{

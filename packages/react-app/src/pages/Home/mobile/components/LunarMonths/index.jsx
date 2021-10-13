@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Dots from './components/Dots'
+import SlideText0 from './components/SlideText0'
 import SlideText from './components/SlideText'
 import Slider from './components/Slider'
 import ExploreBox from './components/ExploreBox'
@@ -10,7 +11,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
   const [sliderRef, setSliderRef] = useState()
 
   return (
-    <div style={{ height: '100vh', overflow: 'hidden' }}>
+    <div style={{ height: 'auto' }}>
       <div
         style={{
           padding: '5%',
@@ -36,16 +37,26 @@ export default function Section({ ethereumProps, nftAppProps }) {
         }}
       >
         {currentSlideIndex !== 0 && (
-          <Dots
-            slideContents={slideContents}
-            activeDotNumber={currentSlideIndex}
-          />
+          <>
+            <Dots
+              slideContents={slideContents}
+              activeDotNumber={currentSlideIndex}
+            />
+            <SlideText
+              slideContents={slideContents}
+              currentSlideIndex={currentSlideIndex}
+            />
+          </>
         )}
-        <SlideText
-          slideContents={slideContents}
-          currentSlideIndex={currentSlideIndex}
-        />
-        {currentSlideIndex === 0 && <ExploreBox sliderRef={sliderRef} />}
+        {currentSlideIndex === 0 && (
+          <>
+            <SlideText0
+              slideContents={slideContents}
+              currentSlideIndex={currentSlideIndex}
+            />
+            <ExploreBox sliderRef={sliderRef} />
+          </>
+        )}
       </div>
     </div>
   )

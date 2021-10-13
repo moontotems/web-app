@@ -11,11 +11,12 @@ export default function Section({ ethereumProps, nftAppProps }) {
 
   const playerOptions = {
     src: 'https://talismoonstest.blob.core.windows.net/creatures/TALISMOONS_GEN01_BLINKYROTATE.COMP[0000-0832].mp4',
-    preload: true,
+    preload: 'auto',
     controls: false,
+    playsinline: true,
     autoplay: 'play',
-    loop: true,
-    muted: true
+    muted: true,
+    loop: true
   }
   const videojsOptions = {
     fluid: true
@@ -23,18 +24,17 @@ export default function Section({ ethereumProps, nftAppProps }) {
 
   return (
     <>
-      <div style={{ height: '60vh', overflow: 'hidden' }}>
+      <div style={{ height: '35vh', overflow: 'hidden' }}>
         <div style={{ float: 'right', width: '100%' }}>
           <div
             style={{
               float: 'left',
-              //display: 'block',
-              height: '100%',
-              width: '100%',
+              height: '35vh',
+              //height: '100%',
+              display: 'block',
               marginLeft: 'auto',
-              marginRight: 'auto'
-              //marginLeft: '50%',
-              //transform: 'translateX(-50%)'
+              marginRight: 'auto',
+              width: '100%'
             }}
           >
             <VREPlayer
@@ -42,37 +42,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
               videojsOptions={videojsOptions}
             />
           </div>
-
-          <Link
-            className='explore-box'
-            onClick={() => {
-              setRoute('/all')
-            }}
-            to='/all'
-            style={{
-              position: 'absolute',
-              top: 'calc(60vh - 120px)',
-              right: 0,
-              height: '200px',
-              width: '400px',
-              padding: '15px'
-            }}
-          >
-            <div style={{ fontSize: '30px' }}>Get your TALISMOON</div>
-            <ArrowRight32
-              style={{
-                position: 'absolute',
-                bottom: 15,
-                right: 15,
-                color: '#00FF74'
-              }}
-            />
-          </Link>
         </div>
       </div>
       <div
         style={{
-          height: '40vh',
+          height: '65vh',
           marginTop: '2%',
           padding: '5%',
           overflow: 'hidden'
@@ -90,6 +64,39 @@ export default function Section({ ethereumProps, nftAppProps }) {
         >
           Talismoons are digital talismans from the moon and discovered on the
           Ethereum blockchain.
+        </div>
+        <div
+          style={{
+            float: 'right',
+            marginTop: '45px'
+          }}
+        >
+          <Link
+            className='explore-box'
+            onClick={() => {
+              setRoute('/all')
+            }}
+            to='/all'
+            style={{
+              position: 'absolute',
+              top: 'calc(80vh - 120px)',
+              right: 0,
+              //float: 'right',
+              height: '200px',
+              width: '400px',
+              padding: '15px'
+            }}
+          >
+            <div style={{ fontSize: '30px' }}>Get your TALISMOON</div>
+            <ArrowRight32
+              style={{
+                position: 'absolute',
+                bottom: 25,
+                right: 55,
+                color: '#00FF74'
+              }}
+            />
+          </Link>
         </div>
       </div>
     </>

@@ -7,11 +7,12 @@ import 'video.js/dist/video-js.css'
 export default function Slide0() {
   const playerOptions = {
     src: 'https://talismoonstest.blob.core.windows.net/creatures/MOONTURN_2K_VIMEO.mp4',
-    preload: false,
+    preload: 'auto',
     controls: false,
+    playsinline: true,
     autoplay: 'play',
-    loop: true,
-    muted: true
+    muted: true,
+    loop: true
   }
   const videojsOptions = {
     fluid: true

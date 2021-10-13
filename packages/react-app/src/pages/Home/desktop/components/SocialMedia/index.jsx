@@ -18,7 +18,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
             fontSize: '20px'
           }}
         >
-          What are Talismoons?
+          @talismoons
         </div>
         <div
           style={{

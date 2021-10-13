@@ -7,7 +7,7 @@ export default [
   },
   {
     index: 1,
-    image: '/home/characteristics/name_and_title.jpeg',
+    image: '',
     title: 'Name & Title',
     text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },

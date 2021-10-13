@@ -3,7 +3,7 @@ export default [
     index: 0,
     image: '/home/lunarPhases/512/02_waxing_crescent.jpg',
     title: '',
-    text: ''
+    text: 'Each Talismoon is born under a particular Lunar Phase.'
   },
   {
     index: 1,

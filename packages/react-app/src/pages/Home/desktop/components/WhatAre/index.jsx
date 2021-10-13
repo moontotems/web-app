@@ -11,10 +11,12 @@ export default function Section({ ethereumProps, nftAppProps }) {
 
   const playerOptions = {
     src: 'https://talismoonstest.blob.core.windows.net/creatures/TALISMOONS_GEN01_BLINKYROTATE.COMP[0000-0832].mp4',
+    preload: 'auto',
     controls: false,
+    playsinline: true,
     autoplay: 'play',
     muted: true,
-    preload: true
+    loop: true
   }
   const videojsOptions = {
     fluid: true

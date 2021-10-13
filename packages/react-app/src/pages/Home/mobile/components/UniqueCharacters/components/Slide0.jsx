@@ -6,12 +6,13 @@ import 'video.js/dist/video-js.css'
 
 export default function Slide0() {
   const playerOptions = {
-    src: 'https://talismoonstest.blob.core.windows.net/creatures/MOONTURN_2K_VIMEO.mp4',
-    preload: true,
+    src: 'https://talismoonstest.blob.core.windows.net/creatures/TALISMOON_CARD_3D_VIMEO.mp4',
+    preload: 'auto',
     controls: false,
+    playsinline: true,
     autoplay: 'play',
-    loop: true,
-    muted: true
+    muted: true,
+    loop: true
   }
   const videojsOptions = {
     fluid: true
@@ -22,12 +23,10 @@ export default function Slide0() {
       <div
         style={{
           float: 'left',
-          height: 'calc(100vh - 47px)',
-          //height: '100%',
           display: 'block',
+          width: '100%',
           marginLeft: 'auto',
-          marginRight: 'auto',
-          width: '100%'
+          marginRight: 'auto'
         }}
       >
         <VREPlayer

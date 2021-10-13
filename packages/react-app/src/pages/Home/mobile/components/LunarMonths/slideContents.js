@@ -3,7 +3,7 @@ export default [
     index: 0,
     image: '/home/lunarMonths/512/01_ghost_moon.jpg',
     title: '',
-    text: ''
+    text: 'Each Talismoon is born under a particular Lunar Month.'
   },
   {
     index: 1,

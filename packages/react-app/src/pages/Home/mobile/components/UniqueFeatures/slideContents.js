@@ -1,10 +1,9 @@
 export default [
   {
     index: 0,
-    image: '/home/uniqueFeatures/talismoon_chat.jpg',
+    image: '',
     title: '',
-    //text: 'Talismoons is a next generation NFT project that aims to expand the features and possibilities exclusive to holders.'
-    text: ''
+    text: 'Talismoons is a next generation NFT project that aims to expand the features and possibilities exclusive to holders.'
   },
   {
     index: 1,

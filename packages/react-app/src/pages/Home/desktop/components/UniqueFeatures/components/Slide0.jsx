@@ -7,11 +7,12 @@ import 'video.js/dist/video-js.css'
 export default function Slide0() {
   const playerOptions = {
     src: 'https://talismoonstest.blob.core.windows.net/creatures/TALISMOON_OUTLINE_LOOP_VIMEO.mp4',
-    preload: true,
+    preload: 'auto',
     controls: false,
+    playsinline: true,
     autoplay: 'play',
-    loop: true,
-    muted: true
+    muted: true,
+    loop: true
   }
   const videojsOptions = {
     fluid: true

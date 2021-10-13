@@ -4,9 +4,9 @@ import videojs from 'video.js'
 import VREPlayer from 'videojs-react-enhanced'
 import 'video.js/dist/video-js.css'
 
-export default function Slide0() {
+export default function SlideNameAndTitle() {
   const playerOptions = {
-    src: 'https://talismoonstest.blob.core.windows.net/creatures/TALISMOON_OUTLINE_LOOP_VIMEO.mp4',
+    src: 'https://talismoonstest.blob.core.windows.net/creatures/TALISMOON_CARD_3D_VIMEO.mp4',
     preload: 'auto',
     controls: false,
     playsinline: true,
@@ -23,10 +23,12 @@ export default function Slide0() {
       <div
         style={{
           float: 'left',
+          height: 'calc(100vh - 47px)',
+          //height: '100%',
           display: 'block',
-          width: '100%',
           marginLeft: 'auto',
-          marginRight: 'auto'
+          marginRight: 'auto',
+          width: '100%'
         }}
       >
         <VREPlayer

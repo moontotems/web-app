@@ -3,11 +3,14 @@ import React, { useState, useEffect } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import Slide0 from './Slide0'
+import SlideNameAndTitle from './SlideNameAndTitle'
 import Slide from './Slide'
 
 export default function MySlider({
   slideContents,
   setCurrentSlideIndex,
+  currentSlideIndex,
   sliderRef,
   setSliderRef
 }) {
@@ -48,11 +51,24 @@ export default function MySlider({
   return (
     <Slider {...sliderSettings}>
       {slideContents.map((slideContent, index) => {
+        /*
+        if (currentSlideIndex === 0) {
+          return <Slide0 />
+        }
+        */
+
+        if (index === 1) {
+          return (
+            <div key={`slide-${index}`} style={{ float: 'left', width: '50%' }}>
+              <div style={{ position: 'relative' }}>
+                <SlideNameAndTitle />
+              </div>
+            </div>
+          )
+        }
+
         return (
-          <div
-            key={`slide-${index}`}
-            style={{ float: 'left', width: '100%', height: '60vh' }}
-          >
+          <div key={`slide-${index}`} style={{ float: 'left', width: '50%' }}>
             <div style={{ position: 'relative' }}>
               <Slide image={slideContent.image} />
             </div>
