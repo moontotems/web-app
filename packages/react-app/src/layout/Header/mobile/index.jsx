@@ -128,20 +128,23 @@ export default function HeaderMobile({
         id='header'
         style={{
           position: 'fixed',
-          top: 9,
+          top: 7,
           height: headerHeight,
           width: '100%',
           zIndex: 9000,
           pointerEvents: 'none',
           textAlign: 'center',
           fontFamily: 'IBM Plex Sans',
-          fontSize: 30,
+          fontSize: 40,
           fontWeight: 400
         }}
       >
         {/*getTitle()*/}
       </div>
-      <Header aria-label={''} style={{ height: headerHeight }}>
+      <Header
+        aria-label={''}
+        style={{ height: headerHeight, backgroundColor: '#000' }}
+      >
         <HeaderGlobalAction
           aria-label='Navigation'
           onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
