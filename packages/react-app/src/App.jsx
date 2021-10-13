@@ -442,7 +442,7 @@ function App() {
   }
 
   const [sidebarLeftOpen, setSidebarLeftOpen] = useState(false)
-  const [activeFilter, setActiveFilter] = useState('')
+  const [activeFilter, setActiveFilter] = useState(FILTERS.shuffle)
   const [showGrid, setShowGrid] = useState(true)
 
   // TODO: reduce number of calls
@@ -482,6 +482,18 @@ function App() {
 
   const [randomTokenIds, setRandomTokenIds] = useState(getRandomTokenIdsArray())
 
+  const shuffleVisibleCreatures = () => {
+    setRandomTokenIds(getRandomTokenIdsArray())
+    setVisibleCreaturesRangeStart(initialValue_visibleCreaturesRangeStart)
+    setVisibleCreaturesRangeEnd(initialValue_visibleCreaturesRangeEnd)
+    setActiveFilter(FILTERS.shuffle)
+  }
+
+  // TODO: dirty hack -> do this right
+  useEffect(() => {
+    shuffleVisibleCreatures()
+  }, [])
+
   let creatures = []
 
   const assembleCreature = tokenId => {
@@ -500,17 +512,18 @@ function App() {
     return creature
   }
 
-  for (let tokenId = 0; tokenId < visibleCreaturesRangeEnd; tokenId++) {
+  for (let i = 0; i < visibleCreaturesRangeEnd; i++) {
     let creature
 
     if (activeFilter === FILTERS.shuffle) {
-      const index = tokenId
-      const randomTokenId = randomTokenIds[index]
+      const randomTokenId = randomTokenIds[i]
       creatures.push(assembleCreature(randomTokenId))
     } else {
+      const tokenId = i
       creature = assembleCreature(tokenId)
     }
 
+    // filter creature
     if (!activeFilter) {
       creatures.push(creature)
     } else if (activeFilter === FILTERS.available && !creature.minted) {
@@ -611,7 +624,8 @@ function App() {
     setShowGrid,
     activeFilter,
     setActiveFilter,
-    setHeaderTitle
+    setHeaderTitle,
+    shuffleVisibleCreatures
   }
 
   return (

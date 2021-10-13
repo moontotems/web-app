@@ -1,11 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Apps32, CarouselHorizontal32, List32 } from '@carbon/icons-react'
+import {
+  Shuffle32,
+  Apps32,
+  CarouselHorizontal32,
+  List32
+} from '@carbon/icons-react'
 
 import FilterDropdown from '../FilterDropdown'
 
 export default function ActionBar({ ethereumProps, nftAppProps }) {
-  const { setRoute, setShowGrid } = nftAppProps
+  const { setRoute, setShowGrid, shuffleVisibleCreatures } = nftAppProps
 
   const iconStyle = {
     marginLeft: '15px',
@@ -23,6 +28,11 @@ export default function ActionBar({ ethereumProps, nftAppProps }) {
       }}
     >
       <div style={{ margin: '10px 0', textAlign: 'center' }}>
+        <Shuffle32
+          aria-label='Shuffle'
+          style={{ ...iconStyle }}
+          onClick={() => shuffleVisibleCreatures()}
+        />
         <FilterDropdown
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
