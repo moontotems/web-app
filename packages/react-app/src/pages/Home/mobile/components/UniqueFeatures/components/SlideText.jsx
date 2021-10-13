@@ -12,9 +12,9 @@ export default function SlideText({ slideContents, currentSlideIndex }) {
         </div>
         <div
           style={{
-            fontSize: '30px',
+            fontSize: '50px',
             fontWeight: 300,
-            lineHeight: '45px'
+            lineHeight: '60px'
           }}
         >
           {text}
