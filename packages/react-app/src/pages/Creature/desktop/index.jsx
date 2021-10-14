@@ -190,6 +190,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       <Row>
         <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
           <InnerImageZoom
+            zoomPreload={true}
             src={image}
             zoomSrc={image}
             zoomScale={3}
@@ -197,6 +198,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             hideCloseButton={true}
             hideHint={true}
           />
+          {/*
           <div
             style={{
               position: 'absolute',
@@ -210,6 +212,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
               {trait_name1} {trait_name2}
             </div>
           </div>
+          */}
         </div>
       </Row>
 
@@ -232,7 +235,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
               <div style={{ fontSize: 20 }}>
                 {trait_name1} {trait_name2}
               </div>
-              <div style={{ fontSize: 14, fontWeight: 600 }}>
+              <div style={{ marginTop: '5px', fontSize: 14, fontWeight: 600 }}>
                 {trait_jobField} {trait_jobTitle}
               </div>
             </div>

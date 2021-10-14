@@ -9,7 +9,7 @@ import {
 
 import FilterDropdown from '../FilterDropdown'
 
-export default function ActionBar({ ethereumProps, nftAppProps }) {
+export default function ActionBarBottom({ ethereumProps, nftAppProps }) {
   const { setRoute, setShowGrid, shuffleVisibleCreatures } = nftAppProps
 
   const iconStyle = {

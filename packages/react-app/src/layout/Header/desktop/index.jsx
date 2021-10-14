@@ -22,6 +22,7 @@ import {
   HeaderMenuItem
 } from 'carbon-components-react/lib/components/UIShell'
 
+import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
 import { Account } from '../../../sharedComponents'
 
 export default function HeaderDesktop({
@@ -122,7 +123,6 @@ export default function HeaderDesktop({
     </Menu>
   )
 
-  const headerHeight = 48
   return (
     <>
       <div
@@ -130,7 +130,7 @@ export default function HeaderDesktop({
         style={{
           position: 'fixed',
           top: 9,
-          height: headerHeight,
+          height: DESKTOP_HEADER_HEIGHT,
           width: '100%',
           zIndex: 9000,
           pointerEvents: 'none',
@@ -142,7 +142,10 @@ export default function HeaderDesktop({
       >
         {headerTitle}
       </div>
-      <Header aria-label={'Talismoons'} style={{ height: headerHeight }}>
+      <Header
+        aria-label={'Talismoons'}
+        style={{ height: DESKTOP_HEADER_HEIGHT }}
+      >
         <HeaderGlobalAction
           aria-label='Navigation'
           onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
@@ -173,7 +176,7 @@ export default function HeaderDesktop({
             <div style={{ marginRight: 15 }}>{networkDisplay}</div>
           </span>
 
-          <span style={{ marginRight: 25 }}>
+          <span>
             {!address && (
               <Account
                 address={address}
@@ -192,7 +195,7 @@ export default function HeaderDesktop({
                 <div
                   id='accountDropdown'
                   style={{
-                    marginTop: 13,
+                    marginTop: '7px',
                     padding: 0,
                     border: 'none'
                   }}
@@ -212,10 +215,21 @@ export default function HeaderDesktop({
               </Dropdown>
             )}
           </span>
+          {/*
           <HeaderGlobalAction aria-label='Search' onClick={() => {}}>
             <Search20 />
           </HeaderGlobalAction>
-          <HeaderGlobalAction aria-label='App Switcher' onClick={() => {}}>
+          */}
+          <HeaderGlobalAction
+            aria-label='App Switcher'
+            style={{
+              height: '40px',
+              width: '50px',
+              backgroundColor: '#262626',
+              borderBottom: '1px solid #6F6F6F'
+            }}
+            onClick={() => {}}
+          >
             <Link
               onClick={() => {
                 setRoute('/all')

@@ -75,7 +75,7 @@ export default function Account({
         <>
           <span
             style={{
-              padding: '9px 17px',
+              padding: '14px',
               backgroundColor: '#1062FE'
             }}
           >

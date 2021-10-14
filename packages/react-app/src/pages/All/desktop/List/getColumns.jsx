@@ -69,12 +69,6 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       sorter: (a, b) => a.birthYearStr?.localeCompare(b.birthYearStr)
     },
     {
-      title: 'No of Colors',
-      dataIndex: 'colorsTotal',
-      filters: true,
-      sorter: (a, b) => a.colorsTotal - b.colorsTotal
-    },
-    {
       title: 'Complexity Score',
       dataIndex: 'complexityScore',
       // tip: 'This is a cool tip ...',

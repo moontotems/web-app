@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 
-import { ActionBar } from '../../sharedComponents'
 import AllPageDesktop from './desktop'
 import AllPageMobile from './mobile'
 
@@ -28,7 +27,6 @@ export default function All({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       )}
-      <ActionBar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
     </>
   )
 }

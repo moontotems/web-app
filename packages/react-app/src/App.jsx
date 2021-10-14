@@ -12,7 +12,7 @@ import persistantStore from 'store'
 
 import Routes from './Routes'
 import { Header, SidebarLeft, Footer } from './layout'
-import { ActionBar } from './sharedComponents'
+import { ActionSidebar } from './sharedComponents'
 import FILTERS from './sharedComponents/FilterDropdown/filters'
 import {
   INFURA_ID,
@@ -665,8 +665,11 @@ function App() {
           <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>
 
-        {(route === '/all' || route === '/favorites') && (
-          <ActionBar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        {route !== '/' && (
+          <ActionSidebar
+            ethereumProps={ethereumProps}
+            nftAppProps={nftAppProps}
+          />
         )}
 
         <div style={{ float: 'left', width: '100%' }}>

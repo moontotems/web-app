@@ -1,0 +1,18 @@
+#actionSidebar .toggle-menu:hover,
+#actionSidebar .menu-item:hover {
+  background-color: #525252;
+}
+
+#actionSidebar .shuffle:hover {
+  filter: brightness(110%);
+}
+
+#actionSidebar .menu-item.title {
+  padding-left: 15px !important;
+  background-color: #525252;
+  cursor: auto;
+}
+
+#actionSidebar .menu-item.square-title {
+  background-color: #525252;
+}
