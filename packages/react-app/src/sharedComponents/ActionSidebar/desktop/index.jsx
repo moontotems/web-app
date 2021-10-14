@@ -99,7 +99,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
         style={{
           ...menuItemStyle,
           position: 'fixed',
-          top: '160px',
+          top: '119px',
           right: getToggleButtonPosition(),
           height: '39px',
           width: '44px',
@@ -130,13 +130,6 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
               height: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`
             }}
           >
-            <div className='menu-item title' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>Tools</div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <ColorPalette16 aria-label='Color' />
-              </div>
-            </div>
-
             <div className='menu-item title' style={{ ...menuItemStyle }}>
               <div style={{ ...menuItemContentStyle.text }}>View</div>
               <div style={{ ...menuItemContentStyle.icon }}>
@@ -257,6 +250,12 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
                 <Shuffle16 />
               </div>
             </div>
+            <div className='menu-item title' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Tools</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <ColorPalette16 aria-label='Color' />
+              </div>
+            </div>
             <div className='menu-item' style={{ ...menuItemStyle }}>
               <div style={{ ...menuItemContentStyle.text }}>
                 Consult your Talismoon
@@ -289,7 +288,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
             </div>
             <div className='menu-item' style={{ ...menuItemStyle }}>
               <div style={{ ...menuItemContentStyle.text }}>
-                Show All Metadata
+                Show all Metadata
               </div>
               <div style={{ ...menuItemContentStyle.icon }}>
                 <Information16 aria-label='Details' />
@@ -317,12 +316,6 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
             height: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`
           }}
         >
-          <div
-            className='menu-item square-title'
-            style={{ ...menuItemStyle, borderTop: '1px solid #6F6F6F' }}
-          >
-            <ColorPalette16 aria-label='Color' />
-          </div>
           <div className='menu-item square-title' style={{ ...menuItemStyle }}>
             <ViewFilled16 aria-label='TODO' />
           </div>
@@ -369,7 +362,6 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
           >
             <img src={NotMintedIcon16x16} alt='Not Minted' />
           </div>
-
           <div className='menu-item' style={{ ...menuItemStyle }}>
             <Locked16 aria-label='TODO' />
           </div>
@@ -398,6 +390,12 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
             onClick={() => shuffleVisibleCreatures()}
           >
             <Shuffle16 />
+          </div>
+          <div
+            className='menu-item square-title'
+            style={{ ...menuItemStyle, borderTop: '1px solid #6F6F6F' }}
+          >
+            <ColorPalette16 aria-label='Color' />
           </div>
           <div className='menu-item' style={{ ...menuItemStyle }}>
             <ChatBot16 aria-label='Chat' />
