@@ -2,7 +2,7 @@ import { Button } from 'antd'
 import React from 'react'
 import Address from './Address'
 import Balance from './Balance'
-import { MOBILE_HEADER_HEIGHT } from '../../constants'
+import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from '../../constants'
 
 export default function Account({
   address,
@@ -44,24 +44,19 @@ export default function Account({
           key='loginbutton'
           role='button'
           style={{
-            height: isMobile ? `calc(${MOBILE_HEADER_HEIGHT} - 15)` : '32px',
-            marginTop: isMobile ? '18px' : '8px',
-            padding: '8px 24px',
-            //paddingTop: '4px',
+            height: isMobile
+              ? `calc(${MOBILE_HEADER_HEIGHT} - 15)`
+              : `${DESKTOP_HEADER_HEIGHT}px`,
+            marginTop: isMobile ? '18px' : '0px',
+            padding: '9px 24px',
             backgroundColor: '#DA1E28',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            verticalAlign: 'middle',
+            fontSize: isMobile ? '24px' : '14px'
           }}
           onClick={loadWeb3Modal}
         >
-          <span
-            style={{
-              verticalAlign: 'middle',
-              fontSize: isMobile ? '24px' : '15px'
-              //fontWeight: 500
-            }}
-          >
-            Connect Wallet
-          </span>
+          connect wallet
         </div>
       )
     }
