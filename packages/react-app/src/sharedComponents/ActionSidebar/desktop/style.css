@@ -3,6 +3,7 @@
   background-color: #525252;
 }
 
+#actionSidebar .toggle-menu:hover,
 #actionSidebar .shuffle:hover {
   filter: brightness(110%);
 }
