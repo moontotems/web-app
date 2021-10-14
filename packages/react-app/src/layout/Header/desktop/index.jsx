@@ -172,8 +172,8 @@ export default function HeaderDesktop({
           */}
         </HeaderNavigation>
         <HeaderGlobalBar>
-          <span style={{ marginTop: 14 }}>
-            <div style={{ marginRight: 15 }}>{networkDisplay}</div>
+          <span style={{ marginTop: '9px' }}>
+            <div style={{ marginRight: '15px' }}>{networkDisplay}</div>
           </span>
 
           <span>
