@@ -199,7 +199,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
             </div>
             <div className='menu-item' style={{ ...menuItemStyle }}>
               <div style={{ ...menuItemContentStyle.text }}>
-                Not Avail. Talismoons
+                Minted Talismoons
               </div>
               <div style={{ ...menuItemContentStyle.icon }}>
                 <Locked32 aria-label='TODO' />
