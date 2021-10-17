@@ -85,69 +85,6 @@ export default function SidebarLeftMobileView({
             Discord <LogoDiscord32 style={{ ...iconStyle }} />
           </SideNavMenuItem>
         </SideNavMenu>
-        <SideNavMenu title='Explore Talismoons'>
-          <SideNavMenuItem href='javascript:void(0)'>
-            <Link
-              onClick={() => {
-                setRoute('/all')
-                setSidebarLeftOpen(false)
-              }}
-              to='/all'
-              style={{ ...menuItemStyle }}
-            >
-              All Talismoons
-            </Link>
-            <AsleepFilled32 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            <Link
-              onClick={() => {
-                setRoute('/all')
-                setSidebarLeftOpen(false)
-              }}
-              to='/all'
-              style={{ ...menuItemStyle }}
-            >
-              Available Talismoons
-            </Link>{' '}
-            <img
-              src={NotMintedIcon32x32}
-              alt='Minted'
-              style={{ ...iconStyle }}
-            />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            <Link
-              onClick={() => {
-                setRoute('/favorites')
-                setSidebarLeftOpen(false)
-              }}
-              to='/favorites'
-              style={{ ...menuItemStyle }}
-            >
-              Favorite Talismoons
-            </Link>
-            <FavoriteFilled32 style={{ ...iconStyle, color: 'red' }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            <Link
-              onClick={() => {
-                setRoute('/wallet')
-                setSidebarLeftOpen(false)
-              }}
-              to='/wallet'
-              style={{ ...menuItemStyle }}
-            >
-              {' '}
-              My Talismoons
-            </Link>
-            <img
-              src={OwnedByUserIcon32x32}
-              alt='Minted'
-              style={{ ...iconStyle }}
-            />
-          </SideNavMenuItem>
-        </SideNavMenu>
         <SideNavLink href='javascript:void(0)'>
           <Link>Explore on OpenSea</Link>
           <Launch32 style={{ ...iconStyle }} />

@@ -11,14 +11,18 @@ import {
   FacePendingFilled16,
   AsleepFilled16,
   ChartMultitype16,
-  HelpFilled16,
+  UserProfile16,
+  Idea16,
+  LocationPersonFilled16,
   LogoInstagram16,
   LogoTwitter16,
   LogoDiscord16,
   Launch16,
-  FavoriteFilled16
+  Policy16,
+  TaskView16
 } from '@carbon/icons-react'
 import $ from 'jquery'
+import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
 import { Icons } from '../../../sharedComponents'
 const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
@@ -57,21 +61,30 @@ export default function SidebarLeftDesktopView({
       aria-label='Side navigation'
       style={{
         borderRight: '1px solid #393939',
-        backgroundColor: '#161616'
+        backgroundColor: '#161616',
+        marginTop: DESKTOP_HEADER_HEIGHT
       }}
     >
       <SideNavItems>
-        <SideNavLink href='javascript:void(0)'></SideNavLink>
         <SideNavMenu title='About'>
           <SideNavMenuItem href='javascript:void(0)'>
-            What are Talismoons?{' '}
+            What are Talismoons?
             <FacePendingFilled16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
-            Key Stats <ChartMultitype16 style={{ ...iconStyle }} />
+            Unique Characters <UserProfile16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
-            FAQ <HelpFilled16 style={{ ...iconStyle }} />
+            Exclusive Features <Idea16 style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            Lunar Origins <LocationPersonFilled16 style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            Lunar Months <ChartMultitype16 style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            Lunar Phases <AsleepFilled16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
         </SideNavMenu>
         <SideNavMenu title='Lates News'>
@@ -85,97 +98,41 @@ export default function SidebarLeftDesktopView({
             Discord <LogoDiscord16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
         </SideNavMenu>
-        <SideNavMenu title='Explore Talismoons'>
+
+        <SideNavMenu title='NFT Tracking'>
           <SideNavMenuItem href='javascript:void(0)'>
+            <Link>Explore on OpenSea</Link>
+            <img src='/icons/Logo-OpenSea.svg' style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+          <SideNavMenuItem href='javascript:void(0)'>
+            <Link>Explore on Etherscan</Link>
+            <img src='/icons/Logo-Etherscan.svg' style={{ ...iconStyle }} />
+          </SideNavMenuItem>
+          <SideNavLink href='javascript:void(0)'>
             <Link
               onClick={() => {
-                setRoute('/all')
+                setRoute('/contract-events')
                 setSidebarLeftOpen(false)
               }}
-              to='/all'
-              style={{ ...menuItemStyle }}
+              to='/contract-events'
             >
-              All Talismoons
+              Contract Events
             </Link>
-            <AsleepFilled16 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
+            <TaskView16 style={{ ...iconStyle }} />
+          </SideNavLink>
+          <SideNavLink href='javascript:void(0)'>
             <Link
               onClick={() => {
-                setRoute('/all')
+                setRoute('/contract-interface')
                 setSidebarLeftOpen(false)
               }}
-              to='/all'
-              style={{ ...menuItemStyle }}
+              to='/contract-interface'
             >
-              Available Talismoons
-            </Link>{' '}
-            <img
-              src={NotMintedIcon16x16}
-              alt='Minted'
-              style={{ ...iconStyle }}
-            />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            <Link
-              onClick={() => {
-                setRoute('/favorites')
-                setSidebarLeftOpen(false)
-              }}
-              to='/favorites'
-              style={{ ...menuItemStyle }}
-            >
-              Favorite Talismoons
+              Contract Interface
             </Link>
-            <FavoriteFilled16 style={{ ...iconStyle, color: 'red' }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            <Link
-              onClick={() => {
-                setRoute('/wallet')
-                setSidebarLeftOpen(false)
-              }}
-              to='/wallet'
-              style={{ ...menuItemStyle }}
-            >
-              {' '}
-              My Talismoons
-            </Link>
-            <img
-              src={OwnedByUserIcon16x16}
-              alt='Minted'
-              style={{ ...iconStyle }}
-            />
-          </SideNavMenuItem>
+            <Policy16 style={{ ...iconStyle }} />
+          </SideNavLink>
         </SideNavMenu>
-        <SideNavLink href='javascript:void(0)'>
-          <Link>Explore on OpenSea</Link>
-          <Launch16 style={{ ...iconStyle }} />
-        </SideNavLink>
-        <SideNavLink href='javascript:void(0)'>
-          <Link
-            onClick={() => {
-              setRoute('/contract-events')
-              setSidebarLeftOpen(false)
-            }}
-            to='/contract-events'
-            style={{ ...menuItemStyle }}
-          >
-            Contract Events
-          </Link>
-        </SideNavLink>
-        <SideNavLink href='javascript:void(0)'>
-          <Link
-            onClick={() => {
-              setRoute('/contract-interface')
-              setSidebarLeftOpen(false)
-            }}
-            to='/contract-interface'
-            style={{ ...menuItemStyle }}
-          >
-            Contract Interface
-          </Link>
-        </SideNavLink>
       </SideNavItems>
     </SideNav>
   )
