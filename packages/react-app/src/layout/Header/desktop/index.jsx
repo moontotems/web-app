@@ -5,7 +5,7 @@ import {
   CheckmarkOutline16,
   Search20,
   AppSwitcher20,
-  TextAlignJustify32,
+  TextAlignJustify20,
   Moon16,
   FavoriteFilled16,
   JoinRight16,
@@ -63,50 +63,8 @@ export default function HeaderDesktop({
     float: 'right'
   }
 
-  const dropdownContent = (
+  const accountDropdownContent = (
     <Menu>
-      <Menu.Item style={{ ...menuItemStyle }}>
-        <div style={{ float: 'left' }}>
-          <Link
-            onClick={() => {
-              setRoute('/minted')
-            }}
-            to='/minted'
-            style={{ ...menuTextStyle }}
-          >
-            Mint a new Talismoon
-          </Link>
-        </div>
-        <JoinRight16 style={{ ...menuIconStyle }} />
-      </Menu.Item>
-      <Menu.Item style={{ ...menuItemStyle }}>
-        <div style={{ float: 'left' }}>
-          <Link
-            onClick={() => {
-              setRoute('/wallet')
-            }}
-            to='/wallet'
-            style={{ ...menuTextStyle }}
-          >
-            My Talismoons
-          </Link>
-        </div>
-        <Moon16 style={{ ...menuIconStyle }} />
-      </Menu.Item>
-      <Menu.Item style={{ ...menuItemStyle }}>
-        <div style={{ float: 'left' }}>
-          <Link
-            onClick={() => {
-              setRoute('/favorites')
-            }}
-            to='/favorites'
-            style={{ ...menuTextStyle }}
-          >
-            My Favorite Talismoons
-          </Link>
-        </div>
-        <FavoriteFilled16 style={{ ...menuIconStyle }} />
-      </Menu.Item>
       <Menu.Item style={{ ...menuItemStyle }}>
         <div style={{ float: 'left' }}>
           <Link
@@ -142,17 +100,45 @@ export default function HeaderDesktop({
       >
         {headerTitle}
       </div>
+
       <Header
         aria-label={'Talismoons'}
         style={{ height: DESKTOP_HEADER_HEIGHT }}
       >
-        <HeaderGlobalAction
-          aria-label='Navigation'
-          onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
+        {/*
+        <Dropdown overlay={infoDropdownContent} placement='bottomRight'>
+          <div
+            id='infoDropdown'
+            style={{
+              marginTop: '7px',
+              padding: 0,
+              border: 'none'
+            }}
+          >
+            <TextAlignJustify32 />
+          </div>
+        </Dropdown>
+        */}
+        <Link
+          onClick={() => {
+            setRoute('/all')
+          }}
+          to='/all'
         >
-          {/* <QueryQueue32 /> */}
-          <TextAlignJustify32 />
-        </HeaderGlobalAction>
+          <div
+            aria-label='Show all Talismoon'
+            style={{
+              height: '40px',
+              width: '50px',
+              //backgroundColor: '#262626',
+              textAlign: 'center'
+            }}
+            onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
+          >
+            <TextAlignJustify20 style={{ marginTop: '10px' }} />
+          </div>
+        </Link>
+
         <HeaderName href='#' prefix=''>
           <Link
             onClick={() => {
@@ -191,7 +177,7 @@ export default function HeaderDesktop({
               />
             )}
             {address && (
-              <Dropdown overlay={dropdownContent} placement='bottomLeft'>
+              <Dropdown overlay={accountDropdownContent} placement='bottomLeft'>
                 <div
                   id='accountDropdown'
                   style={{
@@ -220,25 +206,25 @@ export default function HeaderDesktop({
             <Search20 />
           </HeaderGlobalAction>
           */}
-          <HeaderGlobalAction
-            aria-label='App Switcher'
-            style={{
-              height: '40px',
-              width: '50px',
-              backgroundColor: '#262626',
-              borderBottom: '1px solid #6F6F6F'
+          <Link
+            onClick={() => {
+              setRoute('/all')
             }}
-            onClick={() => {}}
+            to='/all'
           >
-            <Link
-              onClick={() => {
-                setRoute('/all')
+            <div
+              aria-label='Show all Talismoon'
+              style={{
+                height: '40px',
+                width: '50px',
+                backgroundColor: '#262626',
+                borderBottom: '1px solid #6F6F6F',
+                textAlign: 'center'
               }}
-              to='/all'
             >
-              <AppSwitcher20 />
-            </Link>
-          </HeaderGlobalAction>
+              <AppSwitcher20 style={{ marginTop: '10px' }} />
+            </div>
+          </Link>
         </HeaderGlobalBar>
       </Header>
     </>

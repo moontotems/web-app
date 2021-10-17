@@ -171,7 +171,7 @@ export default function HeaderMobile({
             </span>
           </Link>
         </HeaderName>
-        <HeaderNavigation aria-label='Crypto Moons'>
+        <HeaderNavigation aria-label='Talismoons'>
           <HeaderName href='#' prefix=''></HeaderName>
           {/*
             <HeaderMenu aria-label='Subm' menuLinkName='Subm'>
@@ -223,7 +223,7 @@ export default function HeaderMobile({
             )}
           </span>
         </HeaderGlobalBar>
-        <HeaderGlobalAction aria-label='App Switcher'>
+        <HeaderGlobalAction aria-label='Show All Talismoon'>
           <Link
             onClick={() => {
               setRoute('/all')
