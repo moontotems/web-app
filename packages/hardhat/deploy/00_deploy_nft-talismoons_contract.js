@@ -8,10 +8,10 @@ const nftSymbol = "TMOON";
 const nftBaseUri = "http://13.82.82.15:5000/api/token/";
 */
 
-const CONTRACT_NAME = "Moons";
+const CONTRACT_NAME = "MoonTotems";
 
-const nftName = "Moons2";
-const nftSymbol = "MOON2";
+const nftName = "MoonTotems";
+const nftSymbol = "MOONT";
 const nftBaseUri = "http://13.82.82.15:5000/api/token/";
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
