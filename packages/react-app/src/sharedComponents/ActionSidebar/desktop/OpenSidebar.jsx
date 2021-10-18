@@ -56,6 +56,8 @@ export default function OpenSidebar({
     }
   }
 
+  //menuItemStyle.borderLeft = '5px solid blue'
+
   return (
     <div
       style={{
@@ -127,7 +129,8 @@ export default function OpenSidebar({
           className='menu-item'
           style={{
             ...menuItemStyle,
-            backgroundColor: activeFilters.length === 0 ? '#525252' : '#262626'
+            borderLeft:
+              activeFilters.length === 0 ? '5px solid #1062FE' : 'none'
           }}
         >
           <Link
@@ -152,9 +155,9 @@ export default function OpenSidebar({
           className='menu-item'
           style={{
             ...menuItemStyle,
-            backgroundColor: filterIsActive(FILTERS.notMinted)
-              ? '#525252'
-              : '#262626'
+            borderLeft: filterIsActive(FILTERS.notMinted)
+              ? '5px solid #1062FE'
+              : 'none'
           }}
           onClick={() => {
             setRoute('/all')
@@ -183,13 +186,18 @@ export default function OpenSidebar({
           className='menu-item'
           style={{
             ...menuItemStyle,
-            backgroundColor: filterIsActive(FILTERS.minted)
-              ? '#525252'
-              : '#262626'
+            borderLeft: filterIsActive(FILTERS.minted)
+              ? '5px solid #1062FE'
+              : 'none'
           }}
           onClick={() => {
             setRoute('/all')
-            if (filterIsActive(FILTERS.notMinted)) {
+            if (
+              !filterIsActive(FILTERS.minted) &&
+              !filterIsActive(FILTERS.notMinted)
+            ) {
+              setActiveFilters([...activeFilters, FILTERS.minted])
+            } else if (filterIsActive(FILTERS.notMinted)) {
               let _activeFilters = activeFilters
               _activeFilters = _activeFilters.filter(
                 e => e !== FILTERS.notMinted
@@ -211,9 +219,9 @@ export default function OpenSidebar({
           className='menu-item'
           style={{
             ...menuItemStyle,
-            backgroundColor: filterIsActive(FILTERS.favorites)
-              ? '#525252'
-              : '#262626'
+            borderLeft: filterIsActive(FILTERS.favorites)
+              ? '5px solid #1062FE'
+              : 'none'
           }}
           onClick={() => {
             setRoute('/all')

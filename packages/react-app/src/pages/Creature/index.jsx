@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import { ActionSidebar } from '../../sharedComponents'
 import CreaturePageDesktop from './desktop'
 import CreaturePageMobile from './mobile'
 
@@ -13,6 +14,8 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
 
   return (
     <>
+      <ActionSidebar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+
       {!isMobile && (
         <CreaturePageDesktop
           ethereumProps={ethereumProps}

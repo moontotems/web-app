@@ -95,7 +95,7 @@ export default function CompactSidebar({
         className='menu-item'
         style={{
           ...menuItemStyle,
-          backgroundColor: activeFilters.length === 0 ? '#525252' : '#262626'
+          borderLeft: activeFilters.length === 0 ? '2px solid #1062FE' : 'none'
         }}
         onClick={() => setActiveFilters([])}
       >
@@ -110,9 +110,9 @@ export default function CompactSidebar({
         className='menu-item'
         style={{
           ...menuItemStyle,
-          backgroundColor: filterIsActive(FILTERS.notMinted)
-            ? '#525252'
-            : '#262626'
+          borderLeft: filterIsActive(FILTERS.notMinted)
+            ? '2px solid #1062FE'
+            : 'none'
         }}
         onClick={() => {
           setRoute('/all')
@@ -133,13 +133,18 @@ export default function CompactSidebar({
         className='menu-item'
         style={{
           ...menuItemStyle,
-          backgroundColor: filterIsActive(FILTERS.minted)
-            ? '#525252'
-            : '#262626'
+          borderLeft: filterIsActive(FILTERS.minted)
+            ? '2px solid #1062FE'
+            : 'none'
         }}
         onClick={() => {
           setRoute('/all')
-          if (filterIsActive(FILTERS.notMinted)) {
+          if (
+            !filterIsActive(FILTERS.minted) &&
+            !filterIsActive(FILTERS.notMinted)
+          ) {
+            setActiveFilters([...activeFilters, FILTERS.minted])
+          } else if (filterIsActive(FILTERS.notMinted)) {
             let _activeFilters = activeFilters
             _activeFilters = _activeFilters.filter(e => e !== FILTERS.notMinted)
             setActiveFilters([..._activeFilters, FILTERS.minted])
@@ -156,9 +161,9 @@ export default function CompactSidebar({
         className='menu-item'
         style={{
           ...menuItemStyle,
-          backgroundColor: filterIsActive(FILTERS.favorites)
-            ? '#525252'
-            : '#262626'
+          borderLeft: filterIsActive(FILTERS.favorites)
+            ? '2px solid #1062FE'
+            : 'none'
         }}
         onClick={() => toggleFilter(FILTERS.favorites)}
       >

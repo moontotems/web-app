@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import { ActionSidebar } from '../../sharedComponents'
 import AllPageDesktop from './desktop'
 import AllPageMobile from './mobile'
 
@@ -14,6 +15,8 @@ export default function All({ ethereumProps, nftAppProps }) {
 
   return (
     <>
+      <ActionSidebar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+
       {!isMobile && (
         <AllPageDesktop
           ethereumProps={ethereumProps}
