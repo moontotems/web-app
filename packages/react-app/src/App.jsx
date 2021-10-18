@@ -539,15 +539,13 @@ function App() {
   }
 
   const filterCreaturesByMinted = ({ keep, creatures }) => {
-    const _creatures = [...creatures]
-    return _.filter(_creatures, creature =>
+    return _.filter(creatures, creature =>
       keep ? creature.minted : !creature.minted
     )
   }
 
   const filterCreaturesByFavorited = ({ keep, creatures }) => {
-    const _creatures = [...creatures]
-    return _.filter(_creatures, creature =>
+    return _.filter(creatures, creature =>
       keep ? creature.isFavorite : !creature.isFavorite
     )
   }
@@ -563,20 +561,19 @@ function App() {
   */
 
   const applyFiltersToCreatures = creatures => {
-    let _creatures = [...creatures]
     console.log({ activeFilters })
     if (activeFilters.length === 0) {
       console.log('no filters -> returning unchanged')
-      return _creatures
+      return creatures
     }
-    _creatures = filterCreaturesByMinted({
+    creatures = filterCreaturesByMinted({
       keep: filterIsActive(FILTERS.minted),
-      _creatures
+      creatures
     })
     if (filterIsActive(FILTERS.favorites)) {
-      _creatures = filterCreaturesByFavorited({
+      creatures = filterCreaturesByFavorited({
         keep: filterIsActive(FILTERS.favorites),
-        _creatures
+        creatures
       })
     }
 
