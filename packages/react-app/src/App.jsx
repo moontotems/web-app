@@ -491,12 +491,6 @@ function App() {
   })
 
   let initialValue_visibleCreaturesRangeStart = 0
-  if (window.location.pathname.includes('talismoon')) {
-    const tokenId = window.location.pathname.match(/\d+/g)
-    if (tokenId.length) {
-      initialValue_visibleCreaturesRangeStart = tokenId[0]
-    }
-  }
 
   let initialValue_visibleCreaturesRangeEnd =
     initialValue_visibleCreaturesRangeStart + 27 // TODO: test if result%3 === 0
@@ -539,13 +533,13 @@ function App() {
   }
 
   const filterCreaturesByMinted = ({ keep, creatures }) => {
-    return _.filter(creatures, creature =>
+    return _.filter([...creatures], creature =>
       keep ? creature.minted : !creature.minted
     )
   }
 
   const filterCreaturesByFavorited = ({ keep, creatures }) => {
-    return _.filter(creatures, creature =>
+    return _.filter([...creatures], creature =>
       keep ? creature.isFavorite : !creature.isFavorite
     )
   }
@@ -553,7 +547,6 @@ function App() {
   /*
   // TODO: atm this is to expensive with infura calls
   const filterCreaturesByOwned = ({ keep, creatures }) => {
-    creatures
     const usersMintEvents = _.filter(mintEvents, mintEvent => {
       mintEvent
     })
@@ -563,7 +556,6 @@ function App() {
   const applyFiltersToCreatures = creatures => {
     console.log({ activeFilters })
     if (activeFilters.length === 0) {
-      console.log('no filters -> returning unchanged')
       return creatures
     }
     creatures = filterCreaturesByMinted({
@@ -588,15 +580,17 @@ function App() {
     return creatures
   }
 
-  const getVisibleCreatures = _creatures =>
-    _creatures.splice(visibleCreaturesRangeStart, visibleCreaturesRangeEnd)
+  const getVisibleCreatures = creatures => {
+    let _creatures = [...creatures]
+    return _creatures.splice(
+      visibleCreaturesRangeStart,
+      visibleCreaturesRangeEnd
+    )
+  }
 
   const allCreatures = assembleAllCreatures()
-  console.log({ allCreatures })
   const filteredCreatures = applyFiltersToCreatures(allCreatures)
-  console.log({ filteredCreatures })
   const visibleCreatures = getVisibleCreatures(filteredCreatures)
-  console.log({ visibleCreatures })
 
   console.log({ activeFilters })
 

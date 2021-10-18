@@ -27,12 +27,18 @@ import {
   FilterDropdown
 } from '../../../sharedComponents'
 const { NotMintedIcon32x32 } = Icons
-import houdini_json_hashmap from '../../../assets/houdini_json_hashmap.json'
 import './styles.css'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
-  const { creatures, mintEventsMap, mint, favorites, isMobile } = nftAppProps
+  const {
+    creatures,
+    filter: { activeFilters },
+    mintEventsMap,
+    mint,
+    favorites,
+    isMobile
+  } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
 
@@ -51,32 +57,30 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     urlTokenId = 0
   }
 
-  const [visibleCreatureListIndex, setVisibleCreatureListIndex] =
-    useState(urlTokenId)
-
-  const getActiveTokenListIndex = _urlTokenId => {
-    console.log('in getActiveTokenListIndex():')
-    console.log({ _urlTokenId })
-    console.log({ filteredCreatures: creatures.filtered })
-    const index = _.findIndex(creatures.filtered, creature => {
-      return creature.tokenId === _urlTokenId
+  // find index position of creature with tokenId == urlTokenId
+  const fetchCreatureIndex = () => {
+    let index
+    creatures.filtered.filter((creature, _index) => {
+      if (creature.tokenId === urlTokenId) {
+        index = _index
+      }
     })
-    console.log({ index })
     return index
   }
+  const index = fetchCreatureIndex()
 
-  /*
-  const [activeCreatureListIndex, setActiveCreatureListIndex] = useState(
-    getActiveTokenListIndex(urlTokenId)
-  )
+  const [visibleCreatureListIndex, setVisibleCreatureListIndex] =
+    useState(index)
 
   useEffect(() => {
-    updateUrl(creatures.filtered[activeCreatureListIndex].tokenId)
-  }, [activeCreatureListIndex])
-  */
+    console.log({ visibleCreatureListIndex })
+    if (!creatures.filtered[visibleCreatureListIndex])
+      setVisibleCreatureListIndex(fetchCreatureIndex())
+  }, [activeFilters])
 
   const currentVisibleCreature = creatures.filtered[visibleCreatureListIndex]
 
+  console.log('in creature page')
   console.log({ creatures })
   console.log({ visibleCreatureListIndex })
   console.log({ currentVisibleCreature })
@@ -94,24 +98,35 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       }
     }
     setVisibleCreatureListIndex(newIndex)
-    updateUrl(newIndex)
   }
 
-  // TODO:
-  // pre-load 10 images
-  /*
   useEffect(() => {
-    const preloadSize = 10
-    for (
-      let futureTokenId = activeTokenId + 1;
-      futureTokenId < preloadSize + 1;
-      futureTokenId++
-    ) {
-      const img = new Image()
-      img.src = getImageUrl(futureTokenId)
+    updateUrl(creatures.filtered[visibleCreatureListIndex].tokenId)
+  }, [visibleCreatureListIndex])
+
+  // pre-load 10 images to the left and to the right
+  useEffect(() => {
+    const preloadSize = 10 // in each direction
+
+    const currentVisibleCreature = creatures.filtered[visibleCreatureListIndex]
+
+    const activeTokenId = currentVisibleCreature.tokenId
+
+    let startTokenId = MIN_TOKEN_ID
+    if (activeTokenId - preloadSize > MIN_TOKEN_ID) {
+      startTokenId = activeTokenId - preloadSize
     }
-  }, [activeTokenId])
-  */
+
+    let endTokenId = MAX_TOKEN_ID
+    if (activeTokenId + preloadSize < MAX_TOKEN_ID) {
+      endTokenId = activeTokenId + preloadSize
+    }
+
+    for (let preloadId = startTokenId; preloadId <= endTokenId; preloadId++) {
+      const img = new Image()
+      img.src = getImageUrl(preloadId)
+    }
+  }, [visibleCreatureListIndex])
 
   useEffect(() => {
     window.scrollTo(0, 0)
