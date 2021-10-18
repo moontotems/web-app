@@ -127,7 +127,7 @@ export default function CompactSidebar({
           }
         }}
       >
-        <AsleepFilled16 aria-label='Available Talismoons' />
+        <AsleepFilled16 aria-label='Available Totems' />
       </div>
       <div
         className='menu-item'
@@ -155,7 +155,7 @@ export default function CompactSidebar({
           }
         }}
       >
-        <Locked16 aria-label='Minted Talismoons' />
+        <Locked16 aria-label='Minted Totems' />
       </div>
       <div
         className='menu-item'
@@ -168,7 +168,7 @@ export default function CompactSidebar({
         onClick={() => toggleFilter(FILTERS.favorites)}
       >
         <FavoriteFilled16
-          aria-label='Favorite Talismoons'
+          aria-label='Favorite Totems'
           style={{ fill: '#DA1E28' }}
         />
       </div>
@@ -179,7 +179,7 @@ export default function CompactSidebar({
         to={'/wallet'}
       >
         <div
-          aria-label='My Talismoons'
+          aria-label='My Totems'
           className='menu-item'
           style={{
             ...menuItemStyle,
@@ -189,7 +189,7 @@ export default function CompactSidebar({
           }}
           onClick={() => setActiveFilters([FILTERS.myTalismoons])}
         >
-          <img src={OwnedByUserIcon16x16} alt='My Talismoons' />
+          <img src={OwnedByUserIcon16x16} alt='My Totems' />
         </div>
       </Link>
       <div
@@ -199,7 +199,7 @@ export default function CompactSidebar({
           backgroundColor: '#24A148',
           borderBottom: 'none'
         }}
-        aria-label='Shuffle Talismoons'
+        aria-label='Shuffle Totems'
         onClick={() => shuffleFilteredCreatures()}
       >
         <Shuffle16 />

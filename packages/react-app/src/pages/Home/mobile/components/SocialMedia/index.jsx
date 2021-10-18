@@ -25,21 +25,21 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <a href='https://instagram.com/' target='_blank' rel='noreferrer'>
           <img
             src='/home/icons/Logo-Instagram.svg'
-            alt='Talismoons Instagram'
+            alt='Moon Totems Instagram'
             style={{ width: '20%', marginRight: '5%' }}
           />
         </a>
         <a href='https://twitter.com/' target='_blank' rel='noreferrer'>
           <img
             src='/home/icons/Logo-Twitter.svg'
-            alt='Talismoons Twitter'
+            alt='Moon Totems Twitter'
             style={{ width: '20%', marginRight: '5%' }}
           />
         </a>
         <a href='https://discord.com/' target='_blank' rel='noreferrer'>
           <img
             src='/home/icons/Logo-Discord.svg'
-            alt='Talismoons Discord'
+            alt='Moon Totems Discord'
             style={{ width: '20%', marginRight: '5%' }}
           />
         </a>

@@ -68,7 +68,7 @@ export default function SidebarLeftDesktopView({
       <SideNavItems>
         <SideNavMenu title='About'>
           <SideNavMenuItem href='javascript:void(0)'>
-            What are Talismoons?
+            What are Moon Totems?
             <FacePendingFilled16 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>

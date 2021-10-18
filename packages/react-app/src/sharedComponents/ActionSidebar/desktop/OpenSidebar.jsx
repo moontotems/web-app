@@ -140,7 +140,7 @@ export default function OpenSidebar({
             }}
             to='/all'
           >
-            <div style={{ ...menuItemContentStyle.text }}>All Talismoons</div>
+            <div style={{ ...menuItemContentStyle.text }}>All Moon Totems</div>
             <div style={{ ...menuItemContentStyle.icon }}>
               <img
                 src='/TALISMOON_LOGO.svg'
@@ -174,12 +174,10 @@ export default function OpenSidebar({
             }
           }}
         >
-          <div style={{ ...menuItemContentStyle.text }}>
-            Available Talismoons
-          </div>
+          <div style={{ ...menuItemContentStyle.text }}>Available Totems</div>
           <div style={{ ...menuItemContentStyle.icon }}>
             {/*<img src={NotMintedIcon16x16} alt='Not Minted' />*/}
-            <AsleepFilled16 aria-label='Available Talismoons' />
+            <AsleepFilled16 aria-label='Available Totems' />
           </div>
         </div>
         <div
@@ -210,9 +208,9 @@ export default function OpenSidebar({
             }
           }}
         >
-          <div style={{ ...menuItemContentStyle.text }}>Minted Talismoons</div>
+          <div style={{ ...menuItemContentStyle.text }}>Minted Totems</div>
           <div style={{ ...menuItemContentStyle.icon }}>
-            <Locked16 aria-label='Minted Talismoons' />
+            <Locked16 aria-label='Minted Totems' />
           </div>
         </div>
         <div
@@ -232,12 +230,10 @@ export default function OpenSidebar({
             }
           }}
         >
-          <div style={{ ...menuItemContentStyle.text }}>
-            Favorite Talismoons
-          </div>
+          <div style={{ ...menuItemContentStyle.text }}>Favorite Totems</div>
           <div style={{ ...menuItemContentStyle.icon }}>
             <FavoriteFilled16
-              aria-label='Favorite Talismoons'
+              aria-label='Favorite Totems'
               style={{ fill: '#DA1E28' }}
             />
           </div>
@@ -259,7 +255,7 @@ export default function OpenSidebar({
               style={{ ...menuItemContentStyle.text }}
               onClick={() => setActiveFilters([FILTERS.myTalismoons])}
             >
-              My Talismoons
+              My Totems
             </div>
             <div style={{ ...menuItemContentStyle.icon }}>
               <img

@@ -102,7 +102,7 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
         }}
         onClick={() => setActiveFilters([FILTERS.myTalismoons])}
       >
-        <div style={{ ...menuTextStyle }}>Show My Talismoons</div>
+        <div style={{ ...menuTextStyle }}>Show My Totems</div>
         <img
           src={OwnedByUserIcon16x16}
           style={{ ...menuIconStyle }}

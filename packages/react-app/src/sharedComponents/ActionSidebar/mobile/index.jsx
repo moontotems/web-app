@@ -177,7 +177,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
             </div>
 
             <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>All Talismoons</div>
+              <div style={{ ...menuItemContentStyle.text }}>All Totems</div>
               <div style={{ ...menuItemContentStyle.icon }}>
                 <AsleepFilled32 aria-label='TODO' />
               </div>
@@ -191,23 +191,21 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
               }}
             >
               <div style={{ ...menuItemContentStyle.text }}>
-                Available Talismoons
+                Available Totems
               </div>
               <div style={{ ...menuItemContentStyle.icon }}>
                 <img src={NotMintedIcon32x32} alt='Not Minted' />
               </div>
             </div>
             <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>
-                Minted Talismoons
-              </div>
+              <div style={{ ...menuItemContentStyle.text }}>Minted Totems</div>
               <div style={{ ...menuItemContentStyle.icon }}>
                 <Locked32 aria-label='TODO' />
               </div>
             </div>
             <div className='menu-item' style={{ ...menuItemStyle }}>
               <div style={{ ...menuItemContentStyle.text }}>
-                Favorite Talismoons
+                Favorite Totems
               </div>
               <div style={{ ...menuItemContentStyle.icon }}>
                 <FavoriteFilled32
@@ -225,7 +223,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
                 borderBottom: '1px solid #24A148'
               }}
             >
-              <div style={{ ...menuItemContentStyle.text }}>My Talismoons</div>
+              <div style={{ ...menuItemContentStyle.text }}>My Totems</div>
               <div style={{ ...menuItemContentStyle.icon }}>
                 <img src={OwnedByUserIcon32x32} alt='Minted' />
               </div>
@@ -255,7 +253,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
             </div>
             <div className='menu-item' style={{ ...menuItemStyle }}>
               <div style={{ ...menuItemContentStyle.text }}>
-                Consult your Talismoon
+                Consult your Totem
               </div>
               <div style={{ ...menuItemContentStyle.icon }}>
                 <ChatBot32 aria-label='Chat' />

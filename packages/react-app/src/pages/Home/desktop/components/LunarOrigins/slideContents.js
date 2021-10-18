@@ -3,7 +3,7 @@ export default [
     index: 0,
     image: '',
     title: '',
-    text: 'Each Talismoon is born under a particular Lunar Month.'
+    text: 'Each Totems is born under a particular Lunar Month.'
   },
   {
     index: 1,
@@ -11,7 +11,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0001.jpg',
     title: 'Sea of Rains',
     subtitle: 'Mare Imbrium',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 2,
@@ -19,7 +19,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0002.jpg',
     title: 'Sea of Fertility',
     subtitle: 'Mare Fecunditatis',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 3,
@@ -27,7 +27,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0003.jpg',
     title: 'Sea of Tranquility',
     subtitle: 'Mare Tranquillitatis',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 4,
@@ -35,7 +35,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0004.jpg',
     title: 'Sea of Clouds',
     subtitle: 'Mare Nubium',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 5,
@@ -43,7 +43,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0005.jpg',
     title: 'Sea of Islands',
     subtitle: 'Mare Insularum',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 6,
@@ -51,7 +51,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0006.jpg',
     title: 'Lake of Dreams',
     subtitle: 'Lacus Somniorum',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 7,
@@ -59,7 +59,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0007.jpg',
     title: 'Bay of Rainbows',
     subtitle: 'Sinus Iridum',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 8,
@@ -67,7 +67,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0008.jpg',
     title: 'Peninsula of Thunder',
     subtitle: 'Peninsula Fulminum',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 9,
@@ -75,7 +75,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0009.jpg',
     title: 'Bay of Harmony',
     subtitle: 'Sinus Concordiae',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 10,
@@ -83,7 +83,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0010.jpg',
     title: 'Bay of Success',
     subtitle: 'Sinus Successus',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 11,
@@ -91,7 +91,7 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0011.jpg',
     title: 'Bay of Love',
     subtitle: 'Sinus Amoris',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   },
   {
     index: 12,
@@ -99,6 +99,6 @@ export default [
     icon: '/home/lunarOrigins/symbols/lunar_origin_symbol_0012.jpg',
     title: 'Lake of Time',
     subtitle: 'Lacus Temporis',
-    text: 'Talismoons were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
+    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.'
   }
 ]

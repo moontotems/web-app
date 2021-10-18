@@ -3,60 +3,60 @@ export default [
     index: 0,
     image: '',
     title: '',
-    text: 'Talismoons is a next generation NFT project that aims to expand the features and possibilities exclusive to holders.'
+    text: 'Moon Totems is a next generation NFT project that aims to expand the features and possibilities exclusive to holders.'
   },
   {
     index: 1,
     image: '/home/uniqueFeatures/talismoon_chat.jpg',
-    title: 'TALISMOON CHAT',
+    title: 'TOTEM CHAT',
     text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
   },
   {
     index: 2,
     image: '/home/uniqueFeatures/talismoon_bio.jpg',
-    title: 'TALISMOON STORIES',
+    title: 'TOTEM STORIES',
     text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
   },
   {
     index: 3,
     image: '/home/uniqueFeatures/talismoon_zoom_and_pan.jpg',
-    title: 'TALISMOON ZOOM',
+    title: 'TOTEM ZOOM',
     text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
   },
   {
     index: 4,
     image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'TALISMOON COMMUNITY',
+    title: 'TOTEM COMMUNITY',
     text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
   },
   {
     index: 5,
     image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'TALISMOON ASSETS',
+    title: 'TOTEM ASSETS',
     text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
   },
   {
     index: 6,
     image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'TALISMOON',
+    title: 'TOTEM',
     text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
   },
   {
     index: 7,
     image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'TALISMOON FUTURE',
+    title: 'TOTEM FUTURE',
     text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
   },
   {
     index: 8,
     image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'TALISMOON ROLEPLAY',
+    title: 'TOTEM ROLEPLAY',
     text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
   },
   {
     index: 9,
     image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'TALISMOON METAVERSE',
+    title: 'TOTEM METAVERSE',
     text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
   }
 ]

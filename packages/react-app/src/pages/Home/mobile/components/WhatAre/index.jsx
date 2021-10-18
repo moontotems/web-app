@@ -53,7 +53,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         }}
       >
         <div style={{ paddingBottom: '5%', fontSize: '35px' }}>
-          What are Talismoons?
+          What are Moon Totems?
         </div>
         <div
           style={{
@@ -62,7 +62,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
             lineHeight: '60px'
           }}
         >
-          Talismoons are digital talismans from the moon and discovered on the
+          Moon Totems are digital talismans from the moon and discovered on the
           Ethereum blockchain.
         </div>
         <div

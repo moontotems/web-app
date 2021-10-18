@@ -4,7 +4,7 @@ export default [
     image: '',
     icon: '',
     title: '',
-    text: 'Talismoons is a next generation NFT project that aims to expand the features and possibilities exclusive to holders.'
+    text: 'Moon Totems is a next generation NFT project that aims to expand the features and possibilities exclusive to holders.'
   },
   {
     index: 1,

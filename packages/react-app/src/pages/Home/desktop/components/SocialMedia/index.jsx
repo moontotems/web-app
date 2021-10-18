@@ -30,8 +30,8 @@ export default function Section({ ethereumProps, nftAppProps }) {
             lineHeight: '35px'
           }}
         >
-          Talismoons are beautiful crypto talismans from the moon and discovered
-          on the Ethereum blockchain.
+          Moon Totems are beautiful crypto talismans from the moon and
+          discovered on the Ethereum blockchain.
         </div>
       </div>
       <div
@@ -83,7 +83,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
               <a href='https://instagram.com/' target='_blank' rel='noreferrer'>
                 <img
                   src='/home/icons/Logo-Instagram.svg'
-                  alt='Talismoons Instagram'
+                  alt='Moon Totems Instagram'
                 />
               </a>
             </div>
@@ -111,7 +111,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
               <a href='https://twitter.com/' target='_blank' rel='noreferrer'>
                 <img
                   src='/home/icons/Logo-Twitter.svg'
-                  alt='Talismoons Twitter'
+                  alt='Moon Totems Twitter'
                 />
               </a>
             </div>
@@ -139,7 +139,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
               <a href='https://discord.com/' target='_blank' rel='noreferrer'>
                 <img
                   src='/home/icons/Logo-Discord.svg'
-                  alt='Talismoons Discord'
+                  alt='Moon Totems Discord'
                 />
               </a>
             </div>

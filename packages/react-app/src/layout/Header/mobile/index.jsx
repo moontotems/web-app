@@ -86,7 +86,7 @@ export default function HeaderMobile({
             to='/wallet'
             style={{ ...menuTextStyle }}
           >
-            My Talismoons
+            My Moon Totems
           </Link>
         </div>
         <Moon16 style={{ ...menuIconStyle }} />
@@ -100,7 +100,7 @@ export default function HeaderMobile({
             to='/favorites'
             style={{ ...menuTextStyle }}
           >
-            My Favorite Talismoons
+            My Favorite Moon Totems
           </Link>
         </div>
         <FavoriteFilled16 style={{ ...menuIconStyle }} />

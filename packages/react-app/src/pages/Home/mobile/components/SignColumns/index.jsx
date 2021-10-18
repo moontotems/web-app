@@ -18,7 +18,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
               lineHeight: '33px'
             }}
           >
-            Talismoons come from the Moon
+            Moon Totems come from the Moon
           </div>
         </Col>
       </div>

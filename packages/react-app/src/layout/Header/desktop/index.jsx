@@ -102,7 +102,7 @@ export default function HeaderDesktop({
       </div>
 
       <Header
-        aria-label={'Talismoons'}
+        aria-label={'Moon Totems'}
         style={{ height: DESKTOP_HEADER_HEIGHT }}
       >
         {/*
@@ -146,10 +146,10 @@ export default function HeaderDesktop({
             }}
             to='/'
           >
-            <span style={{ fontWeight: 400 }}>TALISMOONS</span>
+            <span style={{ fontWeight: 400 }}>MOON TOTEMS</span>
           </Link>
         </HeaderName>
-        <HeaderNavigation aria-label='Talismoons'>
+        <HeaderNavigation aria-label='Moon Totems'>
           <HeaderName href='#' prefix=''></HeaderName>
           {/*
             <HeaderMenu aria-label='Subm' menuLinkName='Subm'>

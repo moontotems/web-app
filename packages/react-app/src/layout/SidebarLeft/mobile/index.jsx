@@ -64,7 +64,7 @@ export default function SidebarLeftMobileView({
         <SideNavLink href='javascript:void(0)'></SideNavLink>
         <SideNavMenu title='About'>
           <SideNavMenuItem href='javascript:void(0)'>
-            What are Talismoons?{' '}
+            What are Moon Totems?{' '}
             <FacePendingFilled32 style={{ ...iconStyle }} />
           </SideNavMenuItem>
           <SideNavMenuItem href='javascript:void(0)'>
