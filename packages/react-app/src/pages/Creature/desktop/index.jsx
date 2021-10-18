@@ -191,11 +191,12 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           position: 'fixed',
           top: 90,
           left: 10,
-          width: '20%',
+          width: '30%',
           zIndex: 1000
         }}
       >
         <Chatbot image={image} tokenId={currentVisibleCreature.tokenId} />
+        <CreatureAttributes creatureMetadata={metaData} />
       </div>
       <div
         style={{
@@ -306,71 +307,9 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         </Col>
       </Row>
       <Row>
-        <Col span={24}>
-          <div style={{ margin: '45px 0', textAlign: 'center' }}>
-            <FilterDropdown
-              ethereumProps={ethereumProps}
-              nftAppProps={nftAppProps}
-            />
-            {/* <Apps32 aria-label='Switch to area view' style={{ ...iconStyle }} /> */}
-            {/* <CarouselHorizontal32 style={{ ...iconStyle }} />*/}
-            {/* <List32 aria-label='Switch to list view' style={{ ...iconStyle }} /> */}
-            <Download32
-              aria-label='Download'
-              style={{ ...iconStyle }}
-              onClick={() => {
-                $('#creatureName').hide()
-                $('#chatbot').hide()
-                $('#creatureAttributes').hide()
-                $('#creatureDownloads').toggle(500)
-              }}
-            />
-            {/*
-              <Dropdown
-                ariaLabel='Dropdown'
-                id='carbon-dropdown-example'
-                items={['.jpg', '.png']}
-                label={
-                  <Download32
-                    aria-label='Download'
-                    style={{ ...iconStyle, color: '#fff' }}
-                  />
-                }
-                titleText='Dropdown title'
-                style={{ width: 'auto' }}
-              />
-            */}
-            <Information32
-              aria-label='Show Info'
-              style={{ ...iconStyle }}
-              onClick={() => {
-                $('#creatureName').hide()
-                $('#chatbot').hide()
-                $('#creatureDownloads').hide()
-                $('#creatureAttributes').toggle(500)
-              }}
-            />
-            <ChatBot32
-              aria-label='Chat'
-              style={{ ...iconStyle }}
-              onClick={() => {
-                $('#creatureName').hide()
-                $('#creatureAttributes').hide()
-                $('#creatureDownloads').hide()
-                $('#chatbot').toggle(500)
-              }}
-            />
-            <Edit32 style={{ ...iconStyle }} />
-            <ZoomIn32 aria-label='Zoom' style={{ ...iconStyle }} />
-          </div>
-        </Col>
-      </Row>
-      <Row>
         <Col xs={0} md={7} />
         <Col xs={24} md={14}>
-          <div style={{ textAlign: 'center' }}>
-            <CreatureAttributes creatureMetadata={metaData} />
-          </div>
+          <div style={{ textAlign: 'center' }}></div>
         </Col>
         <Col xs={0} md={7} />
       </Row>

@@ -44,7 +44,10 @@ export default function CompactSidebar({
       toggleFilter,
       filterIsActive,
       activeFilters
-    }
+    },
+    toggleVisibilityDownload,
+    toggleVisibilityMetaData,
+    toggleVisibilityChat
   } = nftAppProps
 
   return (
@@ -210,7 +213,11 @@ export default function CompactSidebar({
       >
         <ColorPalette16 aria-label='Color' />
       </div>
-      <div className='menu-item' style={{ ...menuItemStyle }}>
+      <div
+        className='menu-item'
+        style={{ ...menuItemStyle }}
+        onClick={() => toggleVisibilityChat()}
+      >
         <ChatBot16 aria-label='Chat' />
       </div>
       <div className='menu-item' style={{ ...menuItemStyle }}>
@@ -219,11 +226,19 @@ export default function CompactSidebar({
       <div className='menu-item' style={{ ...menuItemStyle }}>
         <ZoomIn16 aria-label='Zoom' />
       </div>
-      <div className='menu-item' style={{ ...menuItemStyle }}>
+      <div
+        className='menu-item'
+        style={{ ...menuItemStyle }}
+        onClick={() => toggleVisibilityDownload()}
+      >
         <Download16 aria-label='Download' />
       </div>
-      <div className='menu-item' style={{ ...menuItemStyle }}>
-        <Information16 aria-label='Details' />
+      <div
+        className='menu-item'
+        style={{ ...menuItemStyle }}
+        onClick={() => toggleVisibilityMetaData()}
+      >
+        <Information16 aria-label='Meta Data' />
       </div>
       <div className='menu-item' style={{ ...menuItemStyle }}>
         <Launch16 aria-label='TODO' />

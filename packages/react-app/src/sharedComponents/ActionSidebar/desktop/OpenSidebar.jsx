@@ -43,7 +43,10 @@ export default function OpenSidebar({
       toggleFilter,
       removeFilter,
       addFilter
-    }
+    },
+    toggleVisibilityDownload,
+    toggleVisibilityMetaData,
+    toggleVisibilityChat
   } = nftAppProps
 
   const menuItemContentStyle = {
@@ -288,7 +291,11 @@ export default function OpenSidebar({
             <ColorPalette16 aria-label='Color' />
           </div>
         </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
+        <div
+          className='menu-item'
+          style={{ ...menuItemStyle }}
+          onClick={() => toggleVisibilityChat()}
+        >
           <div style={{ ...menuItemContentStyle.text }}>Consult your Totem</div>
           <div style={{ ...menuItemContentStyle.icon }}>
             <ChatBot16 aria-label='Chat' />
@@ -308,16 +315,24 @@ export default function OpenSidebar({
             <ZoomIn16 aria-label='Zoom' />
           </div>
         </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
+        <div
+          className='menu-item'
+          style={{ ...menuItemStyle }}
+          onClick={() => toggleVisibilityDownload()}
+        >
           <div style={{ ...menuItemContentStyle.text }}>Download Files</div>
           <div style={{ ...menuItemContentStyle.icon }}>
             <Download16 aria-label='Download' />
           </div>
         </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
+        <div
+          className='menu-item'
+          style={{ ...menuItemStyle }}
+          onClick={() => toggleVisibilityMetaData()}
+        >
           <div style={{ ...menuItemContentStyle.text }}>Show all Metadata</div>
           <div style={{ ...menuItemContentStyle.icon }}>
-            <Information16 aria-label='Details' />
+            <Information16 aria-label='Meta Data' />
           </div>
         </div>
         <div className='menu-item' style={{ ...menuItemStyle }}>
