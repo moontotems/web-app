@@ -1,36 +1,31 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Menu, Dropdown, Button as AntdButton } from 'antd'
+import { Row, Col } from 'antd'
 import { Button } from 'antd-mobile'
 
 import {
   AsleepFilled32,
-  CheckmarkOutline32,
-  CheckmarkFilled32,
   Favorite32,
   FavoriteFilled32,
-  Filter32,
-  Apps32,
-  CarouselHorizontal32,
-  List32,
-  Download32,
   Information32,
-  ChatBot32,
-  CloseFilled32,
-  Edit32,
-  ZoomIn32
+  CloseFilled32
 } from '@carbon/icons-react'
 // https://www.npmjs.com/package/react-slick
 import { useSwipeable } from 'react-swipeable'
 import $ from 'jquery'
 import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
-import { Chatbot, CreatureAttributes, Icons } from '../../../sharedComponents'
+import {
+  CreatureAttributes,
+  Chatbot,
+  WriteCreatureStory,
+  Icons
+} from '../../../sharedComponents'
 const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
 import houdini_json_hashmap from '../../../assets/houdini_json_hashmap.json'
 
 export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
-  const { favorites, activeFilter, mintEventsMap, mint } = nftAppProps
+  const { favorites, mintEventsMap, mint } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
 
@@ -312,6 +307,11 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
             }}
           >
             <CreatureAttributes creatureMetadata={metaData} isMobile={true} />
+          </div>
+        </Col>
+        <Col span={24}>
+          <div style={{ padding: '30px' }}>
+            <WriteCreatureStory tokenId={activeTokenId} />
           </div>
         </Col>
       </Row>

@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col } from 'antd'
-import { Button } from 'antd'
+import { Row, Col, Button } from 'antd'
 import {
   AsleepFilled32,
   Favorite32,
-  FavoriteFilled32,
-  Download32,
-  Information32,
-  ChatBot32,
-  Edit32,
-  ZoomIn32
+  FavoriteFilled32
 } from '@carbon/icons-react'
 import $ from 'jquery'
-import _ from 'underscore'
 // https://www.npmjs.com/package/react-inner-image-zoom
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 import InnerImageZoom from 'react-inner-image-zoom'
@@ -23,8 +16,8 @@ import {
   Chatbot,
   CreatureAttributes,
   CreatureFileDownloads,
-  Icons,
-  FilterDropdown
+  WriteCreatureStory,
+  Icons
 } from '../../../sharedComponents'
 const { NotMintedIcon32x32 } = Icons
 import './styles.css'
@@ -36,8 +29,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     filter: { activeFilters },
     mintEventsMap,
     mint,
-    favorites,
-    isMobile
+    favorites
   } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
@@ -155,11 +147,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       }
     }
   }, [visibleCreatureListIndex])
-
-  const iconStyle = {
-    margin: '0 20px',
-    cursor: 'pointer'
-  }
 
   const buttonStyle = {
     height: 34,
@@ -306,12 +293,12 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           </div>
         </Col>
       </Row>
-      <Row>
-        <Col xs={0} md={7} />
-        <Col xs={24} md={14}>
-          <div style={{ textAlign: 'center' }}></div>
+      <Row style={{ marginTop: '40px' }}>
+        <Col xs={8} />
+        <Col xs={8}>
+          <WriteCreatureStory tokenId={currentVisibleCreature.tokenId} />
         </Col>
-        <Col xs={0} md={7} />
+        <Col xs={8} />
       </Row>
     </div>
   )
