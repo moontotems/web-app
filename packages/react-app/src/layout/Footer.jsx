@@ -63,6 +63,53 @@ export default function MyFooter({ ethereumProps, nftAppProps }) {
             Contact
           </Link>
         </div>
+        <div style={{ ...contentStyle }}>
+          <a
+            href='https://instagram.com/moontotems'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <img
+              src='/icons/Logo-Instagram.svg'
+              alt='Moon Totems Instagram'
+              width='35'
+            />
+          </a>
+          <a
+            href='https://twitter.com/moontotemsnft'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <img
+              src='/icons/Logo-Twitter.svg'
+              alt='Moon Totems Twitter'
+              width='35'
+            />
+          </a>
+          <a
+            href='https://discord.gg/73vMqt7k7H'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <img
+              src='/icons/Logo-Discord.svg'
+              alt='Moon Totems Discord'
+              width='35'
+            />
+          </a>
+          <a
+            href='https://github.com/talismoons'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <img
+              src='/icons/Logo-Github.svg'
+              alt='Moon Totems Github'
+              width='35'
+              style={{ color: 'white' }}
+            />
+          </a>
+        </div>
       </Col>
       <Col xs={24} lg={8}>
         <div style={{ ...headerStyle }}>Resources</div>

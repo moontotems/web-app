@@ -22,21 +22,33 @@ export default function Section({ ethereumProps, nftAppProps }) {
         Catch the latest announcements and engage with the community
       </div>
       <div>
-        <a href='https://instagram.com/' target='_blank' rel='noreferrer'>
+        <a
+          href='https://instagram.com/moontotems'
+          target='_blank'
+          rel='noreferrer'
+        >
           <img
             src='/home/icons/Logo-Instagram.svg'
             alt='Moon Totems Instagram'
             style={{ width: '20%', marginRight: '5%' }}
           />
         </a>
-        <a href='https://twitter.com/' target='_blank' rel='noreferrer'>
+        <a
+          href='https://twitter.com/moontotemsnft'
+          target='_blank'
+          rel='noreferrer'
+        >
           <img
             src='/home/icons/Logo-Twitter.svg'
             alt='Moon Totems Twitter'
             style={{ width: '20%', marginRight: '5%' }}
           />
         </a>
-        <a href='https://discord.com/' target='_blank' rel='noreferrer'>
+        <a
+          href='https://discord.gg/73vMqt7k7H'
+          target='_blank'
+          rel='noreferrer'
+        >
           <img
             src='/home/icons/Logo-Discord.svg'
             alt='Moon Totems Discord'

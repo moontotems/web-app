@@ -66,7 +66,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
                 paddingLeft: '15px'
               }}
             >
-              <a href='https://instagram.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://instagram.com/moontotems'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <div style={{ fontSize: '22px', fontWeight: 400 }}>
                   Instagram
                 </div>
@@ -80,7 +84,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
               >
                 For visual stories and explorations into the art.
               </div>
-              <a href='https://instagram.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://instagram.com/moontotems'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img
                   src='/home/icons/Logo-Instagram.svg'
                   alt='Moon Totems Instagram'
@@ -96,7 +104,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
                 paddingLeft: '15px'
               }}
             >
-              <a href='https://twitter.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://twitter.com/moontotemsnft'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <div style={{ fontSize: '22px', fontWeight: 400 }}>Twitter</div>
               </a>
               <div
@@ -108,7 +120,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
               >
                 For the latest announcements and updates.
               </div>
-              <a href='https://twitter.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://twitter.com/moontotemsnft'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img
                   src='/home/icons/Logo-Twitter.svg'
                   alt='Moon Totems Twitter'
@@ -124,7 +140,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
                 paddingLeft: '15px'
               }}
             >
-              <a href='https://discord.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://discord.gg/73vMqt7k7H'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <div style={{ fontSize: '22px', fontWeight: 400 }}>Discord</div>
               </a>
               <div
@@ -136,7 +156,11 @@ export default function Section({ ethereumProps, nftAppProps }) {
               >
                 For connecting with the Moon Totem Community.
               </div>
-              <a href='https://discord.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://discord.gg/73vMqt7k7H'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img
                   src='/home/icons/Logo-Discord.svg'
                   alt='Moon Totems Discord'
