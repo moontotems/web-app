@@ -531,24 +531,23 @@ function App() {
 
   // assemble all creature objects
   const assembleAllCreatures = () => {
-    console.log('assembleAllCreatures:')
-    console.log({ MIN_TOKEN_ID, MAX_TOKEN_ID })
     const creatures = []
     for (let tokenId = MIN_TOKEN_ID; tokenId <= MAX_TOKEN_ID; tokenId++) {
       creatures.push(assembleCreature(tokenId))
     }
-    console.log({ creatures })
     return creatures
   }
 
   const filterCreaturesByMinted = ({ keep, creatures }) => {
-    return _.filter(creatures, creature =>
+    const _creatures = [...creatures]
+    return _.filter(_creatures, creature =>
       keep ? creature.minted : !creature.minted
     )
   }
 
   const filterCreaturesByFavorited = ({ keep, creatures }) => {
-    return _.filter(creatures, creature =>
+    const _creatures = [...creatures]
+    return _.filter(_creatures, creature =>
       keep ? creature.isFavorite : !creature.isFavorite
     )
   }
@@ -564,19 +563,20 @@ function App() {
   */
 
   const applyFiltersToCreatures = creatures => {
+    let _creatures = [...creatures]
     console.log({ activeFilters })
     if (activeFilters.length === 0) {
       console.log('no filters -> returning unchanged')
-      return creatures
+      return _creatures
     }
-    creatures = filterCreaturesByMinted({
+    _creatures = filterCreaturesByMinted({
       keep: filterIsActive(FILTERS.minted),
-      creatures
+      _creatures
     })
     if (filterIsActive(FILTERS.favorites)) {
-      creatures = filterCreaturesByFavorited({
+      _creatures = filterCreaturesByFavorited({
         keep: filterIsActive(FILTERS.favorites),
-        creatures
+        _creatures
       })
     }
 
@@ -591,107 +591,37 @@ function App() {
     return creatures
   }
 
-  /*
-  const shuffleCreatures = creatures => {
-    console.log('now shuffling creatures')
-    return _.shuffle(creatures)
-  }
-  */
-
   const getVisibleCreatures = _creatures =>
     _creatures.splice(visibleCreaturesRangeStart, visibleCreaturesRangeEnd)
-
-  /*
-  const assembleCreatureLists = () => {
-    const allCreatures = assembleAllCreatures()
-
-    const filteredCreatures = applyFiltersToCreatures(allCreatures)
-
-    let shuffledCreatures
-    if (filteredCreatures.length > 1000) {
-      shuffledCreatures = shuffleCreatures(filteredCreatures)
-    }
-
-    const visibleCreatures = getVisibleCreatures(
-      shuffledCreatures || filteredCreatures
-    )
-
-    return {
-      all: allCreatures,
-      filtered: filteredCreatures,
-      shuffled: shuffledCreatures,
-      visible: visibleCreatures
-    }
-  }
-  */
 
   const allCreatures = assembleAllCreatures()
   console.log({ allCreatures })
   const filteredCreatures = applyFiltersToCreatures(allCreatures)
+  console.log({ filteredCreatures })
   const visibleCreatures = getVisibleCreatures(filteredCreatures)
-  /*
-  const [filteredCreatures, setFilteredCreatures] = useState(
-    applyFiltersToCreatures(allCreatures)
-  )
-  */
-  /*
-  const [visibleCreatures, setVisibleCreatures] = useState(
-    getVisibleCreatures(filteredCreatures)
-  )
+  console.log({ visibleCreatures })
 
-  const shuffleFilteredCreatures = () => {
-    console.log('now in shuffleFilteredCreatures()')
-    const shuffledCreatures = shuffleCreatures(filteredCreatures)
-    setFilteredCreatures(shuffledCreatures)
-  }
-  */
-
-  /*
-  useEffect(() => {
-    console.log('now updating FilteredCreatures:')
-    const filtered = applyFiltersToCreatures(allCreatures)
-    setFilteredCreatures(filtered)
-    //setVisibleCreatures(getVisibleCreatures(filtered))
-  }, [activeFilters])
-
-  useEffect(() => {
-    console.log('now updating VisibleCreatures:')
-    console.log({ filteredCreatures })
-    console.log(getVisibleCreatures(filteredCreatures))
-    setVisibleCreatures(getVisibleCreatures(filteredCreatures))
-  }, [visibleCreaturesRangeEnd, visibleCreaturesRangeStart, filteredCreatures])
-  */
-
-  console.log({ allCreatures, filteredCreatures, visibleCreatures })
   console.log({ activeFilters })
-  /////
-  /*
-  for (let i = 0; i < visibleCreaturesRangeEnd; i++) {
-    let creature
 
-    if (activeFilter === FILTERS.shuffle) {
-      const randomTokenId = randomTokenIds[i]
-      creatures.push(assembleCreature(randomTokenId))
-    } else {
-      const tokenId = i
-      creature = assembleCreature(tokenId)
-    }
+  ///
+  const creatureIndexList = Array.from(Array(MAX_TOKEN_ID).keys())
+  const [shuffledCreatureIndexList, setShuffledCreatureIndexList] = useState(
+    _.shuffle(creatureIndexList)
+  )
 
-    // filter creature
-    if (!activeFilter) {
-      creatures.push(creature)
-    } else if (activeFilter === FILTERS.minted && !creature.minted) {
-      creatures.push(creature)
-    } else if (activeFilter === FILTERS.taken && creature.minted) {
-      creatures.push(creature)
-    } else if (activeFilter === FILTERS.myTalismoons) {
-      //creatures = usersCreatures
-      break
-    } else if (activeFilter === FILTERS.favorites && creature.isFavorite) {
-      creatures.push(creature)
-    }
+  const shuffleCreatures = () => {
+    console.log('now shuffling creatures')
+    setShuffledCreatureIndexList(creatureIndexList)
   }
-  */
+  ///
+
+  console.log({
+    allCreatures,
+    filteredCreatures,
+    creatureIndexList,
+    shuffledCreatureIndexList,
+    visibleCreatures
+  })
 
   const infiniteScroll = {
     visibleCreaturesRangeStart,

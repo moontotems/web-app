@@ -51,6 +51,9 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     urlTokenId = 0
   }
 
+  const [visibleCreatureListIndex, setVisibleCreatureListIndex] =
+    useState(urlTokenId)
+
   const getActiveTokenListIndex = _urlTokenId => {
     console.log('in getActiveTokenListIndex():')
     console.log({ _urlTokenId })
@@ -62,6 +65,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     return index
   }
 
+  /*
   const [activeCreatureListIndex, setActiveCreatureListIndex] = useState(
     getActiveTokenListIndex(urlTokenId)
   )
@@ -69,25 +73,28 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   useEffect(() => {
     updateUrl(creatures.filtered[activeCreatureListIndex].tokenId)
   }, [activeCreatureListIndex])
+  */
 
-  const currentVisibleCreature = creatures.filtered[activeCreatureListIndex]
+  const currentVisibleCreature = creatures.filtered[visibleCreatureListIndex]
 
   console.log({ creatures })
-  console.log({ activeCreatureListIndex })
+  console.log({ visibleCreatureListIndex })
+  console.log({ currentVisibleCreature })
 
-  const getNextTokenId = ({ direction }) => {
+  const setNextTokenId = ({ direction }) => {
+    let newIndex = visibleCreatureListIndex
     if (direction === 'left') {
-      if (activeCreatureListIndex > 0) {
-        const nextCreature = creatures.filtered[activeCreatureListIndex - 1]
-        return nextCreature.tokenId
+      if (visibleCreatureListIndex > 0) {
+        newIndex = visibleCreatureListIndex - 1
       }
     }
     if (direction === 'right') {
-      if (activeCreatureListIndex > creatures.filtered.length - 1) {
-        const nextCreature = creatures.filtered[activeCreatureListIndex + 1]
-        return nextCreature.tokenId
+      if (visibleCreatureListIndex < creatures.filtered.length - 1) {
+        newIndex = visibleCreatureListIndex + 1
       }
     }
+    setVisibleCreatureListIndex(newIndex)
+    updateUrl(newIndex)
   }
 
   // TODO:
@@ -122,21 +129,17 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       const RIGHT_KEY = 39
 
       if (e.which == LEFT_KEY) {
-        const newActiveTokenId = getNextTokenId({
+        setNextTokenId({
           direction: 'left'
         })
-        setActiveCreatureListIndex(activeCreatureListIndex - 1)
-        //updateUrl(newActiveTokenId)
       }
       if (e.which == RIGHT_KEY) {
-        const newActiveTokenId = getNextTokenId({
+        setNextTokenId({
           direction: 'right'
         })
-        setActiveCreatureListIndex(activeCreatureListIndex + 1)
-        //updateUrl(newActiveTokenId)
       }
     }
-  }, [activeCreatureListIndex])
+  }, [visibleCreatureListIndex])
 
   const iconStyle = {
     margin: '0 20px',

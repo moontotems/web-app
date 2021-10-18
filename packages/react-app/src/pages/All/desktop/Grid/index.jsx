@@ -5,11 +5,12 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { Creature } from '../../../../sharedComponents'
 
 export default function AllDesktopGridView({ ethereumProps, nftAppProps }) {
-  const { creatures, infiniteScroll } = nftAppProps
+  const {
+    creatures,
+    infiniteScroll,
+    filter: { activeFilters }
+  } = nftAppProps
   const { next, hasMore, loader } = infiniteScroll
-
-  console.log('grind:')
-  console.log({ renderingCreatures: creatures.visible })
 
   return (
     <div>
