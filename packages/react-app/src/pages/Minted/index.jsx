@@ -36,7 +36,7 @@ export default function Minted({ ethereumProps, nftAppProps }) {
                 minted
               }
 
-              const key = `TALISMOON-${tokenId}-minted`
+              const key = `TOTEM-${tokenId}-minted`
 
               return (
                 <Col key={key} xs={24} sm={16} md={8} lg={6}>

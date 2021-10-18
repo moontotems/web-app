@@ -17,6 +17,13 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
   const { trait_jobField, trait_jobTitle, trait_name1, trait_name2 } =
     metaData || {}
 
+  const isAvailable = !minted
+  const isTaken = minted && !ownedByUser
+  // TODO: this isn't working -> fix this
+  const isOwnedByUser = ownedByUser
+
+  //console.log({ isOwnedByUser, ownedByUser })
+
   return (
     <>
       <div
@@ -26,12 +33,12 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
       >
         <Link
           onClick={() => {
-            setRoute('/talismoon')
+            setRoute('/moontotem')
           }}
-          to={`/talismoon/${tokenId}`}
+          to={`/moontotem/${tokenId}`}
         >
           <img
-            alt={`Talismoon ${tokenId}`}
+            alt={`Moon Totem ${tokenId}`}
             height={'auto'}
             width={'100%'}
             src={image}
@@ -40,9 +47,12 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
         <Row>
           <Col xs={6}>
             <div style={{ textAlign: 'center' }}>
-              {!ownedByUser && minted && <AsleepFilled16 />}
-              {ownedByUser && <img src={OwnedByUserIcon16x16} alt='Minted' />}
-              {!minted && <img src={NotMintedIcon16x16} alt='Not Minted' />}
+              {isAvailable && <AsleepFilled16 />}
+              {isOwnedByUser && (
+                <img src={OwnedByUserIcon16x16} alt='Owned by User' />
+              )}
+              {/*!minted && <img src={NotMintedIcon16x16} alt='Not Minted' />*/}
+              {/*!minted && <AsleepFilled16 style={{ color: '#00FF75' }} />*/}
             </div>
           </Col>
           <Col xs={12}>
@@ -67,7 +77,7 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
                 textAlign: 'center'
               }}
             >
-              {trait_jobField} {trait_jobTitle}
+              {trait_jobField} {trait_jobTitle} #{tokenId}
             </div>
           </Col>
           <Col xs={6}>

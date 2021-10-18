@@ -13,7 +13,7 @@ export default function ContractUI({
     <Row>
       <Col>
         <Contract
-          name='Moons'
+          name='MoonTotems'
           signer={userSigner}
           provider={localProvider}
           address={address}

@@ -20,6 +20,7 @@ import {
   Shuffle16
 } from '@carbon/icons-react'
 
+import FILTERS from '../../../sharedComponents/FilterDropdown/filters'
 import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
 import Icons from '../../icons'
 const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
@@ -31,7 +32,19 @@ export default function OpenSidebar({
   nftAppProps,
   menuItemStyle
 }) {
-  const { setRoute, setShowGrid, shuffleVisibleCreatures } = nftAppProps
+  const {
+    setRoute,
+    setShowGrid,
+    shuffleFilteredCreatures,
+    filter: {
+      activeFilters,
+      filterIsActive,
+      setActiveFilters,
+      toggleFilter,
+      removeFilter,
+      addFilter
+    }
+  } = nftAppProps
 
   const menuItemContentStyle = {
     text: {
@@ -69,9 +82,10 @@ export default function OpenSidebar({
         <div className='menu-item' style={{ ...menuItemStyle }}>
           <Link
             onClick={() => {
-              setRoute('/talismoon')
+              setRoute('/moontotem')
             }}
-            to={`/talismoon/${0}`}
+            // TODO:
+            to={`/moontotem/${0}`}
           >
             <div style={{ ...menuItemContentStyle.text }}>Item View</div>
             <div style={{ ...menuItemContentStyle.icon }}>
@@ -106,13 +120,20 @@ export default function OpenSidebar({
         <div className='menu-item title' style={{ ...menuItemStyle }}>
           <div style={{ ...menuItemContentStyle.text }}>Filter</div>
           <div style={{ ...menuItemContentStyle.icon }}>
-            <Filter16 aria-label='TODO' />
+            <Filter16 aria-label='Filter' />
           </div>
         </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
+        <div
+          className='menu-item'
+          style={{
+            ...menuItemStyle,
+            backgroundColor: activeFilters.length === 0 ? '#525252' : '#262626'
+          }}
+        >
           <Link
             onClick={() => {
               setRoute('/all')
+              setActiveFilters([])
             }}
             to='/all'
           >
@@ -130,9 +151,24 @@ export default function OpenSidebar({
         <div
           className='menu-item'
           style={{
-            ...menuItemStyle
-            //paddingTop: '8px',
-            //paddingBottom: '9px'
+            ...menuItemStyle,
+            backgroundColor: filterIsActive(FILTERS.notMinted)
+              ? '#525252'
+              : '#262626'
+          }}
+          onClick={() => {
+            setRoute('/all')
+            if (filterIsActive(FILTERS.notMinted)) {
+              let _activeFilters = activeFilters
+              _activeFilters = _activeFilters.filter(
+                e => e !== FILTERS.notMinted
+              )
+              setActiveFilters([..._activeFilters, FILTERS.minted])
+            } else {
+              let _activeFilters = activeFilters
+              _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
+              setActiveFilters([..._activeFilters, FILTERS.notMinted])
+            }
           }}
         >
           <div style={{ ...menuItemContentStyle.text }}>
@@ -140,41 +176,93 @@ export default function OpenSidebar({
           </div>
           <div style={{ ...menuItemContentStyle.icon }}>
             {/*<img src={NotMintedIcon16x16} alt='Not Minted' />*/}
-            <AsleepFilled16 aria-label='TODO' />
-          </div>
-        </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
-          <div style={{ ...menuItemContentStyle.text }}>Minted Talismoons</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <Locked16 aria-label='TODO' />
-          </div>
-        </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
-          <div style={{ ...menuItemContentStyle.text }}>
-            Favorite Talismoons
-          </div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <FavoriteFilled16 aria-label='TODO' style={{ fill: '#DA1E28' }} />
+            <AsleepFilled16 aria-label='Available Talismoons' />
           </div>
         </div>
         <div
           className='menu-item'
           style={{
             ...menuItemStyle,
-            //paddingTop: '8px',
-            //paddingBottom: '9px',
-            borderBottom: '1px solid #24A148'
+            backgroundColor: filterIsActive(FILTERS.minted)
+              ? '#525252'
+              : '#262626'
+          }}
+          onClick={() => {
+            setRoute('/all')
+            if (filterIsActive(FILTERS.notMinted)) {
+              let _activeFilters = activeFilters
+              _activeFilters = _activeFilters.filter(
+                e => e !== FILTERS.notMinted
+              )
+              setActiveFilters([..._activeFilters, FILTERS.minted])
+            } else {
+              let _activeFilters = activeFilters
+              _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
+              setActiveFilters([..._activeFilters, FILTERS.notMinted])
+            }
           }}
         >
-          <div style={{ ...menuItemContentStyle.text }}>My Talismoons</div>
+          <div style={{ ...menuItemContentStyle.text }}>Minted Talismoons</div>
           <div style={{ ...menuItemContentStyle.icon }}>
-            <img
-              src={OwnedByUserIcon16x16}
-              style={{ marginTop: '-6px' }}
-              alt='Minted'
+            <Locked16 aria-label='Minted Talismoons' />
+          </div>
+        </div>
+        <div
+          className='menu-item'
+          style={{
+            ...menuItemStyle,
+            backgroundColor: filterIsActive(FILTERS.favorites)
+              ? '#525252'
+              : '#262626'
+          }}
+          onClick={() => {
+            setRoute('/all')
+            if (filterIsActive(FILTERS.favorites)) {
+              removeFilter(FILTERS.favorites)
+            } else {
+              addFilter(FILTERS.favorites)
+            }
+          }}
+        >
+          <div style={{ ...menuItemContentStyle.text }}>
+            Favorite Talismoons
+          </div>
+          <div style={{ ...menuItemContentStyle.icon }}>
+            <FavoriteFilled16
+              aria-label='Favorite Talismoons'
+              style={{ fill: '#DA1E28' }}
             />
           </div>
         </div>
+        <Link
+          onClick={() => {
+            setRoute('/wallet')
+          }}
+          to={'/wallet'}
+        >
+          <div
+            className='menu-item'
+            style={{
+              ...menuItemStyle,
+              borderBottom: '1px solid #24A148'
+            }}
+          >
+            <div
+              style={{ ...menuItemContentStyle.text }}
+              onClick={() => setActiveFilters([FILTERS.myTalismoons])}
+            >
+              My Talismoons
+            </div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <img
+                src={OwnedByUserIcon16x16}
+                style={{ marginTop: '-6px' }}
+                alt='My Talismoon'
+              />
+            </div>
+          </div>
+        </Link>
+
         <div
           className='menu-item shuffle'
           style={{
@@ -183,7 +271,7 @@ export default function OpenSidebar({
             borderBottom: '1px solid #24A148'
           }}
           aria-label='Shuffle'
-          onClick={() => shuffleVisibleCreatures()}
+          onClick={() => shuffleFilteredCreatures()}
         >
           <div style={{ ...menuItemContentStyle.text }}>Shuffle</div>
           <div style={{ ...menuItemContentStyle.icon }}>

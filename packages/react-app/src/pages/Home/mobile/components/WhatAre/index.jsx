@@ -87,7 +87,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
               padding: '15px'
             }}
           >
-            <div style={{ fontSize: '30px' }}>Get your TALISMOON</div>
+            <div style={{ fontSize: '30px' }}>Get your MOON TOTEM</div>
             <ArrowRight32
               style={{
                 position: 'absolute',

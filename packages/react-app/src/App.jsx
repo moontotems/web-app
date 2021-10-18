@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom'
 import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
 import persistantStore from 'store'
+import _ from 'underscore'
 
 import Routes from './Routes'
 import { Header, SidebarLeft, Footer } from './layout'
@@ -18,6 +19,8 @@ import {
   INFURA_ID,
   NETWORK,
   NETWORKS,
+  MIN_TOKEN_ID,
+  MAX_TOKEN_ID,
   MOBILE_HEADER_HEIGHT,
   DESKTOP_HEADER_HEIGHT
 } from './constants'
@@ -401,7 +404,7 @@ function App() {
   const totalSupply =
     useContractReader(
       readContracts,
-      'Moons',
+      'MoonTotems',
       'totalSupply'
     ) || {}
   */
@@ -442,13 +445,38 @@ function App() {
   }
 
   const [sidebarLeftOpen, setSidebarLeftOpen] = useState(false)
-  const [activeFilter, setActiveFilter] = useState(FILTERS.shuffle)
+  const [activeFilters, setActiveFilters] = useState([])
+
+  const addFilter = filter => {
+    if (!activeFilters.includes(filter)) {
+      setActiveFilters([...activeFilters, filter])
+    }
+  }
+
+  const removeFilter = filter => {
+    let _filters = activeFilters
+    _filters = _filters.filter(e => e !== filter)
+    setActiveFilters([..._filters])
+  }
+
+  const toggleFilter = filter => {
+    if (filterIsActive(filter)) {
+      removeFilter(filter)
+    } else {
+      addFilter(filter)
+    }
+  }
+
+  const filterIsActive = filter => activeFilters.includes(filter)
+
+  console.log({ activeFilters })
+
   const [showGrid, setShowGrid] = useState(true)
 
   // TODO: reduce number of calls
   const mintEvents = useEventListener(
     readContracts,
-    'Moons',
+    'MoonTotems',
     'Mint',
     localProvider,
     1
@@ -480,24 +508,12 @@ function App() {
     initialValue_visibleCreaturesRangeEnd
   )
 
-  const [randomTokenIds, setRandomTokenIds] = useState(getRandomTokenIdsArray())
-
-  const shuffleVisibleCreatures = () => {
-    setRandomTokenIds(getRandomTokenIdsArray())
-    setVisibleCreaturesRangeStart(initialValue_visibleCreaturesRangeStart)
-    setVisibleCreaturesRangeEnd(initialValue_visibleCreaturesRangeEnd)
-    setActiveFilter(FILTERS.shuffle)
-  }
-
-  // TODO: dirty hack -> do this right
-  useEffect(() => {
-    shuffleVisibleCreatures()
-  }, [])
-
-  let creatures = []
-
   const assembleCreature = tokenId => {
     const minted = !!mintEventsMap[tokenId]
+    const ownedByUser =
+      mintEventsMap.length &&
+      mintEventsMap[tokenId] &&
+      mintEventsMap[tokenId]._to === address
     const isFavorite = checkIfIsFavorite(tokenId)
     const metaData = houdini_json_hashmap[tokenId]
     const image = getImageUrl(tokenId)
@@ -507,11 +523,149 @@ function App() {
       metaData,
       image,
       isFavorite,
-      minted
+      minted,
+      ownedByUser
     }
     return creature
   }
 
+  // assemble all creature objects
+  const assembleAllCreatures = () => {
+    console.log('assembleAllCreatures:')
+    console.log({ MIN_TOKEN_ID, MAX_TOKEN_ID })
+    const creatures = []
+    for (let tokenId = MIN_TOKEN_ID; tokenId <= MAX_TOKEN_ID; tokenId++) {
+      creatures.push(assembleCreature(tokenId))
+    }
+    console.log({ creatures })
+    return creatures
+  }
+
+  const filterCreaturesByMinted = ({ keep, creatures }) => {
+    return _.filter(creatures, creature =>
+      keep ? creature.minted : !creature.minted
+    )
+  }
+
+  const filterCreaturesByFavorited = ({ keep, creatures }) => {
+    return _.filter(creatures, creature =>
+      keep ? creature.isFavorite : !creature.isFavorite
+    )
+  }
+
+  /*
+  // TODO: atm this is to expensive with infura calls
+  const filterCreaturesByOwned = ({ keep, creatures }) => {
+    creatures
+    const usersMintEvents = _.filter(mintEvents, mintEvent => {
+      mintEvent
+    })
+  }
+  */
+
+  const applyFiltersToCreatures = creatures => {
+    console.log({ activeFilters })
+    if (activeFilters.length === 0) {
+      console.log('no filters -> returning unchanged')
+      return creatures
+    }
+    creatures = filterCreaturesByMinted({
+      keep: filterIsActive(FILTERS.minted),
+      creatures
+    })
+    if (filterIsActive(FILTERS.favorites)) {
+      creatures = filterCreaturesByFavorited({
+        keep: filterIsActive(FILTERS.favorites),
+        creatures
+      })
+    }
+
+    /*
+    // TODO: atm this is to expensive with infura calls
+    console.log('now filterCreaturesByOwned')
+    creatures = filterCreaturesByOwned({
+      keep: !filterIsActive(FILTERS.myTalismoons),
+      creatures
+    })
+    */
+    return creatures
+  }
+
+  /*
+  const shuffleCreatures = creatures => {
+    console.log('now shuffling creatures')
+    return _.shuffle(creatures)
+  }
+  */
+
+  const getVisibleCreatures = _creatures =>
+    _creatures.splice(visibleCreaturesRangeStart, visibleCreaturesRangeEnd)
+
+  /*
+  const assembleCreatureLists = () => {
+    const allCreatures = assembleAllCreatures()
+
+    const filteredCreatures = applyFiltersToCreatures(allCreatures)
+
+    let shuffledCreatures
+    if (filteredCreatures.length > 1000) {
+      shuffledCreatures = shuffleCreatures(filteredCreatures)
+    }
+
+    const visibleCreatures = getVisibleCreatures(
+      shuffledCreatures || filteredCreatures
+    )
+
+    return {
+      all: allCreatures,
+      filtered: filteredCreatures,
+      shuffled: shuffledCreatures,
+      visible: visibleCreatures
+    }
+  }
+  */
+
+  const allCreatures = assembleAllCreatures()
+  console.log({ allCreatures })
+  const filteredCreatures = applyFiltersToCreatures(allCreatures)
+  const visibleCreatures = getVisibleCreatures(filteredCreatures)
+  /*
+  const [filteredCreatures, setFilteredCreatures] = useState(
+    applyFiltersToCreatures(allCreatures)
+  )
+  */
+  /*
+  const [visibleCreatures, setVisibleCreatures] = useState(
+    getVisibleCreatures(filteredCreatures)
+  )
+
+  const shuffleFilteredCreatures = () => {
+    console.log('now in shuffleFilteredCreatures()')
+    const shuffledCreatures = shuffleCreatures(filteredCreatures)
+    setFilteredCreatures(shuffledCreatures)
+  }
+  */
+
+  /*
+  useEffect(() => {
+    console.log('now updating FilteredCreatures:')
+    const filtered = applyFiltersToCreatures(allCreatures)
+    setFilteredCreatures(filtered)
+    //setVisibleCreatures(getVisibleCreatures(filtered))
+  }, [activeFilters])
+
+  useEffect(() => {
+    console.log('now updating VisibleCreatures:')
+    console.log({ filteredCreatures })
+    console.log(getVisibleCreatures(filteredCreatures))
+    setVisibleCreatures(getVisibleCreatures(filteredCreatures))
+  }, [visibleCreaturesRangeEnd, visibleCreaturesRangeStart, filteredCreatures])
+  */
+
+  console.log({ allCreatures, filteredCreatures, visibleCreatures })
+  console.log({ activeFilters })
+  /////
+  /*
   for (let i = 0; i < visibleCreaturesRangeEnd; i++) {
     let creature
 
@@ -526,7 +680,7 @@ function App() {
     // filter creature
     if (!activeFilter) {
       creatures.push(creature)
-    } else if (activeFilter === FILTERS.available && !creature.minted) {
+    } else if (activeFilter === FILTERS.minted && !creature.minted) {
       creatures.push(creature)
     } else if (activeFilter === FILTERS.taken && creature.minted) {
       creatures.push(creature)
@@ -537,6 +691,7 @@ function App() {
       creatures.push(creature)
     }
   }
+  */
 
   const infiniteScroll = {
     visibleCreaturesRangeStart,
@@ -546,7 +701,7 @@ function App() {
     next: () => {
       setVisibleCreaturesRangeEnd(visibleCreaturesRangeEnd + 50)
     },
-    hasMore: visibleCreaturesRangeEnd < creatures.length
+    hasMore: visibleCreaturesRangeEnd < filteredCreatures.length
     /*
     loader: (
       <div
@@ -574,7 +729,7 @@ function App() {
     console.log({ to, tokenId, value })
 
     tx(
-      writeContracts.Moons.mint(to, tokenId, {
+      writeContracts.MoonTotems.mint(to, tokenId, {
         gasPrice,
         // gasLimit: 1000000
         value
@@ -612,9 +767,15 @@ function App() {
     isMobile,
     route,
     setRoute,
-    creatures,
+    creatures: {
+      all: allCreatures,
+      filtered: filteredCreatures,
+      visible: visibleCreatures
+    },
     assembleCreature,
+    //shuffleFilteredCreatures,
     updateFavorites,
+    // TODO: move this into creatures: {}
     favorites,
     infiniteScroll,
     mintEvents,
@@ -622,10 +783,15 @@ function App() {
     mint,
     showGrid,
     setShowGrid,
-    activeFilter,
-    setActiveFilter,
-    setHeaderTitle,
-    shuffleVisibleCreatures
+    filter: {
+      setActiveFilters,
+      addFilter,
+      removeFilter,
+      toggleFilter,
+      filterIsActive,
+      activeFilters
+    },
+    setHeaderTitle
   }
 
   return (
@@ -665,7 +831,7 @@ function App() {
           <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>
 
-        {route !== '/' && (
+        {(route === '/all' || route === '/moontotem') && (
           <ActionSidebar
             ethereumProps={ethereumProps}
             nftAppProps={nftAppProps}

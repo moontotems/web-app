@@ -37,8 +37,8 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   const updateUrl = creatureIndex => {
     window.history.replaceState(
       null,
-      `Talismoon ${creatureIndex}`,
-      `/talismoon/${creatureIndex}`
+      `Moon Totem ${creatureIndex}`,
+      `/moontotem/${creatureIndex}`
     )
   }
 

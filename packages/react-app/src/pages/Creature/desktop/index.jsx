@@ -12,6 +12,7 @@ import {
   ZoomIn32
 } from '@carbon/icons-react'
 import $ from 'jquery'
+import _ from 'underscore'
 // https://www.npmjs.com/package/react-inner-image-zoom
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 import InnerImageZoom from 'react-inner-image-zoom'
@@ -31,15 +32,15 @@ import './styles.css'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
-  const { favorites, mintEventsMap, mint, isMobile } = nftAppProps
+  const { creatures, mintEventsMap, mint, favorites, isMobile } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
 
   const updateUrl = creatureIndex => {
     window.history.replaceState(
       null,
-      `Talismoon ${creatureIndex}`,
-      `/talismoon/${creatureIndex}`
+      `Moon Totem ${creatureIndex}`,
+      `/moontotem/${creatureIndex}`
     )
   }
 
@@ -50,33 +51,48 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     urlTokenId = 0
   }
 
-  const [activeTokenId, setActiveTokenId] = useState(urlTokenId)
+  const getActiveTokenListIndex = _urlTokenId => {
+    console.log('in getActiveTokenListIndex():')
+    console.log({ _urlTokenId })
+    console.log({ filteredCreatures: creatures.filtered })
+    const index = _.findIndex(creatures.filtered, creature => {
+      return creature.tokenId === _urlTokenId
+    })
+    console.log({ index })
+    return index
+  }
+
+  const [activeCreatureListIndex, setActiveCreatureListIndex] = useState(
+    getActiveTokenListIndex(urlTokenId)
+  )
+
+  useEffect(() => {
+    updateUrl(creatures.filtered[activeCreatureListIndex].tokenId)
+  }, [activeCreatureListIndex])
+
+  const currentVisibleCreature = creatures.filtered[activeCreatureListIndex]
+
+  console.log({ creatures })
+  console.log({ activeCreatureListIndex })
 
   const getNextTokenId = ({ direction }) => {
-    if (typeof activeTokenId !== 'number') {
-      return MIN_TOKEN_ID
-    }
-
-    let newActiveTokenId
     if (direction === 'left') {
-      if (activeTokenId > MIN_TOKEN_ID) {
-        newActiveTokenId = activeTokenId - 1
-        return newActiveTokenId
-      } else {
-        return MIN_TOKEN_ID
+      if (activeCreatureListIndex > 0) {
+        const nextCreature = creatures.filtered[activeCreatureListIndex - 1]
+        return nextCreature.tokenId
       }
     }
     if (direction === 'right') {
-      if (activeTokenId === MAX_TOKEN_ID) {
-        return activeTokenId
-      } else {
-        newActiveTokenId = activeTokenId + 1
-        return newActiveTokenId
+      if (activeCreatureListIndex > creatures.filtered.length - 1) {
+        const nextCreature = creatures.filtered[activeCreatureListIndex + 1]
+        return nextCreature.tokenId
       }
     }
   }
 
+  // TODO:
   // pre-load 10 images
+  /*
   useEffect(() => {
     const preloadSize = 10
     for (
@@ -88,6 +104,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       img.src = getImageUrl(futureTokenId)
     }
   }, [activeTokenId])
+  */
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -96,24 +113,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     $('#creatureAttributes').hide()
   }, [])
 
-  const assembleCreature = tokenId => {
-    const minted = !!mintEventsMap[tokenId]
-    const isFavorite = checkIfIsFavorite(tokenId)
-    const metaData = houdini_json_hashmap[tokenId]
-    const image = getImageUrl(tokenId)
-
-    const creature = {
-      tokenId,
-      metaData,
-      image,
-      isFavorite,
-      minted
-    }
-    return creature
-  }
-
-  const { metaData, image, isFavorite, minted } =
-    assembleCreature(activeTokenId)
+  const { metaData, image, isFavorite, minted } = currentVisibleCreature
   const { trait_name1, trait_name2, trait_jobField, trait_jobTitle } = metaData
 
   useEffect(() => {
@@ -125,18 +125,18 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         const newActiveTokenId = getNextTokenId({
           direction: 'left'
         })
-        setActiveTokenId(newActiveTokenId)
-        updateUrl(newActiveTokenId)
+        setActiveCreatureListIndex(activeCreatureListIndex - 1)
+        //updateUrl(newActiveTokenId)
       }
       if (e.which == RIGHT_KEY) {
         const newActiveTokenId = getNextTokenId({
           direction: 'right'
         })
-        setActiveTokenId(newActiveTokenId)
-        updateUrl(newActiveTokenId)
+        setActiveCreatureListIndex(activeCreatureListIndex + 1)
+        //updateUrl(newActiveTokenId)
       }
     }
-  }, [activeTokenId])
+  }, [activeCreatureListIndex])
 
   const iconStyle = {
     margin: '0 20px',
@@ -177,7 +177,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           zIndex: 1000
         }}
       >
-        <Chatbot image={image} tokenId={activeTokenId} />
+        <Chatbot image={image} tokenId={currentVisibleCreature.tokenId} />
       </div>
       <div
         style={{
@@ -259,7 +259,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
                   backgroundColor: '#24A148',
                   borderColor: '#24A148'
                 }}
-                onClick={() => mint(activeTokenId)}
+                onClick={() => mint(currentVisibleCreature.tokenId)}
               >
                 Summon this Talismoon (0.1 Ξ)
               </Button>
@@ -274,14 +274,14 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
               <Favorite32
                 role='button'
                 style={{ fill: 'white', cursor: 'pointer' }}
-                onClick={() => updateFavorites(activeTokenId)}
+                onClick={() => updateFavorites(currentVisibleCreature.tokenId)}
               />
             )}
             {isFavorite && (
               <FavoriteFilled32
                 role='button'
                 style={{ fill: '#DA1E28', cursor: 'pointer' }}
-                onClick={() => updateFavorites(activeTokenId)}
+                onClick={() => updateFavorites(currentVisibleCreature.tokenId)}
               />
             )}
           </div>

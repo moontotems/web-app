@@ -4,7 +4,7 @@ import './styles.less'
 
 export default function Wallet({ ethereumProps, nftAppProps }) {
   const { readContracts, address } = ethereumProps
-  const { setActiveFilter, assembleCreature } = nftAppProps
+  const { assembleCreature } = nftAppProps
 
   if (!address) {
     // TODO:
@@ -18,7 +18,7 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
     const getUsersCreatures = async () => {
       try {
         console.log('now calling infura: balanceOf')
-        let balanceOf = await readContracts.Moons.balanceOf(address)
+        let balanceOf = await readContracts.MoonTotems.balanceOf(address)
         console.log({ address })
         console.log({ balanceOf })
         balanceOf = parseInt(balanceOf.toString()) || 0
@@ -28,7 +28,7 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
         const usersCreaturesUpdate = []
         for (let tokenIndex = 0; tokenIndex < balanceOfUser; tokenIndex++) {
           console.log('now calling infura: tokenOfOwnerByIndex')
-          let tokenId = await readContracts.Moons.tokenOfOwnerByIndex(
+          let tokenId = await readContracts.MoonTotems.tokenOfOwnerByIndex(
             address,
             tokenIndex
           )
@@ -36,7 +36,7 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
           console.log({ tokenId })
           /*
           const tokenURI =
-            await readContracts.Moons.tokenURI(tokenId)
+            await readContracts.MoonTotems.tokenURI(tokenId)
           console.log('tokenURI', tokenURI)
           */
 
@@ -63,7 +63,7 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
   return (
     <PagesAll
       ethereumProps={ethereumProps}
-      nftAppProps={{ ...nftAppProps, creatures: usersCreatures }}
+      nftAppProps={{ ...nftAppProps, creatures: { visible: usersCreatures } }}
     />
   )
 }

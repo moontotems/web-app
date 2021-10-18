@@ -33,14 +33,14 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       render: (value, record) => (
         <Link
           onClick={() => {
-            setRoute('/talismoon')
+            setRoute('/moontotem')
           }}
-          to={`/talismoon/${record.id}`}
+          to={`/moontotem/${record.id}`}
           target='_blank'
         >
           <img
             src={getImageUrl(record.id)}
-            alt={`Talismoon #${record.id}`}
+            alt={`Moon Totem #${record.id}`}
             style={{ width: '100%' }}
           />
         </Link>
@@ -351,9 +351,9 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       render: (value, record) => (
         <Link
           onClick={() => {
-            setRoute('/talismoon')
+            setRoute('/moontotem')
           }}
-          to={`/talismoon/${record.id}`}
+          to={`/moontotem/${record.id}`}
           target='_blank'
           rel='noopener noreferrer'
         >

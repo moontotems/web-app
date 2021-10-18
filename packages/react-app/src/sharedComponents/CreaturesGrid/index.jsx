@@ -24,9 +24,9 @@ export default function GridView({ ethereumProps, nftAppProps }) {
         //endMessage={}
       >
         <Row>
-          {creatures.map(creature => {
+          {creatures.visible.map(creature => {
             const { tokenId } = creature
-            const key = `TALISMOON-${tokenId}`
+            const key = `MOTEM-${tokenId}`
 
             return (
               <Col key={key} xs={8}>

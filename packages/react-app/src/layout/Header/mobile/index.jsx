@@ -167,11 +167,11 @@ export default function HeaderMobile({
                 fontWeight: 400
               }}
             >
-              TALISMOONS
+              MOON TOTEMS
             </span>
           </Link>
         </HeaderName>
-        <HeaderNavigation aria-label='Talismoons'>
+        <HeaderNavigation aria-label='MoonTotems'>
           <HeaderName href='#' prefix=''></HeaderName>
           {/*
             <HeaderMenu aria-label='Subm' menuLinkName='Subm'>

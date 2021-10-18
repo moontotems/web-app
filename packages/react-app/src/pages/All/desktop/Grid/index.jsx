@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
@@ -8,11 +8,14 @@ export default function AllDesktopGridView({ ethereumProps, nftAppProps }) {
   const { creatures, infiniteScroll } = nftAppProps
   const { next, hasMore, loader } = infiniteScroll
 
+  console.log('grind:')
+  console.log({ renderingCreatures: creatures.visible })
+
   return (
     <div>
       <>
         <InfiniteScroll
-          dataLength={creatures.length}
+          dataLength={creatures.visible.length}
           next={() => next()}
           hasMore={() => hasMore}
           loader={loader}
@@ -22,11 +25,11 @@ export default function AllDesktopGridView({ ethereumProps, nftAppProps }) {
             <Col xs={24} sm={24} md={4} />
             <Col xs={24} sm={24} md={16}>
               <Row>
-                {creatures.map(creature => {
+                {creatures.visible.map(creature => {
                   const { tokenId, metaData, image, isFavorite, minted } =
                     creature
 
-                  const key = `TALISMOON-${tokenId}`
+                  const key = `MOONTOTEM-${tokenId}`
 
                   return (
                     <Col

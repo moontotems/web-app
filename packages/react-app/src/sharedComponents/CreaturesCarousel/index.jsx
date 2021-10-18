@@ -62,7 +62,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     if (!activeFilter) {
       creatures.push(creature)
       creaturesMap[`${tokenId}`] = creature
-    } else if (activeFilter === FILTERS.available && !minted) {
+    } else if (activeFilter === FILTERS.minted && !minted) {
       creatures.push(creature)
       creaturesMap[`${tokenId}`] = creature
     } else if (activeFilter === FILTERS.taken && minted) {
@@ -110,8 +110,8 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     console.log({ creatureIndex })
     window.history.replaceState(
       null,
-      `Talismoon ${creatureIndex}`,
-      `/talismoon/${creatureIndex}`
+      `Moon Totem ${creatureIndex}`,
+      `/moontotem/${creatureIndex}`
     )
   }
 
@@ -158,7 +158,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     // afterChange: () => setCurrentCreatureIndex(currentCreatureIndex + 1),
     afterChange: current => {
       const reachedLeftEnd = current === 0
-      const reachedRightEnd = current === creatures.length - 1
+      const reachedRightEnd = current === creatures.shuffled.length - 1
       console.log({ reachedLeftEnd, reachedRightEnd })
       if (reachedRightEnd) {
         setLastVisibleTokenId(lastVisibleTokenId + 1)
@@ -192,10 +192,10 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
       </div>
       */}
       <Slider {...sliderSettings}>
-        {creatures.map(creature => {
+        {creatures.visible.map(creature => {
           const { tokenId, metaData, image, isFavorite, minted } = creature
 
-          const key = `TALISMOON-${tokenId}`
+          const key = `TOTEM-${tokenId}`
 
           return (
             <div key={key}>

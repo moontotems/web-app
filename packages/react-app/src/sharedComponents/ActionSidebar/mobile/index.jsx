@@ -27,7 +27,7 @@ const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
 import './style.css'
 
 export default function ActionSidebar({ ethereumProps, nftAppProps }) {
-  const { setRoute, setShowGrid, shuffleVisibleCreatures } = nftAppProps
+  const { setRoute, setShowGrid, shuffleFilteredCreatures } = nftAppProps
 
   const viewStates = {
     hidden: 'hidden',
@@ -140,9 +140,9 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
               <div style={{ ...menuItemContentStyle.text }}>Item View</div>
               <Link
                 onClick={() => {
-                  setRoute('/talismoon')
+                  setRoute('/moontotem')
                 }}
-                to={`/talismoon/${0}`}
+                to={`/moontotem/${0}`}
               >
                 <div style={{ ...menuItemContentStyle.icon }}>
                   <CarouselHorizontal32 aria-label='Switch to carousel view' />
@@ -242,7 +242,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
               <div
                 style={{ ...menuItemContentStyle.icon }}
                 aria-label='Shuffle'
-                onClick={() => shuffleVisibleCreatures()}
+                onClick={() => shuffleFilteredCreatures()}
               >
                 <Shuffle32 />
               </div>
@@ -318,9 +318,9 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
           </div>
           <Link
             onClick={() => {
-              setRoute('/talismoon')
+              setRoute('/moontotem')
             }}
-            to={`/talismoon/${0}`}
+            to={`/moontotem/${0}`}
           >
             <div className='menu-item' style={{ ...menuItemStyle }}>
               <CarouselHorizontal32 aria-label='Switch to carousel view' />
@@ -384,7 +384,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
               backgroundColor: '#24A148',
               borderBottom: 'none'
             }}
-            onClick={() => shuffleVisibleCreatures()}
+            onClick={() => shuffleFilteredCreatures()}
           >
             <Shuffle32 aria-label='Shuffle' />
           </div>

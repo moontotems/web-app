@@ -6,7 +6,9 @@ import Icons from '../icons'
 const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
 export default function FilterDropdown({ ethereumProps, nftAppProps }) {
-  const { setActiveFilter, activeFilter } = nftAppProps
+  const {
+    filter: { setActiveFilters, removeFilter, addFilter }
+  } = nftAppProps
 
   const iconStyle = {
     //margin: '0 20px',
@@ -34,7 +36,8 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
 
   const getMenuColorSelect = _filter => {
     let color = '#161616'
-    if (_filter === activeFilter) color = '#1062FE'
+    // TODO:
+    //if (_filter === activeFilter) color = '#1062FE'
     return color
   }
 
@@ -45,7 +48,7 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
           ...menuItemStyle,
           borderColor: getMenuColorSelect('')
         }}
-        onClick={() => setActiveFilter('')}
+        onClick={() => setActiveFilters([])}
       >
         <div style={{ ...menuTextStyle }}>Reset / Show All</div>
       </Menu.Item>
@@ -54,16 +57,16 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
           ...menuItemStyle,
           borderColor: getMenuColorSelect(FILTERS.shuffle)
         }}
-        onClick={() => setActiveFilter(FILTERS.shuffle)}
+        onClick={() => setActiveFilters([FILTERS.shuffle])}
       >
         <div style={{ ...menuTextStyle }}>Shuffle</div>
       </Menu.Item>
       <Menu.Item
         style={{
           ...menuItemStyle,
-          borderColor: getMenuColorSelect(FILTERS.available)
+          borderColor: getMenuColorSelect(FILTERS.minted)
         }}
-        onClick={() => setActiveFilter(FILTERS.available)}
+        onClick={() => removeFilter(FILTERS.minted)}
       >
         <div style={{ ...menuTextStyle }}>Show Available</div>
         <img
@@ -77,7 +80,7 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
           ...menuItemStyle,
           borderColor: getMenuColorSelect(FILTERS.taken)
         }}
-        onClick={() => setActiveFilter(FILTERS.taken)}
+        onClick={() => setActiveFilters([FILTERS.taken])}
       >
         <div style={{ ...menuTextStyle }}>Show Taken</div>
         <Locked16 style={{ ...menuIconStyle, marginRight: 50 }} />
@@ -87,7 +90,7 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
           ...menuItemStyle,
           borderColor: getMenuColorSelect(FILTERS.favorites)
         }}
-        onClick={() => setActiveFilter(FILTERS.favorites)}
+        onClick={() => setActiveFilters([FILTERS.favorites])}
       >
         <div style={{ ...menuTextStyle }}>Show Favorites</div>
         <FavoriteFilled16 style={{ ...menuIconStyle, fill: '#DA1E28' }} />
@@ -97,7 +100,7 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
           ...menuItemStyle,
           borderColor: getMenuColorSelect(FILTERS.myTalismoons)
         }}
-        onClick={() => setActiveFilter(FILTERS.myTalismoons)}
+        onClick={() => setActiveFilters([FILTERS.myTalismoons])}
       >
         <div style={{ ...menuTextStyle }}>Show My Talismoons</div>
         <img

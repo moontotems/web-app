@@ -20,6 +20,7 @@ import {
   Shuffle16
 } from '@carbon/icons-react'
 
+import FILTERS from '../../../sharedComponents/FilterDropdown/filters'
 import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
 import Icons from '../../icons'
 const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
@@ -31,7 +32,20 @@ export default function CompactSidebar({
   nftAppProps,
   menuItemStyle
 }) {
-  const { setRoute, setShowGrid, shuffleVisibleCreatures } = nftAppProps
+  const {
+    creatures,
+    setRoute,
+    setShowGrid,
+    shuffleFilteredCreatures,
+    filter: {
+      setActiveFilters,
+      removeFilter,
+      addFilter,
+      toggleFilter,
+      filterIsActive,
+      activeFilters
+    }
+  } = nftAppProps
 
   return (
     <div
@@ -44,16 +58,17 @@ export default function CompactSidebar({
       }}
     >
       <div className='menu-item square-title' style={{ ...menuItemStyle }}>
-        <ViewFilled16 aria-label='TODO' />
+        <ViewFilled16 aria-label='Switch to Carousel View' />
       </div>
       <Link
         onClick={() => {
-          setRoute('/talismoon')
+          setRoute('/moontotem')
         }}
-        to={`/talismoon/${0}`}
+        // TODO:
+        // to={`/moontotem/${creatures[0].tokenId}`}
       >
         <div className='menu-item' style={{ ...menuItemStyle }}>
-          <CarouselHorizontal16 aria-label='Switch to carousel view' />
+          <CarouselHorizontal16 aria-label='Switch to Carousel View' />
         </div>
       </Link>
 
@@ -68,15 +83,22 @@ export default function CompactSidebar({
       <div
         className='menu-item'
         style={{ ...menuItemStyle }}
-        aria-label='Switch to list view'
+        aria-label='Switch to List View'
         onClick={() => setShowGrid(false)}
       >
-        <List16 />
+        <List16 aria-label='Switch to List View ' />
       </div>
       <div className='menu-item square-title' style={{ ...menuItemStyle }}>
-        <Filter16 aria-label='TODO' />
+        <Filter16 aria-label='Filter' />
       </div>
-      <div className='menu-item' style={{ ...menuItemStyle }}>
+      <div
+        className='menu-item'
+        style={{
+          ...menuItemStyle,
+          backgroundColor: activeFilters.length === 0 ? '#525252' : '#262626'
+        }}
+        onClick={() => setActiveFilters([])}
+      >
         <img
           src='/TALISMOON_LOGO.svg'
           width='17px'
@@ -84,27 +106,87 @@ export default function CompactSidebar({
           alt='All Talismoon'
         />
       </div>
-      <div className='menu-item' style={{ ...menuItemStyle }}>
-        <AsleepFilled16 aria-label='TODO' />
-        {/*<img src={NotMintedIcon16x16} alt='Not Minted' />*/}
-      </div>
-      <div className='menu-item' style={{ ...menuItemStyle }}>
-        <Locked16 aria-label='TODO' />
-      </div>
-      <div className='menu-item' style={{ ...menuItemStyle }}>
-        <FavoriteFilled16 aria-label='TODO' style={{ fill: '#DA1E28' }} />
+      <div
+        className='menu-item'
+        style={{
+          ...menuItemStyle,
+          backgroundColor: filterIsActive(FILTERS.notMinted)
+            ? '#525252'
+            : '#262626'
+        }}
+        onClick={() => {
+          setRoute('/all')
+          if (filterIsActive(FILTERS.notMinted)) {
+            let _activeFilters = activeFilters
+            _activeFilters = _activeFilters.filter(e => e !== FILTERS.notMinted)
+            setActiveFilters([..._activeFilters, FILTERS.minted])
+          } else {
+            let _activeFilters = activeFilters
+            _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
+            setActiveFilters([..._activeFilters, FILTERS.notMinted])
+          }
+        }}
+      >
+        <AsleepFilled16 aria-label='Available Talismoons' />
       </div>
       <div
         className='menu-item'
         style={{
           ...menuItemStyle,
-          paddingTop: '8px',
-          paddingBottom: '9px',
-          borderBottom: 'none'
+          backgroundColor: filterIsActive(FILTERS.minted)
+            ? '#525252'
+            : '#262626'
+        }}
+        onClick={() => {
+          setRoute('/all')
+          if (filterIsActive(FILTERS.notMinted)) {
+            let _activeFilters = activeFilters
+            _activeFilters = _activeFilters.filter(e => e !== FILTERS.notMinted)
+            setActiveFilters([..._activeFilters, FILTERS.minted])
+          } else {
+            let _activeFilters = activeFilters
+            _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
+            setActiveFilters([..._activeFilters, FILTERS.notMinted])
+          }
         }}
       >
-        <img src={OwnedByUserIcon16x16} alt='Minted' />
+        <Locked16 aria-label='Minted Talismoons' />
       </div>
+      <div
+        className='menu-item'
+        style={{
+          ...menuItemStyle,
+          backgroundColor: filterIsActive(FILTERS.favorites)
+            ? '#525252'
+            : '#262626'
+        }}
+        onClick={() => toggleFilter(FILTERS.favorites)}
+      >
+        <FavoriteFilled16
+          aria-label='Favorite Talismoons'
+          style={{ fill: '#DA1E28' }}
+        />
+      </div>
+      <Link
+        onClick={() => {
+          setRoute('/wallet')
+        }}
+        to={'/wallet'}
+      >
+        <div
+          aria-label='My Talismoons'
+          className='menu-item'
+          style={{
+            ...menuItemStyle,
+            paddingTop: '8px',
+            paddingBottom: '9px',
+            borderBottom: 'none'
+          }}
+          onClick={() => setActiveFilters([FILTERS.myTalismoons])}
+        >
+          <img src={OwnedByUserIcon16x16} alt='My Talismoons' />
+        </div>
+      </Link>
       <div
         className='menu-item shuffle'
         style={{
@@ -112,8 +194,8 @@ export default function CompactSidebar({
           backgroundColor: '#24A148',
           borderBottom: 'none'
         }}
-        aria-label='Shuffle'
-        onClick={() => shuffleVisibleCreatures()}
+        aria-label='Shuffle Talismoons'
+        onClick={() => shuffleFilteredCreatures()}
       >
         <Shuffle16 />
       </div>

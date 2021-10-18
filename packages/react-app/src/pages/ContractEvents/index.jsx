@@ -10,7 +10,7 @@ export default function ContractEvents({ ethereumProps }) {
 
   const mintEvents = useEventListener(
     readContracts,
-    'Moons',
+    'MoonTotems',
     'Mint',
     localProvider,
     1
@@ -18,7 +18,7 @@ export default function ContractEvents({ ethereumProps }) {
 
   const transferEvents = useEventListener(
     readContracts,
-    'Moons',
+    'MoonTotems',
     'Transfer',
     localProvider,
     1
@@ -26,7 +26,7 @@ export default function ContractEvents({ ethereumProps }) {
 
   const approvalEvents = useEventListener(
     readContracts,
-    'Moons',
+    'MoonTotems',
     'Approval',
     localProvider,
     1
@@ -34,7 +34,7 @@ export default function ContractEvents({ ethereumProps }) {
 
   const approvalForAllEvents = useEventListener(
     readContracts,
-    'Moons',
+    'MoonTotems',
     'ApprovalForAll',
     localProvider,
     1
@@ -45,6 +45,8 @@ export default function ContractEvents({ ethereumProps }) {
     readContracts && writeContracts
   )
 
+  console.log({ readContracts })
+  console.log({ writeContracts })
   console.log({ mintEvents })
   console.log({ transferEvents })
   console.log({ approvalEvents })

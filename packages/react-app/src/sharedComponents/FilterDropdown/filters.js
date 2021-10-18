@@ -1,9 +1,8 @@
 const filters = {
-  available: 'available',
-  taken: 'taken',
+  minted: 'minted',
+  notMinted: 'notMinted',
   favorites: 'favorites',
-  myTalismoons: 'myTalismoons',
-  shuffle: 'shuffle'
+  myTalismoons: 'myTalismoons'
 }
 
 export default filters
