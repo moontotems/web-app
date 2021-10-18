@@ -279,7 +279,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
                 }}
                 onClick={() => mint(currentVisibleCreature.tokenId)}
               >
-                Summon this Talismoon (0.1 Ξ)
+                Summon this Totem (0.1 Ξ)
               </Button>
             )}
           </div>

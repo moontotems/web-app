@@ -3,7 +3,7 @@ export default [
     index: 0,
     image: '/home/lunarMonths/lunarMonths.gif',
     title: '',
-    text: 'Each Talismoon is born under a particular Lunar Month.'
+    text: 'Each Moon Totem is born under a particular Lunar Month.'
   },
   {
     index: 1,

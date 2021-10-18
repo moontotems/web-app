@@ -126,7 +126,7 @@ export default function HeaderDesktop({
           to='/all'
         >
           <div
-            aria-label='Show all Talismoon'
+            aria-label='Show all Totems'
             style={{
               height: '40px',
               width: '50px',
@@ -213,7 +213,7 @@ export default function HeaderDesktop({
             to='/all'
           >
             <div
-              aria-label='Show all Talismoon'
+              aria-label='Show all Totems'
               style={{
                 height: '40px',
                 width: '50px',

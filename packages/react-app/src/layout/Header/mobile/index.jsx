@@ -72,7 +72,7 @@ export default function HeaderMobile({
             to='/minted'
             style={{ ...menuTextStyle }}
           >
-            Mint a new Talismoon
+            Mint a new Totem
           </Link>
         </div>
         <JoinRight16 style={{ ...menuIconStyle }} />
@@ -86,7 +86,7 @@ export default function HeaderMobile({
             to='/wallet'
             style={{ ...menuTextStyle }}
           >
-            My Moon Totems
+            My Totems
           </Link>
         </div>
         <Moon16 style={{ ...menuIconStyle }} />
@@ -223,7 +223,7 @@ export default function HeaderMobile({
             )}
           </span>
         </HeaderGlobalBar>
-        <HeaderGlobalAction aria-label='Show All Talismoon'>
+        <HeaderGlobalAction aria-label='Show All Moon Totems'>
           <Link
             onClick={() => {
               setRoute('/all')

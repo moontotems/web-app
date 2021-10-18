@@ -134,7 +134,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
                   fontSize: '16px'
                 }}
               >
-                For connecting with the Talismoon Community.
+                For connecting with the Moon Totem Community.
               </div>
               <a href='https://discord.com/' target='_blank' rel='noreferrer'>
                 <img

@@ -3,7 +3,7 @@ export default [
     index: 0,
     image: '/home/lunarPhases/lunarPhases.gif',
     title: '',
-    text: 'Each Talismoon is born under a particular Lunar Phase.'
+    text: 'Each Totem is born under a particular Lunar Phase.'
   },
   {
     index: 1,

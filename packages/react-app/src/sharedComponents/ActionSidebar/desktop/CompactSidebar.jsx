@@ -103,7 +103,7 @@ export default function CompactSidebar({
           src='/TALISMOON_LOGO.svg'
           width='17px'
           style={{ marginTop: '-10px' }}
-          alt='All Talismoon'
+          alt='All Totems'
         />
       </div>
       <div

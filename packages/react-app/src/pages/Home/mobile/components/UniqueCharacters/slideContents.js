@@ -3,7 +3,7 @@ export default [
     index: 0,
     image: '/home/characteristics/creature.jpeg',
     title: '',
-    text: 'Each Talismoon is a One-of-a-Kind.'
+    text: 'Each Moon Totem is a One-of-a-Kind.'
   },
   {
     index: 1,

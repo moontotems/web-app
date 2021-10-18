@@ -33,7 +33,7 @@ export default function ExploreBox({ sliderRef, currentSlideIndex }) {
               lineHeight: '28px'
             }}
           >
-            Explore the attributes and traits that makes every Talismoon unique
+            Explore the attributes and traits that makes every Moon Totem unique
           </div>
           <div
             style={{

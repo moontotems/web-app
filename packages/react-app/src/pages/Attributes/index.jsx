@@ -92,8 +92,8 @@ export default function AttributesPage({ ethereumProps, nftAppProps }) {
               />
               <div style={{ ...cardStyles.title }}>Complexity</div>
               <div style={{ ...cardStyles.content }}>
-                Eyes are the window to the soul. Talismoon eyes have different
-                shapes. In rare cases Talismoons can have asymmetrical or even
+                Eyes are the window to the soul. Moon Totems eyes have different
+                shapes. In rare cases Moon Totems can have asymmetrical or even
                 multicolor eyes.
               </div>
             </div>

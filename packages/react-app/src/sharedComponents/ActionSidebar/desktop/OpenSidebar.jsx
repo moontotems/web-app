@@ -146,7 +146,7 @@ export default function OpenSidebar({
                 src='/TALISMOON_LOGO.svg'
                 width='17px'
                 style={{ marginTop: '-10px' }}
-                alt='All Talismoon'
+                alt='All Totems'
               />
             </div>
           </Link>
@@ -261,7 +261,7 @@ export default function OpenSidebar({
               <img
                 src={OwnedByUserIcon16x16}
                 style={{ marginTop: '-6px' }}
-                alt='My Talismoon'
+                alt='My Totems'
               />
             </div>
           </div>
@@ -289,9 +289,7 @@ export default function OpenSidebar({
           </div>
         </div>
         <div className='menu-item' style={{ ...menuItemStyle }}>
-          <div style={{ ...menuItemContentStyle.text }}>
-            Consult your Talismoon
-          </div>
+          <div style={{ ...menuItemContentStyle.text }}>Consult your Totem</div>
           <div style={{ ...menuItemContentStyle.icon }}>
             <ChatBot16 aria-label='Chat' />
           </div>
