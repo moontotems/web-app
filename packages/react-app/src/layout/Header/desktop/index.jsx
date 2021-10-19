@@ -119,25 +119,20 @@ export default function HeaderDesktop({
           </div>
         </Dropdown>
         */}
-        <Link
-          onClick={() => {
-            setRoute('/all')
+
+        <div
+          aria-label='Show all Totems'
+          style={{
+            height: '40px',
+            width: '50px',
+            //backgroundColor: '#262626',
+            textAlign: 'center',
+            cursor: 'pointer'
           }}
-          to='/all'
+          onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
         >
-          <div
-            aria-label='Show all Totems'
-            style={{
-              height: '40px',
-              width: '50px',
-              //backgroundColor: '#262626',
-              textAlign: 'center'
-            }}
-            onClick={() => setSidebarLeftOpen(!sidebarLeftOpen)}
-          >
-            <TextAlignJustify20 style={{ marginTop: '10px' }} />
-          </div>
-        </Link>
+          <TextAlignJustify20 style={{ marginTop: '10px' }} />
+        </div>
 
         <HeaderName href='#' prefix=''>
           <Link
