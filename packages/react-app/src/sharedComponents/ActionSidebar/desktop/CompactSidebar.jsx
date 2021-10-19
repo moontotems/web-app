@@ -36,7 +36,7 @@ export default function CompactSidebar({
   const {
     setRoute,
     setShowGrid,
-    shuffleFilteredCreatures,
+    shuffleCreatureIndexList,
     filter: {
       setActiveFilters,
       removeFilter,
@@ -208,7 +208,7 @@ export default function CompactSidebar({
           borderBottom: 'none'
         }}
         aria-label='Shuffle Totems'
-        onClick={() => shuffleFilteredCreatures()}
+        onClick={() => shuffleCreatureIndexList()}
       >
         <Shuffle16 />
       </div>

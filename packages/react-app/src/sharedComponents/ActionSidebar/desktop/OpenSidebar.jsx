@@ -36,7 +36,7 @@ export default function OpenSidebar({
   const {
     setRoute,
     setShowGrid,
-    shuffleFilteredCreatures,
+    shuffleCreatureIndexList,
     filter: {
       activeFilters,
       filterIsActive,
@@ -288,7 +288,7 @@ export default function OpenSidebar({
             borderBottom: '1px solid #24A148'
           }}
           aria-label='Shuffle'
-          onClick={() => shuffleFilteredCreatures()}
+          onClick={() => shuffleCreatureIndexList()}
         >
           <div style={{ ...menuItemContentStyle.text }}>Shuffle</div>
           <div style={{ ...menuItemContentStyle.icon }}>

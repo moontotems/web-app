@@ -34,7 +34,7 @@ export default function ActionSidebar({
   const {
     setRoute,
     setShowGrid,
-    shuffleFilteredCreatures,
+    shuffleCreatureIndexList,
     toggleVisibilityCreatureStory
   } = nftAppProps
 
@@ -249,7 +249,7 @@ export default function ActionSidebar({
               <div
                 style={{ ...menuItemContentStyle.icon }}
                 aria-label='Shuffle'
-                onClick={() => shuffleFilteredCreatures()}
+                onClick={() => shuffleCreatureIndexList()}
               >
                 <Shuffle32 />
               </div>
@@ -395,7 +395,7 @@ export default function ActionSidebar({
               backgroundColor: '#24A148',
               borderBottom: 'none'
             }}
-            onClick={() => shuffleFilteredCreatures()}
+            onClick={() => shuffleCreatureIndexList()}
           >
             <Shuffle32 aria-label='Shuffle' />
           </div>

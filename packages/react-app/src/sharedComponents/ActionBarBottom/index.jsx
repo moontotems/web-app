@@ -10,7 +10,7 @@ import {
 import FilterDropdown from '../FilterDropdown'
 
 export default function ActionBarBottom({ ethereumProps, nftAppProps }) {
-  const { setRoute, setShowGrid, shuffleFilteredCreatures } = nftAppProps
+  const { setRoute, setShowGrid, shuffleCreatureIndexList } = nftAppProps
 
   const iconStyle = {
     marginLeft: '15px',
@@ -31,7 +31,7 @@ export default function ActionBarBottom({ ethereumProps, nftAppProps }) {
         <Shuffle32
           aria-label='Shuffle'
           style={{ ...iconStyle }}
-          onClick={() => shuffleFilteredCreatures()}
+          onClick={() => shuffleCreatureIndexList()}
         />
         <FilterDropdown
           ethereumProps={ethereumProps}
