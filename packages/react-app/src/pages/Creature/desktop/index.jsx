@@ -176,6 +176,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           //pointerEvents: 'none'
         }}
       >
+        <WriteCreatureStory tokenId={currentVisibleCreature.tokenId} />
         <Chatbot image={image} tokenId={currentVisibleCreature.tokenId} />
         <CreatureAttributes creatureMetadata={metaData} />
       </div>
@@ -289,9 +290,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       </Row>
       <Row style={{ marginTop: '40px' }}>
         <Col xs={8} />
-        <Col xs={8}>
-          <WriteCreatureStory tokenId={currentVisibleCreature.tokenId} />
-        </Col>
+        <Col xs={8}></Col>
         <Col xs={8} />
       </Row>
     </div>

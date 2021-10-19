@@ -51,7 +51,7 @@ export default function WriteCreatureStory({ tokenId, isMobile }) {
               id='creatureStoryTextArea'
               rows={4}
               showCount
-              //autoSize
+              autoSize
               defaultValue={currentStory}
               placeholder={'Write the story...'}
               style={{
@@ -60,7 +60,7 @@ export default function WriteCreatureStory({ tokenId, isMobile }) {
                 color: '#fff',
                 //border: '1px solid #1062FE',
                 borderRadius: '0.80rem',
-                fontSize: '20px',
+                //fontSize: '20px',
                 fontWeight: 400,
                 lineHeight: '28px',
                 letterSpacing: '0.1599999964237213px'
