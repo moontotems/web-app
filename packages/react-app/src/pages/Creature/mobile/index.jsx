@@ -311,7 +311,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         </Col>
         <Col span={24}>
           <div style={{ padding: '30px' }}>
-            <WriteCreatureStory tokenId={activeTokenId} />
+            <WriteCreatureStory tokenId={activeTokenId} isMobile={true} />
           </div>
         </Col>
       </Row>

@@ -27,7 +27,12 @@ const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
 import './style.css'
 
 export default function ActionSidebar({ ethereumProps, nftAppProps }) {
-  const { setRoute, setShowGrid, shuffleFilteredCreatures } = nftAppProps
+  const {
+    setRoute,
+    setShowGrid,
+    shuffleFilteredCreatures,
+    toggleVisibilityCreatureStory
+  } = nftAppProps
 
   const viewStates = {
     hidden: 'hidden',
@@ -259,7 +264,11 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
                 <ChatBot32 aria-label='Chat' />
               </div>
             </div>
-            <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle }}
+              onClick={() => toggleVisibilityCreatureStory()}
+            >
               <div style={{ ...menuItemContentStyle.text }}>
                 Write the Story
               </div>
@@ -395,7 +404,11 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
           <div className='menu-item' style={{ ...menuItemStyle }}>
             <ChatBot32 aria-label='Chat' />
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
+          <div
+            className='menu-item'
+            style={{ ...menuItemStyle }}
+            onClick={() => toggleVisibilityCreatureStory()}
+          >
             <Edit32 aria-label='Edit' />
           </div>
           <div className='menu-item' style={{ ...menuItemStyle }}>

@@ -3,8 +3,9 @@ import { Edit32 } from '@carbon/icons-react'
 import { Form, Input, Button, notification } from 'antd'
 import $ from 'jquery'
 import persistantStore from 'store'
+import './style.css'
 
-export default function WriteCreatureStory({ tokenId }) {
+export default function WriteCreatureStory({ tokenId, isMobile }) {
   const { TextArea } = Input
   const localStorageId = `creature-story-${tokenId}`
   const [form] = Form.useForm()
@@ -32,7 +33,13 @@ export default function WriteCreatureStory({ tokenId }) {
       <div style={{ float: 'left', width: '100%', marginBottom: 15 }}>
         <Edit32 style={{ float: 'left' }} />
         <div
-          style={{ float: 'left', height: 32, marginTop: 2, marginLeft: 10 }}
+          style={{
+            float: 'left',
+            height: 32,
+            marginTop: 0,
+            marginLeft: 10,
+            fontSize: isMobile ? '35px' : '25px'
+          }}
         >
           STORY
         </div>
@@ -44,6 +51,7 @@ export default function WriteCreatureStory({ tokenId }) {
               id='creatureStoryTextArea'
               rows={4}
               showCount
+              //autoSize
               defaultValue={currentStory}
               placeholder={'Write the story...'}
               style={{
@@ -52,7 +60,7 @@ export default function WriteCreatureStory({ tokenId }) {
                 color: '#fff',
                 //border: '1px solid #1062FE',
                 borderRadius: '0.80rem',
-                fontSize: 16,
+                fontSize: '20px',
                 fontWeight: 400,
                 lineHeight: '28px',
                 letterSpacing: '0.1599999964237213px'
