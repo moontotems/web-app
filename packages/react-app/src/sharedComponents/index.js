@@ -1,7 +1,6 @@
 export { default as ActionBarBottom } from './ActionBarBottom'
 export { default as ActionSidebar } from './ActionSidebar'
 export { default as CreaturesCarousel } from './CreaturesCarousel'
-export { default as CreaturesGrid } from './CreaturesGrid'
 export { default as Creature } from './Creature'
 export { default as Chatbot } from './Chatbot'
 export { default as WriteCreatureStory } from './WriteCreatureStory'

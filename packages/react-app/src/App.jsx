@@ -600,9 +600,9 @@ function App() {
     _.shuffle(creatureIndexList)
   )
 
-  const shuffleCreatures = () => {
+  const shuffleCreatureIndexList = () => {
     console.log('now shuffling creatures')
-    setShuffledCreatureIndexList(creatureIndexList)
+    setShuffledCreatureIndexList(_.shuffle(creatureIndexList))
   }
   ///
 
@@ -693,8 +693,9 @@ function App() {
       filtered: filteredCreatures,
       visible: visibleCreatures
     },
+    shuffledCreatureIndexList,
+    shuffleCreatureIndexList,
     assembleCreature,
-    //shuffleFilteredCreatures,
     updateFavorites,
     // TODO: move this into creatures: {}
     favorites,

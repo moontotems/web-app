@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Row, Col } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Creature } from '../../../../sharedComponents'
 
-export default function AllDesktopGridView({ ethereumProps, nftAppProps }) {
-  const {
-    creatures,
-    infiniteScroll,
-    filter: { activeFilters }
-  } = nftAppProps
+export default function AllDesktopGridView({
+  ethereumProps,
+  nftAppProps,
+  creatureList
+}) {
+  const { creatures, infiniteScroll } = nftAppProps
   const { next, hasMore, loader } = infiniteScroll
 
   return (
@@ -26,9 +26,8 @@ export default function AllDesktopGridView({ ethereumProps, nftAppProps }) {
             <Col xs={24} sm={24} md={4} />
             <Col xs={24} sm={24} md={16}>
               <Row>
-                {creatures.visible.map(creature => {
-                  const { tokenId, metaData, image, isFavorite, minted } =
-                    creature
+                {creatureList.map(creature => {
+                  const { tokenId } = creature
 
                   const key = `MOONTOTEM-${tokenId}`
 
