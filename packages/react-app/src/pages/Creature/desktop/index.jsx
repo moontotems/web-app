@@ -171,8 +171,9 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           position: 'fixed',
           top: 90,
           left: 10,
-          width: '30%',
+          width: 'auto',
           zIndex: 1000
+          //pointerEvents: 'none'
         }}
       >
         <Chatbot image={image} tokenId={currentVisibleCreature.tokenId} />

@@ -92,7 +92,7 @@ export default function Attributes({
       <div
         style={{
           float: 'left',
-          width: isMobile ? '40%' : '20%',
+          width: isMobile ? '40%' : '25%',
           paddingRight: 10,
           fontSize: '18px',
           lineHeight: '48px',
