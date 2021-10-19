@@ -5,10 +5,15 @@ import ProTable, { TableDropdown } from '@ant-design/pro-table'
 import Highlighter from 'react-highlight-words'
 import { SearchOutlined } from '@ant-design/icons'
 
-import totems_metadata from '../../../../assets/TALISMOONS_GENERATION01_DATA_13.json'
 import getColumns from './getColumns'
 
-export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
+export default function AllDesktopListView({
+  ethereumProps,
+  nftAppProps,
+  creatureList
+}) {
+  const totemsMetadata = creatureList.map(creature => creature.metaData)
+
   const [searchText, setSearchText] = useState(null)
   const [searchInputNode, setSearchInputNote] = useState(null)
   const [searchedColumn, setSearchedColumn] = useState(null)
@@ -125,7 +130,7 @@ export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
         //sticky
         columns={columns}
         //actionRef={actionRef}
-        dataSource={totems_metadata}
+        dataSource={totemsMetadata}
         search={false}
         //filterForm={filterForm}
         //loading={loading}
