@@ -35,7 +35,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
     visibleWide: 'visible-large'
   }
 
-  const [view, setView] = useState(viewStates.visible)
+  const [view, setView] = useState(viewStates.hidden)
 
   const toggleView = () => {
     if (view === viewStates.hidden) setView(viewStates.visible)
