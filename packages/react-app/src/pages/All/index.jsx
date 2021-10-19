@@ -47,7 +47,11 @@ export default function All({ ethereumProps, nftAppProps }) {
 
   return (
     <>
-      <ActionSidebar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+      <ActionSidebar
+        ethereumProps={ethereumProps}
+        nftAppProps={nftAppProps}
+        creatureList={creatureList}
+      />
 
       {!isMobile && (
         <AllPageDesktop

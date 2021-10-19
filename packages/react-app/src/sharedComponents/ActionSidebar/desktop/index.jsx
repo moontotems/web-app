@@ -9,7 +9,11 @@ import OpenSidebar from './OpenSidebar'
 
 import './style.css'
 
-export default function ActionSidebar({ ethereumProps, nftAppProps }) {
+export default function ActionSidebar({
+  ethereumProps,
+  nftAppProps,
+  creatureList
+}) {
   const viewStates = {
     hidden: 'hidden',
     visible: 'visible',
@@ -87,6 +91,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
         <OpenSidebar
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
+          creatureList={creatureList}
           menuItemStyle={menuItemStyle}
         />
       )}
@@ -95,6 +100,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
         <CompactSidebar
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
+          creatureList={creatureList}
           menuItemStyle={menuItemStyle}
         />
       )}

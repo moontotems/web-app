@@ -26,7 +26,11 @@ const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
 
 import './style.css'
 
-export default function ActionSidebar({ ethereumProps, nftAppProps }) {
+export default function ActionSidebar({
+  ethereumProps,
+  nftAppProps,
+  creatureList
+}) {
   const {
     setRoute,
     setShowGrid,

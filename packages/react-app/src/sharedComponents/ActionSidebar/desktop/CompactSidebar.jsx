@@ -30,10 +30,10 @@ import './style.css'
 export default function CompactSidebar({
   ethereumProps,
   nftAppProps,
+  creatureList,
   menuItemStyle
 }) {
   const {
-    creatures,
     setRoute,
     setShowGrid,
     shuffleFilteredCreatures,
@@ -45,6 +45,7 @@ export default function CompactSidebar({
       filterIsActive,
       activeFilters
     },
+    creatures,
     toggleVisibilityDownload,
     toggleVisibilityMetaData,
     toggleVisibilityChat,
@@ -68,8 +69,11 @@ export default function CompactSidebar({
         onClick={() => {
           setRoute('/moontotem')
         }}
-        // TODO:
-        // to={`/moontotem/${creatures[0].tokenId}`}
+        to={`/moontotem/${
+          creatureList.length
+            ? creatureList[0].tokenId
+            : creatures.all[0].tokenId
+        }`}
       >
         <div className='menu-item' style={{ ...menuItemStyle }}>
           <CarouselHorizontal16 aria-label='Switch to Carousel View' />

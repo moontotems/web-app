@@ -3,8 +3,12 @@ import React from 'react'
 import ActionSidebarDesktop from './desktop'
 import ActionSidebarMobile from './mobile'
 
-export default function ActionSidebar({ ethereumProps, nftAppProps }) {
-  const { isMobile } = nftAppProps
+export default function ActionSidebar({
+  ethereumProps,
+  nftAppProps,
+  creatureList
+}) {
+  const { isMobile, creatures } = nftAppProps
 
   return (
     <>
@@ -12,6 +16,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
         <ActionSidebarDesktop
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
+          creatureList={creatureList ? creatureList : creatures.filtered}
         />
       )}
 
@@ -19,6 +24,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
         <ActionSidebarMobile
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
+          creatureList={creatureList ? creatureList : creatures.filtered}
         />
       )}
     </>

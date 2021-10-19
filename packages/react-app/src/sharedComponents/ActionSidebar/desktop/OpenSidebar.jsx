@@ -30,6 +30,7 @@ import './style.css'
 export default function OpenSidebar({
   ethereumProps,
   nftAppProps,
+  creatureList,
   menuItemStyle
 }) {
   const {
@@ -44,6 +45,7 @@ export default function OpenSidebar({
       removeFilter,
       addFilter
     },
+    creatures,
     toggleVisibilityDownload,
     toggleVisibilityMetaData,
     toggleVisibilityChat,
@@ -88,8 +90,11 @@ export default function OpenSidebar({
             onClick={() => {
               setRoute('/moontotem')
             }}
-            // TODO:
-            to={`/moontotem/${0}`}
+            to={`/moontotem/${
+              creatureList.length
+                ? creatureList[0].tokenId
+                : creatures.all[0].tokenId
+            }`}
           >
             <div style={{ ...menuItemContentStyle.text }}>Item View</div>
             <div style={{ ...menuItemContentStyle.icon }}>

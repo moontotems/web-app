@@ -752,15 +752,6 @@ function App() {
           <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>
 
-        {/*
-        {(route === '/all' || route === '/moontotem') && (
-          <ActionSidebar
-            ethereumProps={ethereumProps}
-            nftAppProps={nftAppProps}
-          />
-        )}
-        */}
-
         <div style={{ float: 'left', width: '100%' }}>
           <Footer ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>
