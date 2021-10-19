@@ -658,7 +658,7 @@ function App() {
 
   const [headerTitle, setHeaderTitle] = useState('')
 
-  const [route, setRoute] = useState()
+  const [route, setRoute] = useState(window.location.pathname)
   useEffect(() => {
     setRoute(window.location.pathname)
   }, [setRoute])

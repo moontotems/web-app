@@ -34,6 +34,7 @@ export default function OpenSidebar({
   menuItemStyle
 }) {
   const {
+    showTools,
     setRoute,
     setShowGrid,
     shuffleCreatureIndexList,
@@ -82,7 +83,7 @@ export default function OpenSidebar({
         <div className='menu-item title' style={{ ...menuItemStyle }}>
           <div style={{ ...menuItemContentStyle.text }}>View</div>
           <div style={{ ...menuItemContentStyle.icon }}>
-            <ViewFilled16 aria-label='TODO' />
+            <ViewFilled16 aria-label='' />
           </div>
         </div>
         <div className='menu-item' style={{ ...menuItemStyle }}>
@@ -103,34 +104,44 @@ export default function OpenSidebar({
           </Link>
         </div>
         <div className='menu-item' style={{ ...menuItemStyle }}>
-          <div
-            style={{ ...menuItemContentStyle.text }}
-            aria-label='Switch to area view'
+          <Link
             onClick={() => {
               setRoute('/all')
               setShowGrid(true)
             }}
+            to='/all'
           >
-            Grid View
-          </div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <Apps16 />
-          </div>
+            <div
+              style={{ ...menuItemContentStyle.text }}
+              aria-label='Switch to area view'
+            >
+              Grid View
+            </div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <Apps16 />
+            </div>
+          </Link>
         </div>
+
         <div className='menu-item' style={{ ...menuItemStyle }}>
-          <div
-            style={{ ...menuItemContentStyle.text }}
-            aria-label='Switch to list view'
+          <Link
             onClick={() => {
               setRoute('/all')
               setShowGrid(false)
             }}
+            to='/all'
           >
-            List View
-          </div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <List16 />
-          </div>
+            <div
+              style={{ ...menuItemContentStyle.text }}
+              aria-label='Switch to list view'
+            >
+              List View
+            </div>
+
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <List16 />
+            </div>
+          </Link>
         </div>
         <div className='menu-item title' style={{ ...menuItemStyle }}>
           <div style={{ ...menuItemContentStyle.text }}>Filter</div>
@@ -295,66 +306,78 @@ export default function OpenSidebar({
             <Shuffle16 />
           </div>
         </div>
-        <div className='menu-item title' style={{ ...menuItemStyle }}>
-          <div style={{ ...menuItemContentStyle.text }}>Tools</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <ColorPalette16 aria-label='Color' />
-          </div>
-        </div>
-        <div
-          className='menu-item'
-          style={{ ...menuItemStyle }}
-          onClick={() => toggleVisibilityChat()}
-        >
-          <div style={{ ...menuItemContentStyle.text }}>Consult your Totem</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <ChatBot16 aria-label='Chat' />
-          </div>
-        </div>
-        <div
-          className='menu-item'
-          style={{ ...menuItemStyle }}
-          onClick={() => toggleVisibilityCreatureStory()}
-        >
-          <div style={{ ...menuItemContentStyle.text }}>Write the Story</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <Edit16 aria-label='Edit' />
-          </div>
-        </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
-          <div style={{ ...menuItemContentStyle.text }}>
-            View Full Resolution
-          </div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <ZoomIn16 aria-label='Zoom' />
-          </div>
-        </div>
-        <div
-          className='menu-item'
-          style={{ ...menuItemStyle }}
-          onClick={() => toggleVisibilityDownload()}
-        >
-          <div style={{ ...menuItemContentStyle.text }}>Download Files</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <Download16 aria-label='Download' />
-          </div>
-        </div>
-        <div
-          className='menu-item'
-          style={{ ...menuItemStyle }}
-          onClick={() => toggleVisibilityMetaData()}
-        >
-          <div style={{ ...menuItemContentStyle.text }}>Show all Metadata</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <Information16 aria-label='Meta Data' />
-          </div>
-        </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
-          <div style={{ ...menuItemContentStyle.text }}>Explore on OpenSea</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <Launch16 aria-label='Explore on OpenSea' />
-          </div>
-        </div>
+        {showTools && (
+          <>
+            <div className='menu-item title' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Tools</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <ColorPalette16 aria-label='Color' />
+              </div>
+            </div>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle }}
+              onClick={() => toggleVisibilityChat()}
+            >
+              <div style={{ ...menuItemContentStyle.text }}>
+                Consult your Totem
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <ChatBot16 aria-label='Chat' />
+              </div>
+            </div>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle }}
+              onClick={() => toggleVisibilityCreatureStory()}
+            >
+              <div style={{ ...menuItemContentStyle.text }}>
+                Write the Story
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <Edit16 aria-label='Edit' />
+              </div>
+            </div>
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>
+                View Full Resolution
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <ZoomIn16 aria-label='Zoom' />
+              </div>
+            </div>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle }}
+              onClick={() => toggleVisibilityDownload()}
+            >
+              <div style={{ ...menuItemContentStyle.text }}>Download Files</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <Download16 aria-label='Download' />
+              </div>
+            </div>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle }}
+              onClick={() => toggleVisibilityMetaData()}
+            >
+              <div style={{ ...menuItemContentStyle.text }}>
+                Show all Metadata
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <Information16 aria-label='Meta Data' />
+              </div>
+            </div>
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>
+                Explore on OpenSea
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <Launch16 aria-label='Explore on OpenSea' />
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

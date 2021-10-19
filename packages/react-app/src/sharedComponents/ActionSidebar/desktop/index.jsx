@@ -14,6 +14,7 @@ export default function ActionSidebar({
   nftAppProps,
   creatureList
 }) {
+  const { showTools } = nftAppProps
   const viewStates = {
     hidden: 'hidden',
     visible: 'visible',
@@ -93,6 +94,7 @@ export default function ActionSidebar({
           nftAppProps={nftAppProps}
           creatureList={creatureList}
           menuItemStyle={menuItemStyle}
+          showTools={showTools}
         />
       )}
 
@@ -102,6 +104,7 @@ export default function ActionSidebar({
           nftAppProps={nftAppProps}
           creatureList={creatureList}
           menuItemStyle={menuItemStyle}
+          showTools={showTools}
         />
       )}
     </div>

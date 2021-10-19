@@ -8,14 +8,18 @@ export default function ActionSidebar({
   nftAppProps,
   creatureList
 }) {
-  const { isMobile, creatures } = nftAppProps
+  console.log('here:')
+  console.log({ nftAppProps })
+  const { isMobile, creatures, route } = nftAppProps
+  console.log({ route })
+  const showTools = route.includes('moontotem')
 
   return (
     <>
       {!isMobile && (
         <ActionSidebarDesktop
           ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
+          nftAppProps={{ ...nftAppProps, showTools }}
           creatureList={creatureList ? creatureList : creatures.filtered}
         />
       )}
@@ -23,7 +27,7 @@ export default function ActionSidebar({
       {isMobile && (
         <ActionSidebarMobile
           ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
+          nftAppProps={{ ...nftAppProps, showTools }}
           creatureList={creatureList ? creatureList : creatures.filtered}
         />
       )}

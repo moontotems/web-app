@@ -32,6 +32,7 @@ export default function ActionSidebar({
   creatureList
 }) {
   const {
+    showTools,
     setRoute,
     setShowGrid,
     shuffleCreatureIndexList,
@@ -158,26 +159,41 @@ export default function ActionSidebar({
                 </div>
               </Link>
             </div>
-            <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>Grid View</div>
-              <div
-                style={{ ...menuItemContentStyle.icon }}
-                aria-label='Switch to area view'
-                onClick={() => setShowGrid(true)}
-              >
-                <Apps32 />
+            <Link
+              onClick={() => {
+                setRoute('/all')
+                setShowGrid(true)
+              }}
+              to='/all'
+            >
+              <div className='menu-item' style={{ ...menuItemStyle }}>
+                <div style={{ ...menuItemContentStyle.text }}>Grid View</div>
+                <div
+                  style={{ ...menuItemContentStyle.icon }}
+                  aria-label='Switch to area view'
+                >
+                  <Apps32 />
+                </div>
               </div>
-            </div>
-            <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>List View</div>
-              <div
-                style={{ ...menuItemContentStyle.icon }}
-                aria-label='Switch to list view'
-                onClick={() => setShowGrid(false)}
-              >
-                <List32 />
+            </Link>
+            <Link
+              onClick={() => {
+                setRoute('/all')
+                setShowGrid(false)
+              }}
+              to='/all'
+            >
+              <div className='menu-item' style={{ ...menuItemStyle }}>
+                <div style={{ ...menuItemContentStyle.text }}>List View</div>
+                <div
+                  style={{ ...menuItemContentStyle.icon }}
+                  aria-label='Switch to list view'
+                  onClick={() => setShowGrid(false)}
+                >
+                  <List32 />
+                </div>
               </div>
-            </div>
+            </Link>
             <div className='menu-item title' style={{ ...menuItemStyle }}>
               <div style={{ ...menuItemContentStyle.text }}>Filter</div>
               <div style={{ ...menuItemContentStyle.icon }}>
@@ -254,62 +270,68 @@ export default function ActionSidebar({
                 <Shuffle32 />
               </div>
             </div>
-            <div className='menu-item title' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>Tools</div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <ColorPalette32 aria-label='Color' />
-              </div>
-            </div>
-            <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>
-                Consult your Totem
-              </div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <ChatBot32 aria-label='Chat' />
-              </div>
-            </div>
-            <div
-              className='menu-item'
-              style={{ ...menuItemStyle }}
-              onClick={() => toggleVisibilityCreatureStory()}
-            >
-              <div style={{ ...menuItemContentStyle.text }}>
-                Write the Story
-              </div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <Edit32 aria-label='Edit' />
-              </div>
-            </div>
-            <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>
-                View Full Resolution
-              </div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <ZoomIn32 aria-label='Zoom' />
-              </div>
-            </div>
-            <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>Download Files</div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <Download32 aria-label='Download' />
-              </div>
-            </div>
-            <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>
-                Show All Metadata
-              </div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <Information32 aria-label='Details' />
-              </div>
-            </div>
-            <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>
-                Explore on OpenSea
-              </div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <Launch32 aria-label='Explore on OpenSea' />
-              </div>
-            </div>
+            {showTools && (
+              <>
+                <div className='menu-item title' style={{ ...menuItemStyle }}>
+                  <div style={{ ...menuItemContentStyle.text }}>Tools</div>
+                  <div style={{ ...menuItemContentStyle.icon }}>
+                    <ColorPalette32 aria-label='Color' />
+                  </div>
+                </div>
+                <div className='menu-item' style={{ ...menuItemStyle }}>
+                  <div style={{ ...menuItemContentStyle.text }}>
+                    Consult your Totem
+                  </div>
+                  <div style={{ ...menuItemContentStyle.icon }}>
+                    <ChatBot32 aria-label='Chat' />
+                  </div>
+                </div>
+                <div
+                  className='menu-item'
+                  style={{ ...menuItemStyle }}
+                  onClick={() => toggleVisibilityCreatureStory()}
+                >
+                  <div style={{ ...menuItemContentStyle.text }}>
+                    Write the Story
+                  </div>
+                  <div style={{ ...menuItemContentStyle.icon }}>
+                    <Edit32 aria-label='Edit' />
+                  </div>
+                </div>
+                <div className='menu-item' style={{ ...menuItemStyle }}>
+                  <div style={{ ...menuItemContentStyle.text }}>
+                    View Full Resolution
+                  </div>
+                  <div style={{ ...menuItemContentStyle.icon }}>
+                    <ZoomIn32 aria-label='Zoom' />
+                  </div>
+                </div>
+                <div className='menu-item' style={{ ...menuItemStyle }}>
+                  <div style={{ ...menuItemContentStyle.text }}>
+                    Download Files
+                  </div>
+                  <div style={{ ...menuItemContentStyle.icon }}>
+                    <Download32 aria-label='Download' />
+                  </div>
+                </div>
+                <div className='menu-item' style={{ ...menuItemStyle }}>
+                  <div style={{ ...menuItemContentStyle.text }}>
+                    Show All Metadata
+                  </div>
+                  <div style={{ ...menuItemContentStyle.icon }}>
+                    <Information32 aria-label='Details' />
+                  </div>
+                </div>
+                <div className='menu-item' style={{ ...menuItemStyle }}>
+                  <div style={{ ...menuItemContentStyle.text }}>
+                    Explore on OpenSea
+                  </div>
+                  <div style={{ ...menuItemContentStyle.icon }}>
+                    <Launch32 aria-label='Explore on OpenSea' />
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -325,7 +347,7 @@ export default function ActionSidebar({
           }}
         >
           <div className='menu-item square-title' style={{ ...menuItemStyle }}>
-            <ViewFilled32 aria-label='TODO' />
+            <ViewFilled32 />
           </div>
           <Link
             onClick={() => {
@@ -338,23 +360,36 @@ export default function ActionSidebar({
             </div>
           </Link>
 
-          <div
-            className='menu-item'
-            style={{ ...menuItemStyle }}
-            aria-label='Switch to area view'
-            onClick={() => setShowGrid(true)}
+          <Link
+            onClick={() => {
+              setRoute('/all')
+              setShowGrid(true)
+            }}
+            to='/all'
           >
-            <Apps32 />
-          </div>
-
-          <div
-            className='menu-item'
-            style={{ ...menuItemStyle }}
-            aria-label='Switch to list view'
-            onClick={() => setShowGrid(false)}
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle }}
+              aria-label='Switch to area view'
+            >
+              <Apps32 />
+            </div>
+          </Link>
+          <Link
+            onClick={() => {
+              setRoute('/all')
+              setShowGrid(false)
+            }}
+            to='/all'
           >
-            <List32 />
-          </div>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle }}
+              aria-label='Switch to list view'
+            >
+              <List32 />
+            </div>
+          </Link>
           <div className='menu-item square-title' style={{ ...menuItemStyle }}>
             <Filter32 aria-label='TODO' />
           </div>
@@ -399,34 +434,38 @@ export default function ActionSidebar({
           >
             <Shuffle32 aria-label='Shuffle' />
           </div>
-          <div
-            className='menu-item square-title'
-            style={{ ...menuItemStyle, borderTop: '1px solid #6F6F6F' }}
-          >
-            <ColorPalette32 aria-label='Color' />
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <ChatBot32 aria-label='Chat' />
-          </div>
-          <div
-            className='menu-item'
-            style={{ ...menuItemStyle }}
-            onClick={() => toggleVisibilityCreatureStory()}
-          >
-            <Edit32 aria-label='Edit' />
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <ZoomIn32 aria-label='Zoom' />
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <Download32 aria-label='Download' />
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <Information32 aria-label='Details' />
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <Launch32 aria-label='TODO' />
-          </div>
+          {showTools && (
+            <>
+              <div
+                className='menu-item square-title'
+                style={{ ...menuItemStyle, borderTop: '1px solid #6F6F6F' }}
+              >
+                <ColorPalette32 aria-label='Color' />
+              </div>
+              <div className='menu-item' style={{ ...menuItemStyle }}>
+                <ChatBot32 aria-label='Chat' />
+              </div>
+              <div
+                className='menu-item'
+                style={{ ...menuItemStyle }}
+                onClick={() => toggleVisibilityCreatureStory()}
+              >
+                <Edit32 aria-label='Edit' />
+              </div>
+              <div className='menu-item' style={{ ...menuItemStyle }}>
+                <ZoomIn32 aria-label='Zoom' />
+              </div>
+              <div className='menu-item' style={{ ...menuItemStyle }}>
+                <Download32 aria-label='Download' />
+              </div>
+              <div className='menu-item' style={{ ...menuItemStyle }}>
+                <Information32 aria-label='Details' />
+              </div>
+              <div className='menu-item' style={{ ...menuItemStyle }}>
+                <Launch32 aria-label='TODO' />
+              </div>
+            </>
+          )}
         </div>
       )}
     </div>

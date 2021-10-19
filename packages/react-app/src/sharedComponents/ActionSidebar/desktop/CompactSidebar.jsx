@@ -31,7 +31,8 @@ export default function CompactSidebar({
   ethereumProps,
   nftAppProps,
   creatureList,
-  menuItemStyle
+  menuItemStyle,
+  showTools
 }) {
   const {
     setRoute,
@@ -80,22 +81,36 @@ export default function CompactSidebar({
         </div>
       </Link>
 
-      <div
-        className='menu-item'
-        style={{ ...menuItemStyle }}
-        aria-label='Switch to area view'
-        onClick={() => setShowGrid(true)}
+      <Link
+        onClick={() => {
+          setRoute('/all')
+          setShowGrid(true)
+        }}
+        to='/all'
       >
-        <Apps16 />
-      </div>
-      <div
-        className='menu-item'
-        style={{ ...menuItemStyle }}
-        aria-label='Switch to List View'
-        onClick={() => setShowGrid(false)}
+        <div
+          className='menu-item'
+          style={{ ...menuItemStyle }}
+          aria-label='Switch to area view'
+        >
+          <Apps16 />
+        </div>
+      </Link>
+      <Link
+        onClick={() => {
+          setRoute('/all')
+          setShowGrid(false)
+        }}
+        to='/all'
       >
-        <List16 aria-label='Switch to List View ' />
-      </div>
+        <div
+          className='menu-item'
+          style={{ ...menuItemStyle }}
+          aria-label='Switch to List View'
+        >
+          <List16 aria-label='Switch to List View' />
+        </div>
+      </Link>
       <div className='menu-item square-title' style={{ ...menuItemStyle }}>
         <Filter16 aria-label='Filter' />
       </div>
@@ -212,46 +227,50 @@ export default function CompactSidebar({
       >
         <Shuffle16 />
       </div>
-      <div
-        className='menu-item square-title'
-        style={{ ...menuItemStyle, borderTop: '1px solid #6F6F6F' }}
-      >
-        <ColorPalette16 aria-label='Color' />
-      </div>
-      <div
-        className='menu-item'
-        style={{ ...menuItemStyle }}
-        onClick={() => toggleVisibilityChat()}
-      >
-        <ChatBot16 aria-label='Chat' />
-      </div>
-      <div
-        className='menu-item'
-        style={{ ...menuItemStyle }}
-        onClick={() => toggleVisibilityCreatureStory()}
-      >
-        <Edit16 aria-label='Edit' />
-      </div>
-      <div className='menu-item' style={{ ...menuItemStyle }}>
-        <ZoomIn16 aria-label='Zoom' />
-      </div>
-      <div
-        className='menu-item'
-        style={{ ...menuItemStyle }}
-        onClick={() => toggleVisibilityDownload()}
-      >
-        <Download16 aria-label='Download' />
-      </div>
-      <div
-        className='menu-item'
-        style={{ ...menuItemStyle }}
-        onClick={() => toggleVisibilityMetaData()}
-      >
-        <Information16 aria-label='Meta Data' />
-      </div>
-      <div className='menu-item' style={{ ...menuItemStyle }}>
-        <Launch16 aria-label='TODO' />
-      </div>
+      {showTools && (
+        <>
+          <div
+            className='menu-item square-title'
+            style={{ ...menuItemStyle, borderTop: '1px solid #6F6F6F' }}
+          >
+            <ColorPalette16 aria-label='Color' />
+          </div>
+          <div
+            className='menu-item'
+            style={{ ...menuItemStyle }}
+            onClick={() => toggleVisibilityChat()}
+          >
+            <ChatBot16 aria-label='Chat' />
+          </div>
+          <div
+            className='menu-item'
+            style={{ ...menuItemStyle }}
+            onClick={() => toggleVisibilityCreatureStory()}
+          >
+            <Edit16 aria-label='Edit' />
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <ZoomIn16 aria-label='Zoom' />
+          </div>
+          <div
+            className='menu-item'
+            style={{ ...menuItemStyle }}
+            onClick={() => toggleVisibilityDownload()}
+          >
+            <Download16 aria-label='Download' />
+          </div>
+          <div
+            className='menu-item'
+            style={{ ...menuItemStyle }}
+            onClick={() => toggleVisibilityMetaData()}
+          >
+            <Information16 aria-label='Meta Data' />
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <Launch16 aria-label='TODO' />
+          </div>
+        </>
+      )}
     </div>
   )
 }
