@@ -120,13 +120,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     }
   }, [visibleCreatureListIndex])
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    $('#creatureDownloads').hide()
-    $('#chatbot').hide()
-    $('#creatureAttributes').hide()
-  }, [])
-
   const { metaData, image, isFavorite, minted } = currentVisibleCreature
   const { trait_name1, trait_name2, trait_jobField, trait_jobTitle } = metaData
 

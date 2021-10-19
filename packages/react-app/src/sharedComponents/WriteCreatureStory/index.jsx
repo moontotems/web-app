@@ -23,7 +23,7 @@ export default function WriteCreatureStory({ tokenId }) {
 
   return (
     <div
-      id='creatureStory'
+      id='writeCreatureStory'
       style={{
         float: 'left',
         width: '100%'

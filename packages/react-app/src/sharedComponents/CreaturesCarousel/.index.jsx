@@ -244,10 +244,8 @@ export default function CreaturePage({
                   style={{ ...iconStyle }}
                   onClick={() => {
                     console.log('click')
-                    //setShowChat(false)
                     $('#chatbot').hide()
                     $('#creatureAttributes').toggle(500)
-                    //setShowMetadata(!showMetadata)
                   }}
                 />
                 <ChatBot32
@@ -255,10 +253,8 @@ export default function CreaturePage({
                   style={{ ...iconStyle }}
                   onClick={() => {
                     console.log('click')
-                    //setShowMetadata(false)
                     $('#creatureAttributes').hide()
                     $('#chatbot').toggle(500)
-                    //setShowChat(!showChat)
                   }}
                 />
                 <Edit32 style={{ ...iconStyle }} />

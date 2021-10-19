@@ -8,31 +8,35 @@ import CreaturePageMobile from './mobile'
 export default function CreaturePage({ ethereumProps, nftAppProps }) {
   const { isMobile } = nftAppProps
 
-  // scroll to top on load
+  const features = [
+    'creatureName',
+    'chatbot',
+    'creatureAttributes',
+    'creatureDownloads',
+    'writeCreatureStory'
+  ]
+
   useEffect(() => {
+    // scroll to top on load
     window.scrollTo(0, 0)
+    features.map(feature => $(`#${feature}`).hide())
   }, [])
 
-  const toggleVisibilityDownload = () => {
-    $('#creatureName').hide()
-    $('#chatbot').hide()
-    $('#creatureAttributes').hide()
-    $('#creatureDownloads').toggle(500)
+  const toggleFeature = featureToToggle => {
+    features.map(feature => {
+      if (feature === featureToToggle) {
+        $(`#${feature}`).toggle(500)
+      } else {
+        $(`#${feature}`).hide()
+      }
+    })
   }
 
-  const toggleVisibilityMetaData = () => {
-    $('#creatureName').hide()
-    $('#chatbot').hide()
-    $('#creatureDownloads').hide()
-    $('#creatureAttributes').toggle(500)
-  }
-
-  const toggleVisibilityChat = () => {
-    $('#creatureName').hide()
-    $('#creatureAttributes').hide()
-    $('#creatureDownloads').hide()
-    $('#chatbot').toggle(500)
-  }
+  const toggleVisibilityDownload = () => toggleFeature('creatureDownloads')
+  const toggleVisibilityMetaData = () => toggleFeature('creatureAttributes')
+  const toggleVisibilityChat = () => toggleFeature('chatbot')
+  const toggleVisibilityCreatureStory = () =>
+    toggleFeature('writeCreatureStory')
 
   return (
     <>
@@ -42,7 +46,8 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
           ...nftAppProps,
           toggleVisibilityDownload,
           toggleVisibilityMetaData,
-          toggleVisibilityChat
+          toggleVisibilityChat,
+          toggleVisibilityCreatureStory
         }}
       />
 

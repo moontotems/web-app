@@ -469,8 +469,6 @@ function App() {
 
   const filterIsActive = filter => activeFilters.includes(filter)
 
-  console.log({ activeFilters })
-
   const [showGrid, setShowGrid] = useState(true)
 
   // TODO: reduce number of calls
@@ -554,7 +552,6 @@ function App() {
   */
 
   const applyFiltersToCreatures = creatures => {
-    console.log({ activeFilters })
     if (activeFilters.length === 0) {
       return creatures
     }

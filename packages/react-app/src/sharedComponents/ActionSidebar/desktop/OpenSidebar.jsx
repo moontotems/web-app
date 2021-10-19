@@ -46,7 +46,8 @@ export default function OpenSidebar({
     },
     toggleVisibilityDownload,
     toggleVisibilityMetaData,
-    toggleVisibilityChat
+    toggleVisibilityChat,
+    toggleVisibilityCreatureStory
   } = nftAppProps
 
   const menuItemContentStyle = {
@@ -58,8 +59,6 @@ export default function OpenSidebar({
       float: 'right'
     }
   }
-
-  //menuItemStyle.borderLeft = '5px solid blue'
 
   return (
     <div
@@ -102,7 +101,10 @@ export default function OpenSidebar({
           <div
             style={{ ...menuItemContentStyle.text }}
             aria-label='Switch to area view'
-            onClick={() => setShowGrid(true)}
+            onClick={() => {
+              setRoute('/all')
+              setShowGrid(true)
+            }}
           >
             Grid View
           </div>
@@ -114,7 +116,10 @@ export default function OpenSidebar({
           <div
             style={{ ...menuItemContentStyle.text }}
             aria-label='Switch to list view'
-            onClick={() => setShowGrid(false)}
+            onClick={() => {
+              setRoute('/all')
+              setShowGrid(false)
+            }}
           >
             List View
           </div>
@@ -301,7 +306,11 @@ export default function OpenSidebar({
             <ChatBot16 aria-label='Chat' />
           </div>
         </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
+        <div
+          className='menu-item'
+          style={{ ...menuItemStyle }}
+          onClick={() => toggleVisibilityCreatureStory()}
+        >
           <div style={{ ...menuItemContentStyle.text }}>Write the Story</div>
           <div style={{ ...menuItemContentStyle.icon }}>
             <Edit16 aria-label='Edit' />

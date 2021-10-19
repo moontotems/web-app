@@ -47,7 +47,8 @@ export default function CompactSidebar({
     },
     toggleVisibilityDownload,
     toggleVisibilityMetaData,
-    toggleVisibilityChat
+    toggleVisibilityChat,
+    toggleVisibilityCreatureStory
   } = nftAppProps
 
   return (
@@ -220,7 +221,11 @@ export default function CompactSidebar({
       >
         <ChatBot16 aria-label='Chat' />
       </div>
-      <div className='menu-item' style={{ ...menuItemStyle }}>
+      <div
+        className='menu-item'
+        style={{ ...menuItemStyle }}
+        onClick={() => toggleVisibilityCreatureStory()}
+      >
         <Edit16 aria-label='Edit' />
       </div>
       <div className='menu-item' style={{ ...menuItemStyle }}>
