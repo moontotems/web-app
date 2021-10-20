@@ -133,7 +133,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         style={{
           position: 'fixed',
           left: 0,
-          width: '100%',
+          width: 'auto',
           height: '100%',
           zIndex: 100,
           overflowY: 'hidden'

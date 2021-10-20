@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import $ from 'jquery'
 
 import { CloseFilled32 } from '@carbon/icons-react'
@@ -19,6 +19,7 @@ export default function CreatureFeatureContainer({
       style={{
         float: 'left',
         width: '100%',
+        minWidth: '100vw',
         height: '100%',
         background: isMobile ? 'rgba(0, 0, 0, 0.8)' : 'none',
         paddingTop: '10px',
