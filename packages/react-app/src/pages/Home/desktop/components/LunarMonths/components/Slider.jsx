@@ -20,28 +20,20 @@ export default function MySlider({
     const slider = $('#dots')
     let transformCount = 0
     let totalCount = slider.find('.slick-dots li').length
-    console.log({ totalCount })
-    console.log({ nextSlide })
-    console.log({ currentSlide })
     const swipingLeft = nextSlide < currentSlide
     const swipingRight = nextSlide > currentSlide
     if (totalCount > maxDots) {
       if (swipingRight) {
         // swiping right
-        console.log('nextSlide > currentSlide')
-        console.log('now find...')
         if (
           slider
             .find('ul.slick-dots li.dot-index-' + nextSlide)
             .hasClass('n-small-1')
         ) {
-          console.log('found one with class n-small-1')
           const lastChildIsSmall = slider
             .find('ul.slick-dots li:last-child')
             .hasClass('n-small-1')
           if (!lastChildIsSmall) {
-            console.log('found one with not class n-small-1')
-            console.log('doing transformation')
             transformCount = transformCount + transformXIntervalNext
             slider
               .find('ul.slick-dots li.dot-index-' + nextSlide)
@@ -65,7 +57,6 @@ export default function MySlider({
       }
       if (swipingLeft) {
         // swiping left
-        console.log('nextSlide < currentSlide')
         if (
           slider
             .find('ul.slick-dots li.dot-index-' + nextSlide)
@@ -75,7 +66,6 @@ export default function MySlider({
           if (
             !slider.find('ul.slick-dots li:first-child').hasClass('p-small-1')
           ) {
-            console.log('doing transformation')
             transformCount = transformCount + transformXIntervalPrev
             slider
               .find('ul.slick-dots li.dot-index-' + nextSlide)
@@ -150,12 +140,12 @@ export default function MySlider({
     //prevArrow: null,
     // https://react-slick.neostack.com/docs/api/#lazyLoad
     //lazyLoad: true,
-    onSwipe: () => console.log('onSwipe'),
+    //onSwipe: () => console.log('onSwipe'),
     beforeChange: (current, next) => {
       setCurrentSlideIndex(next)
       animateDots(current, next)
-    },
-    afterChange: current => {}
+    }
+    //afterChange: current => {}
   }
 
   return (

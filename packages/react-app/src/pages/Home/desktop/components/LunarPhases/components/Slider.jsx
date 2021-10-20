@@ -40,9 +40,9 @@ export default function MySlider({
     //prevArrow: null,
     // https://react-slick.neostack.com/docs/api/#lazyLoad
     //lazyLoad: true,
-    onSwipe: () => console.log('onSwipe'),
-    beforeChange: (current, next) => setCurrentSlideIndex(next),
-    afterChange: current => {}
+    //onSwipe: () => console.log('onSwipe'),
+    beforeChange: (current, next) => setCurrentSlideIndex(next)
+    //afterChange: current => {}
   }
 
   return (

@@ -14,7 +14,6 @@ export default function Mint({ gasPrice, tx, writeContracts }) {
 
   const handleSubmit = async () => {
     const values = await form.validateFields()
-    console.log({ values })
     const { _to, _tokenId, _amount } = values
 
     // writeContracts.MoonTotems
@@ -32,7 +31,7 @@ export default function Mint({ gasPrice, tx, writeContracts }) {
     <Form
       form={form}
       layout='vertical'
-      onValuesChange={() => console.log('change')}
+      //onValuesChange={() => }
       size={'large'}
       placeholder='Input'
       onFinish={handleSubmit}

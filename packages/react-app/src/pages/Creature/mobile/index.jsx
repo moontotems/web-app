@@ -42,8 +42,6 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
 
   const [activeTokenId, setActiveTokenId] = useState(urlTokenId)
 
-  console.log({ activeTokenId })
-
   useEffect(() => {
     window.scrollTo(0, 0)
     $('#chatbot').hide()
@@ -113,22 +111,16 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     trackTouch: true,
     //onSwiped: eventData => console.log('User Swiped!', eventData),
     onSwipedLeft: eventData => {
-      console.log('in onSwipedLeft()')
       const newActiveTokenId = getNextTokenId({
         direction: 'right'
       })
-      console.log('in onSwipedLeft()')
-      console.log({ newActiveTokenId })
       setActiveTokenId(newActiveTokenId)
       updateUrl(newActiveTokenId)
     },
     onSwipedRight: eventData => {
-      console.log('in onSwipedRight()')
       const newActiveTokenId = getNextTokenId({
         direction: 'left'
       })
-      console.log('in onSwipedLeft()')
-      console.log({ newActiveTokenId })
       setActiveTokenId(newActiveTokenId)
       updateUrl(newActiveTokenId)
     }

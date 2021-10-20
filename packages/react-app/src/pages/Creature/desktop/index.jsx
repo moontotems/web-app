@@ -65,17 +65,11 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     useState(index)
 
   useEffect(() => {
-    console.log({ visibleCreatureListIndex })
     if (!creatures.filtered[visibleCreatureListIndex])
       setVisibleCreatureListIndex(fetchCreatureIndex())
   }, [activeFilters])
 
   const currentVisibleCreature = creatures.filtered[visibleCreatureListIndex]
-
-  console.log('in creature page')
-  console.log({ creatures })
-  console.log({ visibleCreatureListIndex })
-  console.log({ currentVisibleCreature })
 
   const setNextTokenId = ({ direction }) => {
     let newIndex = visibleCreatureListIndex

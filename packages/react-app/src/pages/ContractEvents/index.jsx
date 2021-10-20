@@ -40,18 +40,6 @@ export default function ContractEvents({ ethereumProps }) {
     1
   )
 
-  console.log(
-    'readContracts && writeContracts',
-    readContracts && writeContracts
-  )
-
-  console.log({ readContracts })
-  console.log({ writeContracts })
-  console.log({ mintEvents })
-  console.log({ transferEvents })
-  console.log({ approvalEvents })
-  console.log({ approvalForAllEvents })
-
   return (
     <>
       <Row>

@@ -8,10 +8,7 @@ export default function ActionSidebar({
   nftAppProps,
   creatureList
 }) {
-  console.log('here:')
-  console.log({ nftAppProps })
   const { isMobile, creatures, route } = nftAppProps
-  console.log({ route })
   const showTools = route.includes('moontotem')
 
   return (

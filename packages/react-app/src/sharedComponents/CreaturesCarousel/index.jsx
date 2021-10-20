@@ -102,12 +102,9 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     </Menu>
   )
 
-  console.log({ creaturesMap })
   const { isFavorite, minted } = creaturesMap[`${activeTokenId}`]
 
   const updateUrl = creatureIndex => {
-    console.log('in updateUrl')
-    console.log({ creatureIndex })
     window.history.replaceState(
       null,
       `Moon Totem ${creatureIndex}`,
@@ -115,11 +112,11 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     )
   }
 
+  /*
   useEffect(() => {
     //updateUrl(activeTokenId)
   }, [activeTokenId])
-
-  console.log({ activeTokenId })
+  */
 
   const [sliderRef, setSliderRef] = useState()
 
@@ -152,14 +149,13 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     //prevArrow: null,
     // https://react-slick.neostack.com/docs/api/#lazyLoad
     //lazyLoad: true,
-    onSwipe: () => console.log('onSwipe'),
+    // onSwipe: () => console.log('onSwipe'),
     // afterChange: () => this.setState(state => ({ updateCount: state.updateCount + 1 })),
     // beforeChange: (current, next) => this.setState({ slideIndex: next })
     // afterChange: () => setCurrentCreatureIndex(currentCreatureIndex + 1),
     afterChange: current => {
       const reachedLeftEnd = current === 0
       const reachedRightEnd = current === creatures.shuffled.length - 1
-      console.log({ reachedLeftEnd, reachedRightEnd })
       if (reachedRightEnd) {
         setLastVisibleTokenId(lastVisibleTokenId + 1)
       }
@@ -319,7 +315,6 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
               aria-label='Show Info'
               style={{ ...iconStyle }}
               onClick={() => {
-                console.log('click')
                 $('#chatbot').hide()
                 $('#creatureMetaData').toggle(500)
               }}
@@ -328,7 +323,6 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
               aria-label='Chat'
               style={{ ...iconStyle }}
               onClick={() => {
-                console.log('click')
                 $('#creatureMetaData').hide()
                 $('#chatbot').toggle(500)
               }}

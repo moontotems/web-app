@@ -243,7 +243,6 @@ export default function CreaturePage({
                   aria-label='Show Info'
                   style={{ ...iconStyle }}
                   onClick={() => {
-                    console.log('click')
                     $('#chatbot').hide()
                     $('#creatureMetaData').toggle(500)
                   }}
@@ -252,7 +251,6 @@ export default function CreaturePage({
                   aria-label='Chat'
                   style={{ ...iconStyle }}
                   onClick={() => {
-                    console.log('click')
                     $('#creatureMetaData').hide()
                     $('#chatbot').toggle(500)
                   }}
