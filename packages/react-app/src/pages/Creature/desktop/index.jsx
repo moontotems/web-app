@@ -28,8 +28,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     filter: { activeFilters },
     mintEventsMap,
     mint,
-    favorites,
-    isMobile
+    favorites
   } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
@@ -137,9 +136,9 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   }, [visibleCreatureListIndex])
 
   const buttonStyle = {
-    height: isMobile ? 'auto' : '34px',
-    fontSize: isMobile ? '24px' : '16px',
-    padding: isMobile ? '10px 15px' : '0 15px'
+    height: '34px',
+    fontSize: '16px',
+    padding: '0 15px'
   }
 
   return (
@@ -147,7 +146,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       <div
         style={{
           position: 'fixed',
-          top: isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT,
+          top: DESKTOP_HEADER_HEIGHT,
           left: '17px',
           width: '35%',
           paddingTop: '10px',
@@ -171,21 +170,13 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         />
         <WriteStory ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </div>
-      <div
-        style={{
-          position: 'fixed',
-          top: 110,
-          width: '500px',
-          zIndex: 1000
-        }}
-      ></div>
       <Row>
         <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
           <InnerImageZoom
             zoomPreload={true}
             src={image}
             zoomSrc={image}
-            zoomScale={3}
+            zoomScale={2}
             //moveType='drag'
             hideCloseButton={true}
             hideHint={true}
