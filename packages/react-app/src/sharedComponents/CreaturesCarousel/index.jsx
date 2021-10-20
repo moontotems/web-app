@@ -188,7 +188,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
         <Chatbot image={image} tokenId={tokenId} />
       </div>
       <div style={{ marginTop: 50 }}>
-        <Attributes creatureMetadata={creatureMetadata} />
+        <MetaData creatureMetadata={creatureMetadata} />
       </div>
       */}
       <Slider {...sliderSettings}>
@@ -321,7 +321,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
               onClick={() => {
                 console.log('click')
                 $('#chatbot').hide()
-                $('#creatureAttributes').toggle(500)
+                $('#creatureMetaData').toggle(500)
               }}
             />
             <ChatBot32
@@ -329,7 +329,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
               style={{ ...iconStyle }}
               onClick={() => {
                 console.log('click')
-                $('#creatureAttributes').hide()
+                $('#creatureMetaData').hide()
                 $('#chatbot').toggle(500)
               }}
             />

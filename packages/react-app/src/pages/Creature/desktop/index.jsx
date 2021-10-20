@@ -5,20 +5,19 @@ import {
   Favorite32,
   FavoriteFilled32
 } from '@carbon/icons-react'
-import $ from 'jquery'
 // https://www.npmjs.com/package/react-inner-image-zoom
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 import InnerImageZoom from 'react-inner-image-zoom'
 
-import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
-import { getImageUrl } from '../../../helpers'
 import {
-  Chatbot,
-  CreatureAttributes,
-  CreatureFileDownloads,
-  WriteCreatureStory,
-  Icons
-} from '../../../sharedComponents'
+  MOBILE_HEADER_HEIGHT,
+  DESKTOP_HEADER_HEIGHT,
+  MIN_TOKEN_ID,
+  MAX_TOKEN_ID
+} from '../../../constants'
+import { getImageUrl } from '../../../helpers'
+import { creatureFeatures, Icons } from '../../../sharedComponents'
+const { MetaData, Chatbot, FileDownloads, WriteStory } = creatureFeatures
 const { NotMintedIcon32x32 } = Icons
 import './styles.css'
 
@@ -29,7 +28,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     filter: { activeFilters },
     mintEventsMap,
     mint,
-    favorites
+    favorites,
+    isMobile
   } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
@@ -120,7 +120,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     }
   }, [visibleCreatureListIndex])
 
-  const { metaData, image, isFavorite, minted } = currentVisibleCreature
+  const { metaData, tokenId, image, isFavorite, minted } =
+    currentVisibleCreature
   const { trait_name1, trait_name2, trait_jobField, trait_jobTitle } = metaData
 
   useEffect(() => {
@@ -155,36 +156,35 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       <div
         style={{
           position: 'fixed',
-          top: 110,
-          width: '40%',
+          top: isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT,
+          left: '17px',
+          width: '35%',
+          paddingTop: '10px',
           zIndex: 1000
         }}
       >
-        <CreatureFileDownloads
+        <MetaData
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+          creatureMetadata={metaData}
+        />
+        <FileDownloads
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
-      </div>
-
-      <div
-        style={{
-          position: 'fixed',
-          top: 90,
-          left: 10,
-          width: 'auto',
-          zIndex: 1000
-          //pointerEvents: 'none'
-        }}
-      >
-        <WriteCreatureStory tokenId={currentVisibleCreature.tokenId} />
-        <Chatbot image={image} tokenId={currentVisibleCreature.tokenId} />
-        <CreatureAttributes creatureMetadata={metaData} />
+        <Chatbot
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+          image={image}
+          tokenId={tokenId}
+        />
+        <WriteStory ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </div>
       <div
         style={{
           position: 'fixed',
           top: 110,
-          width: '40%',
+          width: '500px',
           zIndex: 1000
         }}
       ></div>

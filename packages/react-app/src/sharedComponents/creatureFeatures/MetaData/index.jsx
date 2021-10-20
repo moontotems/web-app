@@ -1,6 +1,11 @@
 import React from 'react'
 
-export default function Attributes({
+import { Information16, Information32 } from '@carbon/icons-react'
+import CreatureFeatureContainer from '../../CreatureFeatureContainer'
+
+export default function MetaData({
+  ethereumProps,
+  nftAppProps,
   creatureMetadata: {
     age,
     ageRank,
@@ -84,15 +89,20 @@ export default function Attributes({
     trait_personality1,
     trait_personality2,
     trait_personality3
-  },
-  isMobile
+  }
 }) {
+  const { isMobile } = nftAppProps
   return (
-    <div id='creatureAttributes'>
+    <CreatureFeatureContainer
+      ethereumProps={ethereumProps}
+      nftAppProps={nftAppProps}
+      containerId={'creatureMetaData'}
+      icon={isMobile ? <Information32 /> : <Information16 />}
+      title={'TOTEM INFO'}
+    >
       <div
         style={{
           float: 'left',
-          width: isMobile ? '40%' : '25%',
           paddingRight: 10,
           fontSize: '18px',
           lineHeight: '48px',
@@ -191,6 +201,6 @@ export default function Attributes({
           {Material}
         </div>
       </div>
-    </div>
+    </CreatureFeatureContainer>
   )
 }

@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'antd'
 import { Button } from 'antd-mobile'
-
 import {
   AsleepFilled32,
   Favorite32,
-  FavoriteFilled32,
-  Information32,
-  CloseFilled32
+  FavoriteFilled32
 } from '@carbon/icons-react'
 // https://www.npmjs.com/package/react-slick
 import { useSwipeable } from 'react-swipeable'
 import $ from 'jquery'
+
 import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
-import {
-  CreatureAttributes,
-  Chatbot,
-  WriteCreatureStory,
-  Icons
-} from '../../../sharedComponents'
-const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
+
+import { creatureFeatures, Icons } from '../../../sharedComponents'
+const { MetaData, Chatbot, FileDownloads, WriteStory } = creatureFeatures
+const { NotMintedIcon32x32 } = Icons
+
 import houdini_json_hashmap from '../../../assets/houdini_json_hashmap.json'
 
 export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
@@ -51,7 +47,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   useEffect(() => {
     window.scrollTo(0, 0)
     $('#chatbot').hide()
-    $('#creatureAttributes').hide()
+    $('#creatureMetaData').hide()
   }, [])
 
   const getNextTokenId = ({ direction }) => {
@@ -91,6 +87,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     }
   }, [activeTokenId])
 
+  // TODO: why are we doing this?? all the data should be available and passed down in/from App.jsx
   const assembleCreature = tokenId => {
     const minted = !!mintEventsMap[tokenId]
     const isFavorite = checkIfIsFavorite(tokenId)
@@ -107,7 +104,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     return creature
   }
 
-  const { metaData, image, isFavorite, minted } =
+  const { tokenId, metaData, image, isFavorite, minted } =
     assembleCreature(activeTokenId)
   const { trait_name1, trait_name2, trait_jobField, trait_jobTitle } = metaData
 
@@ -138,31 +135,36 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     //onTap: ({ event }) =>
   })
 
-  const iconStyle = {
-    margin: '0 20px',
-    cursor: 'pointer'
-  }
-
   return (
     <div style={{ backgroundColor: '#000' }}>
       <div
-        id='chatbot'
         style={{
           position: 'fixed',
           left: 0,
-          minHeight: '100vh',
           width: '100%',
-          //marginTop: '10%',
-          textAlign: 'center',
-          padding: '10%',
-          zIndex: 100
-          //pointerEvents: 'none'
+          height: '100%',
+          zIndex: 100,
+          overflowY: 'hidden'
         }}
       >
-        <Chatbot image={image} tokenId={activeTokenId} />
+        <MetaData
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+          creatureMetadata={metaData}
+        />
+        <FileDownloads
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
+        <Chatbot
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+          image={image}
+          tokenId={tokenId}
+        />
+        <WriteStory ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </div>
       <Row>
-        <Col xs={0} />
         <Col xs={24}>
           <img
             {...swipeableHandler}
@@ -176,12 +178,10 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
               )
             }
             style={{
-              //marginTop: 120,
               marginBottom: 80
             }}
           />
         </Col>
-        <Col xs={0} />
       </Row>
       <Row>
         <Col xs={6}>
@@ -272,48 +272,6 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
           </div>
         </Col>
         <Col xs={6} />
-      </Row>
-      <Row>
-        <Col span={24}>
-          {/*
-            <div style={{ width: '60%' }}>
-              <Chatbot image={image} tokenId={tokenId} />
-            </div>
-            <div style={{ marginTop: 50 }}>
-              <Attributes creatureMetadata={creatureMetadata} />
-            </div>
-          */}
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24} id='creatureAttributes'>
-          <Information32
-            aria-label='Show Info'
-            style={{ ...iconStyle, float: 'left' }}
-          />{' '}
-          <span style={{ float: 'left', fontSize: 18, marginTop: 2 }}>
-            INFO
-          </span>
-          <CloseFilled32
-            aria-label='Close'
-            style={{ ...iconStyle, float: 'right' }}
-            onClick={() => $('#creatureAttributes').toggle(500)}
-          />
-          <div
-            style={{
-              float: 'left',
-              width: '100%',
-              textAlign: 'center'
-            }}
-          >
-            <CreatureAttributes creatureMetadata={metaData} isMobile={true} />
-          </div>
-        </Col>
-        <Col span={24}>
-          <div style={{ padding: '30px' }}>
-            <WriteCreatureStory tokenId={activeTokenId} isMobile={true} />
-          </div>
-        </Col>
       </Row>
     </div>
   )

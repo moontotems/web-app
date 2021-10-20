@@ -36,6 +36,9 @@ export default function ActionSidebar({
     setRoute,
     setShowGrid,
     shuffleCreatureIndexList,
+    toggleVisibilityDownload,
+    toggleVisibilityMetaData,
+    toggleVisibilityChat,
     toggleVisibilityCreatureStory
   } = nftAppProps
 
@@ -278,7 +281,11 @@ export default function ActionSidebar({
                     <ColorPalette32 aria-label='Color' />
                   </div>
                 </div>
-                <div className='menu-item' style={{ ...menuItemStyle }}>
+                <div
+                  className='menu-item'
+                  style={{ ...menuItemStyle }}
+                  onClick={() => toggleVisibilityChat()}
+                >
                   <div style={{ ...menuItemContentStyle.text }}>
                     Consult your Totem
                   </div>
@@ -306,7 +313,11 @@ export default function ActionSidebar({
                     <ZoomIn32 aria-label='Zoom' />
                   </div>
                 </div>
-                <div className='menu-item' style={{ ...menuItemStyle }}>
+                <div
+                  className='menu-item'
+                  style={{ ...menuItemStyle }}
+                  onClick={() => toggleVisibilityDownload()}
+                >
                   <div style={{ ...menuItemContentStyle.text }}>
                     Download Files
                   </div>
@@ -314,7 +325,11 @@ export default function ActionSidebar({
                     <Download32 aria-label='Download' />
                   </div>
                 </div>
-                <div className='menu-item' style={{ ...menuItemStyle }}>
+                <div
+                  className='menu-item'
+                  style={{ ...menuItemStyle }}
+                  onClick={() => toggleVisibilityMetaData()}
+                >
                   <div style={{ ...menuItemContentStyle.text }}>
                     Show All Metadata
                   </div>
@@ -442,7 +457,11 @@ export default function ActionSidebar({
               >
                 <ColorPalette32 aria-label='Color' />
               </div>
-              <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div
+                className='menu-item'
+                style={{ ...menuItemStyle }}
+                onClick={() => toggleVisibilityChat()}
+              >
                 <ChatBot32 aria-label='Chat' />
               </div>
               <div
@@ -455,11 +474,19 @@ export default function ActionSidebar({
               <div className='menu-item' style={{ ...menuItemStyle }}>
                 <ZoomIn32 aria-label='Zoom' />
               </div>
-              <div className='menu-item' style={{ ...menuItemStyle }}>
-                <Download32 aria-label='Download' />
+              <div
+                className='menu-item'
+                style={{ ...menuItemStyle }}
+                onClick={() => toggleVisibilityDownload()}
+              >
+                <Download32 aria-label='Download Files' />
               </div>
-              <div className='menu-item' style={{ ...menuItemStyle }}>
-                <Information32 aria-label='Details' />
+              <div
+                className='menu-item'
+                style={{ ...menuItemStyle }}
+                onClick={() => toggleVisibilityMetaData()}
+              >
+                <Information32 aria-label='Meta Data' />
               </div>
               <div className='menu-item' style={{ ...menuItemStyle }}>
                 <Launch32 aria-label='TODO' />

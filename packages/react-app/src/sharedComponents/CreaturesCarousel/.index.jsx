@@ -23,7 +23,7 @@ import { useEventListener } from '../../../hooks'
 import { getImageUrl } from '../../../helpers'
 import houdini_json_hashmap from '../../assets/houdini_json_hashmap.json'
 import Chatbot from '../Chatbot'
-import Attributes from '../CreatureAttributes'
+import MetaData from '../CreatureMetaData'
 import Icons from '../icons'
 const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 import './styles.css'
@@ -43,7 +43,7 @@ export default function CreaturePage({
   useEffect(() => {
     window.scrollTo(0, 0)
     $('#chatbot').hide()
-    $('#creatureAttributes').hide()
+    $('#creatureMetaData').hide()
   }, [])
 
   const { id: tokenId } = useParams()
@@ -128,7 +128,7 @@ export default function CreaturePage({
           <Chatbot image={image} tokenId={tokenId} />
         </div>
         <div style={{ marginTop: 50 }}>
-          <Attributes creatureMetadata={creatureMetadata} />
+          <MetaData creatureMetadata={creatureMetadata} />
         </div>
       </div>
       <Row>
@@ -245,7 +245,7 @@ export default function CreaturePage({
                   onClick={() => {
                     console.log('click')
                     $('#chatbot').hide()
-                    $('#creatureAttributes').toggle(500)
+                    $('#creatureMetaData').toggle(500)
                   }}
                 />
                 <ChatBot32
@@ -253,7 +253,7 @@ export default function CreaturePage({
                   style={{ ...iconStyle }}
                   onClick={() => {
                     console.log('click')
-                    $('#creatureAttributes').hide()
+                    $('#creatureMetaData').hide()
                     $('#chatbot').toggle(500)
                   }}
                 />

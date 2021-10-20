@@ -2,11 +2,9 @@ export { default as ActionBarBottom } from './ActionBarBottom'
 export { default as ActionSidebar } from './ActionSidebar'
 export { default as CreaturesCarousel } from './CreaturesCarousel'
 export { default as Creature } from './Creature'
-export { default as Chatbot } from './Chatbot'
-export { default as WriteCreatureStory } from './WriteCreatureStory'
+export { default as creatureFeatures } from './creatureFeatures'
+export { default as CreatureFeatureContainer } from './CreatureFeatureContainer'
 export { default as FilterDropdown } from './FilterDropdown'
-export { default as CreatureAttributes } from './CreatureAttributes'
-export { default as CreatureFileDownloads } from './CreatureFileDownloads'
 
 export { default as Icons } from './icons'
 

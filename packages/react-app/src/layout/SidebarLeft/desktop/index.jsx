@@ -67,7 +67,7 @@ export default function SidebarLeft({
         style={{
           float: 'left',
           width: '100%',
-          borderTop: '1px solid #6F6F6F'
+          borderTop: '1px solid #393939'
         }}
       >
         <div

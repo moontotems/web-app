@@ -11,7 +11,7 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
   const features = [
     'creatureName',
     'chatbot',
-    'creatureAttributes',
+    'creatureMetaData',
     'creatureDownloads',
     'writeCreatureStory'
   ]
@@ -33,7 +33,7 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
   }
 
   const toggleVisibilityDownload = () => toggleFeature('creatureDownloads')
-  const toggleVisibilityMetaData = () => toggleFeature('creatureAttributes')
+  const toggleVisibilityMetaData = () => toggleFeature('creatureMetaData')
   const toggleVisibilityChat = () => toggleFeature('chatbot')
   const toggleVisibilityCreatureStory = () =>
     toggleFeature('writeCreatureStory')
