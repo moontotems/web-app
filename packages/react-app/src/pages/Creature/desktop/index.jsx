@@ -143,12 +143,9 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   }, [visibleCreatureListIndex])
 
   const buttonStyle = {
-    height: 34,
-    width: '100%',
-    lineHeight: '34px',
-    padding: '0 15px',
-    fontSize: '14px',
-    borderRadius: 0
+    height: isMobile ? 'auto' : '34px',
+    fontSize: isMobile ? '24px' : '16px',
+    padding: isMobile ? '10px 15px' : '0 15px'
   }
 
   return (
@@ -233,10 +230,12 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         <Col xs={4}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ marginBottom: '25px' }}>
-              <div style={{ fontSize: 20 }}>
+              <div style={{ fontSize: '25px' }}>
                 {trait_name1} {trait_name2}
               </div>
-              <div style={{ marginTop: '5px', fontSize: 14, fontWeight: 600 }}>
+              <div
+                style={{ marginTop: '20px', fontSize: '17px', fontWeight: 600 }}
+              >
                 {trait_jobField} {trait_jobTitle}
               </div>
             </div>
