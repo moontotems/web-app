@@ -18,7 +18,7 @@ export default function ActionSidebar({
   const viewStates = {
     hidden: 'hidden',
     visible: 'visible',
-    visibleWide: 'visible-large'
+    visibleWide: 'visible-wide'
   }
 
   const [view, setView] = useState(viewStates.visible)
