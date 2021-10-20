@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import {
   FacePendingFilled32,
@@ -129,45 +129,73 @@ export default function AidebarLeft({
             <div style={{ ...menuItemContentStyle.text }}>Lates News</div>
             <div style={{ ...menuItemContentStyle.icon }}></div>
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Instagram</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <LogoInstagram32 />
+          <a
+            href='https://instagram.com/moontotems'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Instagram</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <LogoInstagram32 />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Twitter</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <LogoTwitter32 />
+          </a>
+          <a
+            href='https://twitter.com/moontotemsnft'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Twitter</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <LogoTwitter32 />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Discord</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <LogoDiscord32 />
+          </a>
+          <a
+            href='https://discord.gg/73vMqt7k7H'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Discord</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <LogoDiscord32 />
+              </div>
             </div>
-          </div>
+          </a>
 
           <div className='menu-item title' style={{ ...menuItemStyle }}>
             <div style={{ ...menuItemContentStyle.text }}>NFT Tracking</div>
             <div style={{ ...menuItemContentStyle.icon }}></div>
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>
-              Explore on OpenSea
+          <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle, height: '56px' }}
+            >
+              <div style={{ ...menuItemContentStyle.text }}>
+                Explore on OpenSea
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <img src='/icons/Logo-OpenSea.svg' style={{ ...iconStyle }} />
+              </div>
             </div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <img src='/icons/Logo-OpenSea.svg' style={{ ...iconStyle }} />
+          </a>
+          <a href='https://etherscan.io/' target='_blank' rel='noreferrer'>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle, height: '56px' }}
+            >
+              <div style={{ ...menuItemContentStyle.text }}>
+                Explore on Etherscan
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <img src='/icons/Logo-Etherscan.svg' style={{ ...iconStyle }} />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>
-              Explore on Etherscan
-            </div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <img src='/icons/Logo-Etherscan.svg' style={{ ...iconStyle }} />
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

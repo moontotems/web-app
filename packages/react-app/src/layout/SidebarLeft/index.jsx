@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ActionSidebarDesktop from './desktop'
-import ActionSidebarMobile from './mobile'
+import SidebarLeftDesktop from './desktop'
+import SidebarLeftMobile from './mobile'
 
 export default function SidebarLeft({
   ethereumProps,
@@ -14,7 +14,7 @@ export default function SidebarLeft({
   return (
     <>
       {!isMobile && sidebarLeftOpen && (
-        <ActionSidebarDesktop
+        <SidebarLeftDesktop
           ethereumProps={ethereumProps}
           nftAppProps={{ ...nftAppProps }}
           setSidebarLeftOpen={setSidebarLeftOpen}
@@ -22,7 +22,7 @@ export default function SidebarLeft({
       )}
 
       {isMobile && sidebarLeftOpen && (
-        <ActionSidebarMobile
+        <SidebarLeftMobile
           ethereumProps={ethereumProps}
           nftAppProps={{ ...nftAppProps }}
           setSidebarLeftOpen={setSidebarLeftOpen}

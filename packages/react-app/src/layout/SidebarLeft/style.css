@@ -1,12 +1,6 @@
-#sidebarLeft .toggle-menu:hover,
 #sidebarLeft .menu-item:hover {
-  background-color: #262626;
+  background-color: #525252;
 }
-
-#sidebarLeft .menu-item.title:hover {
-  background-color: #000;
-}
-
 
 #sidebarLeft .toggle-menu:hover,
 #sidebarLeft .shuffle:hover {
@@ -15,7 +9,10 @@
 
 #sidebarLeft .menu-item.title {
   padding-left: 15px !important;
-  /*background-color: #262626;*/
-  font-weight: bold;
+  background-color: #525252;
   cursor: auto;
+}
+
+#sidebarLeft .menu-item.square-title {
+  background-color: #525252;
 }

@@ -36,7 +36,7 @@ export default function SidebarLeft({
     paddingRight: '16px',
     paddingTop: '12px',
     paddingBottom: '5px',
-    //borderBottom: '1px solid #6F6F6F',
+    borderBottom: '1px solid #6F6F6F',
     cursor: 'pointer'
   }
 
@@ -75,7 +75,7 @@ export default function SidebarLeft({
             float: 'right',
             width: '100%',
             textAlign: 'center',
-            backgroundColor: '#000',
+            backgroundColor: '#262626',
             height: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`
           }}
         >
@@ -91,14 +91,21 @@ export default function SidebarLeft({
               <FacePendingFilled16 />
             </div>
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>
-              Unique Characters
+          <Link
+            onClick={() => {
+              setRoute('/attributes')
+            }}
+            to={'/attributes'}
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>
+                Unique Characters
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <UserProfile16 />
+              </div>
             </div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <UserProfile16 />
-            </div>
-          </div>
+          </Link>
           <div className='menu-item' style={{ ...menuItemStyle }}>
             <div style={{ ...menuItemContentStyle.text }}>
               Exclusive Features
@@ -107,68 +114,117 @@ export default function SidebarLeft({
               <Idea16 />
             </div>
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Lunar Origins</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <LocationPersonFilled16 />
+          <Link
+            onClick={() => {
+              setRoute('/lunar-map')
+            }}
+            to={'/lunar-map'}
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Lunar Origins</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <LocationPersonFilled16 />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Lunar Months</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <ChartMultitype16 />
+          </Link>
+          <Link
+            onClick={() => {
+              setRoute('/lunar-calendar')
+            }}
+            to={'/lunar-calendar'}
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Lunar Months</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <ChartMultitype16 />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Lunar Phases</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <AsleepFilled16 />
+          </Link>
+          <Link
+            onClick={() => {
+              setRoute('/lunar-calendar')
+            }}
+            to={'/lunar-calendar'}
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Lunar Phases</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <AsleepFilled16 />
+              </div>
             </div>
-          </div>
+          </Link>
 
           <div className='menu-item title' style={{ ...menuItemStyle }}>
             <div style={{ ...menuItemContentStyle.text }}>Lates News</div>
             <div style={{ ...menuItemContentStyle.icon }}></div>
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Instagram</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <LogoInstagram16 />
+          <a
+            href='https://instagram.com/moontotems'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Instagram</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <LogoInstagram16 />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Twitter</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <LogoTwitter16 />
+          </a>
+          <a
+            href='https://twitter.com/moontotemsnft'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Twitter</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <LogoTwitter16 />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Discord</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <LogoDiscord16 />
+          </a>
+          <a
+            href='https://discord.gg/73vMqt7k7H'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Discord</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <LogoDiscord16 />
+              </div>
             </div>
-          </div>
+          </a>
 
           <div className='menu-item title' style={{ ...menuItemStyle }}>
             <div style={{ ...menuItemContentStyle.text }}>NFT Tracking</div>
             <div style={{ ...menuItemContentStyle.icon }}></div>
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>
-              Explore on OpenSea
+          <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle, height: '39px' }}
+            >
+              <div style={{ ...menuItemContentStyle.text }}>
+                Explore on OpenSea
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <img src='/icons/Logo-OpenSea.svg' style={{ ...iconStyle }} />
+              </div>
             </div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <img src='/icons/Logo-OpenSea.svg' style={{ ...iconStyle }} />
+          </a>
+          <a href='https://etherscan.io/' target='_blank' rel='noreferrer'>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle, height: '39px' }}
+            >
+              <div style={{ ...menuItemContentStyle.text }}>
+                Explore on Etherscan
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <img src='/icons/Logo-Etherscan.svg' style={{ ...iconStyle }} />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>
-              Explore on Etherscan
-            </div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <img src='/icons/Logo-Etherscan.svg' style={{ ...iconStyle }} />
-            </div>
-          </div>
+          </a>
           <Link
             onClick={() => {
               setRoute('/contract-events')
@@ -176,7 +232,10 @@ export default function SidebarLeft({
             }}
             to='/contract-events'
           >
-            <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle, height: '39px' }}
+            >
               <div style={{ ...menuItemContentStyle.text }}>
                 Contract Events
               </div>
@@ -192,7 +251,10 @@ export default function SidebarLeft({
             }}
             to='/contract-interface'
           >
-            <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle, height: '39px' }}
+            >
               <div style={{ ...menuItemContentStyle.text }}>
                 Contract Interface
               </div>

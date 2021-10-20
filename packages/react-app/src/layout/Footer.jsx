@@ -106,7 +106,7 @@ export default function MyFooter({ ethereumProps, nftAppProps }) {
               src='/icons/Logo-Github.svg'
               alt='Moon Totems Github'
               width='35'
-              style={{ color: 'white' }}
+              style={{ marginLeft: '5px', color: 'white' }}
             />
           </a>
         </div>

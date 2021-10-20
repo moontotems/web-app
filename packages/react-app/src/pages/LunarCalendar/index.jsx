@@ -10,16 +10,6 @@ export default function LunarCalendar({ ethereumProps, nftAppProps }) {
 
   return (
     <>
-      <Row>
-        <Col xs={24} md={5}>
-          <div style={{ padding: '20px', fontSize: '20px' }}>Origins</div>
-        </Col>
-        <Col xs={24} md={10}>
-          <div style={{ padding: '20px', fontSize: '27px', fontWeight: 300 }}>
-            Moon Totems come from the Moon
-          </div>
-        </Col>
-      </Row>
       <Row
         style={{
           marginBottom: '140px'
@@ -92,17 +82,6 @@ export default function LunarCalendar({ ethereumProps, nftAppProps }) {
           title='Waning Crescent'
           description='Old, Wise, Calm, Enlightenment'
         />
-      </Row>
-
-      <Row>
-        <Col xs={24} md={5}>
-          <div style={{ padding: '20px', fontSize: '20px' }}>Origins</div>
-        </Col>
-        <Col xs={24} md={10}>
-          <div style={{ padding: '20px', fontSize: '25px', fontWeight: 300 }}>
-            Moon Totems come from the Moon
-          </div>
-        </Col>
       </Row>
     </>
   )
