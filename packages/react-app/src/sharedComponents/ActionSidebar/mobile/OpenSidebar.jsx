@@ -86,31 +86,32 @@ export default function OpenSidebar({
             <ViewFilled32 aria-label='' />
           </div>
         </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
-          <Link
-            onClick={() => {
-              setRoute('/moontotem')
-            }}
-            to={`/moontotem/${
-              creatureList.length
-                ? creatureList[0].tokenId
-                : creatures.all[0].tokenId
-            }`}
-          >
+        <Link
+          onClick={() => {
+            setRoute('/moontotem')
+          }}
+          to={`/moontotem/${
+            creatureList.length
+              ? creatureList[0].tokenId
+              : creatures.all[0].tokenId
+          }`}
+        >
+          <div className='menu-item' style={{ ...menuItemStyle }}>
             <div style={{ ...menuItemContentStyle.text }}>Item View</div>
             <div style={{ ...menuItemContentStyle.icon }}>
               <CarouselHorizontal32 aria-label='Switch to carousel view' />
             </div>
-          </Link>
-        </div>
-        <div className='menu-item' style={{ ...menuItemStyle }}>
-          <Link
-            onClick={() => {
-              setRoute('/all')
-              setShowGrid(true)
-            }}
-            to='/all'
-          >
+          </div>
+        </Link>
+
+        <Link
+          onClick={() => {
+            setRoute('/all')
+            setShowGrid(true)
+          }}
+          to='/all'
+        >
+          <div className='menu-item' style={{ ...menuItemStyle }}>
             <div
               style={{ ...menuItemContentStyle.text }}
               aria-label='Switch to area view'
@@ -120,17 +121,17 @@ export default function OpenSidebar({
             <div style={{ ...menuItemContentStyle.icon }}>
               <Apps32 />
             </div>
-          </Link>
-        </div>
+          </div>
+        </Link>
 
-        <div className='menu-item' style={{ ...menuItemStyle }}>
-          <Link
-            onClick={() => {
-              setRoute('/all')
-              setShowGrid(false)
-            }}
-            to='/all'
-          >
+        <Link
+          onClick={() => {
+            setRoute('/all')
+            setShowGrid(false)
+          }}
+          to='/all'
+        >
+          <div className='menu-item' style={{ ...menuItemStyle }}>
             <div
               style={{ ...menuItemContentStyle.text }}
               aria-label='Switch to list view'
@@ -141,28 +142,29 @@ export default function OpenSidebar({
             <div style={{ ...menuItemContentStyle.icon }}>
               <List32 />
             </div>
-          </Link>
-        </div>
+          </div>
+        </Link>
+
         <div className='menu-item title' style={{ ...menuItemStyle }}>
           <div style={{ ...menuItemContentStyle.text }}>Filter</div>
           <div style={{ ...menuItemContentStyle.icon }}>
             <Filter32 aria-label='Filter' />
           </div>
         </div>
-        <div
-          className='menu-item'
-          style={{
-            ...menuItemStyle,
-            borderLeft:
-              activeFilters.length === 0 ? '5px solid #1062FE' : 'none'
+        <Link
+          onClick={() => {
+            setRoute('/all')
+            setActiveFilters([])
           }}
+          to='/all'
         >
-          <Link
-            onClick={() => {
-              setRoute('/all')
-              setActiveFilters([])
+          <div
+            className='menu-item'
+            style={{
+              ...menuItemStyle,
+              borderLeft:
+                activeFilters.length === 0 ? '5px solid #1062FE' : 'none'
             }}
-            to='/all'
           >
             <div style={{ ...menuItemContentStyle.text }}>All Moon Totems</div>
             <div style={{ ...menuItemContentStyle.icon }}>
@@ -172,8 +174,9 @@ export default function OpenSidebar({
                 alt='All Totems'
               />
             </div>
-          </Link>
-        </div>
+          </div>
+        </Link>
+
         <div
           className='menu-item'
           style={{
