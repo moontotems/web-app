@@ -722,7 +722,7 @@ function App() {
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
           setSidebarLeftOpen={setSidebarLeftOpen}
-          open={sidebarLeftOpen}
+          sidebarLeftOpen={sidebarLeftOpen}
         />
 
         <Header
@@ -747,7 +747,7 @@ function App() {
               isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT
             }px)`
           }}
-          onClick={() => setSidebarLeftOpen(false)}
+          //onClick={() => setSidebarLeftOpen(false)}
         >
           <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>

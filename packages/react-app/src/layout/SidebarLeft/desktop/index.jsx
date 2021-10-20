@@ -1,139 +1,208 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import {
-  SideNav,
-  SideNavItems,
-  SideNavMenu,
-  SideNavMenuItem,
-  SideNavLink
-} from 'carbon-components-react'
 import {
   FacePendingFilled16,
   AsleepFilled16,
-  ChartMultitype16,
   UserProfile16,
   Idea16,
   LocationPersonFilled16,
+  ChartMultitype16,
   LogoInstagram16,
   LogoTwitter16,
   LogoDiscord16,
-  Launch16,
-  Policy16,
-  TaskView16
+  TaskView16,
+  Policy16
 } from '@carbon/icons-react'
-import $ from 'jquery'
-import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
-import { Icons } from '../../../sharedComponents'
-const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
-export default function SidebarLeftDesktopView({
+import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
+
+import '../style.css'
+
+const iconStyle = {
+  float: 'right'
+}
+
+export default function SidebarLeft({
   ethereumProps,
   nftAppProps,
-  setSidebarLeftOpen,
-  open
+  setSidebarLeftOpen
 }) {
   const { setRoute } = nftAppProps
-  // TODO: set aria-current='page'
-  /*
-    <SideNavMenuItem aria-current='page' href='javascript:void(0)'>
-      Twitter
-    </SideNavMenuItem>
-  */
-
-  useEffect(() => {
-    // open all submenus
-    $('.bx--side-nav__submenu').attr('aria-expanded', 'true')
-  }, [])
 
   const menuItemStyle = {
-    fontSize: 14
+    float: 'left',
+    width: '100%',
+    paddingLeft: '35px',
+    paddingRight: '16px',
+    paddingTop: '12px',
+    paddingBottom: '5px',
+    //borderBottom: '1px solid #6F6F6F',
+    cursor: 'pointer'
   }
 
-  const iconStyle = {
-    float: 'right'
+  const menuItemContentStyle = {
+    text: {
+      float: 'left',
+      marginTop: '-3px'
+    },
+    icon: {
+      float: 'right'
+    }
   }
 
   return (
-    <SideNav
-      isFixedNav
-      expanded={open}
-      isChildOfHeader={false}
-      aria-label='Side navigation'
+    <div
+      id='sidebarLeft'
       style={{
-        borderRight: '1px solid #393939',
-        backgroundColor: '#161616',
-        marginTop: DESKTOP_HEADER_HEIGHT
+        position: 'fixed',
+        top: `calc(${DESKTOP_HEADER_HEIGHT}px - 1px)`,
+        left: 0,
+        width: '250px',
+        height: 'auto',
+        overflowY: 'scroll',
+        zIndex: 1000
       }}
     >
-      <SideNavItems>
-        <SideNavMenu title='About'>
-          <SideNavMenuItem href='javascript:void(0)'>
-            What are Moon Totems?
-            <FacePendingFilled16 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            Unique Characters <UserProfile16 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            Exclusive Features <Idea16 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            Lunar Origins <LocationPersonFilled16 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            Lunar Months <ChartMultitype16 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            Lunar Phases <AsleepFilled16 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-        </SideNavMenu>
-        <SideNavMenu title='Lates News'>
-          <SideNavMenuItem href='javascript:void(0)'>
-            Instagram <LogoInstagram16 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            Twitter <LogoTwitter16 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            Discord <LogoDiscord16 style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-        </SideNavMenu>
+      <div
+        style={{
+          float: 'left',
+          width: '100%',
+          borderTop: '1px solid #6F6F6F'
+        }}
+      >
+        <div
+          style={{
+            float: 'right',
+            width: '100%',
+            textAlign: 'center',
+            backgroundColor: '#000',
+            height: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`
+          }}
+        >
+          <div className='menu-item title' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>About</div>
+            <div style={{ ...menuItemContentStyle.icon }}></div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>
+              What are Moon Totems?
+            </div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <FacePendingFilled16 />
+            </div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>
+              Unique Characters
+            </div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <UserProfile16 />
+            </div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>
+              Exclusive Features
+            </div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <Idea16 />
+            </div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>Lunar Origins</div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <LocationPersonFilled16 />
+            </div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>Lunar Months</div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <ChartMultitype16 />
+            </div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>Lunar Phases</div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <AsleepFilled16 />
+            </div>
+          </div>
 
-        <SideNavMenu title='NFT Tracking'>
-          <SideNavMenuItem href='javascript:void(0)'>
-            <Link>Explore on OpenSea</Link>
-            <img src='/icons/Logo-OpenSea.svg' style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavMenuItem href='javascript:void(0)'>
-            <Link>Explore on Etherscan</Link>
-            <img src='/icons/Logo-Etherscan.svg' style={{ ...iconStyle }} />
-          </SideNavMenuItem>
-          <SideNavLink href='javascript:void(0)'>
-            <Link
-              onClick={() => {
-                setRoute('/contract-events')
-                setSidebarLeftOpen(false)
-              }}
-              to='/contract-events'
-            >
-              Contract Events
-            </Link>
-            <TaskView16 style={{ ...iconStyle }} />
-          </SideNavLink>
-          <SideNavLink href='javascript:void(0)'>
-            <Link
-              onClick={() => {
-                setRoute('/contract-interface')
-                setSidebarLeftOpen(false)
-              }}
-              to='/contract-interface'
-            >
-              Contract Interface
-            </Link>
-            <Policy16 style={{ ...iconStyle }} />
-          </SideNavLink>
-        </SideNavMenu>
-      </SideNavItems>
-    </SideNav>
+          <div className='menu-item title' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>Lates News</div>
+            <div style={{ ...menuItemContentStyle.icon }}></div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>Instagram</div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <LogoInstagram16 />
+            </div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>Twitter</div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <LogoTwitter16 />
+            </div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>Discord</div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <LogoDiscord16 />
+            </div>
+          </div>
+
+          <div className='menu-item title' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>NFT Tracking</div>
+            <div style={{ ...menuItemContentStyle.icon }}></div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>
+              Explore on OpenSea
+            </div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <img src='/icons/Logo-OpenSea.svg' style={{ ...iconStyle }} />
+            </div>
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
+            <div style={{ ...menuItemContentStyle.text }}>
+              Explore on Etherscan
+            </div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <img src='/icons/Logo-Etherscan.svg' style={{ ...iconStyle }} />
+            </div>
+          </div>
+          <Link
+            onClick={() => {
+              setRoute('/contract-events')
+              setSidebarLeftOpen(false)
+            }}
+            to='/contract-events'
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>
+                Contract Events
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <TaskView16 />
+              </div>
+            </div>
+          </Link>
+          <Link
+            onClick={() => {
+              setRoute('/contract-interface')
+              setSidebarLeftOpen(false)
+            }}
+            to='/contract-interface'
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>
+                Contract Interface
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <Policy16 />
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </div>
   )
 }

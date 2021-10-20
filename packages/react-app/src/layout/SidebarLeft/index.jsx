@@ -1,31 +1,31 @@
 import React from 'react'
 
-import SidebarLeftDesktop from './desktop'
-import SidebarLeftMobile from './mobile'
+import ActionSidebarDesktop from './desktop'
+import ActionSidebarMobile from './mobile'
 
 export default function SidebarLeft({
   ethereumProps,
   nftAppProps,
-  setSidebarLeftOpen,
-  open
+  sidebarLeftOpen,
+  setSidebarLeftOpen
 }) {
   const { isMobile } = nftAppProps
+
   return (
     <>
-      {isMobile && (
-        <SidebarLeftMobile
+      {!isMobile && sidebarLeftOpen && (
+        <ActionSidebarDesktop
           ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
+          nftAppProps={{ ...nftAppProps }}
           setSidebarLeftOpen={setSidebarLeftOpen}
-          open={open}
         />
       )}
-      {!isMobile && (
-        <SidebarLeftDesktop
+
+      {isMobile && sidebarLeftOpen && (
+        <ActionSidebarMobile
           ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
+          nftAppProps={{ ...nftAppProps }}
           setSidebarLeftOpen={setSidebarLeftOpen}
-          open={open}
         />
       )}
     </>
