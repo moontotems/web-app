@@ -3,9 +3,7 @@ import getTokenPrefixZeros from './getTokenPrefixZeros'
 export default function getImageUrl(tokenId) {
   //const image = 'https://talismoonstest.blob.core.windows.net/creatures/MOONTOTEMS_9282.jpeg'
 
-  const image = `https://moontotems.blob.core.windows.net/totems/base/jpeg/2048/moontotem_g1_base_2048_${getTokenPrefixZeros(
-    tokenId
-  )}.jpg`
+  const image = `https://moontotems.blob.core.windows.net/totems/base/jpeg/2048/moontotems_g1_base_2048_${tokenId}.jpg`
 
   /*
   const image = `/creatures/2048/moontotem_g1_base_2048_${getTokenPrefixZeros(
