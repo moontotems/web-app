@@ -19,7 +19,7 @@ export default function CreatureFeatureContainer({
       style={{
         float: 'left',
         width: '100%',
-        minWidth: '100vw',
+        minWidth: '100%',
         height: '100%',
         background: isMobile ? 'rgba(0, 0, 0, 0.8)' : 'none',
         paddingTop: '10px',

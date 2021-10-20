@@ -98,7 +98,7 @@ export default function Chatbot({
           style={{
             float: 'left',
             width: '100%',
-            overflowY: 'scroll'
+            overflowY: 'auto'
           }}
         >
           <MessageList

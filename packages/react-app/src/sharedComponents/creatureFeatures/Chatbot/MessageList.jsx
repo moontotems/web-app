@@ -28,7 +28,7 @@ export default function MessageList({
         float: 'left',
         width: '100%',
         maxHeight: isMobile ? 'none' : '400px',
-        overflowY: 'scroll',
+        overflowY: 'auto',
         textAlign: 'left'
       }}
     >

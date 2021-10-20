@@ -66,7 +66,7 @@ export default function ActionSidebar({
         right: 0,
         width: getSidebarWidth(),
         height: 'auto',
-        overflowY: 'scroll',
+        overflowY: 'auto',
         zIndex: 1000
       }}
     >

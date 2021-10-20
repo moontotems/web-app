@@ -59,7 +59,7 @@ export default function SidebarLeft({
         left: 0,
         width: '250px',
         height: 'auto',
-        overflowY: 'scroll',
+        overflowY: 'auto',
         zIndex: 1000
       }}
     >

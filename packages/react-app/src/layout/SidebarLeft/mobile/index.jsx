@@ -58,7 +58,7 @@ export default function AidebarLeft({
         left: 0,
         width: '330px',
         height: 'auto',
-        overflowY: 'scroll',
+        overflowY: 'auto',
         zIndex: 1000
       }}
     >
