@@ -22,10 +22,28 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       ...getColumnSearchProps('Token ID'),
       sorter: (a, b) => a.id - b.id
     },
+    /*
     {
       title: 'State',
       fixed: 'right',
       render: (value, record) => <img src={OwnedByUserIcon16x16} alt='Minted' />
+    },
+    */
+    {
+      title: 'Show',
+      fixed: 'right',
+      render: (value, record) => (
+        <Link
+          onClick={() => {
+            setRoute('/moontotem')
+          }}
+          to={`/moontotem/${record.id}`}
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <Launch16 />
+        </Link>
+      )
     },
     {
       title: 'Image',
@@ -344,7 +362,8 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       dataIndex: 'trait_personality3',
       sorter: (a, b) =>
         a.trait_personality3?.localeCompare(b.trait_personality3)
-    },
+    }
+    /*
     {
       title: 'Show',
       //fixed: 'right',
@@ -361,5 +380,6 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
         </Link>
       )
     }
+    */
   ]
 }
