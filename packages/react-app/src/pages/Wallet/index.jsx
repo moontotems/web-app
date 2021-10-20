@@ -4,7 +4,7 @@ import './styles.less'
 
 export default function Wallet({ ethereumProps, nftAppProps }) {
   const { readContracts, address } = ethereumProps
-  const { assembleCreature } = nftAppProps
+  const { creatures, assembleCreature } = nftAppProps
 
   if (!address) {
     // TODO:
@@ -63,7 +63,10 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
   return (
     <PagesAll
       ethereumProps={ethereumProps}
-      nftAppProps={{ ...nftAppProps, creatures: { visible: usersCreatures } }}
+      nftAppProps={{
+        ...nftAppProps,
+        creatures: { ...creatures, visible: usersCreatures }
+      }}
     />
   )
 }
