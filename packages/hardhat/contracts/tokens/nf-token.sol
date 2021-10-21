@@ -19,14 +19,14 @@ contract NFToken is
    * @dev List of revert message codes. Implementing dApp should handle showing the correct message.
    * Based on 0xcert framework error codes.
    */
-  string constant ZERO_ADDRESS = "003001";
-  string constant NOT_VALID_NFT = "003002";
-  string constant NOT_OWNER_OR_OPERATOR = "003003";
-  string constant NOT_OWNER_APPROVED_OR_OPERATOR = "003004";
-  string constant NOT_ABLE_TO_RECEIVE_NFT = "003005";
-  string constant NFT_ALREADY_EXISTS = "003006";
-  string constant NOT_OWNER = "003007";
-  string constant IS_OWNER = "003008";
+  string constant ZERO_ADDRESS = "ZERO_ADDRESS";
+  string constant NOT_VALID_NFT = "NOT_VALID_NFT";
+  string constant NOT_OWNER_OR_OPERATOR = "NOT_OWNER_OR_OPERATOR";
+  string constant NOT_OWNER_APPROVED_OR_OPERATOR = "NOT_OWNER_APPROVED_OR_OPERATOR";
+  string constant NOT_ABLE_TO_RECEIVE_NFT = "NOT_ABLE_TO_RECEIVE_NFT";
+  string constant NFT_ALREADY_EXISTS = "NFT_ALREADY_EXISTS";
+  string constant NOT_OWNER = "NOT_OWNER";
+  string constant IS_OWNER = "IS_OWNER";
 
   /**
    * @dev Magic value of a smart contract that can receive NFT.

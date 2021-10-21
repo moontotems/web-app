@@ -5,10 +5,6 @@ import "../tokens/nf-token-metadata.sol";
 import "../tokens/nf-token-enumerable.sol";
 import "../ownership/ownable.sol";
 
-/**
- * @dev This is an example contract implementation of NFToken with enumerable and metadata
- * extensions.
- */
 contract MoonTotems is
   NFTokenEnumerable,
   NFTokenMetadata,
@@ -23,6 +19,11 @@ contract MoonTotems is
    * @dev The largest valid token id.
    */
   uint256 public MAX_TOKEN_ID = 9457;
+
+  /**
+   * @dev The price for minting a totem.
+   */
+  uint256 public TOTEM_MINT_PRICE = 100000000000000000; // 0.1 ETH
 
   /**
    * @dev Contract constructor.
@@ -52,9 +53,14 @@ contract MoonTotems is
   event MaxTokenIdIncrease(address indexed _by, uint256 indexed _amount);
 
   /**
+   * @dev Emits when a TOTEM_MINT_PRICE is updated.
+   */
+  event TotemMintPriceUpdate(address indexed _by, uint256 indexed _amount);
+
+  /**
    * @dev Mints a new NFT.
    * @param _to The address that will own the minted NFT.
-   * @param _tokenId of the NFT to be minted by the msg.sender.
+   * @param _tokenId The tokenId of the NFT to be minted by the msg.sender.
    */
   function mint(
     address _to,
@@ -65,10 +71,23 @@ contract MoonTotems is
   {
     require(_tokenId >= MIN_TOKEN_ID, "TokenId needs to be >= MIN_TOKEN_ID");
     require(_tokenId <= MAX_TOKEN_ID, "TokenId needs to be <= MAX_TOKEN_ID");
-    require(msg.value == 0.1 ether, "Amount needs to be equal to 0.1 Ether");
-    _transferEther(owner);
+    require(msg.value == TOTEM_MINT_PRICE, "Amount needs to be equal to TOTEM_MINT_PRICE");
     super._mint(_to, _tokenId);
     emit Mint(msg.sender, _tokenId);
+  }
+
+  /**
+   * @dev Updates the price for minting a totem.
+   * @param _totemMintPrice The new price in wei.
+   */
+  function setNewMintPrice(
+    uint256 _totemMintPrice
+  )
+    external
+    onlyOwner
+  {
+    TOTEM_MINT_PRICE = _totemMintPrice;
+    emit TotemMintPriceUpdate(msg.sender, _totemMintPrice);
   }
 
   /**
@@ -84,7 +103,7 @@ contract MoonTotems is
     super._burn(_tokenId);
   }
 
-   /**
+  /**
    * @dev Set base URI for computing {tokenURI}.
    * @param _baseUri The new BaseUri.
    */
@@ -109,6 +128,14 @@ contract MoonTotems is
   {
     MAX_TOKEN_ID += _amount;
     emit MaxTokenIdIncrease(msg.sender, _amount);
+  }
+
+  /**
+   * @dev Withdraw contract balance to contract owner.
+   */
+  function withdraw() public onlyOwner {
+    uint balance = address(this).balance;
+    payable(msg.sender).transfer(balance);
   }
 
   /**
@@ -180,7 +207,7 @@ contract MoonTotems is
     NFTokenEnumerable._addNFToken(_to, _tokenId);
   }
 
-   /**
+  /**
    * @dev Helper function that gets NFT count of owner. This is needed for overriding in enumerable
    * extension to remove double storage(gas optimization) of owner nft count.
    * @param _owner Address for whom to query the count.
@@ -195,16 +222,6 @@ contract MoonTotems is
     returns (uint256)
   {
     return NFTokenEnumerable._getOwnerNFTCount(_owner);
-  }
-
-  /**
-   * @dev Transfers ether (msg.value) to the passed address.
-   * @notice This is an internal function which should be called from user-implemented function.
-   * @param _to The address to which to transfer the ether.
-   */
-  function _transferEther(address _to) internal {
-    (bool sent, bytes memory data) = _to.call{value: msg.value}("");
-    require(sent, "Failed to send Ether");
   }
 
 }

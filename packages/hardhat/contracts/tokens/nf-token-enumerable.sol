@@ -16,7 +16,7 @@ contract NFTokenEnumerable is
    * @dev List of revert message codes. Implementing dApp should handle showing the correct message.
    * Based on 0xcert framework error codes.
    */
-  string constant INVALID_INDEX = "005007";
+  string constant INVALID_INDEX = "INVALID_INDEX";
 
   /**
    * @dev Array of all NFT IDs.
