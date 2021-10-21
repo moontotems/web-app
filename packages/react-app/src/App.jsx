@@ -481,7 +481,7 @@ function App() {
   )
 
   const checkIfCreatureIsOwnedByUser = _tokenId =>
-    usersCreaturesTokenIds.includes(_tokenId)
+    usersCreaturesTokenIds.includes(parseInt(_tokenId))
   ///
 
   const favoritedIdsStore = persistantStore.get('favoritedIds') || []
@@ -564,10 +564,7 @@ function App() {
 
   const assembleCreature = tokenId => {
     const minted = !!mintEventsMap[tokenId]
-    const ownedByUser =
-      mintEventsMap.length &&
-      mintEventsMap[tokenId] &&
-      mintEventsMap[tokenId]._to === address
+    const ownedByUser = checkIfCreatureIsOwnedByUser(tokenId)
     const isFavorite = checkIfIsFavorite(tokenId)
     const metaData = houdini_json_hashmap[tokenId]
     const image = getImageUrl(tokenId)
