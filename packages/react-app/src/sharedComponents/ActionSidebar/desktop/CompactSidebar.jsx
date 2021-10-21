@@ -215,18 +215,25 @@ export default function CompactSidebar({
           <img src={OwnedByUserIcon16x16} alt='My Totems' />
         </div>
       </Link>
-      <div
-        className='menu-item shuffle'
-        style={{
-          ...menuItemStyle,
-          backgroundColor: '#24A148',
-          borderBottom: 'none'
+      <Link
+        onClick={() => {
+          setRoute('/all')
         }}
-        aria-label='Shuffle Totems'
-        onClick={() => shuffleCreatureIndexList()}
+        to={'/all'}
       >
-        <Shuffle16 />
-      </div>
+        <div
+          className='menu-item shuffle'
+          style={{
+            ...menuItemStyle,
+            backgroundColor: '#24A148',
+            borderBottom: 'none'
+          }}
+          aria-label='Shuffle Totems'
+          onClick={() => shuffleCreatureIndexList()}
+        >
+          <Shuffle16 />
+        </div>
+      </Link>
       {showCreatureFeatures && (
         <>
           <div

@@ -292,22 +292,29 @@ export default function OpenSidebar({
             </div>
           </div>
         </Link>
-
-        <div
-          className='menu-item shuffle'
-          style={{
-            ...menuItemStyle,
-            backgroundColor: '#24A148',
-            borderBottom: '1px solid #24A148'
+        <Link
+          onClick={() => {
+            setRoute('/all')
           }}
-          aria-label='Shuffle'
-          onClick={() => shuffleCreatureIndexList()}
+          to={'/all'}
         >
-          <div style={{ ...menuItemContentStyle.text }}>Shuffle</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <Shuffle16 />
+          <div
+            className='menu-item shuffle'
+            style={{
+              ...menuItemStyle,
+              backgroundColor: '#24A148',
+              borderBottom: '1px solid #24A148'
+            }}
+            aria-label='Shuffle'
+            onClick={() => shuffleCreatureIndexList()}
+          >
+            <div style={{ ...menuItemContentStyle.text }}>Shuffle</div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <Shuffle16 />
+            </div>
           </div>
-        </div>
+        </Link>
+
         {showCreatureFeatures && (
           <>
             <div className='menu-item title' style={{ ...menuItemStyle }}>
