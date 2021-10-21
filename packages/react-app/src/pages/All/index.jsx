@@ -29,7 +29,6 @@ export default function All({ ethereumProps, nftAppProps }) {
 
   let creatureList = []
   if (!filterIsActive(FILTERS.favorites)) {
-    console.log('now rendering shuffled')
     // shuffle creatures
     let creaturesTemp = []
     creatureList = shuffledCreatureIndexList.map((randomIndex, index) => {
