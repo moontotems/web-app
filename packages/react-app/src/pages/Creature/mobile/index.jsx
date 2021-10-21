@@ -14,7 +14,8 @@ import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
 
 import { creatureFeatures, Icons } from '../../../sharedComponents'
-const { MetaData, Chatbot, FileDownloads, WriteStory } = creatureFeatures
+const { MetaData, Chatbot, FileDownloads, WriteStory, FreshMintMessage } =
+  creatureFeatures
 const { NotMintedIcon32x32 } = Icons
 
 import houdini_json_hashmap from '../../../assets/houdini_json_hashmap.json'
@@ -139,6 +140,11 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
           overflowY: 'hidden'
         }}
       >
+        <FreshMintMessage
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+          tokenId={tokenId}
+        />
         <MetaData
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}

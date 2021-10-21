@@ -1,5 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
+import persistantStore from 'store'
 
 import { CloseFilled32 } from '@carbon/icons-react'
 
@@ -9,9 +10,24 @@ export default function CreatureFeatureContainer({
   containerId,
   icon,
   title,
+  isFreshMintMessage,
+  tokenId,
   children
 }) {
   const { isMobile } = nftAppProps
+
+  // TODO: do this better
+  let individualStyles = {
+    background: isMobile ? 'rgba(0, 0, 0, 0.8)' : 'none'
+  }
+
+  if (isFreshMintMessage) {
+    individualStyles = {
+      backgroundColor: '#4589FF',
+      opacity: 0.95,
+      padding: '15px'
+    }
+  }
 
   return (
     <div
@@ -21,16 +37,17 @@ export default function CreatureFeatureContainer({
         width: '100%',
         minWidth: '100%',
         height: '100%',
-        background: isMobile ? 'rgba(0, 0, 0, 0.8)' : 'none',
         paddingTop: '10px',
-        paddingLeft: '0px'
+        paddingLeft: '0px',
+        ...individualStyles
       }}
     >
       <div
         style={{
           float: 'left',
           width: isMobile ? '90%' : '100%',
-          marginBottom: '15px'
+          marginBottom: '15px',
+          paddingLeft: '17px'
         }}
       >
         <span style={{ marginLeft: isMobile ? '10px' : 'none' }}>{icon}</span>
@@ -41,7 +58,12 @@ export default function CreatureFeatureContainer({
         </span>
         <CloseFilled32
           style={{ float: 'right', cursor: 'pointer' }}
-          onClick={() => $(`#${containerId}`).toggle(500)}
+          onClick={() => {
+            if (isFreshMintMessage) {
+              persistantStore.set(`show-fresh-mint-message-${tokenId}`, false)
+            }
+            $(`#${containerId}`).toggle(500)
+          }}
         />
       </div>
       <div

@@ -697,19 +697,25 @@ function App() {
     */
   }
 
-  const mint = tokenId => {
+  const mint = async tokenId => {
     const to = address
     const value = ethers.utils.parseEther('0.1')
     console.log({ to, tokenId, value })
 
-    tx(
-      writeContracts.MoonTotems.mint(to, tokenId, {
-        gasPrice,
-        // gasLimit: 1000000
-        value
-        // nonce:
-      })
-    )
+    try {
+      const mintResult = await tx(
+        writeContracts.MoonTotems.mint(to, tokenId, {
+          gasPrice,
+          // gasLimit: 1000000
+          value
+          // nonce:
+        })
+      )
+      console.log({ mintResult })
+      persistantStore.set(`show-fresh-mint-message-${tokenId}`, true)
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   const [headerTitle, setHeaderTitle] = useState('')

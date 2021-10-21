@@ -10,14 +10,14 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 import InnerImageZoom from 'react-inner-image-zoom'
 
 import {
-  MOBILE_HEADER_HEIGHT,
   DESKTOP_HEADER_HEIGHT,
   MIN_TOKEN_ID,
   MAX_TOKEN_ID
 } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
 import { creatureFeatures, Icons } from '../../../sharedComponents'
-const { MetaData, Chatbot, FileDownloads, WriteStory } = creatureFeatures
+const { MetaData, Chatbot, FileDownloads, WriteStory, FreshMintMessage } =
+  creatureFeatures
 const { NotMintedIcon32x32 } = Icons
 import './styles.css'
 
@@ -147,12 +147,17 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         style={{
           position: 'fixed',
           top: DESKTOP_HEADER_HEIGHT,
-          left: '17px',
+          //left: '17px',
+          left: '0',
           width: '35%',
-          paddingTop: '10px',
           zIndex: 1000
         }}
       >
+        <FreshMintMessage
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+          tokenId={tokenId}
+        />
         <MetaData
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}

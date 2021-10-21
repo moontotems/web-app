@@ -103,7 +103,7 @@ export default function MetaData({
       <div
         style={{
           float: 'left',
-          paddingRight: 10,
+          paddingRight: '10px',
           fontSize: '18px',
           lineHeight: '48px',
           textAlign: 'right',

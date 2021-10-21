@@ -93,7 +93,8 @@ export default function Chatbot({
           width: '100%',
           height: isMobile ? '100%' : 'auto',
           textAlign: 'left',
-          overflowY: 'hidden'
+          overflowY: 'hidden',
+          paddingLeft: '17px'
         }}
       >
         <div
