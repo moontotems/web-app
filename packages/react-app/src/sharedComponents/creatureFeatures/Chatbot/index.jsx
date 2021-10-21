@@ -5,6 +5,7 @@ import persistantStore from 'store'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
 import './index.less'
 import MessageList from './MessageList'
+import GREETING_LIST from './greetingList'
 import ANSWER_LIST from './answerList'
 
 export default function Chatbot({
@@ -19,9 +20,10 @@ export default function Chatbot({
   const localStorageId = `chatbotMessages-${tokenId}`
   const initialMessages = persistantStore.get(localStorageId) || []
   if (initialMessages.length === 0) {
+    const randomIndex = Math.floor(Math.random() * GREETING_LIST.length)
     initialMessages.push({
       sender: 'bot',
-      value: 'Hello! I can answer your questions ...'
+      value: GREETING_LIST[randomIndex].message
     })
     persistantStore.set(localStorageId, initialMessages)
   }
@@ -132,15 +134,15 @@ export default function Chatbot({
                 }}
               />
               {/*
-              <Search
-              id='chatInput'
-              placeholder='Ask a question'
-              //allowClear
-              enterButton='Ask'
-              size='large'
-              submit
-            />
-            */}
+                <Search
+                id='chatInput'
+                placeholder='Ask a question'
+                //allowClear
+                enterButton='Ask'
+                size='large'
+                submit
+              />
+              */}
             </Form.Item>
           </Form>
         </div>
