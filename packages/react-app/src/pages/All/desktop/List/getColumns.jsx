@@ -129,7 +129,8 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
         semi: { text: 'Semi', status: 'Semi' },
         saucer: { text: 'Saucer', status: 'Saucer' },
         slot: { text: 'Slot', status: 'Slot' },
-        unknown: { text: 'Unknown', status: 'Unknown' }
+        unknown: { text: 'Unknown', status: 'Unknown' },
+        hexagon: { text: 'Hexagon', status: 'Hexagon' }
       }
     },
     {
@@ -158,7 +159,7 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       sorter: (a, b) => a.holesCut - b.holesCut
     },
     {
-      title: 'Lunar Origin Name',
+      title: 'Origin',
       dataIndex: 'lunarOriginName',
       sorter: (a, b) => a.lunarOriginName?.localeCompare(b.lunarOriginName),
 
@@ -213,14 +214,14 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       }
     },
     {
-      title: 'Lunar Origin Name Latin',
+      title: 'Origin Latin',
       dataIndex: 'lunarOriginNameLatin',
-      ...getColumnSearchProps('Lunar Origin Name Latin'),
+      ...getColumnSearchProps('Origin Latin'),
       sorter: (a, b) =>
         a.lunarOriginNameLatin?.localeCompare(b.lunarOriginNameLatin)
     },
     {
-      title: 'Lunar Origin Quantity',
+      title: 'Origin Population',
       dataIndex: 'lunarOriginQuantity',
       sorter: (a, b) => a.lunarOriginQuantity - b.lunarOriginQuantity
     },
@@ -240,19 +241,18 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       valueEnum: {
         textured: { text: 'Textured', status: 'Textured' },
         smooth: { text: 'Smooth', status: 'Smooth' },
-        saucer: { text: 'Saucer', status: 'Saucer' },
         slot: { text: 'Slot', status: 'Slot' },
         unknown: { text: 'Unknown', status: 'Unknown' }
       }
     },
     {
-      title: 'mat_patterBumpName',
+      title: 'Bumps',
       dataIndex: 'mat_patterBumpName',
       sorter: (a, b) =>
         a.mat_patterBumpName?.localeCompare(b.mat_patterBumpName)
     },
     {
-      title: 'mat_patterPerfName',
+      title: 'Perforation',
       dataIndex: 'mat_patterPerfName',
       sorter: (a, b) =>
         a.mat_patterPerfName?.localeCompare(b.mat_patterPerfName)
