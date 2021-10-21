@@ -10,7 +10,9 @@ export default function Section({ ethereumProps, nftAppProps }) {
         fontSize: '35px'
       }}
     >
-      <div style={{ paddingBottom: '5%', fontSize: '35px' }}>@talismoons</div>
+      <div style={{ paddingBottom: '5%', fontSize: '35px' }}>
+        @moontotemsnft
+      </div>
       <div
         style={{
           fontSize: '50px',

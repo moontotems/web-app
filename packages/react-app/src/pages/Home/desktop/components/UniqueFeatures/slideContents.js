@@ -8,57 +8,37 @@ export default [
   },
   {
     index: 1,
-    image: '/home/uniqueFeatures/talismoon_chat.jpg',
-    icon: '/home/uniqueFeatures/talismoon_chat.jpg',
+    image: '/home/uniqueFeatures/moon_totems_chat.jpg',
+    icon: '',
     title: 'MOON TOTEM CHAT',
-    text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
+    text: 'Your Totem is an Oracle. You may consult it on matters large and small.'
   },
   {
     index: 2,
-    image: '/home/uniqueFeatures/talismoon_bio.jpg',
-    title: 'MOON TOTEM STORIES',
-    text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
+    image: '/home/uniqueFeatures/moon_totems_story.jpg',
+    icon: '',
+    title: 'MOON TOTEM STORY',
+    text: 'You will write the next chapter in your Totem’s story. Whenever a Totem is traded the story gets hard coded onto the blockchain, creating a “Story Chain”.'
   },
   {
     index: 3,
-    image: '/home/uniqueFeatures/talismoon_zoom_and_pan.jpg',
-    title: 'MOON TOTEM ZOOM',
-    text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
+    image: '/home/uniqueFeatures/moon_totems_downloads.jpg',
+    icon: '',
+    title: 'MOON TOTEM DOWNLOADS',
+    text: 'Holders have access to a multitude of unique assets for download: high resolution images, 3D files and more to come...'
   },
   {
     index: 4,
-    image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'MOON TOTEM COMMUNITY',
-    text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
+    image: '/home/uniqueFeatures/moon_totems_explorer.jpg',
+    icon: '',
+    title: 'TOTEM EXPLORER',
+    text: 'A super powered Totem Explorer allows holders to seach and filter based on any attribute.'
   },
   {
     index: 5,
-    image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'MOON TOTEM ASSETS',
-    text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
-  },
-  {
-    index: 6,
-    image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'MOON TOTEM',
-    text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
-  },
-  {
-    index: 7,
-    image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'MOON TOTEM FUTURE',
-    text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
-  },
-  {
-    index: 8,
-    image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'MOON TOTEM ROLEPLAY',
-    text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
-  },
-  {
-    index: 9,
-    image: '/home/uniqueFeatures/talismoon_community.jpg',
-    title: 'MOON TOTEM METAVERSE',
-    text: 'Season of ancestry, remembering those who came before us, now living in our memories.'
+    image: '/home/uniqueFeatures/moon_totems_community.jpg',
+    icon: '',
+    title: 'MOON TOTEM SOCIETY',
+    text: 'The fate and future of Moon Totems lie with the community. The next chapters will be written by the Community.'
   }
 ]

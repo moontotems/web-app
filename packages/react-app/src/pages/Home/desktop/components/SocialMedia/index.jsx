@@ -1,5 +1,4 @@
 import React from 'react'
-import { Row, Col } from 'antd'
 
 export default function Section({ ethereumProps, nftAppProps }) {
   return (
@@ -18,7 +17,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
             fontSize: '20px'
           }}
         >
-          @talismoons
+          @moontotemsnft
         </div>
         <div
           style={{

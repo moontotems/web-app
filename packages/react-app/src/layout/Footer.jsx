@@ -98,7 +98,7 @@ export default function MyFooter({ ethereumProps, nftAppProps }) {
             />
           </a>
           <a
-            href='https://github.com/talismoons'
+            href='https://github.com/moontotems'
             target='_blank'
             rel='noreferrer'
           >

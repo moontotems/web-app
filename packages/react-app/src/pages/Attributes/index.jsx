@@ -45,7 +45,7 @@ export default function AttributesPage({ ethereumProps, nftAppProps }) {
       <Row>
         <Col xs={24}>
           <img
-            src='/attributes/talismoons_attributes.jpg'
+            src='/attributes/moon_totems_attributes.jpg'
             style={{ float: 'right', width: '100%' }}
           />
 
@@ -87,7 +87,7 @@ export default function AttributesPage({ ethereumProps, nftAppProps }) {
               }}
             >
               <img
-                src='/attributes/talismoons_attributes_complexity.jpg'
+                src='/attributes/moon_totems_attributes_complexity.jpg'
                 style={{ width: '100%' }}
               />
               <div style={{ ...cardStyles.title }}>Complexity</div>
@@ -112,7 +112,7 @@ export default function AttributesPage({ ethereumProps, nftAppProps }) {
               }}
             >
               <img
-                src='/attributes/talismoons_attributes_materiality.jpg'
+                src='/attributes/moon_totems_attributes_materiality.jpg'
                 style={{ width: '100%' }}
               />
               <div style={{ ...cardStyles.title }}>Materiality</div>
