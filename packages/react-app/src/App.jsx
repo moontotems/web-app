@@ -13,7 +13,6 @@ import _ from 'underscore'
 
 import Routes from './Routes'
 import { Header, SidebarLeft, Footer } from './layout'
-import { ActionSidebar } from './sharedComponents'
 import FILTERS from './sharedComponents/FilterDropdown/filters'
 import {
   INFURA_ID,
@@ -400,6 +399,8 @@ function App() {
     }
   }, [loadWeb3Modal])
 
+  //////
+
   /*
   const totalSupply =
     useContractReader(
@@ -409,7 +410,6 @@ function App() {
     ) || {}
   */
 
-  //////
   const [width, setWidth] = useState(window.innerWidth)
   function handleWindowSizeChange() {
     setWidth(window.innerWidth)
@@ -421,6 +421,64 @@ function App() {
     }
   }, [])
   const isMobile = width <= 768
+
+  ///
+  const [usersCreatures, setUsersCreatures] = useState([])
+  const [balanceOfUser, setBalanceOfUser] = useState(0)
+
+  useEffect(() => {
+    const getUsersCreatures = async () => {
+      try {
+        let balanceOf = await readContracts.MoonTotems.balanceOf(address)
+        console.log({ address })
+        balanceOf = parseInt(balanceOf.toString()) || 0
+        console.log({ balanceOf })
+        setBalanceOfUser(balanceOf)
+
+        const usersCreaturesUpdate = []
+        for (let tokenIndex = 0; tokenIndex < balanceOf; tokenIndex++) {
+          console.log('now calling infura: tokenOfOwnerByIndex')
+          let tokenId = await readContracts.MoonTotems.tokenOfOwnerByIndex(
+            address,
+            tokenIndex
+          )
+          tokenId = tokenId.toString()
+          console.log({ tokenId })
+          /*
+          const tokenURI =
+            await readContracts.MoonTotems.tokenURI(tokenId)
+          console.log('tokenURI', tokenURI)
+          */
+
+          //const ipfsHash = tokenURI.replace('https://ipfs.io/ipfs/', '')
+          //console.log('ipfsHash', ipfsHash)
+
+          //const jsonManifestBuffer = await getFromIPFS(ipfsHash)
+
+          //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
+          //console.log('jsonManifest', jsonManifest)
+          const creature = assembleCreature(tokenId)
+          usersCreaturesUpdate.push({ ...creature, ownedByUser: true })
+        }
+
+        setUsersCreatures(usersCreaturesUpdate)
+      } catch (e) {
+        console.error(e)
+      }
+    }
+    // reduce number of infura calls
+    if (route.includes('moontotem') || route.includes('wallet')) {
+      getUsersCreatures()
+    }
+  }, [address])
+
+  const usersCreaturesTokenIds = usersCreatures.map(
+    creature => creature.tokenId
+  )
+
+  const checkIfCreatureIsOwnedByUser = _tokenId =>
+    usersCreaturesTokenIds.includes(_tokenId)
+  ///
 
   const favoritedIdsStore = persistantStore.get('favoritedIds') || []
 
@@ -589,8 +647,6 @@ function App() {
   const filteredCreatures = applyFiltersToCreatures(allCreatures)
   const visibleCreatures = getVisibleCreatures(filteredCreatures)
 
-  console.log({ activeFilters })
-
   ///
   const creatureIndexList = Array.from(Array(MAX_TOKEN_ID).keys())
   const [shuffledCreatureIndexList, setShuffledCreatureIndexList] = useState(
@@ -598,7 +654,6 @@ function App() {
   )
 
   const shuffleCreatureIndexList = () => {
-    console.log('now shuffling creatures')
     setShuffledCreatureIndexList(_.shuffle(creatureIndexList))
   }
   ///
@@ -606,9 +661,9 @@ function App() {
   console.log({
     allCreatures,
     filteredCreatures,
-    creatureIndexList,
     shuffledCreatureIndexList,
-    visibleCreatures
+    visibleCreatures,
+    usersCreatures
   })
 
   const infiniteScroll = {
@@ -688,11 +743,13 @@ function App() {
     creatures: {
       all: allCreatures,
       filtered: filteredCreatures,
-      visible: visibleCreatures
+      visible: visibleCreatures,
+      users: usersCreatures
     },
     shuffledCreatureIndexList,
     shuffleCreatureIndexList,
     assembleCreature,
+    checkIfCreatureIsOwnedByUser,
     updateFavorites,
     // TODO: move this into creatures: {}
     favorites,
@@ -712,8 +769,6 @@ function App() {
     },
     setHeaderTitle
   }
-
-  console.log({ route })
 
   return (
     <div id='App'>

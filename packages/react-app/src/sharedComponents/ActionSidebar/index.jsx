@@ -8,15 +8,26 @@ export default function ActionSidebar({
   nftAppProps,
   creatureList
 }) {
-  const { isMobile, creatures, route } = nftAppProps
-  const showTools = route.includes('moontotem')
+  const { isMobile, creatures, route, checkIfCreatureIsOwnedByUser } =
+    nftAppProps
+
+  const getNumberFromString = str => {
+    return str.replace(/[^0-9]/g, '')
+  }
+
+  const creatureIsOwnedByUser = checkIfCreatureIsOwnedByUser(
+    getNumberFromString(route)
+  )
+
+  const showCreatureFeatures =
+    route.includes('moontotem') && creatureIsOwnedByUser
 
   return (
     <>
       {!isMobile && (
         <ActionSidebarDesktop
           ethereumProps={ethereumProps}
-          nftAppProps={{ ...nftAppProps, showTools }}
+          nftAppProps={{ ...nftAppProps, showCreatureFeatures }}
           creatureList={creatureList ? creatureList : creatures.filtered}
         />
       )}
@@ -24,7 +35,7 @@ export default function ActionSidebar({
       {isMobile && (
         <ActionSidebarMobile
           ethereumProps={ethereumProps}
-          nftAppProps={{ ...nftAppProps, showTools }}
+          nftAppProps={{ ...nftAppProps, showCreatureFeatures }}
           creatureList={creatureList ? creatureList : creatures.filtered}
         />
       )}

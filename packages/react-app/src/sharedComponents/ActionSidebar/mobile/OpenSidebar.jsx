@@ -34,7 +34,7 @@ export default function OpenSidebar({
   menuItemStyle
 }) {
   const {
-    showTools,
+    showCreatureFeatures,
     setRoute,
     setShowGrid,
     shuffleCreatureIndexList,
@@ -308,7 +308,7 @@ export default function OpenSidebar({
             <Shuffle32 />
           </div>
         </div>
-        {showTools && (
+        {showCreatureFeatures && (
           <>
             <div className='menu-item title' style={{ ...menuItemStyle }}>
               <div style={{ ...menuItemContentStyle.text }}>Tools</div>

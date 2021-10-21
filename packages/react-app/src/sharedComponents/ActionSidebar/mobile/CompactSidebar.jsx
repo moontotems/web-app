@@ -32,7 +32,7 @@ export default function CompactSidebar({
   nftAppProps,
   creatureList,
   menuItemStyle,
-  showTools
+  showCreatureFeatures
 }) {
   const {
     setRoute,
@@ -227,7 +227,7 @@ export default function CompactSidebar({
       >
         <Shuffle32 />
       </div>
-      {showTools && (
+      {showCreatureFeatures && (
         <>
           <div
             className='menu-item square-title'
