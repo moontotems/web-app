@@ -60,7 +60,7 @@ contract NFTokenMetadataEnumerableMock is
     super._burn(_tokenId);
   }
 
-  /**
+   /**
    * @dev Set base URI for computing {tokenURI}.
    * @param _baseUri The new BaseUri.
    */

@@ -18,7 +18,7 @@ contract MoonTotems is
   /**
    * @dev The largest valid token id.
    */
-  uint256 public MAX_TOKEN_ID = 9457;
+  uint256 public constant MAX_TOKEN_ID = 9457;
 
   /**
    * @dev The price for minting a totem.
@@ -48,14 +48,24 @@ contract MoonTotems is
   event Mint(address indexed _to, uint256 indexed _tokenId);
 
   /**
-   * @dev Emits when a MAX_TOKEN_ID is increased.
-   */
-  event MaxTokenIdIncrease(address indexed _by, uint256 indexed _amount);
-
-  /**
-   * @dev Emits when a TOTEM_MINT_PRICE is updated.
+   * @dev Emits when TOTEM_MINT_PRICE is updated.
    */
   event TotemMintPriceUpdate(address indexed _by, uint256 indexed _amount);
+
+
+  /**
+   * @dev Requirements that have to be met for minting to work.
+   * @param _tokenId ID of the NFT to mint.
+   */
+  modifier canMint(
+    uint256 _tokenId
+  )
+  {
+    require(_tokenId >= MIN_TOKEN_ID, "TokenId needs to be >= MIN_TOKEN_ID");
+    require(_tokenId <= MAX_TOKEN_ID, "TokenId needs to be <= MAX_TOKEN_ID");
+    require(msg.value == TOTEM_MINT_PRICE, "Amount needs to be equal to TOTEM_MINT_PRICE");
+    _;
+  }
 
   /**
    * @dev Mints a new NFT.
@@ -68,10 +78,8 @@ contract MoonTotems is
   )
     external
     payable
+    canMint(_tokenId)
   {
-    require(_tokenId >= MIN_TOKEN_ID, "TokenId needs to be >= MIN_TOKEN_ID");
-    require(_tokenId <= MAX_TOKEN_ID, "TokenId needs to be <= MAX_TOKEN_ID");
-    require(msg.value == TOTEM_MINT_PRICE, "Amount needs to be equal to TOTEM_MINT_PRICE");
     super._mint(_to, _tokenId);
     emit Mint(msg.sender, _tokenId);
   }
@@ -105,7 +113,7 @@ contract MoonTotems is
 
   /**
    * @dev Set base URI for computing {tokenURI}.
-   * @param _baseUri The new BaseUri.
+   * @param _baseUri The new baseUri.
    */
   function setBaseUri(
     string memory _baseUri
@@ -114,20 +122,6 @@ contract MoonTotems is
     onlyOwner
   {
     super._setBaseUri(_baseUri);
-  }
-
-  /**
-   * @dev Increase largest valid token id.
-   * @param _amount The amount by which MAX_TOKEN_ID should be increased.
-   */
-  function increaseMaxTokenId(
-    uint256 _amount
-  )
-    external
-    onlyOwner
-  {
-    MAX_TOKEN_ID += _amount;
-    emit MaxTokenIdIncrease(msg.sender, _amount);
   }
 
   /**

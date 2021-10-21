@@ -12,8 +12,8 @@ contract Ownable
   /**
    * @dev Error constants.
    */
-  string constant NOT_CURRENT_OWNER = "NOT_CURRENT_OWNER";
-  string constant CANNOT_TRANSFER_TO_ZERO_ADDRESS = "CANNOT_TRANSFER_TO_ZERO_ADDRESS";
+  string public constant NOT_CURRENT_OWNER = "NOT_CURRENT_OWNER";
+  string public constant CANNOT_TRANSFER_TO_ZERO_ADDRESS = "CANNOT_TRANSFER_TO_ZERO_ADDRESS";
 
   /**
    * @dev Current owner address.
