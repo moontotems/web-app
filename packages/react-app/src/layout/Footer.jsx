@@ -146,6 +146,7 @@ export default function MyFooter({ ethereumProps, nftAppProps }) {
             Imprint/Privacy Policy
           </Link>
         </div>
+        <div style={{ ...contentStyle }}>© 2021 Moon Totems LLC</div>
       </Col>
     </Row>
   )
