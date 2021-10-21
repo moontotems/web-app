@@ -12,12 +12,11 @@ import {
   WhatAreSection
 } from './components'
 
-const HEADER_HEIGHT_DESKTOP = '48px'
-
 export default function HomePageDesktip({ ethereumProps, nftAppProps }) {
   const containerStyle = {
     float: 'right',
-    height: `calc(100vh - ${HEADER_HEIGHT_DESKTOP})`,
+    //height: `calc(100vh - ${HEADER_HEIGHT_DESKTOP})`,
+    height: 'auto',
     width: '100%',
     backgroundColor: '#000'
   }

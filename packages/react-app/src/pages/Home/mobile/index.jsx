@@ -12,55 +12,54 @@ import {
   WhatAreSection
 } from './components'
 
-const HEADER_HEIGHT_MOBILE = '80px'
-
 export default function HomePageMobile({ ethereumProps, nftAppProps }) {
   const containerStyle = {
     float: 'right',
-    height: `calc(100vh - ${HEADER_HEIGHT_MOBILE})`,
+    //height: `calc(100vh - ${HEADER_HEIGHT_MOBILE})`,
+    height: 'auto',
     width: '100%',
     backgroundColor: '#000'
   }
 
   return (
     <div style={{ fontFamily: 'IBM Plex Sans', fontStyle: 'normal' }}>
-      <div style={{ ...containerStyle, height: 'auto' }}>
+      <div style={{ ...containerStyle }}>
         <WhatAreSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div style={{ ...containerStyle, height: 'auto' }}>
+      <div style={{ ...containerStyle }}>
         <UniqueCharactersSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div style={{ ...containerStyle, height: 'auto' }}>
+      <div style={{ ...containerStyle }}>
         <UniqueFeaturesSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div style={{ ...containerStyle, height: 'auto' }}>
+      <div style={{ ...containerStyle }}>
         <LunarMonthsSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div style={{ ...containerStyle, height: 'auto' }}>
+      <div style={{ ...containerStyle }}>
         <LunarPhasesSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div style={{ ...containerStyle, height: 'auto' }}>
+      <div style={{ ...containerStyle }}>
         <LunarOriginsSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
-      <div style={{ ...containerStyle, height: 'auto' }}>
+      <div style={{ ...containerStyle }}>
         <SocialMediaSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
