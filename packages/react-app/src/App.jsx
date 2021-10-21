@@ -442,7 +442,7 @@ function App() {
             address,
             tokenIndex
           )
-          tokenId = tokenId.toString()
+          tokenId = parseInt(tokenId.toString())
           console.log({ tokenId })
           /*
           const tokenURI =
@@ -458,7 +458,11 @@ function App() {
           //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
           //console.log('jsonManifest', jsonManifest)
           const creature = assembleCreature(tokenId)
-          usersCreaturesUpdate.push({ ...creature, ownedByUser: true })
+          usersCreaturesUpdate.push({
+            ...creature,
+            ownedByUser: true,
+            minted: true
+          })
         }
 
         setUsersCreatures(usersCreaturesUpdate)
@@ -802,7 +806,7 @@ function App() {
               isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT
             }px)`
           }}
-          //onClick={() => setSidebarLeftOpen(false)}
+          onClick={() => setSidebarLeftOpen(false)}
         >
           <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>

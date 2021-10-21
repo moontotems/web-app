@@ -19,10 +19,11 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
 
   const isAvailable = !minted
   const isTaken = minted && !ownedByUser
-  // TODO: this isn't working -> fix this
   const isOwnedByUser = ownedByUser
 
-  //console.log({ isOwnedByUser, ownedByUser })
+  console.log({ minted })
+  console.log({ isAvailable })
+  console.log({ isOwnedByUser })
 
   return (
     <>
@@ -96,12 +97,9 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
                   onClick={() => updateFavorites(tokenId)}
                 />
               )}
-
-              {/*<FavoriteFilled32 style={{ fill: 'red' }} />*/}
             </div>
           </Col>
         </Row>
-        {/*!minted && <Button onClick={() => mint()}>Adopt for {0.1} Ξ</Button>*/}
       </div>
     </>
   )
