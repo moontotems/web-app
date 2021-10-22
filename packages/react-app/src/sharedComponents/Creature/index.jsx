@@ -78,7 +78,7 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
                 textAlign: 'center'
               }}
             >
-              {trait_jobField} {trait_jobTitle} #{tokenId}
+              {trait_jobField} {trait_jobTitle}
             </div>
           </Col>
           <Col xs={6}>
