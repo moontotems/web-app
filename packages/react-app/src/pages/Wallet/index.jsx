@@ -11,11 +11,13 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
   const {
     isMobile,
     creatures,
-    filter: { setActiveFilters }
+    filter: { setActiveFilters },
+    setShowGridView
   } = nftAppProps
 
   useEffect(() => {
     setActiveFilters([])
+    setShowGridView(true)
   }, [])
 
   if (!address) {
