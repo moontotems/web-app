@@ -3,6 +3,7 @@ import { Row, Col } from 'antd'
 import { Button } from 'antd-mobile'
 import {
   AsleepFilled32,
+  Locked32,
   Favorite32,
   FavoriteFilled32
 } from '@carbon/icons-react'
@@ -13,10 +14,9 @@ import $ from 'jquery'
 import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
 
-import { creatureFeatures, Icons } from '../../../sharedComponents'
+import { creatureFeatures } from '../../../sharedComponents'
 const { MetaData, Chatbot, FileDownloads, WriteStory, FreshMintMessage } =
   creatureFeatures
-const { NotMintedIcon32x32 } = Icons
 
 import houdini_json_hashmap from '../../../assets/houdini_json_hashmap.json'
 
@@ -103,8 +103,13 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     return creature
   }
 
-  const { tokenId, metaData, image, isFavorite, minted } =
-    assembleCreature(activeTokenId)
+  const { tokenId, metaData, image, ownedByUser, minted, isFavorite } =
+    assembleCreature(urlTokenId)
+
+  const isAvailable = !minted
+  const isTaken = !isAvailable
+  const isOwnedByUser = ownedByUser
+
   const { trait_name1, trait_name2, trait_jobField, trait_jobTitle } = metaData
 
   const swipeableHandler = useSwipeable({
@@ -185,8 +190,8 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Col xs={6}>
           <div style={{ textAlign: 'center', marginTop: '15px' }}>
             <div>
-              {minted && <AsleepFilled32 />}
-              {!minted && <img src={NotMintedIcon32x32} alt='Not Minted' />}
+              {isAvailable && <AsleepFilled32 />}
+              {isTaken && <Locked32 />}
             </div>
           </div>
         </Col>

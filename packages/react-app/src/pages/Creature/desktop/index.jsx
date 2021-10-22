@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Row, Col, Button } from 'antd'
 import {
   AsleepFilled32,
+  Locked32,
   Favorite32,
   FavoriteFilled32
 } from '@carbon/icons-react'
@@ -15,15 +16,15 @@ import {
   MAX_TOKEN_ID
 } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
-import { creatureFeatures, Icons } from '../../../sharedComponents'
+import { creatureFeatures } from '../../../sharedComponents'
 const { MetaData, Chatbot, FileDownloads, WriteStory, FreshMintMessage } =
   creatureFeatures
-const { NotMintedIcon32x32 } = Icons
 import './styles.css'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
   const {
+    assembleCreature,
     creatures,
     filter: { activeFilters },
     mintEventsMap,
@@ -93,9 +94,9 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   useEffect(() => {
     const preloadSize = 10 // in each direction
 
-    const currentVisibleCreature = creatures.filtered[visibleCreatureListIndex]
+    const _currentVisibleCreature = creatures.filtered[visibleCreatureListIndex]
 
-    const activeTokenId = currentVisibleCreature.tokenId
+    const activeTokenId = _currentVisibleCreature.tokenId
 
     let startTokenId = MIN_TOKEN_ID
     if (activeTokenId - preloadSize > MIN_TOKEN_ID) {
@@ -113,8 +114,13 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     }
   }, [visibleCreatureListIndex])
 
-  const { metaData, tokenId, image, isFavorite, minted } =
-    currentVisibleCreature
+  const { tokenId, metaData, image, ownedByUser, minted, isFavorite } =
+    currentVisibleCreature || assembleCreature(urlTokenId)
+
+  const isAvailable = !minted
+  const isTaken = !isAvailable
+  const isOwnedByUser = ownedByUser
+
   const { trait_name1, trait_name2, trait_jobField, trait_jobTitle } = metaData
 
   useEffect(() => {
@@ -213,8 +219,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
               marginTop: '2px'
             }}
           >
-            {minted && <AsleepFilled32 />}
-            {!minted && <img src={NotMintedIcon32x32} alt='Not Minted' />}
+            {isAvailable && <AsleepFilled32 />}
+            {isTaken && <Locked32 />}
           </div>
         </Col>
         <Col xs={4}>
@@ -229,7 +235,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
                 {trait_jobField} {trait_jobTitle}
               </div>
             </div>
-            {minted && (
+            {isTaken && (
               <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
                 <Button
                   style={{
@@ -242,7 +248,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
                 </Button>
               </a>
             )}
-            {address && !minted && (
+            {address && isAvailable && (
               <Button
                 style={{
                   ...buttonStyle,
