@@ -71,6 +71,7 @@ export default function Routes({ ethereumProps, nftAppProps }) {
       </Route>
       */}
 
+      {/*
       <Route exact path='/contact'>
         <Contact />
       </Route>
@@ -80,6 +81,7 @@ export default function Routes({ ethereumProps, nftAppProps }) {
       <Route exact path='/imprint-privacy-policy'>
         <PrivacyPolicy />
       </Route>
+      */}
       <Route exact path='/terms-and-conditions'>
         <TermsAndConditions />
       </Route>

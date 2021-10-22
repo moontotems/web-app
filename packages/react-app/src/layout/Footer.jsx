@@ -126,6 +126,7 @@ export default function MyFooter({ ethereumProps, nftAppProps }) {
             Terms & Conditions
           </Link>
         </div>
+        {/*
         <div style={{ ...contentStyle }}>
           <Link
             onClick={() => {
@@ -146,6 +147,7 @@ export default function MyFooter({ ethereumProps, nftAppProps }) {
             Imprint/Privacy Policy
           </Link>
         </div>
+        */}
         <div style={{ ...contentStyle }}>© 2021 Moon Totems LLC</div>
       </Col>
     </Row>
