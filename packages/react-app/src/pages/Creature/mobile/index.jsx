@@ -77,12 +77,12 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   useEffect(() => {
     const preloadSize = 10
     for (
-      let futureTokenId = activeTokenId + 1;
-      futureTokenId < preloadSize + 1;
-      futureTokenId++
+      let preloadId = activeTokenId + 1;
+      preloadId < preloadSize + 1;
+      preloadId++
     ) {
       const img = new Image()
-      img.src = getImageUrl(futureTokenId)
+      img.src = getImageUrl({ tokenId: preloadId, size: 1024 })
     }
   }, [activeTokenId])
 
@@ -91,7 +91,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     const minted = !!mintEventsMap[tokenId]
     const isFavorite = checkIfIsFavorite(tokenId)
     const metaData = houdini_json_hashmap[tokenId]
-    const image = getImageUrl(tokenId)
+    const image = getImageUrl({ tokenId, size: 1024 })
 
     const creature = {
       tokenId,
@@ -162,7 +162,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Chatbot
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
-          image={image}
+          image={getImageUrl({ tokenId, size: 1024 })}
           tokenId={tokenId}
         />
         <WriteStory ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
@@ -171,7 +171,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Col xs={24}>
           <img
             {...swipeableHandler}
-            src={image}
+            src={getImageUrl({ tokenId, size: 1024 })}
             width='100%'
             onClick={() =>
               setActiveTokenId(

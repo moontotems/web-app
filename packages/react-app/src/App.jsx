@@ -567,7 +567,7 @@ function App() {
     const ownedByUser = checkIfCreatureIsOwnedByUser(tokenId)
     const isFavorite = checkIfIsFavorite(tokenId)
     const metaData = houdini_json_hashmap[tokenId]
-    const image = getImageUrl(tokenId)
+    const image = getImageUrl({ tokenId, size: 512 })
 
     const creature = {
       tokenId,

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Row, Col } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
+
 import { Creature } from '../../../../sharedComponents'
+import { getImageUrl } from '../../../../helpers'
 
 export default function AllMobileView({
   ethereumProps,
@@ -36,7 +38,10 @@ export default function AllMobileView({
                 <Creature
                   ethereumProps={ethereumProps}
                   nftAppProps={nftAppProps}
-                  creature={creature}
+                  creature={{
+                    ...creature,
+                    image: getImageUrl({ tokenId, size: 1024 })
+                  }}
                 />
               </Col>
             )

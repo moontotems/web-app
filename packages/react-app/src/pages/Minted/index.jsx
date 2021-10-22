@@ -26,7 +26,7 @@ export default function Minted({ ethereumProps, nftAppProps }) {
               const minted = !!mintEventsMap[tokenId]
               const metaData = houdini_json_hashmap[tokenId]
               const isFavorite = checkIfIsFavorite()
-              const image = getImageUrl(tokenId)
+              const image = getImageUrl({ tokenId, size: 512 })
 
               const creature = {
                 tokenId,

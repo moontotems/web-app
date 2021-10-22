@@ -110,7 +110,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
 
     for (let preloadId = startTokenId; preloadId <= endTokenId; preloadId++) {
       const img = new Image()
-      img.src = getImageUrl(preloadId)
+      img.src = getImageUrl({ tokenId: preloadId, size: 2048 })
     }
   }, [visibleCreatureListIndex])
 
@@ -185,8 +185,12 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
           <InnerImageZoom
             zoomPreload={true}
-            src={image}
-            zoomSrc={image}
+            src={getImageUrl({ tokenId, size: 2048 })}
+            zoomSrc={getImageUrl({
+              tokenId,
+              size: 2048,
+              withSymbol: isOwnedByUser
+            })}
             zoomScale={2}
             //moveType='drag'
             hideCloseButton={true}

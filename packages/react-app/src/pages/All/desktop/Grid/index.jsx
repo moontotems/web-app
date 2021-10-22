@@ -3,6 +3,7 @@ import { Row, Col } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Creature } from '../../../../sharedComponents'
+import { getImageUrl } from '../../../../helpers'
 
 export default function AllDesktopGridView({
   ethereumProps,
@@ -43,7 +44,10 @@ export default function AllDesktopGridView({
                       <Creature
                         ethereumProps={ethereumProps}
                         nftAppProps={nftAppProps}
-                        creature={creature}
+                        creature={{
+                          ...creature,
+                          image: getImageUrl({ tokenId, size: 2048 })
+                        }}
                       />
                     </Col>
                   )

@@ -57,7 +57,7 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
           target='_blank'
         >
           <img
-            src={getImageUrl(record.id)}
+            src={getImageUrl({ tokenId: record.id, size: 100 })}
             alt={`Moon Totem #${record.id}`}
             style={{ width: '100%' }}
           />

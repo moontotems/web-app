@@ -49,7 +49,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
     const minted = !!mintEventsMap[tokenId]
     const isFavorite = checkIfIsFavorite(tokenId)
     const metaData = houdini_json_hashmap[tokenId]
-    const image = getImageUrl(tokenId)
+    const image = getImageUrl({ tokenId, size: 2048 })
 
     const creature = {
       tokenId,
