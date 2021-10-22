@@ -115,13 +115,16 @@ export default function MetaData({
         <div className='creature-attribute-prefix'>Title</div>
         <div className='creature-attribute-prefix'>From</div>
         <div className='creature-attribute-prefix'>Personality</div>
-        <div className='creature-attribute-prefix'>Lunar Sign</div>
+        <div className='creature-attribute-prefix'>Lunar Phase</div>
+        <div className='creature-attribute-prefix'>Lunar Month</div>
         <div className='creature-attribute-prefix'>Birth</div>
         <div className='creature-attribute-prefix'>Age</div>
         <div className='creature-attribute-prefix'>Discovered</div>
         <div className='creature-attribute-prefix'>Rarity</div>
         <div className='creature-attribute-prefix'>Eyes</div>
         <div className='creature-attribute-prefix'>Material</div>
+        <div className='creature-attribute-prefix'>Color Count</div>
+        <div className='creature-attribute-prefix'>Pieces Count</div>
       </div>
       <div
         style={{
@@ -140,6 +143,7 @@ export default function MetaData({
           className='creature-attribute-value'
           style={{ lineHeight: '54px' }}
         >
+          {/* Title */}
           <b>
             {trait_jobField} {trait_jobTitle}
           </b>
@@ -148,57 +152,79 @@ export default function MetaData({
           className='creature-attribute-value'
           style={{ lineHeight: '46px' }}
         >
+          {/* From */}
           <b>{lunarOriginName}</b>
         </div>
         <div
           className='creature-attribute-value'
           style={{ lineHeight: '50px' }}
         >
+          {/* Personality */}
           {trait_personality1}, {trait_personality2} & {trait_personality3}
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '42px' }}
+          style={{ lineHeight: '44px' }}
         >
+          {/* Lunar Sign */}
           {moonPhase}
+        </div>
+        <div
+          className='creature-attribute-value'
+          style={{ lineHeight: '55px' }}
+        >
+          {/* Lunar Month */}
+          {moonMonth}
         </div>
 
         <div
           className='creature-attribute-value'
+          style={{ lineHeight: '43px' }}
+        >
+          {`${birthDay}/${birthMonth}/${birthYearStr}`}
+        </div>
+        <div
+          className='creature-attribute-value'
           style={{ lineHeight: '53px' }}
         >
-          {age} years
+          {age} Years
         </div>
         <div
           className='creature-attribute-value'
           style={{ lineHeight: '45px' }}
         >
-          {rarityRank}
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '51px' }}
-        >
           {`${spawn_DateDay}/${spawn_DateMonth}/${spawn_DateYear}`}
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '46px' }}
+          style={{ lineHeight: '52px' }}
         >
           {rarityScore}
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '48px' }}
+          style={{ lineHeight: '45px' }}
         >
           {eyeAsymmetrical ? 'Asymmetrical' : 'Symmetrical'},{' '}
           {eyeMulticolor ? 'Multicolored' : 'Single Color'}, {eyeShape}
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '50px' }}
+          style={{ lineHeight: '49px' }}
         >
           {Material}
+        </div>
+        <div
+          className='creature-attribute-value'
+          style={{ lineHeight: '49px' }}
+        >
+          {colorsTotal}
+        </div>
+        <div
+          className='creature-attribute-value'
+          style={{ lineHeight: '49px' }}
+        >
+          {complexityPieces}
         </div>
       </div>
     </CreatureFeatureContainer>
