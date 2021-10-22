@@ -171,7 +171,7 @@ export default function MetaData({
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '55px' }}
+          style={{ lineHeight: '53px' }}
         >
           {/* Lunar Month */}
           {moonMonth}
@@ -179,25 +179,25 @@ export default function MetaData({
 
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '43px' }}
+          style={{ lineHeight: '45px' }}
         >
           {`${birthDay}/${birthMonth}/${birthYearStr}`}
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '53px' }}
+          style={{ lineHeight: '51px' }}
         >
           {age} Years
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '45px' }}
+          style={{ lineHeight: '47px' }}
         >
           {`${spawn_DateDay}/${spawn_DateMonth}/${spawn_DateYear}`}
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '52px' }}
+          style={{ lineHeight: '50px' }}
         >
           {rarityScore}
         </div>
@@ -210,19 +210,19 @@ export default function MetaData({
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '49px' }}
+          style={{ lineHeight: '51px' }}
         >
           {Material}
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '49px' }}
+          style={{ lineHeight: '48px' }}
         >
           {colorsTotal}
         </div>
         <div
           className='creature-attribute-value'
-          style={{ lineHeight: '49px' }}
+          style={{ lineHeight: '48px' }}
         >
           {complexityPieces}
         </div>
