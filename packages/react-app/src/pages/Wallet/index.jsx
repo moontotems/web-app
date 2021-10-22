@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { ActionSidebar } from '../../sharedComponents'
 import AllPageDesktop from '../All/desktop'
@@ -8,7 +8,15 @@ import './styles.less'
 
 export default function Wallet({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
-  const { isMobile, creatures } = nftAppProps
+  const {
+    isMobile,
+    creatures,
+    filter: { setActiveFilters }
+  } = nftAppProps
+
+  useEffect(() => {
+    setActiveFilters([])
+  }, [])
 
   if (!address) {
     return (

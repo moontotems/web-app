@@ -177,93 +177,118 @@ export default function OpenSidebar({
           </div>
         </Link>
 
-        <div
-          className='menu-item'
-          style={{
-            ...menuItemStyle,
-            borderLeft: filterIsActive(FILTERS.notMinted)
-              ? '5px solid #1062FE'
-              : 'none'
-          }}
+        <Link
           onClick={() => {
             setRoute('/all')
-            if (filterIsActive(FILTERS.notMinted)) {
-              let _activeFilters = activeFilters
-              _activeFilters = _activeFilters.filter(
-                e => e !== FILTERS.notMinted
-              )
-              setActiveFilters([..._activeFilters, FILTERS.minted])
-            } else {
-              let _activeFilters = activeFilters
-              _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
-              setActiveFilters([..._activeFilters, FILTERS.notMinted])
-            }
+            setShowGrid(false)
           }}
+          to='/all'
         >
-          <div style={{ ...menuItemContentStyle.text }}>Available Totems</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            {/*<img src={NotMintedIcon16x16} alt='Not Minted' />*/}
-            <AsleepFilled16 aria-label='Available Totems' />
+          <div
+            className='menu-item'
+            style={{
+              ...menuItemStyle,
+              borderLeft: filterIsActive(FILTERS.notMinted)
+                ? '5px solid #1062FE'
+                : 'none'
+            }}
+            onClick={() => {
+              if (filterIsActive(FILTERS.notMinted)) {
+                let _activeFilters = activeFilters
+                _activeFilters = _activeFilters.filter(
+                  e => e !== FILTERS.notMinted
+                )
+                setActiveFilters([..._activeFilters, FILTERS.minted])
+              } else {
+                let _activeFilters = activeFilters
+                _activeFilters = _activeFilters.filter(
+                  e => e !== FILTERS.minted
+                )
+                setActiveFilters([..._activeFilters, FILTERS.notMinted])
+              }
+            }}
+          >
+            <div style={{ ...menuItemContentStyle.text }}>Available Totems</div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              {/*<img src={NotMintedIcon16x16} alt='Not Minted' />*/}
+              <AsleepFilled16 aria-label='Available Totems' />
+            </div>
           </div>
-        </div>
-        <div
-          className='menu-item'
-          style={{
-            ...menuItemStyle,
-            borderLeft: filterIsActive(FILTERS.minted)
-              ? '5px solid #1062FE'
-              : 'none'
-          }}
+        </Link>
+        <Link
           onClick={() => {
             setRoute('/all')
-            if (
-              !filterIsActive(FILTERS.minted) &&
-              !filterIsActive(FILTERS.notMinted)
-            ) {
-              setActiveFilters([...activeFilters, FILTERS.minted])
-            } else if (filterIsActive(FILTERS.notMinted)) {
-              let _activeFilters = activeFilters
-              _activeFilters = _activeFilters.filter(
-                e => e !== FILTERS.notMinted
-              )
-              setActiveFilters([..._activeFilters, FILTERS.minted])
-            } else {
-              let _activeFilters = activeFilters
-              _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
-              setActiveFilters([..._activeFilters, FILTERS.notMinted])
-            }
+            setShowGrid(false)
           }}
+          to='/all'
         >
-          <div style={{ ...menuItemContentStyle.text }}>Minted Totems</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <Locked16 aria-label='Minted Totems' />
+          <div
+            className='menu-item'
+            style={{
+              ...menuItemStyle,
+              borderLeft: filterIsActive(FILTERS.minted)
+                ? '5px solid #1062FE'
+                : 'none'
+            }}
+            onClick={() => {
+              if (
+                !filterIsActive(FILTERS.minted) &&
+                !filterIsActive(FILTERS.notMinted)
+              ) {
+                setActiveFilters([...activeFilters, FILTERS.minted])
+              } else if (filterIsActive(FILTERS.notMinted)) {
+                let _activeFilters = activeFilters
+                _activeFilters = _activeFilters.filter(
+                  e => e !== FILTERS.notMinted
+                )
+                setActiveFilters([..._activeFilters, FILTERS.minted])
+              } else {
+                let _activeFilters = activeFilters
+                _activeFilters = _activeFilters.filter(
+                  e => e !== FILTERS.minted
+                )
+                setActiveFilters([..._activeFilters, FILTERS.notMinted])
+              }
+            }}
+          >
+            <div style={{ ...menuItemContentStyle.text }}>Minted Totems</div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <Locked16 aria-label='Minted Totems' />
+            </div>
           </div>
-        </div>
-        <div
-          className='menu-item'
-          style={{
-            ...menuItemStyle,
-            borderLeft: filterIsActive(FILTERS.favorites)
-              ? '5px solid #1062FE'
-              : 'none'
-          }}
+        </Link>
+        <Link
           onClick={() => {
             setRoute('/all')
-            if (filterIsActive(FILTERS.favorites)) {
-              removeFilter(FILTERS.favorites)
-            } else {
-              addFilter(FILTERS.favorites)
-            }
+            setShowGrid(false)
           }}
+          to='/all'
         >
-          <div style={{ ...menuItemContentStyle.text }}>Favorite Totems</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <FavoriteFilled16
-              aria-label='Favorite Totems'
-              style={{ fill: '#DA1E28' }}
-            />
+          <div
+            className='menu-item'
+            style={{
+              ...menuItemStyle,
+              borderLeft: filterIsActive(FILTERS.favorites)
+                ? '5px solid #1062FE'
+                : 'none'
+            }}
+            onClick={() => {
+              if (filterIsActive(FILTERS.favorites)) {
+                removeFilter(FILTERS.favorites)
+              } else {
+                addFilter(FILTERS.favorites)
+              }
+            }}
+          >
+            <div style={{ ...menuItemContentStyle.text }}>Favorite Totems</div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <FavoriteFilled16
+                aria-label='Favorite Totems'
+                style={{ fill: '#DA1E28' }}
+              />
+            </div>
           </div>
-        </div>
+        </Link>
         <Link
           onClick={() => {
             setRoute('/wallet')

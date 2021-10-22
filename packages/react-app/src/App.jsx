@@ -589,50 +589,31 @@ function App() {
     return creatures
   }
 
-  const filterCreaturesByMinted = ({ keep, creatures }) => {
-    return _.filter([...creatures], creature =>
-      keep ? creature.minted : !creature.minted
-    )
-  }
+  const removeMintedCreatures = ({ creatures }) =>
+    _.filter([...creatures], creature => !creature.minted)
 
-  const filterCreaturesByFavorited = ({ keep, creatures }) => {
-    return _.filter([...creatures], creature =>
-      keep ? creature.isFavorite : !creature.isFavorite
-    )
-  }
+  const removeNotMintedCreatures = ({ creatures }) =>
+    _.filter([...creatures], creature => creature.minted)
 
-  /*
-  // TODO: atm this is to expensive with infura calls
-  const filterCreaturesByOwned = ({ keep, creatures }) => {
-    const usersMintEvents = _.filter(mintEvents, mintEvent => {
-      mintEvent
-    })
-  }
-  */
+  const removeFavoritedCreatures = ({ creatures }) =>
+    _.filter([...creatures], creature => !creature.isFavorite)
+
+  const removeNotFavoritedCreatures = ({ creatures }) =>
+    _.filter([...creatures], creature => creature.isFavorite)
 
   const applyFiltersToCreatures = creatures => {
     if (activeFilters.length === 0) {
       return creatures
     }
-    creatures = filterCreaturesByMinted({
-      keep: filterIsActive(FILTERS.minted),
-      creatures
-    })
-    if (filterIsActive(FILTERS.favorites)) {
-      creatures = filterCreaturesByFavorited({
-        keep: filterIsActive(FILTERS.favorites),
-        creatures
-      })
+
+    if (filterIsActive(FILTERS.minted)) {
+      creatures = removeNotMintedCreatures({ creatures })
     }
 
-    /*
-    // TODO: atm this is to expensive with infura calls
-    console.log('now filterCreaturesByOwned')
-    creatures = filterCreaturesByOwned({
-      keep: !filterIsActive(FILTERS.myTalismoons),
-      creatures
-    })
-    */
+    if (filterIsActive(FILTERS.favorites)) {
+      creatures = removeNotFavoritedCreatures({ creatures })
+    }
+
     return creatures
   }
 
@@ -666,6 +647,7 @@ function App() {
     visibleCreatures,
     usersCreatures
   })
+  console.log({ activeFilters })
 
   const infiniteScroll = {
     visibleCreaturesRangeStart,

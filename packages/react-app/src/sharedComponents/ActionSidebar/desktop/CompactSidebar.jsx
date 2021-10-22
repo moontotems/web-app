@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {
-  QueryQueue16,
   ColorPalette16,
   ChatBot16,
   Edit16,
@@ -23,7 +22,7 @@ import {
 import FILTERS from '../../../sharedComponents/FilterDropdown/filters'
 import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
 import Icons from '../../icons'
-const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
+const { OwnedByUserIcon16x16 } = Icons
 
 import './style.css'
 
@@ -129,72 +128,96 @@ export default function CompactSidebar({
           alt='All Totems'
         />
       </div>
-      <div
-        className='menu-item'
-        style={{
-          ...menuItemStyle,
-          borderLeft: filterIsActive(FILTERS.notMinted)
-            ? '2px solid #1062FE'
-            : 'none'
-        }}
+      <Link
         onClick={() => {
           setRoute('/all')
-          if (filterIsActive(FILTERS.notMinted)) {
-            let _activeFilters = activeFilters
-            _activeFilters = _activeFilters.filter(e => e !== FILTERS.notMinted)
-            setActiveFilters([..._activeFilters, FILTERS.minted])
-          } else {
-            let _activeFilters = activeFilters
-            _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
-            setActiveFilters([..._activeFilters, FILTERS.notMinted])
-          }
+          setShowGrid(false)
         }}
+        to='/all'
       >
-        <AsleepFilled16 aria-label='Available Totems' />
-      </div>
-      <div
-        className='menu-item'
-        style={{
-          ...menuItemStyle,
-          borderLeft: filterIsActive(FILTERS.minted)
-            ? '2px solid #1062FE'
-            : 'none'
-        }}
+        <div
+          className='menu-item'
+          style={{
+            ...menuItemStyle,
+            borderLeft: filterIsActive(FILTERS.notMinted)
+              ? '2px solid #1062FE'
+              : 'none'
+          }}
+          onClick={() => {
+            if (filterIsActive(FILTERS.notMinted)) {
+              let _activeFilters = activeFilters
+              _activeFilters = _activeFilters.filter(
+                e => e !== FILTERS.notMinted
+              )
+              setActiveFilters([..._activeFilters, FILTERS.minted])
+            } else {
+              let _activeFilters = activeFilters
+              _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
+              setActiveFilters([..._activeFilters, FILTERS.notMinted])
+            }
+          }}
+        >
+          <AsleepFilled16 aria-label='Available Totems' />
+        </div>
+      </Link>
+      <Link
         onClick={() => {
           setRoute('/all')
-          if (
-            !filterIsActive(FILTERS.minted) &&
-            !filterIsActive(FILTERS.notMinted)
-          ) {
-            setActiveFilters([...activeFilters, FILTERS.minted])
-          } else if (filterIsActive(FILTERS.notMinted)) {
-            let _activeFilters = activeFilters
-            _activeFilters = _activeFilters.filter(e => e !== FILTERS.notMinted)
-            setActiveFilters([..._activeFilters, FILTERS.minted])
-          } else {
-            let _activeFilters = activeFilters
-            _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
-            setActiveFilters([..._activeFilters, FILTERS.notMinted])
-          }
         }}
+        to='/all'
       >
-        <Locked16 aria-label='Minted Totems' />
-      </div>
-      <div
-        className='menu-item'
-        style={{
-          ...menuItemStyle,
-          borderLeft: filterIsActive(FILTERS.favorites)
-            ? '2px solid #1062FE'
-            : 'none'
+        <div
+          className='menu-item'
+          style={{
+            ...menuItemStyle,
+            borderLeft: filterIsActive(FILTERS.minted)
+              ? '2px solid #1062FE'
+              : 'none'
+          }}
+          onClick={() => {
+            if (
+              !filterIsActive(FILTERS.minted) &&
+              !filterIsActive(FILTERS.notMinted)
+            ) {
+              setActiveFilters([...activeFilters, FILTERS.minted])
+            } else if (filterIsActive(FILTERS.notMinted)) {
+              let _activeFilters = activeFilters
+              _activeFilters = _activeFilters.filter(
+                e => e !== FILTERS.notMinted
+              )
+              setActiveFilters([..._activeFilters, FILTERS.minted])
+            } else {
+              let _activeFilters = activeFilters
+              _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
+              setActiveFilters([..._activeFilters, FILTERS.notMinted])
+            }
+          }}
+        >
+          <Locked16 aria-label='Minted Totems' />
+        </div>
+      </Link>
+      <Link
+        onClick={() => {
+          setRoute('/all')
         }}
-        onClick={() => toggleFilter(FILTERS.favorites)}
+        to='/all'
       >
-        <FavoriteFilled16
-          aria-label='Favorite Totems'
-          style={{ fill: '#DA1E28' }}
-        />
-      </div>
+        <div
+          className='menu-item'
+          style={{
+            ...menuItemStyle,
+            borderLeft: filterIsActive(FILTERS.favorites)
+              ? '2px solid #1062FE'
+              : 'none'
+          }}
+          onClick={() => toggleFilter(FILTERS.favorites)}
+        >
+          <FavoriteFilled16
+            aria-label='Favorite Totems'
+            style={{ fill: '#DA1E28' }}
+          />
+        </div>
+      </Link>
       <Link
         onClick={() => {
           setRoute('/wallet')

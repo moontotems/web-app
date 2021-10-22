@@ -21,10 +21,6 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
   const isTaken = minted && !ownedByUser
   const isOwnedByUser = ownedByUser
 
-  console.log({ minted })
-  console.log({ isAvailable })
-  console.log({ isOwnedByUser })
-
   return (
     <>
       <div
@@ -52,8 +48,6 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
               {isOwnedByUser && (
                 <img src={OwnedByUserIcon16x16} alt='Owned by User' />
               )}
-              {/*!minted && <img src={NotMintedIcon16x16} alt='Not Minted' />*/}
-              {/*!minted && <AsleepFilled16 style={{ color: '#00FF75' }} />*/}
             </div>
           </Col>
           <Col xs={12}>
