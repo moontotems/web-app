@@ -10,7 +10,7 @@ import {
 import FilterDropdown from '../FilterDropdown'
 
 export default function ActionBarBottom({ ethereumProps, nftAppProps }) {
-  const { setRoute, setShowGrid, shuffleCreatureIndexList } = nftAppProps
+  const { setRoute, setShowGridView, shuffleCreatureIndexList } = nftAppProps
 
   const iconStyle = {
     marginLeft: '15px',
@@ -40,12 +40,12 @@ export default function ActionBarBottom({ ethereumProps, nftAppProps }) {
         <Apps32
           aria-label='Switch to area view'
           style={{ ...iconStyle }}
-          onClick={() => setShowGrid(true)}
+          onClick={() => setShowGridView(true)}
         />
         <List32
           aria-label='Switch to list view'
           style={{ ...iconStyle }}
-          onClick={() => setShowGrid(false)}
+          onClick={() => setShowGridView(false)}
         />
         <Link
           onClick={() => {

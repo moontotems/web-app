@@ -35,7 +35,7 @@ export default function CompactSidebar({
 }) {
   const {
     setRoute,
-    setShowGrid,
+    setShowGridView,
     shuffleCreatureIndexList,
     filter: {
       setActiveFilters,
@@ -83,7 +83,7 @@ export default function CompactSidebar({
       <Link
         onClick={() => {
           setRoute('/all')
-          setShowGrid(true)
+          setShowGridView(true)
         }}
         to='/all'
       >
@@ -98,7 +98,7 @@ export default function CompactSidebar({
       <Link
         onClick={() => {
           setRoute('/all')
-          setShowGrid(false)
+          setShowGridView(false)
         }}
         to='/all'
       >
@@ -131,7 +131,7 @@ export default function CompactSidebar({
       <Link
         onClick={() => {
           setRoute('/all')
-          setShowGrid(false)
+          setShowGridView(false)
         }}
         to='/all'
       >

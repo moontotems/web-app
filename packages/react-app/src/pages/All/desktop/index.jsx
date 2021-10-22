@@ -8,18 +8,18 @@ export default function AllDesktopView({
   nftAppProps,
   creatureList
 }) {
-  const { showGrid } = nftAppProps
+  const { showGridView } = nftAppProps
 
   return (
     <>
-      {showGrid && (
+      {showGridView && (
         <GridView
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
           creatureList={creatureList}
         />
       )}
-      {!showGrid && (
+      {!showGridView && (
         <ListView
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}

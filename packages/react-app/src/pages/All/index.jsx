@@ -12,7 +12,9 @@ export default function All({ ethereumProps, nftAppProps }) {
     shuffleCreatureIndexList,
     filter: { activeFilters, filterIsActive },
     infiniteScroll,
-    isMobile
+    isMobile,
+    showGridView,
+    showListView
   } = nftAppProps
 
   useEffect(() => {
@@ -28,20 +30,37 @@ export default function All({ ethereumProps, nftAppProps }) {
   }, [activeFilters])
 
   let creatureList = []
-  if (!filterIsActive(FILTERS.favorites)) {
-    // shuffle creatures
-    let creaturesTemp = []
-    creatureList = shuffledCreatureIndexList.map((randomIndex, index) => {
-      if (
-        index > infiniteScroll.visibleCreaturesRangeStart &&
-        index < infiniteScroll.visibleCreaturesRangeEnd
-      ) {
+
+  if (showListView) {
+    if (filterIsActive(FILTERS.favorites)) {
+      // dont shuffle favorites
+      creatureList = creatures.filtered
+    } else {
+      // shuffle creatures
+      let creaturesTemp = []
+      creatureList = shuffledCreatureIndexList.map((randomIndex, index) =>
         creaturesTemp.push(creatures.all[randomIndex])
-      }
-    })
-    creatureList = creaturesTemp
-  } else {
-    creatureList = creatures.visible
+      )
+      creatureList = creaturesTemp
+    }
+  } else if (showGridView) {
+    if (filterIsActive(FILTERS.favorites)) {
+      // always load all favorites
+      // and dont shuffle them
+      creatureList = creatures.visible
+    } else {
+      // shuffle creatures
+      let creaturesTemp = []
+      creatureList = shuffledCreatureIndexList.map((randomIndex, index) => {
+        if (
+          index > infiniteScroll.visibleCreaturesRangeStart &&
+          index < infiniteScroll.visibleCreaturesRangeEnd
+        ) {
+          creaturesTemp.push(creatures.all[randomIndex])
+        }
+      })
+      creatureList = creaturesTemp
+    }
   }
 
   return (

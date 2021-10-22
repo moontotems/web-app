@@ -36,7 +36,7 @@ export default function OpenSidebar({
   const {
     showCreatureFeatures,
     setRoute,
-    setShowGrid,
+    setShowGridView,
     shuffleCreatureIndexList,
     filter: {
       activeFilters,
@@ -106,7 +106,7 @@ export default function OpenSidebar({
         <Link
           onClick={() => {
             setRoute('/all')
-            setShowGrid(true)
+            setShowGridView(true)
           }}
           to='/all'
         >
@@ -126,7 +126,7 @@ export default function OpenSidebar({
         <Link
           onClick={() => {
             setRoute('/all')
-            setShowGrid(false)
+            setShowGridView(false)
           }}
           to='/all'
         >
@@ -180,7 +180,7 @@ export default function OpenSidebar({
         <Link
           onClick={() => {
             setRoute('/all')
-            setShowGrid(false)
+            setShowGridView(false)
           }}
           to='/all'
         >
@@ -218,7 +218,7 @@ export default function OpenSidebar({
         <Link
           onClick={() => {
             setRoute('/all')
-            setShowGrid(false)
+            setShowGridView(false)
           }}
           to='/all'
         >
@@ -260,7 +260,7 @@ export default function OpenSidebar({
         <Link
           onClick={() => {
             setRoute('/all')
-            setShowGrid(false)
+            setShowGridView(false)
           }}
           to='/all'
         >

@@ -531,7 +531,7 @@ function App() {
 
   const filterIsActive = filter => activeFilters.includes(filter)
 
-  const [showGrid, setShowGrid] = useState(true)
+  const [showGridView, setShowGridView] = useState(true)
 
   // TODO: reduce number of calls
   const mintEvents = useEventListener(
@@ -737,8 +737,9 @@ function App() {
     mintEvents,
     mintEventsMap,
     mint,
-    showGrid,
-    setShowGrid,
+    showGridView,
+    showListView: !showGridView,
+    setShowGridView,
     filter: {
       setActiveFilters,
       addFilter,
