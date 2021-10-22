@@ -640,15 +640,6 @@ function App() {
   }
   ///
 
-  console.log({
-    allCreatures,
-    filteredCreatures,
-    shuffledCreatureIndexList,
-    visibleCreatures,
-    usersCreatures
-  })
-  console.log({ activeFilters })
-
   const infiniteScroll = {
     visibleCreaturesRangeStart,
     setVisibleCreaturesRangeStart,
