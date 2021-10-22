@@ -51,12 +51,14 @@ export default function Routes({ ethereumProps, nftAppProps }) {
       <Route exact path='/wallet'>
         <Wallet ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
+      {/*
       <Route exact path='/contract-events'>
         <ContractEvents
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </Route>
+      */}
       {/*
       <Route exact path='/contract-interface'>
         <ContractUI
