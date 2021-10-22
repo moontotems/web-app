@@ -212,7 +212,11 @@ export default function SidebarLeft({
               </div>
             </div>
           </a>
-          <a href='https://etherscan.io/' target='_blank' rel='noreferrer'>
+          <a
+            href='https://etherscan.io/address/0x8fe83f6f7f726a2c9e238b7e094c4bf530bc9720'
+            target='_blank'
+            rel='noreferrer'
+          >
             <div
               className='menu-item'
               style={{ ...menuItemStyle, height: '39px' }}
@@ -225,6 +229,7 @@ export default function SidebarLeft({
               </div>
             </div>
           </a>
+          {/*
           <Link
             onClick={() => {
               setRoute('/contract-events')
@@ -263,6 +268,7 @@ export default function SidebarLeft({
               </div>
             </div>
           </Link>
+          */}
         </div>
       </div>
     </div>
