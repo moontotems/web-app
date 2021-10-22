@@ -630,7 +630,7 @@ function App() {
   const visibleCreatures = getVisibleCreatures(filteredCreatures)
 
   ///
-  const creatureIndexList = Array.from(Array(MAX_TOKEN_ID).keys())
+  const creatureIndexList = Array.from(Array(MAX_TOKEN_ID + 1).keys())
   const [shuffledCreatureIndexList, setShuffledCreatureIndexList] = useState(
     _.shuffle(creatureIndexList)
   )
