@@ -1,7 +1,7 @@
 export default [
   {
     index: 0,
-    image: '/home/characteristics/moon_totems_creature.jpeg',
+    image: '/home/characteristics/moon_totems_creature.jpg',
     title: '',
     text: 'Each Moon Totem is a One-of-a-Kind.'
   },
