@@ -36,7 +36,7 @@ export default function Slide0() {
         />
         */}
         <img
-          src={'/home/moontotems_origin_map_full.jpg'}
+          src={'/moontotems_origin_map_full.jpg'}
           style={{ float: 'left', width: '100%' }}
         />
       </div>
