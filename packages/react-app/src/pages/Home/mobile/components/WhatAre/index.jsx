@@ -37,9 +37,15 @@ export default function Section({ ethereumProps, nftAppProps }) {
               width: '100%'
             }}
           >
+            {/*
             <VREPlayer
               playerOptions={playerOptions}
               videojsOptions={videojsOptions}
+            />
+            */}
+            <img
+              src={'/home/MOON_TOTEM_GEN01_BLINKYROTATE.jpg'}
+              style={{ float: 'left', width: '100%' }}
             />
           </div>
         </div>
@@ -82,7 +88,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
               top: 'calc(80vh - 120px)',
               right: 0,
               //float: 'right',
-              height: '200px',
+              minHeight: '200px',
               width: '400px',
               padding: '15px'
             }}

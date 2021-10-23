@@ -1,9 +1,9 @@
 export default [
   {
     index: 0,
-    image: '/home/lunarOrigins/moonSectors/lunar_origin_00001.jpg',
+    image: '',
     title: '',
-    text: 'TalismMoon Totemsoons are beautiful crypto talismans from the moon and discovered on the Ethereum blockchain.'
+    text: 'Moon Totems are beautiful crypto talismans from the moon and discovered on the Ethereum blockchain.'
   },
   {
     index: 1,

@@ -7,7 +7,7 @@ export default function ExploreBox({ sliderRef }) {
       className='explore-box'
       style={{
         float: 'right',
-        height: '200px',
+        minHeight: '200px',
         width: '400px',
         padding: '25px',
         cursor: 'pointer'
@@ -25,6 +25,7 @@ export default function ExploreBox({ sliderRef }) {
           style={{
             position: 'absolut',
             width: '100%',
+            minHeight: '200px',
             fontSize: '30px',
             lineHeight: '45px'
           }}
