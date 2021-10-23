@@ -10,7 +10,7 @@ export default function MoonColumn({
         <Col xs={24}>
           <img src={image} style={{ width: '100%', marginBottom: '20px' }} />
         </Col>
-        <Row style={{ paddingLeft: '20px', borderLeft: '1px solid white' }}>
+        <Row style={{ paddingLeft: '20px', borderLeft: '1px solid #393939' }}>
           <Col xs={24}>
             <div style={{ fontSize: '25px', marginBottom: '5px' }}>{name}</div>
           </Col>
