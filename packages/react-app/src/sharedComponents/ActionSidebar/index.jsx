@@ -19,8 +19,8 @@ export default function ActionSidebar({
     getNumberFromString(route)
   )
 
-  // TODO: turn this back on
-  const showCreatureFeatures = route.includes('moontotem') //&& creatureIsOwnedByUser
+  const showCreatureFeatures =
+    route.includes('moontotem') && creatureIsOwnedByUser
 
   return (
     <>
