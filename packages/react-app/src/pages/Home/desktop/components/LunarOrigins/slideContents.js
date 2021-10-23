@@ -3,7 +3,7 @@ export default [
     index: 0,
     image: '',
     title: '',
-    text: 'Each Totems is born under a particular Lunar Month.'
+    text: 'Each Totem is born under a particular Lunar Month.'
   },
   {
     index: 1,
