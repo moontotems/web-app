@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Button } from 'antd'
 import {
-  AsleepFilled32,
-  Locked32,
-  Favorite32,
-  FavoriteFilled32
+  AsleepFilled20,
+  Locked20,
+  Favorite20,
+  FavoriteFilled20
 } from '@carbon/icons-react'
 // https://www.npmjs.com/package/react-inner-image-zoom
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
@@ -147,6 +146,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     padding: '0 15px'
   }
 
+  const FOOTER_HEIGHT = 40
+
   return (
     <div style={{ backgroundColor: '#000' }}>
       <div
@@ -181,39 +182,85 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         />
         <WriteStory ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </div>
-      <Row>
-        <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
-          <InnerImageZoom
-            zoomPreload={true}
-            src={getImageUrl({ tokenId, size: 2048 })}
-            zoomSrc={getImageUrl({
-              tokenId,
-              size: 2048,
-              withSymbol: isOwnedByUser
-            })}
-            zoomScale={2}
-            //moveType='drag'
-            hideCloseButton={true}
-            hideHint={true}
-          />
-          {/*
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '10vh',
-              left: 0,
-              right: 0,
-              textAlign: 'center'
-            }}
-          >
-            <div style={{ fontSize: 40 }}>
-              {trait_name1} {trait_name2}
-            </div>
+      <div
+        style={{
+          position: 'fixed',
+          top: DESKTOP_HEADER_HEIGHT,
+          left: 0,
+          width: '100%',
+          height: `calc(100vh - ${DESKTOP_HEADER_HEIGHT + FOOTER_HEIGHT}px)`,
+          overflowY: 'hidden'
+        }}
+      >
+        <InnerImageZoom
+          zoomPreload={true}
+          src={getImageUrl({ tokenId, size: 2048 })}
+          zoomSrc={getImageUrl({
+            tokenId,
+            size: 2048,
+            withSymbol: isOwnedByUser
+          })}
+          height={`calc(100vh - ${DESKTOP_HEADER_HEIGHT + FOOTER_HEIGHT}px)`}
+          zoomScale={2}
+          //moveType='drag'
+          hideCloseButton={true}
+          hideHint={true}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 20,
+            left: 0,
+            right: 0,
+            textAlign: 'center'
+          }}
+        >
+          <div style={{ fontSize: '30px', marginBottom: '3px' }}>
+            {isAvailable && (
+              <AsleepFilled20
+                style={{
+                  marginRight: '40px'
+                }}
+              />
+            )}
+            {isTaken && (
+              <Locked20
+                style={{
+                  marginRight: '40px'
+                }}
+              />
+            )}
+            {trait_name1} {trait_name2}
+            {!isFavorite && (
+              <Favorite20
+                role='button'
+                style={{
+                  fill: 'white',
+                  cursor: 'pointer',
+                  marginLeft: '40px'
+                }}
+                onClick={() => updateFavorites(currentVisibleCreature.tokenId)}
+              />
+            )}
+            {isFavorite && (
+              <FavoriteFilled20
+                role='button'
+                style={{
+                  fill: '#DA1E28',
+                  cursor: 'pointer',
+                  marginLeft: '40px'
+                }}
+                onClick={() => updateFavorites(currentVisibleCreature.tokenId)}
+              />
+            )}
           </div>
-          */}
+          <div style={{ fontSize: '15px', fontWeight: 600 }}>
+            {trait_jobField} {trait_jobTitle}
+          </div>
         </div>
-      </Row>
+      </div>
 
+      {/*
       <Row>
         <Col xs={10}>
           <div
@@ -287,11 +334,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           </div>
         </Col>
       </Row>
-      <Row style={{ marginTop: '40px' }}>
-        <Col xs={8} />
-        <Col xs={8}></Col>
-        <Col xs={8} />
-      </Row>
+      */}
     </div>
   )
 }

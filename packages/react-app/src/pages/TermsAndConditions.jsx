@@ -1,8 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col } from 'antd'
 
 export default function TermsAndConditions() {
+  // scroll to top on load
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <Row style={{ padding: '50px' }}>
       <Col>

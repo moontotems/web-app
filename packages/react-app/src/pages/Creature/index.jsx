@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import $ from 'jquery'
 
+import { Footer } from '../../layout'
 import { ActionSidebar } from '../../sharedComponents'
 import CreaturePageDesktop from './desktop'
 import CreaturePageMobile from './mobile'
@@ -63,6 +64,18 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       )}
+
+      <div
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          zIndex: 1000
+        }}
+      >
+        <Footer ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+      </div>
     </>
   )
 }

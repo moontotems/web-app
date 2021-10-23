@@ -13,11 +13,9 @@ import $ from 'jquery'
 
 import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
-
 import { creatureFeatures } from '../../../sharedComponents'
 const { MetaData, Chatbot, FileDownloads, WriteStory, FreshMintMessage } =
   creatureFeatures
-
 import houdini_json_hashmap from '../../../assets/houdini_json_hashmap.json'
 
 export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
@@ -173,6 +171,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
             {...swipeableHandler}
             src={getImageUrl({ tokenId, size: 1024 })}
             width='100%'
+            /*
             onClick={() =>
               setActiveTokenId(
                 getNextTokenId({
@@ -180,8 +179,9 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                 })
               )
             }
+            */
             style={{
-              marginBottom: 80
+              marginBottom: '80px'
             }}
           />
         </Col>
@@ -197,10 +197,12 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         </Col>
         <Col xs={12}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 40 }}>
+            <div style={{ fontSize: '40px' }}>
               {trait_name1} {trait_name2}
             </div>
-            <div style={{ fontSize: 30, fontWeight: 600 }}>
+            <div
+              style={{ marginTop: '15px', fontSize: '30px', fontWeight: 600 }}
+            >
               {trait_jobField} {trait_jobTitle}
             </div>
           </div>

@@ -789,9 +789,11 @@ function App() {
           <Routes ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
         </div>
 
-        <div style={{ float: 'left', width: '100%' }}>
-          <Footer ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
-        </div>
+        {!route.includes('moontotem') && (
+          <div style={{ float: 'left', width: '100%', zIndex: 1000 }}>
+            <Footer ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+          </div>
+        )}
       </BrowserRouter>
     </div>
   )
