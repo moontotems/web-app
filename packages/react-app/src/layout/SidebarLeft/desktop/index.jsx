@@ -116,9 +116,9 @@ export default function SidebarLeft({
           </div>
           <Link
             onClick={() => {
-              setRoute('/lunar-map')
+              setRoute('/lunar-origins')
             }}
-            to={'/lunar-map'}
+            to={'/lunar-origins'}
           >
             <div className='menu-item' style={{ ...menuItemStyle }}>
               <div style={{ ...menuItemContentStyle.text }}>Lunar Origins</div>

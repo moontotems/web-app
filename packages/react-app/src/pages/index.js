@@ -1,5 +1,5 @@
 export { default as Home } from './Home/'
-export { default as LunarMap } from './LunarMap/'
+export { default as LunarOrigins } from './LunarOrigins/'
 export { default as LunarCalendar } from './LunarCalendar/'
 export { default as Attributes } from './Attributes/'
 export { default as All } from './All/'

@@ -129,9 +129,9 @@ export default function Columns({ ethereumProps, nftAppProps }) {
           <div>
             <Link
               onClick={() => {
-                setRoute('/lunar-map')
+                setRoute('/lunar-origins')
               }}
-              to='/lunar-map'
+              to='/lunar-origins'
               style={{
                 bottom: 0,
                 right: 0,

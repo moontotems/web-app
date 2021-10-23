@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Row, Col } from 'antd'
 import { MoonColumn } from './components'
 
-export default function LunarMap({ ethereumProps, nftAppProps }) {
+export default function LunarOrigins({ ethereumProps, nftAppProps }) {
   // scroll to top on load
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -14,19 +14,19 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         <Col xs={2} md={5} />
         <Col xs={24} md={19}>
           <img
-            src='/lunarMap/talismoon_origin_map_full.jpg'
+            src='/moontotems_origin_map_full.jpg'
             style={{ float: 'right', width: '100%', marginBottom: '80px' }}
           />
         </Col>
       </Row>
       <Row gutter={[8, 24]}>
         <Col xs={24} md={5}>
-          <div style={{ padding: '20px', fontSize: '20px' }}>Features</div>
+          <div style={{ padding: '20px', fontSize: '20px' }}>Lunar Origins</div>
         </Col>
         <MoonColumn
           moon={{
-            image: '/lunarMap/sea_of_rains.jpeg',
-            symbol: '/lunarMap/bay_of_success.svg',
+            image: '/lunarOrigins/sea_of_rains.jpeg',
+            symbol: '/lunarOrigins/bay_of_success.svg',
             name: 'Sea of Rains',
             nameLatin: 'Mare Imbrium',
             description: 'Stimulating'
@@ -34,8 +34,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/sea_of_fertility.jpeg',
-            symbol: '/lunarMap/sea_of_fertility.svg',
+            image: '/lunarOrigins/sea_of_fertility.jpeg',
+            symbol: '/lunarOrigins/sea_of_fertility.svg',
             name: 'Sea of Fertility',
             nameLatin: 'Mare Fecunditatis',
             description: 'Creative & productive'
@@ -43,8 +43,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/sea_of_tranquility.jpeg',
-            symbol: '/lunarMap/sea_of_tranquility.svg',
+            image: '/lunarOrigins/sea_of_tranquility.jpeg',
+            symbol: '/lunarOrigins/sea_of_tranquility.svg',
             name: 'Sea of Tranquility',
             nameLatin: 'Mare Tranquillitatis',
             description: 'Calm'
@@ -57,8 +57,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         <Col xs={24} md={5}></Col>
         <MoonColumn
           moon={{
-            image: '/lunarMap/sea_of_clouds.jpeg',
-            symbol: '/lunarMap/sea_of_clouds.svg',
+            image: '/lunarOrigins/sea_of_clouds.jpeg',
+            symbol: '/lunarOrigins/sea_of_clouds.svg',
             name: 'Sea of Clouds',
             nameLatin: 'Mare Nubium',
             description: 'Voluptuous, Soft'
@@ -66,8 +66,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/sea_of_islands.jpeg',
-            symbol: '/lunarMap/sea_of_islands.svg',
+            image: '/lunarOrigins/sea_of_islands.jpeg',
+            symbol: '/lunarOrigins/sea_of_islands.svg',
             name: 'Sea of Islands',
             nameLatin: 'Mare Insularum',
             description: 'Independent'
@@ -75,8 +75,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/lake_of_dreams.jpeg',
-            symbol: '/lunarMap/lake_of_dreams.svg',
+            image: '/lunarOrigins/lake_of_dreams.jpeg',
+            symbol: '/lunarOrigins/lake_of_dreams.svg',
             name: 'Lake of Dreams',
             nameLatin: 'Lacus Somniorum',
             description: 'Imaginative, Visionary'
@@ -89,8 +89,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         <Col xs={24} md={5}></Col>
         <MoonColumn
           moon={{
-            image: '/lunarMap/bay_of_rainbows.jpeg',
-            symbol: '/lunarMap/bay_of_rainbows.svg',
+            image: '/lunarOrigins/bay_of_rainbows.jpeg',
+            symbol: '/lunarOrigins/bay_of_rainbows.svg',
             name: 'Bay of Rainbows',
             nameLatin: 'Sinus Iridum',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -99,8 +99,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/peninsula_of_thunder.jpeg',
-            symbol: '/lunarMap/peninsula_of_thunder.svg',
+            image: '/lunarOrigins/peninsula_of_thunder.jpeg',
+            symbol: '/lunarOrigins/peninsula_of_thunder.svg',
             name: 'Peninsula of Thunder',
             nameLatin: 'Peninsula Fulminum',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -109,8 +109,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/bay_of_harmony.jpeg',
-            symbol: '/lunarMap/bay_of_harmony.svg',
+            image: '/lunarOrigins/bay_of_harmony.jpeg',
+            symbol: '/lunarOrigins/bay_of_harmony.svg',
             name: 'Bay of Harmony',
             nameLatin: 'Sinus Concordiae',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -124,8 +124,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         <Col xs={24} md={5}></Col>
         <MoonColumn
           moon={{
-            image: '/lunarMap/bay_of_success.jpeg',
-            symbol: '/lunarMap/bay_of_success.svg',
+            image: '/lunarOrigins/bay_of_success.jpeg',
+            symbol: '/lunarOrigins/bay_of_success.svg',
             name: 'Bay of Success',
             nameLatin: 'Sinus Successus',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -134,8 +134,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/bay_of_love.jpeg',
-            symbol: '/lunarMap/bay_of_love.svg',
+            image: '/lunarOrigins/bay_of_love.jpeg',
+            symbol: '/lunarOrigins/bay_of_love.svg',
             name: 'Bay of Love',
             nameLatin: 'Sinus Amoris',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -144,8 +144,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/lake_of_time.jpeg',
-            symbol: '/lunarMap/lake_of_time.svg',
+            image: '/lunarOrigins/lake_of_time.jpeg',
+            symbol: '/lunarOrigins/lake_of_time.svg',
             name: 'Lake of Time',
             nameLatin: 'Lacus Temporis',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -159,8 +159,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         <Col xs={24} md={5}></Col>
         <MoonColumn
           moon={{
-            image: '/lunarMap/lake_of_happiness.jpeg',
-            symbol: '/lunarMap/lake_of_happiness.svg',
+            image: '/lunarOrigins/lake_of_happiness.jpeg',
+            symbol: '/lunarOrigins/lake_of_happiness.svg',
             name: 'Lake of Happiness',
             nameLatin: 'Lacus Felicitatis',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -169,8 +169,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/lake_of_hope.jpeg',
-            symbol: '/lunarMap/lake_of_hope.svg',
+            image: '/lunarOrigins/lake_of_hope.jpeg',
+            symbol: '/lunarOrigins/lake_of_hope.svg',
             name: 'Lake of Hope',
             nameLatin: 'Lacus Spei',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -179,8 +179,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/lake_of_softness.jpeg',
-            symbol: '/lunarMap/lake_of_softness.svg',
+            image: '/lunarOrigins/lake_of_softness.jpeg',
+            symbol: '/lunarOrigins/lake_of_softness.svg',
             name: 'Lake of Softness',
             nameLatin: 'Lacus Lenitatis',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -194,8 +194,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         <Col xs={24} md={5}></Col>
         <MoonColumn
           moon={{
-            image: '/lunarMap/lake_of_perserverance.jpeg',
-            symbol: '/lunarMap/lake_of_perserverance.svg',
+            image: '/lunarOrigins/lake_of_perserverance.jpeg',
+            symbol: '/lunarOrigins/lake_of_perserverance.svg',
             name: 'Lake of Perseverance',
             nameLatin: 'Lacus Perseverantiae',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -204,8 +204,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/lake_of_forgetfulness.jpeg',
-            symbol: '/lunarMap/lake_of_forgetfulness.svg',
+            image: '/lunarOrigins/lake_of_forgetfulness.jpeg',
+            symbol: '/lunarOrigins/lake_of_forgetfulness.svg',
             name: 'Lake of Forgetfulness',
             nameLatin: 'Lacus Oblivionis',
             description: `Surrounded by three concentric rings of mountains, uplifted by the
@@ -214,8 +214,8 @@ export default function LunarMap({ ethereumProps, nftAppProps }) {
         />
         <MoonColumn
           moon={{
-            image: '/lunarMap/lake_of_luxury.jpeg',
-            symbol: '/lunarMap/lake_of_luxury.svg',
+            image: '/lunarOrigins/lake_of_luxury.jpeg',
+            symbol: '/lunarOrigins/lake_of_luxury.svg',
             name: 'Lake of Luxury',
             nameLatin: 'Lacus Luxuriae',
             description: `Surrounded by three concentric rings of mountains, uplifted by the

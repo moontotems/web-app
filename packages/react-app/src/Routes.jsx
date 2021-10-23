@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import {
   Home,
-  LunarMap,
+  LunarOrigins,
   LunarCalendar,
   Attributes,
   All,
@@ -24,8 +24,8 @@ export default function Routes({ ethereumProps, nftAppProps }) {
       <Route exact path='/'>
         <Home ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
-      <Route exact path='/lunar-map'>
-        <LunarMap ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+      <Route exact path='/lunar-origins'>
+        <LunarOrigins ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
       <Route exact path='/lunar-calendar'>
         <LunarCalendar
