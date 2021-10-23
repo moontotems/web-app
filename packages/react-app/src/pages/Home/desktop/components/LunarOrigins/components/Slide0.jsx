@@ -6,7 +6,7 @@ import 'video.js/dist/video-js.css'
 
 export default function Slide0() {
   const playerOptions = {
-    src: 'https://moontotems.blob.core.windows.net/website-assets/videos/MoonTotems_MOONTURN_2K_VIMEO.mp4',
+    src: 'https://moontotems.blob.core.windows.net/website-assets/videos/MoonTotems_MOONTURN_LUNARORIGIN_2K.VIMEO.mp4',
     preload: 'auto',
     controls: false,
     playsinline: true,
