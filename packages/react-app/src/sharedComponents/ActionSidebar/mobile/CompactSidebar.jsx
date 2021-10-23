@@ -235,7 +235,7 @@ export default function CompactSidebar({
             paddingBottom: '9px',
             borderBottom: 'none'
           }}
-          onClick={() => setActiveFilters([FILTERS.myTalismoons])}
+          onClick={() => setActiveFilters([FILTERS.myMoonTotems])}
         >
           <img src={OwnedByUserIcon32x32} alt='My Totems' />
         </div>

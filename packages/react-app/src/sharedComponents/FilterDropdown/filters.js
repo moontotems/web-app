@@ -2,7 +2,7 @@ const filters = {
   minted: 'minted',
   notMinted: 'notMinted',
   favorites: 'favorites',
-  myTalismoons: 'myTalismoons'
+  myMoonTotems: 'myMoonTotems'
 }
 
 export default filters

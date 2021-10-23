@@ -304,7 +304,7 @@ export default function OpenSidebar({
           >
             <div
               style={{ ...menuItemContentStyle.text }}
-              onClick={() => setActiveFilters([FILTERS.myTalismoons])}
+              onClick={() => setActiveFilters([FILTERS.myMoonTotems])}
             >
               My Totems
             </div>

@@ -98,9 +98,9 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
       <Menu.Item
         style={{
           ...menuItemStyle,
-          borderColor: getMenuColorSelect(FILTERS.myTalismoons)
+          borderColor: getMenuColorSelect(FILTERS.myMoonTotems)
         }}
-        onClick={() => setActiveFilters([FILTERS.myTalismoons])}
+        onClick={() => setActiveFilters([FILTERS.myMoonTotems])}
       >
         <div style={{ ...menuTextStyle }}>Show My Totems</div>
         <img
