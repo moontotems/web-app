@@ -6,7 +6,7 @@ import 'video.js/dist/video-js.css'
 
 export default function Slide0() {
   const playerOptions = {
-    src: 'https://talismoonstest.blob.core.windows.net/creatures/TALISMOON_OUTLINE_LOOP_VIMEO.mp4',
+    src: 'https://moontotems.blob.core.windows.net/website-assets/videos/MoonTotems_OUTLINE_LOOP_VIMEO.mp4',
     preload: 'auto',
     controls: false,
     playsinline: true,
