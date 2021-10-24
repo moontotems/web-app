@@ -5,6 +5,7 @@ import { ArrowRight32 } from '@carbon/icons-react'
 import videojs from 'video.js'
 import VREPlayer from 'videojs-react-enhanced'
 import 'video.js/dist/video-js.css'
+import ExploreBox from './ExploreBox'
 
 export default function Section({ ethereumProps, nftAppProps }) {
   const { route, setRoute } = nftAppProps
@@ -71,39 +72,8 @@ export default function Section({ ethereumProps, nftAppProps }) {
           Moon Totems are digital talismans from the moon and discovered on the
           Ethereum blockchain.
         </div>
-        <div
-          style={{
-            float: 'right',
-            marginTop: '45px'
-          }}
-        >
-          <Link
-            className='explore-box'
-            onClick={() => {
-              setRoute('/all')
-            }}
-            to='/all'
-            style={{
-              position: 'absolute',
-              top: 'calc(80vh - 120px)',
-              right: 0,
-              //float: 'right',
-              minHeight: '200px',
-              width: '400px',
-              padding: '15px'
-            }}
-          >
-            <div style={{ fontSize: '30px' }}>Get your MOON TOTEM</div>
-            <ArrowRight32
-              style={{
-                position: 'absolute',
-                bottom: 25,
-                right: 55,
-                color: '#00FF74'
-              }}
-            />
-          </Link>
-        </div>
+
+        <ExploreBox nftAppProps={nftAppProps} />
       </div>
     </>
   )

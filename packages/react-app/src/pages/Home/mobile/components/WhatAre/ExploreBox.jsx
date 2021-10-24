@@ -1,18 +1,25 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import { ArrowRight32 } from '@carbon/icons-react'
 
-export default function ExploreBox({ sliderRef }) {
+export default function ExploreBox({ nftAppProps }) {
+  const { route, setRoute } = nftAppProps
+
   return (
-    <div
+    <Link
       className='explore-box'
+      onClick={() => {
+        setRoute('/all')
+      }}
+      to='/all'
       style={{
         float: 'right',
         minHeight: '200px',
         width: '400px',
-        padding: '25px',
-        cursor: 'pointer'
+        padding: '15px',
+        marginTop: '60px'
       }}
-      onClick={() => sliderRef.slickNext()}
     >
       <div
         style={{
@@ -29,7 +36,7 @@ export default function ExploreBox({ sliderRef }) {
             lineHeight: '45px'
           }}
         >
-          Explore the characteristics of the Lunar Phases
+          Get your MOON TOTEM
         </div>
         <div
           style={{
@@ -41,6 +48,6 @@ export default function ExploreBox({ sliderRef }) {
           <ArrowRight32 style={{ color: '#00FF74' }} />
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

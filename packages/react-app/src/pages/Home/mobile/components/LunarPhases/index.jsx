@@ -29,11 +29,10 @@ export default function Section({ ethereumProps, nftAppProps }) {
       <div
         style={{
           float: 'left',
-          height: '40vh',
           width: '100%',
           fontSize: '50px',
           fontWeight: 300,
-          marginTop: '25px'
+          lineHeight: '60px'
         }}
       >
         {currentSlideIndex !== 0 && (
