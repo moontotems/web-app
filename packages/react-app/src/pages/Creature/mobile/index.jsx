@@ -123,7 +123,8 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     fontSize: '19px',
     padding: '0px 15px',
     borderRadius: '15px',
-    marginBottom: '0px'
+    marginBottom: '0px',
+    background: 'none'
   }
 
   return (

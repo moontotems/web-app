@@ -151,7 +151,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     fontSize: '12px',
     padding: '0 15px',
     borderRadius: '15px',
-    marginBottom: '12px'
+    marginBottom: '12px',
+    background: 'none'
   }
 
   return (
