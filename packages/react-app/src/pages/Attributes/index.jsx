@@ -62,7 +62,7 @@ export default function AttributesPage({ ethereumProps, nftAppProps }) {
               }}
             >
               <img
-                src='/attributes/talismonns_attributes_eyes.jpg'
+                src='/attributes/moon_totems_attributes_eyes.jpg'
                 style={{ width: '100%' }}
               />
               <div style={{ ...cardStyles.title }}>Eyes</div>
@@ -92,9 +92,7 @@ export default function AttributesPage({ ethereumProps, nftAppProps }) {
               />
               <div style={{ ...cardStyles.title }}>Complexity</div>
               <div style={{ ...cardStyles.content }}>
-                Eyes are the window to the soul. Moon Totems eyes have different
-                shapes. In rare cases Moon Totems can have asymmetrical or even
-                multicolor eyes.
+                Each Moon Totem is a One-of-a-Kind.
               </div>
             </div>
           </div>
@@ -112,14 +110,12 @@ export default function AttributesPage({ ethereumProps, nftAppProps }) {
               }}
             >
               <img
-                src='/attributes/moon_totems_attributes_materiality.jpg'
+                src='/attributes/moon_totems_attributes_child_moons.jpeg'
                 style={{ width: '100%' }}
               />
-              <div style={{ ...cardStyles.title }}>Materiality</div>
+              <div style={{ ...cardStyles.title }}>Child Moon</div>
               <div style={{ ...cardStyles.content }}>
-                Eyes are the window to the soul. Moon Totems eyes have different
-                shapes. In rare cases Moon Totems can have asymmetrical or even
-                multicolor eyes.
+                Each Totem has a small child Totem.
               </div>
             </div>
           </div>
@@ -137,14 +133,13 @@ export default function AttributesPage({ ethereumProps, nftAppProps }) {
               }}
             >
               <img
-                src='/attributes/talismonns_attributes_child_moons.jpg'
+                src='/attributes/moon_totems_attributes_materiality.jpg'
                 style={{ width: '100%' }}
               />
-              <div style={{ ...cardStyles.title }}>Child Moon</div>
+              <div style={{ ...cardStyles.title }}>Texture </div>
               <div style={{ ...cardStyles.content }}>
-                Eyes are the window to the soul. Moon Totems eyes have different
-                shapes. In rare cases Moon Totems can have asymmetrical or even
-                multicolor eyes.
+                Totems have different textures. Some are smooth, some have
+                embossed or perforated patterns.
               </div>
             </div>
           </div>
