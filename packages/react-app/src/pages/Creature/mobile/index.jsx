@@ -116,6 +116,16 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     //onTap: ({ event }) =>
   })
 
+  const buttonStyle = {
+    height: '44px',
+    minWidth: '150px',
+    lineHeight: '44px',
+    fontSize: '19px',
+    padding: '0px 15px',
+    borderRadius: 0,
+    marginBottom: '0px'
+  }
+
   return (
     <div style={{ backgroundColor: '#000' }}>
       <div
@@ -232,11 +242,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                   type='primary'
                   size='small'
                   style={{
-                    height: 34,
-                    lineHeight: '34px',
-                    fontSize: 16,
-                    padding: '0 15px',
-                    borderRadius: 0,
+                    ...buttonStyle,
                     backgroundColor: '#1062FE',
                     borderColor: '#1062FE'
                   }}
@@ -250,13 +256,9 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                 type='primary'
                 size='small'
                 style={{
-                  height: 34,
-                  lineHeight: '34px',
-                  fontSize: 16,
-                  padding: '0 15px',
-                  borderRadius: 0,
-                  backgroundColor: '#24A148',
-                  borderColor: '#24A148'
+                  ...buttonStyle,
+                  backgroundColor: '#08bdba',
+                  borderColor: '#08bdba'
                 }}
                 onClick={() => mint(currentVisibleCreature.tokenId)}
               >

@@ -5,6 +5,7 @@ import {
   Favorite20,
   FavoriteFilled20
 } from '@carbon/icons-react'
+import { Button } from 'antd'
 // https://www.npmjs.com/package/react-inner-image-zoom
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 import InnerImageZoom from 'react-inner-image-zoom'
@@ -28,7 +29,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     filter: { activeFilters },
     mintEventsMap,
     mint,
-    favorites
+    favorites,
+    isMobile
   } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
@@ -89,7 +91,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     updateUrl(creatures.filtered[visibleCreatureListIndex].tokenId)
   }, [visibleCreatureListIndex])
 
-  // pre-load 10 images to the left and to the right
+  // pre-load images to the left and to the right
   useEffect(() => {
     const preloadSize = 10 // in each direction
 
@@ -142,8 +144,18 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
 
   const FOOTER_HEIGHT = 40
 
+  const buttonStyle = {
+    height: '26px',
+    minWidth: '113px',
+    lineHeight: '25px',
+    fontSize: '12px',
+    padding: '0 15px',
+    borderRadius: 0,
+    marginBottom: '15px'
+  }
+
   return (
-    <div style={{ backgroundColor: '#000' }}>
+    <div>
       <div
         style={{
           position: 'fixed',
@@ -176,6 +188,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         />
         <WriteStory ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </div>
+
       <div
         style={{
           position: 'fixed',
@@ -203,7 +216,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         <div
           style={{
             position: 'absolute',
-            bottom: 20,
+            //bottom: 20,
+            bottom: 0,
             left: 0,
             right: 0,
             textAlign: 'center'
@@ -250,6 +264,37 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           </div>
           <div style={{ fontSize: '15px', fontWeight: 600 }}>
             {trait_jobField} {trait_jobTitle}
+          </div>
+          <div style={{ fontSize: '15px', marginTop: '20px' }}>
+            {isTaken && (
+              <a
+                href={`https://opensea.io/moontotems${tokenId}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <Button
+                  style={{
+                    ...buttonStyle,
+                    backgroundColor: '#1062FE',
+                    borderColor: '#1062FE'
+                  }}
+                >
+                  View on Opensea
+                </Button>
+              </a>
+            )}
+            {address && isAvailable && (
+              <Button
+                style={{
+                  ...buttonStyle,
+                  backgroundColor: '#08bdba',
+                  borderColor: '#08bdba'
+                }}
+                onClick={() => mint(currentVisibleCreature.tokenId)}
+              >
+                Summon this Totem (0.1 Ξ)
+              </Button>
+            )}
           </div>
         </div>
       </div>
