@@ -140,12 +140,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     }
   }, [visibleCreatureListIndex])
 
-  const buttonStyle = {
-    height: '34px',
-    fontSize: '16px',
-    padding: '0 15px'
-  }
-
   const FOOTER_HEIGHT = 40
 
   return (

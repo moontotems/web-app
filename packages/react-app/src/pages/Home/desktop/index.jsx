@@ -42,13 +42,13 @@ export default function HomePageDesktip({ ethereumProps, nftAppProps }) {
         />
       </div>
       <div style={{ ...containerStyle, height: 'auto' }}>
-        <LunarMonthsSection
+        <LunarPhasesSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
       <div style={{ ...containerStyle, height: 'auto' }}>
-        <LunarPhasesSection
+        <LunarMonthsSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
