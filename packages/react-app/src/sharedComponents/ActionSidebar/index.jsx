@@ -8,16 +8,15 @@ export default function ActionSidebar({
   nftAppProps,
   creatureList
 }) {
-  const { isMobile, creatures, route, checkIfCreatureIsOwnedByUser } =
-    nftAppProps
+  const { isMobile, creatures, usersCreaturesTokenIds, route } = nftAppProps
 
   const getNumberFromString = str => {
     return str.replace(/[^0-9]/g, '')
   }
 
-  const creatureIsOwnedByUser = checkIfCreatureIsOwnedByUser(
-    getNumberFromString(route)
-  )
+  const currentCreatureToken = parseInt(getNumberFromString(route))
+  const creatureIsOwnedByUser =
+    usersCreaturesTokenIds.includes(currentCreatureToken)
 
   const showCreatureFeatures =
     route.includes('moontotem') && creatureIsOwnedByUser

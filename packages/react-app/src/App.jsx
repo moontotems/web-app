@@ -425,48 +425,52 @@ function App() {
 
   ///
   const [usersCreatures, setUsersCreatures] = useState([])
+  const [usersCreaturesTokenIds, setUsersCreaturesTokenIds] = useState([])
   const [balanceOfUser, setBalanceOfUser] = useState(0)
 
   useEffect(() => {
     const getUsersCreatures = async () => {
       try {
-        let balanceOf = await readContracts.MoonTotems.balanceOf(address)
-        console.log({ address })
-        balanceOf = parseInt(balanceOf.toString()) || 0
-        console.log({ balanceOf })
-        setBalanceOfUser(balanceOf)
+        if (readContracts) {
+          let balanceOf = await readContracts.MoonTotems.balanceOf(address)
+          console.log({ address })
+          balanceOf = parseInt(balanceOf.toString()) || 0
+          console.log({ balanceOf })
+          setBalanceOfUser(balanceOf)
 
-        const usersCreaturesUpdate = []
-        for (let tokenIndex = 0; tokenIndex < balanceOf; tokenIndex++) {
-          console.log('now calling infura: tokenOfOwnerByIndex')
-          let tokenId = await readContracts.MoonTotems.tokenOfOwnerByIndex(
-            address,
-            tokenIndex
-          )
-          tokenId = parseInt(tokenId.toString())
-          console.log({ tokenId })
-          /*
+          const usersCreaturesUpdate = []
+          const usersCreaturesTokenIds = []
+          for (let tokenIndex = 0; tokenIndex < balanceOf; tokenIndex++) {
+            let tokenId = await readContracts.MoonTotems.tokenOfOwnerByIndex(
+              address,
+              tokenIndex
+            )
+            tokenId = parseInt(tokenId.toString())
+            /*
           const tokenURI =
             await readContracts.MoonTotems.tokenURI(tokenId)
           console.log('tokenURI', tokenURI)
           */
 
-          //const ipfsHash = tokenURI.replace('https://ipfs.io/ipfs/', '')
-          //console.log('ipfsHash', ipfsHash)
+            //const ipfsHash = tokenURI.replace('https://ipfs.io/ipfs/', '')
+            //console.log('ipfsHash', ipfsHash)
 
-          //const jsonManifestBuffer = await getFromIPFS(ipfsHash)
+            //const jsonManifestBuffer = await getFromIPFS(ipfsHash)
 
-          //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
-          //console.log('jsonManifest', jsonManifest)
-          const creature = assembleCreature(tokenId)
-          usersCreaturesUpdate.push({
-            ...creature,
-            ownedByUser: true,
-            minted: true
-          })
+            //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
+            //console.log('jsonManifest', jsonManifest)
+            const creature = assembleCreature(tokenId)
+            usersCreaturesUpdate.push({
+              ...creature,
+              ownedByUser: true,
+              minted: true
+            })
+            usersCreaturesTokenIds.push(tokenId)
+          }
+
+          setUsersCreatures(usersCreaturesUpdate)
+          setUsersCreaturesTokenIds(usersCreaturesTokenIds)
         }
-
-        setUsersCreatures(usersCreaturesUpdate)
       } catch (e) {
         console.error(e)
       }
@@ -476,10 +480,6 @@ function App() {
       getUsersCreatures()
     }
   }, [address])
-
-  const usersCreaturesTokenIds = usersCreatures.map(
-    creature => creature.tokenId
-  )
 
   const checkIfCreatureIsOwnedByUser = _tokenId =>
     usersCreaturesTokenIds.includes(parseInt(_tokenId))
@@ -729,6 +729,7 @@ function App() {
     },
     shuffledCreatureIndexList,
     shuffleCreatureIndexList,
+    usersCreaturesTokenIds,
     assembleCreature,
     checkIfCreatureIsOwnedByUser,
     updateFavorites,
