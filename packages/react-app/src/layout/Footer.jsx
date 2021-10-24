@@ -55,7 +55,7 @@ export default function Footer({ ethereumProps, nftAppProps }) {
       id='footer'
       style={{
         float: 'left',
-        height: isMobile ? '100px' : '40px',
+        height: isMobile ? '50px' : '40px',
         width: '100%',
         padding: '15px',
         paddingRight: '65px',
