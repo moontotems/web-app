@@ -150,7 +150,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     lineHeight: '25px',
     fontSize: '12px',
     padding: '0 15px',
-    borderRadius: 0,
+    borderRadius: '15px',
     marginBottom: '15px'
   }
 
@@ -286,9 +286,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             {address && isAvailable && (
               <Button
                 style={{
-                  ...buttonStyle,
-                  backgroundColor: '#08bdba',
-                  borderColor: '#08bdba'
+                  ...buttonStyle
                 }}
                 onClick={() => mint(currentVisibleCreature.tokenId)}
               >

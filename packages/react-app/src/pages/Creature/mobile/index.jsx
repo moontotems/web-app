@@ -122,7 +122,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     lineHeight: '44px',
     fontSize: '19px',
     padding: '0px 15px',
-    borderRadius: 0,
+    borderRadius: '15px',
     marginBottom: '0px'
   }
 
@@ -256,9 +256,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                 type='primary'
                 size='small'
                 style={{
-                  ...buttonStyle,
-                  backgroundColor: '#08bdba',
-                  borderColor: '#08bdba'
+                  ...buttonStyle
                 }}
                 onClick={() => mint(currentVisibleCreature.tokenId)}
               >
