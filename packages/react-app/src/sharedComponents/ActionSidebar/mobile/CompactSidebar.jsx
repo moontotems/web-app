@@ -259,15 +259,21 @@ export default function CompactSidebar({
           <Shuffle32 />
         </div>
       </Link>
-
+      <div
+        className='menu-item square-title'
+        style={{ ...menuItemStyle, borderTop: '1px solid #6F6F6F' }}
+      >
+        <ColorPalette32 aria-label='Color' />
+      </div>
+      <div
+        className='menu-item'
+        style={{ ...menuItemStyle }}
+        onClick={() => toggleVisibilityMetaData()}
+      >
+        <Information32 aria-label='Meta Data' />
+      </div>
       {showCreatureFeatures && (
         <>
-          <div
-            className='menu-item square-title'
-            style={{ ...menuItemStyle, borderTop: '1px solid #6F6F6F' }}
-          >
-            <ColorPalette32 aria-label='Color' />
-          </div>
           <div
             className='menu-item'
             style={{ ...menuItemStyle }}
@@ -291,13 +297,6 @@ export default function CompactSidebar({
             onClick={() => toggleVisibilityDownload()}
           >
             <Download32 aria-label='Download' />
-          </div>
-          <div
-            className='menu-item'
-            style={{ ...menuItemStyle }}
-            onClick={() => toggleVisibilityMetaData()}
-          >
-            <Information32 aria-label='Meta Data' />
           </div>
           <div className='menu-item' style={{ ...menuItemStyle }}>
             <Launch32 aria-label='TODO' />

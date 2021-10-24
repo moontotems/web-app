@@ -339,15 +339,24 @@ export default function OpenSidebar({
             </div>
           </div>
         </Link>
-
+        <div className='menu-item title' style={{ ...menuItemStyle }}>
+          <div style={{ ...menuItemContentStyle.text }}>Tools</div>
+          <div style={{ ...menuItemContentStyle.icon }}>
+            <ColorPalette32 aria-label='Color' />
+          </div>
+        </div>
+        <div
+          className='menu-item'
+          style={{ ...menuItemStyle }}
+          onClick={() => toggleVisibilityMetaData()}
+        >
+          <div style={{ ...menuItemContentStyle.text }}>Show all Metadata</div>
+          <div style={{ ...menuItemContentStyle.icon }}>
+            <Information32 aria-label='Meta Data' />
+          </div>
+        </div>
         {showCreatureFeatures && (
           <>
-            <div className='menu-item title' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>Tools</div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <ColorPalette32 aria-label='Color' />
-              </div>
-            </div>
             <div
               className='menu-item'
               style={{ ...menuItemStyle }}
@@ -390,18 +399,7 @@ export default function OpenSidebar({
                 <Download32 aria-label='Download' />
               </div>
             </div>
-            <div
-              className='menu-item'
-              style={{ ...menuItemStyle }}
-              onClick={() => toggleVisibilityMetaData()}
-            >
-              <div style={{ ...menuItemContentStyle.text }}>
-                Show all Metadata
-              </div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <Information32 aria-label='Meta Data' />
-              </div>
-            </div>
+
             <div className='menu-item' style={{ ...menuItemStyle }}>
               <div style={{ ...menuItemContentStyle.text }}>
                 Explore on OpenSea

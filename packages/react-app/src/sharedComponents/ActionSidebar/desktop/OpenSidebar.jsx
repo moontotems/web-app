@@ -339,15 +339,24 @@ export default function OpenSidebar({
             </div>
           </div>
         </Link>
-
+        <div className='menu-item title' style={{ ...menuItemStyle }}>
+          <div style={{ ...menuItemContentStyle.text }}>Tools</div>
+          <div style={{ ...menuItemContentStyle.icon }}>
+            <ColorPalette16 aria-label='Color' />
+          </div>
+        </div>
+        <div
+          className='menu-item'
+          style={{ ...menuItemStyle }}
+          onClick={() => toggleVisibilityMetaData()}
+        >
+          <div style={{ ...menuItemContentStyle.text }}>Show all Metadata</div>
+          <div style={{ ...menuItemContentStyle.icon }}>
+            <Information16 aria-label='Meta Data' />
+          </div>
+        </div>
         {showCreatureFeatures && (
           <>
-            <div className='menu-item title' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>Tools</div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <ColorPalette16 aria-label='Color' />
-              </div>
-            </div>
             <div
               className='menu-item'
               style={{ ...menuItemStyle }}
@@ -388,18 +397,6 @@ export default function OpenSidebar({
               <div style={{ ...menuItemContentStyle.text }}>Download Files</div>
               <div style={{ ...menuItemContentStyle.icon }}>
                 <Download16 aria-label='Download' />
-              </div>
-            </div>
-            <div
-              className='menu-item'
-              style={{ ...menuItemStyle }}
-              onClick={() => toggleVisibilityMetaData()}
-            >
-              <div style={{ ...menuItemContentStyle.text }}>
-                Show all Metadata
-              </div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <Information16 aria-label='Meta Data' />
               </div>
             </div>
             <div className='menu-item' style={{ ...menuItemStyle }}>
