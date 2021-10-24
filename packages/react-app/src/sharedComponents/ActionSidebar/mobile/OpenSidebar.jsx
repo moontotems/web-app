@@ -400,14 +400,20 @@ export default function OpenSidebar({
               </div>
             </div>
 
-            <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>
-                Explore on OpenSea
+            <a
+              href='https://opensea.io/collection/moontotems'
+              target='_blank'
+              rel='noreferrer'
+            >
+              <div className='menu-item' style={{ ...menuItemStyle }}>
+                <div style={{ ...menuItemContentStyle.text }}>
+                  Explore on OpenSea
+                </div>
+                <div style={{ ...menuItemContentStyle.icon }}>
+                  <Launch32 aria-label='Explore on OpenSea' />
+                </div>
               </div>
-              <div style={{ ...menuItemContentStyle.icon }}>
-                <Launch32 aria-label='Explore on OpenSea' />
-              </div>
-            </div>
+            </a>
           </>
         )}
       </div>

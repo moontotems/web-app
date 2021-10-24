@@ -199,7 +199,11 @@ export default function SidebarLeft({
             <div style={{ ...menuItemContentStyle.text }}>NFT Tracking</div>
             <div style={{ ...menuItemContentStyle.icon }}></div>
           </div>
-          <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
+          <a
+            href='https://opensea.io/collection/moontotems'
+            target='_blank'
+            rel='noreferrer'
+          >
             <div
               className='menu-item'
               style={{ ...menuItemStyle, height: '39px' }}

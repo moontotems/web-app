@@ -238,7 +238,11 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
             }}
           >
             {minted && (
-              <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://opensea.io/collection/moontotems'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <Button
                   type='primary'
                   size='small'

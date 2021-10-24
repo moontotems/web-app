@@ -269,7 +269,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           <div style={{ fontSize: '15px', marginTop: '20px' }}>
             {isTaken && (
               <a
-                href={`https://opensea.io/moontotems${tokenId}`}
+                href={`https://opensea.io/moontotems/${tokenId}`}
                 target='_blank'
                 rel='noreferrer'
               >
