@@ -4,6 +4,7 @@ import { Input, Button, Space } from 'antd'
 import ProTable, { TableDropdown } from '@ant-design/pro-table'
 import Highlighter from 'react-highlight-words'
 import { SearchOutlined } from '@ant-design/icons'
+//import { MeiliSearch } from 'meilisearch'
 
 import getColumns from './getColumns'
 
@@ -29,7 +30,7 @@ export default function AllDesktopListView({
     setSearchText('')
   }
 
-  const getColumnSearchProps = dataIndex => ({
+  const getColumnSearchProps = (title, dataIndex) => ({
     filterDropdown: ({
       setSelectedKeys,
       selectedKeys,
@@ -41,8 +42,8 @@ export default function AllDesktopListView({
           ref={node => {
             setSearchInputNote(node)
           }}
-          placeholder={`Search ${dataIndex}`}
-          value={selectedKeys[0]}
+          placeholder={`Search ${title}`}
+          //defaultValue={selectedKeys[0]}
           onChange={e =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])
           }
@@ -83,14 +84,10 @@ export default function AllDesktopListView({
     filterIcon: filtered => (
       <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
     ),
-    onFilter: (value, record) => {
+    /*
+    onFilter: (_value, record) => {
+      const value = _value.toString()
       /*
-      console.log('in onFilter:')
-      console.log({ value })
-      console.log({ record })
-      console.log({ dataIndex })
-      console.log({ arrayRecord: record[dataIndex] })
-      */
       if (record[dataIndex]) {
         return record[dataIndex]
           .toString()
@@ -100,6 +97,7 @@ export default function AllDesktopListView({
         return ''
       }
     },
+    */
     onFilterDropdownVisibleChange: visible => {
       if (visible) {
         // TODO: focus input on dropdown

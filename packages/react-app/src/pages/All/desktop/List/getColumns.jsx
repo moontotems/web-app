@@ -19,7 +19,7 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       title: 'Token ID',
       dataIndex: 'id',
       key: 'id',
-      ...getColumnSearchProps('Token ID'),
+      //...getColumnSearchProps('Token ID', 'id'),
       sorter: (a, b) => a.id - b.id
     },
     /*
@@ -83,7 +83,7 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'Birth Year',
       dataIndex: 'birthYearStr',
-      ...getColumnSearchProps('Birth Year'),
+      //...getColumnSearchProps('Birth Year', 'birthYearStr'),
       sorter: (a, b) => a.birthYearStr?.localeCompare(b.birthYearStr)
     },
     {
@@ -216,7 +216,7 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'Origin Latin',
       dataIndex: 'lunarOriginNameLatin',
-      ...getColumnSearchProps('Origin Latin'),
+      //...getColumnSearchProps('Origin Latin', 'lunarOriginNameLatin'),
       sorter: (a, b) =>
         a.lunarOriginNameLatin?.localeCompare(b.lunarOriginNameLatin)
     },
@@ -325,13 +325,13 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
     {
       title: 'Job Title',
       dataIndex: 'trait_jobTitle',
-      ...getColumnSearchProps('Job Title'),
+      //...getColumnSearchProps('Job Title', 'trait_jobTitle'),
       sorter: (a, b) => a.trait_jobTitle?.localeCompare(b.trait_jobTitle)
     },
     {
       title: 'Job Field',
       dataIndex: 'trait_jobField',
-      ...getColumnSearchProps('Job Field'),
+      //...getColumnSearchProps('Job Field', 'trait_jobField'),
       sorter: (a, b) => a.trait_jobField?.localeCompare(b.trait_jobField)
     },
     {
