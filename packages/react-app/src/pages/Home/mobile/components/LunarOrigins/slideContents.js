@@ -3,7 +3,7 @@ export default [
     index: 0,
     image: '',
     title: '',
-    text: 'Moon Totems are beautiful crypto talismans from the moon and discovered on the Ethereum blockchain.'
+    text: 'Moon Totems are believed to originate from the Moon.'
   },
   {
     index: 1,

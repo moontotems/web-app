@@ -3,7 +3,7 @@ export default [
     index: 0,
     image: '',
     title: '',
-    text: 'Each Totem is born under a particular Lunar Month.'
+    text: 'Moon Totems are believed to originate from the Moon.'
   },
   {
     index: 1,
