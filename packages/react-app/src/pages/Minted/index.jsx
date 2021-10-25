@@ -1,19 +1,16 @@
 import React from 'react'
-import { Row, Col, Divider } from 'antd'
+import { Row, Col } from 'antd'
 import { getImageUrl } from '../../helpers'
 import { Creature } from '../../sharedComponents'
 import houdini_json_hashmap from '../../assets/houdini_json_hashmap.json'
-import { Mint } from './components'
 
 export default function Minted({ ethereumProps, nftAppProps }) {
-  const { gasPrice, tx, writeContracts } = ethereumProps
-
   const { favorites, mintEvents, mintEventsMap } = nftAppProps
 
   const { checkIfIsFavorite } = favorites
 
   return (
-    <div style={{ backgroundColor: '#000' }}>
+    <div>
       <Row>
         <Col xs={24} md={4} />
         <Col xs={24} md={16}>
@@ -48,15 +45,6 @@ export default function Minted({ ethereumProps, nftAppProps }) {
                 </Col>
               )
             })}
-            <Col xs={24}>
-              <Divider />
-              <h3>Mint</h3>
-              <Mint
-                gasPric={gasPrice}
-                tx={tx}
-                writeContracts={writeContracts}
-              />
-            </Col>
           </Row>
         </Col>
         <Col xs={24} md={4} />
