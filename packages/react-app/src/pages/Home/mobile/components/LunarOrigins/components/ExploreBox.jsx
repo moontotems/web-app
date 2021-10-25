@@ -23,7 +23,6 @@ export default function ExploreBox({ sliderRef }) {
       >
         <div
           style={{
-            position: 'absolut',
             width: '100%',
             minHeight: '200px',
             fontSize: '30px',
