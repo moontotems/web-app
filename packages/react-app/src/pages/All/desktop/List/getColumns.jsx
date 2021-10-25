@@ -3,8 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Launch16 } from '@carbon/icons-react'
 import { getImageUrl } from '../../../../helpers'
-import { Icons } from '../../../../sharedComponents'
-const { OwnedByUserIcon16x16 } = Icons
 
 const convertBoolNumToString = num => {
   if (num === 1) return 'Yes'
@@ -287,11 +285,13 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       dataIndex: 'complexityRank',
       sorter: (a, b) => a.complexityRank - b.complexityRank
     },
+    /*
     {
       title: 'Rarity Rank',
       dataIndex: 'rarityRank',
       sorter: (a, b) => a.rarityRank - b.rarityRank
     },
+    */
     {
       title: 'Age Score',
       dataIndex: 'AgeScore',
@@ -317,11 +317,13 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       dataIndex: 'lunarOriginScore',
       sorter: (a, b) => a.lunarOriginScore - b.lunarOriginScore
     },
+    /*
     {
       title: 'Rarity Score',
       dataIndex: 'rarityScore',
       sorter: (a, b) => a.rarityScore - b.rarityScore
     },
+    */
     {
       title: 'Job Title',
       dataIndex: 'trait_jobTitle',
