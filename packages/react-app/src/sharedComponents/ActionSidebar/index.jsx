@@ -19,7 +19,7 @@ export default function ActionSidebar({
     usersCreaturesTokenIds.includes(currentCreatureToken)
 
   const showCreatureFeatures =
-    route.includes('moontotem') && creatureIsOwnedByUser
+    route.includes('moontotem/') && creatureIsOwnedByUser
 
   return (
     <>
