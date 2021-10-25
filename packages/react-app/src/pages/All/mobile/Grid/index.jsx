@@ -42,6 +42,7 @@ export default function AllMobileView({
                     ...creature,
                     image: getImageUrl({ tokenId, size: 1024 })
                   }}
+                  showButtons
                 />
               </Col>
             )

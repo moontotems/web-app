@@ -9,7 +9,12 @@ import {
 import Icons from '../icons'
 const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
-export default function Creature({ ethereumProps, nftAppProps, creature }) {
+export default function Creature({
+  ethereumProps,
+  nftAppProps,
+  creature,
+  showButtons
+}) {
   const { setRoute, favorites } = nftAppProps
   const { updateFavorites } = favorites
   const { tokenId, image, minted, ownedByUser, isFavorite, metaData } = creature
@@ -43,12 +48,14 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
         </Link>
         <Row>
           <Col xs={6}>
-            <div style={{ textAlign: 'center' }}>
-              {isAvailable && <AsleepFilled16 />}
-              {isOwnedByUser && (
-                <img src={OwnedByUserIcon16x16} alt='Owned by User' />
-              )}
-            </div>
+            {showButtons && (
+              <div style={{ textAlign: 'center' }}>
+                {isAvailable && <AsleepFilled16 />}
+                {isOwnedByUser && (
+                  <img src={OwnedByUserIcon16x16} alt='Owned by User' />
+                )}
+              </div>
+            )}
           </Col>
           <Col xs={12}>
             <div
@@ -76,22 +83,24 @@ export default function Creature({ ethereumProps, nftAppProps, creature }) {
             </div>
           </Col>
           <Col xs={6}>
-            <div style={{ textAlign: 'center' }}>
-              {!isFavorite && (
-                <Favorite16
-                  role='button'
-                  style={{ fill: 'white', cursor: 'pointer' }}
-                  onClick={() => updateFavorites(tokenId)}
-                />
-              )}
-              {isFavorite && (
-                <FavoriteFilled16
-                  role='button'
-                  style={{ fill: '#DA1E28', cursor: 'pointer' }}
-                  onClick={() => updateFavorites(tokenId)}
-                />
-              )}
-            </div>
+            {showButtons && (
+              <div style={{ textAlign: 'center' }}>
+                {!isFavorite && (
+                  <Favorite16
+                    role='button'
+                    style={{ fill: 'white', cursor: 'pointer' }}
+                    onClick={() => updateFavorites(tokenId)}
+                  />
+                )}
+                {isFavorite && (
+                  <FavoriteFilled16
+                    role='button'
+                    style={{ fill: '#DA1E28', cursor: 'pointer' }}
+                    onClick={() => updateFavorites(tokenId)}
+                  />
+                )}
+              </div>
+            )}
           </Col>
         </Row>
       </div>

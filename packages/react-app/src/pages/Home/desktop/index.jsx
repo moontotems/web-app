@@ -9,7 +9,8 @@ import {
   NFTTutorialSection,
   SocialMediaSection,
   UniqueFeaturesSection,
-  WhatAreSection
+  WhatAreSection,
+  ExampleCreaturesSection
 } from './components'
 
 export default function HomePageDesktip({ ethereumProps, nftAppProps }) {
@@ -61,6 +62,12 @@ export default function HomePageDesktip({ ethereumProps, nftAppProps }) {
       </div>
       <div style={{ ...containerStyle, height: 'auto' }}>
         <SocialMediaSection
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
+      </div>
+      <div style={{ ...containerStyle, height: 'auto' }}>
+        <ExampleCreaturesSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />

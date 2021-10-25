@@ -9,7 +9,8 @@ import {
   NFTTutorialSection,
   SocialMediaSection,
   UniqueFeaturesSection,
-  WhatAreSection
+  WhatAreSection,
+  ExampleCreaturesSection
 } from './components'
 
 export default function HomePageMobile({ ethereumProps, nftAppProps }) {
@@ -61,6 +62,12 @@ export default function HomePageMobile({ ethereumProps, nftAppProps }) {
       </div>
       <div style={{ ...containerStyle }}>
         <SocialMediaSection
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
+      </div>
+      <div style={{ ...containerStyle }}>
+        <ExampleCreaturesSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />

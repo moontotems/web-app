@@ -48,6 +48,7 @@ export default function AllDesktopGridView({
                           ...creature,
                           image: getImageUrl({ tokenId, size: 2048 })
                         }}
+                        showButtons
                       />
                     </Col>
                   )

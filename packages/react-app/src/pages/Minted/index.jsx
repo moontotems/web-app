@@ -41,6 +41,7 @@ export default function Minted({ ethereumProps, nftAppProps }) {
                     ethereumProps={ethereumProps}
                     nftAppProps={nftAppProps}
                     creature={creature}
+                    showButtons
                   />
                 </Col>
               )
