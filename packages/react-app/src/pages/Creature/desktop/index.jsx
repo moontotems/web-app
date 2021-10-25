@@ -159,7 +159,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         style={{
           position: 'fixed',
           top: DESKTOP_HEADER_HEIGHT,
-          //left: '17px',
           left: '0',
           width: '35%',
           zIndex: 1000
@@ -182,7 +181,10 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         <Chatbot
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
-          image={image}
+          image={getImageUrl({
+            tokenId,
+            size: 1024
+          })}
           tokenId={tokenId}
         />
         <WriteStory ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
@@ -245,7 +247,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
                   cursor: 'pointer',
                   marginLeft: '40px'
                 }}
-                onClick={() => updateFavorites(currentVisibleCreature.tokenId)}
+                onClick={() => updateFavorites(tokenId)}
               />
             )}
             {isFavorite && (
@@ -256,7 +258,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
                   cursor: 'pointer',
                   marginLeft: '40px'
                 }}
-                onClick={() => updateFavorites(currentVisibleCreature.tokenId)}
+                onClick={() => updateFavorites(tokenId)}
               />
             )}
           </div>
@@ -286,7 +288,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
                 style={{
                   ...buttonStyle
                 }}
-                onClick={() => mint(currentVisibleCreature.tokenId)}
+                onClick={() => mint(tokenId)}
               >
                 Summon this Totem (0.1 Ξ)
               </Button>

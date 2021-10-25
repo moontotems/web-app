@@ -10,45 +10,42 @@ export default function AllMobileView({
   nftAppProps,
   creatureList
 }) {
-  const { infiniteScroll } = nftAppProps
-  const {
-    visibleCreaturesRangeStart,
-    visibleCreaturesRangeEnd,
-    next,
-    hasMore,
-    loader
-  } = infiniteScroll
+  const { creatures, infiniteScroll } = nftAppProps
+  const { next, hasMore, loader } = infiniteScroll
 
   return (
-    <div style={{ backgroundColor: '#000' }}>
-      <InfiniteScroll
-        dataLength={visibleCreaturesRangeEnd - visibleCreaturesRangeStart}
-        next={() => next()}
-        hasMore={() => hasMore}
-        loader={loader}
-        //endMessage={}
-      >
-        <Row>
-          {creatureList.map(creature => {
-            const { tokenId } = creature
-            const key = `MOTEM-${tokenId}`
+    <div>
+      <>
+        <InfiniteScroll
+          dataLength={creatures.visible.length}
+          next={() => next()}
+          hasMore={() => hasMore}
+          loader={loader}
+          //endMessage={}
+        >
+          <Row>
+            {creatureList.map(creature => {
+              const { tokenId } = creature
 
-            return (
-              <Col key={key} xs={8}>
-                <Creature
-                  ethereumProps={ethereumProps}
-                  nftAppProps={nftAppProps}
-                  creature={{
-                    ...creature,
-                    image: getImageUrl({ tokenId, size: 1024 })
-                  }}
-                  showButtons
-                />
-              </Col>
-            )
-          })}
-        </Row>
-      </InfiniteScroll>
+              const key = `MOONTOTEM-${tokenId}`
+
+              return (
+                <Col key={key} xs={8}>
+                  <Creature
+                    ethereumProps={ethereumProps}
+                    nftAppProps={nftAppProps}
+                    creature={{
+                      ...creature,
+                      image: getImageUrl({ tokenId, size: 1024 })
+                    }}
+                    showButtons
+                  />
+                </Col>
+              )
+            })}
+          </Row>
+        </InfiniteScroll>
+      </>
     </div>
   )
 }

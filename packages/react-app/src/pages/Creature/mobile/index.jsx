@@ -65,6 +65,21 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
 
   const currentVisibleCreature = creatures.filtered[visibleCreatureListIndex]
 
+  const setNextTokenId = ({ direction }) => {
+    let newIndex = visibleCreatureListIndex
+    if (direction === 'left') {
+      if (visibleCreatureListIndex > 0) {
+        newIndex = visibleCreatureListIndex - 1
+      }
+    }
+    if (direction === 'right') {
+      if (visibleCreatureListIndex < creatures.filtered.length - 1) {
+        newIndex = visibleCreatureListIndex + 1
+      }
+    }
+    setVisibleCreatureListIndex(newIndex)
+  }
+
   useEffect(() => {
     updateUrl(creatures.filtered[visibleCreatureListIndex].tokenId)
   }, [visibleCreatureListIndex])
@@ -93,11 +108,12 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     }
   }, [visibleCreatureListIndex])
 
-  const { tokenId, metaData, minted, isFavorite } =
+  const { tokenId, metaData, image, ownedByUser, minted, isFavorite } =
     currentVisibleCreature || assembleCreature(urlTokenId)
 
   const isAvailable = !minted
   const isTaken = !isAvailable
+  const isOwnedByUser = ownedByUser
 
   const { trait_name1, trait_name2, trait_jobField, trait_jobTitle } = metaData
 
@@ -106,10 +122,14 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     trackTouch: true,
     //onSwiped: eventData => console.log('User Swiped!', eventData),
     onSwipedLeft: eventData => {
-      setVisibleCreatureListIndex(visibleCreatureListIndex - 1)
+      setNextTokenId({
+        direction: 'left'
+      })
     },
     onSwipedRight: eventData => {
-      setVisibleCreatureListIndex(visibleCreatureListIndex + 1)
+      setNextTokenId({
+        direction: 'right'
+      })
     }
     //onTap: ({ event }) =>
   })
@@ -155,7 +175,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
           image={getImageUrl({
-            tokenId: currentVisibleCreature.tokenId,
+            tokenId,
             size: 1024
           })}
           tokenId={tokenId}
@@ -164,10 +184,14 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
       </div>
       <Row>
         <Col xs={24}>
+          {getImageUrl({
+            tokenId,
+            size: 1024
+          })}
           <img
             {...swipeableHandler}
             src={getImageUrl({
-              tokenId: currentVisibleCreature.tokenId,
+              tokenId,
               size: 1024
             })}
             width='100%'
@@ -198,7 +222,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Col xs={12}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '40px' }}>
-              {trait_name1} {trait_name2}
+              {trait_name1} {trait_name2} #{tokenId}
             </div>
             <div
               style={{ marginTop: '15px', fontSize: '30px', fontWeight: 600 }}
@@ -214,18 +238,14 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                 <Favorite32
                   role='button'
                   style={{ fill: 'white', cursor: 'pointer' }}
-                  onClick={() =>
-                    updateFavorites(currentVisibleCreature.tokenId)
-                  }
+                  onClick={() => updateFavorites(tokenId)}
                 />
               )}
               {isFavorite && (
                 <FavoriteFilled32
                   role='button'
                   style={{ fill: '#DA1E28', cursor: 'pointer' }}
-                  onClick={() =>
-                    updateFavorites(currentVisibleCreature.tokenId)
-                  }
+                  onClick={() => updateFavorites(tokenId)}
                 />
               )}
             </div>
@@ -237,11 +257,11 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Col xs={12}>
           <div
             style={{
-              marginTop: 30,
+              marginTop: '30px',
               textAlign: 'center'
             }}
           >
-            {minted && (
+            {isTaken && (
               <a
                 href={`https://opensea.io/assets/0x8fe83f6f7f726a2c9e238b7e094c4bf530bc9720/${tokenId}`}
                 target='_blank'
@@ -260,14 +280,14 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                 </Button>
               </a>
             )}
-            {address && !minted && (
+            {address && isAvailable && (
               <Button
                 type='primary'
                 size='small'
                 style={{
                   ...buttonStyle
                 }}
-                onClick={() => mint(currentVisibleCreature.tokenId)}
+                onClick={() => mint(tokenId)}
               >
                 Summon this Totem (0.1 Ξ)
               </Button>
