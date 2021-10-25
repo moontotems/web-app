@@ -21,7 +21,7 @@ export default function ActionSidebar({
     visibleWide: 'visible-wide'
   }
 
-  const [view, setView] = useState(viewStates.visible)
+  const [view, setView] = useState(viewStates.hidden)
 
   const toggleView = () => {
     if (view === viewStates.hidden) setView(viewStates.visible)
