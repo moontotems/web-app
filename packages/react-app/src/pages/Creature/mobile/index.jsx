@@ -22,7 +22,6 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     assembleCreature,
     creatures,
     filter: { activeFilters },
-    mintEventsMap,
     mint,
     favorites
   } = nftAppProps
@@ -94,12 +93,11 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     }
   }, [visibleCreatureListIndex])
 
-  const { tokenId, metaData, image, ownedByUser, minted, isFavorite } =
+  const { tokenId, metaData, minted, isFavorite } =
     currentVisibleCreature || assembleCreature(urlTokenId)
 
   const isAvailable = !minted
   const isTaken = !isAvailable
-  const isOwnedByUser = ownedByUser
 
   const { trait_name1, trait_name2, trait_jobField, trait_jobTitle } = metaData
 
@@ -156,7 +154,10 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Chatbot
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
-          image={getImageUrl({ tokenId, size: 1024 })}
+          image={getImageUrl({
+            tokenId: currentVisibleCreature.tokenId,
+            size: 1024
+          })}
           tokenId={tokenId}
         />
         <WriteStory ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
@@ -165,7 +166,10 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Col xs={24}>
           <img
             {...swipeableHandler}
-            src={getImageUrl({ tokenId, size: 1024 })}
+            src={getImageUrl({
+              tokenId: currentVisibleCreature.tokenId,
+              size: 1024
+            })}
             width='100%'
             /*
             onClick={() =>

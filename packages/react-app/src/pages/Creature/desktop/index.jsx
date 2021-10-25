@@ -27,13 +27,11 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     assembleCreature,
     creatures,
     filter: { activeFilters },
-    mintEventsMap,
     mint,
-    favorites,
-    isMobile
+    favorites
   } = nftAppProps
 
-  const { checkIfIsFavorite, updateFavorites } = favorites
+  const { updateFavorites } = favorites
 
   const updateUrl = creatureIndex => {
     window.history.replaceState(
@@ -217,7 +215,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         <div
           style={{
             position: 'absolute',
-            //bottom: 20,
             bottom: 0,
             left: 0,
             right: 0,
@@ -297,82 +294,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           </div>
         </div>
       </div>
-
-      {/*
-      <Row>
-        <Col xs={10}>
-          <div
-            style={{
-              textAlign: 'right',
-              paddingRight: '12%',
-              marginTop: '2px'
-            }}
-          >
-            {isAvailable && <AsleepFilled32 />}
-            {isTaken && <Locked32 />}
-          </div>
-        </Col>
-        <Col xs={4}>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ marginBottom: '25px' }}>
-              <div style={{ fontSize: '25px' }}>
-                {trait_name1} {trait_name2}
-              </div>
-              <div
-                style={{ marginTop: '20px', fontSize: '17px', fontWeight: 600 }}
-              >
-                {trait_jobField} {trait_jobTitle}
-              </div>
-            </div>
-            {isTaken && (
-              <a href='https://opensea.io/' target='_blank' rel='noreferrer'>
-                <Button
-                  style={{
-                    ...buttonStyle,
-                    backgroundColor: '#1062FE',
-                    borderColor: '#1062FE'
-                  }}
-                >
-                  View on Opensea
-                </Button>
-              </a>
-            )}
-            {address && isAvailable && (
-              <Button
-                style={{
-                  ...buttonStyle,
-                  backgroundColor: '#24A148',
-                  borderColor: '#24A148'
-                }}
-                onClick={() => mint(currentVisibleCreature.tokenId)}
-              >
-                Summon this Totem (0.1 Ξ)
-              </Button>
-            )}
-          </div>
-        </Col>
-        <Col xs={10}>
-          <div
-            style={{ textAlign: 'left', paddingLeft: '12%', marginTop: '2px' }}
-          >
-            {!isFavorite && (
-              <Favorite32
-                role='button'
-                style={{ fill: 'white', cursor: 'pointer' }}
-                onClick={() => updateFavorites(currentVisibleCreature.tokenId)}
-              />
-            )}
-            {isFavorite && (
-              <FavoriteFilled32
-                role='button'
-                style={{ fill: '#DA1E28', cursor: 'pointer' }}
-                onClick={() => updateFavorites(currentVisibleCreature.tokenId)}
-              />
-            )}
-          </div>
-        </Col>
-      </Row>
-      */}
     </div>
   )
 }
