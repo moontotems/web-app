@@ -100,133 +100,164 @@ export default function MetaData({
       icon={isMobile ? <Information32 /> : <Information16 />}
       title={'TOTEM INFO'}
     >
-      <div
+      <table
         style={{
           float: 'left',
-          paddingRight: '10px',
-          fontSize: '18px',
-          lineHeight: '48px',
-          textAlign: 'right',
-          color: '#fff',
-          opacity: 0.5
-        }}
-      >
-        <div className='creature-attribute-prefix'>Name</div>
-        <div className='creature-attribute-prefix'>Title</div>
-        <div className='creature-attribute-prefix'>From</div>
-        <div className='creature-attribute-prefix'>Personality</div>
-        <div className='creature-attribute-prefix'>Lunar Phase</div>
-        <div className='creature-attribute-prefix'>Lunar Month</div>
-        <div className='creature-attribute-prefix'>Birth</div>
-        <div className='creature-attribute-prefix'>Age</div>
-        <div className='creature-attribute-prefix'>Discovered</div>
-        <div className='creature-attribute-prefix'>Rarity</div>
-        <div className='creature-attribute-prefix'>Eyes</div>
-        <div className='creature-attribute-prefix'>Material</div>
-        <div className='creature-attribute-prefix'>Color Count</div>
-        <div className='creature-attribute-prefix'>Pieces Count</div>
-      </div>
-      <div
-        style={{
-          float: 'left',
-          width: isMobile ? '60%' : '75%',
+          width: isMobile ? '100%' : 'auto',
           fontSize: '18px',
           lineHeight: '45px',
           textAlign: 'left',
           color: '#fff'
         }}
       >
-        <div className='creature-attribute-value' style={{ fontSize: 30 }}>
-          {trait_name1} {trait_name2}
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '54px' }}
-        >
-          {/* Title */}
-          <b>
-            {trait_jobField} {trait_jobTitle}
-          </b>
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '46px' }}
-        >
-          {/* From */}
-          <b>{lunarOriginName}</b>
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '50px' }}
-        >
-          {/* Personality */}
-          {trait_personality1}, {trait_personality2} & {trait_personality3}
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '44px' }}
-        >
-          {/* Lunar Sign */}
-          {moonPhase}
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '53px' }}
-        >
-          {/* Lunar Month */}
-          {moonMonth}
-        </div>
-
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '45px' }}
-        >
-          {`${birthDay}/${birthMonth}/${birthYearStr}`}
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '51px' }}
-        >
-          {age} Years
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '47px' }}
-        >
-          {`${spawn_DateDay}/${spawn_DateMonth}/${spawn_DateYear}`}
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '50px' }}
-        >
-          {rarityScore}
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '45px' }}
-        >
-          {eyeAsymmetrical ? 'Asymmetrical' : 'Symmetrical'},{' '}
-          {eyeMulticolor ? 'Multicolored' : 'Single Color'}, {eyeShape}
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '51px' }}
-        >
-          {Material}
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '48px' }}
-        >
-          {colorsTotal}
-        </div>
-        <div
-          className='creature-attribute-value'
-          style={{ lineHeight: '48px' }}
-        >
-          {complexityPieces}
-        </div>
-      </div>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Name
+          </td>
+          <td style={{ fontSize: '30px' }}>
+            {trait_name1} {trait_name2}
+          </td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Title
+          </td>
+          <td>
+            <b>
+              {trait_jobField} {trait_jobTitle}
+            </b>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            From
+          </td>
+          <td style={{ fontSize: '18px' }}>
+            <b>{lunarOriginName}</b>
+          </td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Personality
+          </td>
+          <td style={{ fontSize: '18px' }}>
+            {trait_personality1}, {trait_personality2} & {trait_personality3}
+          </td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Lunar Phase
+          </td>
+          <td style={{ fontSize: '18px' }}>{moonPhase}</td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Lunar Month
+          </td>
+          <td style={{ fontSize: '18px' }}>{moonMonth}</td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Birth
+          </td>
+          <td
+            style={{ fontSize: '18px' }}
+          >{`${birthDay}/${birthMonth}/${birthYearStr}`}</td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Age
+          </td>
+          <td style={{ fontSize: '18px' }}>{age} Years</td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Discovered
+          </td>
+          <td style={{ fontSize: '18px' }}>
+            {`${spawn_DateDay}/${spawn_DateMonth}/${spawn_DateYear}`}
+          </td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Rarity
+          </td>
+          <td style={{ fontSize: '18px' }}>{rarityScore}</td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Eyes
+          </td>
+          <td style={{ fontSize: '18px' }}>
+            {eyeAsymmetrical ? 'Asymmetrical' : 'Symmetrical'},{' '}
+            {eyeMulticolor ? 'Multicolored' : 'Single Color'}, {eyeShape}
+          </td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Material
+          </td>
+          <td style={{ fontSize: '18px' }}>{Material}</td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Color Count
+          </td>
+          <td style={{ fontSize: '18px' }}>{colorsTotal}</td>
+        </tr>
+        <tr>
+          <td
+            align='right'
+            style={{ paddingRight: '10px', color: '#fff', opacity: 0.5 }}
+          >
+            Pieces Count
+          </td>
+          <td style={{ fontSize: '18px' }}>{complexityPieces}</td>
+        </tr>
+      </table>
     </CreatureFeatureContainer>
   )
 }
