@@ -5,19 +5,6 @@ import VREPlayer from 'videojs-react-enhanced'
 import 'video.js/dist/video-js.css'
 
 export default function SlideNameAndTitle() {
-  const playerOptions = {
-    src: 'https://moontotems.blob.core.windows.net/website-assets/videos/MoonTotems_CARD_3D_VIMEO.mp4',
-    preload: 'auto',
-    controls: false,
-    playsinline: true,
-    autoplay: 'play',
-    muted: true,
-    loop: true
-  }
-  const videojsOptions = {
-    fluid: true
-  }
-
   return (
     <div style={{ width: '100%' }}>
       <div
@@ -31,10 +18,21 @@ export default function SlideNameAndTitle() {
           width: '100%'
         }}
       >
-        <VREPlayer
-          playerOptions={playerOptions}
-          videojsOptions={videojsOptions}
-        />
+        <div style={{ padding: '100% 0 0 0', position: 'relative' }}>
+          <iframe
+            src='https://player.vimeo.com/video/630649090?h=99fe8b91fb&amp;badge=0&amp;autoplay=1&amp;loop=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
+            frameBorder='0'
+            allow='autoplay; fullscreen; picture-in-picture'
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%'
+            }}
+            title='Moon Totem Names'
+          />
+        </div>
       </div>
     </div>
   )

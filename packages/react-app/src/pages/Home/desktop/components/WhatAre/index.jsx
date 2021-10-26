@@ -9,27 +9,24 @@ import 'video.js/dist/video-js.css'
 export default function Section({ ethereumProps, nftAppProps }) {
   const { route, setRoute } = nftAppProps
 
-  const playerOptions = {
-    src: 'https://moontotems.blob.core.windows.net/website-assets/videos/MoonTotems_GEN01_BLINKYROTATE.COMP[0000-0832].mp4',
-    preload: 'auto',
-    controls: false,
-    playsinline: true,
-    autoplay: 'play',
-    muted: true,
-    loop: true
-  }
-  const videojsOptions = {
-    fluid: true
-  }
-
   return (
     <>
       <div style={{ height: '70vh', overflow: 'hidden' }}>
-        <div style={{ float: 'right', width: '80%' }}>
-          <VREPlayer
-            playerOptions={playerOptions}
-            videojsOptions={videojsOptions}
-          />
+        <div style={{ float: 'right', width: '80%', height: '100%' }}>
+          <div style={{ float: 'right', width: '100%', height: '100%' }}>
+            <iframe
+              src='https://player.vimeo.com/video/620510465?h=8893bbc9b4&amp;badge=0&amp;autoplay=1&amp;loop=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
+              frameBorder='0'
+              allow='autoplay; fullscreen; picture-in-picture'
+              autoPlay
+              style={{
+                float: 'right',
+                width: '100%',
+                height: '100%'
+              }}
+              title='Moon Totems Blink'
+            />
+          </div>
 
           <Link
             className='explore-box'

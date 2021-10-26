@@ -447,10 +447,10 @@ function App() {
             )
             tokenId = parseInt(tokenId.toString())
             /*
-          const tokenURI =
-            await readContracts.MoonTotems.tokenURI(tokenId)
-          console.log('tokenURI', tokenURI)
-          */
+            const tokenURI =
+              await readContracts.MoonTotems.tokenURI(tokenId)
+            console.log('tokenURI', tokenURI)
+            */
 
             //const ipfsHash = tokenURI.replace('https://ipfs.io/ipfs/', '')
             //console.log('ipfsHash', ipfsHash)
