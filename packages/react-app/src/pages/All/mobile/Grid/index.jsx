@@ -24,7 +24,7 @@ export default function AllMobileView({
         //endMessage={}
       >
         <Row>
-          {filteredCreatures.map(creature => {
+          {visibleCreatures.map(creature => {
             const { tokenId } = creature
 
             const key = `MOONTOTEM-${tokenId}`
