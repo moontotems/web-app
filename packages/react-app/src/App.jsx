@@ -579,7 +579,6 @@ function App() {
     const metaData = houdini_json_hashmap[tokenId]
     const image = getImageUrl({ tokenId, size: 512 })
 
-    if (ownedByUser) console.log({ ownedByUser })
     const creature = {
       tokenId,
       metaData,
@@ -661,9 +660,6 @@ function App() {
     _.filter([...creatures], creature => creature.isFavorite)
 
   const applyFiltersToCreatures = creatureLists => {
-    console.log('in applyFiltersToCreatures:')
-    console.log({ activeFilters })
-
     const {
       all,
       minted,
@@ -744,9 +740,6 @@ function App() {
       creatures = usersAndFavorited
     }
 
-    console.log('returning: ')
-    console.log({ creatures })
-
     return creatures
   }
 
@@ -770,28 +763,15 @@ function App() {
   */
   const visibleCreatures = getVisibleCreatures(filteredCreatures)
 
-  console.log('-------------------')
-  console.log({ creatureLists })
-  console.log({ filteredCreatures })
-  console.log({ visibleCreatures })
-  console.log('-------------------')
-
   const infiniteScroll = {
     visibleCreaturesRangeStart,
     setVisibleCreaturesRangeStart,
     visibleCreaturesRangeEnd,
     setVisibleCreaturesRangeEnd,
     next: () => {
-      console.log('in next')
       setVisibleCreaturesRangeEnd(visibleCreaturesRangeEnd + 48)
     },
     hasMore: () => {
-      console.log('in hasMore:')
-      console.log({ visibleCreaturesRangeEnd })
-      console.log({ filteredCreatures_length: filteredCreatures.length })
-      console.log({
-        returning: filteredCreatures.length > visibleCreaturesRangeEnd
-      })
       return filteredCreatures.length > visibleCreaturesRangeEnd
     }
     /*
