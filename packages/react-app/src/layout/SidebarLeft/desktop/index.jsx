@@ -83,14 +83,21 @@ export default function SidebarLeft({
             <div style={{ ...menuItemContentStyle.text }}>About</div>
             <div style={{ ...menuItemContentStyle.icon }}></div>
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>
-              What are Moon Totems?
+          <Link
+            onClick={() => {
+              setRoute('/all')
+            }}
+            to={'/all'}
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>
+                What are Moon Totems?
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <FacePendingFilled16 />
+              </div>
             </div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <FacePendingFilled16 />
-            </div>
-          </div>
+          </Link>
           <Link
             onClick={() => {
               setRoute('/attributes')

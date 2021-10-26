@@ -21,6 +21,8 @@ export default function AidebarLeft({
   nftAppProps,
   setSidebarLeftOpen
 }) {
+  const { setRoute } = nftAppProps
+
   const menuItemStyle = {
     float: 'left',
     width: '100%',
@@ -82,22 +84,36 @@ export default function AidebarLeft({
             <div style={{ ...menuItemContentStyle.text }}>About</div>
             <div style={{ ...menuItemContentStyle.icon }}></div>
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>
-              What are Moon Totems?
+          <Link
+            onClick={() => {
+              setRoute('/all')
+            }}
+            to={'/all'}
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>
+                What are Moon Totems?
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <FacePendingFilled32 />
+              </div>
             </div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <FacePendingFilled32 />
+          </Link>
+          <Link
+            onClick={() => {
+              setRoute('/attributes')
+            }}
+            to={'/attributes'}
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>
+                Unique Characters
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <UserProfile32 />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>
-              Unique Characters
-            </div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <UserProfile32 />
-            </div>
-          </div>
+          </Link>
           <div className='menu-item' style={{ ...menuItemStyle }}>
             <div style={{ ...menuItemContentStyle.text }}>
               Exclusive Features
@@ -106,24 +122,45 @@ export default function AidebarLeft({
               <Idea32 />
             </div>
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Lunar Origins</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <LocationPersonFilled32 />
+          <Link
+            onClick={() => {
+              setRoute('/lunar-origins')
+            }}
+            to={'/lunar-origins'}
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Lunar Origins</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <LocationPersonFilled32 />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Lunar Months</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <ChartMultitype32 />
+          </Link>
+          <Link
+            onClick={() => {
+              setRoute('/lunar-calendar')
+            }}
+            to={'/lunar-calendar'}
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Lunar Months</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <ChartMultitype32 />
+              </div>
             </div>
-          </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <div style={{ ...menuItemContentStyle.text }}>Lunar Phases</div>
-            <div style={{ ...menuItemContentStyle.icon }}>
-              <AsleepFilled32 />
+          </Link>
+          <Link
+            onClick={() => {
+              setRoute('/lunar-calendar')
+            }}
+            to={'/lunar-calendar'}
+          >
+            <div className='menu-item' style={{ ...menuItemStyle }}>
+              <div style={{ ...menuItemContentStyle.text }}>Lunar Phases</div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <AsleepFilled32 />
+              </div>
             </div>
-          </div>
+          </Link>
 
           <div className='menu-item title' style={{ ...menuItemStyle }}>
             <div style={{ ...menuItemContentStyle.text }}>Lates News</div>
