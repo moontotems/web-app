@@ -127,12 +127,12 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     //onSwiped: eventData => console.log('User Swiped!', eventData),
     onSwipedLeft: eventData => {
       setNextTokenId({
-        direction: 'left'
+        direction: 'right'
       })
     },
     onSwipedRight: eventData => {
       setNextTokenId({
-        direction: 'right'
+        direction: 'left'
       })
     }
     //onTap: ({ event }) =>
