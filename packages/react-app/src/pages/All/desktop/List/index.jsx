@@ -8,12 +8,9 @@ import { SearchOutlined } from '@ant-design/icons'
 
 import getColumns from './getColumns'
 
-export default function AllDesktopListView({
-  ethereumProps,
-  nftAppProps,
-  creatureList
-}) {
-  const totemsMetadata = creatureList.map(creature => creature.metaData)
+export default function AllDesktopListView({ ethereumProps, nftAppProps }) {
+  const { filteredCreatures } = nftAppProps
+  const totemsMetadata = filteredCreatures.map(creature => creature.metaData)
 
   const [searchText, setSearchText] = useState(null)
   const [searchInputNode, setSearchInputNote] = useState(null)
