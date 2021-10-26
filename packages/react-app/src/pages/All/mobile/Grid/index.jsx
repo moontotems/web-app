@@ -10,42 +10,41 @@ export default function AllMobileView({
   nftAppProps,
   creatureList
 }) {
-  const { creatures, infiniteScroll } = nftAppProps
+  const { creatureLists, filteredCreatures, visibleCreatures, infiniteScroll } =
+    nftAppProps
   const { next, hasMore, loader } = infiniteScroll
 
   return (
     <div>
-      <>
-        <InfiniteScroll
-          dataLength={creatures.visible.length}
-          next={() => next()}
-          hasMore={() => hasMore}
-          loader={loader}
-          //endMessage={}
-        >
-          <Row>
-            {creatureList.map(creature => {
-              const { tokenId } = creature
+      <InfiniteScroll
+        dataLength={visibleCreatures.length}
+        next={() => next()}
+        hasMore={() => hasMore}
+        loader={loader}
+        //endMessage={}
+      >
+        <Row>
+          {creatureList.map(creature => {
+            const { tokenId } = creature
 
-              const key = `MOONTOTEM-${tokenId}`
+            const key = `MOONTOTEM-${tokenId}`
 
-              return (
-                <Col key={key} xs={8}>
-                  <Creature
-                    ethereumProps={ethereumProps}
-                    nftAppProps={nftAppProps}
-                    creature={{
-                      ...creature,
-                      image: getImageUrl({ tokenId, size: 1024 })
-                    }}
-                    showButtons
-                  />
-                </Col>
-              )
-            })}
-          </Row>
-        </InfiniteScroll>
-      </>
+            return (
+              <Col key={key} xs={8}>
+                <Creature
+                  ethereumProps={ethereumProps}
+                  nftAppProps={nftAppProps}
+                  creature={{
+                    ...creature,
+                    image: getImageUrl({ tokenId, size: 1024 })
+                  }}
+                  showButtons
+                />
+              </Col>
+            )
+          })}
+        </Row>
+      </InfiniteScroll>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 import { ActionSidebar } from '../../sharedComponents'
+import FILTERS from '../../sharedComponents/FilterDropdown/filters'
 import AllPageDesktop from '../All/desktop'
 import AllPageMobile from '../All/mobile'
 
@@ -16,7 +17,7 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
   } = nftAppProps
 
   useEffect(() => {
-    setActiveFilters([])
+    setActiveFilters([FILTERS.myMoonTotems])
     setShowGridView(true)
   }, [])
 
@@ -30,17 +31,12 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
 
   return (
     <>
-      <ActionSidebar
-        ethereumProps={ethereumProps}
-        nftAppProps={nftAppProps}
-        creatureList={creatures.users}
-      />
+      <ActionSidebar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
 
       {!isMobile && (
         <AllPageDesktop
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
-          creatureList={creatures.users}
         />
       )}
 

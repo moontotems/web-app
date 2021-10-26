@@ -5,19 +5,16 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { Creature } from '../../../../sharedComponents'
 import { getImageUrl } from '../../../../helpers'
 
-export default function AllDesktopGridView({
-  ethereumProps,
-  nftAppProps,
-  creatureList
-}) {
-  const { creatures, infiniteScroll } = nftAppProps
+export default function AllDesktopGridView({ ethereumProps, nftAppProps }) {
+  const { creatureLists, filteredCreatures, visibleCreatures, infiniteScroll } =
+    nftAppProps
   const { next, hasMore, loader } = infiniteScroll
 
   return (
     <div>
       <>
         <InfiniteScroll
-          dataLength={creatures.visible.length}
+          dataLength={visibleCreatures.length}
           next={() => next()}
           hasMore={() => hasMore}
           loader={loader}
@@ -27,7 +24,7 @@ export default function AllDesktopGridView({
             <Col xs={24} sm={24} md={4} />
             <Col xs={24} sm={24} md={16}>
               <Row>
-                {creatureList.map(creature => {
+                {visibleCreatures.map(creature => {
                   const { tokenId } = creature
 
                   const key = `MOONTOTEM-${tokenId}`

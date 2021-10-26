@@ -7,7 +7,10 @@ import AllPageMobile from './mobile'
 
 export default function All({ ethereumProps, nftAppProps }) {
   const {
-    creatures,
+    creatureLists,
+    filteredCreatures,
+    visibleCreatures,
+
     shuffledCreatureIndexList,
     shuffleCreatureIndexList,
     filter: { activeFilters, filterIsActive },
@@ -17,6 +20,7 @@ export default function All({ ethereumProps, nftAppProps }) {
     showListView
   } = nftAppProps
 
+  /*
   useEffect(() => {
     if (!filterIsActive(FILTERS.favorites)) {
       shuffleCreatureIndexList()
@@ -50,6 +54,7 @@ export default function All({ ethereumProps, nftAppProps }) {
       creatureList = creatures.visible
     } else {
       // shuffle creatures
+      /*
       let creaturesTemp = []
       creatureList = shuffledCreatureIndexList.map((randomIndex, index) => {
         if (
@@ -59,23 +64,19 @@ export default function All({ ethereumProps, nftAppProps }) {
           creaturesTemp.push(creatures.all[randomIndex])
         }
       })
-      creatureList = creaturesTemp
+      creatureList = creatures.visible
     }
   }
+  */
 
   return (
     <>
-      <ActionSidebar
-        ethereumProps={ethereumProps}
-        nftAppProps={nftAppProps}
-        creatureList={creatureList}
-      />
+      <ActionSidebar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
 
       {!isMobile && (
         <AllPageDesktop
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
-          creatureList={creatureList}
         />
       )}
 
@@ -83,7 +84,6 @@ export default function All({ ethereumProps, nftAppProps }) {
         <AllPageMobile
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
-          creatureList={creatureList}
         />
       )}
     </>

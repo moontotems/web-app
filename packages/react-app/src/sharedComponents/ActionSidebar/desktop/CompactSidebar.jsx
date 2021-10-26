@@ -29,7 +29,6 @@ import './style.css'
 export default function CompactSidebar({
   ethereumProps,
   nftAppProps,
-  creatureList,
   menuItemStyle,
   showCreatureFeatures
 }) {
@@ -45,7 +44,9 @@ export default function CompactSidebar({
       filterIsActive,
       activeFilters
     },
-    creatures,
+    creatureLists,
+    filteredCreatures,
+    visibleCreatures,
     toggleVisibilityDownload,
     toggleVisibilityMetaData,
     toggleVisibilityChat,
@@ -70,9 +71,9 @@ export default function CompactSidebar({
           setRoute('/moontotem')
         }}
         to={`/moontotem/${
-          creatureList.length
-            ? creatureList[0].tokenId
-            : creatures.all[0].tokenId
+          filteredCreatures.length
+            ? filteredCreatures[0].tokenId
+            : creatureLists.all[0].tokenId
         }`}
       >
         <div className='menu-item' style={{ ...menuItemStyle }}>
@@ -131,7 +132,6 @@ export default function CompactSidebar({
       <Link
         onClick={() => {
           setRoute('/all')
-          setShowGridView(false)
         }}
         to='/all'
       >

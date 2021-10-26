@@ -10,7 +10,7 @@ export default function MySlider({
   nftAppProps,
   slideDirectionLeft
 }) {
-  const { creatures } = nftAppProps
+  const { creatureLists } = nftAppProps
 
   const sliderSettings = {
     autoplay: true,
@@ -28,7 +28,7 @@ export default function MySlider({
     dots: false
   }
 
-  const sliderCreatures = sample(creatures.all, 10)
+  const sliderCreatures = sample(creatureLists.all, 10)
 
   return (
     <Slider {...sliderSettings}>

@@ -3,12 +3,8 @@ import React from 'react'
 import ActionSidebarDesktop from './desktop'
 import ActionSidebarMobile from './mobile'
 
-export default function ActionSidebar({
-  ethereumProps,
-  nftAppProps,
-  creatureList
-}) {
-  const { isMobile, creatures, usersCreaturesTokenIds, route } = nftAppProps
+export default function ActionSidebar({ ethereumProps, nftAppProps }) {
+  const { isMobile, usersCreaturesTokenIds, route } = nftAppProps
 
   const getNumberFromString = str => {
     return str.replace(/[^0-9]/g, '')
@@ -27,7 +23,6 @@ export default function ActionSidebar({
         <ActionSidebarDesktop
           ethereumProps={ethereumProps}
           nftAppProps={{ ...nftAppProps, showCreatureFeatures }}
-          creatureList={creatureList ? creatureList : creatures.filtered}
         />
       )}
 
@@ -35,7 +30,6 @@ export default function ActionSidebar({
         <ActionSidebarMobile
           ethereumProps={ethereumProps}
           nftAppProps={{ ...nftAppProps, showCreatureFeatures }}
-          creatureList={creatureList ? creatureList : creatures.filtered}
         />
       )}
     </>

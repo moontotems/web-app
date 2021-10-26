@@ -428,57 +428,66 @@ function App() {
   const [usersCreaturesTokenIds, setUsersCreaturesTokenIds] = useState([])
   const [balanceOfUser, setBalanceOfUser] = useState(0)
 
-  useEffect(() => {
-    const getUsersCreatures = async () => {
-      try {
-        if (readContracts) {
-          let balanceOf = await readContracts.MoonTotems.balanceOf(address)
-          console.log({ address })
-          balanceOf = parseInt(balanceOf.toString()) || 0
-          console.log({ balanceOf })
-          setBalanceOfUser(balanceOf)
+  const fetchUsersCreatures = async () => {
+    try {
+      if (readContracts) {
+        let balanceOf = await readContracts.MoonTotems.balanceOf(address)
+        console.log({ address })
+        balanceOf = parseInt(balanceOf.toString()) || 0
+        console.log({ balanceOf })
+        setBalanceOfUser(balanceOf)
 
-          const usersCreaturesUpdate = []
-          const usersCreaturesTokenIds = []
-          for (let tokenIndex = 0; tokenIndex < balanceOf; tokenIndex++) {
-            let tokenId = await readContracts.MoonTotems.tokenOfOwnerByIndex(
-              address,
-              tokenIndex
-            )
-            tokenId = parseInt(tokenId.toString())
-            /*
+        const usersCreaturesUpdate = []
+        const usersCreaturesTokenIds = []
+        for (let tokenIndex = 0; tokenIndex < balanceOf; tokenIndex++) {
+          let tokenId = await readContracts.MoonTotems.tokenOfOwnerByIndex(
+            address,
+            tokenIndex
+          )
+          tokenId = parseInt(tokenId.toString())
+          /*
             const tokenURI =
               await readContracts.MoonTotems.tokenURI(tokenId)
             console.log('tokenURI', tokenURI)
             */
 
-            //const ipfsHash = tokenURI.replace('https://ipfs.io/ipfs/', '')
-            //console.log('ipfsHash', ipfsHash)
+          //const ipfsHash = tokenURI.replace('https://ipfs.io/ipfs/', '')
+          //console.log('ipfsHash', ipfsHash)
 
-            //const jsonManifestBuffer = await getFromIPFS(ipfsHash)
+          //const jsonManifestBuffer = await getFromIPFS(ipfsHash)
 
-            //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
-            //console.log('jsonManifest', jsonManifest)
-            const creature = assembleCreature(tokenId)
-            usersCreaturesUpdate.push({
-              ...creature,
-              ownedByUser: true,
-              minted: true
-            })
-            usersCreaturesTokenIds.push(tokenId)
-          }
-
-          setUsersCreatures(usersCreaturesUpdate)
-          setUsersCreaturesTokenIds(usersCreaturesTokenIds)
+          //const jsonManifest = JSON.parse(jsonManifestBuffer.toString())
+          //console.log('jsonManifest', jsonManifest)
+          const creature = assembleCreature(tokenId)
+          usersCreaturesUpdate.push({
+            ...creature,
+            ownedByUser: true,
+            minted: true
+          })
+          usersCreaturesTokenIds.push(tokenId)
         }
-      } catch (e) {
-        console.error(e)
+
+        setUsersCreatures(usersCreaturesUpdate)
+        setUsersCreaturesTokenIds(usersCreaturesTokenIds)
       }
+    } catch (e) {
+      console.error(e)
     }
+  }
+
+  /*
+  useEffect(() => {
     // reduce number of infura calls
-    if (route.includes('moontotem') || route.includes('wallet')) {
-      getUsersCreatures()
-    }
+    //if (route.includes('moontotem') || route.includes('wallet')) {
+    console.log('now fetching users creatures...')
+    fetchUsersCreatures()
+    //}
+  }, [])
+  */
+
+  useEffect(() => {
+    console.log('now fetching users creatures...')
+    fetchUsersCreatures()
   }, [address])
 
   const checkIfCreatureIsOwnedByUser = _tokenId =>
@@ -570,6 +579,7 @@ function App() {
     const metaData = houdini_json_hashmap[tokenId]
     const image = getImageUrl({ tokenId, size: 512 })
 
+    if (ownedByUser) console.log({ ownedByUser })
     const creature = {
       tokenId,
       metaData,
@@ -581,13 +591,61 @@ function App() {
     return creature
   }
 
+  ///
+  const creatureIndexList = Array.from(Array(MAX_TOKEN_ID + 1).keys())
+  const [shuffledCreatureIndexList, setShuffledCreatureIndexList] = useState(
+    _.shuffle(creatureIndexList)
+  )
+
+  const shuffleCreatureIndexList = () => {
+    setShuffledCreatureIndexList(_.shuffle(creatureIndexList))
+  }
+  ///
+
   // assemble all creature objects
-  const assembleAllCreatures = () => {
-    const creatures = []
-    for (let tokenId = MIN_TOKEN_ID; tokenId <= MAX_TOKEN_ID; tokenId++) {
-      creatures.push(assembleCreature(tokenId))
+  const assembleAllCreatureLists = () => {
+    const all = []
+    const minted = []
+    const notMinted = []
+    const favorited = []
+    const favoritedAndMinted = []
+    const favoritedAndNotMinted = []
+    const notFavorited = []
+    const users = []
+    const notUsers = []
+    const usersAndFavorited = []
+
+    shuffledCreatureIndexList.map((randomId, index) => {
+      const creature = assembleCreature(randomId)
+
+      all.push(creature)
+      if (creature.minted) minted.push(creature)
+      if (!creature.minted) notMinted.push(creature)
+      if (creature.isFavorite) favorited.push(creature)
+      if (!creature.isFavorite) notFavorited.push(creature)
+      if (creature.ownedByUser) users.push(creature)
+      if (!creature.ownedByUser) notUsers.push(creature)
+
+      if (creature.isFavorite && creature.minted)
+        favoritedAndMinted.push(creature)
+      if (creature.isFavorite && !creature.minted)
+        favoritedAndNotMinted.push(creature)
+      if (creature.ownedByUser && creature.isFavorite)
+        usersAndFavorited.push(creature)
+    })
+
+    return {
+      all,
+      minted,
+      notMinted,
+      favorited,
+      favoritedAndMinted,
+      favoritedAndNotMinted,
+      notFavorited,
+      users,
+      notUsers,
+      usersAndFavorited
     }
-    return creatures
   }
 
   const removeMintedCreatures = ({ creatures }) =>
@@ -602,18 +660,92 @@ function App() {
   const removeNotFavoritedCreatures = ({ creatures }) =>
     _.filter([...creatures], creature => creature.isFavorite)
 
-  const applyFiltersToCreatures = creatures => {
+  const applyFiltersToCreatures = creatureLists => {
+    console.log('in applyFiltersToCreatures:')
+    console.log({ activeFilters })
+
+    const {
+      all,
+      minted,
+      notMinted,
+      favorited,
+      notFavorited,
+      favoritedAndMinted,
+      favoritedAndNotMinted,
+      users,
+      notUsers,
+      usersAndFavorited
+    } = creatureLists
+
+    /*
+      minted,
+      notMinted,
+      favorited,
+      notFavorited,
+      favoritedAndMinted,
+      favoritedAndNotMinted,
+      users,
+      notUsers,
+      usersAndFavorited,
+
+      - all totems
+      - not minted totems
+      - minted totems
+      - favorited totems
+      - favorited totems + minted totems
+      - favorited totems + not minted totems
+      - my totems
+      - my totems + favorited
+     */
+
+    let creatures = []
+
+    // all totems
     if (activeFilters.length === 0) {
-      return creatures
+      creatures = all
     }
-
+    // not minted totems
+    if (filterIsActive(FILTERS.notMinted)) {
+      creatures = notMinted
+    }
+    // minted totems
     if (filterIsActive(FILTERS.minted)) {
-      creatures = removeNotMintedCreatures({ creatures })
+      creatures = minted
     }
 
+    // favorited totems
     if (filterIsActive(FILTERS.favorites)) {
-      creatures = removeNotFavoritedCreatures({ creatures })
+      creatures = favorited
     }
+
+    // favorited totems + minted totems
+    if (filterIsActive(FILTERS.favorites) && filterIsActive(FILTERS.minted)) {
+      creatures = favoritedAndMinted
+    }
+
+    // favorited totems + not minted totems
+    if (
+      filterIsActive(FILTERS.favorites) &&
+      filterIsActive(FILTERS.notMinted)
+    ) {
+      creatures = favoritedAndNotMinted
+    }
+
+    // my totems
+    if (filterIsActive(FILTERS.myMoonTotems)) {
+      creatures = users
+    }
+
+    // my totems + favorited
+    if (
+      filterIsActive(FILTERS.myMoonTotems) &&
+      filterIsActive(FILTERS.favorites)
+    ) {
+      creatures = usersAndFavorited
+    }
+
+    console.log('returning: ')
+    console.log({ creatures })
 
     return creatures
   }
@@ -626,20 +758,23 @@ function App() {
     )
   }
 
-  const allCreatures = assembleAllCreatures()
-  const filteredCreatures = applyFiltersToCreatures(allCreatures)
+  // TODO: run this when
+  const creatureLists = assembleAllCreatureLists()
+  const filteredCreatures = applyFiltersToCreatures(creatureLists)
+  /*
+  const shuffledCreatures = shuffleCreatures(
+    filteredCreatures,
+    allCreatures,
+    shuffledCreatureIndexList
+  )
+  */
   const visibleCreatures = getVisibleCreatures(filteredCreatures)
 
-  ///
-  const creatureIndexList = Array.from(Array(MAX_TOKEN_ID + 1).keys())
-  const [shuffledCreatureIndexList, setShuffledCreatureIndexList] = useState(
-    _.shuffle(creatureIndexList)
-  )
-
-  const shuffleCreatureIndexList = () => {
-    setShuffledCreatureIndexList(_.shuffle(creatureIndexList))
-  }
-  ///
+  console.log('-------------------')
+  console.log({ creatureLists })
+  console.log({ filteredCreatures })
+  console.log({ visibleCreatures })
+  console.log('-------------------')
 
   const infiniteScroll = {
     visibleCreaturesRangeStart,
@@ -647,9 +782,18 @@ function App() {
     visibleCreaturesRangeEnd,
     setVisibleCreaturesRangeEnd,
     next: () => {
-      setVisibleCreaturesRangeEnd(visibleCreaturesRangeEnd + 50)
+      console.log('in next')
+      setVisibleCreaturesRangeEnd(visibleCreaturesRangeEnd + 48)
     },
-    hasMore: visibleCreaturesRangeEnd < filteredCreatures.length
+    hasMore: () => {
+      console.log('in hasMore:')
+      console.log({ visibleCreaturesRangeEnd })
+      console.log({ filteredCreatures_length: filteredCreatures.length })
+      console.log({
+        returning: filteredCreatures.length > visibleCreaturesRangeEnd
+      })
+      return filteredCreatures.length > visibleCreaturesRangeEnd
+    }
     /*
     loader: (
       <div
@@ -721,19 +865,17 @@ function App() {
     isMobile,
     route,
     setRoute,
-    creatures: {
-      all: allCreatures,
-      filtered: filteredCreatures,
-      visible: visibleCreatures,
-      users: usersCreatures
-    },
+    creatureLists,
+    filteredCreatures,
+    visibleCreatures,
     shuffledCreatureIndexList,
     shuffleCreatureIndexList,
     usersCreaturesTokenIds,
     assembleCreature,
+    applyFiltersToCreatures,
     checkIfCreatureIsOwnedByUser,
     updateFavorites,
-    // TODO: move this into creatures: {}
+    // TODO: remove this -> it is available in creatureLists
     favorites,
     infiniteScroll,
     mintEvents,

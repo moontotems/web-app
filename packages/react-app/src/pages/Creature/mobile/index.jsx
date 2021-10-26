@@ -10,17 +10,18 @@ import {
 // https://www.npmjs.com/package/react-slick
 import { useSwipeable } from 'react-swipeable'
 
-import { MIN_TOKEN_ID, MAX_TOKEN_ID } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
-import { creatureFeatures } from '../../../sharedComponents'
+import { creatureFeatures, Icons } from '../../../sharedComponents'
 const { MetaData, Chatbot, FileDownloads, WriteStory, FreshMintMessage } =
   creatureFeatures
+// TODO: there is an error when implementing this: try out before pushing!!
+const { OwnedByUserIcon16x16 } = Icons
 
 export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
   const {
     assembleCreature,
-    creatures,
+    filteredCreatures,
     filter: { activeFilters },
     mint,
     favorites
@@ -46,7 +47,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   // find index position of creature with tokenId == urlTokenId
   const fetchCreatureIndex = () => {
     let index
-    creatures.filtered.filter((creature, _index) => {
+    filteredCreatures.filter((creature, _index) => {
       if (creature.tokenId === urlTokenId) {
         index = _index
       }
@@ -59,11 +60,11 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     useState(index)
 
   useEffect(() => {
-    if (!creatures.filtered[visibleCreatureListIndex])
+    if (!filteredCreatures[visibleCreatureListIndex])
       setVisibleCreatureListIndex(fetchCreatureIndex())
   }, [activeFilters])
 
-  const currentVisibleCreature = creatures.filtered[visibleCreatureListIndex]
+  const currentVisibleCreature = filteredCreatures[visibleCreatureListIndex]
 
   const setNextTokenId = ({ direction }) => {
     let newIndex = visibleCreatureListIndex
@@ -73,7 +74,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
       }
     }
     if (direction === 'right') {
-      if (visibleCreatureListIndex < creatures.filtered.length - 1) {
+      if (visibleCreatureListIndex < filteredCreatures.length - 1) {
         newIndex = visibleCreatureListIndex + 1
       }
     }
@@ -81,32 +82,35 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   }
 
   useEffect(() => {
-    updateUrl(creatures.filtered[visibleCreatureListIndex].tokenId)
+    updateUrl(filteredCreatures[visibleCreatureListIndex].tokenId)
   }, [visibleCreatureListIndex])
 
-  // pre-load 10 images to the left and to the right
+  /////
+  // pre-load images to the left and to the right
   useEffect(() => {
     const preloadSize = 10 // in each direction
 
-    const _currentVisibleCreature = creatures.filtered[visibleCreatureListIndex]
+    const startIndex =
+      visibleCreatureListIndex > preloadSize
+        ? visibleCreatureListIndex - preloadSize
+        : 0
 
-    const activeTokenId = _currentVisibleCreature.tokenId
+    const endIndex =
+      filteredCreatures.length > visibleCreatureListIndex + preloadSize
+        ? visibleCreatureListIndex + preloadSize
+        : filteredCreatures.length
 
-    let startTokenId = MIN_TOKEN_ID
-    if (activeTokenId - preloadSize > MIN_TOKEN_ID) {
-      startTokenId = activeTokenId - preloadSize
-    }
-
-    let endTokenId = MAX_TOKEN_ID
-    if (activeTokenId + preloadSize < MAX_TOKEN_ID) {
-      endTokenId = activeTokenId + preloadSize
-    }
-
-    for (let preloadId = startTokenId; preloadId <= endTokenId; preloadId++) {
+    for (
+      let preloadIndex = startIndex;
+      preloadIndex <= endIndex;
+      preloadIndex++
+    ) {
+      const creatureToPreload = filteredCreatures[preloadIndex]
       const img = new Image()
-      img.src = getImageUrl({ tokenId: preloadId, size: 2048 })
+      img.src = getImageUrl({ tokenId: creatureToPreload.tokenId, size: 2048 })
     }
   }, [visibleCreatureListIndex])
+  /////
 
   const { tokenId, metaData, image, ownedByUser, minted, isFavorite } =
     currentVisibleCreature || assembleCreature(urlTokenId)
@@ -184,10 +188,6 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
       </div>
       <Row>
         <Col xs={24}>
-          {getImageUrl({
-            tokenId,
-            size: 1024
-          })}
           <img
             {...swipeableHandler}
             src={getImageUrl({
@@ -222,7 +222,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Col xs={12}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '40px' }}>
-              {trait_name1} {trait_name2} #{tokenId}
+              {trait_name1} {trait_name2}
             </div>
             <div
               style={{ marginTop: '15px', fontSize: '30px', fontWeight: 600 }}
