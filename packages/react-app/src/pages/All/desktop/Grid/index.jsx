@@ -6,8 +6,7 @@ import { Creature } from '../../../../sharedComponents'
 import { getImageUrl } from '../../../../helpers'
 
 export default function AllDesktopGridView({ ethereumProps, nftAppProps }) {
-  const { creatureLists, filteredCreatures, visibleCreatures, infiniteScroll } =
-    nftAppProps
+  const { visibleCreatures, infiniteScroll } = nftAppProps
   const { next, hasMore, loader } = infiniteScroll
 
   return (

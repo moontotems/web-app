@@ -5,13 +5,8 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { Creature } from '../../../../sharedComponents'
 import { getImageUrl } from '../../../../helpers'
 
-export default function AllMobileView({
-  ethereumProps,
-  nftAppProps,
-  creatureList
-}) {
-  const { creatureLists, filteredCreatures, visibleCreatures, infiniteScroll } =
-    nftAppProps
+export default function AllMobileView({ ethereumProps, nftAppProps }) {
+  const { visibleCreatures, infiniteScroll } = nftAppProps
   const { next, hasMore, loader } = infiniteScroll
 
   return (
