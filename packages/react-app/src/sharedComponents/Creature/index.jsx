@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 import { Row, Col } from 'antd'
 import {
   AsleepFilled16,
+  Locked16,
   Favorite16,
   FavoriteFilled16
 } from '@carbon/icons-react'
 import Icons from '../icons'
-const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
+const { OwnedByUserIcon16x16 } = Icons
 
 export default function Creature({
   ethereumProps,
@@ -51,6 +52,13 @@ export default function Creature({
             {showButtons && (
               <div style={{ textAlign: 'center' }}>
                 {isAvailable && <AsleepFilled16 />}
+                {isTaken && !ownedByUser && (
+                  <Locked16
+                    style={{
+                      marginRight: '40px'
+                    }}
+                  />
+                )}
                 {isOwnedByUser && (
                   <img src={OwnedByUserIcon16x16} alt='Owned by User' />
                 )}
