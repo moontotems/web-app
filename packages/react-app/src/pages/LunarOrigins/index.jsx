@@ -29,7 +29,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/bay_of_success.svg',
             name: 'Sea of Rains',
             nameLatin: 'Mare Imbrium',
-            description: 'Stimulating'
+            description: ''
           }}
         />
         <MoonColumn
@@ -38,7 +38,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/sea_of_fertility.svg',
             name: 'Sea of Fertility',
             nameLatin: 'Mare Fecunditatis',
-            description: 'Creative & productive'
+            description: ''
           }}
         />
         <MoonColumn
@@ -47,7 +47,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/sea_of_tranquility.svg',
             name: 'Sea of Tranquility',
             nameLatin: 'Mare Tranquillitatis',
-            description: 'Calm'
+            description: ''
           }}
         />
         <Col xs={24} md={4} />
@@ -61,7 +61,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/sea_of_clouds.svg',
             name: 'Sea of Clouds',
             nameLatin: 'Mare Nubium',
-            description: 'Voluptuous, Soft'
+            description: ''
           }}
         />
         <MoonColumn
@@ -70,7 +70,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/sea_of_islands.svg',
             name: 'Sea of Islands',
             nameLatin: 'Mare Insularum',
-            description: 'Independent'
+            description: ''
           }}
         />
         <MoonColumn
@@ -93,8 +93,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/bay_of_rainbows.svg',
             name: 'Bay of Rainbows',
             nameLatin: 'Sinus Iridum',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <MoonColumn
@@ -103,8 +102,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/peninsula_of_thunder.svg',
             name: 'Peninsula of Thunder',
             nameLatin: 'Peninsula Fulminum',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <MoonColumn
@@ -113,8 +111,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/bay_of_harmony.svg',
             name: 'Bay of Harmony',
             nameLatin: 'Sinus Concordiae',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <Col xs={24} md={4} />
@@ -128,8 +125,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/bay_of_success.svg',
             name: 'Bay of Success',
             nameLatin: 'Sinus Successus',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <MoonColumn
@@ -138,8 +134,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/bay_of_love.svg',
             name: 'Bay of Love',
             nameLatin: 'Sinus Amoris',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <MoonColumn
@@ -148,8 +143,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/lake_of_time.svg',
             name: 'Lake of Time',
             nameLatin: 'Lacus Temporis',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <Col xs={24} md={4} />
@@ -163,8 +157,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/lake_of_happiness.svg',
             name: 'Lake of Happiness',
             nameLatin: 'Lacus Felicitatis',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <MoonColumn
@@ -173,8 +166,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/lake_of_hope.svg',
             name: 'Lake of Hope',
             nameLatin: 'Lacus Spei',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <MoonColumn
@@ -183,8 +175,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/lake_of_softness.svg',
             name: 'Lake of Softness',
             nameLatin: 'Lacus Lenitatis',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <Col xs={24} md={4} />
@@ -198,8 +189,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/lake_of_perserverance.svg',
             name: 'Lake of Perseverance',
             nameLatin: 'Lacus Perseverantiae',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <MoonColumn
@@ -208,8 +198,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/lake_of_forgetfulness.svg',
             name: 'Lake of Forgetfulness',
             nameLatin: 'Lacus Oblivionis',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <MoonColumn
@@ -218,8 +207,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/lake_of_luxury.svg',
             name: 'Lake of Luxury',
             nameLatin: 'Lacus Luxuriae',
-            description: `Surrounded by three concentric rings of mountains, uplifted by the
-              colossal impact event that excavated it.`
+            description: ''
           }}
         />
         <Col xs={24} md={4} />
