@@ -16,7 +16,7 @@ import { creatureFeatures, Icons } from '../../../sharedComponents'
 const { MetaData, Chatbot, FileDownloads, WriteStory, FreshMintMessage } =
   creatureFeatures
 // TODO: there is an error when implementing this: try out before pushing!!
-const { OwnedByUserIcon16x16 } = Icons
+const { OwnedByUserIcon20x20 } = Icons
 import './styles.css'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
@@ -155,7 +155,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   }
 
   return (
-    <div>
+    <>
       <div
         style={{
           position: 'fixed',
@@ -232,8 +232,17 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
                 }}
               />
             )}
-            {isTaken && (
+            {isTaken && !ownedByUser && (
               <Locked20
+                style={{
+                  marginRight: '40px'
+                }}
+              />
+            )}
+            {ownedByUser && (
+              <img
+                src={OwnedByUserIcon20x20}
+                alt='Owned by User'
                 style={{
                   marginRight: '40px'
                 }}
@@ -297,6 +306,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

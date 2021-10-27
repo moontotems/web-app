@@ -15,7 +15,7 @@ import { creatureFeatures, Icons } from '../../../sharedComponents'
 const { MetaData, Chatbot, FileDownloads, WriteStory, FreshMintMessage } =
   creatureFeatures
 // TODO: there is an error when implementing this: try out before pushing!!
-const { OwnedByUserIcon16x16 } = Icons
+const { OwnedByUserIcon32x32 } = Icons
 
 export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
@@ -215,7 +215,10 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
           <div style={{ textAlign: 'center', marginTop: '15px' }}>
             <div>
               {isAvailable && <AsleepFilled32 />}
-              {isTaken && <Locked32 />}
+              {isTaken && !ownedByUser && <Locked32 />}
+              {ownedByUser && (
+                <img src={OwnedByUserIcon32x32} alt='Owned by User' />
+              )}
             </div>
           </div>
         </Col>
