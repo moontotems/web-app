@@ -96,9 +96,9 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         : 0
 
     const endIndex =
-      filteredCreatures.length > visibleCreatureListIndex + preloadSize
+      filteredCreatures.length - 1 > visibleCreatureListIndex + preloadSize
         ? visibleCreatureListIndex + preloadSize
-        : filteredCreatures.length
+        : filteredCreatures.length - 1
 
     for (
       let preloadIndex = startIndex;
