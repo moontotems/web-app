@@ -1,6 +1,6 @@
 # Moon Totems WebApp
 
-Currently deployed at [moontotem.com](https://moontotems.com/)
+Currently deployed at [moontotems.com](https://moontotems.com/)
 
 ## Apply theme changes
 
