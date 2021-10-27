@@ -9,14 +9,14 @@ export default function Section({ ethereumProps, nftAppProps }) {
 
   return (
     <>
-      <div style={{ height: '35vh', overflow: 'hidden' }}>
+      <div style={{ height: 'auto' }}>
         <div style={{ float: 'right', width: '100%' }}>
           <div
             style={{
               float: 'left',
-              height: '35vh',
+              //height: '35vh',
               width: '100%',
-              //height: '100%',
+              height: 'auto',
               display: 'block',
               marginLeft: 'auto',
               marginRight: 'auto'
