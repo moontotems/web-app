@@ -1,4 +1,6 @@
-# Talismoons WebApp
+# Moon Totems WebApp
+
+Currently deployed at [moontotem.com](https://moontotems.com/)
 
 ## Apply theme changes
 
