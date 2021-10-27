@@ -44,7 +44,6 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
         <AllPageMobile
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
-          creatureList={creatures.users}
         />
       )}
     </>
