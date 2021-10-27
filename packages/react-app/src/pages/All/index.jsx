@@ -7,18 +7,13 @@ import AllPageMobile from './mobile'
 
 export default function All({ ethereumProps, nftAppProps }) {
   const {
-    creatureLists,
-    filteredCreatures,
-    visibleCreatures,
-
-    shuffledCreatureIndexList,
-    shuffleCreatureIndexList,
-    filter: { activeFilters, filterIsActive },
-    infiniteScroll,
-    isMobile,
-    showGridView,
-    showListView
+    filter: { removeFilter },
+    isMobile
   } = nftAppProps
+
+  useEffect(() => {
+    removeFilter(FILTERS.myMoonTotems)
+  }, [])
 
   return (
     <>
