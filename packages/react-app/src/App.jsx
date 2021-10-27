@@ -525,9 +525,9 @@ function App() {
     }
   }
 
-  const removeFilter = filter => {
+  const removeFilter = _filter => {
     let _filters = activeFilters
-    _filters = _filters.filter(e => e !== filter)
+    _filters = _filters.filter(filter => filter !== _filter)
     setActiveFilters([..._filters])
   }
 

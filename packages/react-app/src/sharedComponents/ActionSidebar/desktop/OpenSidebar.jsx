@@ -196,13 +196,13 @@ export default function OpenSidebar({
               if (filterIsActive(FILTERS.notMinted)) {
                 let _activeFilters = activeFilters
                 _activeFilters = _activeFilters.filter(
-                  e => e !== FILTERS.notMinted
+                  filter => filter !== FILTERS.notMinted
                 )
                 setActiveFilters([..._activeFilters, FILTERS.minted])
               } else {
                 let _activeFilters = activeFilters
                 _activeFilters = _activeFilters.filter(
-                  e => e !== FILTERS.minted
+                  filter => filter !== FILTERS.minted
                 )
                 setActiveFilters([..._activeFilters, FILTERS.notMinted])
               }
@@ -239,13 +239,13 @@ export default function OpenSidebar({
               } else if (filterIsActive(FILTERS.notMinted)) {
                 let _activeFilters = activeFilters
                 _activeFilters = _activeFilters.filter(
-                  e => e !== FILTERS.notMinted
+                  filter => filter !== FILTERS.notMinted
                 )
                 setActiveFilters([..._activeFilters, FILTERS.minted])
               } else {
                 let _activeFilters = activeFilters
                 _activeFilters = _activeFilters.filter(
-                  e => e !== FILTERS.minted
+                  filter => filter !== FILTERS.minted
                 )
                 setActiveFilters([..._activeFilters, FILTERS.notMinted])
               }

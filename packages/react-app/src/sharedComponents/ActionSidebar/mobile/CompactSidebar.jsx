@@ -148,12 +148,14 @@ export default function CompactSidebar({
             if (filterIsActive(FILTERS.notMinted)) {
               let _activeFilters = activeFilters
               _activeFilters = _activeFilters.filter(
-                e => e !== FILTERS.notMinted
+                filter => filter !== FILTERS.notMinted
               )
               setActiveFilters([..._activeFilters, FILTERS.minted])
             } else {
               let _activeFilters = activeFilters
-              _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
+              _activeFilters = _activeFilters.filter(
+                filter => filter !== FILTERS.minted
+              )
               setActiveFilters([..._activeFilters, FILTERS.notMinted])
             }
           }}
@@ -185,12 +187,14 @@ export default function CompactSidebar({
             } else if (filterIsActive(FILTERS.notMinted)) {
               let _activeFilters = activeFilters
               _activeFilters = _activeFilters.filter(
-                e => e !== FILTERS.notMinted
+                filter => filter !== FILTERS.notMinted
               )
               setActiveFilters([..._activeFilters, FILTERS.minted])
             } else {
               let _activeFilters = activeFilters
-              _activeFilters = _activeFilters.filter(e => e !== FILTERS.minted)
+              _activeFilters = _activeFilters.filter(
+                filter => filter !== FILTERS.minted
+              )
               setActiveFilters([..._activeFilters, FILTERS.notMinted])
             }
           }}
