@@ -78,7 +78,7 @@ export default function LunarCalendar({ ethereumProps, nftAppProps }) {
           description='Last Hurrah, Realization Dawning of the Mind'
         />
         <Column
-          image='/lunarCalendar/lunarPhases/waxing_crescent.svg'
+          image='/lunarCalendar/lunarPhases/waning_crescent.svg'
           title='Waning Crescent'
           description='Old, Wise, Calm, Enlightenment'
         />
