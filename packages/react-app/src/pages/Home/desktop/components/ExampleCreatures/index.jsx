@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight32 } from '@carbon/icons-react'
-import Slider from './components/Slider'
+import { RandomCreaturesCarousel } from '../../../../../sharedComponents'
 
 export default function Section({ ethereumProps, nftAppProps }) {
   const { setRoute } = nftAppProps
@@ -29,11 +29,18 @@ export default function Section({ ethereumProps, nftAppProps }) {
         >
           Let your Totem find you
         </div>
-        <Slider
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-          slideDirectionLeft={true}
-        />
+        <div
+          style={{
+            float: 'left',
+            width: '100%'
+          }}
+        >
+          <RandomCreaturesCarousel
+            ethereumProps={ethereumProps}
+            nftAppProps={nftAppProps}
+            slideDirectionLeft={true}
+          />
+        </div>
       </div>
       <div
         style={{

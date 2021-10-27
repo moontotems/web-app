@@ -5,6 +5,7 @@ export { default as Creature } from './Creature'
 export { default as creatureFeatures } from './creatureFeatures'
 export { default as CreatureFeatureContainer } from './CreatureFeatureContainer'
 export { default as FilterDropdown } from './FilterDropdown'
+export { default as RandomCreaturesCarousel } from './RandomCreaturesCarousel'
 
 export { default as Icons } from './icons'
 
