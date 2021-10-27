@@ -181,7 +181,6 @@ export default function OpenSidebar({
         <Link
           onClick={() => {
             setRoute('/all')
-            setShowGridView(false)
           }}
           to='/all'
         >
@@ -219,7 +218,6 @@ export default function OpenSidebar({
         <Link
           onClick={() => {
             setRoute('/all')
-            setShowGridView(false)
           }}
           to='/all'
         >
@@ -261,7 +259,6 @@ export default function OpenSidebar({
         <Link
           onClick={() => {
             setRoute('/all')
-            setShowGridView(false)
           }}
           to='/all'
         >

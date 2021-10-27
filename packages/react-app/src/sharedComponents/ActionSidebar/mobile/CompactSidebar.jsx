@@ -132,7 +132,6 @@ export default function CompactSidebar({
       <Link
         onClick={() => {
           setRoute('/all')
-          setShowGridView(false)
         }}
         to='/all'
       >
@@ -166,7 +165,6 @@ export default function CompactSidebar({
       <Link
         onClick={() => {
           setRoute('/all')
-          setShowGridView(false)
         }}
         to='/all'
       >
