@@ -205,7 +205,6 @@ export default function CompactSidebar({
       <Link
         onClick={() => {
           setRoute('/all')
-          setShowGridView(false)
         }}
         to='/all'
       >
