@@ -23,19 +23,6 @@ export default function Section({ ethereumProps, nftAppProps }) {
       <div
         style={{
           float: 'left',
-          width: '50%'
-        }}
-      >
-        <Slider
-          slideContents={slideContents}
-          setCurrentSlideIndex={setCurrentSlideIndex}
-          sliderRef={sliderRef}
-          setSliderRef={setSliderRef}
-        />
-      </div>
-      <div
-        style={{
-          float: 'left',
           height: '100vh',
           width: '50%',
           fontSize: '50px',
@@ -79,6 +66,19 @@ export default function Section({ ethereumProps, nftAppProps }) {
             currentSlideIndex={currentSlideIndex}
           />
         </div>
+      </div>
+      <div
+        style={{
+          float: 'left',
+          width: '50%'
+        }}
+      >
+        <Slider
+          slideContents={slideContents}
+          setCurrentSlideIndex={setCurrentSlideIndex}
+          sliderRef={sliderRef}
+          setSliderRef={setSliderRef}
+        />
       </div>
     </div>
   )
