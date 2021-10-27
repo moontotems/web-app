@@ -57,7 +57,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
             lineHeight: '23px'
           }}
         >
-          <div style={{ float: 'left', width: '33%' }}>
+          <div style={{ float: 'left', width: '25%' }}>
             <div
               style={{
                 borderLeft: '1px solid #888',
@@ -95,7 +95,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
               </a>
             </div>
           </div>
-          <div style={{ float: 'left', width: '33%' }}>
+          <div style={{ float: 'left', width: '25%' }}>
             <div
               style={{
                 borderLeft: '1px solid #888',
@@ -131,7 +131,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
               </a>
             </div>
           </div>
-          <div style={{ float: 'left', width: '33%' }}>
+          <div style={{ float: 'left', width: '25%' }}>
             <div
               style={{
                 borderLeft: '1px solid #888',
@@ -163,6 +163,42 @@ export default function Section({ ethereumProps, nftAppProps }) {
                 <img
                   src='/home/icons/Logo-Discord.svg'
                   alt='Moon Totems Discord'
+                />
+              </a>
+            </div>
+          </div>
+          <div style={{ float: 'left', width: '25%' }}>
+            <div
+              style={{
+                borderLeft: '1px solid #888',
+                marginTop: '20px',
+                paddingLeft: '15px'
+              }}
+            >
+              <a
+                href='https://github.com/moontotems'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <div style={{ fontSize: '22px', fontWeight: 400 }}>Github</div>
+              </a>
+              <div
+                style={{
+                  marginTop: '40px',
+                  marginBottom: '40px',
+                  fontSize: '16px'
+                }}
+              >
+                For insights into the technology behind the project.
+              </div>
+              <a
+                href='https://github.gg/moontotems'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src='/home/icons/Logo-Github.svg'
+                  alt='Moon Totems Github'
                 />
               </a>
             </div>

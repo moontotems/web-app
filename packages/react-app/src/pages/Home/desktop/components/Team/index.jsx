@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Section({ ethereumProps, nftAppProps }) {
   return (
-    <div style={{ height: 'auto', overflow: 'hidden' }}>
+    <div style={{ height: 'auto', overflow: 'hidden', marginBottom: '2%' }}>
       <div
         style={{
           padding: '25px',

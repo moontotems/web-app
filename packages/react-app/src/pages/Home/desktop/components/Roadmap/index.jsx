@@ -20,13 +20,13 @@ export default function Section({ ethereumProps, nftAppProps }) {
             <Col
               xs={8}
               key={`roadmap-${index}`}
-              style={{ paddingLeft: '5%', paddingRight: '5%' }}
+              style={{
+                marginBottom: '5%',
+                paddingLeft: '5%',
+                paddingRight: '5%'
+              }}
             >
-              <div
-                style={{
-                  padding: '25%'
-                }}
-              >
+              <div>
                 <img
                   src={image}
                   style={{
@@ -42,6 +42,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
                 style={{
                   fontSize: '19px',
                   fontWeight: 'bold',
+                  marginTop: '30px',
                   marginBottom: '20px'
                 }}
               >
