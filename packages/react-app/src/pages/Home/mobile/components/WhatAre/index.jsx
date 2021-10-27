@@ -35,7 +35,6 @@ export default function Section({ ethereumProps, nftAppProps }) {
       <div
         style={{
           height: 'auto',
-          marginTop: '2%',
           padding: '5%',
           overflow: 'hidden'
         }}
