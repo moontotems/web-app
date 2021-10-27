@@ -11,7 +11,8 @@ import {
   UniqueFeaturesSection,
   WhatAreSection,
   ExampleCreaturesSection,
-  RoadmapSection
+  RoadmapSection,
+  TeamSection
 } from './components'
 
 export default function HomePageDesktip({ ethereumProps, nftAppProps }) {
@@ -56,17 +57,24 @@ export default function HomePageDesktip({ ethereumProps, nftAppProps }) {
         />
       </div>
       <div style={{ ...containerStyle, height: 'auto' }}>
+        <TeamSection ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+      </div>
+      {/*
+      <div style={{ ...containerStyle, height: 'auto' }}>
         <LunarPhasesSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
+      */}
+      {/*
       <div style={{ ...containerStyle, height: 'auto' }}>
         <LunarMonthsSection
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
         />
       </div>
+      */}
       {/*
       <div style={{ ...containerStyle, height: 'auto' }}>
         <LunarOriginsSection
