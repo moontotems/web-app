@@ -1,27 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { ArrowRight32 } from '@carbon/icons-react'
-// https://www.npmjs.com/package/videojs-react-enhanced
-import videojs from 'video.js'
-import VREPlayer from 'videojs-react-enhanced'
-import 'video.js/dist/video-js.css'
+import React, { useState } from 'react'
 import ExploreBox from './ExploreBox'
+import slideContents from './slideContents'
+import Slider from './components/Slider'
 
 export default function Section({ ethereumProps, nftAppProps }) {
-  const { route, setRoute } = nftAppProps
-
-  const playerOptions = {
-    src: 'https://moontotems.blob.core.windows.net/website-assets/videos/MoonTotems_GEN01_BLINKYROTATE.COMP[0000-0832].mp4',
-    preload: 'auto',
-    controls: false,
-    playsinline: true,
-    autoplay: 'play',
-    muted: true,
-    loop: true
-  }
-  const videojsOptions = {
-    fluid: true
-  }
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+  const [sliderRef, setSliderRef] = useState()
 
   return (
     <>
@@ -31,22 +15,19 @@ export default function Section({ ethereumProps, nftAppProps }) {
             style={{
               float: 'left',
               height: '35vh',
+              width: '100%',
               //height: '100%',
               display: 'block',
               marginLeft: 'auto',
-              marginRight: 'auto',
-              width: '100%'
+              marginRight: 'auto'
             }}
           >
-            {/*
-            <VREPlayer
-              playerOptions={playerOptions}
-              videojsOptions={videojsOptions}
-            />
-            */}
-            <img
-              src={'/home/MOON_TOTEM_GEN01_BLINKYROTATE.jpg'}
-              style={{ float: 'left', width: '100%' }}
+            <Slider
+              slideContents={slideContents}
+              currentSlideIndex={currentSlideIndex}
+              setCurrentSlideIndex={setCurrentSlideIndex}
+              sliderRef={sliderRef}
+              setSliderRef={setSliderRef}
             />
           </div>
         </div>

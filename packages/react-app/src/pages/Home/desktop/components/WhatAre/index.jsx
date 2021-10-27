@@ -1,30 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight32 } from '@carbon/icons-react'
-// https://www.npmjs.com/package/videojs-react-enhanced
-import videojs from 'video.js'
-import VREPlayer from 'videojs-react-enhanced'
-import 'video.js/dist/video-js.css'
+import slideContents from './slideContents'
+import Slider from './components/Slider'
 
 export default function Section({ ethereumProps, nftAppProps }) {
   const { route, setRoute } = nftAppProps
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+  const [sliderRef, setSliderRef] = useState()
 
   return (
     <>
       <div style={{ height: '70vh', overflow: 'hidden' }}>
-        <div style={{ float: 'right', width: '80%', height: '100%' }}>
-          <div style={{ float: 'right', width: '100%', height: '100%' }}>
-            <iframe
-              src='https://player.vimeo.com/video/620510465?h=8893bbc9b4&amp;badge=0&amp;autoplay=1&amp;loop=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
-              frameBorder='0'
-              allow='autoplay; fullscreen; picture-in-picture'
-              autoPlay
-              style={{
-                float: 'right',
-                width: '100%',
-                height: '100%'
-              }}
-              title='Moon Totems Blink'
+        <div style={{ float: 'right', width: '100%', height: '100%' }}>
+          <div
+            style={{
+              float: 'left',
+              width: '100%'
+            }}
+          >
+            <Slider
+              slideContents={slideContents}
+              currentSlideIndex={currentSlideIndex}
+              setCurrentSlideIndex={setCurrentSlideIndex}
+              sliderRef={sliderRef}
+              setSliderRef={setSliderRef}
             />
           </div>
 
