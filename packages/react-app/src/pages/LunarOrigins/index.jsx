@@ -79,7 +79,7 @@ export default function LunarOrigins({ ethereumProps, nftAppProps }) {
             symbol: '/lunarOrigins/lake_of_dreams.svg',
             name: 'Lake of Dreams',
             nameLatin: 'Lacus Somniorum',
-            description: 'Imaginative, Visionary'
+            description: ''
           }}
         />
         <Col xs={24} md={4} />
