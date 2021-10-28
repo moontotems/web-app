@@ -804,7 +804,7 @@ function App() {
       const mintResult = await tx(
         writeContracts.MoonTotems.mint(to, tokenId, {
           gasPrice,
-          // gasLimit: 1000000
+          gasLimit: 170000,
           value
           // nonce:
         })
