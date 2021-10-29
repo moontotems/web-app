@@ -93,7 +93,11 @@ export default function Footer({ ethereumProps, nftAppProps }) {
         <div
           style={{ float: 'right', textAlign: 'center', marginLeft: '15px' }}
         >
-          <img src='/moon_totem_logo.svg' width='20px' alt='Logo Copyright' />
+          <img
+            src='/moon_totem_logo_512.png'
+            width='20px'
+            alt='Logo Copyright'
+          />
         </div>
         <div style={{ float: 'right' }}>© 2021 Moon Totems LLC</div>
       </div>

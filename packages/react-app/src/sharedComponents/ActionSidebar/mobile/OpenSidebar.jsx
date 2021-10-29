@@ -170,7 +170,7 @@ export default function OpenSidebar({
             <div style={{ ...menuItemContentStyle.text }}>All Moon Totems</div>
             <div style={{ ...menuItemContentStyle.icon }}>
               <img
-                src='/moon_totem_logo.svg'
+                src='/moon_totem_logo_512.png'
                 style={{ height: '40px', width: '30px' }}
                 alt='All Totems'
               />
