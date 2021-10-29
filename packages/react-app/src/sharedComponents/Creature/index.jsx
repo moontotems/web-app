@@ -52,13 +52,7 @@ export default function Creature({
             {showButtons && (
               <div style={{ textAlign: 'center' }}>
                 {isAvailable && <AsleepFilled16 />}
-                {isTaken && !ownedByUser && (
-                  <Locked16
-                    style={{
-                      marginRight: '40px'
-                    }}
-                  />
-                )}
+                {isTaken && !ownedByUser && <Locked16 />}
                 {isOwnedByUser && (
                   <img src={OwnedByUserIcon16x16} alt='Owned by User' />
                 )}
