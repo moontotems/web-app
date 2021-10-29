@@ -752,16 +752,8 @@ function App() {
     )
   }
 
-  // TODO: run this when
   const creatureLists = assembleAllCreatureLists()
   const filteredCreatures = applyFiltersToCreatures(creatureLists)
-  /*
-  const shuffledCreatures = shuffleCreatures(
-    filteredCreatures,
-    allCreatures,
-    shuffledCreatureIndexList
-  )
-  */
   const visibleCreatures = getVisibleCreatures(filteredCreatures)
 
   const infiniteScroll = {
@@ -812,6 +804,7 @@ function App() {
       )
       console.log({ mintResult })
       persistantStore.set(`show-fresh-mint-message-${tokenId}`, true)
+      location.reload()
     } catch (e) {
       console.log(e)
     }
