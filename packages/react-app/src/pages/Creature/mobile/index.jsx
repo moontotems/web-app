@@ -175,6 +175,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <FileDownloads
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
+          tokenId={tokenId}
         />
         <Chatbot
           ethereumProps={ethereumProps}

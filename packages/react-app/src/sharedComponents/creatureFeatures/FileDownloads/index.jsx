@@ -3,7 +3,11 @@ import { Row, Col, Button } from 'antd'
 import { Download16, Download32 } from '@carbon/icons-react'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
 
-export default function CreatureFileDownloads({ ethereumProps, nftAppProps }) {
+export default function CreatureFileDownloads({
+  ethereumProps,
+  nftAppProps,
+  tokenId
+}) {
   const { isMobile } = nftAppProps
 
   const textStyle = {
@@ -54,6 +58,11 @@ export default function CreatureFileDownloads({ ethereumProps, nftAppProps }) {
                 ...buttonStyle,
                 float: 'left'
               }}
+              onClick={() => {
+                window.open(
+                  `https://moontotems.blob.core.windows.net/totem-owner-assets/base/jpeg/2048/moontotems_g1_base_2048_${tokenId}.jpg`
+                )
+              }}
             >
               Download
             </Button>
@@ -68,6 +77,11 @@ export default function CreatureFileDownloads({ ethereumProps, nftAppProps }) {
               style={{
                 ...buttonStyle,
                 float: 'left'
+              }}
+              onClick={() => {
+                window.open(
+                  `https://moontotems.blob.core.windows.net/totem-owner-assets/base/png/2048/moontotems_g1_base_2048_${tokenId}.png`
+                )
               }}
             >
               Download
@@ -108,6 +122,11 @@ export default function CreatureFileDownloads({ ethereumProps, nftAppProps }) {
                 ...buttonStyle,
                 float: 'left'
               }}
+              onClick={() => {
+                window.open(
+                  `https://moontotems.blob.core.windows.net/totem-owner-assets/card/moontotems_g1_card_2048_${tokenId}.jpg`
+                )
+              }}
             >
               Download
             </Button>
@@ -123,6 +142,11 @@ export default function CreatureFileDownloads({ ethereumProps, nftAppProps }) {
                 ...buttonStyle,
                 float: 'left'
               }}
+              onClick={() => {
+                window.open(
+                  `https://moontotems.blob.core.windows.net/totem-owner-assets/flat/jpeg/2048/moontotems_g1_flat_2048_${tokenId}.jpg`
+                )
+              }}
             >
               Download
             </Button>
@@ -137,6 +161,12 @@ export default function CreatureFileDownloads({ ethereumProps, nftAppProps }) {
               style={{
                 ...buttonStyle,
                 float: 'left'
+              }}
+              onclick="window.open('file.doc')"
+              onClick={() => {
+                window.open(
+                  `https://moontotems.blob.core.windows.net/totem-owner-assets/3d/abc/moontotems_g1_3d_${tokenId}.abc`
+                )
               }}
             >
               Download

@@ -178,6 +178,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
         <FileDownloads
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
+          tokenId={tokenId}
         />
         <Chatbot
           ethereumProps={ethereumProps}
