@@ -123,7 +123,7 @@ export default function CompactSidebar({
         onClick={() => setActiveFilters([])}
       >
         <img
-          src='/moon_totem_logo_512.png'
+          src='/moon_totem_logo.svg'
           width='17px'
           style={{ marginTop: '-10px' }}
           alt='All Totems'
