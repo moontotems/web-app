@@ -430,6 +430,7 @@ function App() {
   const [balanceOfUser, setBalanceOfUser] = useState(0)
 
   const fetchUsersCreatures = async () => {
+    console.log('now fetching users creatures...')
     try {
       if (readContracts) {
         let balanceOf = await readContracts.MoonTotems.balanceOf(address)
@@ -487,7 +488,6 @@ function App() {
   */
 
   useEffect(() => {
-    console.log('now fetching users creatures...')
     fetchUsersCreatures()
   }, [address])
 
@@ -804,7 +804,7 @@ function App() {
       )
       console.log({ mintResult })
       persistantStore.set(`show-fresh-mint-message-${tokenId}`, true)
-      location.reload()
+      fetchUsersCreatures()
     } catch (e) {
       console.log(e)
     }
