@@ -46,7 +46,8 @@ import './themes/configs.js'
 
 // 📡 What chain are your contracts deployed to?
 //const targetNetwork = NETWORKS.localhost // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
-//const targetNetwork = NETWORKS.rinkeby // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+//const targetNetwork = NETWORKS.rinkeby
+//const targetNetwork = NETWORKS.ropsten
 const targetNetwork = NETWORKS.mainnet
 
 // 😬 Sorry for all the console logging

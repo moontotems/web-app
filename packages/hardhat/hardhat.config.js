@@ -26,6 +26,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // const defaultNetwork = "localhost";
 // const defaultNetwork = "rinkeby";
+// const defaultNetwork = "ropsten";
 const defaultNetwork = "mainnet";
 
 function mnemonic() {
