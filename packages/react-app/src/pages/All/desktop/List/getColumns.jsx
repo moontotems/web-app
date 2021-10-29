@@ -14,6 +14,25 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
 
   return [
     {
+      title: 'Image',
+      fixed: 'left',
+      render: (value, record) => (
+        <Link
+          onClick={() => {
+            setRoute('/moontotem')
+          }}
+          to={`/moontotem/${record.id}`}
+          target='_blank'
+        >
+          <img
+            src={getImageUrl({ tokenId: record.id, size: 100 })}
+            alt={`Moon Totem #${record.id}`}
+            style={{ width: '100%' }}
+          />
+        </Link>
+      )
+    },
+    {
       title: 'Token ID',
       dataIndex: 'id',
       key: 'id',
@@ -44,25 +63,6 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       )
     },
     {
-      title: 'Image',
-      fixed: 'left',
-      render: (value, record) => (
-        <Link
-          onClick={() => {
-            setRoute('/moontotem')
-          }}
-          to={`/moontotem/${record.id}`}
-          target='_blank'
-        >
-          <img
-            src={getImageUrl({ tokenId: record.id, size: 100 })}
-            alt={`Moon Totem #${record.id}`}
-            style={{ width: '100%' }}
-          />
-        </Link>
-      )
-    },
-    {
       title: 'Name',
       dataIndex: 'trait_name1',
       render: (value, record) => `${record.trait_name1} ${record.trait_name2}`,
@@ -73,88 +73,27 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       }
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      filters: true,
-      sorter: (a, b) => a.age - b.age
+      title: 'Job Field',
+      dataIndex: 'trait_jobField',
+      //...getColumnSearchProps('Job Field', 'trait_jobField'),
+      sorter: (a, b) => a.trait_jobField?.localeCompare(b.trait_jobField)
     },
     {
-      title: 'Birth Year',
-      dataIndex: 'birthYearStr',
-      //...getColumnSearchProps('Birth Year', 'birthYearStr'),
-      sorter: (a, b) => a.birthYearStr?.localeCompare(b.birthYearStr)
+      title: 'Job Title',
+      dataIndex: 'trait_jobTitle',
+      //...getColumnSearchProps('Job Title', 'trait_jobTitle'),
+      sorter: (a, b) => a.trait_jobTitle?.localeCompare(b.trait_jobTitle)
     },
     {
-      title: 'Complexity Score',
-      dataIndex: 'complexityScore',
-      // tip: 'This is a cool tip ...',
-      filters: true,
-      sorter: (a, b) => a.complexityScore - b.complexityScore
-    },
-    {
-      title: 'Complexity Pieces',
-      dataIndex: 'complexityPieces',
-      sorter: (a, b) => a.complexityPieces - b.complexityPieces
-    },
-    {
-      title: 'Asymmetrical Eye',
-      dataIndex: 'eyeAsymmetrical',
-      render: (value, record) => convertBoolNumToString(value),
-      sorter: (a, b) => a.eyeAsymmetrical - b.eyeAsymmetrical
-    },
-    {
-      title: 'Multicolored Eyes',
-      dataIndex: 'eyeMulticolor',
-      render: (value, record) => convertBoolNumToString(value),
-      sorter: (a, b) => a.eyeMulticolor - b.eyeMulticolor
-    },
-    {
-      title: 'Eye Shape',
-      dataIndex: 'eyeShape',
-      sorter: (a, b) => a.eyeShape?.localeCompare(b.eyeShape),
-
-      filters: true,
-      onFilter: (value, record) => {
-        return record['eyeShape']
-          .toString()
-          .toLowerCase()
-          .includes(value.toLowerCase())
-      },
-      valueType: 'select',
-      valueEnum: {
-        crescent: { text: 'Crescent', status: 'Crescent' },
-        catEyes: { text: 'Cat Eyes', status: 'Cat Eyes' },
-        semi: { text: 'Semi', status: 'Semi' },
-        saucer: { text: 'Saucer', status: 'Saucer' },
-        slot: { text: 'Slot', status: 'Slot' },
-        unknown: { text: 'Unknown', status: 'Unknown' },
-        hexagon: { text: 'Hexagon', status: 'Hexagon' }
+      title: 'Personality',
+      dataIndex: 'trait_personality1',
+      render: (value, record) =>
+        `${record.trait_personality1}, ${record.trait_personality2} & ${record.trait_personality3}`,
+      sorter: (a, b) => {
+        const personalityStringA = `${a.trait_personality1}, ${a.trait_personality2} & ${a.trait_personality3}`
+        const personalityStringB = `${b.trait_personality1}, ${b.trait_personality2} & ${b.trait_personality3}`
+        return personalityStringA?.localeCompare(personalityStringB)
       }
-    },
-    {
-      title: 'Blobby Holes',
-      dataIndex: 'holesBlobby',
-      render: (value, record) => convertBoolNumToString(value),
-      sorter: (a, b) => a.holesBlobby - b.holesBlobby,
-
-      filters: true,
-      onFilter: (value, record) => {
-        return (
-          (record['holesBlobby'] === 0 && value === 'no') ||
-          (record['holesBlobby'] === 1 && value === 'yes')
-        )
-      },
-      valueType: 'select',
-      valueEnum: {
-        yes: { text: 'Yes', status: 'yes' },
-        no: { text: 'No', status: 'no' }
-      }
-    },
-    {
-      title: 'Cut Holes',
-      dataIndex: 'holesCut',
-      render: (value, record) => convertBoolNumToString(value),
-      sorter: (a, b) => a.holesCut - b.holesCut
     },
     {
       title: 'Origin',
@@ -212,16 +151,14 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       }
     },
     {
-      title: 'Origin Latin',
-      dataIndex: 'lunarOriginNameLatin',
-      //...getColumnSearchProps('Origin Latin', 'lunarOriginNameLatin'),
-      sorter: (a, b) =>
-        a.lunarOriginNameLatin?.localeCompare(b.lunarOriginNameLatin)
+      title: 'Lunar Month',
+      dataIndex: 'moonMonth',
+      sorter: (a, b) => a.moonMonth?.localeCompare(b.moonMonth)
     },
     {
-      title: 'Origin Population',
-      dataIndex: 'lunarOriginQuantity',
-      sorter: (a, b) => a.lunarOriginQuantity - b.lunarOriginQuantity
+      title: 'Lunar Phase',
+      dataIndex: 'moonPhase',
+      sorter: (a, b) => a.moonPhase?.localeCompare(b.moonPhase)
     },
     {
       title: 'Material',
@@ -256,24 +193,140 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
         a.mat_patterPerfName?.localeCompare(b.mat_patterPerfName)
     },
     {
-      title: 'Moon Month',
-      dataIndex: 'moonMonth',
-      sorter: (a, b) => a.moonMonth?.localeCompare(b.moonMonth)
+      title: 'Complexity Score',
+      dataIndex: 'complexityScore',
+      // tip: 'This is a cool tip ...',
+      filters: true,
+      sorter: (a, b) => a.complexityScore - b.complexityScore
     },
+
     {
-      title: 'Moon Phase',
-      dataIndex: 'moonPhase',
-      sorter: (a, b) => a.moonPhase?.localeCompare(b.moonPhase)
-    },
-    {
-      title: 'Age Rank',
-      dataIndex: 'ageRank',
-      sorter: (a, b) => a.ageRank - b.ageRank
-    },
-    {
-      title: 'No. of Distinct Colors',
+      title: 'Color Count',
       dataIndex: 'colorsTotal',
       sorter: (a, b) => a.colorsTotal - b.colorsTotal
+    },
+    {
+      title: 'Pieces Count',
+      dataIndex: 'complexityPieces',
+      sorter: (a, b) => a.complexityPieces - b.complexityPieces
+    },
+
+    {
+      title: 'Blobby Holes',
+      dataIndex: 'holesBlobby',
+      render: (value, record) => convertBoolNumToString(value),
+      sorter: (a, b) => a.holesBlobby - b.holesBlobby,
+
+      filters: true,
+      onFilter: (value, record) => {
+        return (
+          (record['holesBlobby'] === 0 && value === 'no') ||
+          (record['holesBlobby'] === 1 && value === 'yes')
+        )
+      },
+      valueType: 'select',
+      valueEnum: {
+        yes: { text: 'Yes', status: 'yes' },
+        no: { text: 'No', status: 'no' }
+      }
+    },
+    {
+      title: 'Cut Holes',
+      dataIndex: 'holesCut',
+      render: (value, record) => convertBoolNumToString(value),
+      sorter: (a, b) => a.holesCut - b.holesCut
+    },
+    {
+      title: 'Eye Shape',
+      dataIndex: 'eyeShape',
+      sorter: (a, b) => a.eyeShape?.localeCompare(b.eyeShape),
+
+      filters: true,
+      onFilter: (value, record) => {
+        return record['eyeShape']
+          .toString()
+          .toLowerCase()
+          .includes(value.toLowerCase())
+      },
+      valueType: 'select',
+      valueEnum: {
+        crescent: { text: 'Crescent', status: 'Crescent' },
+        catEyes: { text: 'Cat Eyes', status: 'Cat Eyes' },
+        semi: { text: 'Semi', status: 'Semi' },
+        saucer: { text: 'Saucer', status: 'Saucer' },
+        slot: { text: 'Slot', status: 'Slot' },
+        unknown: { text: 'Unknown', status: 'Unknown' },
+        hexagon: { text: 'Hexagon', status: 'Hexagon' }
+      }
+    },
+    {
+      title: 'Asymmetrical Eye',
+      dataIndex: 'eyeAsymmetrical',
+      render: (value, record) => convertBoolNumToString(value),
+      sorter: (a, b) => a.eyeAsymmetrical - b.eyeAsymmetrical
+    },
+    {
+      title: 'Multicolored Eyes',
+      dataIndex: 'eyeMulticolor',
+      render: (value, record) => convertBoolNumToString(value),
+      sorter: (a, b) => a.eyeMulticolor - b.eyeMulticolor
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      filters: true,
+      sorter: (a, b) => a.age - b.age
+    },
+    {
+      title: 'Birth Year',
+      dataIndex: 'birthYearStr',
+      //...getColumnSearchProps('Birth Year', 'birthYearStr'),
+      sorter: (a, b) => a.birthYearStr?.localeCompare(b.birthYearStr)
+    },
+    {
+      title: 'Personality A',
+      dataIndex: 'trait_personality1',
+      sorter: (a, b) =>
+        a.trait_personality1?.localeCompare(b.trait_personality1)
+    },
+    {
+      title: 'Personality B',
+      dataIndex: 'trait_personality2',
+      sorter: (a, b) =>
+        a.trait_personality2?.localeCompare(b.trait_personality2)
+    },
+    {
+      title: 'Personality C',
+      dataIndex: 'trait_personality3',
+      sorter: (a, b) =>
+        a.trait_personality3?.localeCompare(b.trait_personality3)
+    },
+    {
+      title: 'Lunar Month Score',
+      dataIndex: 'moonMonthScore',
+      sorter: (a, b) => a.moonMonthScore - b.moonMonthScore
+    },
+    {
+      title: 'Lunar Phase Score',
+      dataIndex: 'moonPhaseScore',
+      sorter: (a, b) => a.moonPhaseScore - b.moonPhaseScore
+    },
+    {
+      title: 'Origin Score',
+      dataIndex: 'lunarOriginScore',
+      sorter: (a, b) => a.lunarOriginScore - b.lunarOriginScore
+    },
+    {
+      title: 'Origin Latin',
+      dataIndex: 'lunarOriginNameLatin',
+      //...getColumnSearchProps('Origin Latin', 'lunarOriginNameLatin'),
+      sorter: (a, b) =>
+        a.lunarOriginNameLatin?.localeCompare(b.lunarOriginNameLatin)
+    },
+    {
+      title: 'Origin Population',
+      dataIndex: 'lunarOriginQuantity',
+      sorter: (a, b) => a.lunarOriginQuantity - b.lunarOriginQuantity
     },
     {
       title: 'Color Quantity Rank',
@@ -281,17 +334,15 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       sorter: (a, b) => a.colorRank - b.colorRank
     },
     {
+      title: 'Age Rank',
+      dataIndex: 'ageRank',
+      sorter: (a, b) => a.ageRank - b.ageRank
+    },
+    {
       title: 'Complexity Rank',
       dataIndex: 'complexityRank',
       sorter: (a, b) => a.complexityRank - b.complexityRank
     },
-    /*
-    {
-      title: 'Rarity Rank',
-      dataIndex: 'rarityRank',
-      sorter: (a, b) => a.rarityRank - b.rarityRank
-    },
-    */
     {
       title: 'Age Score',
       dataIndex: 'AgeScore',
@@ -301,22 +352,8 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       title: 'Material Score',
       dataIndex: 'materialScore',
       sorter: (a, b) => a.materialScore - b.materialScore
-    },
-    {
-      title: 'Moon Month Score',
-      dataIndex: 'moonMonthScore',
-      sorter: (a, b) => a.moonMonthScore - b.moonMonthScore
-    },
-    {
-      title: 'Moon Phase Score',
-      dataIndex: 'moonPhaseScore',
-      sorter: (a, b) => a.moonPhaseScore - b.moonPhaseScore
-    },
-    {
-      title: 'Lunar Origin Score',
-      dataIndex: 'lunarOriginScore',
-      sorter: (a, b) => a.lunarOriginScore - b.lunarOriginScore
-    },
+    }
+
     /*
     {
       title: 'Rarity Score',
@@ -324,47 +361,14 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       sorter: (a, b) => a.rarityScore - b.rarityScore
     },
     */
+    /*
     {
-      title: 'Job Title',
-      dataIndex: 'trait_jobTitle',
-      //...getColumnSearchProps('Job Title', 'trait_jobTitle'),
-      sorter: (a, b) => a.trait_jobTitle?.localeCompare(b.trait_jobTitle)
+      title: 'Rarity Rank',
+      dataIndex: 'rarityRank',
+      sorter: (a, b) => a.rarityRank - b.rarityRank
     },
-    {
-      title: 'Job Field',
-      dataIndex: 'trait_jobField',
-      //...getColumnSearchProps('Job Field', 'trait_jobField'),
-      sorter: (a, b) => a.trait_jobField?.localeCompare(b.trait_jobField)
-    },
-    {
-      title: 'Personality',
-      dataIndex: 'trait_personality1',
-      render: (value, record) =>
-        `${record.trait_personality1}, ${record.trait_personality2} & ${record.trait_personality3}`,
-      sorter: (a, b) => {
-        const personalityStringA = `${a.trait_personality1}, ${a.trait_personality2} & ${a.trait_personality3}`
-        const personalityStringB = `${b.trait_personality1}, ${b.trait_personality2} & ${b.trait_personality3}`
-        return personalityStringA?.localeCompare(personalityStringB)
-      }
-    },
-    {
-      title: 'Personality Trait 1',
-      dataIndex: 'trait_personality1',
-      sorter: (a, b) =>
-        a.trait_personality1?.localeCompare(b.trait_personality1)
-    },
-    {
-      title: 'Personality Trait 2',
-      dataIndex: 'trait_personality2',
-      sorter: (a, b) =>
-        a.trait_personality2?.localeCompare(b.trait_personality2)
-    },
-    {
-      title: 'Personality Trait 3',
-      dataIndex: 'trait_personality3',
-      sorter: (a, b) =>
-        a.trait_personality3?.localeCompare(b.trait_personality3)
-    }
+    */
+
     /*
     {
       title: 'Show',
