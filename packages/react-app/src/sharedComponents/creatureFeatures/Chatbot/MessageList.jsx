@@ -32,7 +32,8 @@ export default function MessageList({
         height: '500px',
         alignItems: 'flex-end',
         placeContent: 'flex-end',
-        overflowY: 'scroll'
+        overflowY: 'scroll',
+        paddingBottom: isMobile ? '100px' : '0px'
       }}
     >
       {messages.map(message => {
