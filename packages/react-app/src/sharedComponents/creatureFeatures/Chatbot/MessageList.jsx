@@ -25,18 +25,29 @@ export default function MessageList({
     <div
       id='messageList'
       style={{
-        float: 'left',
         width: '100%',
-        maxHeight: isMobile ? 'none' : '400px',
-        overflowY: 'auto',
-        textAlign: 'left'
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: 'nowrap',
+        height: '500px',
+        alignItems: 'flex-end',
+        placeContent: 'flex-end',
+        overflowY: 'scroll'
       }}
     >
       {messages.map(message => {
         const { sender, value } = message
         if (sender === 'user') {
           return (
-            <div style={{ float: 'right', width: 'calc(100% - 120px)' }}>
+            <div
+              style={{
+                width: 'calc(100% - 120px)'
+                //flex: '1 1 0%',
+                //display: 'flex',
+                //flexWrap: 'wrap',
+                //placeContent: 'flex-end'
+              }}
+            >
               <SpeechBubbleUser text={value} isMobile={isMobile} />
             </div>
           )

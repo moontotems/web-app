@@ -75,7 +75,10 @@ export default function Chatbot({
   } else {
     responseContainerStyle = {
       float: 'right',
-      width: '70%'
+      width: '70%',
+      position: 'absolute',
+      bottom: 0,
+      right: 0
     }
   }
 
@@ -90,36 +93,28 @@ export default function Chatbot({
       <div
         style={{
           float: 'left',
-          width: '100%',
-          height: isMobile ? '100%' : 'auto',
-          textAlign: 'left',
-          overflowY: 'hidden',
-          paddingLeft: '17px'
+          height: isMobile ? '100%' : '600px'
         }}
       >
+        <MessageList
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+          messages={messages}
+          typing={typing}
+          image={image}
+        />
+
         <div
-          style={{
-            float: 'left',
-            width: '100%',
-            overflowY: 'auto'
-          }}
+          className='responseContainer'
+          style={{ ...responseContainerStyle }}
         >
-          <MessageList
-            ethereumProps={ethereumProps}
-            nftAppProps={nftAppProps}
-            messages={messages}
-            typing={typing}
-            image={image}
-          />
-        </div>
-        <div style={{ ...responseContainerStyle }}>
           <Form form={form} onFinish={onSubmit} style={{ width: '100%' }}>
             <Form.Item name='inputValue'>
               <Input
                 placeholder={'Ask a question ...'}
                 style={{
                   float: 'right',
-                  width: '80%',
+                  width: '90%',
                   margin: '0 auto 1rem',
                   marginTop: '10px',
                   padding: isMobile ? '1.8rem' : '0.8rem',

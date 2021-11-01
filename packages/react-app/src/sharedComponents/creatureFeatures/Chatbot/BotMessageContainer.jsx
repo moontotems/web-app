@@ -4,8 +4,17 @@ import { SpeechBubbleBot } from './speechBubbles'
 
 export default function BotMessageContainer({ image, text, isMobile }) {
   return (
-    <div style={{ float: 'left', width: '100%' }}>
-      <div style={{ float: 'left', width: 100 }}>
+    <div
+      className='botMessageContainer'
+      style={{
+        display: 'flex',
+        flexWrap: 'nowrap',
+        justifyContent: 'flex-end',
+        alignContent: 'flex-end',
+        width: '100%'
+      }}
+    >
+      <div style={{ display: 'flex', width: '100px' }}>
         <ReactRoundedImage
           image={image}
           imageWidth='100'
@@ -14,13 +23,7 @@ export default function BotMessageContainer({ image, text, isMobile }) {
           style={{ border: '1px solid #fff' }}
         />
       </div>
-      <div
-        style={{
-          float: 'left',
-          minHeight: 100,
-          width: 'calc(100% - 120px)'
-        }}
-      >
+      <div style={{ display: 'flex', width: 'calc(100% - 100px)' }}>
         <SpeechBubbleBot text={text} isMobile={isMobile} />
       </div>
     </div>
