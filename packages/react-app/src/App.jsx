@@ -47,8 +47,8 @@ import './themes/configs.js'
 // 📡 What chain are your contracts deployed to?
 //const targetNetwork = NETWORKS.localhost // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 //const targetNetwork = NETWORKS.rinkeby
-//const targetNetwork = NETWORKS.ropsten
-const targetNetwork = NETWORKS.mainnet
+const targetNetwork = NETWORKS.ropsten
+//const targetNetwork = NETWORKS.mainnet
 
 // 😬 Sorry for all the console logging
 const DEBUG = false
@@ -488,8 +488,9 @@ function App() {
   */
 
   useEffect(() => {
+    console.log('in useEffect about to call fetchUsersCreatures()')
     fetchUsersCreatures()
-  }, [address])
+  }, [address, readContracts])
 
   const checkIfCreatureIsOwnedByUser = _tokenId =>
     usersCreaturesTokenIds.includes(parseInt(_tokenId))
@@ -870,7 +871,7 @@ function App() {
   }
 
   return (
-    <div id='App'>
+    <div id='App' style={{ height: '100%', overflowY: 'hidden' }}>
       <BrowserRouter>
         <SidebarLeft
           ethereumProps={ethereumProps}
