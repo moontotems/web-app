@@ -11,6 +11,7 @@ import {
   UniqueFeaturesSection,
   WhatAreSection,
   TeamSection,
+  RoadmapSection,
   ExampleCreaturesSection
 } from './components'
 
@@ -45,6 +46,12 @@ export default function HomePageMobile({ ethereumProps, nftAppProps }) {
       </div>
       <div style={{ ...containerStyle }}>
         <TeamSection ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+      </div>
+      <div style={{ ...containerStyle }}>
+        <RoadmapSection
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
       </div>
       <div style={{ ...containerStyle }}>
         <LunarPhasesSection
