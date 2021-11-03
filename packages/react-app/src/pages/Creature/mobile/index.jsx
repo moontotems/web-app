@@ -156,10 +156,10 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         style={{
           position: 'fixed',
           left: 0,
-          width: 'auto',
+          width: '100%',
           height: '100%',
-          zIndex: 100,
-          overflowY: 'hidden'
+          overflowY: 'hidden',
+          zIndex: 100
         }}
       >
         <FreshMintMessage

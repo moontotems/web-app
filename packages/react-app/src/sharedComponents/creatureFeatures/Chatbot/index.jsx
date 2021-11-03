@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ChatBot16, ChatBot32 } from '@carbon/icons-react'
 import { Form, Input } from 'antd'
 import persistantStore from 'store'
+import { MOBILE_HEADER_HEIGHT } from '../../../constants'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
 import './index.less'
 import MessageList from './MessageList'
@@ -63,24 +64,17 @@ export default function Chatbot({
     generateChatbotResponse()
   }
 
-  let responseContainerStyle
-  if (isMobile) {
-    responseContainerStyle = {
-      position: 'absolute',
-      bottom: '90px',
-      left: 0,
-      width: '100%',
-      backgroundColor: '#000'
-    }
-  } else {
-    responseContainerStyle = {
-      float: 'right',
-      width: '70%',
-      position: 'absolute',
-      bottom: 0,
-      right: 0
-    }
+  // this is here so that the chatbot height is updated when keyboard is opened on mobile
+  const [height, setHeight] = useState(window.innerHeight)
+  function handleWindowSizeChange() {
+    setHeight(window.innerHeight)
   }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange)
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange)
+    }
+  }, [])
 
   return (
     <CreatureFeatureContainer
@@ -92,55 +86,68 @@ export default function Chatbot({
     >
       <div
         style={{
-          float: 'left',
-          height: isMobile ? '100%' : '600px'
+          height: '100%'
         }}
       >
-        <MessageList
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-          messages={messages}
-          typing={typing}
-          image={image}
-        />
-
         <div
-          className='responseContainer'
-          style={{ ...responseContainerStyle }}
+          style={{
+            // give the outermost container a predefined size
+            width: 'auto', //isMobile ? '100%' : 'auto',
+            height: isMobile
+              ? `${height - MOBILE_HEADER_HEIGHT - 120}px`
+              : '600px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignContent: 'flex-end'
+          }}
         >
-          <Form form={form} onFinish={onSubmit} style={{ width: '100%' }}>
-            <Form.Item name='inputValue'>
-              <Input
-                placeholder={'Ask a question ...'}
-                style={{
-                  float: 'right',
-                  width: '90%',
-                  margin: '0 auto 1rem',
-                  marginTop: '10px',
-                  padding: isMobile ? '1.8rem' : '0.8rem',
-                  textAlign: 'left',
-                  backgroundColor: '#1062FE',
-                  color: '#fff',
-                  border: '1px solid #1062FE',
-                  borderRadius: '0.80rem',
-                  fontSize: isMobile ? '26px' : '16px',
-                  fontWeight: 400,
-                  lineHeight: '28px',
-                  letterSpacing: '0.1599999964237213px'
-                }}
-              />
-              {/*
-                <Search
-                id='chatInput'
-                placeholder='Ask a question'
-                //allowClear
-                enterButton='Ask'
-                size='large'
-                submit
-              />
-              */}
-            </Form.Item>
-          </Form>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flexGrow: 1,
+              placeContent: 'flex-end',
+              overflow: 'auto',
+              // for firefox
+              minHeight: 0
+            }}
+          >
+            <MessageList
+              ethereumProps={ethereumProps}
+              nftAppProps={nftAppProps}
+              messages={messages}
+              typing={typing}
+              image={image}
+            />
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column'
+            }}
+          >
+            <Form form={form} onFinish={onSubmit} style={{ width: '100%' }}>
+              <Form.Item name='inputValue'>
+                <Input
+                  placeholder='Ask a question ...'
+                  style={{
+                    float: 'right',
+                    width: '90%',
+                    padding: isMobile ? '1.8rem' : '0.8rem',
+                    textAlign: 'left',
+                    backgroundColor: '#1062FE',
+                    color: '#fff',
+                    border: '1px solid #1062FE',
+                    borderRadius: '0.80rem',
+                    fontSize: isMobile ? '26px' : '16px',
+                    fontWeight: 400,
+                    lineHeight: '28px',
+                    letterSpacing: '0.1599999964237213px'
+                  }}
+                />
+              </Form.Item>
+            </Form>
+          </div>
         </div>
       </div>
     </CreatureFeatureContainer>

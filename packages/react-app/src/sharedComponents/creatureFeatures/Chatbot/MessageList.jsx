@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import $ from 'jquery'
-import { SpeechBubbleUser } from './speechBubbles'
 import BotMessageContainer from './BotMessageContainer'
+import UserMessageContainer from './UserMessageContainer'
 
 export default function MessageList({
   ethereumProps,
@@ -25,33 +25,18 @@ export default function MessageList({
     <div
       id='messageList'
       style={{
-        width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        flexWrap: 'nowrap',
-        height: '500px',
-        alignItems: 'flex-end',
-        placeContent: 'flex-end',
-        overflowY: 'auto',
-        paddingBottom: isMobile ? '100px' : '0px'
+        overflow: 'auto',
+        margin: '10px',
+        // for firefox
+        minHeight: 0
       }}
     >
       {messages.map(message => {
         const { sender, value } = message
         if (sender === 'user') {
-          return (
-            <div
-              style={{
-                width: 'calc(100% - 120px)'
-                //flex: '1 1 0%',
-                //display: 'flex',
-                //flexWrap: 'wrap',
-                //placeContent: 'flex-end'
-              }}
-            >
-              <SpeechBubbleUser text={value} isMobile={isMobile} />
-            </div>
-          )
+          return <UserMessageContainer text={value} isMobile={isMobile} />
         }
         if (sender === 'bot') {
           return (
