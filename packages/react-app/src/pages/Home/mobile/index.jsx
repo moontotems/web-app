@@ -53,6 +53,7 @@ export default function HomePageMobile({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       </div>
+      {/*
       <div style={{ ...containerStyle }}>
         <LunarPhasesSection
           ethereumProps={ethereumProps}
@@ -65,6 +66,7 @@ export default function HomePageMobile({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       </div>
+      */}
       <div style={{ ...containerStyle }}>
         <LunarOriginsSection
           ethereumProps={ethereumProps}
