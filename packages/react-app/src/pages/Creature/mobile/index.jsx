@@ -124,7 +124,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   const swipeableHandler = useSwipeable({
     trackMouse: true,
     trackTouch: true,
-    //onSwiped: eventData => console.log('User Swiped!', eventData),
+    onSwiped: eventData => console.log('User Swiped!', eventData),
     onSwipedLeft: eventData => {
       setNextTokenId({
         direction: 'right'
@@ -153,6 +153,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   return (
     <div style={{ backgroundColor: '#000' }}>
       <div
+        {...swipeableHandler}
         style={{
           position: 'fixed',
           left: 0,
@@ -191,24 +192,21 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
       <Row>
         <Col xs={24}>
           <img
-            {...swipeableHandler}
             src={getImageUrl({
               tokenId,
               size: 1024
             })}
             width='100%'
-            /*
-            onClick={() =>
-              setActiveTokenId(
-                getNextTokenId({
-                  direction: 'right'
-                })
-              )
-            }
-            */
             style={{
               marginBottom: '40px'
             }}
+            /*
+            onClick={() => {
+              setNextTokenId({
+                direction: 'right'
+              })
+            }}
+            */
           />
         </Col>
       </Row>
