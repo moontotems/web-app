@@ -5,6 +5,9 @@ const IMAGE_SIZES = [100, 512, 1024, 2048, '6k']
 
 export default function getImageUrl({ tokenId, size, withSymbol }) {
   if (withSymbol) {
+    if (tokenId <= 1000) {
+      return `https://moontotems.blob.core.windows.net/totems/symbol/jpeg/6k/moontotems_g1_symbol_6k_${tokenId}.jpg`
+    }
     return `https://moontotems.blob.core.windows.net/totems/symbol/jpeg/2048/moontotems_g1_symbol_2048_${tokenId}.jpg`
   }
 

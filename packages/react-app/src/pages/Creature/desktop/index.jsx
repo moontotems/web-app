@@ -225,7 +225,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
           src={getImageUrl({ tokenId, size: 2048 })}
           zoomSrc={getImageUrl({
             tokenId,
-            size: isOwnedByUser && tokenId <= 1000 ? '6k' : 2048,
+            size: 2048,
             withSymbol: isOwnedByUser
           })}
           height={`calc(100vh - ${DESKTOP_HEADER_HEIGHT + FOOTER_HEIGHT}px)`}
