@@ -209,7 +209,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
           <img
             src={getImageUrl({
               tokenId,
-              size: 1024
+              size: isOwnedByUser ? 2048 : 1024
             })}
             width='100%'
             style={{

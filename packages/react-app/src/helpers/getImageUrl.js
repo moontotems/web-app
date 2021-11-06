@@ -1,7 +1,7 @@
 import getTokenPrefixZeros from './getTokenPrefixZeros'
 
 // TODO: move this into constants
-const IMAGE_SIZES = [100, 512, 1024, 2048]
+const IMAGE_SIZES = [100, 512, 1024, 2048, '6k']
 
 export default function getImageUrl({ tokenId, size, withSymbol }) {
   if (withSymbol) {
