@@ -26,7 +26,9 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     filteredCreatures,
     filter: { activeFilters },
     mint,
-    favorites
+    favorites,
+    oneFeatureIsVisible,
+    featureIsVisible
   } = nftAppProps
 
   const { updateFavorites } = favorites
@@ -154,43 +156,59 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     background: 'none'
   }
 
+  console.log({ oneFeatureIsVisible })
+
   return (
     <>
-      <div
-        style={{
-          position: 'fixed',
-          top: DESKTOP_HEADER_HEIGHT,
-          left: '0',
-          width: '35%',
-          zIndex: 1000
-        }}
-      >
-        <FreshMintMessage
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-          tokenId={tokenId}
-        />
-        <MetaData
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-          creatureMetadata={metaData}
-        />
-        <FileDownloads
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-          tokenId={tokenId}
-        />
-        <Chatbot
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-          image={getImageUrl({
-            tokenId,
-            size: 1024
-          })}
-          tokenId={tokenId}
-        />
-        <WriteStory ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
-      </div>
+      {true && (
+        <div
+          style={{
+            position: 'fixed',
+            top: DESKTOP_HEADER_HEIGHT,
+            left: '0',
+            width: '35%',
+            zIndex: 1000
+          }}
+        >
+          <FreshMintMessage
+            ethereumProps={ethereumProps}
+            nftAppProps={nftAppProps}
+            tokenId={tokenId}
+          />
+
+          {featureIsVisible('creatureMetaData') && (
+            <MetaData
+              ethereumProps={ethereumProps}
+              nftAppProps={nftAppProps}
+              creatureMetadata={metaData}
+            />
+          )}
+          {featureIsVisible('creatureDownloads') && (
+            <FileDownloads
+              ethereumProps={ethereumProps}
+              nftAppProps={nftAppProps}
+              tokenId={tokenId}
+            />
+          )}
+          {featureIsVisible('chatbot') && (
+            <Chatbot
+              ethereumProps={ethereumProps}
+              nftAppProps={nftAppProps}
+              image={getImageUrl({
+                tokenId,
+                size: 1024
+              })}
+              tokenId={tokenId}
+            />
+          )}
+          {featureIsVisible('writeCreatureStory') && (
+            <WriteStory
+              ethereumProps={ethereumProps}
+              nftAppProps={nftAppProps}
+            />
+          )}
+        </div>
+      )}
 
       <div
         style={{

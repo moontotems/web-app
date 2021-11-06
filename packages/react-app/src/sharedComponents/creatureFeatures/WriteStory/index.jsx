@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Edit16, Edit32 } from '@carbon/icons-react'
 import { Form, Input, Button, notification } from 'antd'
 import $ from 'jquery'
 import persistantStore from 'store'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
-import './style.css'
 
 export default function WriteCreatureStory({
   ethereumProps,
@@ -28,6 +27,22 @@ export default function WriteCreatureStory({
     })
   }
 
+  useEffect(() => {
+    if (isMobile) {
+      $('#creatureStoryTextArea').css({
+        'min-height': '200px',
+        'font-size': '30px',
+        'line-height': '28px'
+      })
+    } else {
+      $('#creatureStoryTextArea').css({
+        'min-height': '200px',
+        'font-size': '18px',
+        'line-height': '28px'
+      })
+    }
+  }, [isMobile])
+
   return (
     <CreatureFeatureContainer
       ethereumProps={ethereumProps}
@@ -49,8 +64,9 @@ export default function WriteCreatureStory({
               <TextArea
                 id='creatureStoryTextArea'
                 rows={4}
-                showCount
                 autoSize
+                showCount
+                //allowClear
                 defaultValue={currentStory}
                 placeholder={'Write the story...'}
                 style={{

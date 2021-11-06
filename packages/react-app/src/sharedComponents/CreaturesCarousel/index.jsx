@@ -15,7 +15,6 @@ import {
 } from '@carbon/icons-react'
 // https://www.npmjs.com/package/react-slick
 import Slider from 'react-slick'
-import $ from 'jquery'
 
 import FILTERS from '../../sharedComponents/FilterDropdown/filters'
 import { getImageUrl } from '../../helpers'
@@ -311,22 +310,8 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
                 style={{ width: 'auto' }}
               />
             */}
-            <Information32
-              aria-label='Show Info'
-              style={{ ...iconStyle }}
-              onClick={() => {
-                $('#chatbot').hide()
-                $('#creatureMetaData').toggle(500)
-              }}
-            />
-            <ChatBot32
-              aria-label='Chat'
-              style={{ ...iconStyle }}
-              onClick={() => {
-                $('#creatureMetaData').hide()
-                $('#chatbot').toggle(500)
-              }}
-            />
+            <Information32 aria-label='Show Info' style={{ ...iconStyle }} />
+            <ChatBot32 aria-label='Chat' style={{ ...iconStyle }} />
             <Edit32 style={{ ...iconStyle }} />
             <ZoomIn32 aria-label='Zoom' style={{ ...iconStyle }} />
           </div>

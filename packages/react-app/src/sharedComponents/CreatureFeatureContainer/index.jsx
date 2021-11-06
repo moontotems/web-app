@@ -1,7 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
 import persistantStore from 'store'
-
 import { CloseFilled32 } from '@carbon/icons-react'
 
 export default function CreatureFeatureContainer({
@@ -14,7 +13,7 @@ export default function CreatureFeatureContainer({
   tokenId,
   children
 }) {
-  const { isMobile } = nftAppProps
+  const { isMobile, hideAllFeatures } = nftAppProps
 
   // TODO: do this better
   let individualStyles = {
@@ -63,7 +62,7 @@ export default function CreatureFeatureContainer({
             if (isFreshMintMessage) {
               persistantStore.set(`show-fresh-mint-message-${tokenId}`, false)
             }
-            $(`#${containerId}`).toggle(500)
+            hideAllFeatures()
           }}
         />
       </div>
