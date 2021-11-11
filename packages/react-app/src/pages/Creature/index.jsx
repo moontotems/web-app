@@ -114,6 +114,7 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
         />
       )}
 
+      {/*
       <div
         style={{
           position: 'fixed',
@@ -125,6 +126,7 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
       >
         <Footer ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </div>
+      */}
     </>
   )
 }
