@@ -126,7 +126,12 @@ export default function Chatbot({
               flexDirection: 'column'
             }}
           >
-            <Form form={form} onFinish={onSubmit} style={{ width: '100%' }}>
+            <Form
+              form={form}
+              onFinish={onSubmit}
+              style={{ width: '100%' }}
+              autoComplete='off'
+            >
               <Form.Item name='inputValue'>
                 <Input
                   placeholder='Ask a question ...'
@@ -144,6 +149,7 @@ export default function Chatbot({
                     lineHeight: '28px',
                     letterSpacing: '0.1599999964237213px'
                   }}
+                  autoComplete='off'
                 />
               </Form.Item>
             </Form>
