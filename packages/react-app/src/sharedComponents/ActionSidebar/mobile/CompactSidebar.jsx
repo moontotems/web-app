@@ -4,7 +4,7 @@ import {
   ColorPalette32,
   ChatBot32,
   Edit32,
-  ZoomIn32,
+  ArrowsHorizontal32,
   Download32,
   Information32,
   Launch32,
@@ -50,7 +50,8 @@ export default function CompactSidebar({
     toggleVisibilityDownload,
     toggleVisibilityMetaData,
     toggleVisibilityChat,
-    toggleVisibilityCreatureStory
+    toggleVisibilityCreatureStory,
+    toggleVisibilityTotemActions
   } = nftAppProps
 
   return (
@@ -290,14 +291,14 @@ export default function CompactSidebar({
           >
             <Edit32 aria-label='Edit' />
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <ZoomIn32 aria-label='Zoom' />
-          </div>
           <div
             className='menu-item'
             style={{ ...menuItemStyle }}
-            onClick={() => toggleVisibilityDownload()}
+            onClick={() => toggleVisibilityTotemActions()}
           >
+            <ArrowsHorizontal32 aria-label='Actions' />
+          </div>
+          <div className='menu-item' style={{ ...menuItemStyle }}>
             <Download32 aria-label='Download' />
           </div>
           <div className='menu-item' style={{ ...menuItemStyle }}>

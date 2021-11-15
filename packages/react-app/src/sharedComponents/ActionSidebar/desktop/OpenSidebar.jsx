@@ -17,7 +17,8 @@ import {
   AsleepFilled16,
   Locked16,
   FavoriteFilled16,
-  Shuffle16
+  Shuffle16,
+  ArrowsHorizontal16
 } from '@carbon/icons-react'
 
 import FILTERS from '../../../sharedComponents/FilterDropdown/filters'
@@ -51,7 +52,8 @@ export default function OpenSidebar({
     toggleVisibilityDownload,
     toggleVisibilityMetaData,
     toggleVisibilityChat,
-    toggleVisibilityCreatureStory
+    toggleVisibilityCreatureStory,
+    toggleVisibilityTotemActions
   } = nftAppProps
 
   const menuItemContentStyle = {
@@ -379,12 +381,14 @@ export default function OpenSidebar({
                 <Edit16 aria-label='Edit' />
               </div>
             </div>
-            <div className='menu-item' style={{ ...menuItemStyle }}>
-              <div style={{ ...menuItemContentStyle.text }}>
-                View Full Resolution
-              </div>
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle }}
+              onClick={() => toggleVisibilityTotemActions()}
+            >
+              <div style={{ ...menuItemContentStyle.text }}>Totem Exchange</div>
               <div style={{ ...menuItemContentStyle.icon }}>
-                <ZoomIn16 aria-label='Zoom' />
+                <ArrowsHorizontal16 aria-label='Zoom' />
               </div>
             </div>
             <div

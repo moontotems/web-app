@@ -16,7 +16,8 @@ import {
   AsleepFilled16,
   Locked16,
   FavoriteFilled16,
-  Shuffle16
+  Shuffle16,
+  ArrowsHorizontal16
 } from '@carbon/icons-react'
 
 import FILTERS from '../../../sharedComponents/FilterDropdown/filters'
@@ -50,7 +51,8 @@ export default function CompactSidebar({
     toggleVisibilityDownload,
     toggleVisibilityMetaData,
     toggleVisibilityChat,
-    toggleVisibilityCreatureStory
+    toggleVisibilityCreatureStory,
+    toggleVisibilityTotemActions
   } = nftAppProps
 
   return (
@@ -290,8 +292,12 @@ export default function CompactSidebar({
           >
             <Edit16 aria-label='Edit' />
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <ZoomIn16 aria-label='Zoom' />
+          <div
+            className='menu-item'
+            style={{ ...menuItemStyle }}
+            onClick={() => toggleVisibilityTotemActions()}
+          >
+            <ArrowsHorizontal16 aria-label='Actions' />
           </div>
           <div
             className='menu-item'

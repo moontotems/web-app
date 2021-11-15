@@ -13,8 +13,14 @@ import InnerImageZoom from 'react-inner-image-zoom'
 import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
 import { creatureFeatures, Icons } from '../../../sharedComponents'
-const { MetaData, Chatbot, FileDownloads, WriteStory, FreshMintMessage } =
-  creatureFeatures
+const {
+  MetaData,
+  Chatbot,
+  FileDownloads,
+  WriteStory,
+  Actions,
+  FreshMintMessage
+} = creatureFeatures
 // TODO: there is an error when implementing this: try out before pushing!!
 const { OwnedByUserIcon20x20 } = Icons
 import './styles.css'
@@ -205,6 +211,13 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             <WriteStory
               ethereumProps={ethereumProps}
               nftAppProps={nftAppProps}
+            />
+          )}
+          {featureIsVisible('creatureActions') && (
+            <Actions
+              ethereumProps={ethereumProps}
+              nftAppProps={nftAppProps}
+              tokenId={tokenId}
             />
           )}
         </div>

@@ -14,7 +14,8 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
     'chatbot',
     'creatureMetaData',
     'creatureDownloads',
-    'writeCreatureStory'
+    'writeCreatureStory',
+    'creatureActions'
   ]
 
   useEffect(() => {
@@ -57,6 +58,7 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
   const toggleVisibilityChat = () => toggleFeature('chatbot')
   const toggleVisibilityCreatureStory = () =>
     toggleFeature('writeCreatureStory')
+  const toggleVisibilityTotemActions = () => toggleFeature('creatureActions')
 
   const [oneFeatureIsVisible, setOneFeatureIsVisible] = useState(false)
 
@@ -85,7 +87,8 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
           toggleVisibilityDownload,
           toggleVisibilityMetaData,
           toggleVisibilityChat,
-          toggleVisibilityCreatureStory
+          toggleVisibilityCreatureStory,
+          toggleVisibilityTotemActions
         }}
       />
 
