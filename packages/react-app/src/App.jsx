@@ -849,6 +849,7 @@ function App() {
     assembleCreature,
     applyFiltersToCreatures,
     checkIfCreatureIsOwnedByUser,
+    fetchUsersCreatures,
     updateFavorites,
     // TODO: remove this -> it is available in creatureLists
     favorites,
