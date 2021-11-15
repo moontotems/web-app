@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { ChatBot16, ChatBot32 } from '@carbon/icons-react'
-import { Form, Input } from 'antd'
+import { ChatBot16, ChatBot32, ArrowUp32 } from '@carbon/icons-react'
+import { Form, Input, Button } from 'antd'
 import persistantStore from 'store'
 import { MOBILE_HEADER_HEIGHT } from '../../../constants'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
@@ -126,16 +126,27 @@ export default function Chatbot({
               flexDirection: 'column'
             }}
           >
-            <Form form={form} onFinish={onSubmit} style={{ width: '100%' }}>
-              <Form.Item name='inputValue'>
+            <Form
+              form={form}
+              layout='inline'
+              onFinish={onSubmit}
+              style={{ width: '100%' }}
+            >
+              <Form.Item
+                name='inputValue'
+                style={{
+                  width: 'calc(100% - 95px)',
+                  marginRight: isMobile ? '15px' : 0
+                }}
+              >
                 <Input
                   placeholder='Ask a question ...'
                   style={{
                     float: 'right',
-                    width: '90%',
+                    //width: '90%',
                     padding: isMobile ? '1.8rem' : '0.8rem',
                     textAlign: 'left',
-                    backgroundColor: '#1062FE',
+                    //backgroundColor: '#1062FE',
                     color: '#fff',
                     border: '1px solid #1062FE',
                     borderRadius: '0.80rem',
@@ -145,6 +156,30 @@ export default function Chatbot({
                     letterSpacing: '0.1599999964237213px'
                   }}
                 />
+              </Form.Item>
+              <Form.Item
+                style={{ width: isMobile ? 'auto' : 'calc(20% - 20px)' }}
+              >
+                <Button
+                  style={{
+                    float: 'right',
+                    height: isMobile ? '80px' : '50px',
+                    width: isMobile ? '80px' : '50px',
+                    marginTop: '3px',
+                    //height: isMobile ? 'auto' : '34px',
+                    //width: isMobile ? '150px' : '113px',
+                    //lineHeight: '34px',
+                    fontSize: isMobile ? '24px' : '16px',
+                    //padding: isMobile ? '10px 15px' : '0 15px',
+                    borderRadius: '100%',
+                    backgroundColor: '#1062FE',
+                    borderColor: '#1062FE'
+                    //float: 'left'
+                  }}
+                  htmlType='submit'
+                >
+                  <ArrowUp32 style={{ marginLeft: '-6px', marginTop: '5px' }} />
+                </Button>
               </Form.Item>
             </Form>
           </div>

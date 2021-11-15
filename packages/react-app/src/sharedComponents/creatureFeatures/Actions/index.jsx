@@ -46,8 +46,6 @@ export default function CreatureActions({
       return
     }
 
-    console.log({ writeContracts })
-
     try {
       const transferFromResult = await tx(
         writeContracts.MoonTotems.transferFrom(from, to, tokenId, {
