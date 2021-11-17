@@ -98,6 +98,7 @@ export default function CreatureActions({
               <Form.Item name='inputValue' label='Transfer To'>
                 <Input
                   placeholder='0x...'
+                  autocomplete='off'
                   style={{
                     //float: 'right',
                     //width: '90%',
