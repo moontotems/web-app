@@ -141,6 +141,7 @@ export default function Chatbot({
               >
                 <Input
                   placeholder='Ask a question ...'
+                  autocomplete='off'
                   style={{
                     float: 'right',
                     //width: '90%',
