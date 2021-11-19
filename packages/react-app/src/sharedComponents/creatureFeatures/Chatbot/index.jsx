@@ -3,7 +3,7 @@ import { ChatBot16, ChatBot32, ArrowUp32 } from '@carbon/icons-react'
 import { Form, Input, Button } from 'antd'
 import persistantStore from 'store'
 import OpenAI from 'openai-api'
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY
+const OPENAI_API_KEY = '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' //process.env.OPENAI_API_KEY
 const openai = new OpenAI(OPENAI_API_KEY)
 
 import { MOBILE_HEADER_HEIGHT } from '../../../constants'
@@ -92,6 +92,21 @@ export default function Chatbot({
 
     openAiInput += `Holder: ${textInput}\n`
 
+    console.log({ openAiInputLength: openAiInput.length })
+
+    const MAX_AI_INPUT_LENGTH = 300
+    console.log({ MAX_AI_INPUT_LENGTH })
+
+    if (openAiInput.length > MAX_AI_INPUT_LENGTH) {
+      openAiInput = openAiInput.replace(start, '')
+      openAiInput =
+        start +
+        openAiInput.substring(
+          openAiInput.length - MAX_AI_INPUT_LENGTH,
+          openAiInput.length
+        )
+    }
+
     console.log({ initialMessages })
     console.log({ openAiInput })
     return openAiInput
@@ -112,11 +127,11 @@ export default function Chatbot({
     let gptResponse
     try {
       // const prompt = `The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ${textInput}\n`
-      const openAIInput = createOpenAIInput(textInput)
+      const openAiInput = createOpenAIInput(textInput)
 
       gptResponse = await openai.complete({
         engine: 'davinci',
-        prompt: openAIInput,
+        prompt: openAiInput,
         temperature: 0.9,
         max_tokens: 150,
         top_p: 1,
