@@ -15,7 +15,7 @@ import {
   TeamSection
 } from './components'
 
-export default function HomePageDesktip({ ethereumProps, nftAppProps }) {
+export default function HomePageDesktop({ ethereumProps, nftAppProps }) {
   const containerStyle = {
     float: 'right',
     //height: `calc(100vh - ${HEADER_HEIGHT_DESKTOP})`,

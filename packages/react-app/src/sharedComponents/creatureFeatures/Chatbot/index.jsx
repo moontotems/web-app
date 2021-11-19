@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { ChatBot16, ChatBot32, ArrowUp32 } from '@carbon/icons-react'
 import { Form, Input, Button } from 'antd'
 import persistantStore from 'store'
+import OpenAI from 'openai-api'
+const OPENAI_API_KEY = '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' //process.env.OPENAI_API_KEY // process.env.OPENAI_API_KEY TODO:
+const openai = new OpenAI(OPENAI_API_KEY)
+
 import { MOBILE_HEADER_HEIGHT } from '../../../constants'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
 import './index.less'
@@ -15,8 +19,18 @@ export default function Chatbot({
   image,
   tokenId
 }) {
-  const { isMobile } = nftAppProps
+  const { isMobile, assembleCreature } = nftAppProps
   const [form] = Form.useForm()
+
+  const creature = assembleCreature(tokenId)
+  const { metaData } = creature
+  const {
+    trait_name1,
+    trait_name2,
+    trait_personality1,
+    trait_personality2,
+    trait_personality3
+  } = metaData
 
   const localStorageId = `chatbotMessages-${tokenId}`
   const initialMessages = persistantStore.get(localStorageId) || []
@@ -39,8 +53,11 @@ export default function Chatbot({
     persistantStore.set(localStorageId, updatedMessageList)
   }
 
+  const delayBySeconds = seconds =>
+    new Promise(res => setTimeout(res, 1000 * seconds))
+
+  /*
   const generateChatbotResponse = async () => {
-    const delay = seconds => new Promise(res => setTimeout(res, 1000 * seconds))
     const randomIndex = Math.floor(Math.random() * ANSWER_LIST.length)
     const message = {
       sender: 'bot',
@@ -49,8 +66,89 @@ export default function Chatbot({
     await delay(4)
     setTyping(true)
     await delay(4)
-    addMessage(message)
     setTyping(false)
+    addMessage(message)
+  }
+  */
+
+  const createOpenAIInput = textInput => {
+    const localStorageId = `chatbotMessages-${tokenId}`
+    const initialMessages = persistantStore.get(localStorageId) || []
+
+    const start = `The following is a conversation with a Moon Totem assistant. The assistant is ${trait_personality1}, ${trait_personality2} and ${trait_personality3}. The Moon Totem assistants name is ${trait_name1} ${trait_name2} \n\n`
+
+    let openAiInput = start
+    initialMessages.map(message => {
+      if (message.sender === 'bot') {
+        openAiInput += `Totem: ${message.value}\n`
+      }
+      if (message.sender === 'user') {
+        openAiInput += `Holder: ${message.value}\n`
+      }
+    })
+
+    openAiInput += `Holder: ${textInput}\n`
+
+    console.log({ initialMessages })
+    console.log({ openAiInput })
+    return openAiInput
+  }
+
+  const generateChatbotResponse = async textInput => {
+    await delayBySeconds(4)
+    setTyping(true)
+    await delayBySeconds(2)
+
+    let numberOfCredits = await openai.encode(
+      'This is an encoding test. Number of tokens is not necessarily the same as word count.'
+    )
+    numberOfCredits = numberOfCredits.length
+
+    console.log(`Number of tokens for string: ${numberOfCredits}`)
+
+    let gptResponse
+    try {
+      // const prompt = `The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ${textInput}\n`
+      const openAIInput = createOpenAIInput(textInput)
+
+      gptResponse = await openai.complete({
+        engine: 'davinci',
+        prompt: openAIInput,
+        temperature: 0.9,
+        max_tokens: 150,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0.6,
+        stop: ['\n', ' Holder:', ' Totem:']
+      })
+    } catch (e) {
+      console.log(e)
+    }
+
+    setTyping(false)
+
+    const {
+      status,
+      data: { choices }
+    } = gptResponse
+    console.log({ gptResponse })
+
+    if (status === 200) {
+      let openaiResponseText = choices[0].text
+      openaiResponseText = openaiResponseText.replace('Totem: ', '')
+      openaiResponseText = openaiResponseText.replace('Holder: ', '')
+      console.log({ openaiResponseText })
+
+      const message = {
+        sender: 'bot',
+        value: openaiResponseText
+      }
+
+      console.log('adding message:')
+      console.log({ message })
+
+      addMessage(message)
+    }
   }
 
   const onSubmit = ({ inputValue }) => {
@@ -61,7 +159,7 @@ export default function Chatbot({
 
     form.resetFields()
 
-    generateChatbotResponse()
+    generateChatbotResponse(inputValue)
   }
 
   // this is here so that the chatbot height is updated when keyboard is opened on mobile
@@ -141,7 +239,7 @@ export default function Chatbot({
               >
                 <Input
                   placeholder='Ask a question ...'
-                  autocomplete='off'
+                  autoComplete='off'
                   style={{
                     float: 'right',
                     //width: '90%',

@@ -56,6 +56,7 @@
     "isomorphic-fetch": "^3.0.0",
     "jquery": "^3.6.0",
     "node-watch": "^0.7.1",
+    "openai-api": "^1.2.6",
     "postcss": "^8.2.6",
     "qrcode.react": "^1.0.0",
     "react": "^17.0.2",
