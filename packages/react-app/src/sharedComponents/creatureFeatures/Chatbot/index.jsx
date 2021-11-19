@@ -3,7 +3,7 @@ import { ChatBot16, ChatBot32, ArrowUp32 } from '@carbon/icons-react'
 import { Form, Input, Button } from 'antd'
 import persistantStore from 'store'
 import OpenAI from 'openai-api'
-const OPENAI_API_KEY = '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' //process.env.OPENAI_API_KEY // process.env.OPENAI_API_KEY TODO:
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY
 const openai = new OpenAI(OPENAI_API_KEY)
 
 import { MOBILE_HEADER_HEIGHT } from '../../../constants'
