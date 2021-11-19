@@ -27,6 +27,9 @@ export default function Chatbot({
   const {
     trait_name1,
     trait_name2,
+    trait_jobField,
+    trait_jobTitle,
+    lunarOriginName,
     trait_personality1,
     trait_personality2,
     trait_personality3
@@ -75,7 +78,7 @@ export default function Chatbot({
     const localStorageId = `chatbotMessages-${tokenId}`
     const initialMessages = persistantStore.get(localStorageId) || []
 
-    const start = `The following is a conversation with a Moon Totem assistant. The assistant is ${trait_personality1}, ${trait_personality2} and ${trait_personality3}. The Moon Totem assistants name is ${trait_name1} ${trait_name2} \n\n`
+    const start = `The following is a conversation with a Moon Totem. The Moon Totem is ${trait_personality1}, ${trait_personality2} and ${trait_personality3}. The Moon Totem name is ${trait_name1} ${trait_name2}. The Moon Totem is from ${lunarOriginName} on the Moon. \n\n`
 
     let openAiInput = start
     initialMessages.map(message => {
