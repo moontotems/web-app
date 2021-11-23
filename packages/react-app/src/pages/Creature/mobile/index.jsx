@@ -156,7 +156,6 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     <div>
       {oneFeatureIsVisible && (
         <div
-          {...swipeableHandler}
           style={{
             position: 'fixed',
             left: 0,
@@ -205,7 +204,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         </div>
       )}
       <Row>
-        <Col xs={24}>
+        <Col xs={24} {...swipeableHandler}>
           <img
             src={getImageUrl({
               tokenId,
