@@ -3,7 +3,7 @@ import { ChatBot16, ChatBot32, ArrowUp32 } from '@carbon/icons-react'
 import { Form, Input, Button } from 'antd'
 import persistantStore from 'store'
 import OpenAI from 'openai-api'
-const OPENAI_API_KEY = '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' //process.env.OPENAI_API_KEY
+const OPENAI_API_KEY = '' //process.env.OPENAI_API_KEY
 const openai = new OpenAI(OPENAI_API_KEY)
 
 import { MOBILE_HEADER_HEIGHT } from '../../../constants'
@@ -19,6 +19,7 @@ export default function Chatbot({
   image,
   tokenId
 }) {
+  const { address } = ethereumProps
   const { isMobile, assembleCreature } = nftAppProps
   const [form] = Form.useForm()
 
@@ -112,6 +113,49 @@ export default function Chatbot({
     return openAiInput
   }
 
+  const openAiContentFilter = async textInput => {
+    let gptResponse
+    console.log('in openAiContentFilter:')
+    console.log('contentFilterResponse:')
+    // https://beta.openai.com/docs/engines/content-filter
+
+    /*
+      engine="content-filter-alpha",
+      prompt = "<|endoftext|>"+content_to_classify+"\n--\nLabel:",
+      temperature=0,
+      max_tokens=1,
+      top_p=1,
+      frequency_penalty=0,
+      presence_penalty=0,
+      logprobs=10
+     */
+    try {
+      gptResponse = await openai.complete({
+        // engine: 'content-filter-alpha-c4',
+        engine: 'content-filter-alpha',
+        prompt: `<|endoftext|>[${textInput}]\n--\nLabel:`,
+        temperature: 0,
+        max_tokens: 1,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+        logprobs: 10
+        /*
+        bestOf: 1,
+        n: 1,
+        stream: false,
+        stop: ['\n', 'testing']
+        //user: address
+        */
+      })
+      console.log({ contentFilterResponse: gptResponse })
+
+      return gptResponse
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   const generateChatbotResponse = async textInput => {
     await delayBySeconds(4)
     setTyping(true)
@@ -129,15 +173,18 @@ export default function Chatbot({
       // const prompt = `The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ${textInput}\n`
       const openAiInput = createOpenAIInput(textInput)
 
+      const contentFilterResponse = await openAiContentFilter()
+
       gptResponse = await openai.complete({
         engine: 'davinci',
         prompt: openAiInput,
         temperature: 0.9,
-        max_tokens: 150,
+        max_tokens: 50, // max allowed by guidelines is 50
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0.6,
-        stop: ['\n', ' Holder:', ' Totem:']
+        stop: ['\n', ' Holder:', ' Totem:'],
+        user: address
       })
     } catch (e) {
       console.log(e)
@@ -145,11 +192,9 @@ export default function Chatbot({
 
     setTyping(false)
 
-    const {
-      status,
-      data: { choices }
-    } = gptResponse
     console.log({ gptResponse })
+
+    const { status, data: { choices } = {} } = gptResponse || {}
 
     if (status === 200) {
       let openaiResponseText = choices[0].text
