@@ -66,9 +66,9 @@ export default function Chatbot({
       sender: 'bot',
       value: ANSWER_LIST[randomIndex]
     }
-    await delay(4)
+    await delayBySeconds(4)
     setTyping(true)
-    await delay(4)
+    await delayBySeconds(4)
     setTyping(false)
     addMessage(message)
   }
