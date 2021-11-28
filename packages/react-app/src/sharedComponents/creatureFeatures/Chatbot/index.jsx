@@ -60,6 +60,7 @@ export default function Chatbot({
   const delayBySeconds = seconds =>
     new Promise(res => setTimeout(res, 1000 * seconds))
 
+  /*
   const generateChatbotResponse = async () => {
     const randomIndex = Math.floor(Math.random() * ANSWER_LIST.length)
     const message = {
@@ -72,6 +73,7 @@ export default function Chatbot({
     setTyping(false)
     addMessage(message)
   }
+  */
 
   const createOpenAIInput = textInput => {
     const localStorageId = `chatbotMessages-${tokenId}`
@@ -154,7 +156,6 @@ export default function Chatbot({
     }
   }
 
-  /*
   const generateChatbotResponse = async textInput => {
     await delayBySeconds(4)
     setTyping(true)
@@ -212,7 +213,6 @@ export default function Chatbot({
       addMessage(message)
     }
   }
-  */
 
   const onSubmit = ({ inputValue }) => {
     if (inputValue == '') return
