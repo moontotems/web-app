@@ -306,7 +306,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                 }}
                 onClick={() => mint(tokenId)}
               >
-                Summon this Totem (0.1 Ξ)
+                Summon this Totem (0.05 Ξ)
               </Button>
             )}
           </div>

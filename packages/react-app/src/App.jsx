@@ -791,7 +791,7 @@ function App() {
 
   const mint = async tokenId => {
     const to = address
-    const value = ethers.utils.parseEther('0.1')
+    const value = ethers.utils.parseEther('0.05')
     console.log({ to, tokenId, value })
 
     try {
