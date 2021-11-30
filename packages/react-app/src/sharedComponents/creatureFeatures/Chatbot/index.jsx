@@ -178,11 +178,11 @@ export default function Chatbot({
       gptResponse = await openai.complete({
         engine: 'davinci',
         prompt: openAiInput,
-        temperature: 0.9,
+        temperature: 0.5,
         max_tokens: 50, // max allowed by guidelines is 50
         top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0.6,
+        frequency_penalty: 0.6,
+        presence_penalty: 0.1,
         stop: ['\n', ' Holder:', ' Totem:'],
         user: address
       })
