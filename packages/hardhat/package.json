@@ -11,6 +11,7 @@
     "eslint-plugin-prettier": "^3.4.0"
   },
   "dependencies": {
+    "@0x/subproviders": "^6.6.1",
     "@eth-optimism/hardhat-ovm": "^0.2.2",
     "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers",
     "@nomiclabs/hardhat-waffle": "^2.0.0",
@@ -23,6 +24,8 @@
     "hardhat": "2.4.3",
     "hardhat-deploy": "^0.8.6",
     "node-watch": "^0.7.0",
+    "opensea-js": "^1.2.1",
+    "openzeppelin-solidity": "^4.4.0",
     "qrcode-terminal": "^0.12.0",
     "ramda": "^0.27.1"
   },
