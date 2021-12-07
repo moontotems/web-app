@@ -39,6 +39,9 @@ export default function Routes({ ethereumProps, nftAppProps }) {
       <Route exact path='/all'>
         <All ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
+      <Route exact path='/:id'>
+        <Creature ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+      </Route>
       <Route exact path='/moontotem/:id'>
         <Creature ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>

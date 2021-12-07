@@ -35,7 +35,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     window.history.replaceState(
       null,
       `Moon Totem ${creatureIndex}`,
-      `/moontotem/${creatureIndex}`
+      `/${creatureIndex}`
     )
   }
 

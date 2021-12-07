@@ -43,7 +43,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     window.history.replaceState(
       null,
       `Moon Totem ${creatureIndex}`,
-      `/moontotem/${creatureIndex}`
+      `/${creatureIndex}`
     )
   }
 
