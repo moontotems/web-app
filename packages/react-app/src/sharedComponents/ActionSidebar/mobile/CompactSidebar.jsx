@@ -69,9 +69,9 @@ export default function CompactSidebar({
       </div>
       <Link
         onClick={() => {
-          setRoute('/moontotem')
+          setRoute('/')
         }}
-        to={`/moontotem/${
+        to={`/${
           filteredCreatures.length
             ? filteredCreatures[0].tokenId
             : creatureLists.all[0].tokenId

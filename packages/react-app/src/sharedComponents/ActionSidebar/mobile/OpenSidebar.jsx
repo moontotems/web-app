@@ -91,9 +91,9 @@ export default function OpenSidebar({
         </div>
         <Link
           onClick={() => {
-            setRoute('/moontotem')
+            setRoute('/')
           }}
-          to={`/moontotem/${
+          to={`/${
             filteredCreatures.length
               ? filteredCreatures[0].tokenId
               : creatureLists.all[0].tokenId

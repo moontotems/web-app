@@ -49,9 +49,9 @@ export default function ActionBarBottom({ ethereumProps, nftAppProps }) {
         />
         <Link
           onClick={() => {
-            setRoute('/moontotem')
+            setRoute('/')
           }}
-          to={`/moontotem/${0}`}
+          to={`/${0}`}
         >
           <CarouselHorizontal32
             aria-label='Switch to carousel view'

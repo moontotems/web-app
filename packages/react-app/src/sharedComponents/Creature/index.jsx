@@ -36,9 +36,9 @@ export default function Creature({
       >
         <Link
           onClick={() => {
-            setRoute('/moontotem')
+            setRoute('/')
           }}
-          to={`/moontotem/${tokenId}`}
+          to={`/${tokenId}`}
         >
           <img
             alt={`Moon Totem ${tokenId}`}

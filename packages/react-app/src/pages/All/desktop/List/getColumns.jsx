@@ -19,9 +19,9 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       render: (value, record) => (
         <Link
           onClick={() => {
-            setRoute('/moontotem')
+            setRoute('/')
           }}
-          to={`/moontotem/${record.id}`}
+          to={`/${record.id}`}
           target='_blank'
         >
           <img
@@ -52,9 +52,9 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       render: (value, record) => (
         <Link
           onClick={() => {
-            setRoute('/moontotem')
+            setRoute('/')
           }}
-          to={`/moontotem/${record.id}`}
+          to={`/${record.id}`}
           target='_blank'
           rel='noopener noreferrer'
         >
@@ -375,10 +375,10 @@ export default function getColumns({ nftAppProps, getColumnSearchProps }) {
       //fixed: 'right',
       render: (value, record) => (
         <Link
-          onClick={() => {
-            setRoute('/moontotem')
+         onClick={() => {
+            setRoute('/')
           }}
-          to={`/moontotem/${record.id}`}
+          to={`/${record.id}`}
           target='_blank'
           rel='noopener noreferrer'
         >
