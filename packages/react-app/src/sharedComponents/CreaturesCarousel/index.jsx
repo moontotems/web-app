@@ -28,7 +28,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
   const { checkIfIsFavorite, updateFavorites } = favorites
 
   let urlTokenId = window.location.pathname.match(/\d+/g)
-  if (urlTokenId.length) {
+  if (urlTokenId && urlTokenId.length) {
     urlTokenId = parseInt(urlTokenId[0])
   } else {
     urlTokenId = 0

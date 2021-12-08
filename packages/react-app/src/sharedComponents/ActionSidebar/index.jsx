@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 import ActionSidebarDesktop from './desktop'
 import ActionSidebarMobile from './mobile'
@@ -7,16 +8,18 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
   const { isMobile, usersCreaturesTokenIds, route } = nftAppProps
 
   const checkIfShouldShowCreatureFeatures = () => {
-    // const getNumberFromString = str =>  str.replace(/[^0-9]/g, '')
-    const href = window.location.href
-    let hrefWithoutPort = href.substring(href.indexOf('moontotem/') + 10)
-    if (!hrefWithoutPort.length) hrefWithoutPort = href
+    const removeFirstChar = str => str.substring(1)
+    const location = useLocation()
 
-    const currentCreatureToken = parseInt(hrefWithoutPort)
-    const creatureIsOwnedByUser =
-      usersCreaturesTokenIds.includes(currentCreatureToken)
-
-    return href.includes('moontotem/') && creatureIsOwnedByUser
+    const possibleTokenId = removeFirstChar(location.pathname)
+    if (!isNaN(possibleTokenId)) {
+      const currentCreatureTokenId = parseInt(possibleTokenId)
+      const creatureIsOwnedByUser = usersCreaturesTokenIds.includes(
+        currentCreatureTokenId
+      )
+      return creatureIsOwnedByUser
+    }
+    return false
   }
 
   const showCreatureFeatures = checkIfShouldShowCreatureFeatures()
