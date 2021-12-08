@@ -48,7 +48,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
   }
 
   let urlTokenId = window.location.pathname.match(/\d+/g)
-  if (urlTokenId.length) {
+  if (urlTokenId && urlTokenId.length) {
     urlTokenId = parseInt(urlTokenId[0])
   } else {
     urlTokenId = 0
@@ -161,8 +161,6 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     marginBottom: '12px',
     background: 'none'
   }
-
-  console.log({ oneFeatureIsVisible })
 
   return (
     <>

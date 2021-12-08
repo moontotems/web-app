@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'antd'
-import { Button } from 'antd-mobile'
+//import { Button } from 'antd-mobile'
+import { Button, Radio, notification } from 'antd'
 import {
   AsleepFilled32,
   Locked32,
   Favorite32,
-  FavoriteFilled32
+  FavoriteFilled32,
+  Share32,
+  Information32
 } from '@carbon/icons-react'
 // https://www.npmjs.com/package/react-slick
 import { useSwipeable } from 'react-swipeable'
@@ -26,7 +29,8 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     mint,
     favorites,
     oneFeatureIsVisible,
-    featureIsVisible
+    featureIsVisible,
+    toggleVisibilityMetaData
   } = nftAppProps
 
   const { updateFavorites } = favorites
@@ -40,7 +44,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   }
 
   let urlTokenId = window.location.pathname.match(/\d+/g)
-  if (urlTokenId.length) {
+  if (urlTokenId && urlTokenId.length) {
     urlTokenId = parseInt(urlTokenId[0])
   } else {
     urlTokenId = 0
@@ -121,7 +125,16 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   const isTaken = !isAvailable
   const isOwnedByUser = ownedByUser
 
-  const { trait_name1, trait_name2, trait_jobField, trait_jobTitle } = metaData
+  const {
+    trait_name1,
+    trait_name2,
+    trait_jobField,
+    trait_jobTitle,
+    trait_personality1,
+    trait_personality2,
+    trait_personality3,
+    lunarOriginName
+  } = metaData
 
   const swipeableHandler = useSwipeable({
     trackMouse: true,
@@ -150,6 +163,26 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
     border: '2px solid',
     marginBottom: '0px',
     background: 'none'
+  }
+
+  const shareTotem = () => {
+    if (navigator && navigator.share) {
+      const title = `Moon Totem #${tokenId}`
+      const text = `Moon Totem #${tokenId}: ${trait_name1} ${trait_name2} - ${trait_jobField} ${trait_jobTitle}. ${trait_personality1}, ${trait_personality2} & ${trait_personality3}. Lunar Origin: ${lunarOriginName}`
+      const url = window.location.href
+      navigator
+        .share({
+          title,
+          text,
+          url
+        })
+        //.then(() => console.log('successful share'))
+        .catch(error => console.log(error))
+    } else {
+      notification.error(
+        'Share not supported on this browser, do it the old way.'
+      )
+    }
   }
 
   return (
@@ -234,6 +267,9 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                 <img src={OwnedByUserIcon32x32} alt='Owned by User' />
               )}
             </div>
+            <div style={{ marginTop: '25px' }}>
+              <Share32 onClick={() => shareTotem()} />
+            </div>
           </div>
         </Col>
         <Col xs={12}>
@@ -265,6 +301,9 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
                   onClick={() => updateFavorites(tokenId)}
                 />
               )}
+            </div>
+            <div style={{ marginTop: '25px' }}>
+              <Information32 onClick={() => toggleVisibilityMetaData()} />
             </div>
           </div>
         </Col>

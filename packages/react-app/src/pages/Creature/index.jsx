@@ -112,7 +112,8 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
             featuresVisibility,
             featureIsVisible,
             oneFeatureIsVisible,
-            hideAllFeatures
+            hideAllFeatures,
+            toggleVisibilityMetaData
           }}
         />
       )}
