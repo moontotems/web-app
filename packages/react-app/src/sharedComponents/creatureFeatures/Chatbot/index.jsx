@@ -3,7 +3,7 @@ import { ChatBot16, ChatBot32, ArrowUp32 } from '@carbon/icons-react'
 import { Form, Input, Button } from 'antd'
 //import persistantStore from 'store'
 import OpenAI from 'openai-api'
-const OPENAI_API_KEY = '' //process.env.OPENAI_API_KEY
+const OPENAI_API_KEY = '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' //process.env.OPENAI_API_KEY
 const openai = new OpenAI(OPENAI_API_KEY)
 
 import { MOBILE_HEADER_HEIGHT } from '../../../constants'
@@ -11,7 +11,7 @@ import CreatureFeatureContainer from '../../CreatureFeatureContainer'
 import './index.less'
 import MessageList from './MessageList'
 import GREETING_LIST from './greetingList'
-import ANSWER_LIST from './answerList'
+//import ANSWER_LIST from './answerList'
 
 export default function Chatbot({
   ethereumProps,
@@ -36,32 +36,29 @@ export default function Chatbot({
     trait_personality3
   } = metaData
 
-  //const localStorageId = `chatbotMessages-${tokenId}`
-  const initialMessages = [] //persistantStore.get(localStorageId) || []
-  if (initialMessages.length === 0) {
+  const getGreetingMessage = () => {
     const randomIndex = Math.floor(Math.random() * GREETING_LIST.length)
-    initialMessages.push({
+    const greetingMessage = {
       sender: 'bot',
       value: GREETING_LIST[randomIndex].message
-    })
-    //persistantStore.set(localStorageId, initialMessages)
+    }
+    return greetingMessage
   }
 
+  const initialMessages = [getGreetingMessage()]
   const [messages, setMessages] = useState(initialMessages)
   const [typing, setTyping] = useState(false)
 
   const addMessage = message => {
-    const _messages = [] //persistantStore.get(localStorageId) || []
-    const updatedMessageList = [..._messages, message]
-    setMessages(updatedMessageList)
-    //persistantStore.set(localStorageId, updatedMessageList)
+    const newMessageList = [...messages, message]
+    setMessages(newMessageList)
   }
 
   const delayBySeconds = seconds =>
     new Promise(res => setTimeout(res, 1000 * seconds))
 
   /*
-  const generateChatbotResponse = async () => {
+  const generateSimpleChatbotResponse = async () => {
     const randomIndex = Math.floor(Math.random() * ANSWER_LIST.length)
     const message = {
       sender: 'bot',
@@ -76,8 +73,7 @@ export default function Chatbot({
   */
 
   const createOpenAIInput = textInput => {
-    //const localStorageId = `chatbotMessages-${tokenId}`
-    const initialMessages = [] //persistantStore.get(localStorageId) || []
+    const initialMessages = []
 
     const start = `The following is a conversation with a Moon Totem. The Moon Totem is ${trait_personality1}, ${trait_personality2} and ${trait_personality3}. The Moon Totem name is ${trait_name1} ${trait_name2}. The Moon Totem is from ${lunarOriginName} on the Moon. \n\n`
 
@@ -145,7 +141,7 @@ export default function Chatbot({
         n: 1,
         stream: false,
         stop: ['\n', 'testing']
-        //user: address
+        user: address
         */
       })
       console.log({ contentFilterResponse: gptResponse })
@@ -188,8 +184,8 @@ export default function Chatbot({
         stop: ['\n', ' Holder:', ' Totem:'],
         user: address
       })
-    } catch (e) {
-      console.log(e)
+    } catch (error) {
+      console.log(error)
     }
 
     setTyping(false)
@@ -223,9 +219,15 @@ export default function Chatbot({
     addMessage(message)
 
     form.resetFields()
-
-    generateChatbotResponse(inputValue)
   }
+
+  useEffect(() => {
+    // if last message is from user
+    const lastMessage = messages[messages.length - 1]
+    if (lastMessage.sender === 'user') {
+      generateChatbotResponse(lastMessage.value)
+    }
+  }, [messages])
 
   // this is here so that the chatbot height is updated when keyboard is opened on mobile
   const [height, setHeight] = useState(window.innerHeight)
