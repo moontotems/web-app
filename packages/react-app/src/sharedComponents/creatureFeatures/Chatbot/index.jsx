@@ -181,7 +181,7 @@ export default function Chatbot({
         engine: 'davinci',
         prompt: openAiInput,
         temperature: 0.5,
-        max_tokens: 150, // max allowed as per guidelines is 50, after talks with support new max allowance of 150
+        max_tokens: 150, // max allowed as per guidelines is 50, after talks with support new max allowed value of 150
         top_p: 1,
         frequency_penalty: 0.6,
         presence_penalty: 0.1,
