@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ChatBot16, ChatBot32, ArrowUp32 } from '@carbon/icons-react'
 import { Form, Input, Button } from 'antd'
-import persistantStore from 'store'
+//import persistantStore from 'store'
 import OpenAI from 'openai-api'
 const OPENAI_API_KEY = '' //process.env.OPENAI_API_KEY
 const openai = new OpenAI(OPENAI_API_KEY)
@@ -36,25 +36,25 @@ export default function Chatbot({
     trait_personality3
   } = metaData
 
-  const localStorageId = `chatbotMessages-${tokenId}`
-  const initialMessages = persistantStore.get(localStorageId) || []
+  //const localStorageId = `chatbotMessages-${tokenId}`
+  const initialMessages = [] //persistantStore.get(localStorageId) || []
   if (initialMessages.length === 0) {
     const randomIndex = Math.floor(Math.random() * GREETING_LIST.length)
     initialMessages.push({
       sender: 'bot',
       value: GREETING_LIST[randomIndex].message
     })
-    persistantStore.set(localStorageId, initialMessages)
+    //persistantStore.set(localStorageId, initialMessages)
   }
 
   const [messages, setMessages] = useState(initialMessages)
   const [typing, setTyping] = useState(false)
 
   const addMessage = message => {
-    const _messages = persistantStore.get(localStorageId) || []
+    const _messages = [] //persistantStore.get(localStorageId) || []
     const updatedMessageList = [..._messages, message]
     setMessages(updatedMessageList)
-    persistantStore.set(localStorageId, updatedMessageList)
+    //persistantStore.set(localStorageId, updatedMessageList)
   }
 
   const delayBySeconds = seconds =>
@@ -76,8 +76,8 @@ export default function Chatbot({
   */
 
   const createOpenAIInput = textInput => {
-    const localStorageId = `chatbotMessages-${tokenId}`
-    const initialMessages = persistantStore.get(localStorageId) || []
+    //const localStorageId = `chatbotMessages-${tokenId}`
+    const initialMessages = [] //persistantStore.get(localStorageId) || []
 
     const start = `The following is a conversation with a Moon Totem. The Moon Totem is ${trait_personality1}, ${trait_personality2} and ${trait_personality3}. The Moon Totem name is ${trait_name1} ${trait_name2}. The Moon Totem is from ${lunarOriginName} on the Moon. \n\n`
 
