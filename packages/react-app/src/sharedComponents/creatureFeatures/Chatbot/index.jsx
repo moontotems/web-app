@@ -175,6 +175,8 @@ export default function Chatbot({
 
       const contentFilterResponse = await openAiContentFilter()
 
+      console.log({ contentFilterResponse })
+
       gptResponse = await openai.complete({
         engine: 'davinci',
         prompt: openAiInput,
