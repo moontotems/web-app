@@ -73,7 +73,7 @@ export default function HeaderDesktop({
             }}
             style={{ ...menuTextStyle }}
           >
-            Logout
+            Disconnect Wallet
           </Link>
         </div>
         <Logout16 style={{ ...menuIconStyle }} />
@@ -176,7 +176,6 @@ export default function HeaderDesktop({
                 <div
                   id='accountDropdown'
                   style={{
-                    marginTop: '7px',
                     padding: 0,
                     border: 'none'
                   }}

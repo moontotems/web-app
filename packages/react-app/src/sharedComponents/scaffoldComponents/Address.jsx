@@ -73,7 +73,7 @@ export default function Address(props) {
     text = (
       <Text copyable={{ text: address }}>
         <a
-          style={{ color: '#fff', fontSize: '13px' }}
+          style={{ color: '#fff' }}
           target='_blank'
           href={etherscanLink}
           rel='noopener noreferrer'
@@ -85,15 +85,13 @@ export default function Address(props) {
   }
 
   return (
-    <span>
-      <span
-        style={{
-          verticalAlign: 'middle',
-          paddingLeft: 5
-        }}
-      >
-        {text}
-      </span>
+    <span
+      style={{
+        verticalAlign: 'middle',
+        paddingLeft: 5
+      }}
+    >
+      {text}
     </span>
   )
 }

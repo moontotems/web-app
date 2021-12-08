@@ -49,10 +49,11 @@ export default function HeaderMobile({
 
   const menuTextStyle = {
     float: 'left',
-    marginRight: 50,
+    marginRight: '50px',
+    fontSize: '24px',
     fontFamily: 'IBM Plex Sans',
     fontStyle: 'normal',
-    fontWeight: 600,
+    //fontWeight: 600,
     letterSpacing: '0.1599999964237213px',
     color: '#C6C6C6'
   }
@@ -100,7 +101,7 @@ export default function HeaderMobile({
             to='/favorites'
             style={{ ...menuTextStyle }}
           >
-            My Favorite Moon Totems
+            My Favorite Totems
           </Link>
         </div>
         <FavoriteFilled16 style={{ ...menuIconStyle }} />
@@ -113,7 +114,7 @@ export default function HeaderMobile({
             }}
             style={{ ...menuTextStyle }}
           >
-            Logout
+            Disconnect Wallet
           </Link>
         </div>
         <Logout16 style={{ ...menuIconStyle }} />
