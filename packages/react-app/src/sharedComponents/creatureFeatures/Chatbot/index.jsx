@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { ChatBot16, ChatBot32, ArrowUp32 } from '@carbon/icons-react'
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, notification } from 'antd'
 //import persistantStore from 'store'
 import OpenAI from 'openai-api'
 const OPENAI_API_KEY = '' //process.env.OPENAI_API_KEY
@@ -11,7 +11,7 @@ import CreatureFeatureContainer from '../../CreatureFeatureContainer'
 import './index.less'
 import MessageList from './MessageList'
 import GREETING_LIST from './greetingList'
-//import ANSWER_LIST from './answerList'
+import ANSWER_LIST from './answerList'
 
 export default function Chatbot({
   ethereumProps,
@@ -57,28 +57,16 @@ export default function Chatbot({
   const delayBySeconds = seconds =>
     new Promise(res => setTimeout(res, 1000 * seconds))
 
-  /*
-  const generateSimpleChatbotResponse = async () => {
+  const getSimpleRandomChatbotResponse = async () => {
     const randomIndex = Math.floor(Math.random() * ANSWER_LIST.length)
-    const message = {
-      sender: 'bot',
-      value: ANSWER_LIST[randomIndex]
-    }
-    await delayBySeconds(4)
-    setTyping(true)
-    await delayBySeconds(4)
-    setTyping(false)
-    addMessage(message)
+    return ANSWER_LIST[randomIndex]
   }
-  */
 
   const createOpenAIInput = textInput => {
-    const initialMessages = []
+    const startText = `The following is a conversation with a Moon Totem. The Moon Totem is ${trait_personality1}, ${trait_personality2} and ${trait_personality3}. The Moon Totem name is ${trait_name1} ${trait_name2}. The Moon Totem is from ${lunarOriginName} on the Moon. \n\n`
 
-    const start = `The following is a conversation with a Moon Totem. The Moon Totem is ${trait_personality1}, ${trait_personality2} and ${trait_personality3}. The Moon Totem name is ${trait_name1} ${trait_name2}. The Moon Totem is from ${lunarOriginName} on the Moon. \n\n`
-
-    let openAiInput = start
-    initialMessages.map(message => {
+    let openAiInput = startText
+    messages.map(message => {
       if (message.sender === 'bot') {
         openAiInput += `Totem: ${message.value}\n`
       }
@@ -87,32 +75,119 @@ export default function Chatbot({
       }
     })
 
-    openAiInput += `Holder: ${textInput}\n`
+    //openAiInput += `Holder: ${textInput}\n`
 
-    console.log({ openAiInputLength: openAiInput.length })
+    const reduceOpenAiInputTo = (maxInputLength, openAiInput, startText) => {
+      if (openAiInput.length > maxInputLength) {
+        openAiInput = openAiInput.replace(startText, '')
+        openAiInput =
+          startText +
+          openAiInput.substring(
+            openAiInput.length - maxInputLength,
+            openAiInput.length
+          )
+      }
 
-    const MAX_AI_INPUT_LENGTH = 300
-    console.log({ MAX_AI_INPUT_LENGTH })
-
-    if (openAiInput.length > MAX_AI_INPUT_LENGTH) {
-      openAiInput = openAiInput.replace(start, '')
-      openAiInput =
-        start +
-        openAiInput.substring(
-          openAiInput.length - MAX_AI_INPUT_LENGTH,
-          openAiInput.length
-        )
+      return openAiInput
     }
 
-    console.log({ initialMessages })
+    const MAX_AI_INPUT_LENGTH = 400
+    console.log({ MAX_AI_INPUT_LENGTH })
+    console.log({ openAiInputLength: openAiInput.length })
+
+    openAiInput = reduceOpenAiInputTo(
+      MAX_AI_INPUT_LENGTH,
+      openAiInput,
+      startText
+    )
+    console.log({ openAiInputLength: openAiInput.length })
     console.log({ openAiInput })
     return openAiInput
   }
 
-  const openAiContentFilter = async textInput => {
-    let gptResponse
+  const checkIfOpenAiContentFilterResponseIsSafe =
+    openAiContentFilterResponse => {
+      // Importantly, you need to check not only the label that was returned by the filter (0, 1, or 2),
+      // but sometimes also the logprobs associated with these.
+
+      // If the filter returns 0 or 1, you should accept that as the filter's outcome.
+      // If the filter returns 2, you should accept this outcome only if its logprob is greater than -0.355.
+
+      // If the logprob for 2 is beneath -0.355 (for example, -0.4), then you should use as output
+      // whichever of 0 or 1 has a logprob closer to 0.
+
+      // 0 & 1 are safe
+      // 2 is unsafe
+      const VALID_LABELS = ['0', '1', '2']
+      // This is the probability at which we evaluate that a "2" is likely real
+      // vs. should be discarded as a false positive
+      const TOXIC_THRESHOLD = -0.355
+      if (openAiContentFilterResponse?.data?.choices?.length) {
+        const {
+          data: { choices }
+        } = openAiContentFilterResponse
+        let { logprobs, text: outputLabel } = choices[0]
+        console.log({ logprobs })
+        console.log({ outputLabel })
+        const { text_offset, token_logprobs, tokens, top_logprobs } = logprobs
+
+        const UNSAFE_AND_CONFIDENT =
+          outputLabel === '2' && logprobs['2'] > TOXIC_THRESHOLD
+        const UNSAFE_AND_NOT_CONFIDENT =
+          outputLabel === '2' && logprobs['2'] < TOXIC_THRESHOLD
+
+        // 2 is unsafe
+        if (UNSAFE_AND_CONFIDENT) {
+          // leave output_label unchanged at "2"
+        }
+
+        if (UNSAFE_AND_NOT_CONFIDENT) {
+          // If the model returns "2", return its confidence in 2 or other output-labels
+          const logprob_0 = logprobs['0']
+          const logprob_1 = logprobs['1']
+          // If both "0" and "1" have probabilities, set the output label
+          // to whichever is most probable
+          if (logprob_0 && logprob_1) {
+            if (logprob_0 >= logprob_1) {
+              outputLabel = '0'
+            } else {
+              outputLabel = '1'
+            }
+          } else {
+            // If only one of them is found, set output label to that one
+            if (logprob_0) {
+              outputLabel = '0'
+            } else if (logprob_1) {
+              outputLabel = '1'
+            } else {
+              // If neither "0" or "1" are available, stick with "2"
+              // by leaving output_label unchanged.
+            }
+          }
+        }
+
+        let safe = false
+        // if the most probable token is none of "0", "1", or "2"
+        // this should be set as unsafe
+        if (!VALID_LABELS.includes(outputLabel)) {
+          safe = false
+        }
+        // "0" & "1" are safe
+        if (outputLabel === '0' || outputLabel === '1') {
+          safe = true
+        }
+        // "2" is unsafe
+        if (outputLabel === '2') {
+          safe = false
+        }
+
+        return safe
+      }
+    }
+
+  const runTextAgainstOpenAiContentFilter = async textInput => {
     console.log('in openAiContentFilter:')
-    console.log('contentFilterResponse:')
+    console.log({ textInput })
     // https://beta.openai.com/docs/engines/content-filter
 
     /*
@@ -125,59 +200,55 @@ export default function Chatbot({
       presence_penalty=0,
       logprobs=10
      */
+
+    const contentToClassify = textInput
+
     try {
-      gptResponse = await openai.complete({
+      const openaiResponse = await openai.complete({
         // engine: 'content-filter-alpha-c4',
         engine: 'content-filter-alpha',
-        prompt: `<|endoftext|>[${textInput}]\n--\nLabel:`,
+        prompt: `<|endoftext|>${contentToClassify}\n--\nLabel:`,
         temperature: 0,
         max_tokens: 1,
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0,
         logprobs: 10
-        /*
-        bestOf: 1,
-        n: 1,
-        stream: false,
-        stop: ['\n', 'testing']
-        user: address
-        */
       })
-      console.log({ contentFilterResponse: gptResponse })
 
-      return gptResponse
+      console.log({ openAiContentFilterResponse: openaiResponse })
+
+      return openaiResponse
     } catch (e) {
       console.log(e)
     }
   }
 
-  const generateChatbotResponse = async textInput => {
+  const simulateTyping = async () => {
     await delayBySeconds(4)
     setTyping(true)
     await delayBySeconds(2)
+  }
 
-    let numberOfCredits = await openai.encode(
-      'This is an encoding test. Number of tokens is not necessarily the same as word count.'
-    )
+  const generateChatbotResponse = async textInput => {
+    await simulateTyping()
+
+    let numberOfCredits = await openai.encode(textInput)
     numberOfCredits = numberOfCredits.length
+    console.log(`number of openAi tokens for textInput: ${numberOfCredits}`)
 
-    console.log(`Number of tokens for string: ${numberOfCredits}`)
-
-    let gptResponse
+    let openaiResponse
     try {
       // const prompt = `The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ${textInput}\n`
       const openAiInput = createOpenAIInput(textInput)
 
-      const contentFilterResponse = await openAiContentFilter()
-
-      console.log({ contentFilterResponse })
-
-      gptResponse = await openai.complete({
+      openaiResponse = await openai.complete({
         engine: 'davinci',
         prompt: openAiInput,
         temperature: 0.5,
-        max_tokens: 150, // max allowed as per guidelines is 50, after talks with support new max allowed value of 150
+        // max allowed as per guidelines is 50
+        // after talks with support new max allowed value of 150
+        max_tokens: 150,
         top_p: 1,
         frequency_penalty: 0.6,
         presence_penalty: 0.1,
@@ -188,28 +259,53 @@ export default function Chatbot({
       console.log(error)
     }
 
+    console.log({ openaiResponse })
+
+    const successfullOpenaiResponse =
+      openaiResponse && openaiResponse.status === 200
+
+    if (!successfullOpenaiResponse) {
+      notification.error({
+        message: 'Totem is sleepy',
+        description: 'GPT request failed',
+        placement: 'topRight'
+      })
+      return
+    }
+
+    const { data: { choices } = {} } = openaiResponse || {}
+
+    const openaiResponseText = choices[0].text
+
+    let totemResponseText
+    try {
+      const contentFilterResponse = await runTextAgainstOpenAiContentFilter(
+        openaiResponseText
+      )
+      console.log({ contentFilterResponse })
+      const isSafe = checkIfOpenAiContentFilterResponseIsSafe(
+        contentFilterResponse
+      )
+      console.log({ isSafe })
+
+      if (isSafe) totemResponseText = openaiResponseText
+      if (!isSafe) totemResponseText = getSimpleRandomChatbotResponse()
+    } catch (error) {
+      console.log(error)
+    }
+
+    totemResponseText = totemResponseText.replace('Totem: ', '')
+    totemResponseText = totemResponseText.replace('Holder: ', '')
+    console.log({ totemResponseText })
+
+    const message = {
+      sender: 'bot',
+      value: totemResponseText
+    }
+
     setTyping(false)
 
-    console.log({ gptResponse })
-
-    const { status, data: { choices } = {} } = gptResponse || {}
-
-    if (status === 200) {
-      let openaiResponseText = choices[0].text
-      openaiResponseText = openaiResponseText.replace('Totem: ', '')
-      openaiResponseText = openaiResponseText.replace('Holder: ', '')
-      console.log({ openaiResponseText })
-
-      const message = {
-        sender: 'bot',
-        value: openaiResponseText
-      }
-
-      console.log('adding message:')
-      console.log({ message })
-
-      addMessage(message)
-    }
+    addMessage(message)
   }
 
   const onSubmit = ({ inputValue }) => {
@@ -222,8 +318,8 @@ export default function Chatbot({
   }
 
   useEffect(() => {
-    // if last message is from user
     const lastMessage = messages[messages.length - 1]
+    // if last message is from user
     if (lastMessage.sender === 'user') {
       generateChatbotResponse(lastMessage.value)
     }
