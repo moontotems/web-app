@@ -289,7 +289,8 @@ export default function Chatbot({
       console.log({ isSafe })
 
       if (isSafe) totemResponseText = openaiResponseText
-      if (!isSafe) totemResponseText = getSimpleRandomChatbotResponse()
+      if (!isSafe || !totemResponseText)
+        totemResponseText = getSimpleRandomChatbotResponse()
     } catch (error) {
       console.log(error)
     }
