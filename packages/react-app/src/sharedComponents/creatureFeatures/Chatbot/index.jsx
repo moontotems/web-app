@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ChatBot16, ChatBot32, ArrowUp32 } from '@carbon/icons-react'
 import { Form, Input, Button, notification } from 'antd'
+import $ from 'jquery'
 //import persistantStore from 'store'
 import OpenAI from 'openai-api'
 const OPENAI_API_KEY = '' //process.env.OPENAI_API_KEY
@@ -316,6 +317,7 @@ export default function Chatbot({
     addMessage(message)
 
     form.resetFields()
+    $('#chatbotInput').focus()
   }
 
   useEffect(() => {
@@ -402,6 +404,7 @@ export default function Chatbot({
                 }}
               >
                 <Input
+                  id='chatbotInput'
                   placeholder='Ask a question ...'
                   autoComplete='off'
                   style={{
