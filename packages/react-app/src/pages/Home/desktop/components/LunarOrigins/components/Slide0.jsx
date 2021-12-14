@@ -18,6 +18,18 @@ export default function Slide0() {
           width: '100%'
         }}
       >
+        <div style={{ width: '100%' }}>
+          <img
+            src='/moontotems_origin_map_full.jpg'
+            style={{
+              display: 'block',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: '100%'
+            }}
+          />
+        </div>
+        {/*
         <div style={{ padding: '100% 0 0 0', position: 'relative' }}>
           <iframe
             src='https://player.vimeo.com/video/617410607?h=48cb560830&amp;badge=0&amp;autoplay=1&amp;loop=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
@@ -33,6 +45,7 @@ export default function Slide0() {
             title='Moon Totems Moon Rotate'
           />
         </div>
+          */}
       </div>
     </div>
   )
