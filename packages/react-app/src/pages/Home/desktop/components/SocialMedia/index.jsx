@@ -192,7 +192,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
                 For insights into the technology behind the project.
               </div>
               <a
-                href='https://github.gg/moontotems'
+                href='https://github.com/moontotems'
                 target='_blank'
                 rel='noreferrer'
               >
