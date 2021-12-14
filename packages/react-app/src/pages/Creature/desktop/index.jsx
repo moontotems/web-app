@@ -240,7 +240,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             withSymbol: isOwnedByUser
           })}
           height={`calc(100vh - ${DESKTOP_HEADER_HEIGHT + FOOTER_HEIGHT}px)`}
-          zoomScale={2}
+          zoomScale={1.1}
           //moveType='drag'
           hideCloseButton={true}
           hideHint={true}
