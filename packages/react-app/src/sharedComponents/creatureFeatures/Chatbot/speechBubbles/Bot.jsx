@@ -4,6 +4,7 @@ export default function SpeechBubbleBot({ text, isMobile }) {
   return (
     <div style={{ float: 'left' }}>
       <div
+        className='chat-speech-bubble'
         style={{
           margin: '0 auto 1rem',
           marginTop: '19px',
