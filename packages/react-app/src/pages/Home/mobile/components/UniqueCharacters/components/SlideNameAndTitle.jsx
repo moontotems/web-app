@@ -29,10 +29,21 @@ export default function SlideNameAndTitle() {
           marginRight: 'auto'
         }}
       >
+        <img
+          src={'/home/Moon_Totem_name.png'}
+          style={{
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '100%'
+          }}
+        />
+        {/*
         <VREPlayer
           playerOptions={playerOptions}
           videojsOptions={videojsOptions}
         />
+        */}
       </div>
     </div>
   )

@@ -18,6 +18,16 @@ export default function SlideNameAndTitle() {
           width: '100%'
         }}
       >
+        <img
+          src={'/home/Moon_Totem_name.png'}
+          style={{
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '100%'
+          }}
+        />
+        {/*
         <div style={{ padding: '100% 0 0 0', position: 'relative' }}>
           <iframe
             src='https://player.vimeo.com/video/630649090?h=99fe8b91fb&amp;badge=0&amp;autoplay=1&amp;loop=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
@@ -33,6 +43,7 @@ export default function SlideNameAndTitle() {
             title='Moon Totem Names'
           />
         </div>
+          */}
       </div>
     </div>
   )

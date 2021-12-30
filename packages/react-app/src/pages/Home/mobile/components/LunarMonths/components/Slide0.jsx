@@ -29,10 +29,12 @@ export default function Slide0() {
           marginRight: 'auto'
         }}
       >
+        {/*
         <VREPlayer
           playerOptions={playerOptions}
           videojsOptions={videojsOptions}
         />
+        */}
       </div>
     </div>
   )

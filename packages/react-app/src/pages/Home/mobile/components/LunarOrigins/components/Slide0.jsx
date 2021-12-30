@@ -29,10 +29,12 @@ export default function Slide0() {
           marginRight: 'auto'
         }}
       >
+        {/*
         <VREPlayer
           playerOptions={playerOptions}
           videojsOptions={videojsOptions}
         />
+        */}
         {/*
         <img
           src={'/moontotems_origin_map_full.jpg'}
