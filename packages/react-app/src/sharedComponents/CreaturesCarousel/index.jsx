@@ -23,6 +23,7 @@ import Icons from '../icons'
 const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
 export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
+  const { address } = ethereumProps
   const { favorites, activeFilter, mintEventsMap, mint } = nftAppProps
 
   const { checkIfIsFavorite, updateFavorites } = favorites
@@ -268,7 +269,7 @@ export default function CreaturesCarousel({ ethereumProps, nftAppProps }) {
                   borderColor: '#24A148',
                   color: '#fff'
                 }}
-                onClick={() => mint(activeTokenId)}
+                onClick={() => mint(address, activeTokenId)}
               >
                 Summon this Totem (0.05 Ξ)
               </Button>

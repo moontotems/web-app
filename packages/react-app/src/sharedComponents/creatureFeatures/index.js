@@ -3,6 +3,7 @@ import Chatbot from './Chatbot'
 import FileDownloads from './FileDownloads'
 import WriteStory from './WriteStory'
 import Actions from './Actions'
+import MintTo from './MintTo'
 import FreshMintMessage from './FreshMintMessage'
 
 const creatureFeatures = {
@@ -11,6 +12,7 @@ const creatureFeatures = {
   FileDownloads,
   WriteStory,
   Actions,
+  MintTo,
   FreshMintMessage
 }
 

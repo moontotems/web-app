@@ -12,20 +12,12 @@ export default function CreatureActions({
   const { isMobile, fetchUsersCreatures } = nftAppProps
   const [form] = Form.useForm()
 
-  const {
-    address,
-    mainnetProvider,
-    localProvider,
-    gasPrice,
-    tx,
-    readContracts,
-    writeContracts
-  } = ethereumProps
+  const { address, gasPrice, tx, writeContracts } = ethereumProps
 
   const buttonStyle = {
-    height: isMobile ? 'auto' : '34px',
+    height: isMobile ? 'auto' : '38px',
     width: isMobile ? '150px' : '113px',
-    lineHeight: '34px',
+    lineHeight: '38px',
     fontSize: isMobile ? '24px' : '16px',
     padding: isMobile ? '10px 15px' : '0 15px',
     borderRadius: 0,
@@ -111,7 +103,7 @@ export default function CreatureActions({
                     fontSize: isMobile ? '26px' : '16px',
                     fontWeight: 400,
                     lineHeight: '28px',
-                    letterSpacing: '0.1599999964237213px'
+                    letterSpacing: '0.16px'
                   }}
                 />
               </Form.Item>
@@ -123,7 +115,7 @@ export default function CreatureActions({
                   }}
                   htmlType='submit'
                 >
-                  Submit
+                  Transfer
                 </Button>
               </Form.Item>
             </Form>

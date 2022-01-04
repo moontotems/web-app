@@ -386,9 +386,9 @@ export default function OpenSidebar({
               style={{ ...menuItemStyle }}
               onClick={() => toggleVisibilityTotemActions()}
             >
-              <div style={{ ...menuItemContentStyle.text }}>Totem Exchange</div>
+              <div style={{ ...menuItemContentStyle.text }}>Totem Transfer</div>
               <div style={{ ...menuItemContentStyle.icon }}>
-                <ArrowsHorizontal16 aria-label='Zoom' />
+                <ArrowsHorizontal16 aria-label='Totem Transfer' />
               </div>
             </div>
             <div
@@ -401,20 +401,6 @@ export default function OpenSidebar({
                 <Download16 aria-label='Download' />
               </div>
             </div>
-            <a
-              href='https://opensea.io/collection/moontotems'
-              target='_blank'
-              rel='noreferrer'
-            >
-              <div className='menu-item' style={{ ...menuItemStyle }}>
-                <div style={{ ...menuItemContentStyle.text }}>
-                  Explore on OpenSea
-                </div>
-                <div style={{ ...menuItemContentStyle.icon }}>
-                  <Launch16 aria-label='Explore on OpenSea' />
-                </div>
-              </div>
-            </a>
           </>
         )}
       </div>

@@ -167,7 +167,7 @@ function App() {
   }
 
   // 💵 This hook will get the price of ETH from 🦄 Uniswap:
-  //const ethPriceDollar = useExchangePrice(targetNetwork, mainnetProvider)
+  const ethPriceDollar = useExchangePrice(targetNetwork, mainnetProvider)
 
   // 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation
   const gasPrice = useGasPrice(targetNetwork, 'fast')
@@ -789,9 +789,9 @@ function App() {
     */
   }
 
-  const mint = async tokenId => {
-    const to = address
+  const mint = async (to, tokenId) => {
     const value = ethers.utils.parseEther('0.05')
+    console.log('mint:')
     console.log({ to, tokenId, value })
 
     try {
@@ -804,7 +804,9 @@ function App() {
         })
       )
       console.log({ mintResult })
-      persistantStore.set(`show-fresh-mint-message-${tokenId}`, true)
+      if (mintResult?.value?._isBigNumber) {
+        persistantStore.set(`show-fresh-mint-message-${tokenId}`, true)
+      }
       fetchUsersCreatures()
     } catch (e) {
       console.log(e)
@@ -828,12 +830,17 @@ function App() {
     address,
     mainnetProvider,
     localProvider,
+    userSigner,
     //yourLocalBalance,
-    //ethPriceDollar,
+    ethPriceDollar,
     gasPrice,
     tx,
     readContracts,
-    writeContracts
+    writeContracts,
+    web3Modal,
+    loadWeb3Modal,
+    logoutOfWeb3Modal,
+    blockExplorer
   }
 
   const nftAppProps = {
@@ -888,11 +895,6 @@ function App() {
           setSidebarLeftOpen={setSidebarLeftOpen}
           headerTitle={headerTitle}
           setHeaderTitle={setHeaderTitle}
-          userSigner={userSigner}
-          web3Modal={web3Modal}
-          loadWeb3Modal={loadWeb3Modal}
-          logoutOfWeb3Modal={logoutOfWeb3Modal}
-          blockExplorer={blockExplorer}
           networkDisplay={networkDisplay}
         />
 

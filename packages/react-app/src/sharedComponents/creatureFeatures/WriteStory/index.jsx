@@ -78,7 +78,7 @@ export default function WriteCreatureStory({
                   //fontSize: '20px',
                   fontWeight: 400,
                   lineHeight: '28px',
-                  letterSpacing: '0.1599999964237213px'
+                  letterSpacing: '0.16px'
                 }}
               />
               <Button

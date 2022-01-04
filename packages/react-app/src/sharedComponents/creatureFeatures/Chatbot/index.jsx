@@ -419,7 +419,7 @@ export default function Chatbot({
                     fontSize: isMobile ? '26px' : '16px',
                     fontWeight: 400,
                     lineHeight: '28px',
-                    letterSpacing: '0.1599999964237213px'
+                    letterSpacing: '0.16px'
                   }}
                 />
               </Form.Item>

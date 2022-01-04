@@ -301,9 +301,6 @@ export default function CompactSidebar({
           <div className='menu-item' style={{ ...menuItemStyle }}>
             <Download32 aria-label='Download' />
           </div>
-          <div className='menu-item' style={{ ...menuItemStyle }}>
-            <Launch32 aria-label='TODO' />
-          </div>
         </>
       )}
     </div>

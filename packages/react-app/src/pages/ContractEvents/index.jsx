@@ -40,6 +40,13 @@ export default function ContractEvents({ ethereumProps }) {
     1
   )
 
+  console.log({
+    mintEvents,
+    transferEvents,
+    approvalEvents,
+    approvalForAllEvents
+  })
+
   return (
     <>
       <Row>

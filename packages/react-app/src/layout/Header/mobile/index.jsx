@@ -30,15 +30,19 @@ export default function HeaderMobile({
   setSidebarLeftOpen,
   headerTitle,
   setHeaderTitle,
-  userSigner,
-  web3Modal,
-  loadWeb3Modal,
-  logoutOfWeb3Modal,
-  blockExplorer,
   networkDisplay
 }) {
-  const { address, mainnetProvider, localProvider, ethPriceDollar } =
-    ethereumProps
+  const {
+    address,
+    mainnetProvider,
+    localProvider,
+    ethPriceDollar,
+    userSigner,
+    web3Modal,
+    loadWeb3Modal,
+    logoutOfWeb3Modal,
+    blockExplorer
+  } = ethereumProps
 
   const { isMobile, setRoute } = nftAppProps
 
@@ -54,7 +58,7 @@ export default function HeaderMobile({
     fontFamily: 'IBM Plex Sans',
     fontStyle: 'normal',
     //fontWeight: 600,
-    letterSpacing: '0.1599999964237213px',
+    letterSpacing: '0.16px',
     color: '#C6C6C6'
   }
 

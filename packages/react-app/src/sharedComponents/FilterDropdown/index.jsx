@@ -26,7 +26,7 @@ export default function FilterDropdown({ ethereumProps, nftAppProps }) {
     fontFamily: 'IBM Plex Sans',
     fontStyle: 'normal',
     fontWeight: 600,
-    letterSpacing: '0.1599999964237213px',
+    letterSpacing: '0.16px',
     color: '#C6C6C6'
   }
   const menuIconStyle = {

@@ -5,20 +5,27 @@ import {
   Favorite20,
   FavoriteFilled20
 } from '@carbon/icons-react'
-import { Button } from 'antd'
+import { Menu, Button, Dropdown } from 'antd'
+import { SwapOutlined, UserOutlined } from '@ant-design/icons'
 // https://www.npmjs.com/package/react-inner-image-zoom
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 import InnerImageZoom from 'react-inner-image-zoom'
 
 import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
-import { creatureFeatures, Icons } from '../../../sharedComponents'
+import {
+  creatureFeatures,
+  Account,
+  Address,
+  Icons
+} from '../../../sharedComponents'
 const {
   MetaData,
   Chatbot,
   FileDownloads,
   WriteStory,
   Actions,
+  MintTo,
   FreshMintMessage
 } = creatureFeatures
 // TODO: there is an error when implementing this: try out before pushing!!
@@ -26,7 +33,8 @@ const { OwnedByUserIcon20x20 } = Icons
 import './styles.css'
 
 export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
-  const { address } = ethereumProps
+  const { address, mainnetProvider } = ethereumProps
+
   const {
     assembleCreature,
     filteredCreatures,
@@ -34,7 +42,8 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     mint,
     favorites,
     oneFeatureIsVisible,
-    featureIsVisible
+    featureIsVisible,
+    toggleVisibilityMintTo
   } = nftAppProps
 
   const { updateFavorites } = favorites
@@ -161,65 +170,93 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     marginBottom: '12px',
     background: 'none'
   }
+  const menu = (
+    <Menu onClick={() => console.log('handleMenuClick')}>
+      <Menu.Item
+        key='1'
+        icon={<UserOutlined />}
+        style={{ padding: 15 }}
+        onClick={() => mint(address, tokenId)}
+      >
+        Mint Totem to
+        <Address
+          address={address}
+          size='medium'
+          ensProvider={mainnetProvider}
+          fontSize={16}
+        />
+      </Menu.Item>
+      <Menu.Item
+        key='2'
+        icon={<SwapOutlined />}
+        style={{ padding: 15 }}
+        onClick={() => toggleVisibilityMintTo()}
+      >
+        Mint Totem to different address
+      </Menu.Item>
+    </Menu>
+  )
 
   return (
     <>
-      {true && (
-        <div
-          style={{
-            position: 'fixed',
-            top: DESKTOP_HEADER_HEIGHT,
-            left: '0',
-            width: '35%',
-            zIndex: 1000
-          }}
-        >
-          <FreshMintMessage
+      <div
+        style={{
+          position: 'fixed',
+          top: DESKTOP_HEADER_HEIGHT,
+          left: '0',
+          width: '35%',
+          zIndex: 1000
+        }}
+      >
+        <FreshMintMessage
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+          tokenId={tokenId}
+        />
+
+        {featureIsVisible('creatureMetaData') && (
+          <MetaData
+            ethereumProps={ethereumProps}
+            nftAppProps={nftAppProps}
+            creatureMetadata={metaData}
+          />
+        )}
+        {featureIsVisible('creatureDownloads') && (
+          <FileDownloads
             ethereumProps={ethereumProps}
             nftAppProps={nftAppProps}
             tokenId={tokenId}
           />
-
-          {featureIsVisible('creatureMetaData') && (
-            <MetaData
-              ethereumProps={ethereumProps}
-              nftAppProps={nftAppProps}
-              creatureMetadata={metaData}
-            />
-          )}
-          {featureIsVisible('creatureDownloads') && (
-            <FileDownloads
-              ethereumProps={ethereumProps}
-              nftAppProps={nftAppProps}
-              tokenId={tokenId}
-            />
-          )}
-          {featureIsVisible('chatbot') && (
-            <Chatbot
-              ethereumProps={ethereumProps}
-              nftAppProps={nftAppProps}
-              image={getImageUrl({
-                tokenId,
-                size: 1024
-              })}
-              tokenId={tokenId}
-            />
-          )}
-          {featureIsVisible('writeCreatureStory') && (
-            <WriteStory
-              ethereumProps={ethereumProps}
-              nftAppProps={nftAppProps}
-            />
-          )}
-          {featureIsVisible('creatureActions') && (
-            <Actions
-              ethereumProps={ethereumProps}
-              nftAppProps={nftAppProps}
-              tokenId={tokenId}
-            />
-          )}
-        </div>
-      )}
+        )}
+        {featureIsVisible('chatbot') && (
+          <Chatbot
+            ethereumProps={ethereumProps}
+            nftAppProps={nftAppProps}
+            image={getImageUrl({
+              tokenId,
+              size: 1024
+            })}
+            tokenId={tokenId}
+          />
+        )}
+        {featureIsVisible('writeCreatureStory') && (
+          <WriteStory ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        )}
+        {featureIsVisible('creatureActions') && (
+          <Actions
+            ethereumProps={ethereumProps}
+            nftAppProps={nftAppProps}
+            tokenId={tokenId}
+          />
+        )}
+        {featureIsVisible('mintTo') && (
+          <MintTo
+            ethereumProps={ethereumProps}
+            nftAppProps={nftAppProps}
+            tokenId={tokenId}
+          />
+        )}
+      </div>
 
       <div
         style={{
@@ -324,14 +361,41 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
               </a>
             )}
             {address && isAvailable && (
-              <Button
-                style={{
-                  ...buttonStyle
-                }}
-                onClick={() => mint(tokenId)}
-              >
-                Summon this Totem (0.05 Ξ)
-              </Button>
+              <>
+                <Dropdown
+                  placement='topCenter'
+                  overlay={menu}
+                  onClick={() => console.log('handleButtonClick')}
+                >
+                  <Button
+                    style={{
+                      ...buttonStyle
+                    }}
+                  >
+                    Summon this Totem (0.05 Ξ)
+                  </Button>
+                </Dropdown>
+                {/*
+                <Button
+                  style={{
+                    ...buttonStyle
+                  }}
+                  onClick={() => mint(address, tokenId)}
+                >
+                  Summon this Totem (0.05 Ξ)
+                </Button>
+                */}
+                {/*
+                <Button
+                  style={{
+                    ...buttonStyle
+                  }}
+                  //onClick={() => mint(address, tokenId)}
+                >
+                  Mint To
+                </Button>
+                */}
+              </>
             )}
           </div>
         </div>

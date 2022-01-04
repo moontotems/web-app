@@ -10,11 +10,6 @@ export default function Header({
   setSidebarLeftOpen,
   headerTitle,
   setHeaderTitle,
-  userSigner,
-  web3Modal,
-  loadWeb3Modal,
-  logoutOfWeb3Modal,
-  blockExplorer,
   networkDisplay
 }) {
   const { isMobile } = nftAppProps
@@ -28,11 +23,6 @@ export default function Header({
           setSidebarLeftOpen={setSidebarLeftOpen}
           headerTitle={headerTitle}
           setHeaderTitle={setHeaderTitle}
-          userSigner={userSigner}
-          web3Modal={web3Modal}
-          loadWeb3Modal={loadWeb3Modal}
-          logoutOfWeb3Modal={logoutOfWeb3Modal}
-          blockExplorer={blockExplorer}
           networkDisplay={networkDisplay}
         />
       )}
@@ -45,11 +35,6 @@ export default function Header({
           setSidebarLeftOpen={setSidebarLeftOpen}
           headerTitle={headerTitle}
           setHeaderTitle={setHeaderTitle}
-          userSigner={userSigner}
-          web3Modal={web3Modal}
-          loadWeb3Modal={loadWeb3Modal}
-          logoutOfWeb3Modal={logoutOfWeb3Modal}
-          blockExplorer={blockExplorer}
           networkDisplay={networkDisplay}
         />
       )}
