@@ -57,8 +57,8 @@ export default function Routes({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       </Route>
-      <Route exact path='/:id'>
-        <Creature ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+      <Route exact path='/terms-and-conditions'>
+        <TermsAndConditions />
       </Route>
 
       {/*
@@ -85,8 +85,8 @@ export default function Routes({ ethereumProps, nftAppProps }) {
       </Route>
       */}
 
-      <Route exact path='/terms-and-conditions'>
-        <TermsAndConditions />
+      <Route exact path='/:id'>
+        <Creature ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       </Route>
     </Switch>
   )
