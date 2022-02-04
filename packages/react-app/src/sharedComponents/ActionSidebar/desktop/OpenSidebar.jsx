@@ -35,6 +35,7 @@ export default function OpenSidebar({
 }) {
   const {
     showCreatureFeatures,
+    route,
     setRoute,
     setShowGridView,
     shuffleCreatureIndexList,
@@ -345,16 +346,20 @@ export default function OpenSidebar({
             <ColorPalette16 aria-label='Color' />
           </div>
         </div>
-        <div
-          className='menu-item'
-          style={{ ...menuItemStyle }}
-          onClick={() => toggleVisibilityMetaData()}
-        >
-          <div style={{ ...menuItemContentStyle.text }}>Show all Metadata</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <Information16 aria-label='Meta Data' />
+        {!route.includes('all') && (
+          <div
+            className='menu-item'
+            style={{ ...menuItemStyle }}
+            onClick={() => toggleVisibilityMetaData()}
+          >
+            <div style={{ ...menuItemContentStyle.text }}>
+              Show all Metadata
+            </div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <Information16 aria-label='Meta Data' />
+            </div>
           </div>
-        </div>
+        )}
         {showCreatureFeatures && (
           <>
             <div
