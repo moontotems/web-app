@@ -789,6 +789,17 @@ function App() {
     */
   }
 
+  const activateMinting = async () => {
+    console.log('activateMinting:')
+
+    try {
+      const result = await tx(writeContracts.MoonTotems.flipMintFlag())
+      console.log({ result })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   const mint = async (to, tokenId) => {
     const value = ethers.utils.parseEther('0.05')
     console.log('mint:')
