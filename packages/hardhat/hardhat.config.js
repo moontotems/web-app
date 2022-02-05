@@ -24,10 +24,10 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "localhost";
+// const defaultNetwork = "localhost";
 // const defaultNetwork = "rinkeby";
 // const defaultNetwork = "ropsten";
-// const defaultNetwork = "mainnet";
+const defaultNetwork = "mainnet";
 
 function mnemonic() {
   try {
