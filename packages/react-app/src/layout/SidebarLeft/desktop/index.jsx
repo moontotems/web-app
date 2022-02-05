@@ -207,6 +207,24 @@ export default function SidebarLeft({
             <div style={{ ...menuItemContentStyle.icon }}></div>
           </div>
           <a
+            href='https://looksrare.org/collections/0x8fE83f6f7f726A2C9E238B7E094c4Bf530bC9720'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <div
+              className='menu-item'
+              style={{ ...menuItemStyle, height: '39px' }}
+            >
+              <div style={{ ...menuItemContentStyle.text }}>
+                Explore on LooksRare
+              </div>
+              <div style={{ ...menuItemContentStyle.icon }}>
+                <img src='/icons/Logo-OpenSea.svg' style={{ ...iconStyle }} />
+              </div>
+            </div>
+          </a>
+
+          <a
             href='https://opensea.io/collection/moontotems'
             target='_blank'
             rel='noreferrer'
