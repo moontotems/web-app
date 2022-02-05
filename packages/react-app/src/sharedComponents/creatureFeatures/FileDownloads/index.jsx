@@ -90,14 +90,7 @@ export default function CreatureFileDownloads({
         </Row>
         <Row style={{ marginBottom: '20px' }}>
           <Col span={14}>
-            <span
-              style={{
-                ...textStyle,
-                color: '#808080'
-              }}
-            >
-              6K.jpg (8mb)
-            </span>
+            <span style={{ ...textStyle }}>6K.jpg (8mb)</span>
           </Col>
           <Col span={10}>
             <Button
@@ -111,7 +104,7 @@ export default function CreatureFileDownloads({
                 )
               }}
             >
-              Processing
+              Download
             </Button>
           </Col>
         </Row>
