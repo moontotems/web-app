@@ -103,9 +103,12 @@ export default function CreatureFileDownloads({
             <Button
               style={{
                 ...buttonStyle,
-                backgroundColor: '#DA1E28',
-                borderColor: '#DA1E28',
                 float: 'left'
+              }}
+              onClick={() => {
+                window.open(
+                  `https://moontotems.blob.core.windows.net/totem-owner-assets/base/jpeg/6k/moontotems_g1_base_6k_${tokenId}.jpg`
+                )
               }}
             >
               Processing
