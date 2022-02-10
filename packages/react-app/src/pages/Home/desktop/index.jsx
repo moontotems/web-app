@@ -87,6 +87,12 @@ export default function HomePageDesktop({ ethereumProps, nftAppProps }) {
           nftAppProps={nftAppProps}
         />
       </div>
+      <div style={{ ...containerStyle, height: 'auto' }}>
+        <ExampleCreaturesSection
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
+      </div>
     </div>
   )
 }
