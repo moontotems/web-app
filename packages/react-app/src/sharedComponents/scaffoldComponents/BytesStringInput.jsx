@@ -3,30 +3,6 @@ import React, { useEffect, useState } from 'react'
 
 const { utils, constants } = require('ethers')
 
-/*
-  ~ What it does? ~
-
-  Displays input field with options to convert between STRING and BYTES32
-
-  ~ How can I use? ~
-
-  <BytesStringInput
-    autofocus
-    value={"scaffold-eth"}
-    placeholder="Enter value..."
-    onChange={value => {
-      setValue(value);
-    }}
-  />
-
-  ~ Features ~
-
-  - Provide value={value} to specify initial string
-  - Provide placeholder="Enter value..." value for the input
-  - Control input change by onChange={value => { setValue(value);}}
-
-*/
-
 export default function BytesStringInput(props) {
   const [mode, setMode] = useState('STRING')
   const [display, setDisplay] = useState()

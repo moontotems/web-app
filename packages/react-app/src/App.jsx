@@ -202,7 +202,6 @@ function App() {
   // Faucet Tx can be used to send funds from the faucet
   const faucetTx = Transactor(localProvider, gasPrice)
 
-  // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
   //const yourLocalBalance = useBalance(localProvider, address)
 
   // Just plug in different 🛰 providers to get your balance on different chains:
