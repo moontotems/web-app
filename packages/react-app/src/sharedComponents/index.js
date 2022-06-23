@@ -1,5 +1,4 @@
 export { default as ActionBarBottom } from './ActionBarBottom'
-export { default as ActionSidebar } from './ActionSidebar'
 export { default as CreaturesCarousel } from './CreaturesCarousel'
 export { default as Creature } from './Creature'
 export { default as creatureFeatures } from './creatureFeatures'
