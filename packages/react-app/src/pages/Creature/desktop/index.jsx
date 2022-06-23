@@ -11,7 +11,7 @@ import { SwapOutlined, UserOutlined } from '@ant-design/icons'
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 import InnerImageZoom from 'react-inner-image-zoom'
 
-import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
+import { HEADER_HEIGHT } from '../../../constants'
 import { getImageUrl } from '../../../helpers'
 import {
   creatureFeatures,
@@ -202,7 +202,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       <div
         style={{
           position: 'fixed',
-          top: DESKTOP_HEADER_HEIGHT,
+          top: HEADER_HEIGHT,
           left: '0',
           width: '35%',
           zIndex: 1000
@@ -261,10 +261,10 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
       <div
         style={{
           position: 'fixed',
-          top: DESKTOP_HEADER_HEIGHT,
+          top: HEADER_HEIGHT,
           left: 0,
           width: '100%',
-          height: `calc(100vh - ${DESKTOP_HEADER_HEIGHT + FOOTER_HEIGHT}px)`,
+          height: `calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)`,
           overflowY: 'hidden'
         }}
       >
@@ -276,7 +276,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
             size: 2048,
             withSymbol: isOwnedByUser
           })}
-          height={`calc(100vh - ${DESKTOP_HEADER_HEIGHT + FOOTER_HEIGHT}px)`}
+          height={`calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)`}
           zoomScale={1.1}
           //moveType='drag'
           hideCloseButton={true}

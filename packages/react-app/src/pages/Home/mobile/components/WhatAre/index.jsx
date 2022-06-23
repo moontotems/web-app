@@ -39,14 +39,14 @@ export default function Section({ ethereumProps, nftAppProps }) {
           overflow: 'hidden'
         }}
       >
-        <div style={{ paddingBottom: '5%', fontSize: '35px' }}>
+        <div style={{ paddingBottom: '5%', fontSize: '25px' }}>
           What are Moon Totems?
         </div>
         <div
           style={{
-            fontSize: '50px',
+            fontSize: '23px',
             fontWeight: 300,
-            lineHeight: '60px'
+            lineHeight: '34px'
           }}
         >
           Moon Totems are digital talismans from the moon and discovered on the

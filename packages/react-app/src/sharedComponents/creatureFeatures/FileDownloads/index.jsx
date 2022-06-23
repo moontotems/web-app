@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Button } from 'antd'
-import { Download16, Download32 } from '@carbon/icons-react'
+import { Download16 } from '@carbon/icons-react'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
 
 export default function CreatureFileDownloads({
@@ -8,21 +8,19 @@ export default function CreatureFileDownloads({
   nftAppProps,
   tokenId
 }) {
-  const { isMobile } = nftAppProps
-
   const textStyle = {
     float: 'right',
     marginRight: '30px',
     fontSize: '30px',
-    paddingTop: isMobile ? '10px' : 'none'
+    paddingTop: 'none'
   }
 
   const buttonStyle = {
-    height: isMobile ? 'auto' : '34px',
-    width: isMobile ? '150px' : '113px',
+    height: '34px',
+    width: '113px',
     lineHeight: '34px',
-    fontSize: isMobile ? '24px' : '16px',
-    padding: isMobile ? '10px 15px' : '0 15px',
+    fontSize: '16px',
+    padding: '0 15px',
     borderRadius: 0,
     backgroundColor: '#1062FE',
     borderColor: '#1062FE',
@@ -34,16 +32,15 @@ export default function CreatureFileDownloads({
       ethereumProps={ethereumProps}
       nftAppProps={nftAppProps}
       containerId={'creatureDownloads'}
-      icon={isMobile ? <Download32 /> : <Download16 />}
+      icon={<Download16 />}
       title={'TOTEM DOWNLOADS'}
     >
       <div
         style={{
           float: 'left',
           width: '100%',
-          marginTop: isMobile ? '25px' : '0px',
           paddingRight: '10px',
-          fontSize: isMobile ? '24px' : '18px',
+          fontSize: '18px',
           lineHeight: '48px',
           textAlign: 'right'
         }}

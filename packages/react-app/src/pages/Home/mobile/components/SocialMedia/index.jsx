@@ -7,17 +7,17 @@ export default function Section({ ethereumProps, nftAppProps }) {
         height: 'auto',
         marginTop: '60px',
         padding: '5%',
-        fontSize: '35px'
+        fontSize: '25px'
       }}
     >
-      <div style={{ paddingBottom: '5%', fontSize: '35px' }}>
+      <div style={{ paddingBottom: '5%', fontSize: '25px' }}>
         @moontotemsnft
       </div>
       <div
         style={{
-          fontSize: '50px',
+          fontSize: '23px',
           fontWeight: 300,
-          lineHeight: '60px',
+          lineHeight: '34px',
           marginBottom: '10%'
         }}
       >
@@ -32,7 +32,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
           <img
             src='/home/icons/Logo-Instagram.svg'
             alt='Moon Totems Instagram'
-            style={{ width: '20%', marginRight: '5%' }}
+            style={{ width: '28.33%', marginRight: '5%' }}
           />
         </a>
         <a
@@ -43,7 +43,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
           <img
             src='/home/icons/Logo-Twitter.svg'
             alt='Moon Totems Twitter'
-            style={{ width: '20%', marginRight: '5%' }}
+            style={{ width: '28.33%', marginRight: '5%' }}
           />
         </a>
         <a
@@ -54,7 +54,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
           <img
             src='/home/icons/Logo-Discord.svg'
             alt='Moon Totems Discord'
-            style={{ width: '20%', marginRight: '5%' }}
+            style={{ width: '28.33%', marginRight: '5%' }}
           />
         </a>
       </div>

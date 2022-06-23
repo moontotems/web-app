@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Edit16, Edit32 } from '@carbon/icons-react'
+import React from 'react'
+import { Edit16 } from '@carbon/icons-react'
 import { Form, Input, Button, notification } from 'antd'
 import $ from 'jquery'
 import persistantStore from 'store'
@@ -10,7 +10,6 @@ export default function WriteCreatureStory({
   nftAppProps,
   tokenId
 }) {
-  const { isMobile } = nftAppProps
   const { TextArea } = Input
   const localStorageId = `creature-story-${tokenId}`
   const [form] = Form.useForm()
@@ -27,28 +26,12 @@ export default function WriteCreatureStory({
     })
   }
 
-  useEffect(() => {
-    if (isMobile) {
-      $('#creatureStoryTextArea').css({
-        'min-height': '200px',
-        'font-size': '30px',
-        'line-height': '28px'
-      })
-    } else {
-      $('#creatureStoryTextArea').css({
-        'min-height': '200px',
-        'font-size': '18px',
-        'line-height': '28px'
-      })
-    }
-  }, [isMobile])
-
   return (
     <CreatureFeatureContainer
       ethereumProps={ethereumProps}
       nftAppProps={nftAppProps}
       containerId={'writeCreatureStory'}
-      icon={isMobile ? <Edit32 /> : <Edit16 />}
+      icon={<Edit16 />}
       title={'TOTEM STORY'}
     >
       <div
@@ -71,11 +54,12 @@ export default function WriteCreatureStory({
                 placeholder={'Write the story...'}
                 style={{
                   float: 'left',
+                  minHeight: '200px',
                   width: '100%',
                   color: '#fff',
                   //border: '1px solid #1062FE',
                   borderRadius: '0.80rem',
-                  //fontSize: '20px',
+                  fontSize: '18px',
                   fontWeight: 400,
                   lineHeight: '28px',
                   letterSpacing: '0.16px'

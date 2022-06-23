@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Information16, Information32 } from '@carbon/icons-react'
+import { Information16 } from '@carbon/icons-react'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
 
 export default function MetaData({
@@ -91,19 +91,18 @@ export default function MetaData({
     trait_personality3
   }
 }) {
-  const { isMobile } = nftAppProps
   return (
     <CreatureFeatureContainer
       ethereumProps={ethereumProps}
       nftAppProps={nftAppProps}
       containerId={'creatureMetaData'}
-      icon={isMobile ? <Information32 /> : <Information16 />}
+      icon={<Information16 />}
       title={'TOTEM INFO'}
     >
       <table
         style={{
           float: 'left',
-          width: isMobile ? '100%' : 'auto',
+          width: 'auto',
           fontSize: '18px',
           lineHeight: '45px',
           textAlign: 'left',

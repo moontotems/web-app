@@ -10,7 +10,6 @@ export default function MessageList({
   typing,
   image
 }) {
-  const { isMobile } = nftAppProps
   const scrollToBottom = () => {
     let elementSelector = '#messageList'
     const { scrollHeight } = $(elementSelector)[0]
@@ -36,25 +35,13 @@ export default function MessageList({
       {messages.map(message => {
         const { sender, value } = message
         if (sender === 'user') {
-          return <UserMessageContainer text={value} isMobile={isMobile} />
+          return <UserMessageContainer text={value} />
         }
         if (sender === 'bot') {
-          return (
-            <BotMessageContainer
-              image={image}
-              text={value}
-              isMobile={isMobile}
-            />
-          )
+          return <BotMessageContainer image={image} text={value} />
         }
       })}
-      {typing && (
-        <BotMessageContainer
-          image={image}
-          text={'Thinking ...'}
-          isMobile={isMobile}
-        />
-      )}
+      {typing && <BotMessageContainer image={image} text={'Thinking ...'} />}
     </div>
   )
 }

@@ -40,7 +40,7 @@ const useUserSigner = (injectedProvider, localProvider) => {
         if (incomingPK.length === 64 || incomingPK.length === 66) {
           console.log('🔑 Incoming Private Key...')
           rawPK = incomingPK
-          window.history.pushState({}, '', '/')
+          //window.history.pushState({}, '', '/')
           const currentPrivateKey =
             window.localStorage.getItem('metaPrivateKey')
           if (currentPrivateKey && currentPrivateKey !== rawPK) {

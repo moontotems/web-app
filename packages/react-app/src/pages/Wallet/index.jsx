@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react'
 
-import { ActionSidebar } from '../../sharedComponents'
 import FILTERS from '../../sharedComponents/FilterDropdown/filters'
-import AllPageDesktop from '../All/desktop'
-import AllPageMobile from '../All/mobile'
+import { All as AllPage } from '../'
 
 import './styles.less'
 
 export default function Wallet({ ethereumProps, nftAppProps }) {
   const { address } = ethereumProps
   const {
-    isMobile,
-    creatures,
     filter: { setActiveFilters },
     setShowGridView
   } = nftAppProps
@@ -29,23 +25,5 @@ export default function Wallet({ ethereumProps, nftAppProps }) {
     )
   }
 
-  return (
-    <>
-      <ActionSidebar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
-
-      {!isMobile && (
-        <AllPageDesktop
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-        />
-      )}
-
-      {isMobile && (
-        <AllPageMobile
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-        />
-      )}
-    </>
-  )
+  return <AllPage ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
 }

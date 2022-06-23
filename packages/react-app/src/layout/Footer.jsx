@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom'
 export default function Footer({ ethereumProps, nftAppProps }) {
   const { isMobile, setRoute } = nftAppProps
 
-  const contentStyle = {
-    fontSize: isMobile ? '20px' : '11px'
-  }
-
   const socialMediaIcons = (
     <div>
       <a
@@ -55,20 +51,22 @@ export default function Footer({ ethereumProps, nftAppProps }) {
       id='footer'
       style={{
         float: 'left',
-        height: isMobile ? '50px' : '40px',
+        height: '40px',
         width: '100%',
         padding: '15px',
-        paddingRight: '65px',
+        paddingRight: '30px',
         backgroundColor: '#000',
         borderTop: '1px solid #393939',
         zIndex: 1000
       }}
     >
-      <div style={{ float: 'left', ...contentStyle }}>
+      <div style={{ float: 'left', fontSize: '11px' }}>
         <div>
-          <div style={{ float: 'right', marginLeft: '15px' }}>
-            {!isMobile && socialMediaIcons}
-          </div>
+          {!isMobile && (
+            <div style={{ float: 'right', marginLeft: '15px' }}>
+              {socialMediaIcons}
+            </div>
+          )}
           <Link
             onClick={() => {
               setRoute('/terms-and-conditions')
@@ -89,7 +87,7 @@ export default function Footer({ ethereumProps, nftAppProps }) {
         </div>
       </div>
 
-      <div style={{ float: 'right', ...contentStyle }}>
+      <div style={{ float: 'right', fontSize: '11px' }}>
         <div
           style={{ float: 'right', textAlign: 'center', marginLeft: '15px' }}
         >

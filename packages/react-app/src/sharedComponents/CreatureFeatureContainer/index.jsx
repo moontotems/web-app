@@ -15,13 +15,12 @@ export default function CreatureFeatureContainer({
 }) {
   const { isMobile, hideAllFeatures } = nftAppProps
 
-  // TODO: do this better
-  let individualStyles = {
+  let styles = {
     background: isMobile ? 'rgba(0, 0, 0, 0.8)' : 'none'
   }
 
   if (isFreshMintMessage) {
-    individualStyles = {
+    styles = {
       backgroundColor: '#4589FF',
       opacity: 0.95,
       padding: '15px'
@@ -38,24 +37,20 @@ export default function CreatureFeatureContainer({
         height: '100%',
         paddingTop: '10px',
         paddingLeft: '0px',
-        ...individualStyles
+        ...styles
       }}
     >
       <div
         style={{
           float: 'left',
-          width: isMobile ? '90%' : '100%',
+          width: '100%',
           maxHeight: '100%',
           marginBottom: '15px',
           paddingLeft: '17px'
         }}
       >
-        <span style={{ marginLeft: isMobile ? '10px' : 'none' }}>{icon}</span>
-        <span
-          style={{ paddingLeft: '10px', fontSize: isMobile ? '30px' : '20px' }}
-        >
-          {title}
-        </span>
+        <span>{icon}</span>
+        <span style={{ paddingLeft: '10px', fontSize: '20px' }}>{title}</span>
         <CloseFilled32
           style={{ float: 'right', cursor: 'pointer' }}
           onClick={() => {
@@ -69,7 +64,7 @@ export default function CreatureFeatureContainer({
       <div
         style={{
           float: 'left',
-          width: isMobile ? '90%' : '100%',
+          width: '100%',
           paddingLeft: '20px',
           fontSize: '18px',
           lineHeight: '48px',

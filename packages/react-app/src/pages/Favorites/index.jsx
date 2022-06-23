@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import FILTERS from '../../sharedComponents/FilterDropdown/filters'
-import PagesAll from '../All'
+import { All as AllPage } from '../'
 
 export default function Favorites({ ethereumProps, nftAppProps }) {
   const {
@@ -11,5 +11,5 @@ export default function Favorites({ ethereumProps, nftAppProps }) {
     setActiveFilters([FILTERS.favorites])
   }, [])
 
-  return <PagesAll ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+  return <AllPage ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
 }

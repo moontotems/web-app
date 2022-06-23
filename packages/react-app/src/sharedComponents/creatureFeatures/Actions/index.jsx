@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Form, Input, Button, notification } from 'antd'
-import { Download16, Download32 } from '@carbon/icons-react'
+import { Download16 } from '@carbon/icons-react'
 import { utils } from 'ethers'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
 
@@ -9,21 +9,20 @@ export default function CreatureActions({
   nftAppProps,
   tokenId
 }) {
-  const { isMobile, fetchUsersCreatures } = nftAppProps
+  const { fetchUsersCreatures } = nftAppProps
   const [form] = Form.useForm()
 
   const { address, gasPrice, tx, writeContracts } = ethereumProps
 
   const buttonStyle = {
-    height: isMobile ? 'auto' : '38px',
-    width: isMobile ? '150px' : '113px',
+    height: '38px',
+    width: '113px',
     lineHeight: '38px',
-    fontSize: isMobile ? '24px' : '16px',
-    padding: isMobile ? '10px 15px' : '0 15px',
+    fontSize: '16px',
+    padding: '0 15px',
     borderRadius: 0,
     backgroundColor: '#1062FE',
     borderColor: '#1062FE'
-    //marginTop: 10
   }
 
   const transferTotem = async (from, to, tokenId) => {
@@ -64,29 +63,22 @@ export default function CreatureActions({
       ethereumProps={ethereumProps}
       nftAppProps={nftAppProps}
       containerId={'creatureDownloads'}
-      icon={isMobile ? <Download32 /> : <Download16 />}
+      icon={<Download16 />}
       title={'TOTEM ACTIONS'}
     >
       <div
         style={{
           float: 'left',
           width: '100%',
-          marginTop: isMobile ? '25px' : '0px',
           paddingRight: '10px',
-          fontSize: isMobile ? '24px' : '18px',
+          fontSize: '18px',
           lineHeight: '48px',
           textAlign: 'right'
         }}
       >
         <Row style={{ marginBottom: '20px' }}>
           <Col span={24}>
-            <Form
-              form={form}
-              //layout='vertical'
-              layout='inline'
-              onFinish={onSubmit}
-              //style={{ width: '100%' }}
-            >
+            <Form form={form} layout='inline' onFinish={onSubmit}>
               <Form.Item name='inputValue' label='Transfer To'>
                 <Input
                   placeholder='0x...'
@@ -94,13 +86,13 @@ export default function CreatureActions({
                   style={{
                     //float: 'right',
                     //width: '90%',
-                    //padding: isMobile ? '1.8rem' : '0.8rem',
+                    //padding: '0.8rem',
                     textAlign: 'left',
                     //backgroundColor: '#1062FE',
                     color: '#fff',
                     border: '1px solid #1062FE',
                     //borderRadius: '0.80rem',
-                    fontSize: isMobile ? '26px' : '16px',
+                    fontSize: '16px',
                     fontWeight: 400,
                     lineHeight: '28px',
                     letterSpacing: '0.16px'

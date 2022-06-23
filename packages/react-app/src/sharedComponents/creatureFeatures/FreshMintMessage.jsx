@@ -1,7 +1,7 @@
 import React from 'react'
 import persistantStore from 'store'
 
-import { MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } from '../../constants'
+import { HEADER_HEIGHT } from '../../constants'
 import CreatureFeatureContainer from '../CreatureFeatureContainer'
 
 export default function FreshMintMessage({
@@ -9,8 +9,6 @@ export default function FreshMintMessage({
   nftAppProps,
   tokenId
 }) {
-  const { isMobile } = nftAppProps
-
   const showFreshMintMessage = persistantStore.get(
     `show-fresh-mint-message-${tokenId}`
   )
@@ -30,12 +28,10 @@ export default function FreshMintMessage({
           <div
             style={{
               float: 'left',
-              maxHeight: `calc(100vh - ${
-                isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT
-              }px)`,
+              maxHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
               overflow: 'auto',
-              fontSize: isMobile ? '35px' : '18px',
-              lineHeight: isMobile ? '45px' : '40px',
+              fontSize: '18px',
+              lineHeight: '40px',
               textAlign: 'left',
               color: '#fff',
               backgroundColor: '#4589FF',

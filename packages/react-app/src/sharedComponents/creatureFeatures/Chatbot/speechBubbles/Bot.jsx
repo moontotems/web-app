@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SpeechBubbleBot({ text, isMobile }) {
+export default function SpeechBubbleBot({ text }) {
   return (
     <div style={{ float: 'left' }}>
       <div
@@ -8,10 +8,10 @@ export default function SpeechBubbleBot({ text, isMobile }) {
         style={{
           margin: '0 auto 1rem',
           marginTop: '19px',
-          padding: isMobile ? '1.8rem' : '0.8rem',
+          padding: '0.8rem',
           textAlign: 'left',
           borderRadius: '0.80rem',
-          fontSize: isMobile ? '26px' : '16px',
+          fontSize: '16px',
           fontWeight: 400,
           lineHeight: '28px',
           letterSpacing: '0.16px',

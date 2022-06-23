@@ -113,6 +113,7 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
           }}
         />
       )}
+
       {isMobile && (
         <CreaturePageMobile
           ethereumProps={ethereumProps}

@@ -7,7 +7,7 @@ export default function ExploreBox({ sliderRef }) {
       className='explore-box'
       style={{
         float: 'right',
-        minHeight: '200px',
+        minHeight: '150px',
         width: '400px',
         padding: '25px',
         cursor: 'pointer'
@@ -24,9 +24,9 @@ export default function ExploreBox({ sliderRef }) {
         <div
           style={{
             width: '100%',
-            minHeight: '200px',
-            fontSize: '30px',
-            lineHeight: '45px'
+            minHeight: '150px',
+            fontSize: '23px',
+            lineHeight: '34px'
           }}
         >
           Explore the Lunar Origins

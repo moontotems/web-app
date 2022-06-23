@@ -50,8 +50,7 @@ export const NFT_NAME = 'MoonTotems'
 export const NFT_SYMBOL = 'TOTEM'
 export const NFT_BASE_URI = 'https://api.moontotems.com/token/'
 
-export const DESKTOP_HEADER_HEIGHT = 40 // 48
-export const MOBILE_HEADER_HEIGHT = 90
+export const HEADER_HEIGHT = 40 // 48
 
 export const NETWORKS = {
   localhost: {

@@ -20,9 +20,9 @@ import {
   ArrowsHorizontal16
 } from '@carbon/icons-react'
 
-import FILTERS from '../../../sharedComponents/FilterDropdown/filters'
-import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
-import Icons from '../../icons'
+import FILTERS from '../../sharedComponents/FilterDropdown/filters'
+import { HEADER_HEIGHT } from '../../constants'
+import { Icons } from '../../sharedComponents/'
 const { OwnedByUserIcon16x16 } = Icons
 
 import './style.css'
@@ -63,7 +63,7 @@ export default function CompactSidebar({
         width: '100%',
         textAlign: 'center',
         backgroundColor: '#262626',
-        height: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`
+        height: `calc(100vh - ${HEADER_HEIGHT}px)`
       }}
     >
       <div className='menu-item square-title' style={{ ...menuItemStyle }}>

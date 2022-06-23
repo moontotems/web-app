@@ -24,7 +24,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         <div
           style={{
             padding: '5%',
-            fontSize: '35px'
+            fontSize: '25px'
           }}
         >
           Let your Totem find you
@@ -56,7 +56,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
             marginTop: '40px'
           }}
         >
-          <div style={{ fontSize: '30px', lineHeight: '45px' }}>
+          <div style={{ fontSize: '23px', lineHeight: '34px' }}>
             Explore Totems
           </div>
           <ArrowRight32

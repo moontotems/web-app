@@ -2,7 +2,7 @@ import React from 'react'
 import ReactRoundedImage from 'react-rounded-image'
 import { SpeechBubbleBot } from './speechBubbles'
 
-export default function BotMessageContainer({ image, text, isMobile }) {
+export default function BotMessageContainer({ image, text }) {
   return (
     <div
       className='botMessageContainer'
@@ -24,7 +24,7 @@ export default function BotMessageContainer({ image, text, isMobile }) {
         />
       </div>
       <div style={{ display: 'flex', width: 'calc(100% - 100px)' }}>
-        <SpeechBubbleBot text={text} isMobile={isMobile} />
+        <SpeechBubbleBot text={text} />
       </div>
     </div>
   )

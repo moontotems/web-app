@@ -24,14 +24,14 @@ export default function Address(props) {
     )
   }
 
-  let displayAddress = address.substr(0, 6)
+  let displayAddress = address.substr(0, 5)
 
   if (ens && ens.indexOf('0x') < 0) {
     displayAddress = ens
   } else if (props.size === 'short') {
-    displayAddress = `...${address.substr(-4)}`
+    displayAddress = `...${address.substr(-3)}`
   } else if (props.size === 'medium') {
-    displayAddress = `${displayAddress}...${address.substr(-4)}`
+    displayAddress = `${displayAddress}...${address.substr(-3)}`
   } else if (props.size === 'long') {
     displayAddress = address
   }

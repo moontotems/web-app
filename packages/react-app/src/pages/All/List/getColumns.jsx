@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Launch16 } from '@carbon/icons-react'
-import { getImageUrl } from '../../../../helpers'
+import { getImageUrl } from '../../../helpers'
 
 const convertBoolNumToString = num => {
   if (num === 1) return 'Yes'

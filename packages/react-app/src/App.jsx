@@ -1,18 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+
+import Web3Modal from 'web3modal'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import WalletLink from 'walletlink'
-
-import { Alert, Button } from 'antd'
-import { Loading } from 'carbon-components-react'
-
-import { BrowserRouter } from 'react-router-dom'
-import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
+
 import persistantStore from 'store'
 import _ from 'underscore'
 
 import Routes from './Routes'
 import { Header, SidebarLeft, Footer } from './layout'
+import { NetworkDisplay } from './sharedComponents'
 import FILTERS from './sharedComponents/FilterDropdown/filters'
 import {
   INFURA_ID,
@@ -20,8 +19,7 @@ import {
   NETWORKS,
   MIN_TOKEN_ID,
   MAX_TOKEN_ID,
-  MOBILE_HEADER_HEIGHT,
-  DESKTOP_HEADER_HEIGHT
+  HEADER_HEIGHT
 } from './constants'
 import { Transactor, getImageUrl, getRandomTokenIdsArray } from './helpers'
 import {
@@ -38,7 +36,6 @@ import {
 
 // contracts
 //import deployedContracts from './contracts/hardhat_contracts.json'
-//import externalContracts from './contracts/external_contracts'
 
 import houdini_json_hashmap from './assets/houdini_json_hashmap.json'
 
@@ -56,11 +53,11 @@ const NETWORKCHECK = true
 
 // 🛰 providers
 //if (DEBUG) console.log('📡 Connecting to Mainnet Ethereum')
-// const mainnetProvider = getDefaultProvider("mainnet", { infura: INFURA_ID, etherscan: ETHERSCAN_KEY, quorum: 1 });
-// const mainnetProvider = new InfuraProvider("mainnet", INFURA_ID);
-//
+//const mainnetProvider = getDefaultProvider("mainnet", { infura: INFURA_ID, etherscan: ETHERSCAN_KEY, quorum: 1 });
+//const mainnetProvider = new InfuraProvider("mainnet", INFURA_ID);
+
 // attempt to connect to our own scaffold eth rpc and if that fails fall back to infura...
-// Using StaticJsonRpcProvider as the chainId won't change see https://github.com/ethers-io/ethers.js/issues/901
+// using StaticJsonRpcProvider as the chainId won't change see https://github.com/ethers-io/ethers.js/issues/901
 const scaffoldEthProvider =
   null && navigator.onLine
     ? new ethers.providers.StaticJsonRpcProvider(
@@ -217,12 +214,8 @@ function App() {
     chainId: localChainId
   })
 
-  // EXTERNAL CONTRACT EXAMPLE:
-  //
-  // If you want to bring in the mainnet DAI contract it would look like:
   const mainnetContracts = useContractLoader(mainnetProvider)
 
-  // If you want to call a function on a new block
   /*
   useOnBlock(mainnetProvider, () => {
     console.log(
@@ -231,9 +224,7 @@ function App() {
   })
   */
 
-  //
   // 🧫 DEBUG 👨🏻‍🔬
-  //
   useEffect(() => {
     if (
       DEBUG &&
@@ -253,18 +244,6 @@ function App() {
       console.log('🏠 localChainId', localChainId)
       console.log('👩‍💼 selected address:', address)
       console.log('🕵🏻‍♂️ selectedChainId:', selectedChainId)
-      /*
-      console.log(
-        '💵 yourLocalBalance',
-        yourLocalBalance ? ethers.utils.formatEther(yourLocalBalance) : '...'
-      )
-      console.log(
-        '💵 yourMainnetBalance',
-        yourMainnetBalance
-          ? ethers.utils.formatEther(yourMainnetBalance)
-          : '...'
-      )
-      */
       console.log('📝 readContracts', readContracts)
       console.log('🌍 DAI contract on mainnet:', mainnetContracts)
       console.log('🔐 writeContracts', writeContracts)
@@ -279,99 +258,6 @@ function App() {
     writeContracts,
     mainnetContracts
   ])
-
-  let networkDisplay = ''
-  if (
-    NETWORKCHECK &&
-    localChainId &&
-    selectedChainId &&
-    localChainId !== selectedChainId
-  ) {
-    const networkSelected = NETWORK(selectedChainId)
-    const networkLocal = NETWORK(localChainId)
-    if (selectedChainId === 1337 && localChainId === 31337) {
-      networkDisplay = (
-        <div
-          style={{
-            zIndex: 2,
-            position: 'absolute',
-            right: 0,
-            top: 60,
-            padding: 16
-          }}
-        >
-          <Alert
-            message='⚠️ Wrong Network ID'
-            description={
-              <div>
-                You have <b>chain id 1337</b> for localhost and you need to
-                change it to <b>31337</b> to work with HardHat.
-                <div>
-                  (MetaMask -&gt; Settings -&gt; Networks -&gt; Chain ID -&gt;
-                  31337)
-                </div>
-              </div>
-            }
-            type='error'
-            closable={false}
-          />
-        </div>
-      )
-    } else {
-      networkDisplay = (
-        <>
-          <Alert
-            message='⚠️ Wrong Network'
-            description={
-              <div>
-                You have <b>{networkSelected && networkSelected.name}</b>{' '}
-                selected and you need to be on{' '}
-                <Button
-                  onClick={async () => {
-                    const ethereum = window.ethereum
-                    const data = [
-                      {
-                        chainId: '0x' + targetNetwork.chainId.toString(16),
-                        chainName: targetNetwork.name,
-                        nativeCurrency: targetNetwork.nativeCurrency,
-                        rpcUrls: [targetNetwork.rpcUrl],
-                        blockExplorerUrls: [targetNetwork.blockExplorer]
-                      }
-                    ]
-                    console.log('data', data)
-                    const tx = await ethereum
-                      .request({
-                        method: 'wallet_addEthereumChain',
-                        params: data
-                      })
-                      .catch()
-                    if (tx) {
-                      console.log(tx)
-                    }
-                  }}
-                >
-                  <b>{networkLocal && networkLocal.name}</b>
-                </Button>
-                .
-              </div>
-            }
-            type='error'
-            closable={false}
-          />
-        </>
-      )
-    }
-  } else {
-    networkDisplay = (
-      <div
-        style={{
-          color: targetNetwork.color
-        }}
-      >
-        {targetNetwork.name}
-      </div>
-    )
-  }
 
   const loadWeb3Modal = useCallback(async () => {
     const provider = await web3Modal.connect()
@@ -399,8 +285,6 @@ function App() {
       loadWeb3Modal()
     }
   }, [loadWeb3Modal])
-
-  //////
 
   /*
   const totalSupply =
@@ -447,10 +331,9 @@ function App() {
           )
           tokenId = parseInt(tokenId.toString())
           /*
-            const tokenURI =
-              await readContracts.MoonTotems.tokenURI(tokenId)
+            const tokenURI =  await readContracts.MoonTotems.tokenURI(tokenId)
             console.log('tokenURI', tokenURI)
-            */
+          */
 
           //const ipfsHash = tokenURI.replace('https://ipfs.io/ipfs/', '')
           //console.log('ipfsHash', ipfsHash)
@@ -905,15 +788,12 @@ function App() {
           setSidebarLeftOpen={setSidebarLeftOpen}
           headerTitle={headerTitle}
           setHeaderTitle={setHeaderTitle}
-          networkDisplay={networkDisplay}
         />
 
         <div
           style={{
-            marginTop: isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT,
-            minHeight: `calc(100vh - ${
-              isMobile ? MOBILE_HEADER_HEIGHT : DESKTOP_HEADER_HEIGHT
-            }px)`
+            marginTop: HEADER_HEIGHT,
+            minHeight: `calc(100vh - ${HEADER_HEIGHT}px)`
           }}
           onClick={() => setSidebarLeftOpen(false)}
         >
@@ -926,6 +806,22 @@ function App() {
           </div>
         )}
       </BrowserRouter>
+
+      {/* Global notification live region, render this permanently at the end of the document */}
+      <div
+        aria-live='assertive'
+        className='fixed inset-0 flex items-start px-4 pt-20 pb-6 pointer-events-none'
+      >
+        <div className='w-full flex flex-col items-end space-y-4'>
+          {/* alert if wrong network is selected */}
+          <NetworkDisplay
+            NETWORKCHECK={NETWORKCHECK}
+            localChainId={localChainId}
+            selectedChainId={selectedChainId}
+            targetNetwork={targetNetwork}
+          />
+        </div>
+      </div>
     </div>
   )
 }

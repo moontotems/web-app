@@ -1,30 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {
-  QueryQueue32,
-  ColorPalette32,
-  ChatBot32,
-  Edit32,
-  ZoomIn32,
-  Download32,
-  Information32,
-  Launch32,
-  ViewFilled32,
-  CarouselHorizontal32,
-  Apps32,
-  List32,
-  Filter32,
-  AsleepFilled32,
-  Locked32,
-  FavoriteFilled32,
-  Shuffle32,
-  ArrowsHorizontal32
+  QueryQueue16,
+  ColorPalette16,
+  ChatBot16,
+  Edit16,
+  ZoomIn16,
+  Download16,
+  Information16,
+  Launch16,
+  ViewFilled16,
+  CarouselHorizontal16,
+  Apps16,
+  List16,
+  Filter16,
+  AsleepFilled16,
+  Locked16,
+  FavoriteFilled16,
+  Shuffle16,
+  ArrowsHorizontal16
 } from '@carbon/icons-react'
 
-import FILTERS from '../../../sharedComponents/FilterDropdown/filters'
-import { DESKTOP_HEADER_HEIGHT } from '../../../constants'
-import Icons from '../../icons'
-const { OwnedByUserIcon32x32, NotMintedIcon32x32 } = Icons
+import FILTERS from '../../sharedComponents/FilterDropdown/filters'
+import { HEADER_HEIGHT } from '../../constants'
+import { Icons } from '../../sharedComponents/'
+const { OwnedByUserIcon16x16, NotMintedIcon16x16 } = Icons
 
 import './style.css'
 
@@ -35,6 +35,7 @@ export default function OpenSidebar({
 }) {
   const {
     showCreatureFeatures,
+    route,
     setRoute,
     setShowGridView,
     shuffleCreatureIndexList,
@@ -59,7 +60,7 @@ export default function OpenSidebar({
   const menuItemContentStyle = {
     text: {
       float: 'left',
-      fontSize: '20px'
+      marginTop: '-3px'
     },
     icon: {
       float: 'right'
@@ -80,13 +81,13 @@ export default function OpenSidebar({
           width: '100%',
           textAlign: 'center',
           backgroundColor: '#262626',
-          height: `calc(100vh - ${DESKTOP_HEADER_HEIGHT}px)`
+          height: `calc(100vh - ${HEADER_HEIGHT}px)`
         }}
       >
         <div className='menu-item title' style={{ ...menuItemStyle }}>
           <div style={{ ...menuItemContentStyle.text }}>View</div>
           <div style={{ ...menuItemContentStyle.icon }}>
-            <ViewFilled32 aria-label='' />
+            <ViewFilled16 aria-label='' />
           </div>
         </div>
         <Link
@@ -102,11 +103,10 @@ export default function OpenSidebar({
           <div className='menu-item' style={{ ...menuItemStyle }}>
             <div style={{ ...menuItemContentStyle.text }}>Item View</div>
             <div style={{ ...menuItemContentStyle.icon }}>
-              <CarouselHorizontal32 aria-label='Switch to carousel view' />
+              <CarouselHorizontal16 aria-label='Switch to carousel view' />
             </div>
           </div>
         </Link>
-
         <Link
           onClick={() => {
             setRoute('/all')
@@ -122,7 +122,7 @@ export default function OpenSidebar({
               Grid View
             </div>
             <div style={{ ...menuItemContentStyle.icon }}>
-              <Apps32 />
+              <Apps16 />
             </div>
           </div>
         </Link>
@@ -143,7 +143,7 @@ export default function OpenSidebar({
             </div>
 
             <div style={{ ...menuItemContentStyle.icon }}>
-              <List32 />
+              <List16 />
             </div>
           </div>
         </Link>
@@ -151,7 +151,7 @@ export default function OpenSidebar({
         <div className='menu-item title' style={{ ...menuItemStyle }}>
           <div style={{ ...menuItemContentStyle.text }}>Filter</div>
           <div style={{ ...menuItemContentStyle.icon }}>
-            <Filter32 aria-label='Filter' />
+            <Filter16 aria-label='Filter' />
           </div>
         </div>
         <Link
@@ -173,7 +173,8 @@ export default function OpenSidebar({
             <div style={{ ...menuItemContentStyle.icon }}>
               <img
                 src='/moon_totem_logo.svg'
-                style={{ height: '40px', width: '30px' }}
+                width='17px'
+                style={{ marginTop: '-10px' }}
                 alt='All Totems'
               />
             </div>
@@ -212,8 +213,8 @@ export default function OpenSidebar({
           >
             <div style={{ ...menuItemContentStyle.text }}>Available Totems</div>
             <div style={{ ...menuItemContentStyle.icon }}>
-              {/*<img src={NotMintedIcon32x32} alt='Not Minted' />*/}
-              <AsleepFilled32 aria-label='Available Totems' />
+              {/*<img src={NotMintedIcon16x16} alt='Not Minted' />*/}
+              <AsleepFilled16 aria-label='Available Totems' />
             </div>
           </div>
         </Link>
@@ -254,7 +255,7 @@ export default function OpenSidebar({
           >
             <div style={{ ...menuItemContentStyle.text }}>Minted Totems</div>
             <div style={{ ...menuItemContentStyle.icon }}>
-              <Locked32 aria-label='Minted Totems' />
+              <Locked16 aria-label='Minted Totems' />
             </div>
           </div>
         </Link>
@@ -282,7 +283,7 @@ export default function OpenSidebar({
           >
             <div style={{ ...menuItemContentStyle.text }}>Favorite Totems</div>
             <div style={{ ...menuItemContentStyle.icon }}>
-              <FavoriteFilled32
+              <FavoriteFilled16
                 aria-label='Favorite Totems'
                 style={{ fill: '#DA1E28' }}
               />
@@ -310,7 +311,7 @@ export default function OpenSidebar({
             </div>
             <div style={{ ...menuItemContentStyle.icon }}>
               <img
-                src={OwnedByUserIcon32x32}
+                src={OwnedByUserIcon16x16}
                 style={{ marginTop: '-6px' }}
                 alt='My Totems'
               />
@@ -335,26 +336,30 @@ export default function OpenSidebar({
           >
             <div style={{ ...menuItemContentStyle.text }}>Shuffle</div>
             <div style={{ ...menuItemContentStyle.icon }}>
-              <Shuffle32 />
+              <Shuffle16 />
             </div>
           </div>
         </Link>
         <div className='menu-item title' style={{ ...menuItemStyle }}>
           <div style={{ ...menuItemContentStyle.text }}>Tools</div>
           <div style={{ ...menuItemContentStyle.icon }}>
-            <ColorPalette32 aria-label='Color' />
+            <ColorPalette16 aria-label='Color' />
           </div>
         </div>
-        <div
-          className='menu-item'
-          style={{ ...menuItemStyle }}
-          onClick={() => toggleVisibilityMetaData()}
-        >
-          <div style={{ ...menuItemContentStyle.text }}>Show all Metadata</div>
-          <div style={{ ...menuItemContentStyle.icon }}>
-            <Information32 aria-label='Meta Data' />
+        {!route.includes('all') && (
+          <div
+            className='menu-item'
+            style={{ ...menuItemStyle }}
+            onClick={() => toggleVisibilityMetaData()}
+          >
+            <div style={{ ...menuItemContentStyle.text }}>
+              Show all Metadata
+            </div>
+            <div style={{ ...menuItemContentStyle.icon }}>
+              <Information16 aria-label='Meta Data' />
+            </div>
           </div>
-        </div>
+        )}
         {showCreatureFeatures && (
           <>
             <div
@@ -366,7 +371,7 @@ export default function OpenSidebar({
                 Consult your Totem
               </div>
               <div style={{ ...menuItemContentStyle.icon }}>
-                <ChatBot32 aria-label='Chat' />
+                <ChatBot16 aria-label='Chat' />
               </div>
             </div>
             <div
@@ -378,7 +383,7 @@ export default function OpenSidebar({
                 Write the Story
               </div>
               <div style={{ ...menuItemContentStyle.icon }}>
-                <Edit32 aria-label='Edit' />
+                <Edit16 aria-label='Edit' />
               </div>
             </div>
             <div
@@ -388,7 +393,7 @@ export default function OpenSidebar({
             >
               <div style={{ ...menuItemContentStyle.text }}>Totem Transfer</div>
               <div style={{ ...menuItemContentStyle.icon }}>
-                <ArrowsHorizontal32 aria-label='Totem Transfer' />
+                <ArrowsHorizontal16 aria-label='Totem Transfer' />
               </div>
             </div>
             <div
@@ -398,7 +403,7 @@ export default function OpenSidebar({
             >
               <div style={{ ...menuItemContentStyle.text }}>Download Files</div>
               <div style={{ ...menuItemContentStyle.icon }}>
-                <Download32 aria-label='Download' />
+                <Download16 aria-label='Download' />
               </div>
             </div>
           </>

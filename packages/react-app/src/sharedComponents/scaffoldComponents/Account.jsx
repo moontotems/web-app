@@ -2,7 +2,7 @@ import { Button } from 'antd'
 import React from 'react'
 import Address from './Address'
 import Balance from './Balance'
-import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from '../../constants'
+import { HEADER_HEIGHT } from '../../constants'
 
 export default function Account({
   address,
@@ -14,18 +14,14 @@ export default function Account({
   web3Modal,
   loadWeb3Modal,
   logoutOfWeb3Modal,
-  blockExplorer,
-  isMobile
+  blockExplorer
 }) {
   const sharedStyles = {
-    height: isMobile
-      ? `calc(${MOBILE_HEADER_HEIGHT} - 15)`
-      : `${DESKTOP_HEADER_HEIGHT}px`,
-    marginTop: isMobile ? '18px' : '0px',
+    height: HEADER_HEIGHT,
     padding: '9px 24px',
     cursor: 'pointer',
     verticalAlign: 'middle',
-    fontSize: isMobile ? '24px' : '14px'
+    fontSize: '14px'
   }
   const connectWalletButton = (
     <div

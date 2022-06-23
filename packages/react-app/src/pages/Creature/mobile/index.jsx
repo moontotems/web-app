@@ -3,12 +3,12 @@ import { Row, Col } from 'antd'
 //import { Button } from 'antd-mobile'
 import { Button, Radio, notification } from 'antd'
 import {
-  AsleepFilled32,
-  Locked32,
-  Favorite32,
-  FavoriteFilled32,
-  Share32,
-  Information32
+  AsleepFilled16,
+  Locked16,
+  Favorite16,
+  FavoriteFilled16,
+  Share16,
+  Information16
 } from '@carbon/icons-react'
 // https://www.npmjs.com/package/react-slick
 import { useSwipeable } from 'react-swipeable'
@@ -154,14 +154,13 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
   })
 
   const buttonStyle = {
-    height: '44px',
-    minWidth: '150px',
-    lineHeight: '44px',
-    fontSize: '19px',
-    padding: '0px 15px',
+    height: '26px',
+    minWidth: '113px',
+    lineHeight: '25px',
+    fontSize: '12px',
+    padding: '0 15px',
     borderRadius: '15px',
-    border: '2px solid',
-    marginBottom: '0px',
+    marginBottom: '12px',
     background: 'none'
   }
 
@@ -244,9 +243,6 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
               size: isOwnedByUser ? 2048 : 1024
             })}
             width='100%'
-            style={{
-              marginBottom: '40px'
-            }}
             /*
             onClick={() => {
               setNextTokenId({
@@ -261,25 +257,23 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Col xs={6}>
           <div style={{ textAlign: 'center', marginTop: '15px' }}>
             <div>
-              {isAvailable && <AsleepFilled32 />}
-              {isTaken && !ownedByUser && <Locked32 />}
+              {isAvailable && <AsleepFilled16 />}
+              {isTaken && !ownedByUser && <Locked16 />}
               {ownedByUser && (
                 <img src={OwnedByUserIcon32x32} alt='Owned by User' />
               )}
             </div>
-            <div style={{ marginTop: '25px' }}>
-              <Share32 onClick={() => shareTotem()} />
+            <div style={{ marginTop: '18px' }}>
+              <Share16 onClick={() => shareTotem()} />
             </div>
           </div>
         </Col>
         <Col xs={12}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '40px' }}>
+            <div style={{ fontSize: '30px' }}>
               {trait_name1} {trait_name2}
             </div>
-            <div
-              style={{ marginTop: '15px', fontSize: '30px', fontWeight: 600 }}
-            >
+            <div style={{ fontSize: '20px', fontWeight: 600 }}>
               {trait_jobField} {trait_jobTitle}
             </div>
           </div>
@@ -288,22 +282,22 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
           <div style={{ textAlign: 'center', marginTop: '15px' }}>
             <div>
               {!isFavorite && (
-                <Favorite32
+                <Favorite16
                   role='button'
                   style={{ fill: 'white', cursor: 'pointer' }}
                   onClick={() => updateFavorites(tokenId)}
                 />
               )}
               {isFavorite && (
-                <FavoriteFilled32
+                <FavoriteFilled16
                   role='button'
                   style={{ fill: '#DA1E28', cursor: 'pointer' }}
                   onClick={() => updateFavorites(tokenId)}
                 />
               )}
             </div>
-            <div style={{ marginTop: '25px' }}>
-              <Information32 onClick={() => toggleVisibilityMetaData()} />
+            <div style={{ marginTop: '18px' }}>
+              <Information16 onClick={() => toggleVisibilityMetaData()} />
             </div>
           </div>
         </Col>
@@ -313,7 +307,7 @@ export default function CreaturesMobileView({ ethereumProps, nftAppProps }) {
         <Col xs={12}>
           <div
             style={{
-              marginTop: '30px',
+              marginTop: '15px',
               textAlign: 'center'
             }}
           >

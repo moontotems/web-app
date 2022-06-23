@@ -6,7 +6,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
       <div
         style={{
           padding: '5%',
-          fontSize: '35px'
+          fontSize: '25px'
         }}
       >
         Team

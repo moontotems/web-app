@@ -1,7 +1,7 @@
 import React from 'react'
 import { SpeechBubbleUser } from './speechBubbles'
 
-export default function UserMessageContainer({ text, isMobile }) {
+export default function UserMessageContainer({ text }) {
   return (
     <div
       className='userMessageContainer'
@@ -14,7 +14,7 @@ export default function UserMessageContainer({ text, isMobile }) {
       }}
     >
       <div style={{ display: 'flex' }}>
-        <SpeechBubbleUser text={text} isMobile={isMobile} />
+        <SpeechBubbleUser text={text} />
       </div>
     </div>
   )

@@ -15,7 +15,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
       <div
         style={{
           padding: '5%',
-          fontSize: '35px'
+          fontSize: '25px'
         }}
       >
         Lunar Months
@@ -30,7 +30,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
         style={{
           float: 'left',
           width: '100%',
-          fontSize: '50px',
+          fontSize: '23px',
           fontWeight: 300,
           marginTop: '25px'
         }}

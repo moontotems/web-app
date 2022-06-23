@@ -35,12 +35,10 @@ export default function Slide0() {
           videojsOptions={videojsOptions}
         />
         */}
-        {/*
         <img
           src={'/moontotems_origin_map_full.jpg'}
           style={{ float: 'left', width: '100%' }}
         />
-        */}
       </div>
     </div>
   )

@@ -15,7 +15,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
       <div
         style={{
           padding: '5%',
-          fontSize: '35px'
+          fontSize: '25px'
         }}
       >
         Lunar Origins
@@ -31,11 +31,20 @@ export default function Section({ ethereumProps, nftAppProps }) {
         style={{
           float: 'left',
           width: '100%',
-          fontSize: '50px',
+          fontSize: '23px',
           fontWeight: 300,
           marginTop: '25px'
         }}
       >
+        {currentSlideIndex === 0 && (
+          <>
+            <SlideText0
+              slideContents={slideContents}
+              currentSlideIndex={currentSlideIndex}
+            />
+            <ExploreBox sliderRef={sliderRef} />
+          </>
+        )}
         {currentSlideIndex !== 0 && (
           <>
             <Dots
@@ -46,15 +55,6 @@ export default function Section({ ethereumProps, nftAppProps }) {
               slideContents={slideContents}
               currentSlideIndex={currentSlideIndex}
             />
-          </>
-        )}
-        {currentSlideIndex === 0 && (
-          <>
-            <SlideText0
-              slideContents={slideContents}
-              currentSlideIndex={currentSlideIndex}
-            />
-            <ExploreBox sliderRef={sliderRef} />
           </>
         )}
       </div>

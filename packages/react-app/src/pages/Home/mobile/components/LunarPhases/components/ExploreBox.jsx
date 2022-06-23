@@ -7,7 +7,7 @@ export default function ExploreBox({ sliderRef }) {
       className='explore-box'
       style={{
         float: 'right',
-        minHeight: '200px',
+        minHeight: '150px',
         width: '400px',
         padding: '25px',
         cursor: 'pointer'
@@ -17,15 +17,15 @@ export default function ExploreBox({ sliderRef }) {
       <div
         style={{
           position: 'relative',
-          minHeight: '200px',
+          minHeight: '150px',
           width: '100%'
         }}
       >
         <div
           style={{
             width: '100%',
-            fontSize: '30px',
-            lineHeight: '45px'
+            fontSize: '23px',
+            lineHeight: '34px'
           }}
         >
           Explore the characteristics of the Lunar Phases

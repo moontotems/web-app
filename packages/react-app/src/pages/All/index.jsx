@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
-
-import { ActionSidebar } from '../../sharedComponents'
 import FILTERS from '../../sharedComponents/FilterDropdown/filters'
-import AllPageDesktop from './desktop'
-import AllPageMobile from './mobile'
+
+import GridView from './Grid'
+import ListView from './List'
 
 export default function All({ ethereumProps, nftAppProps }) {
+  const { showGridView } = nftAppProps
+
   const {
-    filter: { removeFilter },
-    isMobile
+    filter: { removeFilter }
   } = nftAppProps
 
   useEffect(() => {
@@ -17,20 +17,11 @@ export default function All({ ethereumProps, nftAppProps }) {
 
   return (
     <>
-      <ActionSidebar ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
-
-      {!isMobile && (
-        <AllPageDesktop
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-        />
+      {showGridView && (
+        <GridView ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       )}
-
-      {isMobile && (
-        <AllPageMobile
-          ethereumProps={ethereumProps}
-          nftAppProps={nftAppProps}
-        />
+      {!showGridView && (
+        <ListView ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
       )}
     </>
   )

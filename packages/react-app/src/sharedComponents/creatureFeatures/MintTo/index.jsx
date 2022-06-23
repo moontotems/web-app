@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Form, Input, Button } from 'antd'
-import { Download16, Download32 } from '@carbon/icons-react'
+import { Download16 } from '@carbon/icons-react'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
 
 export default function MintTo({ ethereumProps, nftAppProps, tokenId }) {
@@ -9,10 +9,10 @@ export default function MintTo({ ethereumProps, nftAppProps, tokenId }) {
 
   const buttonStyle = {
     height: isMobile ? 'auto' : '38px',
-    width: isMobile ? '150px' : '113px',
+    width: '113px',
     lineHeight: '38px',
-    fontSize: isMobile ? '24px' : '16px',
-    padding: isMobile ? '10px 15px' : '0 15px',
+    fontSize: '16px',
+    padding: '0 15px',
     borderRadius: 0,
     backgroundColor: '#1062FE',
     borderColor: '#1062FE'
@@ -28,16 +28,15 @@ export default function MintTo({ ethereumProps, nftAppProps, tokenId }) {
       ethereumProps={ethereumProps}
       nftAppProps={nftAppProps}
       containerId={'mintTo'}
-      icon={isMobile ? <Download32 /> : <Download16 />}
+      icon={<Download16 />}
       title={'MINT'}
     >
       <div
         style={{
           float: 'left',
           width: '100%',
-          marginTop: isMobile ? '25px' : '0px',
           paddingRight: '10px',
-          fontSize: isMobile ? '24px' : '18px',
+          fontSize: '18px',
           lineHeight: '48px',
           textAlign: 'right'
         }}
@@ -58,7 +57,7 @@ export default function MintTo({ ethereumProps, nftAppProps, tokenId }) {
                     textAlign: 'left',
                     color: '#fff',
                     border: '1px solid #1062FE',
-                    fontSize: isMobile ? '26px' : '16px',
+                    fontSize: '16px',
                     fontWeight: 400,
                     lineHeight: '28px',
                     letterSpacing: '0.16px'

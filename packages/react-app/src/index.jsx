@@ -13,14 +13,14 @@ import App from './App'
 import './index.less'
 
 const themes = {
-  dark: `${process.env.PUBLIC_URL}/index.css`,
-  // TODO: this is not used
-  light: `${process.env.PUBLIC_URL}/light-theme.css`
+  dark: `${process.env.PUBLIC_URL}/index.css`
+  //light: `${process.env.PUBLIC_URL}/light-theme.css`
 }
 
 // const prevTheme = window.localStorage.getItem('theme')
 const defaultTheme = 'dark'
 
+// TODO: this is not used
 const subgraphUri =
   'http://localhost:8000/subgraphs/name/scaffold-eth/your-contract'
 

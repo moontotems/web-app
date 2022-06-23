@@ -8,7 +8,7 @@ export default function Section({ ethereumProps, nftAppProps }) {
       <div
         style={{
           padding: '5%',
-          fontSize: '35px'
+          fontSize: '25px'
         }}
       >
         Roadmap
@@ -40,19 +40,19 @@ export default function Section({ ethereumProps, nftAppProps }) {
 
               <div
                 style={{
-                  fontSize: '23px',
+                  fontSize: '16px',
                   fontWeight: 600,
                   marginTop: '30px',
-                  marginBottom: '20px'
+                  marginBottom: '13px'
                 }}
               >
                 {title}
               </div>
               <div
                 style={{
-                  fontSize: '27px',
+                  fontSize: '23px',
                   fontWeight: 400,
-                  lineHeight: '37px'
+                  lineHeight: '33px'
                 }}
               >
                 {text}

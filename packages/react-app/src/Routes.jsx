@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { ActionSidebar } from './layout'
 import {
   Home,
   LunarOrigins,
@@ -38,18 +39,38 @@ export default function Routes({ ethereumProps, nftAppProps }) {
       </Route>
       <Route exact path='/all'>
         <All ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        <ActionSidebar
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
       </Route>
       <Route exact path='/moontotem/:id'>
         <Creature ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        <ActionSidebar
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
       </Route>
       <Route exact path='/favorites'>
         <Favorites ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        <ActionSidebar
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
       </Route>
       <Route exact path='/minted'>
         <Minted ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        <ActionSidebar
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
       </Route>
       <Route exact path='/wallet'>
         <Wallet ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        <ActionSidebar
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
       </Route>
       <Route exact path='/contract-events'>
         <ContractEvents
