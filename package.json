@@ -10,7 +10,6 @@
   ],
   "private": true,
   "scripts": {
-    "pm2:start": "yarn workspace @moontotems/react-app pm2:start",
     "react-app:build": "yarn workspace @moontotems/react-app build --max-old-space-size=12288",
     "react-app:eject": "yarn workspace @moontotems/react-app eject",
     "react-app:start": "yarn workspace @moontotems/react-app start",
