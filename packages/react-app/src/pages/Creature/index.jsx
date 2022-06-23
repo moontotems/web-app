@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { clone } from 'underscore'
 
-import { Footer } from '../../layout'
+import { ActionSidebar, Footer } from '../../layout'
 import CreaturePageDesktop from './desktop'
 import CreaturePageMobile from './mobile'
 
@@ -114,6 +114,23 @@ export default function CreaturePage({ ethereumProps, nftAppProps }) {
           }}
         />
       )}
+
+      <ActionSidebar
+        ethereumProps={ethereumProps}
+        nftAppProps={{
+          ...nftAppProps,
+          featuresVisibility,
+          featureIsVisible,
+          oneFeatureIsVisible,
+          hideAllFeatures,
+          toggleVisibilityDownload,
+          toggleVisibilityMetaData,
+          toggleVisibilityChat,
+          toggleVisibilityCreatureStory,
+          toggleVisibilityTotemActions,
+          toggleVisibilityMintTo
+        }}
+      />
 
       <div
         style={{

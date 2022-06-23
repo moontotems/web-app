@@ -170,6 +170,7 @@ export default function CreaturesDesktopView({ ethereumProps, nftAppProps }) {
     marginBottom: '12px',
     background: 'none'
   }
+
   const menu = (
     <Menu onClick={() => console.log('handleMenuClick')}>
       <Menu.Item
