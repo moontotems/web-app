@@ -6,7 +6,6 @@ import { ConfigProvider } from 'antd'
 import enUS from 'antd/lib/locale/en_US'
 
 import 'antd/dist/antd.css'
-import 'antd-mobile/dist/antd-mobile.min.css'
 import 'carbon-components/css/carbon-components.min.css'
 
 import App from './App'

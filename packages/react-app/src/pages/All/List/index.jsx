@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React, { useState } from 'react'
 import { Input, Button, Space } from 'antd'
-import ProTable, { TableDropdown } from '@ant-design/pro-table'
+import ProTable from '@ant-design/pro-table'
 import Highlighter from 'react-highlight-words'
 import { SearchOutlined } from '@ant-design/icons'
 //import { MeiliSearch } from 'meilisearch'

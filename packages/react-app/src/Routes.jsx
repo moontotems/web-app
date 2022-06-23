@@ -108,6 +108,10 @@ export default function Routes({ ethereumProps, nftAppProps }) {
 
       <Route exact path='/:id'>
         <Creature ethereumProps={ethereumProps} nftAppProps={nftAppProps} />
+        <ActionSidebar
+          ethereumProps={ethereumProps}
+          nftAppProps={nftAppProps}
+        />
       </Route>
     </Switch>
   )
