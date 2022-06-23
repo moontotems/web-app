@@ -9,7 +9,7 @@ export default function Dots({ slideContents, activeDotNumber }) {
         float: 'left',
         width: '100%',
         textAlign: 'center',
-        fontSize: '30px',
+        fontSize: '15px',
         fontWeight: 'bold'
       }}
     >

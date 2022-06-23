@@ -119,7 +119,7 @@ export default function Columns({ ethereumProps, nftAppProps }) {
           <div>
             <Col xs={24}>
               <img
-                src='/home/MOONTURN_crop0146.jpeg'
+                src='/home/moon_totems_moon_areas_crop.jpeg'
                 style={{
                   width: '100%'
                 }}

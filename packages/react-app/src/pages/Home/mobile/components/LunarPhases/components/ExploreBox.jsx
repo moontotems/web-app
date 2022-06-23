@@ -5,27 +5,26 @@ export default function ExploreBox({ sliderRef }) {
   return (
     <div
       className='explore-box'
+      onClick={() => sliderRef.slickNext()}
       style={{
         float: 'right',
-        minHeight: '150px',
-        width: '400px',
-        padding: '25px',
-        cursor: 'pointer'
+        width: '70%',
+        padding: '15px',
+        marginBottom: '20px'
       }}
-      onClick={() => sliderRef.slickNext()}
     >
       <div
         style={{
           position: 'relative',
-          minHeight: '150px',
+          height: '130px',
           width: '100%'
         }}
       >
         <div
           style={{
             width: '100%',
-            fontSize: '23px',
-            lineHeight: '34px'
+            fontSize: '18px',
+            lineHeight: '30px'
           }}
         >
           Explore the characteristics of the Lunar Phases

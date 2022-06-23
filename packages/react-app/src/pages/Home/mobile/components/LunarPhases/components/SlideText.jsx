@@ -5,7 +5,7 @@ export default function SlideText({ slideContents, currentSlideIndex }) {
   return (
     <div style={{ float: 'left', width: '100%', padding: '5%' }}>
       <div
-        style={{ paddingBottom: '5%', fontSize: '25px', fontWeight: 'bold' }}
+        style={{ marginBottom: '13px', fontSize: '16px', fontWeight: 'bold' }}
       >
         {title}
       </div>
@@ -13,7 +13,7 @@ export default function SlideText({ slideContents, currentSlideIndex }) {
         style={{
           fontSize: '23px',
           fontWeight: 300,
-          lineHeight: '34px'
+          lineHeight: '33px'
         }}
       >
         {text}

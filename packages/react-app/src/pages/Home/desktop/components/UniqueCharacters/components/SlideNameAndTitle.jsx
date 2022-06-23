@@ -19,7 +19,7 @@ export default function SlideNameAndTitle() {
         }}
       >
         <img
-          src={'/home/Moon_Totem_name.png'}
+          src={'/home/characteristics/moon_totem_name.png'}
           style={{
             display: 'block',
             marginLeft: 'auto',
