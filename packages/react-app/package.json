@@ -90,13 +90,15 @@
     "ipfs-http-client": "^45.0.0",
     "less-plugin-npm-import": "^2.1.0",
     "prettier": "^2.0.5",
-    "s3-folder-upload": "^2.3.1"
+    "s3-folder-upload": "^2.3.1",
+    "webpack-bundle-analyzer": "^4.5.0"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "scripts": {
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build --stats",
+    "analyze": "webpack-bundle-analyzer build/bundle-stats.json",
     "eject": "react-scripts eject",
     "prestart": "node ./scripts/create_contracts.js",
     "start": "react-scripts start",
@@ -104,7 +106,6 @@
     "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src/**/*",
     "ipfs": "node ./scripts/ipfs.js",
     "s3": "node ./scripts/s3.js",
-    "ship": "yarn surge",
     "theme": "npx gulp less",
     "watch": "node ./scripts/watch.js"
   }
