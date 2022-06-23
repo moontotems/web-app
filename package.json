@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "keywords": [
     "ethereum",
-    "react",
-    "uniswap",
-    "workspaces",
-    "yarn"
+    "nft"
   ],
   "private": true,
   "scripts": {
