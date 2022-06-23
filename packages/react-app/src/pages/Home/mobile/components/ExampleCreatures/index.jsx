@@ -50,13 +50,13 @@ export default function Section({ ethereumProps, nftAppProps }) {
           style={{
             float: 'right',
             position: 'relative',
-            height: '150px',
-            width: '300px',
+            height: '120px',
+            width: '70%',
             padding: '15px',
             marginTop: '40px'
           }}
         >
-          <div style={{ fontSize: '23px', lineHeight: '34px' }}>
+          <div style={{ fontSize: '18px', lineHeight: '30px' }}>
             Explore Totems
           </div>
           <ArrowRight32

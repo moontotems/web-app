@@ -15,8 +15,8 @@ export default function ExploreBox({ nftAppProps }) {
       to='/all'
       style={{
         float: 'right',
-        minHeight: '150px',
-        width: '400px',
+        minHeight: '100px',
+        //width: '70%',
         padding: '15px',
         marginTop: '60px'
       }}
@@ -24,18 +24,18 @@ export default function ExploreBox({ nftAppProps }) {
       <div
         style={{
           position: 'relative',
-          minHeight: '150px',
+          minHeight: '100px',
           width: '100%'
         }}
       >
         <div
           style={{
             width: '100%',
-            fontSize: '23px',
-            lineHeight: '34px'
+            fontSize: '18px',
+            lineHeight: '30px'
           }}
         >
-          Get your MOON TOTEM
+          Get your Moon Totem
         </div>
         <div
           style={{

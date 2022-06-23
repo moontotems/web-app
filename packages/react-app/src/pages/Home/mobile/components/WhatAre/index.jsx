@@ -52,9 +52,9 @@ export default function Section({ ethereumProps, nftAppProps }) {
           Moon Totems are digital talismans from the moon and discovered on the
           Ethereum blockchain.
         </div>
-
-        <ExploreBox nftAppProps={nftAppProps} />
       </div>
+
+      <ExploreBox nftAppProps={nftAppProps} />
     </>
   )
 }
