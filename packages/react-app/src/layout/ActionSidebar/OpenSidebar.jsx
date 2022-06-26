@@ -31,10 +31,10 @@ import './style.css'
 export default function OpenSidebar({
   ethereumProps,
   nftAppProps,
+  showCreatureFeatures,
   menuItemStyle
 }) {
   const {
-    showCreatureFeatures,
     route,
     setRoute,
     setShowGridView,

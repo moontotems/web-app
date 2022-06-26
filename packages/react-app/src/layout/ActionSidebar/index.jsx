@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { QueryQueue16 } from '@carbon/icons-react'
 
 import { HEADER_HEIGHT } from '../../constants'
@@ -9,6 +10,25 @@ import OpenSidebar from './OpenSidebar'
 import './style.css'
 
 export default function ActionSidebar({ ethereumProps, nftAppProps }) {
+  const { usersCreaturesTokenIds } = nftAppProps
+
+  const checkIfShouldShowCreatureFeatures = () => {
+    const removeFirstChar = str => str.substring(1)
+    const location = useLocation()
+
+    const possibleTokenId = removeFirstChar(location.pathname)
+    if (!isNaN(possibleTokenId)) {
+      const currentCreatureTokenId = parseInt(possibleTokenId)
+      const creatureIsOwnedByUser = usersCreaturesTokenIds.includes(
+        currentCreatureTokenId
+      )
+      return creatureIsOwnedByUser
+    }
+    return false
+  }
+
+  const showCreatureFeatures = checkIfShouldShowCreatureFeatures()
+
   const viewStates = {
     hidden: 'hidden',
     visibleNarrow: 'visible-narrow',
@@ -86,6 +106,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
         <OpenSidebar
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
+          showCreatureFeatures={showCreatureFeatures}
           menuItemStyle={menuItemStyle}
         />
       )}
@@ -94,6 +115,7 @@ export default function ActionSidebar({ ethereumProps, nftAppProps }) {
         <CompactSidebar
           ethereumProps={ethereumProps}
           nftAppProps={nftAppProps}
+          showCreatureFeatures={showCreatureFeatures}
           menuItemStyle={menuItemStyle}
         />
       )}

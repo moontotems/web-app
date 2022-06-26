@@ -30,8 +30,8 @@ import './style.css'
 export default function CompactSidebar({
   ethereumProps,
   nftAppProps,
-  menuItemStyle,
-  showCreatureFeatures
+  showCreatureFeatures,
+  menuItemStyle
 }) {
   const {
     route,
