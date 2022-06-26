@@ -60,8 +60,7 @@ export default function FreshMintMessage({
             feedback and to learn from you.
             <br />
             <br />
-            PS: There are currently 6k resolution images being processed. This
-            takes time and resources and will be announced shortly.
+            Tip: Checkout the file downloads that come with your Totem.
           </div>
         </CreatureFeatureContainer>
       )}
