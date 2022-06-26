@@ -418,7 +418,7 @@ export default function Chatbot({
                   }}
                 />
               </Form.Item>
-              <Form.Item style={{ width: 'calc(20% - 20px)' }}>
+              <Form.Item>
                 <Button
                   style={{
                     float: 'right',
