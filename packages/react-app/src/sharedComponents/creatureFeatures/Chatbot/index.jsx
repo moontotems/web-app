@@ -4,8 +4,7 @@ import { Form, Input, Button, notification } from 'antd'
 import $ from 'jquery'
 //import persistantStore from 'store'
 import OpenAI from 'openai-api'
-const OPENAI_API_KEY = '' //process.env.OPENAI_API_KEY
-const openai = new OpenAI(OPENAI_API_KEY)
+const openai = new OpenAI(process.env.REACT_APP_OPENAI_API_KEY)
 
 import { HEADER_HEIGHT } from '../../../constants'
 import CreatureFeatureContainer from '../../CreatureFeatureContainer'
