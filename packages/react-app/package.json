@@ -97,7 +97,7 @@
     "extends": "react-app"
   },
   "scripts": {
-    "build": "GENERATE_SOURCEMAP=false react-scripts build --stats",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "analyze": "webpack-bundle-analyzer build/bundle-stats.json",
     "eject": "react-scripts eject",
     "prestart": "node ./scripts/create_contracts.js",
