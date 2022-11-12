@@ -25,6 +25,10 @@ yarn deploy
 yarn verify
 ```
 
+## TODO
+
+* integrate [searchico](https://github.com/vikram-rathore1/searchico)
+
 ## License
 
 All names, images and logos, as well as the token metadata are (for now) proprietary. This includes, but is not limited to files in `packages/react-app/assets`. They will be owned by the individual NFT holders.
