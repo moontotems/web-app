@@ -1,0 +1,168 @@
+/*
+ * MoonTotems legacy theme, scoped to `.nft-theme`.
+ *
+ * Reproduces the design tokens of the legacy antd/Carbon dark theme:
+ * black background, square corners, IBM blue/red, #262626 panels.
+ * The boilerplate routes (auth, settings, ...) keep the default theme.
+ */
+
+@font-face {
+  font-family: "Univers";
+  src: url("/fonts/Univers/UniversLTStd.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Univers";
+  src: url("/fonts/Univers/UniversLTStd-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Univers";
+  src: url("/fonts/Univers/UniversLTStd-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Univers Extended";
+  src: url("/fonts/Univers/UniversLTStd-Ex.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Univers Extended";
+  src: url("/fonts/Univers/UniversLTStd-BlackEx.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.nft-theme {
+  /* shadcn variable overrides — legacy design tokens */
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #262626;
+  --card-foreground: #ffffff;
+  --popover: #262626;
+  --popover-foreground: #ffffff;
+  --primary: #0f62fe;
+  --primary-foreground: #ffffff;
+  --secondary: #393939;
+  --secondary-foreground: #ffffff;
+  --muted: #262626;
+  --muted-foreground: #c6c6c6;
+  --accent: #525252;
+  --accent-foreground: #ffffff;
+  --destructive: #da1e28;
+  --destructive-foreground: #ffffff;
+  --border: #393939;
+  --input: #393939;
+  --ring: #0f62fe;
+  --radius: 0rem;
+  --sidebar: #262626;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #0f62fe;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #525252;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #6f6f6f;
+  --sidebar-ring: #0f62fe;
+
+  /* MoonTotems specific tokens */
+  --nft-accent: #00ff74; /* explore-arrow green */
+  --nft-green: #24a148; /* shuffle / success green */
+  --nft-blue: #1062fe; /* connected wallet pill */
+  --nft-panel: #262626;
+  --nft-panel-hover: #525252;
+  --nft-border-strong: #6f6f6f;
+  --nft-gray: #8d8d8d;
+
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  letter-spacing: 0;
+}
+
+@theme inline {
+  --color-nft-accent: var(--nft-accent);
+  --color-nft-green: var(--nft-green);
+  --color-nft-blue: var(--nft-blue);
+  --color-nft-panel: var(--nft-panel);
+  --color-nft-panel-hover: var(--nft-panel-hover);
+  --color-nft-border-strong: var(--nft-border-strong);
+  --color-nft-gray: var(--nft-gray);
+  --font-univers: "Univers", "IBM Plex Sans", sans-serif;
+  --font-univers-extended: "Univers Extended", "IBM Plex Sans", sans-serif;
+  --font-plex: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.nft-theme h1,
+.nft-theme h2,
+.nft-theme h3,
+.nft-theme h4,
+.nft-theme h5,
+.nft-theme h6 {
+  letter-spacing: 0;
+}
+
+.nft-theme a {
+  color: inherit;
+}
+
+/* Legacy `app.less` explore box hover (#171414 -> #262626, 300ms) */
+.nft-theme .explore-box {
+  background-color: #171414;
+  transition: background-color 300ms ease;
+}
+
+.nft-theme .explore-box:hover {
+  background-color: #262626;
+}
+
+/* Sidebar/action menu rows (legacy .menu-item) */
+.nft-theme .nft-menu-item {
+  border-bottom: 1px solid var(--nft-border-strong);
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.nft-theme .nft-menu-item:hover {
+  background-color: var(--nft-panel-hover);
+}
+
+.nft-theme .nft-menu-item.nft-menu-title {
+  background-color: var(--nft-panel-hover);
+  cursor: auto;
+}
+
+.nft-theme .nft-menu-item.nft-menu-shuffle {
+  background-color: var(--nft-green);
+}
+
+.nft-theme .nft-menu-item.nft-menu-shuffle:hover {
+  background-color: var(--nft-green);
+  filter: brightness(110%);
+}
+
+/* Thin dark scrollbars to match the legacy look */
+.nft-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.nft-theme ::-webkit-scrollbar-track {
+  background: #161616;
+}
+
+.nft-theme ::-webkit-scrollbar-thumb {
+  background: #525252;
+}

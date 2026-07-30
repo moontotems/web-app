@@ -1,0 +1,11 @@
+node_modules
+cache
+artifacts
+deployments
+mnemonic.txt
+mnemonic.txt.address
+.env
+coverage
+coverage.json
+typechain
+typechain-types

@@ -1,64 +1,42 @@
 {
-  "name": "@moontotems/monorepo",
-  "version": "1.0.0",
-  "keywords": [
-    "ethereum",
-    "nft"
-  ],
-  "private": true,
-  "scripts": {
-    "react-app:build": "yarn workspace @moontotems/react-app build --max-old-space-size=12288",
-    "react-app:eject": "yarn workspace @moontotems/react-app eject",
-    "react-app:start": "yarn workspace @moontotems/react-app start",
-    "react-app:test": "yarn workspace @moontotems/react-app test",
-    "build": "yarn workspace @moontotems/react-app build --max-old-space-size=12288",
-    "chain": "yarn workspace @moontotems/hardhat chain",
-    "fork": "yarn workspace @moontotems/hardhat fork",
-    "node": "yarn workspace @moontotems/hardhat chain",
-    "test": "yarn workspace @moontotems/hardhat test",
-    "start": "yarn workspace @moontotems/react-app start",
-    "compile": "yarn workspace @moontotems/hardhat compile",
-    "deploy": "yarn workspace @moontotems/hardhat deploy",
-    "verify": "yarn workspace @moontotems/hardhat etherscan-verify",
-    "watch": "yarn workspace @moontotems/hardhat watch",
-    "accounts": "yarn workspace @moontotems/hardhat accounts",
-    "balance": "yarn workspace @moontotems/hardhat balance",
-    "send": "yarn workspace @moontotems/hardhat send",
-    "ipfs": "yarn workspace @moontotems/react-app ipfs",
-    "surge": "yarn workspace @moontotems/react-app surge",
-    "s3": "yarn workspace @moontotems/react-app s3",
-    "ship": "yarn workspace @moontotems/react-app ship",
-    "generate": "yarn workspace @moontotems/hardhat generate",
-    "account": "yarn workspace @moontotems/hardhat account",
-    "mineContractAddress": "cd packages/hardhat && npx hardhat mineContractAddress",
-    "wallet": "cd packages/hardhat && npx hardhat wallet",
-    "fundedwallet": "cd packages/hardhat && npx hardhat fundedwallet",
-    "flatten": "cd packages/hardhat && npx hardhat flatten",
-    "clean": "cd packages/hardhat && npx hardhat clean",
-    "run-graph-node": "yarn workspace @moontotems/services run-graph-node",
-    "remove-graph-node": "yarn workspace @moontotems/services remove-graph-node",
-    "clean-graph-node": "yarn workspace @moontotems/services clean-graph-node",
-    "graph-prepare": "mustache packages/subgraph/config/config.json packages/subgraph/src/subgraph.template.yaml > packages/subgraph/subgraph.yaml",
-    "graph-codegen": "yarn workspace @moontotems/subgraph graph codegen",
-    "graph-build": "yarn workspace @moontotems/subgraph graph build",
-    "graph-create-local": "yarn workspace @moontotems/subgraph graph create --node http://localhost:8020/ scaffold-eth/your-contract",
-    "graph-remove-local": "yarn workspace @moontotems/subgraph graph remove --node http://localhost:8020/ scaffold-eth/your-contract",
-    "graph-deploy-local": "yarn workspace @moontotems/subgraph graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 scaffold-eth/your-contract",
-    "graph-ship-local": "yarn graph-prepare && yarn graph-codegen && yarn graph-deploy-local",
-    "deploy-and-graph": "yarn deploy && yarn graph-ship-local",
-    "theme": "yarn workspace @moontotems/react-app theme",
-    "watch-theme": "yarn workspace @moontotems/react-app watch"
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ],
-    "nohoist": [
-      "**/@graphprotocol/graph-ts",
-      "**/@graphprotocol/graph-ts/**",
-      "**/hardhat",
-      "**/hardhat/**"
-    ]
-  },
-  "dependencies": {}
+	"name": "moontotems",
+	"description": "MoonTotems NFT monorepo: web app, smart contracts, and supporting packages",
+	"version": "0.1.0",
+	"authors": [
+		"S\u00f6ren Steiger <ssteiger@users.noreply.github.com>"
+	],
+	"private": true,
+	"packageManager": "bun@1.2.23",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ssteiger/moontotems"
+	},
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "bun run env:check && bun run dev:db && bun run env:sync && bun run db:migrate && turbo run dev --parallel",
+		"dev:db": "cd apps/supabase && npx supabase start",
+		"db:migrate": "cd apps/supabase && npx supabase migration up --local",
+		"db:reset": "cd apps/supabase && npx supabase db reset",
+		"db:seed:moontotems": "cd packages/db-drizzle && npx tsx scripts/import-moontotems.ts",
+		"dev:my-app": "turbo run dev --filter=@moontotems/my-app",
+		"dev:web": "turbo run dev --filter=@moontotems/web",
+		"chain": "bun run --filter=@moontotems/hardhat chain",
+		"compile": "bun run --filter=@moontotems/hardhat compile",
+		"deploy": "bun run --filter=@moontotems/hardhat deploy",
+		"typecheck": "turbo run typecheck",
+		"lint": "turbo run biome:check",
+		"format": "turbo run biome:format",
+		"env:check": "node scripts.js env:check",
+		"env:sync": "node scripts.js env:sync"
+	},
+	"devDependencies": {
+		"@rollup/rollup-darwin-arm64": "4.60.4",
+		"@rollup/rollup-darwin-x64": "4.60.4",
+		"supabase": "^2.20.5",
+		"turbo": "^2.4.4"
+	}
 }

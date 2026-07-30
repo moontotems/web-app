@@ -1,0 +1,23 @@
+{
+	"name": "@moontotems/db-drizzle",
+	"module": "src/index.ts",
+	"types": "src/index.ts",
+	"type": "module",
+	"scripts": {
+		"introspect": "npx drizzle-kit introspect:pg",
+		"import:moontotems": "tsx scripts/import-moontotems.ts"
+	},
+	"dependencies": {
+		"@sinclair/typebox": "^0.34.9",
+		"drizzle-orm": "^0.41.0",
+		"drizzle-typebox": "^0.3.0",
+		"postgres": "^3.4.5"
+	},
+	"devDependencies": {
+		"drizzle-kit": "^0.30.6",
+		"tsx": "^4.19.3"
+	},
+	"peerDependencies": {
+		"typescript": "^5.8.2"
+	}
+}
