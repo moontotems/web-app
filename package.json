@@ -22,6 +22,7 @@
 		"db:migrate": "cd apps/supabase && npx supabase migration up --local",
 		"db:reset": "cd apps/supabase && npx supabase db reset",
 		"db:seed:moontotems": "cd packages/db-drizzle && npx tsx scripts/import-moontotems.ts",
+		"storage:upload": "cd apps/supabase && bun run scripts/upload-assets.ts",
 		"dev:my-app": "turbo run dev --filter=@moontotems/my-app",
 		"dev:web": "turbo run dev --filter=@moontotems/web",
 		"chain": "bun run --filter=@moontotems/hardhat chain",
