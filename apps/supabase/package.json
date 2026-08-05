@@ -1,0 +1,19 @@
+{
+	"name": "@moontotems/supabase",
+	"scripts": {
+		"start": "supabase status || supabase start",
+		"reset": "supabase db reset || supabase start",
+		"test": "supabase db test",
+		"lint": "supabase db lint",
+		"deploy": "supabase link --project-ref $SUPABASE_PROJECT_REF && supabase db push",
+		"storage:upload": "bun run scripts/upload-assets.ts"
+	},
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.1098.0",
+		"@aws-sdk/lib-storage": "^3.1098.0"
+	},
+	"devDependencies": {
+		"@moontotems/tsconfig": "*",
+		"@types/node": "^24.10.9"
+	}
+}

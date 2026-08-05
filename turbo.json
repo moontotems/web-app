@@ -1,0 +1,36 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "dev:db": {
+      "cache": false
+    },
+    "dev:web": {
+      "cache": false
+    },
+    "dev:my-app": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "env:check": {
+      "cache": false,
+      "persistent": false
+    },
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "cache": true
+    },
+    "biome:check": {
+      "cache": true
+    },
+    "biome:format": {
+      "cache": false
+    }
+  }
+}

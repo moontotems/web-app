@@ -1,0 +1,28 @@
+{
+  "name": "@moontotems/my-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch --env-file=.env src/index.ts",
+    "start": "tsx --env-file=.env src/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "biome:check": "biome check .",
+    "biome:format": "biome format --write .",
+    "biome:lint": "biome lint .",
+    "biome:check-apply": "biome check --apply ."
+  },
+  "dependencies": {
+    "@moontotems/db-drizzle": "file:../../packages/db-drizzle",
+    "drizzle-orm": "^0.41.0",
+    "postgres": "^3.4.5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/node": "^20",
+    "@moontotems/biome-config": "*",
+    "@moontotems/tsconfig": "*",
+    "tsx": "^4.6.1",
+    "typescript": "^5"
+  }
+}

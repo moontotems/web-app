@@ -1,0 +1,47 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "extends": ["../../packages/biome-config/biome.json"],
+  "files": {
+    "ignore": [
+      ".turbo",
+      ".vscode",
+      ".nitro",
+      ".output",
+      ".tanstack",
+      "dist",
+      "node_modules",
+      "next-env.d",
+      "public",
+      "scripts",
+      "src/routeTree.gen.ts",
+      "src/lib/styles/app.css",
+      "src/lib/styles/nft-theme.css"
+    ]
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "strictCase": false,
+            "requireAscii": true,
+            "filenameCases": ["kebab-case", "PascalCase"]
+          }
+        }
+      }
+    }
+  },
+  "overrides": [
+    {
+      "include": ["src/routes/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useFilenamingConvention": "off"
+          }
+        }
+      }
+    }
+  ]
+}
