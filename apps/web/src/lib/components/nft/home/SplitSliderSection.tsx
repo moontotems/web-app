@@ -32,7 +32,8 @@ function SlideMedia({ slide }: { slide: HomeSlide }) {
     return (
       <div className="relative w-full pt-[100%]">
         <iframe
-          allow="autoplay; fullscreen; picture-in-picture"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
           className="absolute top-0 left-0 h-full w-full border-0"
           src={slide.video}
           title={slide.title || 'Moon Totems video'}

@@ -8,35 +8,34 @@ export type HomeSlide = {
   text: string
 }
 
-import { CDN_BASE } from '~/lib/nft/constants'
+/** Autoplaying muted Mux embed (same role as the old Vimeo loops). */
+function muxPlayerUrl(playbackId: string) {
+  return `https://player.mux.com/${playbackId}?autoplay=muted&loop=true&muted=true`
+}
 
-const HEADER_CROPS_BASE = `${CDN_BASE}/website-assets/headercrops/`
+/** Playback IDs from the Mux library (Talismoon / Moon Totems uploads). */
+const MUX = {
+  blinkyRotate: 'Emn8BXDIasx6LWZosN6BqS64D02H8XdZOP5Hsn19ZRs00',
+  outlineLoop: '63WXLce9dJmS00aYtkvFGq9TtT4LAhx019sCgbUeHZ5a00',
+  card3d: 'cDwFVTFtgFu36vlELK4D23m4Ga84tucUojE01HwSoaXc',
+  uniqueCharactersA: 'ob4z00rrgb011NJWxAQ7YS7OFtmNQ5x6exZXGNVXVhw008',
+  zoomPan: 'dRS3tqoa7MTYpvQW00k02VCKb3h02yvLKvRKPt5Ug6Htp00',
+  moonTurn: 'sPY02yB2cjU5iqpKHdtBIK02IwTQnKbYU4SVp6syVOoWA',
+} as const
 
-const heroImageFiles = [
-  'moontotems_g1_symbol_6k_330.jpg',
-  'moontotems_g1_symbol_6k_332.jpg',
-  'moontotems_g1_symbol_6k_367.jpg',
-  'moontotems_g1_symbol_6k_391.jpg',
-  'moontotems_g1_symbol_6k_440.jpg',
-  'moontotems_g1_symbol_6k_479.jpg',
-  'moontotems_g1_symbol_6k_576.jpg',
-  'moontotems_g1_symbol_6k_577.jpg',
-  'moontotems_g1_symbol_6k_688.jpg',
-  'moontotems_g1_symbol_6k_809.jpg',
-]
-
-export const heroImages = heroImageFiles.map((file) => `${HEADER_CROPS_BASE}${file}`)
+/** Hero loop — formerly Vimeo 620510465 / BLINKYROTATE. */
+export const heroVideo = muxPlayerUrl(MUX.blinkyRotate)
 
 export const uniqueCharactersSlides: HomeSlide[] = [
   {
     index: 0,
-    image: '/home/characteristics/moon_totem_4403.jpg',
+    video: muxPlayerUrl(MUX.uniqueCharactersA),
     title: '',
     text: 'Each Moon Totem is a One-of-a-Kind, with unique attributes and traits.',
   },
   {
     index: 1,
-    image: '/home/characteristics/moon_totem_name.jpg',
+    video: muxPlayerUrl(MUX.card3d),
     title: 'Name & Title',
     text: 'Each Totem has a unique name, a title and personality traits.',
   },
@@ -75,8 +74,7 @@ export const uniqueCharactersSlides: HomeSlide[] = [
 export const uniqueFeaturesSlides: HomeSlide[] = [
   {
     index: 0,
-    video:
-      'https://player.vimeo.com/video/625932660?h=406816f119&badge=0&autoplay=1&loop=1&autopause=0&muted=1&player_id=0&app_id=58479',
+    video: muxPlayerUrl(MUX.outlineLoop),
     title: '',
     text: 'Moon Totems is a next generation NFT project that aims to expand the features and possibilities exclusive to holders.',
   },
@@ -94,7 +92,7 @@ export const uniqueFeaturesSlides: HomeSlide[] = [
   },
   {
     index: 3,
-    image: '/home/uniqueFeatures/moon_totems_zoom_and_pan.jpg',
+    video: muxPlayerUrl(MUX.zoomPan),
     title: 'TOTEM ZOOM',
     text: 'Only holders can fully experience the full high resolution detail.',
   },
@@ -136,6 +134,7 @@ const LUNAR_ORIGIN_NAMES: Array<[string, string]> = [
 export const lunarOriginsSlides: HomeSlide[] = [
   {
     index: 0,
+    video: muxPlayerUrl(MUX.moonTurn),
     title: '',
     text: 'Moon Totems are believed to originate from the Moon.',
   },
@@ -152,7 +151,7 @@ export const lunarOriginsSlides: HomeSlide[] = [
 export const lunarPhasesSlides: HomeSlide[] = [
   {
     index: 0,
-    image: '/home/lunarPhases/512/02_waxing_crescent.jpg',
+    video: muxPlayerUrl(MUX.moonTurn),
     title: '',
     text: 'Each Moon Totem is born under a particular Lunar Phase.',
   },
@@ -209,7 +208,7 @@ export const lunarPhasesSlides: HomeSlide[] = [
 export const lunarMonthsSlides: HomeSlide[] = [
   {
     index: 0,
-    image: '/home/lunarMonths/lunarMonths.gif',
+    video: muxPlayerUrl(MUX.moonTurn),
     title: '',
     text: 'Each Moon Totem is born under a particular Lunar Month.',
   },

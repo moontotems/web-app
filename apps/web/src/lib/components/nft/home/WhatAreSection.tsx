@@ -1,27 +1,18 @@
-import Autoplay from 'embla-carousel-autoplay'
-import useEmblaCarousel from 'embla-carousel-react'
-
 import { ExploreLink } from './ExploreLink'
-import { heroImages } from './slide-data'
+import { heroVideo } from './slide-data'
 
-/** Hero section: full-width totem-crop slider + intro text (legacy WhatAre). */
+/** Hero section: looping Mux intro video + intro text (legacy WhatAre). */
 export function WhatAreSection() {
-  const [emblaRef] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ delay: 5000, stopOnInteraction: false }),
-  ])
-
   return (
     <section className="w-full bg-black">
       <div className="relative h-[45vh] overflow-hidden md:h-[70vh]">
-        <div className="h-full w-full overflow-hidden" ref={emblaRef}>
-          <div className="flex h-full">
-            {heroImages.map((image) => (
-              <div className="min-w-0 flex-[0_0_100%]" key={image}>
-                <img alt="Moon Totem" className="h-full w-full object-cover" src={image} />
-              </div>
-            ))}
-          </div>
-        </div>
+        <iframe
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+          className="h-full w-full border-0"
+          src={heroVideo}
+          title="Moon Totems"
+        />
         <ExploreLink
           className="absolute right-0 bottom-0 hidden md:block"
           label="Get your MOON TOTEM"
