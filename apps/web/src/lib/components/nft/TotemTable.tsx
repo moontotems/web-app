@@ -2,10 +2,16 @@ import { DataTable } from '@moontotems/ui'
 import { Link } from '@tanstack/react-router'
 import type { ColumnDef } from '@tanstack/react-table'
 import { ExternalLink } from 'lucide-react'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 
+import { TotemFilterBar } from '~/lib/components/nft/TotemFilterBar'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { getImageUrl } from '~/lib/nft/image-url'
+import {
+  type TotemFilterState,
+  applyTotemFilters,
+  createEmptyTotemFilterState,
+} from '~/lib/nft/totem-filters'
 import { type TotemTableRow, useTotemTableRows } from '~/lib/nft/use-token-data'
 
 type TotemRow = TotemTableRow
@@ -117,6 +123,8 @@ const columns: ColumnDef<TotemRow>[] = [
   textColumn('Complexity Rank', 'complexityRank'),
   textColumn('Age Score', 'AgeScore'),
   textColumn('Material Score', 'materialScore'),
+  textColumn('Rarity Rank', 'rarityRank'),
+  textColumn('Rarity Score', 'rarityScore'),
 ]
 
 const SEARCHABLE_COLUMNS = [
@@ -137,9 +145,10 @@ const SEARCHABLE_COLUMNS = [
 export function TotemTable() {
   const { filteredCreatures } = useMoonTotems()
   const { data: allRows, isLoading } = useTotemTableRows()
+  const [filterState, setFilterState] = useState<TotemFilterState>(createEmptyTotemFilterState)
 
   // Preserve the provider's (shuffled, filtered) ordering.
-  const rows = useMemo(() => {
+  const joinedRows = useMemo(() => {
     if (!allRows) return []
     const byId = new Map(allRows.map((row) => [row.token_id, row]))
     return filteredCreatures
@@ -147,8 +156,16 @@ export function TotemTable() {
       .filter((row): row is TotemTableRow => Boolean(row))
   }, [allRows, filteredCreatures])
 
+  const rows = useMemo(() => applyTotemFilters(joinedRows, filterState), [joinedRows, filterState])
+
   return (
     <div className="px-4 pb-8">
+      <TotemFilterBar
+        rows={joinedRows}
+        filteredCount={rows.length}
+        state={filterState}
+        onChange={setFilterState}
+      />
       <DataTable<TotemRow>
         data={rows}
         isLoading={isLoading}

@@ -57,6 +57,8 @@ const TABLE_COLUMNS = [
   'ageRank',
   'AgeScore',
   'birthYearStr',
+  'rarityRank',
+  'rarityScore',
 ] as const
 
 export type TotemTableRow = Pick<Moontotem, (typeof TABLE_COLUMNS)[number]>

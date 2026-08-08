@@ -1,0 +1,1 @@
+// db seed script lives in packages/db-drizzle/scripts/import-moontotems.ts

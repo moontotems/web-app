@@ -5,7 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"introspect": "npx drizzle-kit introspect:pg",
-		"import:moontotems": "tsx scripts/import-moontotems.ts"
+		"import:moontotems": "tsx scripts/import-moontotems.ts",
+		"generate:metadata": "tsx scripts/generate-metadata.ts"
 	},
 	"dependencies": {
 		"@sinclair/typebox": "^0.34.9",
