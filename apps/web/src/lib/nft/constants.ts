@@ -1,5 +1,5 @@
 /** Azure Blob CDN hosting all totem renders and website assets. */
-export const CDN_BASE = 'https://moontotems.blob.core.windows.net'
+export const CDN_BASE = 'https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems'
 
 export const HEADER_HEIGHT = 40
 export const FOOTER_HEIGHT = 40

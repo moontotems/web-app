@@ -35,7 +35,7 @@ const scriptDir = dirname(fileURLToPath(import.meta.url))
 const supabaseAppDir = resolve(scriptDir, '..')
 const assetsRoot = resolve(supabaseAppDir, '../../assets')
 
-const DEFAULT_DIRS = ['website-assets', 'social-media']
+const DEFAULT_DIRS = ['totem-owner-assets', 'website-assets', 'social-media']
 const DEFAULT_CONCURRENCY = 6
 
 const CONTENT_TYPES: Record<string, string> = {

@@ -2,7 +2,7 @@ import { Download } from 'lucide-react'
 
 import { FeaturePanel } from './FeaturePanel'
 
-const OWNER_ASSETS_BASE = 'https://moontotems.blob.core.windows.net/totem-owner-assets'
+const OWNER_ASSETS_BASE = 'https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/totem-owner-assets'
 
 function downloadFiles(tokenId: number) {
   return [
