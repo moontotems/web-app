@@ -82,6 +82,6 @@ export function clampScale(scale: number, viewportW: number, viewportH: number):
 }
 
 export function initialScale(viewportW: number, isMobile: boolean): number {
-  const colsOnScreen = isMobile ? 3 : 5
+  const colsOnScreen = isMobile ? 12 : 28
   return viewportW / (colsOnScreen * EXPLORE_CELL_SIZE)
 }
