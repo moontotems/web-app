@@ -44,7 +44,7 @@ export function NftHeader() {
 
         <Link
           to="/project-overview"
-          className="flex h-full items-center border-l border-[#393939] px-4 text-sm font-normal tracking-[0.16px] whitespace-nowrap text-white hover:bg-white hover:!text-black"
+          className="flex h-full items-center border-r border-l border-[#393939] px-4 text-sm font-normal tracking-[0.16px] whitespace-nowrap text-white hover:bg-white hover:!text-black"
           onClick={() => setSidebarLeftOpen(false)}
         >
           Project Overview
