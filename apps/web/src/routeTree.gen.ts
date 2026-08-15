@@ -20,6 +20,8 @@ import { Route as AuthRegisterIndexRouteImport } from './routes/auth/register/in
 import { Route as AuthLoginIndexRouteImport } from './routes/auth/login/index'
 import { Route as NftWalletIndexRouteImport } from './routes/_nft/wallet/index'
 import { Route as NftTermsAndConditionsIndexRouteImport } from './routes/_nft/terms-and-conditions/index'
+import { Route as NftProjectOverviewIndexRouteImport } from './routes/_nft/project-overview/index'
+import { Route as NftOrbitIndexRouteImport } from './routes/_nft/orbit/index'
 import { Route as NftMintedIndexRouteImport } from './routes/_nft/minted/index'
 import { Route as NftLunarOriginsIndexRouteImport } from './routes/_nft/lunar-origins/index'
 import { Route as NftLunarCalendarIndexRouteImport } from './routes/_nft/lunar-calendar/index'
@@ -84,6 +86,16 @@ const NftTermsAndConditionsIndexRoute =
     path: '/terms-and-conditions/',
     getParentRoute: () => NftRoute,
   } as any)
+const NftProjectOverviewIndexRoute = NftProjectOverviewIndexRouteImport.update({
+  id: '/project-overview/',
+  path: '/project-overview/',
+  getParentRoute: () => NftRoute,
+} as any)
+const NftOrbitIndexRoute = NftOrbitIndexRouteImport.update({
+  id: '/orbit/',
+  path: '/orbit/',
+  getParentRoute: () => NftRoute,
+} as any)
 const NftMintedIndexRoute = NftMintedIndexRouteImport.update({
   id: '/minted/',
   path: '/minted/',
@@ -151,6 +163,8 @@ export interface FileRoutesByFullPath {
   '/lunar-calendar/': typeof NftLunarCalendarIndexRoute
   '/lunar-origins/': typeof NftLunarOriginsIndexRoute
   '/minted/': typeof NftMintedIndexRoute
+  '/orbit/': typeof NftOrbitIndexRoute
+  '/project-overview/': typeof NftProjectOverviewIndexRoute
   '/terms-and-conditions/': typeof NftTermsAndConditionsIndexRoute
   '/wallet/': typeof NftWalletIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
@@ -171,6 +185,8 @@ export interface FileRoutesByTo {
   '/lunar-calendar': typeof NftLunarCalendarIndexRoute
   '/lunar-origins': typeof NftLunarOriginsIndexRoute
   '/minted': typeof NftMintedIndexRoute
+  '/orbit': typeof NftOrbitIndexRoute
+  '/project-overview': typeof NftProjectOverviewIndexRoute
   '/terms-and-conditions': typeof NftTermsAndConditionsIndexRoute
   '/wallet': typeof NftWalletIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
@@ -195,6 +211,8 @@ export interface FileRoutesById {
   '/_nft/lunar-calendar/': typeof NftLunarCalendarIndexRoute
   '/_nft/lunar-origins/': typeof NftLunarOriginsIndexRoute
   '/_nft/minted/': typeof NftMintedIndexRoute
+  '/_nft/orbit/': typeof NftOrbitIndexRoute
+  '/_nft/project-overview/': typeof NftProjectOverviewIndexRoute
   '/_nft/terms-and-conditions/': typeof NftTermsAndConditionsIndexRoute
   '/_nft/wallet/': typeof NftWalletIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
@@ -217,6 +235,8 @@ export interface FileRouteTypes {
     | '/lunar-calendar/'
     | '/lunar-origins/'
     | '/minted/'
+    | '/orbit/'
+    | '/project-overview/'
     | '/terms-and-conditions/'
     | '/wallet/'
     | '/auth/login/'
@@ -237,6 +257,8 @@ export interface FileRouteTypes {
     | '/lunar-calendar'
     | '/lunar-origins'
     | '/minted'
+    | '/orbit'
+    | '/project-overview'
     | '/terms-and-conditions'
     | '/wallet'
     | '/auth/login'
@@ -260,6 +282,8 @@ export interface FileRouteTypes {
     | '/_nft/lunar-calendar/'
     | '/_nft/lunar-origins/'
     | '/_nft/minted/'
+    | '/_nft/orbit/'
+    | '/_nft/project-overview/'
     | '/_nft/terms-and-conditions/'
     | '/_nft/wallet/'
     | '/auth/login/'
@@ -350,6 +374,20 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions/'
       preLoaderRoute: typeof NftTermsAndConditionsIndexRouteImport
+      parentRoute: typeof NftRoute
+    }
+    '/_nft/project-overview/': {
+      id: '/_nft/project-overview/'
+      path: '/project-overview'
+      fullPath: '/project-overview/'
+      preLoaderRoute: typeof NftProjectOverviewIndexRouteImport
+      parentRoute: typeof NftRoute
+    }
+    '/_nft/orbit/': {
+      id: '/_nft/orbit/'
+      path: '/orbit'
+      fullPath: '/orbit/'
+      preLoaderRoute: typeof NftOrbitIndexRouteImport
       parentRoute: typeof NftRoute
     }
     '/_nft/minted/': {
@@ -460,6 +498,8 @@ interface NftRouteChildren {
   NftLunarCalendarIndexRoute: typeof NftLunarCalendarIndexRoute
   NftLunarOriginsIndexRoute: typeof NftLunarOriginsIndexRoute
   NftMintedIndexRoute: typeof NftMintedIndexRoute
+  NftOrbitIndexRoute: typeof NftOrbitIndexRoute
+  NftProjectOverviewIndexRoute: typeof NftProjectOverviewIndexRoute
   NftTermsAndConditionsIndexRoute: typeof NftTermsAndConditionsIndexRoute
   NftWalletIndexRoute: typeof NftWalletIndexRoute
 }
@@ -476,6 +516,8 @@ const NftRouteChildren: NftRouteChildren = {
   NftLunarCalendarIndexRoute: NftLunarCalendarIndexRoute,
   NftLunarOriginsIndexRoute: NftLunarOriginsIndexRoute,
   NftMintedIndexRoute: NftMintedIndexRoute,
+  NftOrbitIndexRoute: NftOrbitIndexRoute,
+  NftProjectOverviewIndexRoute: NftProjectOverviewIndexRoute,
   NftTermsAndConditionsIndexRoute: NftTermsAndConditionsIndexRoute,
   NftWalletIndexRoute: NftWalletIndexRoute,
 }

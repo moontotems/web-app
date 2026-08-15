@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router'
 import {
   BarChart3,
   CircleUserRound,
+  Compass,
   Instagram,
   Lightbulb,
   MapPin,
@@ -54,12 +55,18 @@ export function SidebarLeft() {
         className="w-full bg-[#262626] text-white"
         style={{ height: `calc(100vh - ${HEADER_HEIGHT}px)` }}
       >
+        <Link to="/" onClick={close}>
+          <MenuItem icon={<Compass className={iconClass} />}>Explore all</MenuItem>
+        </Link>
+        <Link to="/orbit" onClick={close}>
+          <MenuItem icon={<Moon className={iconClass} />}>Orbit</MenuItem>
+        </Link>
         <Link to="/all" onClick={close}>
           <MenuItem icon={<Smile className={iconClass} />}>All Moon Totems</MenuItem>
         </Link>
 
         <MenuItem title>About</MenuItem>
-        <Link to="/" onClick={close}>
+        <Link to="/project-overview" onClick={close}>
           <MenuItem icon={<Smile className={iconClass} />}>What are Moon Totems?</MenuItem>
         </Link>
         <Link to="/attributes" onClick={close}>

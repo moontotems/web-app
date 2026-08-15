@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { HomePage } from '~/lib/components/nft/home'
+import { ExploreCanvasPage } from '~/lib/components/nft/explore'
 
 export const Route = createFileRoute('/_nft/')({
-  component: HomePage,
+  component: ExploreCanvasPage,
 })

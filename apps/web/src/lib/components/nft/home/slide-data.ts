@@ -26,6 +26,9 @@ const MUX = {
 /** Hero loop — formerly Vimeo 620510465 / BLINKYROTATE. */
 export const heroVideo = muxPlayerUrl(MUX.blinkyRotate)
 
+/** Turning moon loop used on lunar origins / phases / months slides. */
+export const moonTurnVideo = muxPlayerUrl(MUX.moonTurn)
+
 export const uniqueCharactersSlides: HomeSlide[] = [
   {
     index: 0,

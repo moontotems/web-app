@@ -7,7 +7,12 @@ import { HEADER_HEIGHT } from '~/lib/nft/constants'
 function NftShell() {
   const { route, setSidebarLeftOpen } = useMoonTotems()
 
-  const hideGlobalFooter = route.includes('moontotem') || /\/\d+$/.test(route || '')
+  const hideGlobalFooter =
+    route === '/' ||
+    route.includes('moontotem') ||
+    route.includes('/explore') ||
+    route.includes('/orbit') ||
+    /\/\d+$/.test(route || '')
 
   return (
     <div id="App" className="min-h-screen overflow-x-hidden bg-black text-white">
