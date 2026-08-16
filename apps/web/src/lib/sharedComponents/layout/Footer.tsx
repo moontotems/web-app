@@ -1,8 +1,7 @@
 import { Link } from '@tanstack/react-router'
 
-import { ASSETS } from '~/lib/constant'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
-import { SOCIAL_LINKS } from '~/lib/nft/constants'
+import { ASSETS, CONTACT_EMAIL, SOCIAL_LINKS } from '~/lib/constants'
 
 function SocialMediaIcons() {
   return (
@@ -24,7 +23,7 @@ function SocialMediaIcons() {
 }
 
 /** 40px bottom bar (legacy Footer). */
-export function NftFooter() {
+export function Footer() {
   const { isMobile } = useMoonTotems()
 
   return (
@@ -36,7 +35,7 @@ export function NftFooter() {
         <Link to="/terms-and-conditions" className="hover:underline">
           Terms &amp; Conditions
         </Link>
-        <a href="mailto:moontotems@gmail.com" className="hover:underline">
+        <a href={`mailto:${CONTACT_EMAIL}`} className="hover:underline">
           Contact
         </a>
         {!isMobile && <SocialMediaIcons />}

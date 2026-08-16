@@ -1,10 +1,9 @@
 import { Outlet, createFileRoute } from '@tanstack/react-router'
 
 import { MoonTotemsProvider, useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
-import { HEADER_HEIGHT } from '~/lib/nft/constants'
-import { NftFooter } from '~/lib/sharedComponents/nft'
+import { HEADER_HEIGHT } from '~/lib/constants'
+import { Footer, Header } from '~/lib/sharedComponents/layout'
 
-import { NftHeader } from './_nft/-components/NftHeader'
 import { SidebarLeft } from './_nft/-components/SidebarLeft'
 
 function NftShell() {
@@ -20,7 +19,7 @@ function NftShell() {
   return (
     <div id="App" className="min-h-screen overflow-x-hidden bg-black text-white">
       <SidebarLeft />
-      <NftHeader />
+      <Header />
 
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: click-away for the drawer */}
       <div
@@ -33,7 +32,7 @@ function NftShell() {
         <Outlet />
       </div>
 
-      {!hideGlobalFooter && <NftFooter />}
+      {!hideGlobalFooter && <Footer />}
     </div>
   )
 }

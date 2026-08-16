@@ -1,7 +1,7 @@
 import { AuthLayout } from '@moontotems/ui'
 import { Link, createFileRoute } from '@tanstack/react-router'
 
-import { ASSETS } from '~/lib/constant'
+import { ASSETS } from '~/lib/constants'
 
 import { AuthLogo } from '../-components/AuthLogo'
 import { UserAuthFormLogin } from './-components/UserAuthForm'

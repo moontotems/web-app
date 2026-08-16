@@ -1,4 +1,4 @@
-import { ASSETS } from '~/lib/constant'
+import { ASSETS } from '~/lib/constants'
 
 export type Moon = {
   image: string

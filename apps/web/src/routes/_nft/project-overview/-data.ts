@@ -1,4 +1,5 @@
-import { ASSETS } from '~/lib/constant'
+import { ASSETS, SOCIAL_LINKS } from '~/lib/constants'
+import { getImageUrl } from '~/lib/nft/image-url'
 
 export type HomeSlide = {
   index: number
@@ -8,6 +9,13 @@ export type HomeSlide = {
   title: string
   subtitle?: string
   text: string
+}
+
+export type SplitSliderConfig = {
+  title: string
+  introHint: string
+  sliderSide: 'left' | 'right'
+  slides: HomeSlide[]
 }
 
 /** Autoplaying muted Mux embed (same role as the old Vimeo loops). */
@@ -121,180 +129,6 @@ export const uniqueFeaturesSlides: HomeSlide[] = [
   },
 ]
 
-const LUNAR_ORIGIN_NAMES: Array<[string, string]> = [
-  ['Sea of Rains', 'Mare Imbrium'],
-  ['Sea of Fertility', 'Mare Fecunditatis'],
-  ['Sea of Tranquility', 'Mare Tranquillitatis'],
-  ['Sea of Clouds', 'Mare Nubium'],
-  ['Sea of Islands', 'Mare Insularum'],
-  ['Lake of Dreams', 'Lacus Somniorum'],
-  ['Bay of Rainbows', 'Sinus Iridum'],
-  ['Peninsula of Thunder', 'Peninsula Fulminum'],
-  ['Bay of Harmony', 'Sinus Concordiae'],
-  ['Bay of Success', 'Sinus Successus'],
-  ['Bay of Love', 'Sinus Amoris'],
-  ['Lake of Time', 'Lacus Temporis'],
-]
-
-export const lunarOriginsSlides: HomeSlide[] = [
-  {
-    index: 0,
-    video: muxPlayerUrl(MUX.moonTurn),
-    title: '',
-    text: 'Moon Totems are believed to originate from the Moon.',
-  },
-  ...LUNAR_ORIGIN_NAMES.map(([title, subtitle], i) => ({
-    index: i + 1,
-    image: ASSETS.home.lunarOrigins.sector(i + 1),
-    icon: ASSETS.home.lunarOrigins.symbol(i + 1),
-    title,
-    subtitle,
-    text: 'Moon Totems were first discovered on the Ethereum blockchain but they are believed to originate from the Moon.',
-  })),
-]
-
-const PHASES = ASSETS.home.lunarPhases.names
-
-export const lunarPhasesSlides: HomeSlide[] = [
-  {
-    index: 0,
-    video: muxPlayerUrl(MUX.moonTurn),
-    title: '',
-    text: 'Each Moon Totem is born under a particular Lunar Phase.',
-  },
-  {
-    index: 1,
-    image: ASSETS.home.lunarPhases.jpg512(PHASES[0]),
-    title: 'New Moon',
-    text: 'New Begging, Virgninal',
-  },
-  {
-    index: 2,
-    image: ASSETS.home.lunarPhases.jpg512(PHASES[1]),
-    title: 'Waxing Crescent',
-    text: 'Youth, open',
-  },
-  {
-    index: 3,
-    image: ASSETS.home.lunarPhases.jpg512(PHASES[2]),
-    title: 'First Quarter',
-    text: 'Surrounded by three concentric rings of mountains, uplifted by the colossal impact event that excavated it.',
-  },
-  {
-    index: 4,
-    image: ASSETS.home.lunarPhases.jpg512(PHASES[3]),
-    title: 'Waxing Gibbous',
-    text: 'Exhuberance, excitement, fertile',
-  },
-  {
-    index: 5,
-    image: ASSETS.home.lunarPhases.jpg512(PHASES[4]),
-    title: 'Full Moon',
-    text: 'Pinnacle, peak, climax',
-  },
-  {
-    index: 6,
-    image: ASSETS.home.lunarPhases.jpg512(PHASES[5]),
-    title: 'Waning Gibbous',
-    text: 'The Day after, Reflection',
-  },
-  {
-    index: 7,
-    image: ASSETS.home.lunarPhases.jpg512(PHASES[6]),
-    title: 'Last Quarter',
-    text: 'Last Hurrah, Realization Dawning of the Mind',
-  },
-  {
-    index: 8,
-    image: ASSETS.home.lunarPhases.jpg512(PHASES[7]),
-    title: 'Waning Crescent',
-    text: 'Old, Wise, Calm, Enlightenment',
-  },
-]
-
-const MONTHS = ASSETS.home.lunarMonths.names
-
-export const lunarMonthsSlides: HomeSlide[] = [
-  {
-    index: 0,
-    video: muxPlayerUrl(MUX.moonTurn),
-    title: '',
-    text: 'Each Moon Totem is born under a particular Lunar Month.',
-  },
-  {
-    index: 1,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[0]),
-    title: 'Ghost Moon',
-    text: 'Season of ancestry, remembering those who came before us, now living in our memories.',
-  },
-  {
-    index: 2,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[1]),
-    title: 'Snow Moon',
-    text: 'Crystalize fluid situations',
-  },
-  {
-    index: 3,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[2]),
-    title: 'Crow Moon',
-    text: 'Opportunists, harbringers, and observers',
-  },
-  {
-    index: 4,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[3]),
-    title: 'Fish Moon',
-    text: 'Comfortable under pressure',
-  },
-  {
-    index: 5,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[4]),
-    title: 'Milk Moon',
-    text: 'Fluid and maternal',
-  },
-  {
-    index: 6,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[5]),
-    title: 'Honey Moon',
-    text: 'Collective effort',
-  },
-  {
-    index: 7,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[6]),
-    title: 'Thunder Moon',
-    text: 'Energetic, shocking',
-  },
-  {
-    index: 8,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[7]),
-    title: 'Buck Moon',
-    text: 'Easily provoked, horny',
-  },
-  {
-    index: 9,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[8]),
-    title: 'Harvest Moon',
-    text: 'Abundant',
-  },
-  {
-    index: 10,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[9]),
-    title: 'Leaf Moon',
-    text: 'Traveller, nomadic',
-  },
-  {
-    index: 11,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[10]),
-    title: 'Blood Moon',
-    text: 'Surrounded by three concentric rings of mountains, uplifted by the colossal impact event that excavated it.',
-  },
-  {
-    index: 12,
-    image: ASSETS.home.lunarMonths.svg(MONTHS[11]),
-    title: 'Oak Moon',
-    text: 'Static, stoic, stable, solid',
-  },
-]
-
 export type RoadmapItem = {
   index: number
   image: string
@@ -340,3 +174,63 @@ export const roadmapItems: RoadmapItem[] = [
     text: 'The Ideas and Creations will guide the next chapter of development. This can be a new generation, applying AI, connecting to a metaverse, etc etc...',
   },
 ]
+
+export const uniqueCharactersSlider: SplitSliderConfig = {
+  title: 'Unique Characters',
+  introHint: 'Explore the attributes and traits that makes every Moon Totem unique',
+  sliderSide: 'right',
+  slides: uniqueCharactersSlides,
+}
+
+export const uniqueFeaturesSlider: SplitSliderConfig = {
+  title: 'Unique Features',
+  introHint: 'Explore the unique features exclusive to Moon Totem holders',
+  sliderSide: 'left',
+  slides: uniqueFeaturesSlides,
+}
+
+export const teamMembers = [
+  {
+    image: getImageUrl({ tokenId: 475, size: 2048 }),
+    name: 'Gittan Clouds',
+    role: 'Ethereal Developer',
+    link: SOCIAL_LINKS.github,
+    icon: ASSETS.home.icons.github,
+    iconAlt: 'Moon Totems Github',
+  },
+  {
+    image: getImageUrl({ tokenId: 8996, size: 2048 }),
+    name: 'Flotsam Theamy',
+    role: 'Creative Medium',
+    link: SOCIAL_LINKS.instagram,
+    icon: ASSETS.home.icons.instagram,
+    iconAlt: 'Moon Totems Instagram',
+  },
+] as const
+
+export const socialChannels = [
+  {
+    name: 'Instagram',
+    href: SOCIAL_LINKS.instagram,
+    text: 'For visual stories and explorations into the art.',
+    icon: ASSETS.home.icons.instagram,
+  },
+  {
+    name: 'Twitter',
+    href: SOCIAL_LINKS.twitter,
+    text: 'For the latest announcements and updates.',
+    icon: ASSETS.home.icons.twitter,
+  },
+  {
+    name: 'Discord',
+    href: SOCIAL_LINKS.discord,
+    text: 'For connecting with the Moon Totem Community.',
+    icon: ASSETS.home.icons.discord,
+  },
+  {
+    name: 'Github',
+    href: SOCIAL_LINKS.github,
+    text: 'For insights into the technology behind the project.',
+    icon: ASSETS.home.icons.github,
+  },
+] as const

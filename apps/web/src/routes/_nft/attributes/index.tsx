@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { ASSETS } from '~/lib/constant'
-import { HEADER_HEIGHT } from '~/lib/nft/constants'
+import { ASSETS, HEADER_HEIGHT } from '~/lib/constants'
 import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
 import { ATTRIBUTE_CARDS } from './-data'

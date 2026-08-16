@@ -1,10 +1,10 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
-import { CreaturePage } from './$id/index'
+import { MoonTotemPage } from './$id/index'
 
-function CreatureRoute() {
+function MoonTotemRoute() {
   const { id } = Route.useParams()
-  return <CreaturePage tokenId={Number.parseInt(id, 10)} />
+  return <MoonTotemPage tokenId={Number.parseInt(id, 10)} />
 }
 
 export const Route = createFileRoute('/_nft/moontotem/$id')({
@@ -13,5 +13,5 @@ export const Route = createFileRoute('/_nft/moontotem/$id')({
       throw redirect({ to: '/' })
     }
   },
-  component: CreatureRoute,
+  component: MoonTotemRoute,
 })

@@ -272,7 +272,7 @@ const SEARCHABLE_COLUMNS = [
 
 /** Legacy /all list view: full metadata table with search, sort, pagination. */
 export function TotemTable() {
-  const { filteredCreatures } = useMoonTotems()
+  const { filteredMoonTotems } = useMoonTotems()
   const { data: allRows, isLoading } = useTotemTableRows()
   const allMatch = useMatch({ from: '/_nft/all/', shouldThrow: false })
   const navigate = useNavigate()
@@ -303,10 +303,10 @@ export function TotemTable() {
   const joinedRows = useMemo(() => {
     if (!allRows) return []
     const byId = new Map(allRows.map((row) => [row.token_id, row]))
-    return filteredCreatures
-      .map((creature) => byId.get(creature.tokenId))
+    return filteredMoonTotems
+      .map((moonTotem) => byId.get(moonTotem.tokenId))
       .filter((row): row is TotemTableRow => Boolean(row))
-  }, [allRows, filteredCreatures])
+  }, [allRows, filteredMoonTotems])
 
   const rows = useMemo(() => applyTotemFilters(joinedRows, filterState), [joinedRows, filterState])
 

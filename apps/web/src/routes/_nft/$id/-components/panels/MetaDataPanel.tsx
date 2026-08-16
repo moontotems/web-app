@@ -21,12 +21,12 @@ function MetaRow({
   )
 }
 
-/** TOTEM INFO panel (legacy creatureFeatures/MetaData). */
+/** TOTEM INFO panel (legacy MoonTotem features/MetaData). */
 export function MetaDataPanel({ metaData }: { metaData: TokenMetaData }) {
   const m = metaData
 
   return (
-    <FeaturePanel icon={<Info className="size-4" />} title="TOTEM INFO">
+    <FeaturePanel icon={<Info className="size-4" strokeWidth={1.5} />} title="TOTEM INFO">
       <table className="w-auto text-left text-lg leading-[45px] text-white">
         <tbody>
           <MetaRow

@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
-import { ASSETS } from '~/lib/constant'
+import { ASSETS } from '~/lib/constants'
 
 /** Design panels for the OpenAI / web-app story (full assets, uncropped). */
 export const openAiImages = [

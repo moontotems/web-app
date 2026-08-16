@@ -1,4 +1,4 @@
-import { ASSETS, type TotemImageSize } from '~/lib/constant'
+import { ASSETS, type TotemImageSize } from '~/lib/constants'
 
 export type ImageSize = TotemImageSize
 

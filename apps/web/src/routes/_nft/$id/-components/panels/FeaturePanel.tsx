@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 
-/** Overlay container for creature feature panels (legacy CreatureFeatureContainer). */
+/** Overlay container for MoonTotem feature panels (legacy MoonTotemFeatureContainer). */
 export function FeaturePanel({
   icon,
   title,
@@ -42,7 +42,7 @@ export function FeaturePanel({
           className="ml-auto mr-2 cursor-pointer"
           onClick={close}
         >
-          <XCircle className="size-8" />
+          <XCircle className="size-8" strokeWidth={1} />
         </button>
       </div>
       <div className="w-full pl-5 text-lg text-white">{children}</div>

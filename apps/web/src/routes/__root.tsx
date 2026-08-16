@@ -11,7 +11,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { Toaster } from 'sonner'
 
 import { type CurrentUser, getCurrentUser } from '~/lib/auth/server'
-import { ASSETS } from '~/lib/constant'
+import { ASSETS } from '~/lib/constants'
 import appCss from '~/lib/styles/app.css?url'
 import { Web3Providers } from '~/lib/web3/Web3Providers'
 

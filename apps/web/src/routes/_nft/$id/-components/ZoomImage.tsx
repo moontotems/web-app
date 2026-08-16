@@ -16,7 +16,7 @@ function clamp01(value: number) {
 
 /**
  * Replacement for react-inner-image-zoom (pan move type, as used by the
- * legacy creature page): clicking overlays the zoom image at its natural
+ * legacy MoonTotem page): clicking overlays the zoom image at its natural
  * size * zoomScale and moving the mouse pans across it; clicking again
  * zooms back out.
  */
@@ -33,7 +33,8 @@ export function ZoomImage({
   height: string
   zoomScale?: number
 }) {
-  const containerRef = useRef<HTMLDivElement | null>(null)
+  const previewRef = useRef<HTMLDivElement | null>(null)
+  const overlayRef = useRef<HTMLDivElement | null>(null)
   const [zoomed, setZoomed] = useState(false)
   const [zoomDimensions, setZoomDimensions] = useState<ZoomDimensions | null>(null)
   const [offset, setOffset] = useState<ZoomOffset>({ left: 0, top: 0 })
@@ -63,9 +64,8 @@ export function ZoomImage({
   // Map the cursor position to a pan offset: moving across the container
   // moves across the full zoomed image. Axes smaller than the container are
   // centered instead.
-  const panTo = (clientX: number, clientY: number) => {
-    if (!containerRef.current || !zoomDimensions) return
-    const rect = containerRef.current.getBoundingClientRect()
+  const panInRect = (clientX: number, clientY: number, rect: Pick<DOMRect, 'left' | 'top' | 'width' | 'height'>) => {
+    if (!zoomDimensions) return
 
     const left =
       zoomDimensions.width > rect.width
@@ -79,13 +79,24 @@ export function ZoomImage({
     setOffset({ left, top })
   }
 
+  const panTo = (clientX: number, clientY: number) => {
+    const el = overlayRef.current ?? previewRef.current
+    if (!el) return
+    panInRect(clientX, clientY, el.getBoundingClientRect())
+  }
+
   const onClick = (event: React.MouseEvent) => {
     if (!zoomDimensions) return
     if (zoomed) {
       setZoomed(false)
       return
     }
-    panTo(event.clientX, event.clientY)
+    panInRect(event.clientX, event.clientY, {
+      left: 0,
+      top: 0,
+      width: window.innerWidth,
+      height: window.innerHeight,
+    })
     setZoomed(true)
   }
 
@@ -95,37 +106,47 @@ export function ZoomImage({
   }
 
   return (
-    // biome-ignore lint/a11y/useKeyWithClickEvents: zoom affordance mirrors legacy widget
-    <div
-      ref={containerRef}
-      className="relative flex w-full items-center justify-center overflow-hidden"
-      style={{ height, cursor: zoomed ? 'zoom-out' : 'zoom-in' }}
-      onClick={onClick}
-      onMouseMove={onMouseMove}
-    >
-      <img
-        src={src}
-        alt={alt}
-        className="max-h-full max-w-full object-contain"
-        style={{ visibility: zoomed ? 'hidden' : 'visible' }}
-        draggable={false}
-      />
-      {zoomed && zoomDimensions && (
+    <>
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: zoom affordance mirrors legacy widget */}
+      <div
+        ref={previewRef}
+        className="relative flex w-full items-center justify-center overflow-hidden"
+        style={{ height, cursor: zoomed ? 'zoom-out' : 'zoom-in' }}
+        onClick={zoomed ? undefined : onClick}
+      >
         <img
-          src={activeZoomSrc}
+          src={src}
           alt={alt}
-          className="absolute block"
-          style={{
-            width: zoomDimensions.width,
-            height: zoomDimensions.height,
-            maxWidth: 'none',
-            maxHeight: 'none',
-            left: offset.left,
-            top: offset.top,
-          }}
+          className="max-h-full max-w-full object-contain"
+          style={{ visibility: zoomed ? 'hidden' : 'visible' }}
           draggable={false}
         />
+      </div>
+      {zoomed && zoomDimensions && (
+        // biome-ignore lint/a11y/useKeyWithClickEvents: zoom affordance mirrors legacy widget
+        <div
+          ref={overlayRef}
+          className="fixed inset-0 z-10000 overflow-hidden bg-black"
+          style={{ cursor: 'zoom-out' }}
+          onClick={onClick}
+          onMouseMove={onMouseMove}
+        >
+          <img
+            src={activeZoomSrc}
+            alt={alt}
+            className="absolute block"
+            style={{
+              width: zoomDimensions.width,
+              height: zoomDimensions.height,
+              maxWidth: 'none',
+              maxHeight: 'none',
+              left: offset.left,
+              top: offset.top,
+            }}
+            draggable={false}
+          />
+        </div>
       )}
-    </div>
+    </>
   )
 }

@@ -2,19 +2,19 @@ import { Link } from '@tanstack/react-router'
 import { CircleUserRound, Heart, Lock, Moon } from 'lucide-react'
 
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
-import type { Creature } from '~/lib/nft/types'
+import type { MoonTotem } from '~/lib/nft/types'
 import type { TotemCardData } from '~/lib/nft/use-token-data'
 
-/** Gallery card (legacy sharedComponents/Creature). */
+/** Gallery card (legacy sharedComponents/MoonTotem). */
 export function TotemCard({
-  creature,
+  moonTotem,
   card,
   showButtons = true,
   imageOverride,
   imageLoading = 'lazy',
   imageFetchPriority = 'auto',
 }: {
-  creature: Creature
+  moonTotem: MoonTotem
   /** Name/job strings from the moontotems table (see useTokenCards). */
   card?: TotemCardData
   showButtons?: boolean
@@ -27,7 +27,7 @@ export function TotemCard({
     favorites: { toggleFavorite },
   } = useMoonTotems()
 
-  const { tokenId, image, minted, ownedByUser, isFavorite } = creature
+  const { tokenId, image, minted, ownedByUser, isFavorite } = moonTotem
   const traitName1 = card?.trait_name1 ?? ''
   const traitName2 = card?.trait_name2 ?? ''
   const jobField = card?.trait_jobField ?? ''

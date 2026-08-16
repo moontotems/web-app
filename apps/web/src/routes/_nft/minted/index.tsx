@@ -5,7 +5,7 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { useTokenCards } from '~/lib/nft/use-token-data'
 
 function MintedPage() {
-  const { mintEventTokenIds, assembleCreature } = useMoonTotems()
+  const { mintEventTokenIds, assembleMoonTotem } = useMoonTotems()
   const cards = useTokenCards(mintEventTokenIds)
 
   return (
@@ -17,7 +17,7 @@ function MintedPage() {
         {mintEventTokenIds.map((tokenId) => (
           <TotemCard
             key={`TOTEM-${tokenId}-minted`}
-            creature={assembleCreature(tokenId)}
+            moonTotem={assembleMoonTotem(tokenId)}
             card={cards.get(tokenId)}
             showButtons
           />

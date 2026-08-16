@@ -7,7 +7,7 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 
 import { FeaturePanel } from './FeaturePanel'
 
-/** MINT panel — mint to a custom address (legacy creatureFeatures/MintTo). */
+/** MINT panel — mint to a custom address (legacy MoonTotem features/MintTo). */
 export function MintToPanel({ tokenId }: { tokenId: number }) {
   const { mint, isTransacting } = useMoonTotems()
   const [toAddress, setToAddress] = useState('')

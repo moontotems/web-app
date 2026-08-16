@@ -14,10 +14,10 @@ const PRIORITY_IMAGE_COUNT = 12
  * 2 on small screens, IntersectionObserver-driven infinite scroll.
  */
 export function TotemGrid() {
-  const { visibleCreatures, infiniteScroll } = useMoonTotems()
+  const { visibleMoonTotems, infiniteScroll } = useMoonTotems()
   const visibleIds = useMemo(
-    () => visibleCreatures.map((creature) => creature.tokenId),
-    [visibleCreatures],
+    () => visibleMoonTotems.map((moonTotem) => moonTotem.tokenId),
+    [visibleMoonTotems],
   )
   const cards = useTokenCards(visibleIds)
   const sentinelRef = useRef<HTMLDivElement | null>(null)
@@ -43,13 +43,13 @@ export function TotemGrid() {
   return (
     <div className="mx-auto w-full md:w-2/3">
       <div className="grid grid-cols-2 sm:grid-cols-3">
-        {visibleCreatures.map((creature, index) => (
-          <div key={`MOONTOTEM-${creature.tokenId}`} style={{ scrollSnapAlign: 'start' }}>
+        {visibleMoonTotems.map((moonTotem, index) => (
+          <div key={`MOONTOTEM-${moonTotem.tokenId}`} style={{ scrollSnapAlign: 'start' }}>
             <TotemCard
-              creature={creature}
-              card={cards.get(creature.tokenId)}
+              moonTotem={moonTotem}
+              card={cards.get(moonTotem.tokenId)}
               imageOverride={getImageUrl({
-                tokenId: creature.tokenId,
+                tokenId: moonTotem.tokenId,
                 size: 2048,
               })}
               imageLoading={index < PRIORITY_IMAGE_COUNT ? 'eager' : 'lazy'}

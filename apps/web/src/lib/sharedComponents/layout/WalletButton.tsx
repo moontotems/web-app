@@ -9,7 +9,7 @@ import { LogOut } from 'lucide-react'
 import Blockies from 'react-blockies'
 import { useDisconnect } from 'wagmi'
 
-import { HEADER_HEIGHT } from '~/lib/nft/constants'
+import { HEADER_HEIGHT } from '~/lib/constants'
 import { shortAddress } from '~/lib/nft/format'
 
 /**
@@ -30,10 +30,11 @@ export function WalletButton() {
             <button
               type="button"
               onClick={openConnectModal}
-              className="cursor-pointer bg-[#DA1E28] px-6 text-sm text-white transition-[filter] hover:brightness-110"
+              className="h-full shrink-0 cursor-pointer bg-[#DA1E28] px-3 text-xs text-white transition-[filter] hover:brightness-110 md:px-6 md:text-sm"
               style={{ height: HEADER_HEIGHT }}
             >
-              connect wallet
+              <span className="md:hidden">connect</span>
+              <span className="hidden md:inline">connect wallet</span>
             </button>
           )
         }
@@ -43,10 +44,11 @@ export function WalletButton() {
             <button
               type="button"
               onClick={openChainModal}
-              className="cursor-pointer bg-[#DA1E28] px-6 text-sm text-white"
+              className="h-full shrink-0 cursor-pointer bg-[#DA1E28] px-3 text-xs text-white md:px-6 md:text-sm"
               style={{ height: HEADER_HEIGHT }}
             >
-              wrong network
+              <span className="md:hidden">network</span>
+              <span className="hidden md:inline">wrong network</span>
             </button>
           )
         }
@@ -56,7 +58,7 @@ export function WalletButton() {
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
-                className="flex cursor-pointer items-center gap-2 bg-[#1062FE] px-6 text-sm text-white"
+                className="flex h-full shrink-0 cursor-pointer items-center gap-1.5 bg-[#1062FE] px-2.5 text-xs text-white md:gap-2 md:px-6 md:text-sm"
                 style={{ height: HEADER_HEIGHT }}
               >
                 <Blockies seed={account.address.toLowerCase()} size={8} scale={2.5} />

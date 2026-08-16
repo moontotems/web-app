@@ -1,14 +1,15 @@
 import { roadmapItems } from '../-data'
+import { SectionHeading } from './SectionHeading'
 
-/** Six-step roadmap grid (legacy Roadmap section). */
+/** Six-step roadmap grid. */
 export function RoadmapSection() {
   return (
-    <section className="w-full overflow-hidden bg-black">
-      <div className="p-[25px] text-xl">Roadmap</div>
-      <div className="grid grid-cols-1 gap-y-[5%] px-[10%] sm:grid-cols-2 md:grid-cols-3">
+    <section className="w-full bg-black pb-12">
+      <SectionHeading>Roadmap</SectionHeading>
+      <div className="grid grid-cols-1 gap-x-8 gap-y-12 px-[25px] sm:grid-cols-2 md:grid-cols-3 md:px-[10%]">
         {roadmapItems.map(({ index, image, title, text }) => (
-          <div className="mb-[5%] px-[5%]" key={`roadmap-${index}`}>
-            <img alt={title} className="mx-auto block w-full" src={image} />
+          <div key={`roadmap-${index}`}>
+            <img alt={title} className="block w-full md:w-1/2" src={image} />
             <div className="mt-[30px] mb-5 text-[19px] font-bold">{title}</div>
             <div className="text-[17px] leading-[28px]">{text}</div>
           </div>

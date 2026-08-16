@@ -20,9 +20,8 @@ import {
 } from 'lucide-react'
 import { type ReactNode, useState } from 'react'
 
-import { ASSETS } from '~/lib/constant'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
-import { HEADER_HEIGHT, HEADER_ICON_WIDTH } from '~/lib/nft/constants'
+import { ASSETS, HEADER_HEIGHT, HEADER_ICON_WIDTH } from '~/lib/constants'
 import { FILTERS } from '~/lib/nft/filters'
 import {
   type GallerySearch,
@@ -60,9 +59,7 @@ function MenuItem({
   return (
     // biome-ignore lint/a11y/useKeyWithClickEvents: legacy parity menu rows
     <div
-      className={`nft-menu-item flex w-full text-sm ${
-        title ? 'nft-menu-title' : ''
-      } ${
+      className={`nft-menu-item flex w-full text-sm ${title ? 'nft-menu-title' : ''} ${
         wide
           ? 'items-start justify-between pt-3 pr-4 pb-1.5'
           : 'h-[40px] items-center justify-center p-0'
@@ -70,9 +67,7 @@ function MenuItem({
       style={{
         paddingLeft: wide ? 35 : 0,
         // Inset shadow keeps collapsed icons centered (border-left would shift them).
-        boxShadow: activeBorder
-          ? `inset ${wide ? 5 : 2}px 0 0 #1062FE`
-          : undefined,
+        boxShadow: activeBorder ? `inset ${wide ? 5 : 2}px 0 0 #1062FE` : undefined,
       }}
       onClick={onClick}
     >
@@ -94,7 +89,7 @@ function gallerySearch(
 
 /**
  * Collapsible right panel (legacy ActionSidebar): view toggles, filters,
- * shuffle, and creature feature toggles. Cycles hidden -> narrow -> wide.
+ * shuffle, and MoonTotem feature toggles. Cycles hidden -> narrow -> wide.
  */
 export function ActionSidebar() {
   const {
@@ -102,7 +97,7 @@ export function ActionSidebar() {
     showGridView,
     shuffleIds,
     filters: { activeFilters, setActiveFilters, filterIsActive },
-    filteredCreatures,
+    filteredMoonTotems,
     usersTokenIds,
     toggleFeaturePanel,
   } = useMoonTotems()
@@ -120,14 +115,14 @@ export function ActionSidebar() {
     })
   }
 
-  // Show creature feature toggles when viewing a totem the user owns
+  // Show MoonTotem feature toggles when viewing a totem the user owns
   const routeTokenId = Number.parseInt(route.replace(/^\/(moontotem\/)?/, ''), 10)
-  const showCreatureFeatures =
+  const showMoonTotemFeatures =
     Number.isInteger(routeTokenId) && usersTokenIds.includes(routeTokenId)
 
   const wide = view === 'wide'
   const width = WIDTHS[view]
-  const firstTokenId = filteredCreatures[0]?.tokenId ?? 0
+  const firstTokenId = filteredMoonTotems[0]?.tokenId ?? 0
   const iconClass = 'size-4'
   const currentView: GalleryView = showGridView ? 'grid' : 'list'
   const galleryFilters = activeFilters.filter((f) => f !== FILTERS.myMoonTotems)
@@ -278,12 +273,12 @@ export function ActionSidebar() {
             {!route.includes('all') && (
               <MenuItem
                 wide={wide}
-                text="Show all Metadata"
+                text="Show metadata"
                 icon={<Info className={iconClass} aria-label="Meta Data" />}
                 onClick={() => toggleFeaturePanel('metaData')}
               />
             )}
-            {showCreatureFeatures && (
+            {showMoonTotemFeatures && (
               <>
                 <MenuItem
                   wide={wide}

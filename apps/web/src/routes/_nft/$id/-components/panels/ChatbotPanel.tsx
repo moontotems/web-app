@@ -5,7 +5,7 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { chatWithTotem } from '~/lib/nft/chatbot-rpc'
 import ANSWER_LIST from '~/lib/nft/chatbot/answer-list'
 import GREETING_LIST from '~/lib/nft/chatbot/greeting-list'
-import { HEADER_HEIGHT } from '~/lib/nft/constants'
+import { HEADER_HEIGHT } from '~/lib/constants'
 import type { TokenMetaData } from '~/lib/nft/types'
 
 import { FeaturePanel } from './FeaturePanel'
@@ -43,7 +43,7 @@ function UserBubble({ value }: { value: string }) {
   )
 }
 
-/** TOTEM CHAT panel (legacy creatureFeatures/Chatbot, OpenAI via server fn). */
+/** TOTEM CHAT panel (legacy MoonTotem features/Chatbot, OpenAI via server fn). */
 export function ChatbotPanel({
   tokenId,
   image,

@@ -18,13 +18,14 @@ import { toast } from 'sonner'
 import { parseEther } from 'viem'
 import { useAccount, useChainId, usePublicClient, useWriteContract } from 'wagmi'
 
+import { ETHERSCAN_BASE } from '~/lib/constants'
 import { getImageUrl } from '~/lib/nft/image-url'
 import { targetChainId } from '~/lib/web3/config'
 
 import { FILTERS, type FilterId } from './filters'
 import { setFreshMintFlag } from './fresh-mint'
 import { shuffle } from './shuffle'
-import type { Creature } from './types'
+import type { MoonTotem } from './types'
 import { useFavorites } from './use-favorites'
 import { useIsMobile } from './use-is-mobile'
 import { useMintEvents } from './use-mint-events'
@@ -71,9 +72,9 @@ export type MoonTotemsContextValue = {
   usersTokenIds: number[]
   refetchUserTotems: () => Promise<void>
 
-  assembleCreature: (tokenId: number) => Creature
-  filteredCreatures: Creature[]
-  visibleCreatures: Creature[]
+  assembleMoonTotem: (tokenId: number) => MoonTotem
+  filteredMoonTotems: MoonTotem[]
+  visibleMoonTotems: MoonTotem[]
   infiniteScroll: {
     visibleEnd: number
     next: () => void
@@ -117,7 +118,7 @@ export function MoonTotemsProvider({ children }: { children: ReactNode }) {
 
   const effectiveChainId = chainId || targetChainId
   const contractAddress = getMoonTotemsAddress(effectiveChainId)
-  const blockExplorer = effectiveChainId === 1 ? 'https://etherscan.io/' : ''
+  const blockExplorer = effectiveChainId === 1 ? `${ETHERSCAN_BASE}/` : ''
 
   const route = useRouterState({ select: (s) => s.location.pathname })
 
@@ -173,8 +174,8 @@ export function MoonTotemsProvider({ children }: { children: ReactNode }) {
   const usersTokenIdSet = useMemo(() => new Set(usersTokenIds), [usersTokenIds])
   const favoritedIdSet = useMemo(() => new Set(favoritedIds), [favoritedIds])
 
-  const assembleCreature = useCallback(
-    (tokenId: number): Creature => {
+  const assembleMoonTotem = useCallback(
+    (tokenId: number): MoonTotem => {
       const id = Number(tokenId)
       return {
         tokenId: id,
@@ -187,39 +188,39 @@ export function MoonTotemsProvider({ children }: { children: ReactNode }) {
     [favoritedIdSet, mintedIds, usersTokenIdSet],
   )
 
-  const filteredCreatures = useMemo(() => {
+  const filteredMoonTotems = useMemo(() => {
     const wantsMinted = activeFilters.includes(FILTERS.minted)
     const wantsNotMinted = activeFilters.includes(FILTERS.notMinted)
     const wantsFavorites = activeFilters.includes(FILTERS.favorites)
     const wantsUsers = activeFilters.includes(FILTERS.myMoonTotems)
 
-    const result: Creature[] = []
+    const result: MoonTotem[] = []
     for (const id of shuffledIds) {
-      const creature = assembleCreature(id)
-      if (wantsMinted && !creature.minted) continue
-      if (wantsNotMinted && creature.minted) continue
-      if (wantsFavorites && !creature.isFavorite) continue
-      if (wantsUsers && !creature.ownedByUser) continue
-      result.push(creature)
+      const moonTotem = assembleMoonTotem(id)
+      if (wantsMinted && !moonTotem.minted) continue
+      if (wantsNotMinted && moonTotem.minted) continue
+      if (wantsFavorites && !moonTotem.isFavorite) continue
+      if (wantsUsers && !moonTotem.ownedByUser) continue
+      result.push(moonTotem)
     }
     return result
-  }, [shuffledIds, assembleCreature, activeFilters])
+  }, [shuffledIds, assembleMoonTotem, activeFilters])
 
   const [visibleEnd, setVisibleEnd] = useState(INITIAL_VISIBLE_COUNT)
 
-  const visibleCreatures = useMemo(
-    () => filteredCreatures.slice(0, visibleEnd),
-    [filteredCreatures, visibleEnd],
+  const visibleMoonTotems = useMemo(
+    () => filteredMoonTotems.slice(0, visibleEnd),
+    [filteredMoonTotems, visibleEnd],
   )
 
   const infiniteScroll = useMemo(
     () => ({
       visibleEnd,
       next: () => setVisibleEnd((end) => end + VISIBLE_INCREMENT),
-      hasMore: filteredCreatures.length > visibleEnd,
+      hasMore: filteredMoonTotems.length > visibleEnd,
       reset: () => setVisibleEnd(INITIAL_VISIBLE_COUNT),
     }),
-    [visibleEnd, filteredCreatures.length],
+    [visibleEnd, filteredMoonTotems.length],
   )
 
   const mint = useCallback(
@@ -334,9 +335,9 @@ export function MoonTotemsProvider({ children }: { children: ReactNode }) {
       mintEventTokenIds,
       usersTokenIds,
       refetchUserTotems,
-      assembleCreature,
-      filteredCreatures,
-      visibleCreatures,
+      assembleMoonTotem,
+      filteredMoonTotems,
+      visibleMoonTotems,
       infiniteScroll,
       mint,
       transfer,
@@ -369,9 +370,9 @@ export function MoonTotemsProvider({ children }: { children: ReactNode }) {
       mintEventTokenIds,
       usersTokenIds,
       refetchUserTotems,
-      assembleCreature,
-      filteredCreatures,
-      visibleCreatures,
+      assembleMoonTotem,
+      filteredMoonTotems,
+      visibleMoonTotems,
       infiniteScroll,
       mint,
       transfer,

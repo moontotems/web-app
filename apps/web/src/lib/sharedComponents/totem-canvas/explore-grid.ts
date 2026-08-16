@@ -1,6 +1,6 @@
 import { MAX_TOKEN_ID, TOTAL_TOKENS } from '@moontotems/contracts'
 
-import type { TotemImageSize } from '~/lib/constant'
+import type { TotemImageSize } from '~/lib/constants'
 
 /** Columns chosen so the period is roughly square (98 × 97 ≈ 9506). */
 export const EXPLORE_COLS = 98
@@ -84,9 +84,7 @@ export function clampScale(scale: number, viewportW: number, viewportH: number):
   // Max: a tile can grow to ~3× the shorter viewport side (close inspection).
   const maxScale = (Math.min(viewportW, viewportH) * 3) / cellW
   // Min: roughly EXPLORE_MAX_VISIBLE_TILES on screen.
-  const minScale = Math.sqrt(
-    (viewportW * viewportH) / (cellW * cellH * EXPLORE_MAX_VISIBLE_TILES),
-  )
+  const minScale = Math.sqrt((viewportW * viewportH) / (cellW * cellH * EXPLORE_MAX_VISIBLE_TILES))
   return Math.min(maxScale, Math.max(minScale, scale))
 }
 

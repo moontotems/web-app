@@ -6,7 +6,7 @@ import { useStory } from '~/lib/nft/use-story'
 
 import { FeaturePanel } from './FeaturePanel'
 
-/** TOTEM STORY panel (legacy creatureFeatures/WriteStory). */
+/** TOTEM STORY panel (legacy MoonTotem features/WriteStory). */
 export function WriteStoryPanel({ tokenId }: { tokenId: number }) {
   const { story, saveStory } = useStory(tokenId)
   const [draft, setDraft] = useState(story)

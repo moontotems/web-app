@@ -2,6 +2,7 @@ import { memo, useState } from 'react'
 
 import { type ImageSize, getImageUrl } from '~/lib/nft/image-url'
 import type { TotemCardData } from '~/lib/nft/use-token-data'
+import { TotemCaption } from '~/lib/sharedComponents/nft/TotemCaption'
 
 import { EXPLORE_CAPTION_HEIGHT, EXPLORE_TILE_SIZE } from './explore-grid'
 
@@ -74,12 +75,13 @@ export const CanvasTotemTile = memo(function CanvasTotemTile({
         />
         {hiResUrl && <HiResOverlay key={hiResUrl} url={hiResUrl} />}
       </div>
-      <div className="pointer-events-none px-0.5 pt-1 pb-1.5 text-center leading-tight text-white select-none">
-        <div className="mb-0.5 truncate text-base font-normal">{`${traitName1} ${traitName2}`}</div>
-        <div className="truncate text-[13px] leading-4 font-light">
-          {jobField} {jobTitle}
-        </div>
-      </div>
+      <TotemCaption
+        name1={traitName1}
+        name2={traitName2}
+        jobField={jobField}
+        jobTitle={jobTitle}
+        className="pointer-events-none px-0.5 pt-1 pb-1.5 select-none"
+      />
     </div>
   )
 })

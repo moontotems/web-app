@@ -1,28 +1,30 @@
+import { MOON_TOTEMS_ADDRESSES } from '@moontotems/contracts'
+
 /**
  * Central catalog of Moon Totems image / file path names.
  * Public paths are site-root absolute (`/...`). CDN entries are path templates
  * under the Supabase public bucket (see `cdn.base`).
  */
 
-const CDN_BASE =
+const SUPABASE_CDN_BASE =
   'https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems' as const
 
-const OWNER_ASSETS_BASE = `${CDN_BASE}/totem-owner-assets` as const
+const OWNER_ASSETS_BASE = `${SUPABASE_CDN_BASE}/totem-owner-assets` as const
 
 export type TotemImageSize = 100 | 512 | 1024 | 2048 | '6k'
 
 export const ASSETS = {
   cdn: {
-    base: CDN_BASE,
+    base: SUPABASE_CDN_BASE,
     ownerAssetsBase: OWNER_ASSETS_BASE,
     /** Public gallery / explore renders. */
     totem: {
       baseJpeg: (size: TotemImageSize, tokenId: number) =>
-        `${CDN_BASE}/totems/base/jpeg/${size}/moontotems_g1_base_${size}_${tokenId}.jpg`,
+        `${SUPABASE_CDN_BASE}/totems/base/jpeg/${size}/moontotems_g1_base_${size}_${tokenId}.jpg`,
       symbolJpeg6k: (tokenId: number) =>
-        `${CDN_BASE}/totems/symbol/jpeg/6k/moontotems_g1_symbol_6k_${tokenId}.jpg`,
+        `${SUPABASE_CDN_BASE}/totems/symbol/jpeg/6k/moontotems_g1_symbol_6k_${tokenId}.jpg`,
       symbolJpeg2048: (tokenId: number) =>
-        `${CDN_BASE}/totems/symbol/jpeg/2048/moontotems_g1_symbol_2048_${tokenId}.jpg`,
+        `${SUPABASE_CDN_BASE}/totems/symbol/jpeg/2048/moontotems_g1_symbol_2048_${tokenId}.jpg`,
       fileNames: {
         base: (size: TotemImageSize, tokenId: number) =>
           `moontotems_g1_base_${size}_${tokenId}.jpg`,
@@ -300,3 +302,29 @@ export type AssetPath = StringLeaves<Assets>
 
 /** Alias for a single static asset path. */
 export type Asset = AssetPath
+
+export const CDN_BASE = ASSETS.cdn.base
+
+export const HEADER_HEIGHT = 40
+export const FOOTER_HEIGHT = 40
+export const SIDEBAR_WIDTH = 250
+/** Width of the header menu / “Show all” icon columns (and ActionSidebar narrow). */
+export const HEADER_ICON_WIDTH = 50
+
+const MAINNET_CONTRACT = MOON_TOTEMS_ADDRESSES[1]
+
+export const ETHERSCAN_BASE = 'https://etherscan.io'
+export const OPENSEA_ASSET_BASE = `https://opensea.io/assets/${MAINNET_CONTRACT}`
+
+export const SOCIAL_LINKS = {
+  instagram: 'https://instagram.com/moontotems',
+  twitter: 'https://twitter.com/moontotemsnft',
+  discord: 'https://discord.gg/73vMqt7k7H',
+  github: 'https://github.com/moontotems',
+  medium: 'https://medium.com/@moontotems',
+  opensea: 'https://opensea.io/collection/moontotems',
+  looksrare: `https://looksrare.org/collections/${MAINNET_CONTRACT}`,
+  etherscan: `${ETHERSCAN_BASE}/address/${MAINNET_CONTRACT}`,
+} as const
+
+export const CONTACT_EMAIL = 'moontotems@gmail.com'

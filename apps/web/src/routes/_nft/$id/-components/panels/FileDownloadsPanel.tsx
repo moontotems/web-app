@@ -1,6 +1,6 @@
 import { Download } from 'lucide-react'
 
-import { ASSETS } from '~/lib/constant'
+import { ASSETS } from '~/lib/constants'
 
 import { FeaturePanel } from './FeaturePanel'
 
@@ -33,7 +33,7 @@ function downloadFiles(tokenId: number) {
   ]
 }
 
-/** TOTEM DOWNLOADS panel (legacy creatureFeatures/FileDownloads). */
+/** TOTEM DOWNLOADS panel (legacy MoonTotem features/FileDownloads). */
 export function FileDownloadsPanel({ tokenId }: { tokenId: number }) {
   return (
     <FeaturePanel icon={<Download className="size-4" />} title="TOTEM DOWNLOADS">

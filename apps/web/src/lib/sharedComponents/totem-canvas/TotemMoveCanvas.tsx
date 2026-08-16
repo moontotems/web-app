@@ -2,7 +2,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { useMemo } from 'react'
 
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
-import { HEADER_HEIGHT } from '~/lib/nft/constants'
+import { HEADER_HEIGHT } from '~/lib/constants'
 import { useTokenCards } from '~/lib/nft/use-token-data'
 import { moonTurnVideo } from '~/routes/_nft/project-overview/-data'
 

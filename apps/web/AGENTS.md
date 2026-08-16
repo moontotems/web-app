@@ -3,7 +3,7 @@
 ## File naming
 
 - **PascalCase** for files whose primary export is a React component:
-  `NftHeader.tsx`, `TotemCard.tsx`, `MoonTotemsProvider.tsx`, `routes/**/-components/ProfileForm.tsx`.
+  `Header.tsx`, `TotemCard.tsx`, `MoonTotemsProvider.tsx`, `routes/**/-components/ProfileForm.tsx`.
 - **kebab-case** for everything else: hooks (`use-favorites.ts`), utilities
   (`image-url.ts`, `format.ts`), data modules (`slide-data.ts`,
   `lunar-origins-data.ts`), styles, and config.
@@ -21,12 +21,13 @@
   `createFileRoute` wiring. Route-local static content lives in a colocated
   `-data.ts` module (the `-` prefix hides it from the router); route-local
   components go in `-components/`.
-- `src/lib/sharedComponents/nft/` — shared MoonTotems UI: shell (`NftHeader`,
+- `src/lib/sharedComponents/nft/` — shared MoonTotems UI: shell (`Header`,
   `SidebarLeft`, `NftFooter`, `ActionSidebar`), gallery
-  (`TotemCard`/`TotemGrid`/`TotemTable`), `creature/` detail panels,
+  (`TotemCard`/`TotemGrid`/`TotemTable`), MoonTotem detail panels,
   `home/` landing sections.
+- `src/lib/constants.ts` — shared asset catalog, layout sizes, social links.
 - `src/lib/nft/` — non-visual NFT domain logic: `MoonTotemsProvider` context,
-  hooks (`use-*.ts`), metadata lookup, formatting, constants.
+  hooks (`use-*.ts`), metadata lookup, formatting.
 - `src/lib/web3/` — wagmi/RainbowKit configuration (`Web3Providers`).
 
 ## Styling
@@ -35,7 +36,8 @@
   (`src/lib/styles/nft-theme.css`) applied on the `_nft` layout; boilerplate
   routes (auth, settings) use the default theme.
 - Totem imagery comes from the Azure Blob CDN; build URLs with
-  `getImageUrl()` / `CDN_BASE` from `src/lib/nft/` instead of hardcoding hosts.
+  `getImageUrl()` from `src/lib/nft/` and `CDN_BASE` from `src/lib/constants.ts`
+  instead of hardcoding hosts.
 
 ## Checks
 

@@ -1,7 +1,8 @@
-import { Drawer, DrawerContent, DrawerDescription, DrawerTitle } from '@moontotems/ui'
+import { cn, Drawer, DrawerContent, DrawerDescription, DrawerTitle } from '@moontotems/ui'
 import { Link } from '@tanstack/react-router'
 import {
   BarChart3,
+  BookOpen,
   CircleUserRound,
   Compass,
   FileCode2,
@@ -16,121 +17,122 @@ import {
 } from 'lucide-react'
 import type { ReactNode } from 'react'
 
-import { ASSETS } from '~/lib/constant'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
-import { HEADER_HEIGHT, SOCIAL_LINKS } from '~/lib/nft/constants'
+import { ASSETS, HEADER_HEIGHT, SIDEBAR_WIDTH, SOCIAL_LINKS } from '~/lib/constants'
 import { DEFAULT_GALLERY_SEARCH } from '~/lib/nft/gallery-search'
+
+const ICON = 'size-[18px] md:size-4'
 
 function MenuItem({
   children,
   icon,
-  title = false,
+  heading = false,
 }: {
   children: ReactNode
   icon?: ReactNode
-  title?: boolean
+  heading?: boolean
 }) {
   return (
     <div
-      className={`nft-menu-item flex w-full items-start justify-between pt-3 pr-4 pb-1.5 text-left text-sm ${
-        title ? 'nft-menu-title pl-[15px]' : 'pl-[35px]'
-      }`}
+      className={cn(
+        'nft-menu-item flex w-full items-center justify-between py-2.5 pr-4 text-left text-[15px]',
+        'md:items-start md:pt-3 md:pb-1.5 md:text-sm',
+        '[&_svg]:stroke-[1.5]',
+        heading ? 'nft-menu-title pl-4 md:pl-[15px]' : 'pl-5 md:pl-[35px]',
+      )}
     >
-      <span className="-mt-[3px]">{children}</span>
-      <span>{icon}</span>
+      <span className="md:-mt-[3px]">{children}</span>
+      {icon}
     </div>
   )
 }
 
-/** 250px left navigation drawer (animated via @moontotems/ui Drawer / vaul). */
+function BrandIcon({ src }: { src: string }) {
+  return <img alt="" className={ICON} src={src} />
+}
+
+/** 250px left navigation drawer. */
 export function SidebarLeft() {
   const { sidebarLeftOpen, setSidebarLeftOpen } = useMoonTotems()
-
   const close = () => setSidebarLeftOpen(false)
-  const iconClass = 'size-4'
 
   return (
     <Drawer open={sidebarLeftOpen} onOpenChange={setSidebarLeftOpen} direction="left">
       <DrawerContent
         id="sidebarLeft"
-        className="nft-theme dark !fixed !top-[39px] !right-auto !bottom-0 !left-0 z-1000 !h-[calc(100vh-39px)] !w-[250px] !max-w-[250px] overflow-y-auto rounded-none border-0 !border-t !border-[#393939] bg-transparent p-0 shadow-none data-[vaul-drawer-direction=left]:!w-[250px] data-[vaul-drawer-direction=left]:!max-w-[250px] data-[vaul-drawer-direction=left]:!border-r-0 data-[vaul-drawer-direction=left]:sm:!max-w-[250px]"
+        className="nft-theme dark !fixed !left-0 z-2000 !block !w-[250px] overflow-y-auto rounded-none border-0 !border-[#393939] !bg-[#262626] p-0 shadow-none"
+        style={{ top: HEADER_HEIGHT, bottom: 0, height: 'auto', width: SIDEBAR_WIDTH }}
       >
         <DrawerTitle className="sr-only">Navigation</DrawerTitle>
         <DrawerDescription className="sr-only">Moon Totems site menu</DrawerDescription>
 
-        <div
-          className="w-full bg-[#262626] text-white"
-          style={{ height: `calc(100vh - ${HEADER_HEIGHT}px)` }}
-        >
+        <nav className="h-max min-h-full bg-[#262626] pb-[env(safe-area-inset-bottom)] text-white">
+          <Link to="/project-overview" onClick={close}>
+            <MenuItem icon={<BookOpen className={ICON} />}>Project Overview</MenuItem>
+          </Link>
           <Link to="/" onClick={close}>
-            <MenuItem icon={<Compass className={iconClass} />}>Explore all</MenuItem>
+            <MenuItem icon={<Compass className={ICON} />}>Explore all</MenuItem>
           </Link>
           <Link to="/orbit" onClick={close}>
-            <MenuItem icon={<Moon className={iconClass} />}>Orbit</MenuItem>
+            <MenuItem icon={<Moon className={ICON} />}>Orbit</MenuItem>
           </Link>
           <Link to="/all" search={DEFAULT_GALLERY_SEARCH} onClick={close}>
-            <MenuItem icon={<Smile className={iconClass} />}>All Moon Totems</MenuItem>
+            <MenuItem icon={<Smile className={ICON} />}>All Moon Totems</MenuItem>
           </Link>
 
-          <MenuItem title>About</MenuItem>
+          <MenuItem heading>About</MenuItem>
           <Link to="/project-overview" onClick={close}>
-            <MenuItem icon={<Smile className={iconClass} />}>What are Moon Totems?</MenuItem>
+            <MenuItem icon={<Smile className={ICON} />}>What are Moon Totems?</MenuItem>
           </Link>
           <Link to="/attributes" onClick={close}>
-            <MenuItem icon={<CircleUserRound className={iconClass} />}>Unique Characters</MenuItem>
+            <MenuItem icon={<CircleUserRound className={ICON} />}>Unique Characters</MenuItem>
           </Link>
           <Link to="/features" onClick={close}>
-            <MenuItem icon={<Lightbulb className={iconClass} />}>Exclusive Features</MenuItem>
+            <MenuItem icon={<Lightbulb className={ICON} />}>Exclusive Features</MenuItem>
           </Link>
           <Link to="/open-ai" onClick={close}>
-            <MenuItem icon={<Sparkles className={iconClass} />}>OpenAI</MenuItem>
+            <MenuItem icon={<Sparkles className={ICON} />}>OpenAI</MenuItem>
           </Link>
           <Link to="/lunar-origins" onClick={close}>
-            <MenuItem icon={<MapPin className={iconClass} />}>Lunar Origins</MenuItem>
+            <MenuItem icon={<MapPin className={ICON} />}>Lunar Origins</MenuItem>
           </Link>
-          <Link to="/lunar-calendar" onClick={close}>
-            <MenuItem icon={<BarChart3 className={iconClass} />}>Lunar Months</MenuItem>
+          <Link to="/lunar-months" onClick={close}>
+            <MenuItem icon={<BarChart3 className={ICON} />}>Lunar Months</MenuItem>
           </Link>
-          <Link to="/lunar-calendar" onClick={close}>
-            <MenuItem icon={<Moon className={iconClass} />}>Lunar Phases</MenuItem>
+          <Link to="/lunar-phases" onClick={close}>
+            <MenuItem icon={<Moon className={ICON} />}>Lunar Phases</MenuItem>
           </Link>
 
-          <MenuItem title>Latest News</MenuItem>
-          <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer">
-            <MenuItem icon={<Instagram className={iconClass} />}>Instagram</MenuItem>
+          <MenuItem heading>Latest News</MenuItem>
+          <a href={SOCIAL_LINKS.instagram} rel="noreferrer" target="_blank">
+            <MenuItem icon={<Instagram className={ICON} />}>Instagram</MenuItem>
           </a>
-          <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer">
-            <MenuItem icon={<Twitter className={iconClass} />}>Twitter</MenuItem>
+          <a href={SOCIAL_LINKS.twitter} rel="noreferrer" target="_blank">
+            <MenuItem icon={<Twitter className={ICON} />}>Twitter</MenuItem>
           </a>
-          <a href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">
-            <MenuItem icon={<img src={ASSETS.icons.discord} alt="" className="h-4 w-4" />}>
-              Discord
-            </MenuItem>
+          <a href={SOCIAL_LINKS.discord} rel="noreferrer" target="_blank">
+            <MenuItem icon={<BrandIcon src={ASSETS.icons.discord} />}>Discord</MenuItem>
           </a>
 
-          <MenuItem title>NFT Tracking</MenuItem>
+          <MenuItem heading>NFT Tracking</MenuItem>
           <Link to="/contract-interface" onClick={close}>
-            <MenuItem icon={<FileCode2 className={iconClass} />}>Contract Interface</MenuItem>
+            <MenuItem icon={<FileCode2 className={ICON} />}>Contract Interface</MenuItem>
           </Link>
           <Link to="/contract-events" onClick={close}>
-            <MenuItem icon={<ListTree className={iconClass} />}>Contract Events</MenuItem>
+            <MenuItem icon={<ListTree className={ICON} />}>Contract Events</MenuItem>
           </Link>
-          <a href={SOCIAL_LINKS.opensea} target="_blank" rel="noreferrer">
-            <MenuItem icon={<img src={ASSETS.icons.opensea} alt="" className="h-4 w-4" />}>
-              Explore on OpenSea
-            </MenuItem>
+          <a href={SOCIAL_LINKS.opensea} rel="noreferrer" target="_blank">
+            <MenuItem icon={<BrandIcon src={ASSETS.icons.opensea} />}>Explore on OpenSea</MenuItem>
           </a>
-          <a href={SOCIAL_LINKS.looksrare} target="_blank" rel="noreferrer">
-            <MenuItem icon={<img src={ASSETS.icons.opensea} alt="" className="h-4 w-4" />}>
-              Explore on LooksRare
-            </MenuItem>
+          <a href={SOCIAL_LINKS.looksrare} rel="noreferrer" target="_blank">
+            <MenuItem icon={<BrandIcon src={ASSETS.icons.opensea} />}>Explore on LooksRare</MenuItem>
           </a>
-          <a href={SOCIAL_LINKS.etherscan} target="_blank" rel="noreferrer">
-            <MenuItem icon={<img src={ASSETS.icons.etherscan} alt="" className="h-4 w-4" />}>
+          <a href={SOCIAL_LINKS.etherscan} rel="noreferrer" target="_blank">
+            <MenuItem icon={<BrandIcon src={ASSETS.icons.etherscan} />}>
               Explore on Etherscan
             </MenuItem>
           </a>
-        </div>
+        </nav>
       </DrawerContent>
     </Drawer>
   )

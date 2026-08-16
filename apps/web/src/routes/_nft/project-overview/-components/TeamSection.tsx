@@ -1,32 +1,13 @@
-import { ASSETS } from '~/lib/constant'
-import { getImageUrl } from '~/lib/nft/image-url'
+import { teamMembers } from '../-data'
+import { SectionHeading } from './SectionHeading'
 
-const TEAM = [
-  {
-    image: getImageUrl({ tokenId: 475, size: 2048 }),
-    name: 'Gittan Clouds',
-    role: 'Ethereal Developer',
-    link: 'https://github.com/moontotems',
-    icon: ASSETS.home.icons.github,
-    iconAlt: 'Moon Totems Github',
-  },
-  {
-    image: getImageUrl({ tokenId: 8996, size: 2048 }),
-    name: 'Flotsam Theamy',
-    role: 'Creative Medium',
-    link: 'https://instagram.com/moontotems',
-    icon: ASSETS.home.icons.instagram,
-    iconAlt: 'Moon Totems Instagram',
-  },
-]
-
-/** Two-member team section (legacy Team section). */
+/** Two-member team section. */
 export function TeamSection() {
   return (
-    <section className="mb-[2%] w-full overflow-hidden bg-black">
-      <div className="p-[25px] text-xl">Team</div>
+    <section className="mb-[2%] w-full bg-black">
+      <SectionHeading>Team</SectionHeading>
       <div className="flex w-full flex-col gap-8 px-[10%] md:flex-row md:gap-[10%]">
-        {TEAM.map((member) => (
+        {teamMembers.map((member) => (
           <div className="w-full text-center md:w-1/2" key={member.name}>
             <img alt={member.name} className="w-full" src={member.image} />
             <div className="text-[29px] font-semibold">{member.name}</div>

@@ -23,7 +23,9 @@ import { Route as NftProjectOverviewIndexRouteImport } from './routes/_nft/proje
 import { Route as NftOrbitIndexRouteImport } from './routes/_nft/orbit/index'
 import { Route as NftOpenAiIndexRouteImport } from './routes/_nft/open-ai/index'
 import { Route as NftMintedIndexRouteImport } from './routes/_nft/minted/index'
+import { Route as NftLunarPhasesIndexRouteImport } from './routes/_nft/lunar-phases/index'
 import { Route as NftLunarOriginsIndexRouteImport } from './routes/_nft/lunar-origins/index'
+import { Route as NftLunarMonthsIndexRouteImport } from './routes/_nft/lunar-months/index'
 import { Route as NftLunarCalendarIndexRouteImport } from './routes/_nft/lunar-calendar/index'
 import { Route as NftFeaturesIndexRouteImport } from './routes/_nft/features/index'
 import { Route as NftFavoritesIndexRouteImport } from './routes/_nft/favorites/index'
@@ -103,9 +105,19 @@ const NftMintedIndexRoute = NftMintedIndexRouteImport.update({
   path: '/minted/',
   getParentRoute: () => NftRoute,
 } as any)
+const NftLunarPhasesIndexRoute = NftLunarPhasesIndexRouteImport.update({
+  id: '/lunar-phases/',
+  path: '/lunar-phases/',
+  getParentRoute: () => NftRoute,
+} as any)
 const NftLunarOriginsIndexRoute = NftLunarOriginsIndexRouteImport.update({
   id: '/lunar-origins/',
   path: '/lunar-origins/',
+  getParentRoute: () => NftRoute,
+} as any)
+const NftLunarMonthsIndexRoute = NftLunarMonthsIndexRouteImport.update({
+  id: '/lunar-months/',
+  path: '/lunar-months/',
   getParentRoute: () => NftRoute,
 } as any)
 const NftLunarCalendarIndexRoute = NftLunarCalendarIndexRouteImport.update({
@@ -174,7 +186,9 @@ export interface FileRoutesByFullPath {
   '/favorites/': typeof NftFavoritesIndexRoute
   '/features/': typeof NftFeaturesIndexRoute
   '/lunar-calendar/': typeof NftLunarCalendarIndexRoute
+  '/lunar-months/': typeof NftLunarMonthsIndexRoute
   '/lunar-origins/': typeof NftLunarOriginsIndexRoute
+  '/lunar-phases/': typeof NftLunarPhasesIndexRoute
   '/minted/': typeof NftMintedIndexRoute
   '/open-ai/': typeof NftOpenAiIndexRoute
   '/orbit/': typeof NftOrbitIndexRoute
@@ -198,7 +212,9 @@ export interface FileRoutesByTo {
   '/favorites': typeof NftFavoritesIndexRoute
   '/features': typeof NftFeaturesIndexRoute
   '/lunar-calendar': typeof NftLunarCalendarIndexRoute
+  '/lunar-months': typeof NftLunarMonthsIndexRoute
   '/lunar-origins': typeof NftLunarOriginsIndexRoute
+  '/lunar-phases': typeof NftLunarPhasesIndexRoute
   '/minted': typeof NftMintedIndexRoute
   '/open-ai': typeof NftOpenAiIndexRoute
   '/orbit': typeof NftOrbitIndexRoute
@@ -226,7 +242,9 @@ export interface FileRoutesById {
   '/_nft/favorites/': typeof NftFavoritesIndexRoute
   '/_nft/features/': typeof NftFeaturesIndexRoute
   '/_nft/lunar-calendar/': typeof NftLunarCalendarIndexRoute
+  '/_nft/lunar-months/': typeof NftLunarMonthsIndexRoute
   '/_nft/lunar-origins/': typeof NftLunarOriginsIndexRoute
+  '/_nft/lunar-phases/': typeof NftLunarPhasesIndexRoute
   '/_nft/minted/': typeof NftMintedIndexRoute
   '/_nft/open-ai/': typeof NftOpenAiIndexRoute
   '/_nft/orbit/': typeof NftOrbitIndexRoute
@@ -252,7 +270,9 @@ export interface FileRouteTypes {
     | '/favorites/'
     | '/features/'
     | '/lunar-calendar/'
+    | '/lunar-months/'
     | '/lunar-origins/'
+    | '/lunar-phases/'
     | '/minted/'
     | '/open-ai/'
     | '/orbit/'
@@ -276,7 +296,9 @@ export interface FileRouteTypes {
     | '/favorites'
     | '/features'
     | '/lunar-calendar'
+    | '/lunar-months'
     | '/lunar-origins'
+    | '/lunar-phases'
     | '/minted'
     | '/open-ai'
     | '/orbit'
@@ -303,7 +325,9 @@ export interface FileRouteTypes {
     | '/_nft/favorites/'
     | '/_nft/features/'
     | '/_nft/lunar-calendar/'
+    | '/_nft/lunar-months/'
     | '/_nft/lunar-origins/'
+    | '/_nft/lunar-phases/'
     | '/_nft/minted/'
     | '/_nft/open-ai/'
     | '/_nft/orbit/'
@@ -421,11 +445,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NftMintedIndexRouteImport
       parentRoute: typeof NftRoute
     }
+    '/_nft/lunar-phases/': {
+      id: '/_nft/lunar-phases/'
+      path: '/lunar-phases'
+      fullPath: '/lunar-phases/'
+      preLoaderRoute: typeof NftLunarPhasesIndexRouteImport
+      parentRoute: typeof NftRoute
+    }
     '/_nft/lunar-origins/': {
       id: '/_nft/lunar-origins/'
       path: '/lunar-origins'
       fullPath: '/lunar-origins/'
       preLoaderRoute: typeof NftLunarOriginsIndexRouteImport
+      parentRoute: typeof NftRoute
+    }
+    '/_nft/lunar-months/': {
+      id: '/_nft/lunar-months/'
+      path: '/lunar-months'
+      fullPath: '/lunar-months/'
+      preLoaderRoute: typeof NftLunarMonthsIndexRouteImport
       parentRoute: typeof NftRoute
     }
     '/_nft/lunar-calendar/': {
@@ -535,7 +573,9 @@ interface NftRouteChildren {
   NftFavoritesIndexRoute: typeof NftFavoritesIndexRoute
   NftFeaturesIndexRoute: typeof NftFeaturesIndexRoute
   NftLunarCalendarIndexRoute: typeof NftLunarCalendarIndexRoute
+  NftLunarMonthsIndexRoute: typeof NftLunarMonthsIndexRoute
   NftLunarOriginsIndexRoute: typeof NftLunarOriginsIndexRoute
+  NftLunarPhasesIndexRoute: typeof NftLunarPhasesIndexRoute
   NftMintedIndexRoute: typeof NftMintedIndexRoute
   NftOpenAiIndexRoute: typeof NftOpenAiIndexRoute
   NftOrbitIndexRoute: typeof NftOrbitIndexRoute
@@ -555,7 +595,9 @@ const NftRouteChildren: NftRouteChildren = {
   NftFavoritesIndexRoute: NftFavoritesIndexRoute,
   NftFeaturesIndexRoute: NftFeaturesIndexRoute,
   NftLunarCalendarIndexRoute: NftLunarCalendarIndexRoute,
+  NftLunarMonthsIndexRoute: NftLunarMonthsIndexRoute,
   NftLunarOriginsIndexRoute: NftLunarOriginsIndexRoute,
+  NftLunarPhasesIndexRoute: NftLunarPhasesIndexRoute,
   NftMintedIndexRoute: NftMintedIndexRoute,
   NftOpenAiIndexRoute: NftOpenAiIndexRoute,
   NftOrbitIndexRoute: NftOrbitIndexRoute,

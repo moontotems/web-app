@@ -1,5 +1,5 @@
 export { ActionSidebar } from './ActionSidebar'
-export { NftFooter } from './NftFooter'
+export { TotemCaption } from './TotemCaption'
 export { TotemCard } from './TotemCard'
 export { TotemGrid } from './TotemGrid'
 export { TotemTable } from './TotemTable'

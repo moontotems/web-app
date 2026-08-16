@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 
-import { HEADER_HEIGHT } from '~/lib/nft/constants'
+import { HEADER_HEIGHT } from '~/lib/constants'
 import { clearFreshMintFlag, hasFreshMintFlag } from '~/lib/nft/fresh-mint'
 
 import { FeaturePanel } from './FeaturePanel'
 
-/** Welcome message after a fresh mint (legacy creatureFeatures/FreshMintMessage). */
+/** Welcome message after a fresh mint (legacy MoonTotem features/FreshMintMessage). */
 export function FreshMintMessage({ tokenId }: { tokenId: number }) {
   const [visible, setVisible] = useState(false)
 

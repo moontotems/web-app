@@ -30,7 +30,7 @@ const dataDir = resolve(scriptDir, '../data')
 const jsonPath = join(dataDir, 'houdini_json_hashmap.json')
 const defaultOutDir = join(dataDir, 'metadata')
 
-/** Same public bucket the web app reads from (apps/web/src/lib/nft/constants.ts). */
+/** Same public bucket the web app reads from (apps/web/src/lib/constants.ts). */
 const CDN_BASE =
 	'https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems'
 const SITE_BASE = 'https://moontotems.com'
