@@ -89,13 +89,13 @@ function SlideControls({
 }) {
   return (
     <>
-      <div className="mt-4 md:absolute md:right-0 md:bottom-[250px] md:mt-0 md:h-[150px] md:w-[350px] md:p-[15px]">
+      <div className="mt-4 w-full md:absolute md:right-0 md:bottom-[250px] md:mt-0 md:h-[150px] md:w-[350px] md:p-[15px]">
         {!isIntro && <SlideDots activeIndex={currentIndex} count={slideCount} />}
       </div>
 
       {isIntro ? (
         <button
-          className="explore-box mt-4 hidden cursor-pointer p-[15px] text-left md:absolute md:right-0 md:bottom-[150px] md:block md:h-[150px] md:w-[350px]"
+          className="explore-box mt-4 h-[150px] w-full cursor-pointer p-[15px] text-left md:absolute md:right-0 md:bottom-[150px] md:mt-0 md:w-[350px]"
           onClick={onNext}
           type="button"
         >
@@ -105,10 +105,10 @@ function SlideControls({
           </div>
         </button>
       ) : (
-        <div className="hidden md:block">
+        <div className="mt-4 flex w-full md:contents">
           <button
             aria-label="Previous slide"
-            className="explore-box absolute right-[175px] bottom-[150px] h-[150px] w-[175px] cursor-pointer p-[15px]"
+            className="explore-box h-[150px] w-1/2 cursor-pointer p-[15px] md:absolute md:right-[175px] md:bottom-[150px] md:w-[175px]"
             onClick={onPrev}
             type="button"
           >
@@ -118,7 +118,7 @@ function SlideControls({
           </button>
           <button
             aria-label="Next slide"
-            className="explore-box absolute right-0 bottom-[150px] h-[150px] w-[175px] cursor-pointer p-[15px]"
+            className="explore-box h-[150px] w-1/2 cursor-pointer p-[15px] md:absolute md:right-0 md:bottom-[150px] md:w-[175px]"
             onClick={onNext}
             type="button"
           >

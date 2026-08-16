@@ -1,3 +1,4 @@
+import { MobileItemSlider } from '../../-components/MobileItemSlider'
 import { MOONS, type Moon } from '../-data'
 
 function MoonCard({ moon }: { moon: Moon }) {
@@ -18,7 +19,20 @@ export function LunarOriginsGrid() {
   return (
     <section className="w-full bg-black pb-12">
       <h2 className="p-[25px] text-xl">Lunar Origins</h2>
-      <div className="grid grid-cols-1 gap-x-8 gap-y-12 px-[25px] sm:grid-cols-2 md:grid-cols-3 md:px-[10%]">
+
+      <div className="md:hidden">
+        <MobileItemSlider
+          getKey={(moon) => moon.name}
+          items={MOONS}
+          renderItem={(moon) => (
+            <div className="px-[25px]">
+              <MoonCard moon={moon} />
+            </div>
+          )}
+        />
+      </div>
+
+      <div className="hidden gap-x-8 gap-y-12 px-[25px] md:grid md:grid-cols-3 md:px-[10%]">
         {MOONS.map((moon) => (
           <MoonCard key={moon.name} moon={moon} />
         ))}
