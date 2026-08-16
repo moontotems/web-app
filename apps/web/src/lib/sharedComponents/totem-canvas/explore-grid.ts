@@ -100,6 +100,6 @@ export function exploreImageSize(scale: number): TotemImageSize {
 }
 
 export function initialScale(viewportW: number, isMobile: boolean): number {
-  const colsOnScreen = isMobile ? 12 : 28
+  const colsOnScreen = isMobile ? 6 : 14
   return viewportW / (colsOnScreen * EXPLORE_CELL_WIDTH)
 }
