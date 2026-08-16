@@ -1,8 +1,6 @@
-import { CDN_BASE } from './constants'
+import { ASSETS, type TotemImageSize } from '~/lib/constant'
 
-const IMAGE_SIZES = [100, 512, 1024, 2048, '6k'] as const
-
-export type ImageSize = (typeof IMAGE_SIZES)[number]
+export type ImageSize = TotemImageSize
 
 export function getImageUrl({
   tokenId,
@@ -15,10 +13,10 @@ export function getImageUrl({
 }): string {
   if (withSymbol) {
     if (tokenId <= 1000) {
-      return `${CDN_BASE}/totems/symbol/jpeg/6k/moontotems_g1_symbol_6k_${tokenId}.jpg`
+      return ASSETS.cdn.totem.symbolJpeg6k(tokenId)
     }
-    return `${CDN_BASE}/totems/symbol/jpeg/2048/moontotems_g1_symbol_2048_${tokenId}.jpg`
+    return ASSETS.cdn.totem.symbolJpeg2048(tokenId)
   }
 
-  return `${CDN_BASE}/totems/base/jpeg/${size}/moontotems_g1_base_${size}_${tokenId}.jpg`
+  return ASSETS.cdn.totem.baseJpeg(size, tokenId)
 }

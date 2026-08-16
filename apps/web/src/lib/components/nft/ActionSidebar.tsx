@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import { type ReactNode, useState } from 'react'
 
+import { ASSETS } from '~/lib/constant'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { HEADER_HEIGHT } from '~/lib/nft/constants'
 import { FILTERS } from '~/lib/nft/filters'
@@ -187,7 +188,7 @@ export function ActionSidebar() {
                 wide={wide}
                 text="All Moon Totems"
                 activeBorder={activeFilters.length === 0}
-                icon={<img src="/moon_totem_logo.svg" width={17} alt="All Totems" />}
+                icon={<img src={ASSETS.logos.svg} width={17} alt="All Totems" />}
               />
             </Link>
             <Link to="/all" onClick={toggleNotMintedFilter}>

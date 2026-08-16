@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { ASSETS } from '~/lib/constant'
 import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
 import { ATTRIBUTE_CARDS } from './-data'
@@ -18,11 +19,7 @@ function AttributesPage() {
         </div>
       </div>
       <div className="relative">
-        <img
-          alt="Moon Totems attributes"
-          className="w-full"
-          src="/attributes/moon_totems_attributes.jpg"
-        />
+        <img alt="Moon Totems attributes" className="w-full" src={ASSETS.attributes.hero} />
         {ATTRIBUTE_CARDS.map((card) => (
           <div
             className={`w-full p-[15px] md:absolute md:w-[350px] ${card.position}`}

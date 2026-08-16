@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { ASSETS } from '~/lib/constant'
 import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
 import { MOONS, type Moon } from './-data'
@@ -25,11 +26,7 @@ function LunarOriginsPage() {
       <div className="flex">
         <div className="hidden md:block md:w-[20%]" />
         <div className="w-full md:w-[80%]">
-          <img
-            alt="Moon Totems origin map"
-            className="mb-20 w-full"
-            src="/moontotems_origin_map_full.jpg"
-          />
+          <img alt="Moon Totems origin map" className="mb-20 w-full" src={ASSETS.originMap} />
         </div>
       </div>
       <div className="flex flex-col md:flex-row">

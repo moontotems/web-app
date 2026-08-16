@@ -1,3 +1,4 @@
+import { ASSETS } from '~/lib/constant'
 import { SOCIAL_LINKS } from '~/lib/nft/constants'
 
 const CHANNELS = [
@@ -5,25 +6,25 @@ const CHANNELS = [
     name: 'Instagram',
     href: SOCIAL_LINKS.instagram,
     text: 'For visual stories and explorations into the art.',
-    icon: '/home/icons/Logo-Instagram.svg',
+    icon: ASSETS.home.icons.instagram,
   },
   {
     name: 'Twitter',
     href: SOCIAL_LINKS.twitter,
     text: 'For the latest announcements and updates.',
-    icon: '/home/icons/Logo-Twitter.svg',
+    icon: ASSETS.home.icons.twitter,
   },
   {
     name: 'Discord',
     href: SOCIAL_LINKS.discord,
     text: 'For connecting with the Moon Totem Community.',
-    icon: '/home/icons/Logo-Discord.svg',
+    icon: ASSETS.home.icons.discord,
   },
   {
     name: 'Github',
     href: SOCIAL_LINKS.github,
     text: 'For insights into the technology behind the project.',
-    icon: '/home/icons/Logo-Github.svg',
+    icon: ASSETS.home.icons.github,
   },
 ]
 

@@ -1,5 +1,7 @@
 import { MAX_TOKEN_ID, TOTAL_TOKENS } from '@moontotems/contracts'
 
+import type { TotemImageSize } from '~/lib/constant'
+
 /** Columns chosen so the period is roughly square (98 × 97 ≈ 9506). */
 export const EXPLORE_COLS = 98
 export const EXPLORE_ROWS = Math.ceil(TOTAL_TOKENS / EXPLORE_COLS)
@@ -43,11 +45,12 @@ export function getVisibleTiles(
   camY: number,
   viewWorldW: number,
   viewWorldH: number,
+  overscan: number = EXPLORE_OVERSCAN,
 ): VisibleTile[] {
-  const left = camX - EXPLORE_OVERSCAN * EXPLORE_CELL_SIZE
-  const top = camY - EXPLORE_OVERSCAN * EXPLORE_CELL_SIZE
-  const right = camX + viewWorldW + EXPLORE_OVERSCAN * EXPLORE_CELL_SIZE
-  const bottom = camY + viewWorldH + EXPLORE_OVERSCAN * EXPLORE_CELL_SIZE
+  const left = camX - overscan * EXPLORE_CELL_SIZE
+  const top = camY - overscan * EXPLORE_CELL_SIZE
+  const right = camX + viewWorldW + overscan * EXPLORE_CELL_SIZE
+  const bottom = camY + viewWorldH + overscan * EXPLORE_CELL_SIZE
 
   const colStart = Math.floor(left / EXPLORE_CELL_SIZE)
   const colEnd = Math.ceil(right / EXPLORE_CELL_SIZE)
@@ -74,11 +77,20 @@ export function getVisibleTiles(
 
 export function clampScale(scale: number, viewportW: number, viewportH: number): number {
   const cell = EXPLORE_CELL_SIZE
-  // Max: a single tile fills about half the shorter viewport side.
-  const maxScale = Math.max(viewportW, viewportH) / (2 * cell)
+  // Max: a tile can grow to ~3× the shorter viewport side (close inspection).
+  const maxScale = (Math.min(viewportW, viewportH) * 3) / cell
   // Min: roughly EXPLORE_MAX_VISIBLE_TILES on screen.
   const minScale = Math.sqrt((viewportW * viewportH) / (cell * cell * EXPLORE_MAX_VISIBLE_TILES))
   return Math.min(maxScale, Math.max(minScale, scale))
+}
+
+/** Pick CDN size from how large a tile is on screen. */
+export function exploreImageSize(scale: number): TotemImageSize {
+  const onScreenPx = EXPLORE_TILE_SIZE * scale
+  if (onScreenPx >= 520) return '6k'
+  if (onScreenPx >= 280) return 2048
+  if (onScreenPx >= 140) return 512
+  return 100
 }
 
 export function initialScale(viewportW: number, isMobile: boolean): number {

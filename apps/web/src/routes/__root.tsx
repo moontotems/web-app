@@ -11,6 +11,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { Toaster } from 'sonner'
 
 import { type CurrentUser, getCurrentUser } from '~/lib/auth/server'
+import { ASSETS } from '~/lib/constant'
 import appCss from '~/lib/styles/app.css?url'
 import { Web3Providers } from '~/lib/web3/Web3Providers'
 
@@ -51,7 +52,7 @@ export const Route = createRootRouteWithContext<{
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap',
       },
-      { rel: 'icon', href: '/favicon.ico' },
+      { rel: 'icon', href: ASSETS.logos.favicon },
       { rel: 'manifest', href: '/manifest.json' },
     ],
   }),

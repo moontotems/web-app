@@ -1,3 +1,4 @@
+import { ASSETS } from '~/lib/constant'
 import { getImageUrl } from '~/lib/nft/image-url'
 
 const TEAM = [
@@ -6,7 +7,7 @@ const TEAM = [
     name: 'Gittan Clouds',
     role: 'Ethereal Developer',
     link: 'https://github.com/moontotems',
-    icon: '/home/icons/Logo-Github.svg',
+    icon: ASSETS.home.icons.github,
     iconAlt: 'Moon Totems Github',
   },
   {
@@ -14,7 +15,7 @@ const TEAM = [
     name: 'Flotsam Theamy',
     role: 'Creative Medium',
     link: 'https://instagram.com/moontotems',
-    icon: '/home/icons/Logo-Instagram.svg',
+    icon: ASSETS.home.icons.instagram,
     iconAlt: 'Moon Totems Instagram',
   },
 ]

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import type { ReactNode } from 'react'
 
+import { ASSETS } from '~/lib/constant'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { HEADER_HEIGHT, SOCIAL_LINKS } from '~/lib/nft/constants'
 
@@ -93,24 +94,24 @@ export function SidebarLeft() {
             <MenuItem icon={<Twitter className={iconClass} />}>Twitter</MenuItem>
           </a>
           <a href={SOCIAL_LINKS.discord} target="_blank" rel="noreferrer">
-            <MenuItem icon={<img src="/icons/Logo-Discord.svg" alt="" className="h-4 w-4" />}>
+            <MenuItem icon={<img src={ASSETS.icons.discord} alt="" className="h-4 w-4" />}>
               Discord
             </MenuItem>
           </a>
 
           <MenuItem title>NFT Tracking</MenuItem>
           <a href={SOCIAL_LINKS.opensea} target="_blank" rel="noreferrer">
-            <MenuItem icon={<img src="/icons/Logo-OpenSea.svg" alt="" className="h-4 w-4" />}>
+            <MenuItem icon={<img src={ASSETS.icons.opensea} alt="" className="h-4 w-4" />}>
               Explore on OpenSea
             </MenuItem>
           </a>
           <a href={SOCIAL_LINKS.looksrare} target="_blank" rel="noreferrer">
-            <MenuItem icon={<img src="/icons/Logo-OpenSea.svg" alt="" className="h-4 w-4" />}>
+            <MenuItem icon={<img src={ASSETS.icons.opensea} alt="" className="h-4 w-4" />}>
               Explore on LooksRare
             </MenuItem>
           </a>
           <a href={SOCIAL_LINKS.etherscan} target="_blank" rel="noreferrer">
-            <MenuItem icon={<img src="/icons/Logo-Etherscan.svg" alt="" className="h-4 w-4" />}>
+            <MenuItem icon={<img src={ASSETS.icons.etherscan} alt="" className="h-4 w-4" />}>
               Explore on Etherscan
             </MenuItem>
           </a>

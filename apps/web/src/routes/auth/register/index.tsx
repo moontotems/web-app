@@ -1,13 +1,15 @@
 import { AuthLayout } from '@moontotems/ui'
 import { Link, createFileRoute } from '@tanstack/react-router'
 
+import { ASSETS } from '~/lib/constant'
+
 import { AuthLogo } from '../-components/AuthLogo'
 import { UserAuthFormRegister } from './-components/UserAuthForm'
 
 const RegisterPage = () => {
   return (
     <AuthLayout
-      imageSrc="/auth.webp"
+      imageSrc={ASSETS.auth.background}
       logo={<AuthLogo />}
       topRightAction={
         <Link

@@ -1,34 +1,34 @@
 import { Download } from 'lucide-react'
 
-import { FeaturePanel } from './FeaturePanel'
+import { ASSETS } from '~/lib/constant'
 
-const OWNER_ASSETS_BASE = 'https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/totem-owner-assets'
+import { FeaturePanel } from './FeaturePanel'
 
 function downloadFiles(tokenId: number) {
   return [
     {
       label: '2K.jpg (2mb)',
-      url: `${OWNER_ASSETS_BASE}/base/jpeg/2048/moontotems_g1_base_2048_${tokenId}.jpg`,
+      url: ASSETS.cdn.owner.baseJpeg2048(tokenId),
     },
     {
       label: '2K.png (10mb)',
-      url: `${OWNER_ASSETS_BASE}/base/png/2048/moontotems_g1_base_2048_${tokenId}.png`,
+      url: ASSETS.cdn.owner.basePng2048(tokenId),
     },
     {
       label: '6K.jpg (8mb)',
-      url: `${OWNER_ASSETS_BASE}/base/jpeg/6k/moontotems_g1_base_6k_${tokenId}.jpg`,
+      url: ASSETS.cdn.owner.baseJpeg6k(tokenId),
     },
     {
       label: 'Card.jpg (1mb)',
-      url: `${OWNER_ASSETS_BASE}/card/moontotems_g1_card_2048_${tokenId}.jpg`,
+      url: ASSETS.cdn.owner.cardJpeg2048(tokenId),
     },
     {
       label: 'Flat.jpg (1mb)',
-      url: `${OWNER_ASSETS_BASE}/flat/jpeg/2048/moontotems_g1_flat_2048_${tokenId}.jpg`,
+      url: ASSETS.cdn.owner.flatJpeg2048(tokenId),
     },
     {
       label: '3D.abc (230kb)',
-      url: `${OWNER_ASSETS_BASE}/3d/abc/moontotems_g1_3d_${tokenId}.abc`,
+      url: ASSETS.cdn.owner.model3dAbc(tokenId),
     },
   ]
 }

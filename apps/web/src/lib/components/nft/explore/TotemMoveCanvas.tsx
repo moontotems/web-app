@@ -6,7 +6,13 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { HEADER_HEIGHT } from '~/lib/nft/constants'
 
 import { ExploreTotemTile } from './ExploreTotemTile'
-import { EXPLORE_CELL_SIZE, EXPLORE_TILE_SIZE, getVisibleTiles, tokenIdAt } from './explore-grid'
+import {
+  EXPLORE_CELL_SIZE,
+  EXPLORE_TILE_SIZE,
+  exploreImageSize,
+  getVisibleTiles,
+  tokenIdAt,
+} from './explore-grid'
 import { useCanvasCamera } from './use-canvas-camera'
 
 /**
@@ -22,14 +28,16 @@ export function TotemMoveCanvas() {
   const viewWorldH =
     typeof window !== 'undefined' ? (window.innerHeight - HEADER_HEIGHT) / camera.scale : 600
 
+  const imageSize = exploreImageSize(camera.scale)
+  // Fewer overscan cells when loading heavy 6k assets.
+  const overscan = imageSize === '6k' ? 0 : imageSize === 2048 ? 1 : 2
+
   const tiles = useMemo(() => {
     const el = containerRef.current
     const vw = el ? el.clientWidth / camera.scale : viewWorldW
     const vh = el ? el.clientHeight / camera.scale : viewWorldH
-    return getVisibleTiles(camera.x, camera.y, vw, vh)
-  }, [camera.x, camera.y, camera.scale, containerRef, viewWorldW, viewWorldH])
-
-  const imageSize: 100 | 512 = camera.scale * EXPLORE_TILE_SIZE >= 140 ? 512 : 100
+    return getVisibleTiles(camera.x, camera.y, vw, vh, overscan)
+  }, [camera.x, camera.y, camera.scale, containerRef, viewWorldW, viewWorldH, overscan])
 
   const moonEl = containerRef.current
   const moonW = moonEl?.clientWidth ?? (typeof window !== 'undefined' ? window.innerWidth : 800)
