@@ -51,7 +51,7 @@ function ProjectOverviewPage() {
       <LunarOriginsGrid />
       <EarthToMoonSection />
       <SocialMediaSection />
-      <ExampleMoonTotemsSection slideDirectionLeft={!isMobile} />
+      <ExampleMoonTotemsSection slideDirectionLeft />
     </>
   )
 }
