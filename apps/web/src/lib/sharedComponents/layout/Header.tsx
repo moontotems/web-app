@@ -53,6 +53,7 @@ export function Header() {
           className={cn(
             'flex h-full min-w-0 items-center px-2.5 md:px-4 md:pr-8',
             'text-xs font-normal tracking-[0.16px] whitespace-nowrap md:text-sm',
+            'border-r border-[#393939]',
             'text-white hover:bg-[#262626]',
           )}
           onClick={() => setSidebarLeftOpen(false)}
@@ -64,7 +65,7 @@ export function Header() {
           to="/project-overview"
           className={cn(
             'hidden h-full items-center px-4 md:flex',
-            'border-x border-[#393939]',
+            'border-r border-[#393939]',
             'text-sm font-normal tracking-[0.16px] whitespace-nowrap',
             'text-white hover:bg-[#262626]',
           )}

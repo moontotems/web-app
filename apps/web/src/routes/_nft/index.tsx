@@ -31,7 +31,7 @@ function IndexMobileFooter() {
         Project Overview
       </Link>
       <Link
-        className={cn(footerLinkClass, 'border-l border-[#393939]/40')}
+        className={cn(footerLinkClass, 'border-l border-[#393939]')}
         onClick={close}
         to="/open-ai"
       >
