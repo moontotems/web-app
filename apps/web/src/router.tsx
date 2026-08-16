@@ -2,8 +2,8 @@ import { QueryClient } from '@tanstack/react-query'
 import { createRouter as createTanStackRouter } from '@tanstack/react-router'
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query'
 
-import { DefaultCatchBoundary } from '~/lib/components/DefaultCatchBoundary'
-import { NotFound } from '~/lib/components/NotFound'
+import { DefaultCatchBoundary } from '~/lib/sharedComponents/DefaultCatchBoundary'
+import { NotFound } from '~/lib/sharedComponents/NotFound'
 import { routeTree } from './routeTree.gen'
 
 export function getRouter() {

@@ -1,9 +1,9 @@
 import { useNavigate } from '@tanstack/react-router'
 import { useMemo } from 'react'
 
-import { moonTurnVideo } from '~/lib/components/nft/home/slide-data'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { HEADER_HEIGHT } from '~/lib/nft/constants'
+import { moonTurnVideo } from '~/routes/_nft/project-overview/-data'
 
 import { ExploreTotemTile } from './ExploreTotemTile'
 import {

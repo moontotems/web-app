@@ -4,7 +4,7 @@ import type { ColumnDef } from '@tanstack/react-table'
 import { ExternalLink } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
-import { TotemFilterBar } from '~/lib/components/nft/TotemFilterBar'
+import { TotemFilterBar } from '~/lib/sharedComponents/nft/TotemFilterBar'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { getImageUrl } from '~/lib/nft/image-url'
 import {

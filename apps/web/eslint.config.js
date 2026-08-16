@@ -11,7 +11,7 @@ import tseslint from 'typescript-eslint'
 // code that we may regenerate via the `bun ui` script. Mirrors the same
 // treatment in apps/web/biome.json.
 const vendoredShadcnGlobs = [
-  'src/lib/components/ui/**',
+  'src/lib/sharedComponents/ui/**',
   'src/lib/hooks/use-mobile.ts',
   'src/routes/_authenticated/_app/settings/account/-components/account-form.tsx',
 ]

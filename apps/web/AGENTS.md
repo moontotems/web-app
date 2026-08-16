@@ -21,7 +21,7 @@
   `createFileRoute` wiring. Route-local static content lives in a colocated
   `-data.ts` module (the `-` prefix hides it from the router); route-local
   components go in `-components/`.
-- `src/lib/components/nft/` — shared MoonTotems UI: shell (`NftHeader`,
+- `src/lib/sharedComponents/nft/` — shared MoonTotems UI: shell (`NftHeader`,
   `SidebarLeft`, `NftFooter`, `ActionSidebar`), gallery
   (`TotemCard`/`TotemGrid`/`TotemTable`), `creature/` detail panels,
   `home/` landing sections.

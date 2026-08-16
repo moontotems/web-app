@@ -11,12 +11,17 @@ export function TotemCard({
   card,
   showButtons = true,
   imageOverride,
+  imageLoading = 'lazy',
+  imageFetchPriority = 'auto',
 }: {
   creature: Creature
   /** Name/job strings from the moontotems table (see useTokenCards). */
   card?: TotemCardData
   showButtons?: boolean
   imageOverride?: string
+  /** Prefer `eager` + `high` for above-the-fold grid cells. */
+  imageLoading?: 'lazy' | 'eager'
+  imageFetchPriority?: 'high' | 'low' | 'auto'
 }) {
   const {
     favorites: { toggleFavorite },
@@ -37,7 +42,8 @@ export function TotemCard({
         <img
           alt={`Moon Totem ${tokenId}`}
           className="h-auto w-full"
-          loading="lazy"
+          loading={imageLoading}
+          fetchPriority={imageFetchPriority}
           src={imageOverride ?? image}
         />
       </Link>

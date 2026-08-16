@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
 
-import { ActionSidebar, TotemGrid, TotemTable } from '~/lib/components/nft'
+import { ActionSidebar, TotemGrid, TotemTable } from '~/lib/sharedComponents/nft'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { FILTERS } from '~/lib/nft/filters'
 

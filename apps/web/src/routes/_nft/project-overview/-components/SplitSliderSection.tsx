@@ -2,7 +2,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 
-import type { HomeSlide } from './slide-data'
+import type { HomeSlide } from '../-data'
 
 function SlideDots({
   count,

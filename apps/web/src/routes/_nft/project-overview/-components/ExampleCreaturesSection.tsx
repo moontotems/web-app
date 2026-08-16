@@ -5,7 +5,7 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { getImageUrl } from '~/lib/nft/image-url'
 import { useTokenCards } from '~/lib/nft/use-token-data'
 
-import { TotemCard } from '../TotemCard'
+import { TotemCard } from '~/lib/sharedComponents/nft/TotemCard'
 import { ExploreLink } from './ExploreLink'
 
 const CAROUSEL_SIZE = 15

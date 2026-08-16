@@ -14,7 +14,7 @@ The codebase favors **writing a feature top-to-bottom in one file** - the SQL qu
 | DB access | **Drizzle ORM** (`postgres-js`) | Schema is hand-authored TypeScript → tables, columns, and query results are all typed end-to-end with zero codegen step. |
 | Database + auth | **Supabase** (CLI for local dev) | One container brings up Postgres, GoTrue auth, Storage, Realtime, and Studio. Auth is consumed through `@supabase/ssr` so it works inside server functions. |
 | Client state / caching | **TanStack Query** | Powers the `['user']` cache in `__root.tsx` and data fetching throughout the app. |
-| UI | **shadcn/ui** + Tailwind v4 + lucide-react + sonner | Owned source code (vendored into `apps/web/src/lib/components/ui/`), no runtime UI dependency. |
+| UI | **shadcn/ui** + Tailwind v4 + lucide-react + sonner | Owned source code (vendored into `apps/web/src/lib/sharedComponents/ui/`), no runtime UI dependency. |
 | Monorepo | **Bun workspaces** + **Turborepo** | Fast installs, cached typecheck/lint, parallel `dev`. |
 | Lint / format | **Biome** + **ESLint** | Biome is the fast default; ESLint adds React-specific plugins (react-compiler, eslint-react, query, router). |
 
@@ -160,7 +160,7 @@ bun run lint          # biome check on every workspace
 bun run format        # biome format --write on every workspace
 ```
 
-ESLint also runs on `apps/web` if you call it directly (`cd apps/web && bunx eslint src`); the shadcn-vendored components under `apps/web/src/lib/components/ui/` are intentionally ignored by both Biome and ESLint.
+ESLint also runs on `apps/web` if you call it directly (`cd apps/web && bunx eslint src`); the shadcn-vendored components under `apps/web/src/lib/sharedComponents/ui/` are intentionally ignored by both Biome and ESLint.
 
 ---
 
@@ -188,7 +188,7 @@ cd apps/web
 bun run ui add <component-name>
 ```
 
-It writes into `apps/web/src/lib/components/ui/` and is automatically excluded from lint.
+It writes into `apps/web/src/lib/sharedComponents/ui/` and is automatically excluded from lint.
 
 ### Adding a new app or package
 

@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { TotemCard } from '~/lib/components/nft'
+import { TotemCard } from '~/lib/sharedComponents/nft'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { useTokenCards } from '~/lib/nft/use-token-data'
 

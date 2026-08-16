@@ -1,5 +1,5 @@
+import { heroVideo } from '../-data'
 import { ExploreLink } from './ExploreLink'
-import { heroVideo } from './slide-data'
 
 /** Hero section: looping Mux intro video + intro text (legacy WhatAre). */
 export function WhatAreSection() {

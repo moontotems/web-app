@@ -1,4 +1,4 @@
-import { roadmapItems } from './slide-data'
+import { roadmapItems } from '../-data'
 
 /** Six-step roadmap grid (legacy Roadmap section). */
 export function RoadmapSection() {

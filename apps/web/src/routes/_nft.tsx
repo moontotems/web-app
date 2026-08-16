@@ -1,6 +1,6 @@
 import { Outlet, createFileRoute } from '@tanstack/react-router'
 
-import { NftFooter, NftHeader, SidebarLeft } from '~/lib/components/nft'
+import { NftFooter, NftHeader, SidebarLeft } from '~/lib/sharedComponents/nft'
 import { MoonTotemsProvider, useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { HEADER_HEIGHT } from '~/lib/nft/constants'
 

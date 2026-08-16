@@ -4,8 +4,10 @@ import {
   BarChart3,
   CircleUserRound,
   Compass,
+  FileCode2,
   Instagram,
   Lightbulb,
+  ListTree,
   MapPin,
   Moon,
   Smile,
@@ -100,6 +102,12 @@ export function SidebarLeft() {
           </a>
 
           <MenuItem title>NFT Tracking</MenuItem>
+          <Link to="/contract-interface" onClick={close}>
+            <MenuItem icon={<FileCode2 className={iconClass} />}>Contract Interface</MenuItem>
+          </Link>
+          <Link to="/contract-events" onClick={close}>
+            <MenuItem icon={<ListTree className={iconClass} />}>Contract Events</MenuItem>
+          </Link>
           <a href={SOCIAL_LINKS.opensea} target="_blank" rel="noreferrer">
             <MenuItem icon={<img src={ASSETS.icons.opensea} alt="" className="h-4 w-4" />}>
               Explore on OpenSea

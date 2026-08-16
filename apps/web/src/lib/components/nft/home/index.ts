@@ -1,8 +1,0 @@
-export { ExampleCreaturesSection } from './ExampleCreaturesSection'
-export { ExploreLink } from './ExploreLink'
-export { HomePage } from './HomePage'
-export { RoadmapSection } from './RoadmapSection'
-export { SocialMediaSection } from './SocialMediaSection'
-export { SplitSliderSection } from './SplitSliderSection'
-export { TeamSection } from './TeamSection'
-export { WhatAreSection } from './WhatAreSection'

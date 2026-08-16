@@ -34,6 +34,10 @@ import {
 } from '~/lib/nft/totem-filters'
 import type { TotemTableRow } from '~/lib/nft/use-token-data'
 
+/** Portaled popovers escape `.nft-theme`; re-apply tokens + panel chrome. */
+const POPOVER_CLASS =
+  'nft-theme dark rounded-none border-[#393939] bg-[#262626] text-white shadow-none'
+
 type TotemFilterBarProps = {
   rows: TotemTableRow[]
   filteredCount: number
@@ -53,14 +57,25 @@ const FacetTrigger = forwardRef<
     <Button
       ref={ref}
       type="button"
-      variant={active ? 'default' : 'outline'}
+      variant="outline"
       size="sm"
-      className={`h-8 gap-1 font-normal ${className ?? ''}`}
+      className={`h-8 gap-1 rounded-none border-[#393939] font-normal ${
+        active
+          ? 'border-[#1062FE] bg-[#1062FE] text-white hover:bg-[#1062FE] hover:text-white hover:brightness-110'
+          : 'bg-[#262626] text-white hover:bg-[#525252] hover:text-white'
+      } ${className ?? ''}`}
       {...props}
     >
       <span>{label}</span>
       {count !== undefined && count > 0 ? (
-        <Badge variant={active ? 'secondary' : 'outline'} className="h-5 min-w-5 px-1">
+        <Badge
+          variant="outline"
+          className={`h-5 min-w-5 rounded-none px-1 ${
+            active
+              ? 'border-white/40 bg-transparent text-white'
+              : 'border-[#6f6f6f] bg-transparent text-[#c6c6c6]'
+          }`}
+        >
           {count}
         </Badge>
       ) : null}
@@ -87,11 +102,14 @@ function MultiSelectFacet({
       <PopoverTrigger asChild>
         <FacetTrigger label={facet.label} active={selected.length > 0} count={selected.length} />
       </PopoverTrigger>
-      <PopoverContent align="start" className="w-64 p-0">
-        <Command>
-          <CommandInput placeholder={`Search ${facet.label.toLowerCase()}…`} />
+      <PopoverContent align="start" className={`${POPOVER_CLASS} w-64 p-0`}>
+        <Command className="rounded-none bg-[#262626] text-white">
+          <CommandInput
+            placeholder={`Search ${facet.label.toLowerCase()}…`}
+            className="placeholder:text-[#8d8d8d]"
+          />
           <CommandList>
-            <CommandEmpty>No options.</CommandEmpty>
+            <CommandEmpty className="text-[#8d8d8d]">No options.</CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
                 const isSelected = selectedSet.has(option)
@@ -100,13 +118,11 @@ function MultiSelectFacet({
                     key={option}
                     value={option}
                     onSelect={() => onToggle(option)}
-                    className="gap-2"
+                    className="gap-2 rounded-none text-white aria-selected:bg-[#525252] aria-selected:text-white"
                   >
                     <span
-                      className={`flex size-4 items-center justify-center rounded-sm border ${
-                        isSelected
-                          ? 'border-primary bg-primary text-primary-foreground'
-                          : 'border-muted-foreground/40'
+                      className={`flex size-4 items-center justify-center border ${
+                        isSelected ? 'border-[#1062FE] bg-[#1062FE] text-white' : 'border-[#6f6f6f]'
                       }`}
                     >
                       {isSelected ? <Check className="size-3" /> : null}
@@ -137,7 +153,7 @@ function BooleanFacet({
       <PopoverTrigger asChild>
         <FacetTrigger label={facet.label} active={selected.length > 0} count={selected.length} />
       </PopoverTrigger>
-      <PopoverContent align="start" className="w-48 space-y-3 p-3">
+      <PopoverContent align="start" className={`${POPOVER_CLASS} w-48 space-y-3 p-3`}>
         {[
           { label: 'Yes', value: true },
           { label: 'No', value: false },
@@ -145,8 +161,13 @@ function BooleanFacet({
           const checked = selected.includes(value)
           const id = `${facet.id}-${label}`
           return (
-            <div key={label} className="flex items-center gap-2 text-sm">
-              <Checkbox id={id} checked={checked} onCheckedChange={() => onToggle(value)} />
+            <div key={label} className="flex items-center gap-2 text-sm text-white">
+              <Checkbox
+                id={id}
+                checked={checked}
+                onCheckedChange={() => onToggle(value)}
+                className="rounded-none border-[#6f6f6f] data-[state=checked]:border-[#1062FE] data-[state=checked]:bg-[#1062FE]"
+              />
               <label htmlFor={id} className="cursor-pointer">
                 {label}
               </label>
@@ -176,13 +197,13 @@ function RangeFacet({
       <PopoverTrigger asChild>
         <FacetTrigger label={facet.label} active={active > 0} count={active || undefined} />
       </PopoverTrigger>
-      <PopoverContent align="start" className="w-56 space-y-3 p-3">
-        <p className="text-muted-foreground text-xs">
+      <PopoverContent align="start" className={`${POPOVER_CLASS} w-56 space-y-3 p-3`}>
+        <p className="text-xs text-[#8d8d8d]">
           Range {bounds.min} – {bounds.max}
         </p>
         <div className="grid grid-cols-2 gap-2">
           <div className="space-y-1">
-            <label className="text-xs" htmlFor={`${facet.id}-min`}>
+            <label className="text-xs text-[#c6c6c6]" htmlFor={`${facet.id}-min`}>
               Min
             </label>
             <Input
@@ -198,11 +219,11 @@ function RangeFacet({
                   min: raw === '' ? undefined : Number(raw),
                 })
               }}
-              className="h-8"
+              className="h-8 rounded-none border-[#1062FE] bg-black text-white placeholder:text-[#8d8d8d]"
             />
           </div>
           <div className="space-y-1">
-            <label className="text-xs" htmlFor={`${facet.id}-max`}>
+            <label className="text-xs text-[#c6c6c6]" htmlFor={`${facet.id}-max`}>
               Max
             </label>
             <Input
@@ -218,7 +239,7 @@ function RangeFacet({
                   max: raw === '' ? undefined : Number(raw),
                 })
               }}
-              className="h-8"
+              className="h-8 rounded-none border-[#1062FE] bg-black text-white placeholder:text-[#8d8d8d]"
             />
           </div>
         </div>
@@ -227,7 +248,7 @@ function RangeFacet({
             type="button"
             variant="ghost"
             size="sm"
-            className="h-7 px-2"
+            className="h-7 rounded-none px-2 text-white hover:bg-[#525252]"
             onClick={() => onChange({})}
           >
             Clear
@@ -299,7 +320,7 @@ export function TotemFilterBar({ rows, filteredCount, state, onChange }: TotemFi
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-muted-foreground text-sm">
+        <span className="text-sm text-[#8d8d8d]">
           {filteredCount.toLocaleString()} totem{filteredCount === 1 ? '' : 's'}
           {activeCount > 0 ? ` · ${activeCount} filter${activeCount === 1 ? '' : 's'}` : ''}
         </span>
@@ -308,7 +329,7 @@ export function TotemFilterBar({ rows, filteredCount, state, onChange }: TotemFi
             type="button"
             variant="ghost"
             size="sm"
-            className="h-7 px-2"
+            className="h-7 rounded-none px-2 text-white hover:bg-[#525252]"
             onClick={() => onChange(createEmptyTotemFilterState())}
           >
             Clear all
@@ -319,12 +340,16 @@ export function TotemFilterBar({ rows, filteredCount, state, onChange }: TotemFi
       {chips.length > 0 ? (
         <div className="flex flex-wrap gap-1.5">
           {chips.map((chip) => (
-            <Badge key={chip.removeKey} variant="secondary" className="gap-1 pr-1">
-              <span className="text-muted-foreground">{chip.label}:</span>
+            <Badge
+              key={chip.removeKey}
+              variant="secondary"
+              className="gap-1 rounded-none border border-[#393939] bg-[#262626] pr-1 text-white"
+            >
+              <span className="text-[#8d8d8d]">{chip.label}:</span>
               <span>{chip.valueLabel}</span>
               <button
                 type="button"
-                className="hover:bg-muted rounded-sm p-0.5"
+                className="rounded-none p-0.5 hover:bg-[#525252]"
                 aria-label={`Remove ${chip.label} ${chip.valueLabel}`}
                 onClick={() => onChange(removeChip(state, chip.removeKey))}
               >
