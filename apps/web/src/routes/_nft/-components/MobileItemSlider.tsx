@@ -2,22 +2,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useCallback, useEffect, useState, type ReactNode } from 'react'
 
-function SlideDots({ count, activeIndex }: { count: number; activeIndex: number }) {
-  return (
-    <div className="flex w-full flex-wrap justify-center gap-x-[13px] gap-y-2">
-      {Array.from({ length: count }, (_, i) => (
-        <span
-          key={`dot-${
-            // biome-ignore lint/suspicious/noArrayIndexKey: static dot list
-            i
-          }`}
-          className="inline-block size-[15px] rounded-full"
-          style={{ backgroundColor: i === activeIndex ? '#4589FF' : '#8F8B8B' }}
-        />
-      ))}
-    </div>
-  )
-}
+import { SlideDots } from './SlideDots'
 
 /** Full-width prev/next + dots, used by lunar grids on mobile. */
 function SlideControls({
@@ -49,7 +34,7 @@ function SlideControls({
         </button>
         <button
           aria-label="Next slide"
-          className="explore-box h-[150px] w-1/2 cursor-pointer p-[15px]"
+          className="explore-box h-[150px] w-1/2 cursor-pointer border-l border-[#393939]/40 p-[15px]"
           onClick={onNext}
           type="button"
         >

@@ -2,26 +2,10 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useCallback, useEffect, useState, type ReactNode } from 'react'
 
+import { SlideDots } from '../../-components/SlideDots'
 import type { HomeSlide, SplitSliderConfig } from '../-data'
 import { MuxLoop } from './MuxLoop'
 import { SectionHeading } from './SectionHeading'
-
-function SlideDots({ count, activeIndex }: { count: number; activeIndex: number }) {
-  return (
-    <div className="w-full text-center">
-      {Array.from({ length: count }, (_, i) => (
-        <span
-          key={`dot-${
-            // biome-ignore lint/suspicious/noArrayIndexKey: static dot list
-            i
-          }`}
-          className="mr-[13px] inline-block size-[15px] rounded-full"
-          style={{ backgroundColor: i === activeIndex ? '#4589FF' : '#8F8B8B' }}
-        />
-      ))}
-    </div>
-  )
-}
 
 function SlideMedia({ slide }: { slide: HomeSlide }) {
   if (slide.video) {
@@ -118,7 +102,7 @@ function SlideControls({
           </button>
           <button
             aria-label="Next slide"
-            className="explore-box h-[150px] w-1/2 cursor-pointer p-[15px] md:absolute md:right-0 md:bottom-[150px] md:w-[175px]"
+            className="explore-box h-[150px] w-1/2 cursor-pointer border-l border-[#393939]/40 p-[15px] md:absolute md:right-0 md:bottom-[150px] md:w-[175px] md:border-l-0"
             onClick={onNext}
             type="button"
           >
