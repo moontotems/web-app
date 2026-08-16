@@ -169,13 +169,13 @@ ESLint also runs on `apps/web` if you call it directly (`cd apps/web && bunx esl
 ### Adding a screen + query
 
 1. Create the file route under `apps/web/src/routes/...` (TanStack Router file conventions: `index.tsx`, `_authenticated.tsx` for layout segments, `-components/` for route-private components).
-2. In the same file, define a `createServerFn({ method: 'GET' }).handler(async () => …)` that uses `postgres_db` + `schema.*` from `@moontotems/db-drizzle`.
+2. In the same file, define a `createServerFn({ method: 'GET' }).handler(async () => ...)` that uses `postgres_db` + `schema.*` from `@moontotems/db-drizzle`.
 3. Call it from `useQuery` (or `useMutation` for writes). Errors thrown server-side surface in React Query's `error`.
 
 ### Adding a table
 
 1. Add the `pgTable(...)` definition to [packages/db-drizzle/src/schema.ts](packages/db-drizzle/src/schema.ts).
-2. Write the SQL in a new `apps/supabase/migrations/<UTC-timestamp>_<name>.sql`. The filename prefix (`YYYYMMDDHHMMSS_…`) is what Supabase orders by; copy the format of the existing migration. **Editing a migration after it's been applied won't re-run it** - always create a new file for changes.
+2. Write the SQL in a new `apps/supabase/migrations/<UTC-timestamp>_<name>.sql`. The filename prefix (`YYYYMMDDHHMMSS_...`) is what Supabase orders by; copy the format of the existing migration. **Editing a migration after it's been applied won't re-run it** - always create a new file for changes.
 3. `bun run db:migrate` (or just `bun run dev`, which chains migrate before starting the apps).
 4. (Optional) `cd packages/db-drizzle && npx drizzle-kit generate` to have drizzle-kit produce the migration for you - but commit only one version.
 

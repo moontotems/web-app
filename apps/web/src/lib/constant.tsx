@@ -1,6 +1,6 @@
 /**
  * Central catalog of Moon Totems image / file path names.
- * Public paths are site-root absolute (`/…`). CDN entries are path templates
+ * Public paths are site-root absolute (`/...`). CDN entries are path templates
  * under the Supabase public bucket (see `cdn.base`).
  */
 
@@ -90,6 +90,16 @@ export const ASSETS = {
     materiality: '/attributes/moon_totems_attributes_materiality.jpg',
   },
 
+  openAi: {
+    page: '/open-ai/openai-page.avif',
+    collectionPage: '/open-ai/collection-page.avif',
+    profilePage: '/open-ai/profile-page.avif',
+    zoomDetails: '/open-ai/zoom-details.avif',
+    totemChat: '/open-ai/totem-chat.avif',
+    generationGrid: '/open-ai/generation-grid.avif',
+    houdiniNetwork: '/open-ai/houdini-network.avif',
+  },
+
   originMap: '/moontotems_origin_map_full.jpg',
 
   home: {
@@ -137,7 +147,7 @@ export const ASSETS = {
     },
     lunarPhases: {
       gif: '/home/lunarPhases/lunarPhases.gif',
-      /** `01_new_moon` … `08_waning_crescent` */
+      /** `01_new_moon` ... `08_waning_crescent` */
       jpg512: (name: string) => `/home/lunarPhases/512/${name}.jpg`,
       jpg1080: (name: string) => `/home/lunarPhases/1080/${name}.jpg`,
       svg: (name: string) => `/home/lunarPhases/svg/${name}.svg`,
@@ -164,7 +174,7 @@ export const ASSETS = {
     },
     lunarMonths: {
       gif: '/home/lunarMonths/lunarMonths.gif',
-      /** `01_ghost_moon` … `12_oak_moon` */
+      /** `01_ghost_moon` ... `12_oak_moon` */
       jpg512: (name: string) => `/home/lunarMonths/512/${name}.jpg`,
       jpg1080: (name: string) => `/home/lunarMonths/1080/${name}.jpg`,
       svg: (name: string) => `/home/lunarMonths/svg/${name}.svg`,
@@ -285,7 +295,7 @@ type StringLeaves<T> = T extends string
         ? { [K in keyof T]: StringLeaves<T[K]> }[keyof T]
         : never
 
-/** Any static path string stored in ASSETS (public `/…` paths and CDN base URLs). */
+/** Any static path string stored in ASSETS (public `/...` paths and CDN base URLs). */
 export type AssetPath = StringLeaves<Assets>
 
 /** Alias for a single static asset path. */

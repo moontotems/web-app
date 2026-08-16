@@ -84,6 +84,6 @@ export function inputPlaceholder(param: AbiParameter): string {
   if (param.type === 'bool') return `${name} (true/false)`
   if (param.type.startsWith('uint') || param.type.startsWith('int'))
     return `${name} (${param.type})`
-  if (param.type === 'bytes' || param.type.startsWith('bytes')) return `${name} (0x…)`
+  if (param.type === 'bytes' || param.type.startsWith('bytes')) return `${name} (0x...)`
   return `${name} (${param.type})`
 }

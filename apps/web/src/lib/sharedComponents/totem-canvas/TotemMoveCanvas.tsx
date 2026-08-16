@@ -5,7 +5,7 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { HEADER_HEIGHT } from '~/lib/nft/constants'
 import { moonTurnVideo } from '~/routes/_nft/project-overview/-data'
 
-import { ExploreTotemTile } from './ExploreTotemTile'
+import { CanvasTotemTile } from './CanvasTotemTile'
 import {
   EXPLORE_CELL_SIZE,
   EXPLORE_TILE_SIZE,
@@ -89,7 +89,7 @@ export function TotemMoveCanvas() {
         }}
       >
         {tiles.map((tile) => (
-          <ExploreTotemTile
+          <CanvasTotemTile
             key={tile.key}
             tokenId={tile.tokenId}
             x={tile.x}

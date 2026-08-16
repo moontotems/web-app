@@ -9,7 +9,7 @@ export function WhatAreSection() {
         <iframe
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
           allowFullScreen
-          className="h-full w-full border-0"
+          className="pointer-events-none h-full w-full border-0"
           src={heroVideo}
           title="Moon Totems"
         />

@@ -1,6 +1,6 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
-import { CreaturePage } from '~/lib/sharedComponents/nft/creature/CreaturePage'
+import { CreaturePage } from './$id/index'
 
 function CreatureRoute() {
   const { id } = Route.useParams()

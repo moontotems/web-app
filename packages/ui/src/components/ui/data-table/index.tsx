@@ -66,6 +66,8 @@ export interface DataTableProps<TData> {
     title: string
     subtitle: string
   }
+  /** Rendered immediately after the search controls. */
+  toolbarStart?: React.ReactNode
 }
 
 export function DataTable<TData>({
@@ -86,6 +88,7 @@ export function DataTable<TData>({
   defaultSort,
   rowCount,
   emptyState,
+  toolbarStart,
 }: DataTableProps<TData>) {
   // Create the select column
   const selectColumn: ColumnDef<TData> = {
@@ -248,17 +251,24 @@ export function DataTable<TData>({
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex flex-wrap items-center gap-2 py-4">
         {searchableColumns.length > 0 && (
-          <div className="flex items-center gap-2 max-w-sm">
+          <div className="flex max-w-sm items-center gap-2">
             {searchableColumns.length > 1 && (
               <Select value={searchColumn} onValueChange={setSearchColumn}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger
+                  size="sm"
+                  className="h-8 w-[180px] rounded-none border-[#393939] bg-[#262626] text-white shadow-none hover:bg-[#525252] focus-visible:border-[#1062FE] focus-visible:ring-[#1062FE]/50 data-[placeholder]:text-[#8d8d8d] [&_svg:not([class*='text-'])]:text-[#8d8d8d]"
+                >
                   <SelectValue placeholder="Select column" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="nft-theme dark rounded-none border-[#393939] bg-[#262626] text-white shadow-none">
                   {searchableColumns.map((column) => (
-                    <SelectItem key={String(column)} value={String(column)}>
+                    <SelectItem
+                      key={String(column)}
+                      value={String(column)}
+                      className="rounded-none text-white focus:bg-[#525252] focus:text-white data-[highlighted]:bg-[#525252] data-[highlighted]:text-white [&_svg:not([class*='text-'])]:text-white"
+                    >
                       {String(column)}
                     </SelectItem>
                   ))}
@@ -266,7 +276,7 @@ export function DataTable<TData>({
               </Select>
             )}
             <div className="relative w-full">
-              <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute top-2 left-2 size-4 text-[#8d8d8d]" />
               <Input
                 placeholder={`Search ${searchColumn}...`}
                 value={
@@ -278,47 +288,53 @@ export function DataTable<TData>({
                   const value = event.target.value
                   handleSearchChange(value)
                 }}
-                className="pl-8 max-w-sm"
+                className="h-8 max-w-sm rounded-none border-[#393939] bg-[#262626] pl-8 text-white placeholder:text-[#8d8d8d] focus-visible:border-[#1062FE] focus-visible:ring-[#1062FE]/50"
               />
             </div>
           </div>
         )}
-        <div className="flex gap-2 ml-auto">
-          {refetch && (
+        {toolbarStart}
+        {refetch && (
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => refetch()}
+            className="order-2 flex h-8 items-center gap-1 rounded-none border-[#393939] bg-[#262626] font-normal text-white hover:bg-[#525252] hover:text-white"
+          >
+            Refresh
+          </Button>
+        )}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
             <Button
               size="sm"
               variant="outline"
-              onClick={() => refetch()}
-              className="flex items-center gap-1"
+              className="order-2 h-8 gap-1 rounded-none border-[#393939] bg-[#262626] font-normal text-white hover:bg-[#525252] hover:text-white"
             >
-              Refresh
+              Columns <ChevronDown className="size-3.5 opacity-60" />
             </Button>
-          )}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button size="sm" variant="outline">
-                Columns <ChevronDown />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {table
-                .getAllColumns()
-                .filter((column) => column.getCanHide())
-                .map((column) => {
-                  return (
-                    <DropdownMenuCheckboxItem
-                      key={column.id}
-                      className="capitalize"
-                      checked={column.getIsVisible()}
-                      onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                    >
-                      {column.id}
-                    </DropdownMenuCheckboxItem>
-                  )
-                })}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="start"
+            className="nft-theme dark max-h-72 rounded-none border-[#393939] bg-[#262626] text-white shadow-none"
+          >
+            {table
+              .getAllColumns()
+              .filter((column) => column.getCanHide())
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="rounded-none capitalize text-white focus:bg-[#525252] focus:text-white data-[highlighted]:bg-[#525252] data-[highlighted]:text-white"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                )
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div className="overflow-hidden">
         <Table>

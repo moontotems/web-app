@@ -103,7 +103,7 @@ export function FunctionRow({
             : {}),
       })
       setResult(hash)
-      toast.success(`${fn.name}: ${hash.slice(0, 10)}…`)
+      toast.success(`${fn.name}: ${hash.slice(0, 10)}...`)
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Write failed')
     } finally {
@@ -203,7 +203,7 @@ export function FunctionRow({
             disabled={loading || isPending || (mode === 'write' && !isConnected)}
             onClick={() => void (mode === 'read' ? onQuery() : onWrite())}
           >
-            {loading || isPending ? '…' : mode === 'read' ? 'Query' : 'Write'}
+            {loading || isPending ? '...' : mode === 'read' ? 'Query' : 'Write'}
           </button>
 
           {error && <div className="mt-3 break-all text-sm text-[#da1e28]">{error}</div>}

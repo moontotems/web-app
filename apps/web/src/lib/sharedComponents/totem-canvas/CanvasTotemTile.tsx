@@ -4,7 +4,7 @@ import { type ImageSize, getImageUrl } from '~/lib/nft/image-url'
 
 import { EXPLORE_TILE_SIZE } from './explore-grid'
 
-type ExploreTotemTileProps = {
+type CanvasTotemTileProps = {
   tokenId: number
   x: number
   y: number
@@ -30,13 +30,13 @@ function HiResOverlay({ url }: { url: string }) {
   )
 }
 
-/** Lightweight image tile for the explore canvas (no metadata/favorites chrome). */
-export const ExploreTotemTile = memo(function ExploreTotemTile({
+/** Lightweight image tile for the totem canvas (no metadata/favorites chrome). */
+export const CanvasTotemTile = memo(function CanvasTotemTile({
   tokenId,
   x,
   y,
   imageSize,
-}: ExploreTotemTileProps) {
+}: CanvasTotemTileProps) {
   const wants6k = imageSize === '6k'
   const previewUrl = getImageUrl({
     tokenId,

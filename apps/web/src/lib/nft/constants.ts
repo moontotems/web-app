@@ -6,6 +6,8 @@ export const CDN_BASE = ASSETS.cdn.base
 export const HEADER_HEIGHT = 40
 export const FOOTER_HEIGHT = 40
 export const SIDEBAR_WIDTH = 250
+/** Width of the header menu / “Show all” icon columns (and ActionSidebar narrow). */
+export const HEADER_ICON_WIDTH = 50
 
 export const SOCIAL_LINKS = {
   instagram: 'https://instagram.com/moontotems',

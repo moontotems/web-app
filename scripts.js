@@ -25,7 +25,7 @@ const ENV_TARGETS = [
  * Map a key from `supabase status -o env` output to the names that may
  * appear in our local .env files. We try every alias so the same script
  * works whether a given .env uses `SUPABASE_API_URL`, the older
- * `SUPABASE_URL`, or the `NEXT_PUBLIC_…` prefix the db-drizzle template
+ * `SUPABASE_URL`, or the `NEXT_PUBLIC_...` prefix the db-drizzle template
  * happens to use.
  */
 const KEY_ALIASES = {

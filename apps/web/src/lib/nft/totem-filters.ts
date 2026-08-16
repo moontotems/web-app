@@ -45,10 +45,13 @@ export type TotemFilterState = {
   range: Partial<Record<RangeFacetId, RangeValue>>
 }
 
+export type FacetGroupId = 'lunar' | 'identity' | 'material' | 'eyes' | 'scores'
+
 export type MultiSelectFacetDef = {
   id: MultiSelectFacetId
   label: string
   kind: 'multi'
+  group: FacetGroupId
   /** Column to read for options / matching; personality uses a special path. */
   column?: keyof TotemTableRow & string
 }
@@ -57,6 +60,7 @@ export type BooleanFacetDef = {
   id: BooleanFacetId
   label: string
   kind: 'boolean'
+  group: FacetGroupId
   column: BooleanFacetId
 }
 
@@ -64,66 +68,192 @@ export type RangeFacetDef = {
   id: RangeFacetId
   label: string
   kind: 'range'
+  group: FacetGroupId
   column: RangeFacetId
 }
 
 export type FacetDef = MultiSelectFacetDef | BooleanFacetDef | RangeFacetDef
 
+export const FACET_GROUPS: Array<{ id: FacetGroupId; label: string }> = [
+  { id: 'lunar', label: 'Lunar' },
+  { id: 'identity', label: 'Identity' },
+  { id: 'material', label: 'Material' },
+  { id: 'eyes', label: 'Eyes' },
+  { id: 'scores', label: 'Scores' },
+]
+
 export const TOTEM_FACETS: FacetDef[] = [
-  { id: 'lunarOriginName', label: 'Origin', kind: 'multi', column: 'lunarOriginName' },
+  {
+    id: 'lunarOriginName',
+    label: 'Origin',
+    kind: 'multi',
+    group: 'lunar',
+    column: 'lunarOriginName',
+  },
   {
     id: 'lunarOriginNameLatin',
     label: 'Origin Latin',
     kind: 'multi',
+    group: 'lunar',
     column: 'lunarOriginNameLatin',
   },
-  { id: 'moonMonth', label: 'Lunar Month', kind: 'multi', column: 'moonMonth' },
-  { id: 'moonPhase', label: 'Lunar Phase', kind: 'multi', column: 'moonPhase' },
-  { id: 'Material', label: 'Material', kind: 'multi', column: 'Material' },
-  { id: 'mat_patterBumpName', label: 'Bumps', kind: 'multi', column: 'mat_patterBumpName' },
+  { id: 'moonMonth', label: 'Lunar Month', kind: 'multi', group: 'lunar', column: 'moonMonth' },
+  { id: 'moonPhase', label: 'Lunar Phase', kind: 'multi', group: 'lunar', column: 'moonPhase' },
+  { id: 'Material', label: 'Material', kind: 'multi', group: 'material', column: 'Material' },
+  {
+    id: 'mat_patterBumpName',
+    label: 'Bumps',
+    kind: 'multi',
+    group: 'material',
+    column: 'mat_patterBumpName',
+  },
   {
     id: 'mat_patterPerfName',
     label: 'Perforation',
     kind: 'multi',
+    group: 'material',
     column: 'mat_patterPerfName',
   },
-  { id: 'trait_jobField', label: 'Job Field', kind: 'multi', column: 'trait_jobField' },
-  { id: 'trait_jobTitle', label: 'Job Title', kind: 'multi', column: 'trait_jobTitle' },
-  { id: 'personality', label: 'Personality', kind: 'multi' },
-  { id: 'eyeShape', label: 'Eye Shape', kind: 'multi', column: 'eyeShape' },
-  { id: 'birthYearStr', label: 'Birth Year', kind: 'multi', column: 'birthYearStr' },
-  { id: 'trait_name1', label: 'Name 1', kind: 'multi', column: 'trait_name1' },
-  { id: 'trait_name2', label: 'Name 2', kind: 'multi', column: 'trait_name2' },
-  { id: 'holesBlobby', label: 'Blobby Holes', kind: 'boolean', column: 'holesBlobby' },
-  { id: 'holesCut', label: 'Cut Holes', kind: 'boolean', column: 'holesCut' },
+  {
+    id: 'trait_jobField',
+    label: 'Job Field',
+    kind: 'multi',
+    group: 'identity',
+    column: 'trait_jobField',
+  },
+  {
+    id: 'trait_jobTitle',
+    label: 'Job Title',
+    kind: 'multi',
+    group: 'identity',
+    column: 'trait_jobTitle',
+  },
+  { id: 'personality', label: 'Personality', kind: 'multi', group: 'identity' },
+  { id: 'eyeShape', label: 'Eye Shape', kind: 'multi', group: 'eyes', column: 'eyeShape' },
+  {
+    id: 'birthYearStr',
+    label: 'Birth Year',
+    kind: 'multi',
+    group: 'identity',
+    column: 'birthYearStr',
+  },
+  { id: 'trait_name1', label: 'Name 1', kind: 'multi', group: 'identity', column: 'trait_name1' },
+  { id: 'trait_name2', label: 'Name 2', kind: 'multi', group: 'identity', column: 'trait_name2' },
+  {
+    id: 'holesBlobby',
+    label: 'Blobby Holes',
+    kind: 'boolean',
+    group: 'material',
+    column: 'holesBlobby',
+  },
+  { id: 'holesCut', label: 'Cut Holes', kind: 'boolean', group: 'material', column: 'holesCut' },
   {
     id: 'eyeAsymmetrical',
     label: 'Asymmetrical Eye',
     kind: 'boolean',
+    group: 'eyes',
     column: 'eyeAsymmetrical',
   },
-  { id: 'eyeMulticolor', label: 'Multicolored Eyes', kind: 'boolean', column: 'eyeMulticolor' },
-  { id: 'age', label: 'Age', kind: 'range', column: 'age' },
-  { id: 'AgeScore', label: 'Age Score', kind: 'range', column: 'AgeScore' },
-  { id: 'ageRank', label: 'Age Rank', kind: 'range', column: 'ageRank' },
-  { id: 'colorsTotal', label: 'Color Count', kind: 'range', column: 'colorsTotal' },
-  { id: 'colorRank', label: 'Color Rank', kind: 'range', column: 'colorRank' },
-  { id: 'complexityScore', label: 'Complexity Score', kind: 'range', column: 'complexityScore' },
-  { id: 'complexityPieces', label: 'Pieces Count', kind: 'range', column: 'complexityPieces' },
-  { id: 'complexityRank', label: 'Complexity Rank', kind: 'range', column: 'complexityRank' },
+  {
+    id: 'eyeMulticolor',
+    label: 'Multicolored Eyes',
+    kind: 'boolean',
+    group: 'eyes',
+    column: 'eyeMulticolor',
+  },
+  { id: 'age', label: 'Age', kind: 'range', group: 'scores', column: 'age' },
+  { id: 'AgeScore', label: 'Age Score', kind: 'range', group: 'scores', column: 'AgeScore' },
+  { id: 'ageRank', label: 'Age Rank', kind: 'range', group: 'scores', column: 'ageRank' },
+  {
+    id: 'colorsTotal',
+    label: 'Color Count',
+    kind: 'range',
+    group: 'scores',
+    column: 'colorsTotal',
+  },
+  { id: 'colorRank', label: 'Color Rank', kind: 'range', group: 'scores', column: 'colorRank' },
+  {
+    id: 'complexityScore',
+    label: 'Complexity Score',
+    kind: 'range',
+    group: 'scores',
+    column: 'complexityScore',
+  },
+  {
+    id: 'complexityPieces',
+    label: 'Pieces Count',
+    kind: 'range',
+    group: 'scores',
+    column: 'complexityPieces',
+  },
+  {
+    id: 'complexityRank',
+    label: 'Complexity Rank',
+    kind: 'range',
+    group: 'scores',
+    column: 'complexityRank',
+  },
   {
     id: 'lunarOriginQuantity',
     label: 'Origin Population',
     kind: 'range',
+    group: 'scores',
     column: 'lunarOriginQuantity',
   },
-  { id: 'lunarOriginScore', label: 'Origin Score', kind: 'range', column: 'lunarOriginScore' },
-  { id: 'moonMonthScore', label: 'Lunar Month Score', kind: 'range', column: 'moonMonthScore' },
-  { id: 'moonPhaseScore', label: 'Lunar Phase Score', kind: 'range', column: 'moonPhaseScore' },
-  { id: 'materialScore', label: 'Material Score', kind: 'range', column: 'materialScore' },
-  { id: 'rarityRank', label: 'Rarity Rank', kind: 'range', column: 'rarityRank' },
-  { id: 'rarityScore', label: 'Rarity Score', kind: 'range', column: 'rarityScore' },
+  {
+    id: 'lunarOriginScore',
+    label: 'Origin Score',
+    kind: 'range',
+    group: 'scores',
+    column: 'lunarOriginScore',
+  },
+  {
+    id: 'moonMonthScore',
+    label: 'Lunar Month Score',
+    kind: 'range',
+    group: 'scores',
+    column: 'moonMonthScore',
+  },
+  {
+    id: 'moonPhaseScore',
+    label: 'Lunar Phase Score',
+    kind: 'range',
+    group: 'scores',
+    column: 'moonPhaseScore',
+  },
+  {
+    id: 'materialScore',
+    label: 'Material Score',
+    kind: 'range',
+    group: 'scores',
+    column: 'materialScore',
+  },
+  { id: 'rarityRank', label: 'Rarity Rank', kind: 'range', group: 'scores', column: 'rarityRank' },
+  {
+    id: 'rarityScore',
+    label: 'Rarity Score',
+    kind: 'range',
+    group: 'scores',
+    column: 'rarityScore',
+  },
 ]
+
+/** Facets grouped for the Filters drawer UI. */
+export function getFacetsByGroup(): Array<{
+  id: FacetGroupId
+  label: string
+  facets: FacetDef[]
+}> {
+  return FACET_GROUPS.map((group) => ({
+    ...group,
+    facets: TOTEM_FACETS.filter((facet) => facet.group === group.id),
+  }))
+}
+
+/** Look up a facet by id (matches TotemTable column ids for filterable columns). */
+export function findFacetById(id: string): FacetDef | undefined {
+  return TOTEM_FACETS.find((facet) => facet.id === id)
+}
 
 export const EMPTY_TOTEM_FILTER_STATE: TotemFilterState = {
   multi: {},
@@ -133,6 +263,97 @@ export const EMPTY_TOTEM_FILTER_STATE: TotemFilterState = {
 
 export function createEmptyTotemFilterState(): TotemFilterState {
   return { multi: {}, boolean: {}, range: {} }
+}
+
+const MULTI_ID_SET = new Set<string>(
+  TOTEM_FACETS.filter((f): f is MultiSelectFacetDef => f.kind === 'multi').map((f) => f.id),
+)
+const BOOLEAN_ID_SET = new Set<string>(
+  TOTEM_FACETS.filter((f): f is BooleanFacetDef => f.kind === 'boolean').map((f) => f.id),
+)
+const RANGE_ID_SET = new Set<string>(
+  TOTEM_FACETS.filter((f): f is RangeFacetDef => f.kind === 'range').map((f) => f.id),
+)
+
+function isNonEmptyFilterState(state: TotemFilterState): boolean {
+  return (
+    Object.keys(state.multi).length > 0 ||
+    Object.keys(state.boolean).length > 0 ||
+    Object.keys(state.range).length > 0
+  )
+}
+
+/** Compact JSON for the `/all?facets=` query param (omit when empty). */
+export function serializeTotemFilterState(state: TotemFilterState): string | undefined {
+  const multi: TotemFilterState['multi'] = {}
+  for (const [key, values] of Object.entries(state.multi)) {
+    if (values && values.length > 0) multi[key as MultiSelectFacetId] = values
+  }
+  const boolean: TotemFilterState['boolean'] = {}
+  for (const [key, values] of Object.entries(state.boolean)) {
+    if (values && values.length > 0) boolean[key as BooleanFacetId] = values
+  }
+  const range: TotemFilterState['range'] = {}
+  for (const [key, value] of Object.entries(state.range)) {
+    if (value && (value.min !== undefined || value.max !== undefined)) {
+      range[key as RangeFacetId] = value
+    }
+  }
+  const cleaned = { multi, boolean, range }
+  if (!isNonEmptyFilterState(cleaned)) return undefined
+  return JSON.stringify(cleaned)
+}
+
+/** Parse `/all?facets=` JSON back into TotemFilterState (invalid → empty). */
+export function parseTotemFilterState(raw: unknown): TotemFilterState {
+  const empty = createEmptyTotemFilterState()
+  if (raw == null || raw === '') return empty
+
+  let parsed: unknown = raw
+  if (typeof raw === 'string') {
+    try {
+      parsed = JSON.parse(raw)
+    } catch {
+      return empty
+    }
+  }
+  if (!parsed || typeof parsed !== 'object') return empty
+
+  const obj = parsed as Record<string, unknown>
+  const multi: TotemFilterState['multi'] = {}
+  const boolean: TotemFilterState['boolean'] = {}
+  const range: TotemFilterState['range'] = {}
+
+  if (obj.multi && typeof obj.multi === 'object') {
+    for (const [key, value] of Object.entries(obj.multi as Record<string, unknown>)) {
+      if (!MULTI_ID_SET.has(key) || !Array.isArray(value)) continue
+      const values = value.filter((v): v is string => typeof v === 'string')
+      if (values.length > 0) multi[key as MultiSelectFacetId] = values
+    }
+  }
+
+  if (obj.boolean && typeof obj.boolean === 'object') {
+    for (const [key, value] of Object.entries(obj.boolean as Record<string, unknown>)) {
+      if (!BOOLEAN_ID_SET.has(key) || !Array.isArray(value)) continue
+      const values = value.filter((v): v is boolean => typeof v === 'boolean')
+      if (values.length > 0) boolean[key as BooleanFacetId] = values
+    }
+  }
+
+  if (obj.range && typeof obj.range === 'object') {
+    for (const [key, value] of Object.entries(obj.range as Record<string, unknown>)) {
+      if (!RANGE_ID_SET.has(key) || !value || typeof value !== 'object') continue
+      const rv = value as { min?: unknown; max?: unknown }
+      const next: RangeValue = {}
+      if (typeof rv.min === 'number' && Number.isFinite(rv.min)) next.min = rv.min
+      if (typeof rv.max === 'number' && Number.isFinite(rv.max)) next.max = rv.max
+      if (next.min !== undefined || next.max !== undefined) {
+        range[key as RangeFacetId] = next
+      }
+    }
+  }
+
+  return { multi, boolean, range }
 }
 
 export type FacetOptions = {

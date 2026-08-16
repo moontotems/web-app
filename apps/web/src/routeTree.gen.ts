@@ -14,7 +14,6 @@ import { Route as NftRouteImport } from './routes/_nft'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as NftIndexRouteImport } from './routes/_nft/index'
 import { Route as AuthCallbackRouteImport } from './routes/auth/callback'
-import { Route as NftIdRouteImport } from './routes/_nft/$id'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/_app'
 import { Route as AuthRegisterIndexRouteImport } from './routes/auth/register/index'
 import { Route as AuthLoginIndexRouteImport } from './routes/auth/login/index'
@@ -22,14 +21,17 @@ import { Route as NftWalletIndexRouteImport } from './routes/_nft/wallet/index'
 import { Route as NftTermsAndConditionsIndexRouteImport } from './routes/_nft/terms-and-conditions/index'
 import { Route as NftProjectOverviewIndexRouteImport } from './routes/_nft/project-overview/index'
 import { Route as NftOrbitIndexRouteImport } from './routes/_nft/orbit/index'
+import { Route as NftOpenAiIndexRouteImport } from './routes/_nft/open-ai/index'
 import { Route as NftMintedIndexRouteImport } from './routes/_nft/minted/index'
 import { Route as NftLunarOriginsIndexRouteImport } from './routes/_nft/lunar-origins/index'
 import { Route as NftLunarCalendarIndexRouteImport } from './routes/_nft/lunar-calendar/index'
+import { Route as NftFeaturesIndexRouteImport } from './routes/_nft/features/index'
 import { Route as NftFavoritesIndexRouteImport } from './routes/_nft/favorites/index'
 import { Route as NftContractInterfaceIndexRouteImport } from './routes/_nft/contract-interface/index'
 import { Route as NftContractEventsIndexRouteImport } from './routes/_nft/contract-events/index'
 import { Route as NftAttributesIndexRouteImport } from './routes/_nft/attributes/index'
 import { Route as NftAllIndexRouteImport } from './routes/_nft/all/index'
+import { Route as NftIdIndexRouteImport } from './routes/_nft/$id/index'
 import { Route as NftMoontotemIdRouteImport } from './routes/_nft/moontotem.$id'
 import { Route as AuthenticatedAppHomeIndexRouteImport } from './routes/_authenticated/_app/home/index'
 
@@ -55,11 +57,6 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
   id: '/callback',
   path: '/callback',
   getParentRoute: () => AuthRoute,
-} as any)
-const NftIdRoute = NftIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => NftRoute,
 } as any)
 const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
   id: '/_app',
@@ -96,6 +93,11 @@ const NftOrbitIndexRoute = NftOrbitIndexRouteImport.update({
   path: '/orbit/',
   getParentRoute: () => NftRoute,
 } as any)
+const NftOpenAiIndexRoute = NftOpenAiIndexRouteImport.update({
+  id: '/open-ai/',
+  path: '/open-ai/',
+  getParentRoute: () => NftRoute,
+} as any)
 const NftMintedIndexRoute = NftMintedIndexRouteImport.update({
   id: '/minted/',
   path: '/minted/',
@@ -109,6 +111,11 @@ const NftLunarOriginsIndexRoute = NftLunarOriginsIndexRouteImport.update({
 const NftLunarCalendarIndexRoute = NftLunarCalendarIndexRouteImport.update({
   id: '/lunar-calendar/',
   path: '/lunar-calendar/',
+  getParentRoute: () => NftRoute,
+} as any)
+const NftFeaturesIndexRoute = NftFeaturesIndexRouteImport.update({
+  id: '/features/',
+  path: '/features/',
   getParentRoute: () => NftRoute,
 } as any)
 const NftFavoritesIndexRoute = NftFavoritesIndexRouteImport.update({
@@ -137,6 +144,11 @@ const NftAllIndexRoute = NftAllIndexRouteImport.update({
   path: '/all/',
   getParentRoute: () => NftRoute,
 } as any)
+const NftIdIndexRoute = NftIdIndexRouteImport.update({
+  id: '/$id/',
+  path: '/$id/',
+  getParentRoute: () => NftRoute,
+} as any)
 const NftMoontotemIdRoute = NftMoontotemIdRouteImport.update({
   id: '/moontotem/$id',
   path: '/moontotem/$id',
@@ -152,17 +164,19 @@ const AuthenticatedAppHomeIndexRoute =
 export interface FileRoutesByFullPath {
   '/': typeof NftIndexRoute
   '/auth': typeof AuthRouteWithChildren
-  '/$id': typeof NftIdRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/moontotem/$id': typeof NftMoontotemIdRoute
+  '/$id/': typeof NftIdIndexRoute
   '/all/': typeof NftAllIndexRoute
   '/attributes/': typeof NftAttributesIndexRoute
   '/contract-events/': typeof NftContractEventsIndexRoute
   '/contract-interface/': typeof NftContractInterfaceIndexRoute
   '/favorites/': typeof NftFavoritesIndexRoute
+  '/features/': typeof NftFeaturesIndexRoute
   '/lunar-calendar/': typeof NftLunarCalendarIndexRoute
   '/lunar-origins/': typeof NftLunarOriginsIndexRoute
   '/minted/': typeof NftMintedIndexRoute
+  '/open-ai/': typeof NftOpenAiIndexRoute
   '/orbit/': typeof NftOrbitIndexRoute
   '/project-overview/': typeof NftProjectOverviewIndexRoute
   '/terms-and-conditions/': typeof NftTermsAndConditionsIndexRoute
@@ -174,17 +188,19 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof NftIndexRoute
   '/auth': typeof AuthRouteWithChildren
-  '/$id': typeof NftIdRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/moontotem/$id': typeof NftMoontotemIdRoute
+  '/$id': typeof NftIdIndexRoute
   '/all': typeof NftAllIndexRoute
   '/attributes': typeof NftAttributesIndexRoute
   '/contract-events': typeof NftContractEventsIndexRoute
   '/contract-interface': typeof NftContractInterfaceIndexRoute
   '/favorites': typeof NftFavoritesIndexRoute
+  '/features': typeof NftFeaturesIndexRoute
   '/lunar-calendar': typeof NftLunarCalendarIndexRoute
   '/lunar-origins': typeof NftLunarOriginsIndexRoute
   '/minted': typeof NftMintedIndexRoute
+  '/open-ai': typeof NftOpenAiIndexRoute
   '/orbit': typeof NftOrbitIndexRoute
   '/project-overview': typeof NftProjectOverviewIndexRoute
   '/terms-and-conditions': typeof NftTermsAndConditionsIndexRoute
@@ -199,18 +215,20 @@ export interface FileRoutesById {
   '/_nft': typeof NftRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/_authenticated/_app': typeof AuthenticatedAppRouteWithChildren
-  '/_nft/$id': typeof NftIdRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/_nft/': typeof NftIndexRoute
   '/_nft/moontotem/$id': typeof NftMoontotemIdRoute
+  '/_nft/$id/': typeof NftIdIndexRoute
   '/_nft/all/': typeof NftAllIndexRoute
   '/_nft/attributes/': typeof NftAttributesIndexRoute
   '/_nft/contract-events/': typeof NftContractEventsIndexRoute
   '/_nft/contract-interface/': typeof NftContractInterfaceIndexRoute
   '/_nft/favorites/': typeof NftFavoritesIndexRoute
+  '/_nft/features/': typeof NftFeaturesIndexRoute
   '/_nft/lunar-calendar/': typeof NftLunarCalendarIndexRoute
   '/_nft/lunar-origins/': typeof NftLunarOriginsIndexRoute
   '/_nft/minted/': typeof NftMintedIndexRoute
+  '/_nft/open-ai/': typeof NftOpenAiIndexRoute
   '/_nft/orbit/': typeof NftOrbitIndexRoute
   '/_nft/project-overview/': typeof NftProjectOverviewIndexRoute
   '/_nft/terms-and-conditions/': typeof NftTermsAndConditionsIndexRoute
@@ -224,17 +242,19 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
-    | '/$id'
     | '/auth/callback'
     | '/moontotem/$id'
+    | '/$id/'
     | '/all/'
     | '/attributes/'
     | '/contract-events/'
     | '/contract-interface/'
     | '/favorites/'
+    | '/features/'
     | '/lunar-calendar/'
     | '/lunar-origins/'
     | '/minted/'
+    | '/open-ai/'
     | '/orbit/'
     | '/project-overview/'
     | '/terms-and-conditions/'
@@ -246,17 +266,19 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
-    | '/$id'
     | '/auth/callback'
     | '/moontotem/$id'
+    | '/$id'
     | '/all'
     | '/attributes'
     | '/contract-events'
     | '/contract-interface'
     | '/favorites'
+    | '/features'
     | '/lunar-calendar'
     | '/lunar-origins'
     | '/minted'
+    | '/open-ai'
     | '/orbit'
     | '/project-overview'
     | '/terms-and-conditions'
@@ -270,18 +292,20 @@ export interface FileRouteTypes {
     | '/_nft'
     | '/auth'
     | '/_authenticated/_app'
-    | '/_nft/$id'
     | '/auth/callback'
     | '/_nft/'
     | '/_nft/moontotem/$id'
+    | '/_nft/$id/'
     | '/_nft/all/'
     | '/_nft/attributes/'
     | '/_nft/contract-events/'
     | '/_nft/contract-interface/'
     | '/_nft/favorites/'
+    | '/_nft/features/'
     | '/_nft/lunar-calendar/'
     | '/_nft/lunar-origins/'
     | '/_nft/minted/'
+    | '/_nft/open-ai/'
     | '/_nft/orbit/'
     | '/_nft/project-overview/'
     | '/_nft/terms-and-conditions/'
@@ -334,13 +358,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof AuthRoute
     }
-    '/_nft/$id': {
-      id: '/_nft/$id'
-      path: '/$id'
-      fullPath: '/$id'
-      preLoaderRoute: typeof NftIdRouteImport
-      parentRoute: typeof NftRoute
-    }
     '/_authenticated/_app': {
       id: '/_authenticated/_app'
       path: ''
@@ -390,6 +407,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NftOrbitIndexRouteImport
       parentRoute: typeof NftRoute
     }
+    '/_nft/open-ai/': {
+      id: '/_nft/open-ai/'
+      path: '/open-ai'
+      fullPath: '/open-ai/'
+      preLoaderRoute: typeof NftOpenAiIndexRouteImport
+      parentRoute: typeof NftRoute
+    }
     '/_nft/minted/': {
       id: '/_nft/minted/'
       path: '/minted'
@@ -409,6 +433,13 @@ declare module '@tanstack/react-router' {
       path: '/lunar-calendar'
       fullPath: '/lunar-calendar/'
       preLoaderRoute: typeof NftLunarCalendarIndexRouteImport
+      parentRoute: typeof NftRoute
+    }
+    '/_nft/features/': {
+      id: '/_nft/features/'
+      path: '/features'
+      fullPath: '/features/'
+      preLoaderRoute: typeof NftFeaturesIndexRouteImport
       parentRoute: typeof NftRoute
     }
     '/_nft/favorites/': {
@@ -444,6 +475,13 @@ declare module '@tanstack/react-router' {
       path: '/all'
       fullPath: '/all/'
       preLoaderRoute: typeof NftAllIndexRouteImport
+      parentRoute: typeof NftRoute
+    }
+    '/_nft/$id/': {
+      id: '/_nft/$id/'
+      path: '/$id'
+      fullPath: '/$id/'
+      preLoaderRoute: typeof NftIdIndexRouteImport
       parentRoute: typeof NftRoute
     }
     '/_nft/moontotem/$id': {
@@ -487,17 +525,19 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 )
 
 interface NftRouteChildren {
-  NftIdRoute: typeof NftIdRoute
   NftIndexRoute: typeof NftIndexRoute
   NftMoontotemIdRoute: typeof NftMoontotemIdRoute
+  NftIdIndexRoute: typeof NftIdIndexRoute
   NftAllIndexRoute: typeof NftAllIndexRoute
   NftAttributesIndexRoute: typeof NftAttributesIndexRoute
   NftContractEventsIndexRoute: typeof NftContractEventsIndexRoute
   NftContractInterfaceIndexRoute: typeof NftContractInterfaceIndexRoute
   NftFavoritesIndexRoute: typeof NftFavoritesIndexRoute
+  NftFeaturesIndexRoute: typeof NftFeaturesIndexRoute
   NftLunarCalendarIndexRoute: typeof NftLunarCalendarIndexRoute
   NftLunarOriginsIndexRoute: typeof NftLunarOriginsIndexRoute
   NftMintedIndexRoute: typeof NftMintedIndexRoute
+  NftOpenAiIndexRoute: typeof NftOpenAiIndexRoute
   NftOrbitIndexRoute: typeof NftOrbitIndexRoute
   NftProjectOverviewIndexRoute: typeof NftProjectOverviewIndexRoute
   NftTermsAndConditionsIndexRoute: typeof NftTermsAndConditionsIndexRoute
@@ -505,17 +545,19 @@ interface NftRouteChildren {
 }
 
 const NftRouteChildren: NftRouteChildren = {
-  NftIdRoute: NftIdRoute,
   NftIndexRoute: NftIndexRoute,
   NftMoontotemIdRoute: NftMoontotemIdRoute,
+  NftIdIndexRoute: NftIdIndexRoute,
   NftAllIndexRoute: NftAllIndexRoute,
   NftAttributesIndexRoute: NftAttributesIndexRoute,
   NftContractEventsIndexRoute: NftContractEventsIndexRoute,
   NftContractInterfaceIndexRoute: NftContractInterfaceIndexRoute,
   NftFavoritesIndexRoute: NftFavoritesIndexRoute,
+  NftFeaturesIndexRoute: NftFeaturesIndexRoute,
   NftLunarCalendarIndexRoute: NftLunarCalendarIndexRoute,
   NftLunarOriginsIndexRoute: NftLunarOriginsIndexRoute,
   NftMintedIndexRoute: NftMintedIndexRoute,
+  NftOpenAiIndexRoute: NftOpenAiIndexRoute,
   NftOrbitIndexRoute: NftOrbitIndexRoute,
   NftProjectOverviewIndexRoute: NftProjectOverviewIndexRoute,
   NftTermsAndConditionsIndexRoute: NftTermsAndConditionsIndexRoute,

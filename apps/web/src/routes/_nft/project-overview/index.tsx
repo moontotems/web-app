@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
 
+import { ASSETS } from '~/lib/constant'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 
 import { ExampleCreaturesSection } from './-components/ExampleCreaturesSection'
@@ -32,21 +33,27 @@ function ProjectOverviewPage() {
   return (
     <div className="w-full bg-black font-['IBM_Plex_Sans',sans-serif]">
       <WhatAreSection />
+
       <SplitSliderSection
         introHint="Explore the attributes and traits that makes every Moon Totem unique"
         sliderSide="right"
         slides={uniqueCharactersSlides}
         title="Unique Characters"
       />
+
       <SplitSliderSection
         introHint="Explore the unique features exclusive to Moon Totem holders"
         sliderSide="left"
         slides={uniqueFeaturesSlides}
         title="Unique Features"
       />
+
       {!isMobile && <ExampleCreaturesSection slideDirectionLeft />}
+
       <RoadmapSection />
+
       <TeamSection />
+
       {isMobile && (
         <>
           <SplitSliderSection
@@ -63,14 +70,25 @@ function ProjectOverviewPage() {
           />
         </>
       )}
+
       <SplitSliderSection
         introHint="Explore the Lunar Origins"
         sliderSide="left"
         slides={lunarOriginsSlides}
         title="Lunar Origins"
       />
+
       <SocialMediaSection />
+
       <ExampleCreaturesSection slideDirectionLeft={!isMobile} />
+
+      <section className="w-full bg-black">
+        <img
+          alt="Moon Totems traveling from Earth to the Moon"
+          className="block w-full"
+          src={ASSETS.home.originsEarthToMoon}
+        />
+      </section>
     </div>
   )
 }

@@ -1,21 +1,32 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
 
-import { ActionSidebar, TotemGrid, TotemTable } from '~/lib/sharedComponents/nft'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
-import { FILTERS } from '~/lib/nft/filters'
+import { validateGallerySearch } from '~/lib/nft/gallery-search'
+import { ActionSidebar, TotemGrid, TotemTable } from '~/lib/sharedComponents/nft'
+
+export const Route = createFileRoute('/_nft/all/')({
+  validateSearch: validateGallerySearch,
+  component: AllPage,
+})
 
 function AllPage() {
+  const search = Route.useSearch()
   const {
     showGridView,
+    setShowGridView,
     setHeaderTitle,
-    filters: { removeFilter },
+    filters: { setActiveFilters },
   } = useMoonTotems()
 
   useEffect(() => {
     setHeaderTitle('')
-    removeFilter(FILTERS.myMoonTotems)
-  }, [setHeaderTitle, removeFilter])
+  }, [setHeaderTitle])
+
+  useEffect(() => {
+    setShowGridView(search.view !== 'list')
+    setActiveFilters(search.filters)
+  }, [search.view, search.filters, setShowGridView, setActiveFilters])
 
   return (
     <>
@@ -24,7 +35,3 @@ function AllPage() {
     </>
   )
 }
-
-export const Route = createFileRoute('/_nft/all/')({
-  component: AllPage,
-})

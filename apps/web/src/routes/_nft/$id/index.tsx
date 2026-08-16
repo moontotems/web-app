@@ -5,6 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@moontotems/ui'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import {
   ArrowLeftRight,
   CircleUserRound,
@@ -19,23 +20,22 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { toast } from 'sonner'
 
-import { ActionSidebar } from '~/lib/sharedComponents/nft/ActionSidebar'
-import { NftFooter } from '~/lib/sharedComponents/nft/NftFooter'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from '~/lib/nft/constants'
 import { getImageUrl } from '~/lib/nft/image-url'
 import type { Creature, TokenMetaData } from '~/lib/nft/types'
 import { usePrefetchTokenMetadata, useTokenMetadata } from '~/lib/nft/use-token-data'
+import { ActionSidebar } from '~/lib/sharedComponents/nft/ActionSidebar'
+import { NftFooter } from '~/lib/sharedComponents/nft/NftFooter'
 
-import { ActionsPanel } from './ActionsPanel'
-import { ChatbotPanel } from './ChatbotPanel'
-import { FeaturePanel } from './FeaturePanel'
-import { FileDownloadsPanel } from './FileDownloadsPanel'
-import { FreshMintMessage } from './FreshMintMessage'
-import { MetaDataPanel } from './MetaDataPanel'
-import { MintToPanel } from './MintToPanel'
-import { WriteStoryPanel } from './WriteStoryPanel'
-import { ZoomImage } from './ZoomImage'
+import { ActionsPanel } from './-components/ActionsPanel'
+import { ChatbotPanel } from './-components/ChatbotPanel'
+import { FileDownloadsPanel } from './-components/FileDownloadsPanel'
+import { FreshMintMessage } from './-components/FreshMintMessage'
+import { MetaDataPanel } from './-components/MetaDataPanel'
+import { MintToPanel } from './-components/MintToPanel'
+import { WriteStoryPanel } from './-components/WriteStoryPanel'
+import { ZoomImage } from './-components/ZoomImage'
 
 const OPENSEA_ASSET_BASE = 'https://opensea.io/assets/0x8fe83f6f7f726a2c9e238b7e094c4bf530bc9720'
 
@@ -414,3 +414,18 @@ export function CreaturePage({ tokenId }: { tokenId: number }) {
     </>
   )
 }
+
+function CreatureRoute() {
+  const { id } = Route.useParams()
+  return <CreaturePage tokenId={Number.parseInt(id, 10)} />
+}
+
+export const Route = createFileRoute('/_nft/$id/')({
+  beforeLoad: ({ params }) => {
+    // Only treat pure numeric IDs as creature shortcuts
+    if (!/^\d+$/.test(params.id)) {
+      throw redirect({ to: '/' })
+    }
+  },
+  component: CreatureRoute,
+})

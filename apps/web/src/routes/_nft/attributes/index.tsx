@@ -1,12 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { ASSETS } from '~/lib/constant'
+import { HEADER_HEIGHT } from '~/lib/nft/constants'
 import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
 import { ATTRIBUTE_CARDS } from './-data'
 
 function AttributesPage() {
   useScrollToTop()
+
+  // Square card image (320) + title/text/padding ≈ 500px; leave a gap so top/bottom never meet.
+  const cardStackMinPx = 500 * 2
+  const heroMinHeight = `max(calc(100vh - ${HEADER_HEIGHT}px), ${cardStackMinPx}px)`
 
   return (
     <div className="w-full">
@@ -18,17 +23,34 @@ function AttributesPage() {
           <div className="p-10 text-[27px] font-light">Unique DNA combination of attributes</div>
         </div>
       </div>
-      <div className="relative">
-        <img alt="Moon Totems attributes" className="w-full" src={ASSETS.attributes.hero} />
+
+      <div
+        id="attributes-hero"
+        className="relative w-full overflow-hidden"
+        style={{ minHeight: heroMinHeight }}
+      >
+        <img
+          alt="Moon Totems attributes"
+          className="mx-auto block h-auto max-w-full object-contain"
+          style={{ height: heroMinHeight, minHeight: heroMinHeight }}
+          src={ASSETS.attributes.hero}
+        />
         {ATTRIBUTE_CARDS.map((card) => (
           <div
-            className={`w-full p-[15px] md:absolute md:w-[350px] ${card.position}`}
+            className={`w-full p-[15px] md:absolute md:w-[320px] ${card.position}`}
             key={card.title}
           >
-            <div className="bg-black/60">
-              <img alt={card.title} className="w-full" src={card.image} />
-              <div className="mt-[10px] p-[10px] text-xl">{card.title}</div>
-              <div className="p-[10px] pb-[30px] text-base md:h-[130px]">{card.text}</div>
+            <div className="flex flex-col bg-black/85 backdrop-blur-sm">
+              <img
+                alt={card.title}
+                className="aspect-square w-full shrink-0 object-cover"
+                loading="lazy"
+                src={card.image}
+              />
+              <div className="mt-[10px] shrink-0 px-[10px] text-xl">{card.title}</div>
+              <div className="px-[10px] pt-[10px] pb-[20px] text-base leading-relaxed text-[#e0e0e0]">
+                {card.text}
+              </div>
             </div>
           </div>
         ))}

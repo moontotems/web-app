@@ -11,6 +11,7 @@ import {
   MapPin,
   Moon,
   Smile,
+  Sparkles,
   Twitter,
 } from 'lucide-react'
 import type { ReactNode } from 'react'
@@ -18,6 +19,7 @@ import type { ReactNode } from 'react'
 import { ASSETS } from '~/lib/constant'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { HEADER_HEIGHT, SOCIAL_LINKS } from '~/lib/nft/constants'
+import { DEFAULT_GALLERY_SEARCH } from '~/lib/nft/gallery-search'
 
 function MenuItem({
   children,
@@ -66,7 +68,7 @@ export function SidebarLeft() {
           <Link to="/orbit" onClick={close}>
             <MenuItem icon={<Moon className={iconClass} />}>Orbit</MenuItem>
           </Link>
-          <Link to="/all" onClick={close}>
+          <Link to="/all" search={DEFAULT_GALLERY_SEARCH} onClick={close}>
             <MenuItem icon={<Smile className={iconClass} />}>All Moon Totems</MenuItem>
           </Link>
 
@@ -77,7 +79,12 @@ export function SidebarLeft() {
           <Link to="/attributes" onClick={close}>
             <MenuItem icon={<CircleUserRound className={iconClass} />}>Unique Characters</MenuItem>
           </Link>
-          <MenuItem icon={<Lightbulb className={iconClass} />}>Exclusive Features</MenuItem>
+          <Link to="/features" onClick={close}>
+            <MenuItem icon={<Lightbulb className={iconClass} />}>Exclusive Features</MenuItem>
+          </Link>
+          <Link to="/open-ai" onClick={close}>
+            <MenuItem icon={<Sparkles className={iconClass} />}>OpenAI</MenuItem>
+          </Link>
           <Link to="/lunar-origins" onClick={close}>
             <MenuItem icon={<MapPin className={iconClass} />}>Lunar Origins</MenuItem>
           </Link>

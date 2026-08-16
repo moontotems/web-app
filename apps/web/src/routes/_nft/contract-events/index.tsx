@@ -152,7 +152,7 @@ function ContractEventsPage() {
         </button>
       </div>
 
-      {loading && <div className="mb-4 text-sm text-[#8d8d8d]">Loading events…</div>}
+      {loading && <div className="mb-4 text-sm text-[#8d8d8d]">Loading events...</div>}
 
       {!loading && events.length === 0 && (
         <div className="border border-[#393939] bg-[#161616] px-3 py-4 text-sm text-[#8d8d8d]">

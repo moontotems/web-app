@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useMatch } from '@tanstack/react-router'
 import {
   ArrowLeftRight,
   Bot,
@@ -22,14 +22,21 @@ import { type ReactNode, useState } from 'react'
 
 import { ASSETS } from '~/lib/constant'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
-import { HEADER_HEIGHT } from '~/lib/nft/constants'
+import { HEADER_HEIGHT, HEADER_ICON_WIDTH } from '~/lib/nft/constants'
 import { FILTERS } from '~/lib/nft/filters'
+import {
+  type GallerySearch,
+  type GalleryView,
+  toggleFavoriteFilter,
+  toggleMintStatusFilters,
+} from '~/lib/nft/gallery-search'
+import { type TotemFilterState, createEmptyTotemFilterState } from '~/lib/nft/totem-filters'
 
 type ViewState = 'hidden' | 'narrow' | 'wide'
 
 const WIDTHS: Record<ViewState, number> = {
   hidden: 0,
-  narrow: 50,
+  narrow: HEADER_ICON_WIDTH,
   wide: 250,
 }
 
@@ -53,19 +60,36 @@ function MenuItem({
   return (
     // biome-ignore lint/a11y/useKeyWithClickEvents: legacy parity menu rows
     <div
-      className={`nft-menu-item flex w-full items-start pt-3 pr-4 pb-1.5 text-sm ${
+      className={`nft-menu-item flex w-full text-sm ${
         title ? 'nft-menu-title' : ''
-      } ${wide ? 'justify-between' : 'justify-center pr-0'} ${className}`}
+      } ${
+        wide
+          ? 'items-start justify-between pt-3 pr-4 pb-1.5'
+          : 'h-[40px] items-center justify-center p-0'
+      } ${className}`}
       style={{
         paddingLeft: wide ? 35 : 0,
-        borderLeft: activeBorder ? `${wide ? 5 : 2}px solid #1062FE` : undefined,
+        // Inset shadow keeps collapsed icons centered (border-left would shift them).
+        boxShadow: activeBorder
+          ? `inset ${wide ? 5 : 2}px 0 0 #1062FE`
+          : undefined,
       }}
       onClick={onClick}
     >
       {wide && <span className="-mt-[3px] text-left">{text}</span>}
-      <span>{icon}</span>
+      <span className={wide ? undefined : 'flex size-full items-center justify-center'}>
+        {icon}
+      </span>
     </div>
   )
+}
+
+function gallerySearch(
+  view: GalleryView,
+  filters: GallerySearch['filters'],
+  facets: TotemFilterState = createEmptyTotemFilterState(),
+): GallerySearch {
+  return { view, filters, facets }
 }
 
 /**
@@ -75,13 +99,16 @@ function MenuItem({
 export function ActionSidebar() {
   const {
     route,
-    setShowGridView,
+    showGridView,
     shuffleIds,
-    filters: { activeFilters, setActiveFilters, filterIsActive, toggleFilter },
+    filters: { activeFilters, setActiveFilters, filterIsActive },
     filteredCreatures,
     usersTokenIds,
     toggleFeaturePanel,
   } = useMoonTotems()
+
+  const allMatch = useMatch({ from: '/_nft/all/', shouldThrow: false })
+  const facets = allMatch?.search.facets ?? createEmptyTotemFilterState()
 
   const [view, setView] = useState<ViewState>('hidden')
 
@@ -102,33 +129,13 @@ export function ActionSidebar() {
   const width = WIDTHS[view]
   const firstTokenId = filteredCreatures[0]?.tokenId ?? 0
   const iconClass = 'size-4'
-
-  const toggleMintedFilter = () => {
-    const withoutMintFilters = activeFilters.filter(
-      (f) => f !== FILTERS.minted && f !== FILTERS.notMinted,
-    )
-    if (filterIsActive(FILTERS.minted)) {
-      setActiveFilters([...withoutMintFilters, FILTERS.notMinted])
-    } else {
-      setActiveFilters([...withoutMintFilters, FILTERS.minted])
-    }
-  }
-
-  const toggleNotMintedFilter = () => {
-    const withoutMintFilters = activeFilters.filter(
-      (f) => f !== FILTERS.minted && f !== FILTERS.notMinted,
-    )
-    if (filterIsActive(FILTERS.notMinted)) {
-      setActiveFilters([...withoutMintFilters, FILTERS.minted])
-    } else {
-      setActiveFilters([...withoutMintFilters, FILTERS.notMinted])
-    }
-  }
+  const currentView: GalleryView = showGridView ? 'grid' : 'list'
+  const galleryFilters = activeFilters.filter((f) => f !== FILTERS.myMoonTotems)
 
   return (
     <div
       id="actionSidebar"
-      className="fixed right-0 z-1000 overflow-y-auto text-white"
+      className={`fixed right-0 z-1000 text-white ${wide ? 'overflow-y-auto' : 'overflow-hidden'}`}
       style={{ top: HEADER_HEIGHT - 1, width }}
     >
       <button
@@ -162,17 +169,19 @@ export function ActionSidebar() {
                 }
               />
             </Link>
-            <Link to="/all" onClick={() => setShowGridView(true)}>
+            <Link to="/all" search={gallerySearch('grid', galleryFilters, facets)}>
               <MenuItem
                 wide={wide}
                 text="Grid View"
+                activeBorder={route.includes('/all') && showGridView}
                 icon={<LayoutGrid className={iconClass} aria-label="Switch to area view" />}
               />
             </Link>
-            <Link to="/all" onClick={() => setShowGridView(false)}>
+            <Link to="/all" search={gallerySearch('list', galleryFilters, facets)}>
               <MenuItem
                 wide={wide}
                 text="List View"
+                activeBorder={route.includes('/all') && !showGridView}
                 icon={<List className={iconClass} aria-label="Switch to list view" />}
               />
             </Link>
@@ -183,15 +192,22 @@ export function ActionSidebar() {
               text="Filter"
               icon={<Filter className={iconClass} aria-label="Filter" />}
             />
-            <Link to="/all" onClick={() => setActiveFilters([])}>
+            <Link to="/all" search={gallerySearch(currentView, [], facets)}>
               <MenuItem
                 wide={wide}
                 text="All Moon Totems"
-                activeBorder={activeFilters.length === 0}
+                activeBorder={route.includes('/all') && galleryFilters.length === 0}
                 icon={<img src={ASSETS.logos.svg} width={17} alt="All Totems" />}
               />
             </Link>
-            <Link to="/all" onClick={toggleNotMintedFilter}>
+            <Link
+              to="/all"
+              search={gallerySearch(
+                currentView,
+                toggleMintStatusFilters(galleryFilters, FILTERS.notMinted),
+                facets,
+              )}
+            >
               <MenuItem
                 wide={wide}
                 text="Available Totems"
@@ -199,7 +215,14 @@ export function ActionSidebar() {
                 icon={<Moon className={iconClass} aria-label="Available Totems" />}
               />
             </Link>
-            <Link to="/all" onClick={toggleMintedFilter}>
+            <Link
+              to="/all"
+              search={gallerySearch(
+                currentView,
+                toggleMintStatusFilters(galleryFilters, FILTERS.minted),
+                facets,
+              )}
+            >
               <MenuItem
                 wide={wide}
                 text="Minted Totems"
@@ -207,7 +230,10 @@ export function ActionSidebar() {
                 icon={<Lock className={iconClass} aria-label="Minted Totems" />}
               />
             </Link>
-            <Link to="/all" onClick={() => toggleFilter(FILTERS.favorites)}>
+            <Link
+              to="/all"
+              search={gallerySearch(currentView, toggleFavoriteFilter(galleryFilters), facets)}
+            >
               <MenuItem
                 wide={wide}
                 text="Favorite Totems"
@@ -230,7 +256,11 @@ export function ActionSidebar() {
                 icon={<CircleUserRound className={iconClass} aria-label="My Totems" />}
               />
             </Link>
-            <Link to="/all" onClick={shuffleIds}>
+            <Link
+              to="/all"
+              search={gallerySearch(currentView, galleryFilters, facets)}
+              onClick={shuffleIds}
+            >
               <MenuItem
                 wide={wide}
                 text="Shuffle"
