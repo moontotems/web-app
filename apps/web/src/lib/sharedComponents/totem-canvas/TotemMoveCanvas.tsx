@@ -3,11 +3,14 @@ import { useMemo } from 'react'
 
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { HEADER_HEIGHT } from '~/lib/nft/constants'
+import { useTokenCards } from '~/lib/nft/use-token-data'
 import { moonTurnVideo } from '~/routes/_nft/project-overview/-data'
 
 import { CanvasTotemTile } from './CanvasTotemTile'
 import {
-  EXPLORE_CELL_SIZE,
+  EXPLORE_CAPTION_HEIGHT,
+  EXPLORE_CELL_HEIGHT,
+  EXPLORE_CELL_WIDTH,
   EXPLORE_TILE_SIZE,
   exploreImageSize,
   getVisibleTiles,
@@ -39,6 +42,18 @@ export function TotemMoveCanvas() {
     return getVisibleTiles(camera.x, camera.y, vw, vh, overscan)
   }, [camera.x, camera.y, camera.scale, containerRef, viewWorldW, viewWorldH, overscan])
 
+  const cardQueryIds = useMemo(() => {
+    const chunks = new Set<number>()
+    for (const tile of tiles) chunks.add(Math.floor(tile.tokenId / 100))
+    const ids: number[] = []
+    for (const chunk of [...chunks].sort((a, b) => a - b)) {
+      const start = chunk * 100
+      for (let i = 0; i < 100; i++) ids.push(start + i)
+    }
+    return ids
+  }, [tiles])
+  const cards = useTokenCards(cardQueryIds)
+
   const moonEl = containerRef.current
   const moonW = moonEl?.clientWidth ?? (typeof window !== 'undefined' ? window.innerWidth : 800)
   const moonH =
@@ -51,7 +66,7 @@ export function TotemMoveCanvas() {
       ref={containerRef}
       role="application"
       aria-label="Infinite Moon Totems canvas. Drag to pan, scroll to zoom, click a totem to open."
-      className="relative h-[calc(100vh-40px)] w-full touch-none overflow-hidden bg-black outline-none"
+      className="relative h-[calc(100vh-40px)] w-full touch-none overflow-hidden bg-black outline-none select-none"
       style={{ cursor: 'grab' }}
       onPointerDown={(e) => {
         if (e.currentTarget.style) e.currentTarget.style.cursor = 'grabbing'
@@ -67,12 +82,14 @@ export function TotemMoveCanvas() {
         if (dist <= moonSize / 2) return
 
         const world = screenToWorld(e.clientX, e.clientY)
-        const localX = ((world.x % EXPLORE_CELL_SIZE) + EXPLORE_CELL_SIZE) % EXPLORE_CELL_SIZE
-        const localY = ((world.y % EXPLORE_CELL_SIZE) + EXPLORE_CELL_SIZE) % EXPLORE_CELL_SIZE
-        if (localX > EXPLORE_TILE_SIZE || localY > EXPLORE_TILE_SIZE) return
+        const localX = ((world.x % EXPLORE_CELL_WIDTH) + EXPLORE_CELL_WIDTH) % EXPLORE_CELL_WIDTH
+        const localY = ((world.y % EXPLORE_CELL_HEIGHT) + EXPLORE_CELL_HEIGHT) % EXPLORE_CELL_HEIGHT
+        if (localX > EXPLORE_TILE_SIZE || localY > EXPLORE_TILE_SIZE + EXPLORE_CAPTION_HEIGHT) {
+          return
+        }
 
-        const worldCol = Math.floor(world.x / EXPLORE_CELL_SIZE)
-        const worldRow = Math.floor(world.y / EXPLORE_CELL_SIZE)
+        const worldCol = Math.floor(world.x / EXPLORE_CELL_WIDTH)
+        const worldRow = Math.floor(world.y / EXPLORE_CELL_HEIGHT)
         const tokenId = tokenIdAt(worldCol, worldRow)
         if (tokenId === null) return
         void navigate({ to: '/$id', params: { id: String(tokenId) } })
@@ -95,6 +112,7 @@ export function TotemMoveCanvas() {
             x={tile.x}
             y={tile.y}
             imageSize={imageSize}
+            card={cards.get(tile.tokenId)}
           />
         ))}
       </div>

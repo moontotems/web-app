@@ -9,10 +9,13 @@ export const EXPLORE_ROWS = Math.ceil(TOTAL_TOKENS / EXPLORE_COLS)
 /** Base image size in world pixels; gap separates tiles on the black canvas. */
 export const EXPLORE_TILE_SIZE = 160
 export const EXPLORE_GAP = 2
-export const EXPLORE_CELL_SIZE = EXPLORE_TILE_SIZE + EXPLORE_GAP
+/** Name + job line under each tile (TotemCard caption). */
+export const EXPLORE_CAPTION_HEIGHT = 56
+export const EXPLORE_CELL_WIDTH = EXPLORE_TILE_SIZE + EXPLORE_GAP
+export const EXPLORE_CELL_HEIGHT = EXPLORE_TILE_SIZE + EXPLORE_CAPTION_HEIGHT + EXPLORE_GAP
 
-export const EXPLORE_WORLD_WIDTH = EXPLORE_COLS * EXPLORE_CELL_SIZE
-export const EXPLORE_WORLD_HEIGHT = EXPLORE_ROWS * EXPLORE_CELL_SIZE
+export const EXPLORE_WORLD_WIDTH = EXPLORE_COLS * EXPLORE_CELL_WIDTH
+export const EXPLORE_WORLD_HEIGHT = EXPLORE_ROWS * EXPLORE_CELL_HEIGHT
 
 export const EXPLORE_OVERSCAN = 2
 /** Soft cap on mounted tiles (min zoom) so the DOM stays light. */
@@ -47,15 +50,15 @@ export function getVisibleTiles(
   viewWorldH: number,
   overscan: number = EXPLORE_OVERSCAN,
 ): VisibleTile[] {
-  const left = camX - overscan * EXPLORE_CELL_SIZE
-  const top = camY - overscan * EXPLORE_CELL_SIZE
-  const right = camX + viewWorldW + overscan * EXPLORE_CELL_SIZE
-  const bottom = camY + viewWorldH + overscan * EXPLORE_CELL_SIZE
+  const left = camX - overscan * EXPLORE_CELL_WIDTH
+  const top = camY - overscan * EXPLORE_CELL_HEIGHT
+  const right = camX + viewWorldW + overscan * EXPLORE_CELL_WIDTH
+  const bottom = camY + viewWorldH + overscan * EXPLORE_CELL_HEIGHT
 
-  const colStart = Math.floor(left / EXPLORE_CELL_SIZE)
-  const colEnd = Math.ceil(right / EXPLORE_CELL_SIZE)
-  const rowStart = Math.floor(top / EXPLORE_CELL_SIZE)
-  const rowEnd = Math.ceil(bottom / EXPLORE_CELL_SIZE)
+  const colStart = Math.floor(left / EXPLORE_CELL_WIDTH)
+  const colEnd = Math.ceil(right / EXPLORE_CELL_WIDTH)
+  const rowStart = Math.floor(top / EXPLORE_CELL_HEIGHT)
+  const rowEnd = Math.ceil(bottom / EXPLORE_CELL_HEIGHT)
 
   const tiles: VisibleTile[] = []
   for (let worldRow = rowStart; worldRow < rowEnd; worldRow++) {
@@ -67,8 +70,8 @@ export function getVisibleTiles(
         worldCol,
         worldRow,
         tokenId,
-        x: worldCol * EXPLORE_CELL_SIZE,
-        y: worldRow * EXPLORE_CELL_SIZE,
+        x: worldCol * EXPLORE_CELL_WIDTH,
+        y: worldRow * EXPLORE_CELL_HEIGHT,
       })
     }
   }
@@ -76,11 +79,14 @@ export function getVisibleTiles(
 }
 
 export function clampScale(scale: number, viewportW: number, viewportH: number): number {
-  const cell = EXPLORE_CELL_SIZE
+  const cellW = EXPLORE_CELL_WIDTH
+  const cellH = EXPLORE_CELL_HEIGHT
   // Max: a tile can grow to ~3× the shorter viewport side (close inspection).
-  const maxScale = (Math.min(viewportW, viewportH) * 3) / cell
+  const maxScale = (Math.min(viewportW, viewportH) * 3) / cellW
   // Min: roughly EXPLORE_MAX_VISIBLE_TILES on screen.
-  const minScale = Math.sqrt((viewportW * viewportH) / (cell * cell * EXPLORE_MAX_VISIBLE_TILES))
+  const minScale = Math.sqrt(
+    (viewportW * viewportH) / (cellW * cellH * EXPLORE_MAX_VISIBLE_TILES),
+  )
   return Math.min(maxScale, Math.max(minScale, scale))
 }
 
@@ -95,5 +101,5 @@ export function exploreImageSize(scale: number): TotemImageSize {
 
 export function initialScale(viewportW: number, isMobile: boolean): number {
   const colsOnScreen = isMobile ? 12 : 28
-  return viewportW / (colsOnScreen * EXPLORE_CELL_SIZE)
+  return viewportW / (colsOnScreen * EXPLORE_CELL_WIDTH)
 }
