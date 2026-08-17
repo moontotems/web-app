@@ -16,36 +16,7 @@ export type ProjectAssetGroup = {
 }
 
 export const PROJECT_ASSET_GROUPS: ProjectAssetGroup[] = [
-  {
-    "id": "promo-material",
-    "title": "PROMO MATERIAL",
-    "assets": [
-      {
-        "path": "PROMO_MATERIAL/MoonTotems_card_flip.mp4",
-        "url": "https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/project-assets/PROMO_MATERIAL/MoonTotems_card_flip.mp4",
-        "title": "MoonTotems Card Flip",
-        "kind": "video"
-      },
-      {
-        "path": "PROMO_MATERIAL/moontotems_flipping_A.gif",
-        "url": "https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/project-assets/PROMO_MATERIAL/moontotems_flipping_A.gif",
-        "title": "Moontotems Flipping A",
-        "kind": "image"
-      },
-      {
-        "path": "PROMO_MATERIAL/MoonTotems_TwitterPromo_01.mp4",
-        "url": "https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/project-assets/PROMO_MATERIAL/MoonTotems_TwitterPromo_01.mp4",
-        "title": "MoonTotems TwitterPromo 01",
-        "kind": "video"
-      },
-      {
-        "path": "PROMO_MATERIAL/totemgrid01.jpg",
-        "url": "https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/project-assets/PROMO_MATERIAL/totemgrid01.jpg",
-        "title": "Totemgrid01",
-        "kind": "image"
-      }
-    ]
-  },
+
   {
     "id": "social-media-posts-img",
     "title": "Social Media Posts - IMG",
@@ -696,6 +667,36 @@ export const PROJECT_ASSET_GROUPS: ProjectAssetGroup[] = [
         "path": "screenshots/Screenshot 2021-10-23 at 10.43.25.png",
         "url": "https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/project-assets/screenshots/Screenshot%202021-10-23%20at%2010.43.25.png",
         "title": "Screenshot 2021 10 23 At 10.43.25",
+        "kind": "image"
+      }
+    ]
+  },
+  {
+    "id": "promo-material",
+    "title": "PROMO MATERIAL",
+    "assets": [
+      {
+        "path": "PROMO_MATERIAL/MoonTotems_card_flip.mp4",
+        "url": "https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/project-assets/PROMO_MATERIAL/MoonTotems_card_flip.mp4",
+        "title": "MoonTotems Card Flip",
+        "kind": "video"
+      },
+      {
+        "path": "PROMO_MATERIAL/moontotems_flipping_A.gif",
+        "url": "https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/project-assets/PROMO_MATERIAL/moontotems_flipping_A.gif",
+        "title": "Moontotems Flipping A",
+        "kind": "image"
+      },
+      {
+        "path": "PROMO_MATERIAL/MoonTotems_TwitterPromo_01.mp4",
+        "url": "https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/project-assets/PROMO_MATERIAL/MoonTotems_TwitterPromo_01.mp4",
+        "title": "MoonTotems TwitterPromo 01",
+        "kind": "video"
+      },
+      {
+        "path": "PROMO_MATERIAL/totemgrid01.jpg",
+        "url": "https://qjhckpovfxlhfuoducwr.supabase.co/storage/v1/object/public/moontotems/project-assets/PROMO_MATERIAL/totemgrid01.jpg",
+        "title": "Totemgrid01",
         "kind": "image"
       }
     ]
