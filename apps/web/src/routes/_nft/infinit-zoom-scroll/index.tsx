@@ -62,7 +62,7 @@ const EyeCrop = ({ tokenId, eager }: { tokenId: number; eager?: boolean }) => {
 
 /** Full-width 6k left-eye crops, stacked top to bottom, loading more as you scroll. */
 const InfiniteZoomScrollPage = () => {
-  const { shuffledIds, setHeaderTitle } = useMoonTotems()
+  const { isMobile, shuffledIds, setHeaderTitle } = useMoonTotems()
   const [count, setCount] = useState(PAGE_SIZE)
   const [showHint, setShowHint] = useState(true)
   const sentinelRef = useRef<HTMLDivElement>(null)
@@ -103,7 +103,7 @@ const InfiniteZoomScrollPage = () => {
       const slideHeight = scroller.clientHeight
       const index = Math.round(scroller.scrollTop / slideHeight)
       const next = event.key === 'ArrowDown' ? index + 1 : index - 1
-      scroller.scrollTo({ top: next * slideHeight, behavior: 'smooth' })
+      scroller.scrollTo({ top: next * slideHeight, behavior: 'instant' })
     }
 
     document.addEventListener('keydown', onKeyDown)
@@ -121,9 +121,13 @@ const InfiniteZoomScrollPage = () => {
           onClick={() => setShowHint(false)}
         >
           <div className="border border-white/20 bg-[#262626] px-12 py-10 text-center text-white">
-            <p className="text-sm tracking-[0.25em] text-white/70">USE THE ARROW KEYS</p>
+            <p className="text-sm tracking-[0.25em] text-white/70">
+              {isMobile ? 'SWIPE' : 'USE THE ARROW KEYS'}
+            </p>
             <p className="mt-5 text-3xl tracking-[0.4em]">↑ ↓</p>
-            <p className="mt-5 text-xs tracking-wider text-white/45">PRESS ANY KEY</p>
+            <p className="mt-5 text-xs tracking-wider text-white/45">
+              {isMobile ? 'TAP ANYWHERE' : 'PRESS ANY KEY'}
+            </p>
           </div>
         </button>
       )}
