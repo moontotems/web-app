@@ -9,6 +9,7 @@ import { LunarOriginsGrid } from '../lunar-origins/-components/LunarOriginsGrid'
 import {
   EarthToMoonSection,
   ExampleMoonTotemsSection,
+  ProjectAssets,
   RoadmapSection,
   SocialMediaSection,
   SplitSliderSection,
@@ -47,6 +48,7 @@ const ProjectOverviewPage = () => {
       <EarthToMoonSection />
       <SocialMediaSection />
       <ExampleMoonTotemsSection slideDirectionLeft />
+      <ProjectAssets />
     </>
   )
 }
