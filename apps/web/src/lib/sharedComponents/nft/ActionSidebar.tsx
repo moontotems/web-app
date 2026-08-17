@@ -1,6 +1,7 @@
 import { Link, useMatch } from '@tanstack/react-router'
 import {
   ArrowLeftRight,
+  BookOpen,
   Bot,
   CircleUserRound,
   Download,
@@ -187,6 +188,14 @@ export const ActionSidebar = () => {
                 text="Zoom Scroll"
                 activeBorder={route.includes('/infinit-zoom-scroll')}
                 icon={<ZoomIn className={iconClass} aria-label="Switch to infinite zoom" />}
+              />
+            </Link>
+            <Link to="/story-discover">
+              <MenuItem
+                wide={wide}
+                text="Story Discover"
+                activeBorder={route.includes('/story-discover')}
+                icon={<BookOpen className={iconClass} aria-label="Switch to story discover" />}
               />
             </Link>
 

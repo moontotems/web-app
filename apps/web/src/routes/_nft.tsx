@@ -15,6 +15,7 @@ const NftShell = () => {
     route.includes('/explore') ||
     route.includes('/orbit') ||
     route.includes('/infinit-zoom-scroll') ||
+    route.includes('/story-discover') ||
     route.includes('/games/') ||
     /\/\d+$/.test(route || '')
 

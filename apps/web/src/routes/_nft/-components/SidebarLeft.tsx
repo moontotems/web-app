@@ -81,6 +81,9 @@ export const SidebarLeft = () => {
           <Link to="/infinit-zoom-scroll" onClick={close}>
             <MenuItem icon={<ZoomIn className={ICON} />}>Infinite Zoom</MenuItem>
           </Link>
+          <Link to="/story-discover" onClick={close}>
+            <MenuItem icon={<BookOpen className={ICON} />}>Story Discover</MenuItem>
+          </Link>
           <Link to="/games/space-invader" onClick={close}>
             <MenuItem icon={<Gamepad2 className={ICON} />}>Space Invader</MenuItem>
           </Link>

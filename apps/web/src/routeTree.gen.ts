@@ -19,6 +19,7 @@ import { Route as AuthRegisterIndexRouteImport } from './routes/auth/register/in
 import { Route as AuthLoginIndexRouteImport } from './routes/auth/login/index'
 import { Route as NftWalletIndexRouteImport } from './routes/_nft/wallet/index'
 import { Route as NftTermsAndConditionsIndexRouteImport } from './routes/_nft/terms-and-conditions/index'
+import { Route as NftStoryDiscoverIndexRouteImport } from './routes/_nft/story-discover/index'
 import { Route as NftProjectOverviewIndexRouteImport } from './routes/_nft/project-overview/index'
 import { Route as NftOrbitIndexRouteImport } from './routes/_nft/orbit/index'
 import { Route as NftOpenAiIndexRouteImport } from './routes/_nft/open-ai/index'
@@ -36,7 +37,6 @@ import { Route as NftAttributesIndexRouteImport } from './routes/_nft/attributes
 import { Route as NftAllIndexRouteImport } from './routes/_nft/all/index'
 import { Route as NftIdIndexRouteImport } from './routes/_nft/$id/index'
 import { Route as NftMoontotemIdRouteImport } from './routes/_nft/moontotem.$id'
-import { Route as NftGamesSpaceInvaderIndexRouteImport } from './routes/_nft/games/space-invader/index'
 import { Route as AuthenticatedAppHomeIndexRouteImport } from './routes/_authenticated/_app/home/index'
 
 const AuthRoute = AuthRouteImport.update({
@@ -87,6 +87,11 @@ const NftTermsAndConditionsIndexRoute =
     path: '/terms-and-conditions/',
     getParentRoute: () => NftRoute,
   } as any)
+const NftStoryDiscoverIndexRoute = NftStoryDiscoverIndexRouteImport.update({
+  id: '/story-discover/',
+  path: '/story-discover/',
+  getParentRoute: () => NftRoute,
+} as any)
 const NftProjectOverviewIndexRoute = NftProjectOverviewIndexRouteImport.update({
   id: '/project-overview/',
   path: '/project-overview/',
@@ -174,12 +179,6 @@ const NftMoontotemIdRoute = NftMoontotemIdRouteImport.update({
   path: '/moontotem/$id',
   getParentRoute: () => NftRoute,
 } as any)
-const NftGamesSpaceInvaderIndexRoute =
-  NftGamesSpaceInvaderIndexRouteImport.update({
-    id: '/games/space-invader/',
-    path: '/games/space-invader/',
-    getParentRoute: () => NftRoute,
-  } as any)
 const AuthenticatedAppHomeIndexRoute =
   AuthenticatedAppHomeIndexRouteImport.update({
     id: '/home/',
@@ -208,12 +207,12 @@ export interface FileRoutesByFullPath {
   '/open-ai/': typeof NftOpenAiIndexRoute
   '/orbit/': typeof NftOrbitIndexRoute
   '/project-overview/': typeof NftProjectOverviewIndexRoute
+  '/story-discover/': typeof NftStoryDiscoverIndexRoute
   '/terms-and-conditions/': typeof NftTermsAndConditionsIndexRoute
   '/wallet/': typeof NftWalletIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
   '/auth/register/': typeof AuthRegisterIndexRoute
   '/home/': typeof AuthenticatedAppHomeIndexRoute
-  '/games/space-invader/': typeof NftGamesSpaceInvaderIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof NftIndexRoute
@@ -236,12 +235,12 @@ export interface FileRoutesByTo {
   '/open-ai': typeof NftOpenAiIndexRoute
   '/orbit': typeof NftOrbitIndexRoute
   '/project-overview': typeof NftProjectOverviewIndexRoute
+  '/story-discover': typeof NftStoryDiscoverIndexRoute
   '/terms-and-conditions': typeof NftTermsAndConditionsIndexRoute
   '/wallet': typeof NftWalletIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/auth/register': typeof AuthRegisterIndexRoute
   '/home': typeof AuthenticatedAppHomeIndexRoute
-  '/games/space-invader': typeof NftGamesSpaceInvaderIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -268,12 +267,12 @@ export interface FileRoutesById {
   '/_nft/open-ai/': typeof NftOpenAiIndexRoute
   '/_nft/orbit/': typeof NftOrbitIndexRoute
   '/_nft/project-overview/': typeof NftProjectOverviewIndexRoute
+  '/_nft/story-discover/': typeof NftStoryDiscoverIndexRoute
   '/_nft/terms-and-conditions/': typeof NftTermsAndConditionsIndexRoute
   '/_nft/wallet/': typeof NftWalletIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
   '/auth/register/': typeof AuthRegisterIndexRoute
   '/_authenticated/_app/home/': typeof AuthenticatedAppHomeIndexRoute
-  '/_nft/games/space-invader/': typeof NftGamesSpaceInvaderIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -298,12 +297,12 @@ export interface FileRouteTypes {
     | '/open-ai/'
     | '/orbit/'
     | '/project-overview/'
+    | '/story-discover/'
     | '/terms-and-conditions/'
     | '/wallet/'
     | '/auth/login/'
     | '/auth/register/'
     | '/home/'
-    | '/games/space-invader/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -326,12 +325,12 @@ export interface FileRouteTypes {
     | '/open-ai'
     | '/orbit'
     | '/project-overview'
+    | '/story-discover'
     | '/terms-and-conditions'
     | '/wallet'
     | '/auth/login'
     | '/auth/register'
     | '/home'
-    | '/games/space-invader'
   id:
     | '__root__'
     | '/_authenticated'
@@ -357,12 +356,12 @@ export interface FileRouteTypes {
     | '/_nft/open-ai/'
     | '/_nft/orbit/'
     | '/_nft/project-overview/'
+    | '/_nft/story-discover/'
     | '/_nft/terms-and-conditions/'
     | '/_nft/wallet/'
     | '/auth/login/'
     | '/auth/register/'
     | '/_authenticated/_app/home/'
-    | '/_nft/games/space-invader/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -441,6 +440,13 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions/'
       preLoaderRoute: typeof NftTermsAndConditionsIndexRouteImport
+      parentRoute: typeof NftRoute
+    }
+    '/_nft/story-discover/': {
+      id: '/_nft/story-discover/'
+      path: '/story-discover'
+      fullPath: '/story-discover/'
+      preLoaderRoute: typeof NftStoryDiscoverIndexRouteImport
       parentRoute: typeof NftRoute
     }
     '/_nft/project-overview/': {
@@ -562,13 +568,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NftMoontotemIdRouteImport
       parentRoute: typeof NftRoute
     }
-    '/_nft/games/space-invader/': {
-      id: '/_nft/games/space-invader/'
-      path: '/games/space-invader'
-      fullPath: '/games/space-invader/'
-      preLoaderRoute: typeof NftGamesSpaceInvaderIndexRouteImport
-      parentRoute: typeof NftRoute
-    }
     '/_authenticated/_app/home/': {
       id: '/_authenticated/_app/home/'
       path: '/home'
@@ -621,9 +620,9 @@ interface NftRouteChildren {
   NftOpenAiIndexRoute: typeof NftOpenAiIndexRoute
   NftOrbitIndexRoute: typeof NftOrbitIndexRoute
   NftProjectOverviewIndexRoute: typeof NftProjectOverviewIndexRoute
+  NftStoryDiscoverIndexRoute: typeof NftStoryDiscoverIndexRoute
   NftTermsAndConditionsIndexRoute: typeof NftTermsAndConditionsIndexRoute
   NftWalletIndexRoute: typeof NftWalletIndexRoute
-  NftGamesSpaceInvaderIndexRoute: typeof NftGamesSpaceInvaderIndexRoute
 }
 
 const NftRouteChildren: NftRouteChildren = {
@@ -645,9 +644,9 @@ const NftRouteChildren: NftRouteChildren = {
   NftOpenAiIndexRoute: NftOpenAiIndexRoute,
   NftOrbitIndexRoute: NftOrbitIndexRoute,
   NftProjectOverviewIndexRoute: NftProjectOverviewIndexRoute,
+  NftStoryDiscoverIndexRoute: NftStoryDiscoverIndexRoute,
   NftTermsAndConditionsIndexRoute: NftTermsAndConditionsIndexRoute,
   NftWalletIndexRoute: NftWalletIndexRoute,
-  NftGamesSpaceInvaderIndexRoute: NftGamesSpaceInvaderIndexRoute,
 }
 
 const NftRouteWithChildren = NftRoute._addFileChildren(NftRouteChildren)

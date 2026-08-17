@@ -1,7 +1,8 @@
-import { MobileItemSlider } from '../../-components/MobileItemSlider'
-import { MOONS, type Moon } from '../-data'
+import { LUNAR_ORIGINS, type LunarOrigin } from '~/lib/constants'
 
-const MoonCard = ({ moon }: { moon: Moon }) => {
+import { MobileItemSlider } from '../../-components/MobileItemSlider'
+
+const MoonCard = ({ moon }: { moon: LunarOrigin }) => {
   return (
     <div>
       <img alt={moon.name} className="mb-5 w-full" loading="lazy" src={moon.image} />
@@ -23,7 +24,7 @@ export const LunarOriginsGrid = () => {
       <div className="md:hidden">
         <MobileItemSlider
           getKey={(moon) => moon.name}
-          items={MOONS}
+          items={LUNAR_ORIGINS}
           renderItem={(moon) => (
             <div className="px-[25px]">
               <MoonCard moon={moon} />
@@ -33,7 +34,7 @@ export const LunarOriginsGrid = () => {
       </div>
 
       <div className="hidden gap-x-8 gap-y-12 px-[25px] md:grid md:grid-cols-3 md:px-[10%]">
-        {MOONS.map((moon) => (
+        {LUNAR_ORIGINS.map((moon) => (
           <MoonCard key={moon.name} moon={moon} />
         ))}
       </div>

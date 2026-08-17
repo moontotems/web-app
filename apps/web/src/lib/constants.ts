@@ -412,6 +412,291 @@ export const ASSETS = {
   },
 } as const
 
+/** Shared shape for lunar month / phase catalog cards. */
+export type LunarCatalogItem = {
+  image: string
+  title: string
+  description?: string
+  symbol?: string
+}
+
+export type LunarOrigin = {
+  image: string
+  symbol: string
+  name: string
+  nameLatin: string
+}
+
+const LUNAR_MONTH_NAMES = ASSETS.home.lunarMonths.names
+
+export const LUNAR_MONTHS: LunarCatalogItem[] = [
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[0]),
+    title: 'Ghost Moon',
+    description:
+      'Season of ancestry, remembering those who came before us, now living in our memories.',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[1]),
+    title: 'Snow Moon',
+    description: 'Crystalize fluid situations',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[2]),
+    title: 'Crow Moon',
+    description: 'Opportunists, harbringers, and observers',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[3]),
+    title: 'Fish Moon',
+    description: 'Comfortable under pressure',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[4]),
+    title: 'Milk Moon',
+    description: 'Fluid and maternal',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[5]),
+    title: 'Honey Moon',
+    description: 'Collective effort',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[6]),
+    title: 'Thunder Moon',
+    description: 'Energetic, shocking',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[7]),
+    title: 'Buck Moon',
+    description: 'Easily provoked, horny',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[8]),
+    title: 'Harvest Moon',
+    description: 'Abundant',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[9]),
+    title: 'Leaf Moon',
+    description: 'Traveller, nomadic',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[10]),
+    title: 'Blood Moon',
+    description:
+      'Surrounded by three concentric rings of mountains, uplifted by the colossal impact event that excavated it.',
+  },
+  {
+    image: ASSETS.home.lunarMonths.jpg512(LUNAR_MONTH_NAMES[11]),
+    title: 'Oak Moon',
+    description: 'Static, stoic, stable, solid',
+  },
+]
+
+export const LUNAR_PHASES: LunarCatalogItem[] = [
+  {
+    image: ASSETS.lunarCalendar.phases.newMoon,
+    symbol: ASSETS.lunarCalendar.phases.newMoon,
+    title: 'New Moon',
+    description: 'New Begging, Virgninal',
+  },
+  {
+    image: ASSETS.lunarCalendar.phases.waxingCrescent,
+    symbol: ASSETS.lunarCalendar.phases.waxingCrescent,
+    title: 'Waxing Crescent',
+    description: 'Youth, Open',
+  },
+  {
+    image: ASSETS.lunarCalendar.phases.firstQuarter,
+    symbol: ASSETS.lunarCalendar.phases.firstQuarter,
+    title: 'First Quarter',
+    description:
+      'Surrounded by three concentric rings of mountains, uplifted by the colossal impact event that excavated it.',
+  },
+  {
+    image: ASSETS.lunarCalendar.phases.waxingGibbous,
+    symbol: ASSETS.lunarCalendar.phases.waxingGibbous,
+    title: 'Waxing Gibbous',
+    description: 'Exhuberance, excitement, fertile',
+  },
+  {
+    image: ASSETS.lunarCalendar.phases.fullMoon,
+    symbol: ASSETS.lunarCalendar.phases.fullMoon,
+    title: 'Full Moon',
+    description: 'Pinnacle, peak, climax',
+  },
+  {
+    image: ASSETS.lunarCalendar.phases.waningGibbous,
+    symbol: ASSETS.lunarCalendar.phases.waningGibbous,
+    title: 'Waning Gibbous',
+    description: 'The Day after, Reflection',
+  },
+  {
+    image: ASSETS.lunarCalendar.phases.lastQuarter,
+    symbol: ASSETS.lunarCalendar.phases.lastQuarter,
+    title: 'Last Quarter',
+    description: 'Last Hurrah, Realization Dawning of the Mind',
+  },
+  {
+    image: ASSETS.lunarCalendar.phases.waningCrescent,
+    symbol: ASSETS.lunarCalendar.phases.waningCrescent,
+    title: 'Waning Crescent',
+    description: 'Old, Wise, Calm, Enlightenment',
+  },
+]
+
+export const LUNAR_ORIGINS: LunarOrigin[] = [
+  {
+    image: ASSETS.lunarOrigins.seaOfRains.jpeg,
+    symbol: ASSETS.lunarOrigins.seaOfRains.svg,
+    name: 'Sea of Rains',
+    nameLatin: 'Mare Imbrium',
+  },
+  {
+    image: ASSETS.lunarOrigins.seaOfFertility.jpeg,
+    symbol: ASSETS.lunarOrigins.seaOfFertility.svg,
+    name: 'Sea of Fertility',
+    nameLatin: 'Mare Fecunditatis',
+  },
+  {
+    image: ASSETS.lunarOrigins.seaOfTranquility.jpeg,
+    symbol: ASSETS.lunarOrigins.seaOfTranquility.svg,
+    name: 'Sea of Tranquility',
+    nameLatin: 'Mare Tranquillitatis',
+  },
+  {
+    image: ASSETS.lunarOrigins.seaOfClouds.jpeg,
+    symbol: ASSETS.lunarOrigins.seaOfClouds.svg,
+    name: 'Sea of Clouds',
+    nameLatin: 'Mare Nubium',
+  },
+  {
+    image: ASSETS.lunarOrigins.seaOfIslands.jpeg,
+    symbol: ASSETS.lunarOrigins.seaOfIslands.svg,
+    name: 'Sea of Islands',
+    nameLatin: 'Mare Insularum',
+  },
+  {
+    image: ASSETS.lunarOrigins.lakeOfDreams.jpeg,
+    symbol: ASSETS.lunarOrigins.lakeOfDreams.svg,
+    name: 'Lake of Dreams',
+    nameLatin: 'Lacus Somniorum',
+  },
+  {
+    image: ASSETS.lunarOrigins.bayOfRainbows.jpeg,
+    symbol: ASSETS.lunarOrigins.bayOfRainbows.svg,
+    name: 'Bay of Rainbows',
+    nameLatin: 'Sinus Iridum',
+  },
+  {
+    image: ASSETS.lunarOrigins.peninsulaOfThunder.jpeg,
+    symbol: ASSETS.lunarOrigins.peninsulaOfThunder.svg,
+    name: 'Peninsula of Thunder',
+    nameLatin: 'Peninsula Fulminum',
+  },
+  {
+    image: ASSETS.lunarOrigins.bayOfHarmony.jpeg,
+    symbol: ASSETS.lunarOrigins.bayOfHarmony.svg,
+    name: 'Bay of Harmony',
+    nameLatin: 'Sinus Concordiae',
+  },
+  {
+    image: ASSETS.lunarOrigins.bayOfSuccess.jpeg,
+    symbol: ASSETS.lunarOrigins.bayOfSuccess.svg,
+    name: 'Bay of Success',
+    nameLatin: 'Sinus Successus',
+  },
+  {
+    image: ASSETS.lunarOrigins.bayOfLove.jpeg,
+    symbol: ASSETS.lunarOrigins.bayOfLove.svg,
+    name: 'Bay of Love',
+    nameLatin: 'Sinus Amoris',
+  },
+  {
+    image: ASSETS.lunarOrigins.lakeOfTime.jpeg,
+    symbol: ASSETS.lunarOrigins.lakeOfTime.svg,
+    name: 'Lake of Time',
+    nameLatin: 'Lacus Temporis',
+  },
+  {
+    image: ASSETS.lunarOrigins.lakeOfHappiness.jpeg,
+    symbol: ASSETS.lunarOrigins.lakeOfHappiness.svg,
+    name: 'Lake of Happiness',
+    nameLatin: 'Lacus Felicitatis',
+  },
+  {
+    image: ASSETS.lunarOrigins.lakeOfHope.jpeg,
+    symbol: ASSETS.lunarOrigins.lakeOfHope.svg,
+    name: 'Lake of Hope',
+    nameLatin: 'Lacus Spei',
+  },
+  {
+    image: ASSETS.lunarOrigins.lakeOfSoftness.jpeg,
+    symbol: ASSETS.lunarOrigins.lakeOfSoftness.svg,
+    name: 'Lake of Softness',
+    nameLatin: 'Lacus Lenitatis',
+  },
+  {
+    image: ASSETS.lunarOrigins.lakeOfPerserverance.jpeg,
+    symbol: ASSETS.lunarOrigins.lakeOfPerserverance.svg,
+    name: 'Lake of Perseverance',
+    nameLatin: 'Lacus Perseverantiae',
+  },
+  {
+    image: ASSETS.lunarOrigins.lakeOfForgetfulness.jpeg,
+    symbol: ASSETS.lunarOrigins.lakeOfForgetfulness.svg,
+    name: 'Lake of Forgetfulness',
+    nameLatin: 'Lacus Oblivionis',
+  },
+  {
+    image: ASSETS.lunarOrigins.lakeOfLuxury.jpeg,
+    symbol: ASSETS.lunarOrigins.lakeOfLuxury.svg,
+    name: 'Lake of Luxury',
+    nameLatin: 'Lacus Luxuriae',
+  },
+]
+
+/**
+ * Houdini metadata value → lunar asset lookups.
+ * Keys match `moonMonth`, `moonPhase`, and `lunarOriginName` in the totem table.
+ */
+function lunarMetaEntry(label: string, image: string, symbol?: string) {
+  return symbol ? ({ label, image, symbol } as const) : ({ label, image } as const)
+}
+
+export const LUNAR_MONTH_META = Object.fromEntries(
+  LUNAR_MONTHS.map((month) => {
+    const metaKey = month.title.replace(/ Moon$/, '')
+    return [metaKey, lunarMetaEntry(month.title, month.image)]
+  }),
+) as Record<string, { label: string; image: string; symbol?: string }>
+
+/** Metadata spellings that differ from `LUNAR_PHASES` titles. */
+const LUNAR_PHASE_META_KEYS: Record<string, string> = {
+  New: 'New Moon',
+  Full: 'Full Moon',
+  'Waxing Gibbos': 'Waxing Gibbous',
+  'Waning Gibbos': 'Waning Gibbous',
+}
+
+export const LUNAR_PHASE_META = Object.fromEntries(
+  LUNAR_PHASES.flatMap((phase) => {
+    const aliasKeys = Object.entries(LUNAR_PHASE_META_KEYS)
+      .filter(([, title]) => title === phase.title)
+      .map(([key]) => key)
+    const keys = aliasKeys.length > 0 ? aliasKeys : [phase.title]
+    return keys.map((key) => [key, lunarMetaEntry(phase.title, phase.image)])
+  }),
+) as Record<string, { label: string; image: string; symbol?: string }>
+
+export const LUNAR_ORIGIN_META = Object.fromEntries(
+  LUNAR_ORIGINS.map((origin) => [
+    origin.name,
+    lunarMetaEntry(origin.name, origin.image, origin.symbol),
+  ]),
+) as Record<string, { label: string; image: string; symbol?: string }>
+
 // The full ASSETS catalog shape.
 export type Assets = typeof ASSETS
 

@@ -1,12 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
 
+import { LUNAR_MONTHS, LUNAR_PHASES } from '~/lib/constants'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 
 import { LunarItemGrid } from '../-components/LunarItemGrid'
 import { LunarOriginsGrid } from '../lunar-origins/-components/LunarOriginsGrid'
-import { LUNAR_MONTHS } from '../lunar-months/-data'
-import { LUNAR_PHASES } from '../lunar-phases/-data'
 import {
   EarthToMoonSection,
   ExampleMoonTotemsSection,

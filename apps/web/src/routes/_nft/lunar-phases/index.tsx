@@ -1,18 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { LUNAR_PHASES } from '~/lib/constants'
 import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
 import { LunarItemGrid } from '../-components/LunarItemGrid'
-import { LUNAR_PHASES } from './-data'
 
 const LunarPhasesPage = () => {
   useScrollToTop()
 
   return (
     <LunarItemGrid
-      intro="Moon Totems come from the Moon"
-      items={LUNAR_PHASES}
       title="Lunar Phases"
+      intro="Each Moon Totem is born under a particular Lunar Phase."
+      items={LUNAR_PHASES}
     />
   )
 }
