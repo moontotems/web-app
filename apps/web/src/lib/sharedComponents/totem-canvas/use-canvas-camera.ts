@@ -3,7 +3,14 @@ import { type RefObject, useCallback, useEffect, useRef, useState } from 'react'
 import {
   EXPLORE_WORLD_HEIGHT,
   EXPLORE_WORLD_WIDTH,
+  type ExploreGpuImageSize,
+  type VisibleTile,
   clampScale,
+  exploreCaptionsVisible,
+  exploreGpuImageSize,
+  exploreGpuOverscan,
+  exploreViewKey,
+  getVisibleTiles,
   initialScale,
   positiveMod,
 } from './explore-grid'
@@ -22,9 +29,23 @@ export type CanvasCamera = {
   scale: number
 }
 
+/** React-facing snapshot: only updates when the visible cell window / LOD changes. */
+export type CanvasViewSnapshot = {
+  tiles: VisibleTile[]
+  captionTiles: VisibleTile[]
+  gpuSize: ExploreGpuImageSize
+  captionsVisible: boolean
+  overscan: number
+}
+
 export type CanvasCameraApi = {
-  camera: CanvasCamera
+  cameraRef: RefObject<CanvasCamera>
+  view: CanvasViewSnapshot
   containerRef: RefObject<HTMLDivElement | null>
+  /** Caption / overlay layer — transform updated every frame without React. */
+  worldLayerRef: RefObject<HTMLDivElement | null>
+  /** Subscribe to every camera write (Pixi transform). Returns unsubscribe. */
+  subscribeCamera: (listener: (cam: CanvasCamera) => void) => () => void
   /** Screen → world. */
   screenToWorld: (clientX: number, clientY: number) => { x: number; y: number }
   /** True if the last pointer gesture was a drag (not a click). */
@@ -39,15 +60,28 @@ function wrapCamera(cam: CanvasCamera): CanvasCamera {
   }
 }
 
+const EMPTY_VIEW: CanvasViewSnapshot = {
+  tiles: [],
+  captionTiles: [],
+  gpuSize: 100,
+  captionsVisible: false,
+  overscan: 2,
+}
+
 /**
  * Unbounded pan (wraparound world), zoom toward cursor, pinch, keyboard,
  * and inertia after a flick so the canvas keeps moving for a while.
+ *
+ * Hot path writes `cameraRef` only; React `view` updates when the quantized
+ * visible cell range or GPU LOD changes.
  */
 export function useCanvasCamera({ isMobile }: { isMobile: boolean }): CanvasCameraApi {
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const [camera, setCamera] = useState<CanvasCamera>({ x: 0, y: 0, scale: 1 })
-  const cameraRef = useRef(camera)
-  cameraRef.current = camera
+  const worldLayerRef = useRef<HTMLDivElement | null>(null)
+  const cameraRef = useRef<CanvasCamera>({ x: 0, y: 0, scale: 1 })
+  const [view, setView] = useState<CanvasViewSnapshot>(EMPTY_VIEW)
+  const viewKeyRef = useRef('')
+  const listenersRef = useRef(new Set<(cam: CanvasCamera) => void>())
 
   const pointersRef = useRef(new Map<number, { x: number; y: number }>())
   const dragStartRef = useRef<{ x: number; y: number; camX: number; camY: number } | null>(null)
@@ -77,6 +111,52 @@ export function useCanvasCamera({ isMobile }: { isMobile: boolean }): CanvasCame
     }
   }, [])
 
+  const applyWorldLayerTransform = useCallback((cam: CanvasCamera) => {
+    const layer = worldLayerRef.current
+    if (!layer) return
+    layer.style.transform = `translate3d(${-cam.x * cam.scale}px, ${-cam.y * cam.scale}px, 0) scale(${cam.scale})`
+  }, [])
+
+  const notifyCamera = useCallback(
+    (cam: CanvasCamera) => {
+      applyWorldLayerTransform(cam)
+      for (const listener of listenersRef.current) listener(cam)
+    },
+    [applyWorldLayerTransform],
+  )
+
+  const syncViewIfNeeded = useCallback(
+    (cam: CanvasCamera) => {
+      const { w, h } = getViewportSize()
+      const viewWorldW = w / cam.scale
+      const viewWorldH = h / cam.scale
+      const gpuSize = exploreGpuImageSize(cam.scale)
+      const overscan = exploreGpuOverscan(gpuSize)
+      const captionsVisible = exploreCaptionsVisible(cam.scale)
+      const key = exploreViewKey(
+        cam.x,
+        cam.y,
+        viewWorldW,
+        viewWorldH,
+        overscan,
+        gpuSize,
+        captionsVisible,
+      )
+      if (key === viewKeyRef.current) return
+      viewKeyRef.current = key
+
+      const tiles = getVisibleTiles(cam.x, cam.y, viewWorldW, viewWorldH, overscan)
+      setView({
+        tiles,
+        captionTiles: captionsVisible ? tiles : [],
+        gpuSize,
+        captionsVisible,
+        overscan,
+      })
+    },
+    [getViewportSize],
+  )
+
   const applyCamera = useCallback(
     (next: CanvasCamera) => {
       const { w, h } = getViewportSize()
@@ -85,10 +165,19 @@ export function useCanvasCamera({ isMobile }: { isMobile: boolean }): CanvasCame
         scale: clampScale(next.scale, w, h),
       })
       cameraRef.current = wrapped
-      setCamera(wrapped)
+      notifyCamera(wrapped)
+      syncViewIfNeeded(wrapped)
     },
-    [getViewportSize],
+    [getViewportSize, notifyCamera, syncViewIfNeeded],
   )
+
+  const subscribeCamera = useCallback((listener: (cam: CanvasCamera) => void) => {
+    listenersRef.current.add(listener)
+    listener(cameraRef.current)
+    return () => {
+      listenersRef.current.delete(listener)
+    }
+  }, [])
 
   // Initial framing: center of one period, ~3–5 columns on screen.
   useEffect(() => {
@@ -117,7 +206,6 @@ export function useCanvasCamera({ isMobile }: { isMobile: boolean }): CanvasCame
   }, [])
 
   const startInertia = useCallback(() => {
-    // Cancel any running loop without clearing the release velocity.
     if (inertiaRafRef.current !== null) {
       cancelAnimationFrame(inertiaRafRef.current)
       inertiaRafRef.current = null
@@ -138,7 +226,6 @@ export function useCanvasCamera({ isMobile }: { isMobile: boolean }): CanvasCame
         return
       }
 
-      // Normalize to ~60fps so friction feels consistent across refresh rates.
       const dtFrames = Math.min(2.5, Math.max(0.5, (ts - lastTs) / 16.67))
       lastTs = ts
       const cam = cameraRef.current
@@ -241,7 +328,6 @@ export function useCanvasCamera({ isMobile }: { isMobile: boolean }): CanvasCame
       const last = lastPointerRef.current
       if (last) {
         const dt = Math.max(1, now - last.t)
-        // Instantaneous screen-space velocity, blended for a smoother flick.
         const sampleVx = ((e.clientX - last.x) / dt) * 16
         const sampleVy = ((e.clientY - last.y) / dt) * 16
         const prev = velocityRef.current
@@ -277,7 +363,6 @@ export function useCanvasCamera({ isMobile }: { isMobile: boolean }): CanvasCame
         dragStartRef.current = null
         if (movedRef.current) {
           const last = lastPointerRef.current
-          // If the pointer stopped before release, kill residual velocity.
           if (last && performance.now() - last.t > 80) {
             velocityRef.current = { vx: 0, vy: 0 }
           }
@@ -323,20 +408,20 @@ export function useCanvasCamera({ isMobile }: { isMobile: boolean }): CanvasCame
 
       if (e.key === '+' || e.key === '=') {
         e.preventDefault()
-        const { w, h } = getViewportSize()
+        const { w } = getViewportSize()
         const el = containerRef.current
         if (!el) return
         const rect = el.getBoundingClientRect()
-        zoomAt(rect.left + w / 2, rect.top + h / 2, 1.1)
+        zoomAt(rect.left + w / 2, rect.top + el.clientHeight / 2, 1.1)
         return
       }
       if (e.key === '-' || e.key === '_') {
         e.preventDefault()
-        const { w, h } = getViewportSize()
+        const { w } = getViewportSize()
         const el = containerRef.current
         if (!el) return
         const rect = el.getBoundingClientRect()
-        zoomAt(rect.left + w / 2, rect.top + h / 2, 1 / 1.1)
+        zoomAt(rect.left + w / 2, rect.top + el.clientHeight / 2, 1 / 1.1)
         return
       }
 
@@ -405,5 +490,13 @@ export function useCanvasCamera({ isMobile }: { isMobile: boolean }): CanvasCame
 
   const didDrag = useCallback(() => movedRef.current, [])
 
-  return { camera, containerRef, screenToWorld, didDrag }
+  return {
+    cameraRef,
+    view,
+    containerRef,
+    worldLayerRef,
+    subscribeCamera,
+    screenToWorld,
+    didDrag,
+  }
 }

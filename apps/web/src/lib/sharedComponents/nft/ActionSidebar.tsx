@@ -17,6 +17,7 @@ import {
   PanelRight,
   Pencil,
   Shuffle,
+  ZoomIn,
 } from 'lucide-react'
 import { type ReactNode, useState } from 'react'
 
@@ -178,6 +179,14 @@ export function ActionSidebar() {
                 text="List View"
                 activeBorder={route.includes('/all') && !showGridView}
                 icon={<List className={iconClass} aria-label="Switch to list view" />}
+              />
+            </Link>
+            <Link to="/infinit-zoom-scroll">
+              <MenuItem
+                wide={wide}
+                text="Zoom Scroll"
+                activeBorder={route.includes('/infinit-zoom-scroll')}
+                icon={<ZoomIn className={iconClass} aria-label="Switch to infinite zoom" />}
               />
             </Link>
 

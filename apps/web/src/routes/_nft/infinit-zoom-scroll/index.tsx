@@ -5,6 +5,7 @@ import { HEADER_HEIGHT } from '~/lib/constants'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { getImageUrl } from '~/lib/nft/image-url'
 import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
+import { ActionSidebar } from '~/lib/sharedComponents/nft/ActionSidebar'
 
 import { HintOverlay } from './-components/HintOverlay'
 
@@ -140,6 +141,7 @@ const InfiniteZoomScrollPage = () => {
         ))}
         {count < shuffledIds.length && <div className="h-px w-full" ref={sentinelRef} />}
       </div>
+      <ActionSidebar />
     </>
   )
 }

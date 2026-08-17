@@ -88,13 +88,65 @@ export function clampScale(scale: number, viewportW: number, viewportH: number):
   return Math.min(maxScale, Math.max(minScale, scale))
 }
 
-/** Pick CDN size from how large a tile is on screen. */
+/** Pick CDN size from how large a tile is on screen (DOM / legacy). */
 export function exploreImageSize(scale: number): TotemImageSize {
   const onScreenPx = EXPLORE_TILE_SIZE * scale
   if (onScreenPx >= 520) return '6k'
   if (onScreenPx >= 280) return 2048
   if (onScreenPx >= 140) return 512
   return 100
+}
+
+/** GPU texture LOD for the Pixi canvas — never 2048/6k. */
+export type ExploreGpuImageSize = 100 | 512 | 1024
+
+export function exploreGpuImageSize(scale: number): ExploreGpuImageSize {
+  const onScreenPx = EXPLORE_TILE_SIZE * scale
+  if (onScreenPx >= 280) return 1024
+  if (onScreenPx >= 140) return 512
+  return 100
+}
+
+/** Fewer overscan cells when loading heavier GPU textures. */
+export function exploreGpuOverscan(gpuSize: ExploreGpuImageSize): number {
+  if (gpuSize === 1024) return 0
+  if (gpuSize === 512) return 1
+  return 2
+}
+
+/** Captions are only readable once tiles are large enough on screen. */
+export const EXPLORE_CAPTION_MIN_PX = 80
+
+export function exploreCaptionsVisible(scale: number): boolean {
+  return EXPLORE_TILE_SIZE * scale >= EXPLORE_CAPTION_MIN_PX
+}
+
+/** Click-to-open requires a tighter zoom than captions (≈512 GPU LOD). */
+export const EXPLORE_CLICK_MIN_PX = 140
+
+export function exploreClickEnabled(scale: number): boolean {
+  return EXPLORE_TILE_SIZE * scale >= EXPLORE_CLICK_MIN_PX
+}
+
+/** Stable key for the quantized visible cell window + LOD (skip React churn). */
+export function exploreViewKey(
+  camX: number,
+  camY: number,
+  viewWorldW: number,
+  viewWorldH: number,
+  overscan: number,
+  gpuSize: ExploreGpuImageSize,
+  captionsVisible: boolean,
+): string {
+  const left = camX - overscan * EXPLORE_CELL_WIDTH
+  const top = camY - overscan * EXPLORE_CELL_HEIGHT
+  const right = camX + viewWorldW + overscan * EXPLORE_CELL_WIDTH
+  const bottom = camY + viewWorldH + overscan * EXPLORE_CELL_HEIGHT
+  const colStart = Math.floor(left / EXPLORE_CELL_WIDTH)
+  const colEnd = Math.ceil(right / EXPLORE_CELL_WIDTH)
+  const rowStart = Math.floor(top / EXPLORE_CELL_HEIGHT)
+  const rowEnd = Math.ceil(bottom / EXPLORE_CELL_HEIGHT)
+  return `${colStart}:${colEnd}:${rowStart}:${rowEnd}:${gpuSize}:${captionsVisible ? 1 : 0}`
 }
 
 export function initialScale(viewportW: number, isMobile: boolean): number {
