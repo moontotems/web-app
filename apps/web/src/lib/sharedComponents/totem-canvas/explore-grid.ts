@@ -1,6 +1,7 @@
 import { MAX_TOKEN_ID, TOTAL_TOKENS } from '@moontotems/contracts'
 
 import type { TotemImageSize } from '~/lib/constants'
+import type { TotemGpuImageSize } from '~/lib/nft/totem-texture-cache'
 
 /** Columns chosen so the period is roughly square (98 × 97 ≈ 9506). */
 export const EXPLORE_COLS = 98
@@ -98,7 +99,7 @@ export function exploreImageSize(scale: number): TotemImageSize {
 }
 
 /** GPU texture LOD for the Pixi canvas — never 2048/6k. */
-export type ExploreGpuImageSize = 100 | 512 | 1024
+export type ExploreGpuImageSize = TotemGpuImageSize
 
 export function exploreGpuImageSize(scale: number): ExploreGpuImageSize {
   const onScreenPx = EXPLORE_TILE_SIZE * scale

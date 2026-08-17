@@ -26,15 +26,8 @@ const TotemPixiLayer = lazy(() => import('./TotemPixiLayer'))
 export function TotemMoveCanvas() {
   const { isMobile } = useMoonTotems()
   const navigate = useNavigate()
-  const {
-    cameraRef,
-    view,
-    containerRef,
-    worldLayerRef,
-    subscribeCamera,
-    screenToWorld,
-    didDrag,
-  } = useCanvasCamera({ isMobile })
+  const { cameraRef, view, containerRef, worldLayerRef, subscribeCamera, screenToWorld, didDrag } =
+    useCanvasCamera({ isMobile })
 
   const cardQueryIds = useMemo(() => {
     if (!view.captionsVisible || view.captionTiles.length === 0) return []

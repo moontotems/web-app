@@ -2,7 +2,8 @@ import { Texture } from 'pixi.js'
 
 import { getImageUrl } from '~/lib/nft/image-url'
 
-import type { ExploreGpuImageSize } from './explore-grid'
+/** GPU texture LOD — never upload 2048/6k. */
+export type TotemGpuImageSize = 100 | 512 | 1024
 
 type CacheEntry = {
   texture: Texture
@@ -12,7 +13,7 @@ type CacheEntry = {
 
 const MAX_CACHE_ENTRIES = 400
 
-function cacheKey(tokenId: number, size: ExploreGpuImageSize): string {
+function cacheKey(tokenId: number, size: TotemGpuImageSize): string {
   return `${tokenId}:${size}`
 }
 
@@ -25,7 +26,7 @@ export class TotemTextureCache {
   private loading = new Map<string, Promise<Texture | null>>()
   private destroyed = false
 
-  acquire(tokenId: number, size: ExploreGpuImageSize): Promise<Texture | null> {
+  acquire(tokenId: number, size: TotemGpuImageSize): Promise<Texture | null> {
     if (this.destroyed) return Promise.resolve(null)
 
     const key = cacheKey(tokenId, size)
@@ -68,7 +69,7 @@ export class TotemTextureCache {
     return promise
   }
 
-  release(tokenId: number, size: ExploreGpuImageSize): void {
+  release(tokenId: number, size: TotemGpuImageSize): void {
     const key = cacheKey(tokenId, size)
     const entry = this.entries.get(key)
     if (!entry) return
@@ -85,7 +86,7 @@ export class TotemTextureCache {
     this.entries.clear()
   }
 
-  private async loadTexture(tokenId: number, size: ExploreGpuImageSize): Promise<Texture | null> {
+  private async loadTexture(tokenId: number, size: TotemGpuImageSize): Promise<Texture | null> {
     const url = getImageUrl({ tokenId, size })
     try {
       const img = new Image()

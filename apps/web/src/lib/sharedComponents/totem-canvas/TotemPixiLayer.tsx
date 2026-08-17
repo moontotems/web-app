@@ -1,6 +1,7 @@
 import { Application, Container, Sprite, Texture } from 'pixi.js'
 import { type RefObject, useEffect, useRef } from 'react'
 
+import { TotemTextureCache } from '~/lib/nft/totem-texture-cache'
 import {
   EXPLORE_TILE_SIZE,
   type ExploreGpuImageSize,
@@ -9,7 +10,6 @@ import {
   exploreViewKey,
   getVisibleTiles,
 } from './explore-grid'
-import { TotemTextureCache } from './totem-texture-cache'
 import type { CanvasCamera } from './use-canvas-camera'
 
 type TotemPixiLayerProps = {

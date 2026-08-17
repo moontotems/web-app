@@ -122,3 +122,61 @@ export function applyCursorForce(
   // Slight “startle” scale bump when close.
   totem.vScale += falloff * 0.35 * dt
 }
+
+export type FloatingStepContext = {
+  width: number
+  height: number
+  baseSize: number
+  scaleMin: number
+  scaleMax: number
+  cursor: { x: number; y: number; active: boolean }
+}
+
+/** One physics/integration step for all floating totems (mutates in place). */
+export function stepFloatingTotems(
+  agents: FloatingTotem[],
+  dt: number,
+  ctx: FloatingStepContext,
+): void {
+  const { width, height, baseSize, scaleMin, scaleMax, cursor } = ctx
+  for (const totem of agents) {
+    totem.vx += (Math.random() - 0.5) * 40 * dt
+    totem.vy += (Math.random() - 0.5) * 40 * dt
+
+    if (cursor.active) {
+      applyCursorForce(totem, cursor.x, cursor.y, dt)
+    }
+
+    const speed = Math.hypot(totem.vx, totem.vy)
+    const maxSpeed = cursor.active ? 180 : 70
+    const minSpeed = 20
+    if (speed > maxSpeed) {
+      totem.vx = (totem.vx / speed) * maxSpeed
+      totem.vy = (totem.vy / speed) * maxSpeed
+    } else if (speed < minSpeed && speed > 0) {
+      totem.vx = (totem.vx / speed) * minSpeed
+      totem.vy = (totem.vy / speed) * minSpeed
+    }
+
+    totem.x += totem.vx * dt
+    totem.y += totem.vy * dt
+
+    totem.vScale += (Math.random() - 0.5) * 0.15 * dt
+    totem.scale += totem.vScale * dt
+    if (totem.scale < scaleMin) {
+      totem.scale = scaleMin
+      totem.vScale = Math.abs(totem.vScale)
+    } else if (totem.scale > scaleMax) {
+      totem.scale = scaleMax
+      totem.vScale = -Math.abs(totem.vScale)
+    }
+
+    bounceWithinBounds(totem, width, height, baseSize)
+  }
+}
+
+/** GPU LOD for floating totems from the largest on-screen size. */
+export function floatingGpuImageSize(baseSize: number, maxZoom: number): 100 | 512 {
+  const maxPx = baseSize * maxZoom
+  return maxPx >= 140 ? 512 : 100
+}
