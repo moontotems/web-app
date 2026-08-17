@@ -49,7 +49,9 @@ function EyeCrop({ tokenId, eager }: { tokenId: number; eager?: boolean }) {
 function InfiniteZoomScrollPage() {
   const { shuffledIds, setHeaderTitle } = useMoonTotems()
   const [count, setCount] = useState(PAGE_SIZE)
+  const [showHint, setShowHint] = useState(true)
   const sentinelRef = useRef<HTMLDivElement>(null)
+  const scrollerRef = useRef<HTMLDivElement>(null)
   useScrollToTop()
 
   useEffect(() => {
@@ -71,18 +73,52 @@ function InfiniteZoomScrollPage() {
     return () => io.disconnect()
   }, [shuffledIds.length])
 
+  useEffect(() => {
+    const scroller = scrollerRef.current
+    if (!scroller) return
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (showHint) {
+        event.preventDefault()
+        setShowHint(false)
+        return
+      }
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
+      event.preventDefault()
+      const slideHeight = scroller.clientHeight
+      const index = Math.round(scroller.scrollTop / slideHeight)
+      const next = event.key === 'ArrowDown' ? index + 1 : index - 1
+      scroller.scrollTo({ top: next * slideHeight, behavior: 'smooth' })
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [showHint])
+
   const ids = shuffledIds.slice(0, count)
 
   return (
-    <div
-      className="snap-y snap-mandatory overflow-y-auto bg-black"
-      style={{ height: `calc(100vh - ${HEADER_HEIGHT}px)` }}
-    >
-      {ids.map((tokenId, index) => (
-        <EyeCrop eager={index < 2} key={tokenId} tokenId={tokenId} />
-      ))}
-      {count < shuffledIds.length && <div className="h-px w-full" ref={sentinelRef} />}
-    </div>
+    <>
+      {showHint && (
+        <div className="pointer-events-none fixed inset-0 z-2000 flex items-center justify-center bg-black/55">
+          <div className="border border-white/20 bg-[#262626] px-12 py-10 text-center text-white">
+            <p className="text-sm tracking-[0.25em] text-white/70">USE THE ARROW KEYS</p>
+            <p className="mt-5 text-3xl tracking-[0.4em]">↑ ↓</p>
+            <p className="mt-5 text-xs tracking-wider text-white/45">PRESS ANY KEY</p>
+          </div>
+        </div>
+      )}
+      <div
+        ref={scrollerRef}
+        className="snap-y snap-mandatory overflow-y-auto bg-black"
+        style={{ height: `calc(100vh - ${HEADER_HEIGHT}px)` }}
+      >
+        {ids.map((tokenId, index) => (
+          <EyeCrop eager={index < 2} key={tokenId} tokenId={tokenId} />
+        ))}
+        {count < shuffledIds.length && <div className="h-px w-full" ref={sentinelRef} />}
+      </div>
+    </>
   )
 }
 
