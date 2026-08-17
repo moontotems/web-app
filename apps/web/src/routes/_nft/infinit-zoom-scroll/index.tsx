@@ -1,4 +1,4 @@
-import { Link, createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 
 import { HEADER_HEIGHT } from '~/lib/constants'
@@ -7,46 +7,61 @@ import { getImageUrl } from '~/lib/nft/image-url'
 import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
 /** How many 6k crops to mount at once as you scroll. */
-const PAGE_SIZE = 8
+const PAGE_SIZE = 12
 
 /**
- * Crop of the 6k square. `zoom` is viewport-widths of the image
- * (12 ≈ 8% of the Totem filling the screen). Origin is the left eye.
+ * Crop of the 6k square. `zoom` is the long viewport side of the image
+ * (12 ≈ 8% of the Totem filling the screen). Origin is the left eye;
+ * mobile uses a portrait origin so the crop stays in frame without stretching.
  */
 const EYE_ZOOM = 4.8
-const EYE_X = 0.33
-const EYE_Y = 0.52
+const EYE = {
+  desktop: { x: 0.33, y: 0.52 },
+  mobile: { x: 0.35, y: 0.48 },
+} as const
 
+const EyeCrop = ({ tokenId, eager }: { tokenId: number; eager?: boolean }) => {
+  const { isMobile } = useMoonTotems()
+  const { x, y } = isMobile ? EYE.mobile : EYE.desktop
+  const [showFull, setShowFull] = useState(false)
 
-
-function EyeCrop({ tokenId, eager }: { tokenId: number; eager?: boolean }) {
   return (
-    <Link
-      to="/$id"
-      params={{ id: String(tokenId) }}
+    <button
+      type="button"
       title={`#${tokenId}`}
-      className="relative block w-full snap-start overflow-hidden bg-black"
+      className="relative block w-full cursor-pointer snap-start overflow-hidden bg-black p-0"
       style={{ height: `calc(100vh - ${HEADER_HEIGHT}px)` }}
+      onClick={() => setShowFull((open) => !open)}
     >
       <img
         alt={`Moon Totem ${tokenId}`}
         src={getImageUrl({ tokenId, size: '6k' })}
-        className="absolute top-1/2 left-1/2 max-w-none"
+        className={
+          showFull
+            ? 'absolute inset-0 h-full w-full object-contain'
+            : 'absolute top-1/2 left-1/2 max-h-none max-w-none'
+        }
         decoding="async"
         draggable={false}
         loading={eager ? 'eager' : 'lazy'}
-        style={{
-          width: `${EYE_ZOOM * 100}%`,
-          height: `${EYE_ZOOM * 100}%`,
-          transform: `translate(${-EYE_X * 100}%, ${-EYE_Y * 100}%)`,
-        }}
+        style={
+          showFull
+            ? undefined
+            : {
+                ...(isMobile
+                  ? { height: `${EYE_ZOOM * 100}%`, width: 'auto' }
+                  : { width: `${EYE_ZOOM * 100}%`, height: 'auto' }),
+                aspectRatio: '1',
+                transform: `translate(${-x * 100}%, ${-y * 100}%)`,
+              }
+        }
       />
-    </Link>
+    </button>
   )
 }
 
 /** Full-width 6k left-eye crops, stacked top to bottom, loading more as you scroll. */
-function InfiniteZoomScrollPage() {
+const InfiniteZoomScrollPage = () => {
   const { shuffledIds, setHeaderTitle } = useMoonTotems()
   const [count, setCount] = useState(PAGE_SIZE)
   const [showHint, setShowHint] = useState(true)
@@ -100,13 +115,17 @@ function InfiniteZoomScrollPage() {
   return (
     <>
       {showHint && (
-        <div className="pointer-events-none fixed inset-0 z-2000 flex items-center justify-center bg-black/55">
+        <button
+          type="button"
+          className="fixed inset-0 z-2000 flex cursor-pointer items-center justify-center bg-black/55"
+          onClick={() => setShowHint(false)}
+        >
           <div className="border border-white/20 bg-[#262626] px-12 py-10 text-center text-white">
             <p className="text-sm tracking-[0.25em] text-white/70">USE THE ARROW KEYS</p>
             <p className="mt-5 text-3xl tracking-[0.4em]">↑ ↓</p>
             <p className="mt-5 text-xs tracking-wider text-white/45">PRESS ANY KEY</p>
           </div>
-        </div>
+        </button>
       )}
       <div
         ref={scrollerRef}
