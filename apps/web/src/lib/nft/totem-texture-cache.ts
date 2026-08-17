@@ -12,6 +12,9 @@ type CacheEntry = {
 }
 
 const MAX_CACHE_ENTRIES = 400
+// Chrome rejects HTMLImageElement.decode() under a large parallel burst
+// ("The source image cannot be decoded"). Cap in-flight bitmap loads.
+const MAX_CONCURRENT_LOADS = 24
 
 function cacheKey(tokenId: number, size: TotemGpuImageSize): string {
   return `${tokenId}:${size}`
@@ -25,6 +28,8 @@ export class TotemTextureCache {
   private entries = new Map<string, CacheEntry>()
   private loading = new Map<string, Promise<Texture | null>>()
   private destroyed = false
+  private inFlight = 0
+  private waiters: Array<() => void> = []
 
   acquire(tokenId: number, size: TotemGpuImageSize): Promise<Texture | null> {
     if (this.destroyed) return Promise.resolve(null)
@@ -80,24 +85,55 @@ export class TotemTextureCache {
   destroy(): void {
     this.destroyed = true
     this.loading.clear()
+    const pending = this.waiters.splice(0)
+    for (const next of pending) next()
     for (const entry of this.entries.values()) {
       entry.texture.destroy(true)
     }
     this.entries.clear()
   }
 
-  private async loadTexture(tokenId: number, size: TotemGpuImageSize): Promise<Texture | null> {
-    const url = getImageUrl({ tokenId, size })
-    try {
+  private acquireSlot(): Promise<void> {
+    if (this.inFlight < MAX_CONCURRENT_LOADS) {
+      this.inFlight += 1
+      return Promise.resolve()
+    }
+    return new Promise((resolve) => {
+      this.waiters.push(() => {
+        this.inFlight += 1
+        resolve()
+      })
+    })
+  }
+
+  private releaseSlot(): void {
+    this.inFlight = Math.max(0, this.inFlight - 1)
+    const next = this.waiters.shift()
+    if (next) next()
+  }
+
+  private loadImage(url: string): Promise<HTMLImageElement> {
+    return new Promise((resolve, reject) => {
       const img = new Image()
       img.crossOrigin = 'anonymous'
-      img.decoding = 'async'
+      img.onload = () => resolve(img)
+      img.onerror = () => reject(new Error('image load failed'))
       img.src = url
-      await img.decode()
+    })
+  }
+
+  private async loadTexture(tokenId: number, size: TotemGpuImageSize): Promise<Texture | null> {
+    const url = getImageUrl({ tokenId, size })
+    await this.acquireSlot()
+    try {
+      if (this.destroyed) return null
+      const img = await this.loadImage(url)
       if (this.destroyed) return null
       return Texture.from(img)
     } catch {
       return null
+    } finally {
+      this.releaseSlot()
     }
   }
 
