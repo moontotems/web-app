@@ -101,7 +101,7 @@ const InfiniteZoomScrollPage = () => {
       const slideHeight = scroller.clientHeight
       const index = Math.round(scroller.scrollTop / slideHeight)
       const next = event.key === 'ArrowDown' ? index + 1 : index - 1
-      scroller.scrollTo({ top: next * slideHeight, behavior: 'instant' })
+      scroller.scrollTo({ top: next * slideHeight, behavior: 'smooth' })
     }
 
     document.addEventListener('keydown', onKeyDown)
