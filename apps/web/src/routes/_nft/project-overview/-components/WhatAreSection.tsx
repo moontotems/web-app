@@ -1,4 +1,5 @@
-import { heroVideo } from '../-data'
+import { ASSETS } from '~/lib/constants'
+
 import { ExploreLink } from './ExploreLink'
 import { MuxLoop } from './MuxLoop'
 
@@ -7,7 +8,11 @@ export function WhatAreSection() {
   return (
     <section className="w-full bg-black">
       <div className="relative h-[45vh] overflow-hidden md:h-[70vh]">
-        <MuxLoop className="h-full w-full" src={heroVideo} title="Moon Totems" />
+        <MuxLoop
+          className="h-full w-full"
+          src={`${ASSETS.videos.mainLoopV1}?autoplay=muted&loop=true&muted=true`}
+          title="Moon Totems"
+        />
         <ExploreLink
           className="absolute right-0 bottom-0 hidden md:block"
           label="Get your MOON TOTEM"

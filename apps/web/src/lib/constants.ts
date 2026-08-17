@@ -165,6 +165,27 @@ export const ASSETS = {
     },
   },
 
+  videos: {
+    attributesGen01: 'https://player.mux.com/JCtoUYiOE1QKD3dR01ImYovGXcLhsr3S825hAAxEScws',
+    cardflipFastMe: 'https://player.mux.com/KzNuhlYvjLh00HPbpVM1tmq00RfgivzBMNKNoSROo01ZJY',
+    flightpaths: 'https://player.mux.com/bCMJXtdVAMFPkvT9Vg7YBIPIN1PS2VuKkTjZMEUMmGk',
+    cardsSlowA: 'https://player.mux.com/1YKoZZxeBvUaib01c500vBlndfriJwu4F2sOD900vHJkWA',
+    uniqueCharactersA: 'https://player.mux.com/ob4z00rrgb011NJWxAQ7YS7OFtmNQ5x6exZXGNVXVhw008',
+    uniqueCharactersB: 'https://player.mux.com/MYZVV1MbTof9UcHYY025NWWyUupvXwJtahvO00tTwWq02Y',
+    moonTurnCrop: 'https://player.mux.com/k72oWWTc02QesWLI5902KCrGR9afR7VlysLIzIaoV7tNg',
+    moonTurn: 'https://player.mux.com/sPY02yB2cjU5iqpKHdtBIK02IwTQnKbYU4SVp6syVOoWA',
+    screencapZoomSquare: 'https://player.mux.com/wGKUskssiWgOD6gzHz2tXDPaXFmmkEF6gVAtmW3jCKU',
+    card3d: 'https://player.mux.com/cDwFVTFtgFu36vlELK4D23m4Ga84tucUojE01HwSoaXc',
+    cardFlip: 'https://player.mux.com/00qGgYxCNqDFKm3WBvIh2cll01Xgdsz02ABdZWHX5Qdt00c',
+    cardflipFull: 'https://player.mux.com/kPIGDzpPeHlwhzq01ntSjKC8WIOxWS8EIlrqcnI7QjWo',
+    cardflipFull1: 'https://player.mux.com/pS3U8qS6z3px5aVoZi9FaIdA9DnVHl4NDnkeEKaXyjk',
+    mainLoopV1: 'https://player.mux.com/Unte02CHHXWuU3hol01yGH5E02DfUpJ8laQ401rWtrV4AEI',
+    outlineLoop: 'https://player.mux.com/63WXLce9dJmS00aYtkvFGq9TtT4LAhx019sCgbUeHZ5a00',
+    zoomPan: 'https://player.mux.com/dRS3tqoa7MTYpvQW00k02VCKb3h02yvLKvRKPt5Ug6Htp00',
+    blinkyRotate: 'https://player.mux.com/Emn8BXDIasx6LWZosN6BqS64D02H8XdZOP5Hsn19ZRs00',
+    orbit3d: 'https://player.mux.com/MSrYUtd6YEGuHoNtUFqT1TeXSe8qqd1Idlu8p7WJPNg',
+  },
+
   logos: {
     favicon: '/favicon.ico',
     svg: '/moon_totem_logo.svg',

@@ -25,16 +25,12 @@ function muxPlayerUrl(playbackId: string) {
 
 /** Playback IDs from the Mux library (Talismoon / Moon Totems uploads). */
 const MUX = {
-  blinkyRotate: 'Emn8BXDIasx6LWZosN6BqS64D02H8XdZOP5Hsn19ZRs00',
   outlineLoop: '63WXLce9dJmS00aYtkvFGq9TtT4LAhx019sCgbUeHZ5a00',
   card3d: 'cDwFVTFtgFu36vlELK4D23m4Ga84tucUojE01HwSoaXc',
   uniqueCharactersA: 'ob4z00rrgb011NJWxAQ7YS7OFtmNQ5x6exZXGNVXVhw008',
   zoomPan: 'dRS3tqoa7MTYpvQW00k02VCKb3h02yvLKvRKPt5Ug6Htp00',
   moonTurn: 'sPY02yB2cjU5iqpKHdtBIK02IwTQnKbYU4SVp6syVOoWA',
 } as const
-
-/** Hero loop — formerly Vimeo 620510465 / BLINKYROTATE. */
-export const heroVideo = muxPlayerUrl(MUX.blinkyRotate)
 
 /** Turning moon loop used on lunar origins / phases / months slides. */
 export const moonTurnVideo = muxPlayerUrl(MUX.moonTurn)
