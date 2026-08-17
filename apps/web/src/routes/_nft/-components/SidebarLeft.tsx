@@ -6,6 +6,7 @@ import {
   CircleUserRound,
   Compass,
   FileCode2,
+  Gamepad2,
   Instagram,
   Lightbulb,
   ListTree,
@@ -75,6 +76,9 @@ export function SidebarLeft() {
           </Link>
           <Link to="/orbit" onClick={close}>
             <MenuItem icon={<Moon className={ICON} />}>Orbit</MenuItem>
+          </Link>
+          <Link to="/games/space-invader" onClick={close}>
+            <MenuItem icon={<Gamepad2 className={ICON} />}>Space Invader</MenuItem>
           </Link>
           <Link to="/all" search={DEFAULT_GALLERY_SEARCH} onClick={close}>
             <MenuItem icon={<Smile className={ICON} />}>All Moon Totems</MenuItem>

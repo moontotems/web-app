@@ -37,8 +37,13 @@ function randomSpeed(): number {
 }
 
 /** Keep the totem fully inside the viewport by bouncing off edges. */
-export function bounceWithinBounds(totem: FloatingTotem, width: number, height: number): void {
-  const half = (FLOATING_BASE_SIZE * totem.scale) / 2
+export function bounceWithinBounds(
+  totem: FloatingTotem,
+  width: number,
+  height: number,
+  baseSize = FLOATING_BASE_SIZE,
+): void {
+  const half = (baseSize * totem.scale) / 2
   const minX = half
   const maxX = Math.max(half, width - half)
   const minY = half
@@ -61,9 +66,14 @@ export function bounceWithinBounds(totem: FloatingTotem, width: number, height: 
   }
 }
 
-function seedTotem(tokenId: number, width: number, height: number): FloatingTotem {
+function seedTotem(
+  tokenId: number,
+  width: number,
+  height: number,
+  baseSize = FLOATING_BASE_SIZE,
+): FloatingTotem {
   const scale = rand(SCALE_MIN, SCALE_MAX)
-  const half = (FLOATING_BASE_SIZE * scale) / 2
+  const half = (baseSize * scale) / 2
   return {
     tokenId,
     x: rand(half, Math.max(half, width - half)),
@@ -76,12 +86,17 @@ function seedTotem(tokenId: number, width: number, height: number): FloatingTote
 }
 
 /** Build shuffled floating totems for the given viewport. */
-export function buildFloatingTotems(count: number, width: number, height: number): FloatingTotem[] {
+export function buildFloatingTotems(
+  count: number,
+  width: number,
+  height: number,
+  baseSize = FLOATING_BASE_SIZE,
+): FloatingTotem[] {
   const pool = shuffle(Array.from({ length: MAX_TOKEN_ID + 1 }, (_, tokenId) => tokenId)).slice(
     0,
     count,
   )
-  return pool.map((tokenId) => seedTotem(tokenId, width, height))
+  return pool.map((tokenId) => seedTotem(tokenId, width, height, baseSize))
 }
 
 /** Push totem away from the cursor; nearer / larger totems react more. */

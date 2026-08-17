@@ -44,7 +44,7 @@ export function ExampleMoonTotemsSection({
           </div>
         ))}
       </DraggableMarquee>
-      <div className="p-[15px]">
+      <div>
         <ExploreLink className="relative ml-auto mt-10 block" label="Explore Totems" />
       </div>
     </section>

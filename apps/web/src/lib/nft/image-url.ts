@@ -13,10 +13,10 @@ export function getImageUrl({
 }): string {
   if (withSymbol) {
     if (tokenId <= 1000) {
-      return ASSETS.cdn.totem.symbolJpeg6k(tokenId)
+      return ASSETS.cdn.totem.symbol.jpeg['6k'](tokenId)
     }
-    return ASSETS.cdn.totem.symbolJpeg2048(tokenId)
+    return ASSETS.cdn.totem.symbol.jpeg[2048](tokenId)
   }
 
-  return ASSETS.cdn.totem.baseJpeg(size, tokenId)
+  return ASSETS.cdn.totem.base.jpeg[size](tokenId)
 }

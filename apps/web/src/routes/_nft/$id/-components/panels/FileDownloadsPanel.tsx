@@ -8,27 +8,27 @@ function downloadFiles(tokenId: number) {
   return [
     {
       label: '2K.jpg (2mb)',
-      url: ASSETS.cdn.owner.baseJpeg2048(tokenId),
+      url: ASSETS.cdn.owner.base.jpeg[2048](tokenId),
     },
     {
       label: '2K.png (10mb)',
-      url: ASSETS.cdn.owner.basePng2048(tokenId),
+      url: ASSETS.cdn.owner.base.png[2048](tokenId),
     },
     {
       label: '6K.jpg (8mb)',
-      url: ASSETS.cdn.owner.baseJpeg6k(tokenId),
+      url: ASSETS.cdn.owner.base.jpeg['6k'](tokenId),
     },
     {
       label: 'Card.jpg (1mb)',
-      url: ASSETS.cdn.owner.cardJpeg2048(tokenId),
+      url: ASSETS.cdn.owner.card.jpeg[2048](tokenId),
     },
     {
       label: 'Flat.jpg (1mb)',
-      url: ASSETS.cdn.owner.flatJpeg2048(tokenId),
+      url: ASSETS.cdn.owner.flat.jpeg[2048](tokenId),
     },
     {
       label: '3D.abc (230kb)',
-      url: ASSETS.cdn.owner.model3dAbc(tokenId),
+      url: ASSETS.cdn.owner['3d'].abc(tokenId),
     },
   ]
 }

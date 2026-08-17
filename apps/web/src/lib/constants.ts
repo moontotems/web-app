@@ -13,46 +13,154 @@ const OWNER_ASSETS_BASE = `${SUPABASE_CDN_BASE}/totem-owner-assets` as const
 
 export type TotemImageSize = 100 | 512 | 1024 | 2048 | '6k'
 
+function totemJpeg(variant: 'base' | 'flat' | 'symbol', size: number | '6k', tokenId: number) {
+  return `${SUPABASE_CDN_BASE}/totems/${variant}/jpeg/${size}/moontotems_g1_${variant}_${size}_${tokenId}.jpg`
+}
+
+function totemPng(variant: 'base' | 'symbol', size: number | '6k', tokenId: number) {
+  return `${SUPABASE_CDN_BASE}/totems/${variant}/png/${size}/moontotems_g1_${variant}_${size}_${tokenId}.png`
+}
+
+function ownerJpeg(variant: 'base' | 'card' | 'flat' | 'symbol', size: number | '6k', tokenId: number) {
+  return `${OWNER_ASSETS_BASE}/${variant}/jpeg/${size}/moontotems_g1_${variant}_${size}_${tokenId}.jpg`
+}
+
+function ownerPng(variant: 'base' | 'symbol', size: number | '6k', tokenId: number) {
+  return `${OWNER_ASSETS_BASE}/${variant}/png/${size}/moontotems_g1_${variant}_${size}_${tokenId}.png`
+}
+
 export const ASSETS = {
   cdn: {
     base: SUPABASE_CDN_BASE,
     ownerAssetsBase: OWNER_ASSETS_BASE,
-    /** Public gallery / explore renders. */
     totem: {
-      baseJpeg: (size: TotemImageSize, tokenId: number) =>
-        `${SUPABASE_CDN_BASE}/totems/base/jpeg/${size}/moontotems_g1_base_${size}_${tokenId}.jpg`,
-      symbolJpeg6k: (tokenId: number) =>
-        `${SUPABASE_CDN_BASE}/totems/symbol/jpeg/6k/moontotems_g1_symbol_6k_${tokenId}.jpg`,
-      symbolJpeg2048: (tokenId: number) =>
-        `${SUPABASE_CDN_BASE}/totems/symbol/jpeg/2048/moontotems_g1_symbol_2048_${tokenId}.jpg`,
+      base: {
+        jpeg: {
+          100: (tokenId: number) => totemJpeg('base', 100, tokenId),
+          512: (tokenId: number) => totemJpeg('base', 512, tokenId),
+          1024: (tokenId: number) => totemJpeg('base', 1024, tokenId),
+          2048: (tokenId: number) => totemJpeg('base', 2048, tokenId),
+          '6k': (tokenId: number) => totemJpeg('base', '6k', tokenId),
+        },
+        png: {
+          2048: (tokenId: number) => totemPng('base', 2048, tokenId),
+        },
+      },
+      flat: {
+        jpeg: {
+          100: (tokenId: number) => totemJpeg('flat', 100, tokenId),
+          2048: (tokenId: number) => totemJpeg('flat', 2048, tokenId),
+        },
+      },
+      symbol: {
+        jpeg: {
+          2048: (tokenId: number) => totemJpeg('symbol', 2048, tokenId),
+          '6k': (tokenId: number) => totemJpeg('symbol', '6k', tokenId),
+        },
+        png: {
+          2048: (tokenId: number) => totemPng('symbol', 2048, tokenId),
+          /** Filename on the bucket uses `base`, not `symbol`. */
+          '6k': (tokenId: number) =>
+            `${SUPABASE_CDN_BASE}/totems/symbol/png/6k/moontotems_g1_base_6k_${tokenId}.png`,
+        },
+      },
       fileNames: {
-        base: (size: TotemImageSize, tokenId: number) =>
-          `moontotems_g1_base_${size}_${tokenId}.jpg`,
-        symbol6k: (tokenId: number) => `moontotems_g1_symbol_6k_${tokenId}.jpg`,
-        symbol2048: (tokenId: number) => `moontotems_g1_symbol_2048_${tokenId}.jpg`,
+        base: {
+          jpeg: {
+            100: (tokenId: number) => `moontotems_g1_base_100_${tokenId}.jpg`,
+            512: (tokenId: number) => `moontotems_g1_base_512_${tokenId}.jpg`,
+            1024: (tokenId: number) => `moontotems_g1_base_1024_${tokenId}.jpg`,
+            2048: (tokenId: number) => `moontotems_g1_base_2048_${tokenId}.jpg`,
+            '6k': (tokenId: number) => `moontotems_g1_base_6k_${tokenId}.jpg`,
+          },
+          png: {
+            2048: (tokenId: number) => `moontotems_g1_base_2048_${tokenId}.png`,
+          },
+        },
+        flat: {
+          jpeg: {
+            100: (tokenId: number) => `moontotems_g1_flat_100_${tokenId}.jpg`,
+            2048: (tokenId: number) => `moontotems_g1_flat_2048_${tokenId}.jpg`,
+          },
+        },
+        symbol: {
+          jpeg: {
+            2048: (tokenId: number) => `moontotems_g1_symbol_2048_${tokenId}.jpg`,
+            '6k': (tokenId: number) => `moontotems_g1_symbol_6k_${tokenId}.jpg`,
+          },
+          png: {
+            2048: (tokenId: number) => `moontotems_g1_symbol_2048_${tokenId}.png`,
+            '6k': (tokenId: number) => `moontotems_g1_base_6k_${tokenId}.png`,
+          },
+        },
       },
     },
-    /** Owner download pack (FileDownloads panel). */
     owner: {
-      baseJpeg2048: (tokenId: number) =>
-        `${OWNER_ASSETS_BASE}/base/jpeg/2048/moontotems_g1_base_2048_${tokenId}.jpg`,
-      basePng2048: (tokenId: number) =>
-        `${OWNER_ASSETS_BASE}/base/png/2048/moontotems_g1_base_2048_${tokenId}.png`,
-      baseJpeg6k: (tokenId: number) =>
-        `${OWNER_ASSETS_BASE}/base/jpeg/6k/moontotems_g1_base_6k_${tokenId}.jpg`,
-      cardJpeg2048: (tokenId: number) =>
-        `${OWNER_ASSETS_BASE}/card/moontotems_g1_card_2048_${tokenId}.jpg`,
-      flatJpeg2048: (tokenId: number) =>
-        `${OWNER_ASSETS_BASE}/flat/jpeg/2048/moontotems_g1_flat_2048_${tokenId}.jpg`,
-      model3dAbc: (tokenId: number) =>
-        `${OWNER_ASSETS_BASE}/3d/abc/moontotems_g1_3d_${tokenId}.abc`,
+      base: {
+        jpeg: {
+          2048: (tokenId: number) => ownerJpeg('base', 2048, tokenId),
+          '6k': (tokenId: number) => ownerJpeg('base', '6k', tokenId),
+        },
+        png: {
+          2048: (tokenId: number) => ownerPng('base', 2048, tokenId),
+        },
+      },
+      card: {
+        jpeg: {
+          2048: (tokenId: number) => ownerJpeg('card', 2048, tokenId),
+        },
+      },
+      flat: {
+        jpeg: {
+          2048: (tokenId: number) => ownerJpeg('flat', 2048, tokenId),
+        },
+      },
+      '3d': {
+        abc: (tokenId: number) => `${OWNER_ASSETS_BASE}/3d/abc/moontotems_g1_3d_${tokenId}.abc`,
+      },
+      symbol: {
+        jpeg: {
+          2048: (tokenId: number) => ownerJpeg('symbol', 2048, tokenId),
+          '6k': (tokenId: number) => ownerJpeg('symbol', '6k', tokenId),
+        },
+        png: {
+          2048: (tokenId: number) => ownerPng('symbol', 2048, tokenId),
+          '6k': (tokenId: number) => ownerPng('symbol', '6k', tokenId),
+        },
+      },
       fileNames: {
-        baseJpeg2048: (tokenId: number) => `moontotems_g1_base_2048_${tokenId}.jpg`,
-        basePng2048: (tokenId: number) => `moontotems_g1_base_2048_${tokenId}.png`,
-        baseJpeg6k: (tokenId: number) => `moontotems_g1_base_6k_${tokenId}.jpg`,
-        cardJpeg2048: (tokenId: number) => `moontotems_g1_card_2048_${tokenId}.jpg`,
-        flatJpeg2048: (tokenId: number) => `moontotems_g1_flat_2048_${tokenId}.jpg`,
-        model3dAbc: (tokenId: number) => `moontotems_g1_3d_${tokenId}.abc`,
+        base: {
+          jpeg: {
+            2048: (tokenId: number) => `moontotems_g1_base_2048_${tokenId}.jpg`,
+            '6k': (tokenId: number) => `moontotems_g1_base_6k_${tokenId}.jpg`,
+          },
+          png: {
+            2048: (tokenId: number) => `moontotems_g1_base_2048_${tokenId}.png`,
+          },
+        },
+        card: {
+          jpeg: {
+            2048: (tokenId: number) => `moontotems_g1_card_2048_${tokenId}.jpg`,
+          },
+        },
+        flat: {
+          jpeg: {
+            2048: (tokenId: number) => `moontotems_g1_flat_2048_${tokenId}.jpg`,
+          },
+        },
+        '3d': {
+          abc: (tokenId: number) => `moontotems_g1_3d_${tokenId}.abc`,
+        },
+        symbol: {
+          jpeg: {
+            2048: (tokenId: number) => `moontotems_g1_symbol_2048_${tokenId}.jpg`,
+            '6k': (tokenId: number) => `moontotems_g1_symbol_6k_${tokenId}.jpg`,
+          },
+          png: {
+            2048: (tokenId: number) => `moontotems_g1_symbol_2048_${tokenId}.png`,
+            '6k': (tokenId: number) => `moontotems_g1_symbol_6k_${tokenId}.png`,
+          },
+        },
       },
     },
   },

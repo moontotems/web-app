@@ -22,7 +22,7 @@ export function WhatAreSection() {
         </p>
       </div>
 
-      <div className="p-[15px] md:hidden">
+      <div className="pb-[15px] md:hidden">
         <ExploreLink className="relative ml-auto block" label="Get your MOON TOTEM" />
       </div>
     </section>
