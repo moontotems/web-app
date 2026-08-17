@@ -20,7 +20,7 @@ function OrbitPage() {
 
   return (
     <div className="relative h-[calc(100vh-40px)] w-full overflow-hidden bg-black">
-      <FloatingTotems count={FLOATING_TOTEM_COUNT} />
+      <FloatingTotems count={FLOATING_TOTEM_COUNT} minZoom={0.4} maxZoom={1.5} />
       <div
         className="pointer-events-none absolute top-1/2 left-1/2 z-[110] w-[min(40vmin,420px)] overflow-hidden rounded-full bg-black shadow-[0_0_40px_rgba(255,255,255,0.12)]"
         style={{ aspectRatio: '1', transform: 'translate(-50%, -50%)' }}

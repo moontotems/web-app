@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 
-import { getImageUrl } from '~/lib/nft/image-url'
+import { ASSETS } from '~/lib/constants'
 import {
   FLOATING_BASE_SIZE,
   type FloatingTotem,
@@ -15,13 +15,18 @@ import {
 /**
  * Totems that drift, pulse in scale, bounce off edges, and flee the cursor.
  * Same motion as the Orbit page. `size` is the base tile in px before depth scale.
+ * `minZoom` / `maxZoom` are the depth-scale range (1 = `size`).
  */
 export function FloatingTotems({
   count,
   size = FLOATING_BASE_SIZE,
+  minZoom = SCALE_MIN,
+  maxZoom = SCALE_MAX,
 }: {
   count: number
   size?: number
+  minZoom?: number
+  maxZoom?: number
 }) {
   const rootRef = useRef<HTMLDivElement>(null)
   const totemsRef = useRef<FloatingTotem[] | null>(null)
@@ -30,6 +35,10 @@ export function FloatingTotems({
   const cursorRef = useRef({ x: 0, y: 0, active: false })
   const sizeRef = useRef(size)
   sizeRef.current = size
+  const minZoomRef = useRef(minZoom)
+  minZoomRef.current = minZoom
+  const maxZoomRef = useRef(maxZoom)
+  maxZoomRef.current = maxZoom
   const [totems, setTotems] = useState<FloatingTotem[] | null>(null)
 
   useEffect(() => {
@@ -40,7 +49,7 @@ export function FloatingTotems({
       const next = { w: root.clientWidth, h: root.clientHeight }
       viewportRef.current = next
       if (next.w <= 0 || next.h <= 0 || totemsRef.current) return
-      const agents = buildFloatingTotems(count, next.w, next.h, size)
+      const agents = buildFloatingTotems(count, next.w, next.h, size, minZoom, maxZoom)
       totemsRef.current = agents
       setTotems(agents)
     }
@@ -49,7 +58,7 @@ export function FloatingTotems({
     const ro = new ResizeObserver(updateSize)
     ro.observe(root)
     return () => ro.disconnect()
-  }, [count, size])
+  }, [count, size, minZoom, maxZoom])
 
   useEffect(() => {
     const root = rootRef.current
@@ -112,11 +121,13 @@ export function FloatingTotems({
 
           totem.vScale += (Math.random() - 0.5) * 0.15 * dt
           totem.scale += totem.vScale * dt
-          if (totem.scale < SCALE_MIN) {
-            totem.scale = SCALE_MIN
+          const scaleMin = minZoomRef.current
+          const scaleMax = maxZoomRef.current
+          if (totem.scale < scaleMin) {
+            totem.scale = scaleMin
             totem.vScale = Math.abs(totem.vScale)
-          } else if (totem.scale > SCALE_MAX) {
-            totem.scale = SCALE_MAX
+          } else if (totem.scale > scaleMax) {
+            totem.scale = scaleMax
             totem.vScale = -Math.abs(totem.vScale)
           }
 
@@ -154,7 +165,7 @@ export function FloatingTotems({
             to="/$id"
             params={{ id: String(totem.tokenId) }}
             title={`#${totem.tokenId}`}
-            className="pointer-events-auto absolute top-0 left-0 block overflow-hidden rounded-sm bg-[#111] shadow-[0_0_12px_rgba(0,0,0,0.45)] will-change-transform"
+            className="pointer-events-auto absolute top-0 left-0 block will-change-transform"
             style={{
               width: tile,
               height: tile,
@@ -164,12 +175,12 @@ export function FloatingTotems({
           >
             <img
               alt={`Moon Totem ${totem.tokenId}`}
-              src={getImageUrl({ tokenId: totem.tokenId, size: size > 80 ? 512 : 100 })}
+              src={ASSETS.cdn.totem.base.png[2048](totem.tokenId)}
               width={size}
               height={size}
               loading="lazy"
               draggable={false}
-              className="pointer-events-none h-full w-full object-cover"
+              className="pointer-events-none h-full w-full object-contain"
             />
           </Link>
         )

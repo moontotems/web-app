@@ -71,8 +71,10 @@ function seedTotem(
   width: number,
   height: number,
   baseSize = FLOATING_BASE_SIZE,
+  scaleMin = SCALE_MIN,
+  scaleMax = SCALE_MAX,
 ): FloatingTotem {
-  const scale = rand(SCALE_MIN, SCALE_MAX)
+  const scale = rand(scaleMin, scaleMax)
   const half = (baseSize * scale) / 2
   return {
     tokenId,
@@ -91,12 +93,14 @@ export function buildFloatingTotems(
   width: number,
   height: number,
   baseSize = FLOATING_BASE_SIZE,
+  scaleMin = SCALE_MIN,
+  scaleMax = SCALE_MAX,
 ): FloatingTotem[] {
   const pool = shuffle(Array.from({ length: MAX_TOKEN_ID + 1 }, (_, tokenId) => tokenId)).slice(
     0,
     count,
   )
-  return pool.map((tokenId) => seedTotem(tokenId, width, height, baseSize))
+  return pool.map((tokenId) => seedTotem(tokenId, width, height, baseSize, scaleMin, scaleMax))
 }
 
 /** Push totem away from the cursor; nearer / larger totems react more. */

@@ -1,13 +1,28 @@
 import { Link } from '@tanstack/react-router'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
+import { moonTurnVideo } from '~/routes/_nft/project-overview/-data'
+
 import { FloatingTotems } from './FloatingTotems'
 
 /** 404 page styled like the NFT overview: black field, light type, explore boxes. */
 export function NotFound() {
   return (
     <div className="nft-theme dark relative flex min-h-screen w-full flex-col justify-between overflow-hidden bg-black text-white">
-      <FloatingTotems count={1} size={180} />
+      <FloatingTotems count={1} size={180} minZoom={1.5} maxZoom={1.5} />
+
+      <div
+        className="pointer-events-none absolute bottom-[150px] left-0 z-[110] w-[min(40vmin,420px)] overflow-hidden rounded-full bg-black shadow-[0_0_40px_rgba(255,255,255,0.12)] md:bottom-0"
+        style={{ aspectRatio: '1' }}
+      >
+        <iframe
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+          className="pointer-events-none h-full w-full border-0"
+          src={moonTurnVideo}
+          title="Moon"
+        />
+      </div>
 
       <div className="relative z-10 w-full p-[5%] md:max-w-3xl">
         <div className="text-[32px] font-light md:text-[55px]">404</div>
