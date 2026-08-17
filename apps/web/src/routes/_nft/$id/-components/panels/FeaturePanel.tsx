@@ -1,6 +1,8 @@
 import { XCircle } from 'lucide-react'
 import type { ReactNode } from 'react'
 
+import { cn } from '@moontotems/ui'
+
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 
 // Overlay container for MoonTotem feature panels (legacy MoonTotemFeatureContainer).
@@ -24,16 +26,23 @@ export const FeaturePanel = ({
     closeFeaturePanels()
   }
 
+  const isDefaultMobile = isMobile && variant === 'default'
+
   return (
     <div
-      className="w-full pt-2.5"
+      className={cn('w-full', isDefaultMobile && 'min-h-full')}
       style={
         variant === 'freshMint'
           ? { backgroundColor: '#4589FF', opacity: 0.95, padding: 15 }
           : { background: isMobile ? 'rgba(0, 0, 0, 0.8)' : 'none' }
       }
     >
-      <div className="mb-4 flex w-full items-center pl-[17px]">
+      <div
+        className={cn(
+          'mb-4 flex w-full items-center pt-2.5 pl-[17px]',
+          isDefaultMobile && 'sticky top-0 z-10 bg-black/80',
+        )}
+      >
         <span>{icon}</span>
         <span className="pl-2.5 text-xl">{title}</span>
         <button
@@ -45,7 +54,9 @@ export const FeaturePanel = ({
           <XCircle className="size-8" strokeWidth={1} />
         </button>
       </div>
-      <div className="w-full pl-5 text-lg text-white">{children}</div>
+      <div className={cn('w-full pl-5 text-lg text-white', isDefaultMobile && 'pb-8')}>
+        {children}
+      </div>
     </div>
   )
 }

@@ -62,7 +62,7 @@ export const MoonTotemMobile = ({ initialTokenId }: { initialTokenId: number }) 
       }}
     >
       {oneFeatureIsVisible && (
-        <div className="fixed left-0 z-100 h-full w-full overflow-y-hidden">
+        <div className="absolute inset-0 z-100 overflow-y-auto overscroll-contain">
           <FeaturePanels moonTotem={moonTotem} metaData={metaData} />
         </div>
       )}

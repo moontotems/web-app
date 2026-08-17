@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { getImageUrl } from '~/lib/nft/image-url'
@@ -8,25 +8,26 @@ import { usePrefetchTokenMetadata } from '~/lib/nft/use-token-data'
 export function useMoonTotemNavigation(initialTokenId: number) {
   const { filteredMoonTotems, assembleMoonTotem } = useMoonTotems()
 
-  const findIndex = useCallback(
-    (tokenId: number) => filteredMoonTotems.findIndex((moonTotem) => moonTotem.tokenId === tokenId),
-    [filteredMoonTotems],
+  // Token id is the source of truth so a shuffle/filter re-order cannot
+  // swap the totem under a stale list index (and rewrite the URL).
+  const [tokenId, setTokenId] = useState(initialTokenId)
+
+  useEffect(() => {
+    setTokenId(initialTokenId)
+  }, [initialTokenId])
+
+  const index = useMemo(
+    () => filteredMoonTotems.findIndex((moonTotem) => moonTotem.tokenId === tokenId),
+    [filteredMoonTotems, tokenId],
   )
 
-  const [index, setIndex] = useState(() => findIndex(initialTokenId))
-
-  // If the current index no longer resolves (filters changed), re-resolve it
-  useEffect(() => {
-    if (!filteredMoonTotems[index]) {
-      setIndex(findIndex(initialTokenId))
-    }
-  }, [filteredMoonTotems, index, findIndex, initialTokenId])
-
-  const moonTotem: MoonTotem = filteredMoonTotems[index] ?? assembleMoonTotem(initialTokenId)
+  const moonTotem: MoonTotem =
+    (index >= 0 ? filteredMoonTotems[index] : undefined) ?? assembleMoonTotem(tokenId)
 
   // Warm the metadata cache for the neighbours so arrow-key navigation is instant.
   const prefetchMetadata = usePrefetchTokenMetadata()
   useEffect(() => {
+    if (index < 0) return
     for (const neighbour of [filteredMoonTotems[index - 1], filteredMoonTotems[index + 1]]) {
       if (neighbour) prefetchMetadata(neighbour.tokenId)
     }
@@ -34,27 +35,26 @@ export function useMoonTotemNavigation(initialTokenId: number) {
 
   const navigate = useCallback(
     (direction: 'left' | 'right') => {
-      setIndex((current) => {
-        if (direction === 'left' && current > 0) return current - 1
-        if (direction === 'right' && current < filteredMoonTotems.length - 1) {
-          return current + 1
-        }
-        return current
+      setTokenId((current) => {
+        const currentIndex = filteredMoonTotems.findIndex(
+          (moonTotem) => moonTotem.tokenId === current,
+        )
+        if (currentIndex < 0) return current
+        const nextIndex = direction === 'left' ? currentIndex - 1 : currentIndex + 1
+        return filteredMoonTotems[nextIndex]?.tokenId ?? current
       })
     },
-    [filteredMoonTotems.length],
+    [filteredMoonTotems],
   )
 
   // Keep the URL in sync without triggering a router navigation
   useEffect(() => {
-    const tokenId = filteredMoonTotems[index]?.tokenId
-    if (tokenId !== undefined) {
-      window.history.replaceState(null, `Moon Totem ${tokenId}`, `/${tokenId}`)
-    }
-  }, [index, filteredMoonTotems])
+    window.history.replaceState(null, `Moon Totem ${tokenId}`, `/${tokenId}`)
+  }, [tokenId])
 
   // Preload images +-10 in each direction
   useEffect(() => {
+    if (index < 0) return
     const preloadSize = 10
     const start = Math.max(0, index - preloadSize)
     const end = Math.min(filteredMoonTotems.length - 1, index + preloadSize)
