@@ -33,6 +33,8 @@ export function MoonTotemMobile({ initialTokenId }: { initialTokenId: number }) 
   const swipeHandlers = useSwipeable({
     trackMouse: true,
     trackTouch: true,
+    // Block the browser from scrolling / rubber-banding during horizontal nav swipes.
+    preventScrollOnSwipe: true,
     onSwipedLeft: () => navigate('right'),
     onSwipedRight: () => navigate('left'),
   })
@@ -53,8 +55,11 @@ export function MoonTotemMobile({ initialTokenId }: { initialTokenId: number }) 
 
   return (
     <div
-      className="flex flex-col overflow-hidden"
-      style={{ height: `calc(100vh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)` }}
+      className="fixed right-0 left-0 flex flex-col overflow-hidden overscroll-none"
+      style={{
+        top: HEADER_HEIGHT,
+        height: `calc(100svh - ${HEADER_HEIGHT + FOOTER_HEIGHT}px)`,
+      }}
     >
       {oneFeatureIsVisible && (
         <div className="fixed left-0 z-100 h-full w-full overflow-y-hidden">
@@ -64,7 +69,7 @@ export function MoonTotemMobile({ initialTokenId }: { initialTokenId: number }) 
 
       <div
         {...swipeHandlers}
-        className="flex min-h-0 flex-1 items-center justify-center px-4"
+        className="flex min-h-0 flex-1 touch-pan-x items-center justify-center px-4"
       >
         <img
           src={getImageUrl({ tokenId, size: ownedByUser ? 2048 : 1024 })}
