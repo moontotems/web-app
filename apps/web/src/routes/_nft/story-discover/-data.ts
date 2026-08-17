@@ -8,19 +8,19 @@ export function describeTotem(metaData: TokenMetaData): string {
   const personality = `${metaData.trait_personality1}, ${metaData.trait_personality2} & ${metaData.trait_personality3}`
   const birth = `${metaData.birthDay}/${metaData.birthMonth}/${metaData.birthYearStr}`
   const discovered = `${metaData.spawn_DateDay}/${metaData.spawn_DateMonth}/${metaData.spawn_DateYear}`
-  const eyes = `${metaData.eyeAsymmetrical ? 'Asymmetrical' : 'Symmetrical'}, ${
-    metaData.eyeMulticolor ? 'Multicolored' : 'Single Color'
+  const eyes = `${metaData.eyeAsymmetrical ? 'asymmetrical' : 'symmetrical'}, ${
+    metaData.eyeMulticolor ? 'multicolored' : 'single color'
   }, ${metaData.eyeShape}`
 
   return (
-    `${name} is a ${title} from ${metaData.lunarOriginName}. ` +
+    `${name} is a ${title} from the moon region ${metaData.lunarOriginName}. ` +
     `They are ${personality}. ` +
     `Born ${birth} under a ${metaData.moonPhase} moon in the ${metaData.moonMonth} month, ` +
     `they are ${metaData.age} years old. ` +
     `Discovered ${discovered}. ` +
-    `Eyes: ${eyes}. ` +
-    `The material he is made of is ${String(metaData.Material).toLowerCase()}. ` +
-    `Which consists out of ${metaData.complexityPieces} pieces and ${metaData.colorsTotal} colors.`
+    `Their eyes are ${eyes}. ` +
+    `The material they are made of is ${String(metaData.Material).toLowerCase()}. ` +
+    `And consists out of ${metaData.complexityPieces} pieces and ${metaData.colorsTotal} colors.`
   )
 }
 
