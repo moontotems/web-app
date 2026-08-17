@@ -10,7 +10,7 @@ import { functionKey, listContractFunctions } from './-data'
 
 type Tab = 'read' | 'write'
 
-function ContractInterfacePage() {
+const ContractInterfacePage = () => {
   const { isConnected } = useAccount()
   const chainId = useChainId() || targetChainId
   const contractAddress = getMoonTotemsAddress(chainId)

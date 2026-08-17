@@ -8,8 +8,8 @@ import { ActionSidebar } from '~/lib/sharedComponents/nft/ActionSidebar'
 import { MoonTotemDesktop } from './-components/MoonTotemDesktop'
 import { MoonTotemMobile } from './-components/MoonTotemMobile'
 
-/** MoonTotem detail page: desktop (zoom + keyboard nav) and mobile (swipe). */
-export function MoonTotemPage({ tokenId }: { tokenId: number }) {
+// MoonTotem detail page: desktop (zoom + keyboard nav) and mobile (swipe).
+export const MoonTotemPage = ({ tokenId }: { tokenId: number }) => {
   const { isMobile } = useMoonTotems()
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export function MoonTotemPage({ tokenId }: { tokenId: number }) {
   )
 }
 
-function MoonTotemRoute() {
+const MoonTotemRoute = () => {
   const { id } = Route.useParams()
   return <MoonTotemPage tokenId={Number.parseInt(id, 10)} />
 }

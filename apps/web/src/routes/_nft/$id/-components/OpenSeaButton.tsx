@@ -1,6 +1,6 @@
 import { OPENSEA_ASSET_BASE } from '~/lib/constants'
 
-export function OpenSeaButton({ tokenId }: { tokenId: number }) {
+export const OpenSeaButton = ({ tokenId }: { tokenId: number }) => {
   return (
     <a href={`${OPENSEA_ASSET_BASE}/${tokenId}`} target="_blank" rel="noreferrer">
       <button

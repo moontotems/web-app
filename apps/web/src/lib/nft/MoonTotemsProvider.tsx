@@ -67,7 +67,7 @@ export type MoonTotemsContextValue = {
   shuffleIds: () => void
 
   mintedIds: Set<number>
-  /** Token ids from Mint events, most recent first. */
+  // Token ids from Mint events, most recent first.
   mintEventTokenIds: number[]
   usersTokenIds: number[]
   refetchUserTotems: () => Promise<void>
@@ -109,7 +109,7 @@ const INITIAL_FEATURE_PANELS: Record<FeaturePanelId, boolean> = {
   mintTo: false,
 }
 
-export function MoonTotemsProvider({ children }: { children: ReactNode }) {
+export const MoonTotemsProvider = ({ children }: { children: ReactNode }) => {
   const isMobile = useIsMobile()
   const { address, isConnected } = useAccount()
   const chainId = useChainId()

@@ -45,7 +45,7 @@ const FULLSCREEN = { left: 0, top: 0, width: 0, height: 0 }
  * size * zoomScale and moving the mouse pans across it; clicking again
  * zooms back out.
  */
-export function ZoomImage({
+export const ZoomImage = ({
   src,
   zoomSrc,
   alt,
@@ -57,7 +57,7 @@ export function ZoomImage({
   alt: string
   height: string
   zoomScale?: number
-}) {
+}) => {
   const previewRef = useRef<HTMLDivElement | null>(null)
   const overlayRef = useRef<HTMLDivElement | null>(null)
   const [zoomed, setZoomed] = useState(false)

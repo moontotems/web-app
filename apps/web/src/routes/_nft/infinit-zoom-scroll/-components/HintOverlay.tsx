@@ -1,12 +1,12 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 
-export function HintOverlay({
+export const HintOverlay = ({
   children,
   onDismiss,
 }: {
   children: ReactNode
   onDismiss: () => void
-}) {
+}) => {
   const onDismissRef = useRef(onDismiss)
   onDismissRef.current = onDismiss
 

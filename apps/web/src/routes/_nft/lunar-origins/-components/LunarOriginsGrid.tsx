@@ -1,7 +1,7 @@
 import { MobileItemSlider } from '../../-components/MobileItemSlider'
 import { MOONS, type Moon } from '../-data'
 
-function MoonCard({ moon }: { moon: Moon }) {
+const MoonCard = ({ moon }: { moon: Moon }) => {
   return (
     <div>
       <img alt={moon.name} className="mb-5 w-full" loading="lazy" src={moon.image} />
@@ -14,8 +14,8 @@ function MoonCard({ moon }: { moon: Moon }) {
   )
 }
 
-/** Name, Latin name, photo, and symbol grid used on Lunar Origins and project overview. */
-export function LunarOriginsGrid() {
+// Name, Latin name, photo, and symbol grid used on Lunar Origins and project overview.
+export const LunarOriginsGrid = () => {
   return (
     <section className="w-full bg-black pb-12">
       <h2 className="p-[25px] text-xl">Lunar Origins</h2>

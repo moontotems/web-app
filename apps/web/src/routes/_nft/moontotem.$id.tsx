@@ -2,7 +2,7 @@ import { createFileRoute, redirect } from '@tanstack/react-router'
 
 import { MoonTotemPage } from './$id/index'
 
-function MoonTotemRoute() {
+const MoonTotemRoute = () => {
   const { id } = Route.useParams()
   return <MoonTotemPage tokenId={Number.parseInt(id, 10)} />
 }

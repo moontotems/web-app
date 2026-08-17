@@ -29,7 +29,7 @@ interface UserAuthVerificationCodeFormProps {
   onBack?: () => void
 }
 
-export function UserAuthVerificationCodeForm({ email, onBack }: UserAuthVerificationCodeFormProps) {
+export const UserAuthVerificationCodeForm = ({ email, onBack }: UserAuthVerificationCodeFormProps) => {
   const router = useRouter()
   const queryClient = useQueryClient()
   const [isLoading, setIsLoading] = useState<boolean>(false)

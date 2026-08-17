@@ -6,8 +6,8 @@ function captionText(value: CaptionValue) {
   return value == null || value === false ? '' : String(value)
 }
 
-/** Name + job lines (canvas tile styling). */
-export function TotemCaption({
+// Name + job lines (canvas tile styling).
+export const TotemCaption = ({
   name1,
   name2,
   jobField,
@@ -23,7 +23,7 @@ export function TotemCaption({
   className?: string
   nameClassName?: string
   jobClassName?: string
-}) {
+}) => {
   return (
     <div className={cn('text-center leading-tight text-white', className)}>
       <div className={cn('mb-0.5 truncate text-base font-normal', nameClassName)}>

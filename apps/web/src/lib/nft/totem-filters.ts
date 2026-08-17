@@ -52,7 +52,7 @@ export type MultiSelectFacetDef = {
   label: string
   kind: 'multi'
   group: FacetGroupId
-  /** Column to read for options / matching; personality uses a special path. */
+  // Column to read for options / matching; personality uses a special path.
   column?: keyof TotemTableRow & string
 }
 
@@ -238,7 +238,7 @@ export const TOTEM_FACETS: FacetDef[] = [
   },
 ]
 
-/** Facets grouped for the Filters drawer UI. */
+// Facets grouped for the Filters drawer UI.
 export function getFacetsByGroup(): Array<{
   id: FacetGroupId
   label: string
@@ -250,7 +250,7 @@ export function getFacetsByGroup(): Array<{
   }))
 }
 
-/** Look up a facet by id (matches TotemTable column ids for filterable columns). */
+// Look up a facet by id (matches TotemTable column ids for filterable columns).
 export function findFacetById(id: string): FacetDef | undefined {
   return TOTEM_FACETS.find((facet) => facet.id === id)
 }
@@ -283,7 +283,7 @@ function isNonEmptyFilterState(state: TotemFilterState): boolean {
   )
 }
 
-/** Compact JSON for the `/all?facets=` query param (omit when empty). */
+// Compact JSON for the `/all?facets=` query param (omit when empty).
 export function serializeTotemFilterState(state: TotemFilterState): string | undefined {
   const multi: TotemFilterState['multi'] = {}
   for (const [key, values] of Object.entries(state.multi)) {
@@ -304,7 +304,7 @@ export function serializeTotemFilterState(state: TotemFilterState): string | und
   return JSON.stringify(cleaned)
 }
 
-/** Parse `/all?facets=` JSON back into TotemFilterState (invalid → empty). */
+// Parse `/all?facets=` JSON back into TotemFilterState (invalid → empty).
 export function parseTotemFilterState(raw: unknown): TotemFilterState {
   const empty = createEmptyTotemFilterState()
   if (raw == null || raw === '') return empty
@@ -456,7 +456,7 @@ export type ActiveChip = {
   facetId: FacetId
   label: string
   valueLabel: string
-  /** Key used to remove this chip. */
+  // Key used to remove this chip.
   removeKey: string
 }
 

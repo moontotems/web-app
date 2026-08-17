@@ -2,13 +2,13 @@ import { CircleUserRound, Lock, Moon } from 'lucide-react'
 
 import type { MoonTotem } from '~/lib/nft/types'
 
-export function StatusIcon({
+export const StatusIcon = ({
   moonTotem,
   className,
 }: {
   moonTotem: MoonTotem
   className?: string
-}) {
+}) => {
   if (moonTotem.ownedByUser) {
     return <CircleUserRound className={className} aria-label="Owned by you" />
   }

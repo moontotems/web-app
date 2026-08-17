@@ -4,14 +4,14 @@ import { ArrowRight } from 'lucide-react'
 
 import { DEFAULT_GALLERY_SEARCH } from '~/lib/nft/gallery-search'
 
-/** Green-arrow explore box linking to the gallery. */
-export function ExploreLink({
+// Green-arrow explore box linking to the gallery.
+export const ExploreLink = ({
   label,
   className,
 }: {
   label: string
   className?: string
-}) {
+}) => {
   return (
     <Link
       className={cn('explore-box h-[150px] w-[300px] p-[15px]', className)}

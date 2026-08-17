@@ -10,9 +10,9 @@ export type GalleryView = 'grid' | 'list'
 
 export type GallerySearch = {
   view: GalleryView
-  /** Gallery sidebar filters (excludes myMoonTotems, which lives on /wallet). */
+  // Gallery sidebar filters (excludes myMoonTotems, which lives on /wallet).
   filters: FilterId[]
-  /** TotemFilterBar facet state (list view). */
+  // TotemFilterBar facet state (list view).
   facets: TotemFilterState
 }
 
@@ -28,7 +28,7 @@ function isFilterId(value: string): value is FilterId {
   return VALID_FILTERS.has(value)
 }
 
-/** Parse `filters` from a query string value (comma-separated or repeated). */
+// Parse `filters` from a query string value (comma-separated or repeated).
 export function parseFiltersParam(raw: unknown): FilterId[] {
   const parts: string[] = []
   if (typeof raw === 'string') {
@@ -50,13 +50,13 @@ export function parseFiltersParam(raw: unknown): FilterId[] {
   return out
 }
 
-/** Serialize filters for a search object (omit empty). */
+// Serialize filters for a search object (omit empty).
 export function serializeFilters(filters: FilterId[]): string | undefined {
   const cleaned = filters.filter((f) => f !== FILTERS.myMoonTotems)
   return cleaned.length > 0 ? cleaned.join(',') : undefined
 }
 
-/** Build a typed `/all` search payload from view + filters + facets. */
+// Build a typed `/all` search payload from view + filters + facets.
 export function toGallerySearch(
   view: GalleryView,
   filters: FilterId[],
@@ -69,7 +69,7 @@ export function toGallerySearch(
   }
 }
 
-/** TanStack Router `validateSearch` for `/all`. */
+// TanStack Router `validateSearch` for `/all`.
 export function validateGallerySearch(search: Record<string, unknown>): GallerySearch {
   const view: GalleryView = search.view === 'list' ? 'list' : 'grid'
   const filters = parseFiltersParam(search.filters).filter((f) => f !== FILTERS.myMoonTotems)
@@ -77,7 +77,7 @@ export function validateGallerySearch(search: Record<string, unknown>): GalleryS
   return { view, filters, facets }
 }
 
-/** Next filter list when toggling Available (notMinted) vs Minted (mutually exclusive). */
+// Next filter list when toggling Available (notMinted) vs Minted (mutually exclusive).
 export function toggleMintStatusFilters(
   active: FilterId[],
   target: typeof FILTERS.minted | typeof FILTERS.notMinted,
@@ -90,7 +90,7 @@ export function toggleMintStatusFilters(
   return [...withoutMint, target]
 }
 
-/** Next filter list when toggling favorites. */
+// Next filter list when toggling favorites.
 export function toggleFavoriteFilter(active: FilterId[]): FilterId[] {
   if (active.includes(FILTERS.favorites)) {
     return active.filter((f) => f !== FILTERS.favorites)

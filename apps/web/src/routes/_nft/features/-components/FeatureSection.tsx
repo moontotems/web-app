@@ -1,6 +1,6 @@
 import type { FeatureSectionData } from '../-data'
 
-function FeatureMedia({ section }: { section: FeatureSectionData }) {
+const FeatureMedia = ({ section }: { section: FeatureSectionData }) => {
   if (section.video) {
     return (
       <div className="relative w-full pt-[100%]">
@@ -29,14 +29,14 @@ function FeatureMedia({ section }: { section: FeatureSectionData }) {
   return <div className="aspect-square w-full bg-black" />
 }
 
-/** Full-viewport split section: media + copy (project-overview style, no carousel). */
-export function FeatureSection({
+// Full-viewport split section: media + copy (project-overview style, no carousel).
+export const FeatureSection = ({
   section,
   mediaSide,
 }: {
   section: FeatureSectionData
   mediaSide: 'left' | 'right'
-}) {
+}) => {
   const media = (
     <div className="w-full">
       <FeatureMedia section={section} />

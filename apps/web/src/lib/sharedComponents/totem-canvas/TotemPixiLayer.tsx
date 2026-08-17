@@ -21,7 +21,7 @@ type PooledSprite = {
   sprite: Sprite
   tokenId: number
   size: ExploreGpuImageSize | null
-  /** Generation bump cancels stale async texture assigns. */
+  // Generation bump cancels stale async texture assigns.
   gen: number
 }
 
@@ -35,7 +35,7 @@ function previewChain(target: ExploreGpuImageSize): ExploreGpuImageSize[] {
  * Client-only Pixi WebGL layer: sprite-batched totem grid driven by camera subscriptions.
  * Canvas uses pointer-events: none so the parent keeps pan/click handlers.
  */
-export function TotemPixiLayer({ containerRef, subscribeCamera }: TotemPixiLayerProps) {
+export const TotemPixiLayer = ({ containerRef, subscribeCamera }: TotemPixiLayerProps) => {
   const spritesRef = useRef(new Map<string, PooledSprite>())
   const viewKeyRef = useRef('')
   const destroyedRef = useRef(false)
@@ -218,5 +218,5 @@ export function TotemPixiLayer({ containerRef, subscribeCamera }: TotemPixiLayer
   return null
 }
 
-/** Dynamic import helper so SSR / other routes never pull Pixi. */
+// Dynamic import helper so SSR / other routes never pull Pixi.
 export default TotemPixiLayer

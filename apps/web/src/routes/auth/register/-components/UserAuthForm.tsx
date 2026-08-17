@@ -18,7 +18,7 @@ const inputClass =
 const submitButtonClass =
   'h-10 w-full rounded-md border-[0.5px] border-white/10 bg-primary text-primary-foreground shadow-md shadow-black/15 ring-1 ring-[var(--ring-color)] [--ring-color:color-mix(in_oklab,black_15%,var(--color-primary))] hover:bg-primary/90 dark:border-transparent dark:[--ring-color:color-mix(in_oklab,white_15%,var(--color-primary))] [&_svg]:drop-shadow-sm'
 
-export function UserAuthFormRegister({ className, ...props }: UserAuthFormProps) {
+export const UserAuthFormRegister = ({ className, ...props }: UserAuthFormProps) => {
   const [email, setEmail] = React.useState<string>('')
   const [verificationCode, setVerificationCode] = React.useState<string>('')
   const [isEmailSent, setIsEmailSent] = React.useState<boolean>(false)

@@ -7,12 +7,8 @@ import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 import { FeatureSection } from './-components/FeatureSection'
 import { featureSections } from './-data'
 
-export const Route = createFileRoute('/_nft/features/')({
-  component: FeaturesPage,
-})
-
-/** Dedicated Exclusive Features page: stacked split sections (project-overview style). */
-function FeaturesPage() {
+// Dedicated Exclusive Features page: stacked split sections (project-overview style).
+const FeaturesPage = () => {
   const { setHeaderTitle } = useMoonTotems()
   useScrollToTop()
 
@@ -58,3 +54,7 @@ function FeaturesPage() {
     </div>
   )
 }
+
+export const Route = createFileRoute('/_nft/features/')({
+  component: FeaturesPage,
+})

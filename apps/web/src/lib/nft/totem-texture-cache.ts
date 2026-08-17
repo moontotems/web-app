@@ -2,7 +2,7 @@ import { Texture } from 'pixi.js'
 
 import { getImageUrl } from '~/lib/nft/image-url'
 
-/** GPU texture LOD — never upload 2048/6k. */
+// GPU texture LOD — never upload 2048/6k.
 export type TotemGpuImageSize = 100 | 512 | 1024
 
 type CacheEntry = {

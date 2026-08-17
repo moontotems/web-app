@@ -23,7 +23,7 @@ const TotemPixiLayer = lazy(() => import('./TotemPixiLayer'))
  * Drag to pan in every direction, wheel/pinch to zoom; click opens a totem when zoomed in.
  * Images are drawn with Pixi WebGL; captions stay as a thin HTML overlay.
  */
-export function TotemMoveCanvas() {
+export const TotemMoveCanvas = () => {
   const { isMobile } = useMoonTotems()
   const navigate = useNavigate()
   const { cameraRef, view, containerRef, worldLayerRef, subscribeCamera, screenToWorld, didDrag } =

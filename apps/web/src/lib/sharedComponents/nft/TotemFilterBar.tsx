@@ -44,7 +44,7 @@ import {
 } from '~/lib/nft/totem-filters'
 import type { TotemTableRow } from '~/lib/nft/use-token-data'
 
-/** Portaled surfaces escape `.nft-theme`; re-apply tokens + panel chrome. */
+// Portaled surfaces escape `.nft-theme`; re-apply tokens + panel chrome.
 const POPOVER_CLASS =
   'nft-theme dark rounded-none border-[#393939] bg-[#262626] text-white shadow-none'
 
@@ -62,7 +62,7 @@ type FacetControlProps = {
   onChange: (state: TotemFilterState) => void
 }
 
-const FacetTrigger = function FacetTrigger({
+const FacetTrigger = ({
   ref,
   label,
   active,
@@ -73,7 +73,7 @@ const FacetTrigger = function FacetTrigger({
   label: string
   active: boolean
   count?: number
-} & { ref?: React.RefObject<HTMLButtonElement | null> }) {
+} & { ref?: React.RefObject<HTMLButtonElement | null> }) => {
   return (
     <Button
       ref={ref}
@@ -107,7 +107,7 @@ const FacetTrigger = function FacetTrigger({
   )
 }
 
-function MultiSelectFacetPanel({
+const MultiSelectFacetPanel = ({
   facet,
   options,
   selected,
@@ -117,7 +117,7 @@ function MultiSelectFacetPanel({
   options: string[]
   selected: string[]
   onToggle: (value: string) => void
-}) {
+}) => {
   const selectedSet = useMemo(() => new Set(selected), [selected])
 
   return (
@@ -155,7 +155,7 @@ function MultiSelectFacetPanel({
   )
 }
 
-function BooleanFacetPanel({
+const BooleanFacetPanel = ({
   facet,
   selected,
   onToggle,
@@ -163,7 +163,7 @@ function BooleanFacetPanel({
   facet: BooleanFacetDef
   selected: boolean[]
   onToggle: (value: boolean) => void
-}) {
+}) => {
   return (
     <div className="space-y-3 p-3">
       {[
@@ -190,7 +190,7 @@ function BooleanFacetPanel({
   )
 }
 
-function RangeFacetPanel({
+const RangeFacetPanel = ({
   facet,
   bounds,
   value,
@@ -200,7 +200,7 @@ function RangeFacetPanel({
   bounds: { min: number; max: number }
   value: { min?: number; max?: number } | undefined
   onChange: (next: { min?: number; max?: number }) => void
-}) {
+}) => {
   const active = value?.min !== undefined || value?.max !== undefined
 
   return (
@@ -265,7 +265,7 @@ function RangeFacetPanel({
   )
 }
 
-function FacetDropdownContent({ facet, options, state, onChange }: FacetControlProps) {
+const FacetDropdownContent = ({ facet, options, state, onChange }: FacetControlProps) => {
   if (facet.kind === 'multi') {
     return (
       <MultiSelectFacetPanel
@@ -301,7 +301,7 @@ function facetActiveCount(state: TotemFilterState, facet: FacetDef): number {
   return facetIsActive(state, facet) ? 1 : 0
 }
 
-function FacetControl({ facet, options, state, onChange }: FacetControlProps) {
+const FacetControl = ({ facet, options, state, onChange }: FacetControlProps) => {
   const active = facetIsActive(state, facet)
   const count = facetActiveCount(state, facet)
 
@@ -320,8 +320,8 @@ function FacetControl({ facet, options, state, onChange }: FacetControlProps) {
   )
 }
 
-/** Tiny header filter icon + dropdown for a single TotemTable column facet. */
-export function ColumnFacetFilter({ facet, options, state, onChange }: FacetControlProps) {
+// Tiny header filter icon + dropdown for a single TotemTable column facet.
+export const ColumnFacetFilter = ({ facet, options, state, onChange }: FacetControlProps) => {
   const active = facetIsActive(state, facet)
   const count = facetActiveCount(state, facet)
 
@@ -355,8 +355,8 @@ export function ColumnFacetFilter({ facet, options, state, onChange }: FacetCont
   )
 }
 
-/** Compact filter controls for the DataTable toolbar (next to search). */
-export function TotemFilterBar({ rows, filteredCount, state, onChange }: TotemFilterBarProps) {
+// Compact filter controls for the DataTable toolbar (next to search).
+export const TotemFilterBar = ({ rows, filteredCount, state, onChange }: TotemFilterBarProps) => {
   const [open, setOpen] = useState(false)
   const options = useMemo(() => buildFacetOptions(rows), [rows])
   const chips = useMemo(() => getActiveChips(state), [state])

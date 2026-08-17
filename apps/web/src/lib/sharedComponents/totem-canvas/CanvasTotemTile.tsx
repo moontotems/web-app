@@ -12,13 +12,13 @@ type CanvasTotemTileProps = {
   card?: TotemCardData
 }
 
-/** Caption-only overlay for the WebGL totem canvas (images are Pixi sprites). */
-export const CanvasTotemTile = memo(function CanvasTotemTile({
+// Caption-only overlay for the WebGL totem canvas (images are Pixi sprites).
+export const CanvasTotemTile = memo(({
   tokenId,
   x,
   y,
   card,
-}: CanvasTotemTileProps) {
+}: CanvasTotemTileProps) => {
   const traitName1 = card?.trait_name1 ?? ''
   const traitName2 = card?.trait_name2 ?? ''
   const jobField = card?.trait_jobField ?? ''

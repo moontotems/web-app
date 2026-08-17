@@ -5,8 +5,8 @@ import { clearFreshMintFlag, hasFreshMintFlag } from '~/lib/nft/fresh-mint'
 
 import { FeaturePanel } from './FeaturePanel'
 
-/** Welcome message after a fresh mint (legacy MoonTotem features/FreshMintMessage). */
-export function FreshMintMessage({ tokenId }: { tokenId: number }) {
+// Welcome message after a fresh mint (legacy MoonTotem features/FreshMintMessage).
+export const FreshMintMessage = ({ tokenId }: { tokenId: number }) => {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {

@@ -20,7 +20,7 @@ export type TotemCardData = Pick<
 
 const CARD_COLUMNS = 'token_id,trait_name1,trait_name2,trait_jobField,trait_jobTitle'
 
-/** Columns rendered by the /all list view (TotemTable). */
+// Columns rendered by the /all list view (TotemTable).
 const TABLE_COLUMNS = [
   'token_id',
   'id',
@@ -131,13 +131,13 @@ function tokenMetadataQuery(tokenId: number) {
   }
 }
 
-/** Full metadata record for a single totem (detail page). */
+// Full metadata record for a single totem (detail page).
 export function useTokenMetadata(tokenId: number): TokenMetaData | undefined {
   const { data } = useQuery(tokenMetadataQuery(tokenId))
   return data
 }
 
-/** Warms the metadata cache for neighbouring totems (arrow-key navigation). */
+// Warms the metadata cache for neighbouring totems (arrow-key navigation).
 export function usePrefetchTokenMetadata() {
   const queryClient = useQueryClient()
   return useCallback(
@@ -158,7 +158,7 @@ async function fetchTableRows(): Promise<TotemTableRow[]> {
   return (data ?? []) as unknown as TotemTableRow[]
 }
 
-/** All rows for the /all list view (one gzipped request, cached for the session). */
+// All rows for the /all list view (one gzipped request, cached for the session).
 export function useTotemTableRows() {
   return useQuery({
     queryKey: ['totem-table-rows'],

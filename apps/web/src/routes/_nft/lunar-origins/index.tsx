@@ -5,7 +5,7 @@ import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 import { moonTurnVideo } from '../project-overview/-data'
 import { LunarOriginsGrid } from './-components/LunarOriginsGrid'
 
-function LunarOriginsPage() {
+const LunarOriginsPage = () => {
   useScrollToTop()
 
   return (

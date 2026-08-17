@@ -6,17 +6,13 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { FOOTER_HEIGHT } from '~/lib/constants'
 import { TotemMoveCanvas } from '~/lib/sharedComponents/totem-canvas/TotemMoveCanvas'
 
-export const Route = createFileRoute('/_nft/')({
-  component: ExplorePage,
-})
-
 const footerLinkClass = cn(
   'flex h-full flex-1 items-center justify-center px-4',
   'text-xs font-normal tracking-[0.16px] whitespace-nowrap',
   'text-white hover:bg-[#262626]',
 )
 
-/** Offset from the layout bottom to the visible viewport (Safari chrome). */
+// Offset from the layout bottom to the visible viewport (Safari chrome).
 function useVisualViewportBottom() {
   const [bottom, setBottom] = useState(0)
 
@@ -42,8 +38,8 @@ function useVisualViewportBottom() {
   return bottom
 }
 
-/** Header Project Overview / OpenAI links, pinned to the bottom on mobile. */
-function IndexMobileFooter() {
+// Header Project Overview / OpenAI links, pinned to the bottom on mobile.
+const IndexMobileFooter = () => {
   const { setSidebarLeftOpen } = useMoonTotems()
   const close = () => setSidebarLeftOpen(false)
   const bottom = useVisualViewportBottom()
@@ -68,8 +64,8 @@ function IndexMobileFooter() {
   )
 }
 
-/** Home: full-bleed infinite 2D totem canvas. */
-function ExplorePage() {
+// Home: full-bleed infinite 2D totem canvas.
+const ExplorePage = () => {
   const { setHeaderTitle } = useMoonTotems()
 
   useEffect(() => {
@@ -83,3 +79,7 @@ function ExplorePage() {
     </>
   )
 }
+
+export const Route = createFileRoute('/_nft/')({
+  component: ExplorePage,
+})

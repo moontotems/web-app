@@ -5,12 +5,7 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { validateGallerySearch } from '~/lib/nft/gallery-search'
 import { ActionSidebar, TotemGrid, TotemTable } from '~/lib/sharedComponents/nft'
 
-export const Route = createFileRoute('/_nft/all/')({
-  validateSearch: validateGallerySearch,
-  component: AllPage,
-})
-
-function AllPage() {
+const AllPage = () => {
   const search = Route.useSearch()
   const {
     showGridView,
@@ -35,3 +30,8 @@ function AllPage() {
     </>
   )
 }
+
+export const Route = createFileRoute('/_nft/all/')({
+  validateSearch: validateGallerySearch,
+  component: AllPage,
+})

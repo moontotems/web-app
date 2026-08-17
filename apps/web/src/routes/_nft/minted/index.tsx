@@ -4,7 +4,7 @@ import { TotemCard } from '~/lib/sharedComponents/nft'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { useTokenCards } from '~/lib/nft/use-token-data'
 
-function MintedPage() {
+const MintedPage = () => {
   const { mintEventTokenIds, assembleMoonTotem } = useMoonTotems()
   const cards = useTokenCards(mintEventTokenIds)
 

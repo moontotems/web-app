@@ -3,7 +3,7 @@ import { Link } from '@tanstack/react-router'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { ASSETS, CONTACT_EMAIL, SOCIAL_LINKS } from '~/lib/constants'
 
-function SocialMediaIcons() {
+const SocialMediaIcons = () => {
   return (
     <div className="flex items-center gap-1.5">
       <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer">
@@ -22,8 +22,8 @@ function SocialMediaIcons() {
   )
 }
 
-/** 40px bottom bar (legacy Footer). */
-export function Footer() {
+// 40px bottom bar (legacy Footer).
+export const Footer = () => {
   const { isMobile } = useMoonTotems()
 
   return (

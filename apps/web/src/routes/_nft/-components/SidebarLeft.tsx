@@ -25,7 +25,7 @@ import { DEFAULT_GALLERY_SEARCH } from '~/lib/nft/gallery-search'
 
 const ICON = 'size-[18px] md:size-4'
 
-function MenuItem({
+const MenuItem = ({
   children,
   icon,
   heading = false,
@@ -33,7 +33,7 @@ function MenuItem({
   children: ReactNode
   icon?: ReactNode
   heading?: boolean
-}) {
+}) => {
   return (
     <div
       className={cn(
@@ -49,12 +49,12 @@ function MenuItem({
   )
 }
 
-function BrandIcon({ src }: { src: string }) {
+const BrandIcon = ({ src }: { src: string }) => {
   return <img alt="" className={ICON} src={src} />
 }
 
-/** 250px left navigation drawer. */
-export function SidebarLeft() {
+// 250px left navigation drawer.
+export const SidebarLeft = () => {
   const { sidebarLeftOpen, setSidebarLeftOpen } = useMoonTotems()
   const close = () => setSidebarLeftOpen(false)
 

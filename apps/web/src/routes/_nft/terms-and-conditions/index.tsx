@@ -2,11 +2,11 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
-function Heading({ children }: { children: string }) {
+const Heading = ({ children }: { children: string }) => {
   return <h2 className="mt-8 mb-3 text-2xl font-semibold">{children}</h2>
 }
 
-function TermsAndConditionsPage() {
+const TermsAndConditionsPage = () => {
   useScrollToTop()
 
   return (

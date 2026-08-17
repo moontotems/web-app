@@ -7,13 +7,13 @@ import { wagmiConfig } from './config'
 
 import '@rainbow-me/rainbowkit/styles.css'
 
-export function Web3Providers({
+export const Web3Providers = ({
   children,
   queryClient: queryClientProp,
 }: {
   children: ReactNode
   queryClient?: QueryClient
-}) {
+}) => {
   const [fallbackClient] = useState(
     () =>
       new QueryClient({

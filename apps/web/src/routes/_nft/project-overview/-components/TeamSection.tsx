@@ -1,8 +1,8 @@
 import { teamMembers } from '../-data'
 import { SectionHeading } from './SectionHeading'
 
-/** Two-member team section. */
-export function TeamSection() {
+// Two-member team section.
+export const TeamSection = () => {
   return (
     <section className="mb-[2%] w-full bg-black">
       <SectionHeading>Team</SectionHeading>

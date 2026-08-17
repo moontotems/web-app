@@ -10,7 +10,7 @@ import { ArrowLeftRight, UserRound } from 'lucide-react'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { shortAddress } from '~/lib/nft/format'
 
-export function MintDropdown({ tokenId }: { tokenId: number }) {
+export const MintDropdown = ({ tokenId }: { tokenId: number }) => {
   const { address, mint, toggleFeaturePanel } = useMoonTotems()
 
   return (

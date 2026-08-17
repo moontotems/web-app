@@ -18,12 +18,8 @@ import {
 } from './-components'
 import { uniqueCharactersSlider, uniqueFeaturesSlider } from './-data'
 
-export const Route = createFileRoute('/_nft/project-overview/')({
-  component: ProjectOverviewPage,
-})
-
-/** Landing page: section order is desktop + mobile variants. */
-function ProjectOverviewPage() {
+// Landing page: section order is desktop + mobile variants.
+const ProjectOverviewPage = () => {
   const { isMobile, setHeaderTitle } = useMoonTotems()
 
   useEffect(() => {
@@ -55,3 +51,7 @@ function ProjectOverviewPage() {
     </>
   )
 }
+
+export const Route = createFileRoute('/_nft/project-overview/')({
+  component: ProjectOverviewPage,
+})

@@ -7,8 +7,8 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 
 import { FeaturePanel } from './FeaturePanel'
 
-/** TOTEM ACTIONS panel — transfer (legacy MoonTotem features/Actions). */
-export function ActionsPanel({ tokenId }: { tokenId: number }) {
+// TOTEM ACTIONS panel — transfer (legacy MoonTotem features/Actions).
+export const ActionsPanel = ({ tokenId }: { tokenId: number }) => {
   const { transfer, isTransacting } = useMoonTotems()
   const [toAddress, setToAddress] = useState('')
 

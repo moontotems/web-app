@@ -5,8 +5,8 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import type { MoonTotem } from '~/lib/nft/types'
 import type { TotemCardData } from '~/lib/nft/use-token-data'
 
-/** Gallery card (legacy sharedComponents/MoonTotem). */
-export function TotemCard({
+// Gallery card (legacy sharedComponents/MoonTotem).
+export const TotemCard = ({
   moonTotem,
   card,
   showButtons = true,
@@ -15,14 +15,14 @@ export function TotemCard({
   imageFetchPriority = 'auto',
 }: {
   moonTotem: MoonTotem
-  /** Name/job strings from the moontotems table (see useTokenCards). */
+  // Name/job strings from the moontotems table (see useTokenCards).
   card?: TotemCardData
   showButtons?: boolean
   imageOverride?: string
-  /** Prefer `eager` + `high` for above-the-fold grid cells. */
+  // Prefer `eager` + `high` for above-the-fold grid cells.
   imageLoading?: 'lazy' | 'eager'
   imageFetchPriority?: 'high' | 'low' | 'auto'
-}) {
+}) => {
   const {
     favorites: { toggleFavorite },
   } = useMoonTotems()

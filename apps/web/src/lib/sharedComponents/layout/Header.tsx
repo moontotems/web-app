@@ -8,8 +8,8 @@ import { DEFAULT_GALLERY_SEARCH } from '~/lib/nft/gallery-search'
 
 import { WalletButton } from './WalletButton'
 
-/** Fixed 40px black top bar (legacy Carbon UIShell header). */
-export function Header() {
+// Fixed 40px black top bar (legacy Carbon UIShell header).
+export const Header = () => {
   const { headerTitle, sidebarLeftOpen, setSidebarLeftOpen } = useMoonTotems()
 
   return (

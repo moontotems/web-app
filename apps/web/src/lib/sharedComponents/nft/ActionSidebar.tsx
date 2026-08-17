@@ -40,7 +40,7 @@ const WIDTHS: Record<ViewState, number> = {
   wide: 250,
 }
 
-function MenuItem({
+const MenuItem = ({
   wide,
   text,
   icon,
@@ -56,7 +56,7 @@ function MenuItem({
   className?: string
   activeBorder?: boolean
   onClick?: () => void
-}) {
+}) => {
   return (
     // biome-ignore lint/a11y/useKeyWithClickEvents: legacy parity menu rows
     <div
@@ -92,7 +92,7 @@ function gallerySearch(
  * Collapsible right panel (legacy ActionSidebar): view toggles, filters,
  * shuffle, and MoonTotem feature toggles. Cycles hidden -> narrow -> wide.
  */
-export function ActionSidebar() {
+export const ActionSidebar = () => {
   const {
     route,
     showGridView,

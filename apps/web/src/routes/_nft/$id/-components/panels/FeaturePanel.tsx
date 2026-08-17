@@ -3,8 +3,8 @@ import type { ReactNode } from 'react'
 
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 
-/** Overlay container for MoonTotem feature panels (legacy MoonTotemFeatureContainer). */
-export function FeaturePanel({
+// Overlay container for MoonTotem feature panels (legacy MoonTotemFeatureContainer).
+export const FeaturePanel = ({
   icon,
   title,
   children,
@@ -16,7 +16,7 @@ export function FeaturePanel({
   children: ReactNode
   onClose?: () => void
   variant?: 'default' | 'freshMint'
-}) {
+}) => {
   const { isMobile, closeFeaturePanels } = useMoonTotems()
 
   const close = () => {

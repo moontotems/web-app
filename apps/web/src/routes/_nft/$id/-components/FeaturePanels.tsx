@@ -12,13 +12,13 @@ import {
   WriteStoryPanel,
 } from './panels'
 
-export function FeaturePanels({
+export const FeaturePanels = ({
   moonTotem,
   metaData,
 }: {
   moonTotem: MoonTotem
   metaData: TokenMetaData | undefined
-}) {
+}) => {
   const { featurePanels } = useMoonTotems()
   const { tokenId } = moonTotem
 

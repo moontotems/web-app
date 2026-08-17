@@ -1,7 +1,7 @@
 import { socialChannels } from '../-data'
 
-/** Social channels overview. */
-export function SocialMediaSection() {
+// Social channels overview.
+export const SocialMediaSection = () => {
   return (
     <section className="w-full bg-black px-[25px] py-8">
       <div className="grid gap-6 md:grid-cols-4 md:gap-8">

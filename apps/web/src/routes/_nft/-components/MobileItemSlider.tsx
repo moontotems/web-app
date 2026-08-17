@@ -4,8 +4,8 @@ import { useCallback, useEffect, useState, type ReactNode } from 'react'
 
 import { SlideDots } from './SlideDots'
 
-/** Full-width prev/next + dots, used by lunar grids on mobile. */
-function SlideControls({
+// Full-width prev/next + dots, used by lunar grids on mobile.
+const SlideControls = ({
   slideCount,
   currentIndex,
   onPrev,
@@ -15,7 +15,7 @@ function SlideControls({
   currentIndex: number
   onPrev: () => void
   onNext: () => void
-}) {
+}) => {
   return (
     <>
       <div className="mt-4 w-full">
@@ -47,8 +47,8 @@ function SlideControls({
   )
 }
 
-/** One-item-at-a-time carousel with full-width controls. */
-export function MobileItemSlider<T>({
+// One-item-at-a-time carousel with full-width controls.
+export const MobileItemSlider = <T,>({
   items,
   getKey,
   renderItem,
@@ -56,7 +56,7 @@ export function MobileItemSlider<T>({
   items: readonly T[]
   getKey: (item: T) => string
   renderItem: (item: T) => ReactNode
-}) {
+}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
   const [currentIndex, setCurrentIndex] = useState(0)
 

@@ -6,7 +6,7 @@ import { Footer, Header } from '~/lib/sharedComponents/layout'
 
 import { SidebarLeft } from './_nft/-components/SidebarLeft'
 
-function NftShell() {
+const NftShell = () => {
   const { route, setSidebarLeftOpen } = useMoonTotems()
 
   const hideGlobalFooter =
@@ -39,7 +39,7 @@ function NftShell() {
   )
 }
 
-function NftLayout() {
+const NftLayout = () => {
   return (
     <div className="nft-theme dark">
       <MoonTotemsProvider>

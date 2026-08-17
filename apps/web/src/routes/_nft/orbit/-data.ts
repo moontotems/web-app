@@ -3,18 +3,18 @@ import { MAX_TOKEN_ID } from '@moontotems/contracts'
 import { shuffle } from '~/lib/nft/shuffle'
 import { moonTurnVideo } from '~/routes/_nft/project-overview/-data'
 
-/** Same Mux moon loop as the home lunar sections. */
+// Same Mux moon loop as the home lunar sections.
 export const moonVideoUrl = moonTurnVideo
 
 export const FLOATING_TOTEM_COUNT = 60
-/** Base tile size in px before depth scale. */
+// Base tile size in px before depth scale.
 export const FLOATING_BASE_SIZE = 56
 export const SCALE_MIN = 0.4
 export const SCALE_MAX = 1.5
 
-/** Cursor repulsion radius in px. */
+// Cursor repulsion radius in px.
 export const CURSOR_RADIUS = 180
-/** Peak acceleration away from cursor (px/s² at point-blank). */
+// Peak acceleration away from cursor (px/s² at point-blank).
 export const CURSOR_FORCE = 2200
 
 export type FloatingTotem = {
@@ -36,7 +36,7 @@ function randomSpeed(): number {
   return rand(20, 70) * (Math.random() < 0.5 ? 1 : -1)
 }
 
-/** Keep the totem fully inside the viewport by bouncing off edges. */
+// Keep the totem fully inside the viewport by bouncing off edges.
 export function bounceWithinBounds(
   totem: FloatingTotem,
   width: number,
@@ -87,7 +87,7 @@ function seedTotem(
   }
 }
 
-/** Build shuffled floating totems for the given viewport. */
+// Build shuffled floating totems for the given viewport.
 export function buildFloatingTotems(
   count: number,
   width: number,
@@ -103,7 +103,7 @@ export function buildFloatingTotems(
   return pool.map((tokenId) => seedTotem(tokenId, width, height, baseSize, scaleMin, scaleMax))
 }
 
-/** Push totem away from the cursor; nearer / larger totems react more. */
+// Push totem away from the cursor; nearer / larger totems react more.
 export function applyCursorForce(
   totem: FloatingTotem,
   cursorX: number,
@@ -132,7 +132,7 @@ export type FloatingStepContext = {
   cursor: { x: number; y: number; active: boolean }
 }
 
-/** One physics/integration step for all floating totems (mutates in place). */
+// One physics/integration step for all floating totems (mutates in place).
 export function stepFloatingTotems(
   agents: FloatingTotem[],
   dt: number,
@@ -175,7 +175,7 @@ export function stepFloatingTotems(
   }
 }
 
-/** GPU LOD for floating totems from the largest on-screen size. */
+// GPU LOD for floating totems from the largest on-screen size.
 export function floatingGpuImageSize(baseSize: number, maxZoom: number): 100 | 512 {
   const maxPx = baseSize * maxZoom
   return maxPx >= 140 ? 512 : 100

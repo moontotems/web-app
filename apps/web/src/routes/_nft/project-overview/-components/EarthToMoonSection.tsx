@@ -2,8 +2,8 @@ import { ASSETS } from '~/lib/constants'
 
 import { MuxLoop } from './MuxLoop'
 
-/** Full-bleed Earth-to-Moon flightpaths loop at the end of the landing page. */
-export function EarthToMoonSection() {
+// Full-bleed Earth-to-Moon flightpaths loop at the end of the landing page.
+export const EarthToMoonSection = () => {
   return (
     <section className="w-full bg-black">
       <div className="relative aspect-video w-full overflow-hidden">

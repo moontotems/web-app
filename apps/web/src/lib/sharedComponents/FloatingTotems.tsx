@@ -25,7 +25,7 @@ type SpriteAgent = {
  * `size` is the base tile in px before depth scale.
  * `minZoom` / `maxZoom` are the depth-scale range (1 = `size`).
  */
-export function FloatingTotems({
+export const FloatingTotems = ({
   count,
   size = FLOATING_BASE_SIZE,
   minZoom = SCALE_MIN,
@@ -35,7 +35,7 @@ export function FloatingTotems({
   size?: number
   minZoom?: number
   maxZoom?: number
-}) {
+}) => {
   const rootRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
   const navigateRef = useRef(navigate)

@@ -15,7 +15,7 @@ export type GameTokens = {
   enemyIds: number[]
 }
 
-/** Player totem (owned if provided) plus a unique invader grid. */
+// Player totem (owned if provided) plus a unique invader grid.
 export function pickGameTokens(playerTokenId?: number): GameTokens {
   const all = shuffle(Array.from({ length: MAX_TOKEN_ID + 1 }, (_, id) => id))
   const playerId =

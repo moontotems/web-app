@@ -9,7 +9,7 @@ export type FeatureSectionData = {
   icon?: string
 }
 
-/** Autoplaying muted Mux embed (same role as project-overview loops). */
+// Autoplaying muted Mux embed (same role as project-overview loops).
 function muxPlayerUrl(playbackId: string) {
   return `https://player.mux.com/${playbackId}?autoplay=muted&loop=true&muted=true`
 }
@@ -18,7 +18,7 @@ const MUX = {
   zoomPan: 'dRS3tqoa7MTYpvQW00k02VCKb3h02yvLKvRKPt5Ug6Htp00',
 } as const
 
-/** One section per holder feature (stacked like project-overview sections). */
+// One section per holder feature (stacked like project-overview sections).
 export const featureSections: FeatureSectionData[] = [
   {
     id: 'chat',

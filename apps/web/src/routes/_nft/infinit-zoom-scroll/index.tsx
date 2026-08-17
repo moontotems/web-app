@@ -9,7 +9,7 @@ import { ActionSidebar } from '~/lib/sharedComponents/nft/ActionSidebar'
 
 import { HintOverlay } from './-components/HintOverlay'
 
-/** How many 6k crops to mount at once as you scroll. */
+// How many 6k crops to mount at once as you scroll.
 const PAGE_SIZE = 12
 
 /**
@@ -63,7 +63,7 @@ const EyeCrop = ({ tokenId, eager }: { tokenId: number; eager?: boolean }) => {
   )
 }
 
-/** Full-width 6k left-eye crops, stacked top to bottom, loading more as you scroll. */
+// Full-width 6k left-eye crops, stacked top to bottom, loading more as you scroll.
 const InfiniteZoomScrollPage = () => {
   const { isMobile, shuffledIds, setHeaderTitle } = useMoonTotems()
   const [count, setCount] = useState(PAGE_SIZE)

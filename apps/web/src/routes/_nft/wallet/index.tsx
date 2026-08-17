@@ -5,7 +5,7 @@ import { ActionSidebar, TotemGrid, TotemTable } from '~/lib/sharedComponents/nft
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { FILTERS } from '~/lib/nft/filters'
 
-function WalletPage() {
+const WalletPage = () => {
   const {
     address,
     showGridView,

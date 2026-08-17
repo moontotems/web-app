@@ -8,7 +8,7 @@ export type LunarItem = {
   symbol?: string
 }
 
-function LunarItemCard({ item }: { item: LunarItem }) {
+const LunarItemCard = ({ item }: { item: LunarItem }) => {
   return (
     <div>
       <img alt={item.title} className="w-full" src={item.image} />
@@ -26,8 +26,8 @@ function LunarItemCard({ item }: { item: LunarItem }) {
   )
 }
 
-/** Title + intro + card grid used by lunar phases, months, and project overview. */
-export function LunarItemGrid({
+// Title + intro + card grid used by lunar phases, months, and project overview.
+export const LunarItemGrid = ({
   title,
   intro,
   items,
@@ -35,7 +35,7 @@ export function LunarItemGrid({
   title: string
   intro?: string
   items: readonly LunarItem[]
-}) {
+}) => {
   return (
     <section className="w-full bg-black pb-12">
       <h2 className="p-[25px] text-xl">{title}</h2>

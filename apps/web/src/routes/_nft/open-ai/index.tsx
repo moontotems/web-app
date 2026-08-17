@@ -6,7 +6,7 @@ import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
 import { ASSETS } from '~/lib/constants'
 
-/** Design panels for the OpenAI / web-app story (full assets, uncropped). */
+// Design panels for the OpenAI / web-app story (full assets, uncropped).
 export const openAiImages = [
   { src: ASSETS.openAi.page, alt: 'Moon Totems Web App and OpenAI' },
   { src: ASSETS.openAi.houdiniNetwork, alt: 'Moon Totems Houdini network' },
@@ -17,13 +17,8 @@ export const openAiImages = [
   { src: ASSETS.openAi.generationGrid, alt: 'Moon Totems generation grid' },
 ] as const
 
-
-export const Route = createFileRoute('/_nft/open-ai/')({
-  component: OpenAiPage,
-})
-
-/** OpenAI / web-app story: design panels shown full-width, as-is. */
-function OpenAiPage() {
+// OpenAI / web-app story: design panels shown full-width, as-is.
+const OpenAiPage = () => {
   const { setHeaderTitle } = useMoonTotems()
   useScrollToTop()
 
@@ -45,3 +40,7 @@ function OpenAiPage() {
     </div>
   )
 }
+
+export const Route = createFileRoute('/_nft/open-ai/')({
+  component: OpenAiPage,
+})

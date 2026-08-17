@@ -15,7 +15,7 @@ import { StatusIcon } from './StatusIcon'
 import { ZoomImage } from './ZoomImage'
 import { useMoonTotemNavigation } from './use-moon-totem-navigation'
 
-export function MoonTotemDesktop({ initialTokenId }: { initialTokenId: number }) {
+export const MoonTotemDesktop = ({ initialTokenId }: { initialTokenId: number }) => {
   const { address } = useMoonTotems()
   const { moonTotem, navigate } = useMoonTotemNavigation(initialTokenId)
 

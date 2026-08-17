@@ -15,6 +15,50 @@ import { ASSETS } from '~/lib/constants'
 import appCss from '~/lib/styles/app.css?url'
 import { Web3Providers } from '~/lib/web3/Web3Providers'
 
+const RootComponent = () => {
+  const { queryClient } = Route.useRouteContext()
+
+  return (
+    <RootDocument>
+      <Web3Providers queryClient={queryClient}>
+        <Outlet />
+      </Web3Providers>
+    </RootDocument>
+  )
+}
+
+const RootDocument = ({ children }: { readonly children: React.ReactNode }) => {
+  return (
+    // suppress since we're updating the "dark" class in a custom script below
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        <ScriptOnce>
+          {`document.documentElement.classList.toggle(
+            'dark',
+            localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+            )`}
+        </ScriptOnce>
+
+        {children}
+
+        <Toaster richColors position="top-right" />
+
+        {process.env.NODE_ENV === 'development' && (
+          <>
+            <ReactQueryDevtools buttonPosition="bottom-left" />
+            <TanStackRouterDevtools position="bottom-right" />
+          </>
+        )}
+
+        <Scripts />
+      </body>
+    </html>
+  )
+}
+
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient
   user: CurrentUser | null
@@ -58,47 +102,3 @@ export const Route = createRootRouteWithContext<{
   }),
   component: RootComponent,
 })
-
-function RootComponent() {
-  const { queryClient } = Route.useRouteContext()
-
-  return (
-    <RootDocument>
-      <Web3Providers queryClient={queryClient}>
-        <Outlet />
-      </Web3Providers>
-    </RootDocument>
-  )
-}
-
-function RootDocument({ children }: { readonly children: React.ReactNode }) {
-  return (
-    // suppress since we're updating the "dark" class in a custom script below
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <ScriptOnce>
-          {`document.documentElement.classList.toggle(
-            'dark',
-            localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-            )`}
-        </ScriptOnce>
-
-        {children}
-
-        <Toaster richColors position="top-right" />
-
-        {process.env.NODE_ENV === 'development' && (
-          <>
-            <ReactQueryDevtools buttonPosition="bottom-left" />
-            <TanStackRouterDevtools position="bottom-right" />
-          </>
-        )}
-
-        <Scripts />
-      </body>
-    </html>
-  )
-}

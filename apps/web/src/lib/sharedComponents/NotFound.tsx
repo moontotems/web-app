@@ -5,8 +5,8 @@ import { moonTurnVideo } from '~/routes/_nft/project-overview/-data'
 
 import { FloatingTotems } from './FloatingTotems'
 
-/** 404 page styled like the NFT overview: black field, light type, explore boxes. */
-export function NotFound() {
+// 404 page styled like the NFT overview: black field, light type, explore boxes.
+export const NotFound = () => {
   return (
     <div className="nft-theme dark relative flex min-h-screen w-full flex-col justify-between overflow-hidden bg-black text-white">
       <FloatingTotems count={1} size={180} minZoom={1.5} maxZoom={1.5} />

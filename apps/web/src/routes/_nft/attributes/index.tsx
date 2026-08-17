@@ -5,7 +5,7 @@ import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
 import { ATTRIBUTE_CARDS } from './-data'
 
-function AttributesPage() {
+const AttributesPage = () => {
   useScrollToTop()
 
   // Square card image (320) + title/text/padding ≈ 500px; leave a gap so top/bottom never meet.

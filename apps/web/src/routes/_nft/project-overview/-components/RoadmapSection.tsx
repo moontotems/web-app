@@ -1,8 +1,8 @@
 import { roadmapItems } from '../-data'
 import { SectionHeading } from './SectionHeading'
 
-/** Six-step roadmap grid. */
-export function RoadmapSection() {
+// Six-step roadmap grid.
+export const RoadmapSection = () => {
   return (
     <section className="w-full bg-black pb-12">
       <SectionHeading>Roadmap</SectionHeading>

@@ -1,7 +1,7 @@
 import { cn } from '@moontotems/ui'
 
-/** Muted looping Mux embed used by the hero and split sliders. */
-export function MuxLoop({
+// Muted looping Mux embed used by the hero and split sliders.
+export const MuxLoop = ({
   src,
   title,
   className,
@@ -9,7 +9,7 @@ export function MuxLoop({
   src: string
   title: string
   className?: string
-}) {
+}) => {
   return (
     <iframe
       allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"

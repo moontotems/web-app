@@ -59,7 +59,7 @@ export const ASSETS = {
         },
         png: {
           2048: (tokenId: number) => totemPng('symbol', 2048, tokenId),
-          /** Filename on the bucket uses `base`, not `symbol`. */
+          // Filename on the bucket uses `base`, not `symbol`.
           '6k': (tokenId: number) =>
             `${SUPABASE_CDN_BASE}/totems/symbol/png/6k/moontotems_g1_base_6k_${tokenId}.png`,
         },
@@ -278,7 +278,7 @@ export const ASSETS = {
     },
     lunarPhases: {
       gif: '/home/lunarPhases/lunarPhases.gif',
-      /** `01_new_moon` ... `08_waning_crescent` */
+      // `01_new_moon` ... `08_waning_crescent`
       jpg512: (name: string) => `/home/lunarPhases/512/${name}.jpg`,
       jpg1080: (name: string) => `/home/lunarPhases/1080/${name}.jpg`,
       svg: (name: string) => `/home/lunarPhases/svg/${name}.svg`,
@@ -305,7 +305,7 @@ export const ASSETS = {
     },
     lunarMonths: {
       gif: '/home/lunarMonths/lunarMonths.gif',
-      /** `01_ghost_moon` ... `12_oak_moon` */
+      // `01_ghost_moon` ... `12_oak_moon`
       jpg512: (name: string) => `/home/lunarMonths/512/${name}.jpg`,
       jpg1080: (name: string) => `/home/lunarMonths/1080/${name}.jpg`,
       svg: (name: string) => `/home/lunarMonths/svg/${name}.svg`,
@@ -325,10 +325,10 @@ export const ASSETS = {
       ] as const,
     },
     lunarOrigins: {
-      /** 1-based index → `lunar_origin_00001.jpg` */
+      // 1-based index → `lunar_origin_00001.jpg`
       sector: (index: number) =>
         `/home/lunarOrigins/moonSectors/lunar_origin_${String(index).padStart(5, '0')}.jpg`,
-      /** 1-based index → `lunar_origin_symbol_0001.jpg` */
+      // 1-based index → `lunar_origin_symbol_0001.jpg`
       symbol: (index: number) =>
         `/home/lunarOrigins/symbols/lunar_origin_symbol_${String(index).padStart(4, '0')}.jpg`,
       count: 18,
@@ -412,10 +412,10 @@ export const ASSETS = {
   },
 } as const
 
-/** The full ASSETS catalog shape. */
+// The full ASSETS catalog shape.
 export type Assets = typeof ASSETS
 
-/** Recursively collect string leaf values (skips functions). */
+// Recursively collect string leaf values (skips functions).
 type StringLeaves<T> = T extends string
   ? T
   : T extends (...args: never[]) => unknown
@@ -426,10 +426,10 @@ type StringLeaves<T> = T extends string
         ? { [K in keyof T]: StringLeaves<T[K]> }[keyof T]
         : never
 
-/** Any static path string stored in ASSETS (public `/...` paths and CDN base URLs). */
+// Any static path string stored in ASSETS (public `/...` paths and CDN base URLs).
 export type AssetPath = StringLeaves<Assets>
 
-/** Alias for a single static asset path. */
+// Alias for a single static asset path.
 export type Asset = AssetPath
 
 export const CDN_BASE = ASSETS.cdn.base
@@ -437,7 +437,7 @@ export const CDN_BASE = ASSETS.cdn.base
 export const HEADER_HEIGHT = 40
 export const FOOTER_HEIGHT = 40
 export const SIDEBAR_WIDTH = 250
-/** Width of the header menu / “Show all” icon columns (and ActionSidebar narrow). */
+// Width of the header menu / “Show all” icon columns (and ActionSidebar narrow).
 export const HEADER_ICON_WIDTH = 50
 
 const MAINNET_CONTRACT = MOON_TOTEMS_ADDRESSES[1]

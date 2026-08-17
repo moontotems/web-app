@@ -52,7 +52,7 @@ export function useMintEvents(contractAddress: `0x${string}` | undefined) {
     }
   }, [publicClient, contractAddress])
 
-  /** Optimistically record a mint we just submitted ourselves. */
+  // Optimistically record a mint we just submitted ourselves.
   const appendMintEvent = useCallback((tokenId: number) => {
     setMintEventTokenIds((prev) => [tokenId, ...prev])
   }, [])

@@ -16,10 +16,10 @@ import {
 } from './explore-grid'
 
 const CLICK_MOVE_THRESHOLD_PX = 6
-/** Per-frame multiplier — higher = longer coast after a flick. */
+// Per-frame multiplier — higher = longer coast after a flick.
 const INERTIA_FRICTION = 0.968
 const INERTIA_STOP_SPEED = 0.05
-/** Ignore tiny residual motion so a slow drag does not start a coast. */
+// Ignore tiny residual motion so a slow drag does not start a coast.
 const INERTIA_MIN_RELEASE_SPEED = 0.4
 const KEY_PAN_SPEED = 14
 
@@ -29,7 +29,7 @@ export type CanvasCamera = {
   scale: number
 }
 
-/** React-facing snapshot: only updates when the visible cell window / LOD changes. */
+// React-facing snapshot: only updates when the visible cell window / LOD changes.
 export type CanvasViewSnapshot = {
   tiles: VisibleTile[]
   captionTiles: VisibleTile[]
@@ -42,13 +42,13 @@ export type CanvasCameraApi = {
   cameraRef: RefObject<CanvasCamera>
   view: CanvasViewSnapshot
   containerRef: RefObject<HTMLDivElement | null>
-  /** Caption / overlay layer — transform updated every frame without React. */
+  // Caption / overlay layer — transform updated every frame without React.
   worldLayerRef: RefObject<HTMLDivElement | null>
-  /** Subscribe to every camera write (Pixi transform). Returns unsubscribe. */
+  // Subscribe to every camera write (Pixi transform). Returns unsubscribe.
   subscribeCamera: (listener: (cam: CanvasCamera) => void) => () => void
-  /** Screen → world. */
+  // Screen → world.
   screenToWorld: (clientX: number, clientY: number) => { x: number; y: number }
-  /** True if the last pointer gesture was a drag (not a click). */
+  // True if the last pointer gesture was a drag (not a click).
   didDrag: () => boolean
 }
 

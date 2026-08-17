@@ -18,7 +18,7 @@ const fieldClass =
 const primaryBtnClass =
   'h-[34px] cursor-pointer bg-[#1062FE] px-4 text-sm text-white hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50'
 
-export function FunctionRow({
+export const FunctionRow = ({
   fn,
   index,
   mode,
@@ -32,7 +32,7 @@ export function FunctionRow({
   contractAddress: `0x${string}`
   open: boolean
   onToggle: () => void
-}) {
+}) => {
   const { isConnected } = useAccount()
   const publicClient = usePublicClient()
   const { writeContractAsync, isPending } = useWriteContract()

@@ -3,8 +3,8 @@ import { ASSETS } from '~/lib/constants'
 import { ExploreLink } from './ExploreLink'
 import { MuxLoop } from './MuxLoop'
 
-/** Hero: looping intro video + short project description. */
-export function WhatAreSection() {
+// Hero: looping intro video + short project description.
+export const WhatAreSection = () => {
   return (
     <section className="w-full bg-black">
       <div className="relative h-[45vh] overflow-hidden md:h-[70vh]">

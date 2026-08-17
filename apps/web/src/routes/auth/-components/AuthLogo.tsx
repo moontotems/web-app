@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
-export function AuthLogo() {
+export const AuthLogo = () => {
   return (
     <Link to="/" aria-label="Go home" className="flex items-center gap-2">
       <svg

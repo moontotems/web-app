@@ -17,7 +17,7 @@ import { OpenSeaButton } from './OpenSeaButton'
 import { StatusIcon } from './StatusIcon'
 import { useMoonTotemNavigation } from './use-moon-totem-navigation'
 
-export function MoonTotemMobile({ initialTokenId }: { initialTokenId: number }) {
+export const MoonTotemMobile = ({ initialTokenId }: { initialTokenId: number }) => {
   const { address, mint, featurePanels, toggleFeaturePanel } = useMoonTotems()
   const { moonTotem, navigate } = useMoonTotemNavigation(initialTokenId)
 

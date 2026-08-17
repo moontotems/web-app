@@ -4,7 +4,7 @@ export type AttributeCard = {
   image: string
   title: string
   text: string
-  /** Tailwind classes for corner placement on the hero. */
+  // Tailwind classes for corner placement on the hero.
   position: string
 }
 

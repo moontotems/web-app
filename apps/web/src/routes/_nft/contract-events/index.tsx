@@ -21,7 +21,7 @@ type TransferEvent = {
 
 type Tab = 'mint' | 'transfer'
 
-function ContractEventsPage() {
+const ContractEventsPage = () => {
   const chainId = useChainId() || targetChainId
   const contractAddress = getMoonTotemsAddress(chainId)
   const publicClient = usePublicClient()

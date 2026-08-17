@@ -3,13 +3,13 @@ import { Heart } from 'lucide-react'
 import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import type { MoonTotem } from '~/lib/nft/types'
 
-export function FavoriteButton({
+export const FavoriteButton = ({
   moonTotem,
   className,
 }: {
   moonTotem: MoonTotem
   className?: string
-}) {
+}) => {
   const {
     favorites: { toggleFavorite },
   } = useMoonTotems()

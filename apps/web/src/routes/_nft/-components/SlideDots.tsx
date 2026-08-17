@@ -5,8 +5,8 @@ const DOT_SIZE = 15
 const DOT_GAP = 13
 const STEP = DOT_SIZE + DOT_GAP
 
-/** At most 7 dots; the row slides left when the active index reaches the end. */
-export function SlideDots({ count, activeIndex }: { count: number; activeIndex: number }) {
+// At most 7 dots; the row slides left when the active index reaches the end.
+export const SlideDots = ({ count, activeIndex }: { count: number; activeIndex: number }) => {
   const visible = Math.min(VISIBLE_DOTS, count)
   const maxStart = Math.max(0, count - VISIBLE_DOTS)
   const [windowStart, setWindowStart] = useState(0)

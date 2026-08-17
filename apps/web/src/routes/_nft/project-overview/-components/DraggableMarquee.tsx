@@ -16,8 +16,8 @@ function wrapLoop(scroller: HTMLDivElement, startScroll?: { current: number }) {
   }
 }
 
-/** Infinite auto-scrolling row that can be grabbed and dragged. */
-export function DraggableMarquee({
+// Infinite auto-scrolling row that can be grabbed and dragged.
+export const DraggableMarquee = ({
   children,
   direction = 'left',
   speed = 0.6,
@@ -25,7 +25,7 @@ export function DraggableMarquee({
   children: ReactNode
   direction?: 'left' | 'right'
   speed?: number
-}) {
+}) => {
   const scrollerRef = useRef<HTMLDivElement>(null)
   const draggingRef = useRef(false)
   const startXRef = useRef(0)

@@ -5,7 +5,7 @@ import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 import { LunarItemGrid } from '../-components/LunarItemGrid'
 import { LUNAR_MONTHS } from './-data'
 
-function LunarMonthsPage() {
+const LunarMonthsPage = () => {
   useScrollToTop()
 
   return (

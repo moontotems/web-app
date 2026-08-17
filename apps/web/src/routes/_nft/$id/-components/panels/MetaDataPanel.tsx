@@ -4,7 +4,7 @@ import type { TokenMetaData } from '~/lib/nft/types'
 
 import { FeaturePanel } from './FeaturePanel'
 
-function MetaRow({
+const MetaRow = ({
   label,
   value,
   valueClassName = 'text-lg',
@@ -12,7 +12,7 @@ function MetaRow({
   label: string
   value: React.ReactNode
   valueClassName?: string
-}) {
+}) => {
   return (
     <tr>
       <td className="pr-2.5 text-right align-top text-white/50">{label}</td>
@@ -21,8 +21,8 @@ function MetaRow({
   )
 }
 
-/** TOTEM INFO panel (legacy MoonTotem features/MetaData). */
-export function MetaDataPanel({ metaData }: { metaData: TokenMetaData }) {
+// TOTEM INFO panel (legacy MoonTotem features/MetaData).
+export const MetaDataPanel = ({ metaData }: { metaData: TokenMetaData }) => {
   const m = metaData
 
   return (

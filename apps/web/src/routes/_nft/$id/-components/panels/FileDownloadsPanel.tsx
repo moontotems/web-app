@@ -33,8 +33,8 @@ function downloadFiles(tokenId: number) {
   ]
 }
 
-/** TOTEM DOWNLOADS panel (legacy MoonTotem features/FileDownloads). */
-export function FileDownloadsPanel({ tokenId }: { tokenId: number }) {
+// TOTEM DOWNLOADS panel (legacy MoonTotem features/FileDownloads).
+export const FileDownloadsPanel = ({ tokenId }: { tokenId: number }) => {
   return (
     <FeaturePanel icon={<Download className="size-4" />} title="TOTEM DOWNLOADS">
       <div className="w-full pr-2.5">

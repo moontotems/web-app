@@ -27,13 +27,13 @@ type FilterCtx = {
   onChange: (state: TotemFilterState) => void
 }
 
-function SortIcon({ column }: { column: Column<TotemRow, unknown> }) {
+const SortIcon = ({ column }: { column: Column<TotemRow, unknown> }) => {
   const sortState = column.getIsSorted()
   const Icon = sortState === 'asc' ? ArrowUp : sortState === 'desc' ? ArrowDown : ArrowUpDown
   return <Icon className={`size-3.5 shrink-0 ${sortState ? 'opacity-100' : 'opacity-40'}`} />
 }
 
-function FilterableHeader({
+const FilterableHeader = ({
   label,
   facetId,
   column,
@@ -45,7 +45,7 @@ function FilterableHeader({
   column: Column<TotemRow, unknown>
   filter: FilterCtx
   enableSorting?: boolean
-}) {
+}) => {
   const facet = facetId ? findFacetById(facetId) : undefined
 
   return (
@@ -270,8 +270,8 @@ const SEARCHABLE_COLUMNS = [
   'birthYearStr',
 ]
 
-/** Legacy /all list view: full metadata table with search, sort, pagination. */
-export function TotemTable() {
+// Legacy /all list view: full metadata table with search, sort, pagination.
+export const TotemTable = () => {
   const { filteredMoonTotems } = useMoonTotems()
   const { data: allRows, isLoading } = useTotemTableRows()
   const allMatch = useMatch({ from: '/_nft/all/', shouldThrow: false })

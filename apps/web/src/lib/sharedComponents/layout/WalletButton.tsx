@@ -17,7 +17,7 @@ import { shortAddress } from '~/lib/nft/format'
  * red "connect wallet" button, blue address pill with blockies avatar
  * and a disconnect dropdown once connected.
  */
-export function WalletButton() {
+export const WalletButton = () => {
   const { disconnect } = useDisconnect()
 
   return (

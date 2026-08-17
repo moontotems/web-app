@@ -7,7 +7,7 @@ import type { HomeSlide, SplitSliderConfig } from '../-data'
 import { MuxLoop } from './MuxLoop'
 import { SectionHeading } from './SectionHeading'
 
-function SlideMedia({ slide }: { slide: HomeSlide }) {
+const SlideMedia = ({ slide }: { slide: HomeSlide }) => {
   if (slide.video) {
     return (
       <div className="relative w-full pt-[100%]">
@@ -31,7 +31,7 @@ function SlideMedia({ slide }: { slide: HomeSlide }) {
   return <div className="aspect-square w-full bg-black" />
 }
 
-function SlideCopy({ slide, isIntro }: { slide: HomeSlide; isIntro: boolean }) {
+const SlideCopy = ({ slide, isIntro }: { slide: HomeSlide; isIntro: boolean }) => {
   if (isIntro) {
     return (
       <div className="w-full p-[5%]">
@@ -56,7 +56,7 @@ function SlideCopy({ slide, isIntro }: { slide: HomeSlide; isIntro: boolean }) {
   )
 }
 
-function SlideControls({
+const SlideControls = ({
   isIntro,
   introHint,
   slideCount,
@@ -70,7 +70,7 @@ function SlideControls({
   currentIndex: number
   onPrev: () => void
   onNext: () => void
-}) {
+}) => {
   return (
     <>
       <div className="mt-4 w-full md:absolute md:right-0 md:bottom-[250px] md:mt-0 md:h-[150px] md:w-[350px] md:p-[15px]">
@@ -120,13 +120,13 @@ function SlideControls({
  * Split section: heading, optional slot under the title, then a 50/50
  * media slider and copy column (characters, features, lunar sections).
  */
-export function SplitSliderSection({
+export const SplitSliderSection = ({
   title,
   slides,
   sliderSide,
   introHint,
   afterTitle,
-}: SplitSliderConfig & { afterTitle?: ReactNode }) {
+}: SplitSliderConfig & { afterTitle?: ReactNode }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
   const [currentIndex, setCurrentIndex] = useState(0)
 

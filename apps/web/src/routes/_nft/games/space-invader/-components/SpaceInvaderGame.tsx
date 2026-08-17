@@ -125,7 +125,7 @@ function lowestInColumn(engine: Engine, col: number): Invader | null {
 /**
  * Canvas Space Invaders: one Totem at the bottom, a grid of Totems above.
  */
-export function SpaceInvaderGame({ playerTokenId }: { playerTokenId?: number }) {
+export const SpaceInvaderGame = ({ playerTokenId }: { playerTokenId?: number }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const engineRef = useRef<Engine | null>(null)
   const [status, setStatus] = useState<Status>('loading')

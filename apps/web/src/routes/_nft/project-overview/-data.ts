@@ -18,12 +18,12 @@ export type SplitSliderConfig = {
   slides: HomeSlide[]
 }
 
-/** Autoplaying muted Mux embed (same role as the old Vimeo loops). */
+// Autoplaying muted Mux embed (same role as the old Vimeo loops).
 function muxPlayerUrl(playbackId: string) {
   return `https://player.mux.com/${playbackId}?autoplay=muted&loop=true&muted=true`
 }
 
-/** Playback IDs from the Mux library (Talismoon / Moon Totems uploads). */
+// Playback IDs from the Mux library (Talismoon / Moon Totems uploads).
 const MUX = {
   outlineLoop: '63WXLce9dJmS00aYtkvFGq9TtT4LAhx019sCgbUeHZ5a00',
   card3d: 'cDwFVTFtgFu36vlELK4D23m4Ga84tucUojE01HwSoaXc',
@@ -32,7 +32,7 @@ const MUX = {
   moonTurn: 'sPY02yB2cjU5iqpKHdtBIK02IwTQnKbYU4SVp6syVOoWA',
 } as const
 
-/** Turning moon loop used on lunar origins / phases / months slides. */
+// Turning moon loop used on lunar origins / phases / months slides.
 export const moonTurnVideo = muxPlayerUrl(MUX.moonTurn)
 
 export const uniqueCharactersSlides: HomeSlide[] = [

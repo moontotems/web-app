@@ -22,7 +22,7 @@ function randomFallbackAnswer(): string {
   return ANSWER_LIST[randomIndex] ?? 'Hmm.'
 }
 
-function BotBubble({ value, image }: { value: string; image: string }) {
+const BotBubble = ({ value, image }: { value: string; image: string }) => {
   return (
     <div className="mb-3 flex items-end gap-2">
       <img src={image} alt="Totem" className="size-10 shrink-0 rounded-full" />
@@ -33,7 +33,7 @@ function BotBubble({ value, image }: { value: string; image: string }) {
   )
 }
 
-function UserBubble({ value }: { value: string }) {
+const UserBubble = ({ value }: { value: string }) => {
   return (
     <div className="mb-3 flex justify-end">
       <div className="max-w-[80%] rounded-2xl rounded-br-none bg-[#1062FE] px-4 py-2 text-left text-base leading-6">
@@ -43,8 +43,8 @@ function UserBubble({ value }: { value: string }) {
   )
 }
 
-/** TOTEM CHAT panel (legacy MoonTotem features/Chatbot, OpenAI via server fn). */
-export function ChatbotPanel({
+// TOTEM CHAT panel (legacy MoonTotem features/Chatbot, OpenAI via server fn).
+export const ChatbotPanel = ({
   tokenId,
   image,
   metaData,
@@ -52,7 +52,7 @@ export function ChatbotPanel({
   tokenId: number
   image: string
   metaData: TokenMetaData
-}) {
+}) => {
   const { isMobile } = useMoonTotems()
   const [messages, setMessages] = useState<Message[]>(() => [randomGreeting()])
   const [input, setInput] = useState('')

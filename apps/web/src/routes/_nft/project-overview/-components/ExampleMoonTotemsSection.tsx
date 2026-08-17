@@ -11,12 +11,12 @@ import { SectionHeading } from './SectionHeading'
 
 const CAROUSEL_SIZE = 15
 
-/** "Let your Totem find you" random-totem marquee (legacy ExampleMoonTotems). */
-export function ExampleMoonTotemsSection({
+// "Let your Totem find you" random-totem marquee (legacy ExampleMoonTotems).
+export const ExampleMoonTotemsSection = ({
   slideDirectionLeft = true,
 }: {
   slideDirectionLeft?: boolean
-}) {
+}) => {
   const { shuffledIds, assembleMoonTotem } = useMoonTotems()
 
   const carouselIds = useMemo(() => shuffledIds.slice(0, CAROUSEL_SIZE), [shuffledIds])

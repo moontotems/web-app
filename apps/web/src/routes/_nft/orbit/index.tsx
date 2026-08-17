@@ -6,12 +6,8 @@ import { FloatingTotems } from '~/lib/sharedComponents/FloatingTotems'
 
 import { FLOATING_TOTEM_COUNT, moonVideoUrl } from './-data'
 
-export const Route = createFileRoute('/_nft/orbit/')({
-  component: OrbitPage,
-})
-
-/** Full-bleed page: Mux moon at center, totems drifting with depth scale. */
-function OrbitPage() {
+// Full-bleed page: Mux moon at center, totems drifting with depth scale.
+const OrbitPage = () => {
   const { setHeaderTitle } = useMoonTotems()
 
   useEffect(() => {
@@ -36,3 +32,7 @@ function OrbitPage() {
     </div>
   )
 }
+
+export const Route = createFileRoute('/_nft/orbit/')({
+  component: OrbitPage,
+})
