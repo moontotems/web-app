@@ -1,3 +1,4 @@
+import { LoaderCircle } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 interface ZoomDimensions {
@@ -10,9 +11,33 @@ interface ZoomOffset {
   top: number
 }
 
+interface ZoomPoint {
+  x: number
+  y: number
+}
+
 function clamp01(value: number) {
   return Math.min(1, Math.max(0, value))
 }
+
+function panOffset(
+  zoom: ZoomDimensions,
+  clientX: number,
+  clientY: number,
+  rect: Pick<DOMRect, 'left' | 'top' | 'width' | 'height'>,
+): ZoomOffset {
+  const left =
+    zoom.width > rect.width
+      ? -(zoom.width - rect.width) * clamp01((clientX - rect.left) / rect.width)
+      : (rect.width - zoom.width) / 2
+  const top =
+    zoom.height > rect.height
+      ? -(zoom.height - rect.height) * clamp01((clientY - rect.top) / rect.height)
+      : (rect.height - zoom.height) / 2
+  return { left, top }
+}
+
+const FULLSCREEN = { left: 0, top: 0, width: 0, height: 0 }
 
 /**
  * Replacement for react-inner-image-zoom (pan move type, as used by the
@@ -36,15 +61,16 @@ export function ZoomImage({
   const previewRef = useRef<HTMLDivElement | null>(null)
   const overlayRef = useRef<HTMLDivElement | null>(null)
   const [zoomed, setZoomed] = useState(false)
+  const [pendingZoom, setPendingZoom] = useState<ZoomPoint | null>(null)
   const [zoomDimensions, setZoomDimensions] = useState<ZoomDimensions | null>(null)
   const [offset, setOffset] = useState<ZoomOffset>({ left: 0, top: 0 })
 
   const activeZoomSrc = zoomSrc ?? src
+  const loading = pendingZoom !== null && !zoomed
 
-  // Preload the zoom image (zoomPreload in the legacy widget) and capture its
-  // natural size. Also reset the zoom state when navigating between totems.
   useEffect(() => {
     setZoomed(false)
+    setPendingZoom(null)
     setZoomDimensions(null)
 
     const img = new Image()
@@ -61,43 +87,48 @@ export function ZoomImage({
     }
   }, [activeZoomSrc, zoomScale])
 
-  // Map the cursor position to a pan offset: moving across the container
-  // moves across the full zoomed image. Axes smaller than the container are
-  // centered instead.
-  const panInRect = (clientX: number, clientY: number, rect: Pick<DOMRect, 'left' | 'top' | 'width' | 'height'>) => {
-    if (!zoomDimensions) return
-
-    const left =
-      zoomDimensions.width > rect.width
-        ? -(zoomDimensions.width - rect.width) * clamp01((clientX - rect.left) / rect.width)
-        : (rect.width - zoomDimensions.width) / 2
-    const top =
-      zoomDimensions.height > rect.height
-        ? -(zoomDimensions.height - rect.height) * clamp01((clientY - rect.top) / rect.height)
-        : (rect.height - zoomDimensions.height) / 2
-
-    setOffset({ left, top })
-  }
+  useEffect(() => {
+    if (!pendingZoom || !zoomDimensions) return
+    setOffset(
+      panOffset(zoomDimensions, pendingZoom.x, pendingZoom.y, {
+        ...FULLSCREEN,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      }),
+    )
+    setZoomed(true)
+    setPendingZoom(null)
+  }, [pendingZoom, zoomDimensions])
 
   const panTo = (clientX: number, clientY: number) => {
+    if (!zoomDimensions) return
     const el = overlayRef.current ?? previewRef.current
     if (!el) return
-    panInRect(clientX, clientY, el.getBoundingClientRect())
+    setOffset(panOffset(zoomDimensions, clientX, clientY, el.getBoundingClientRect()))
   }
 
   const onClick = (event: React.MouseEvent) => {
-    if (!zoomDimensions) return
     if (zoomed) {
       setZoomed(false)
       return
     }
-    panInRect(event.clientX, event.clientY, {
-      left: 0,
-      top: 0,
-      width: window.innerWidth,
-      height: window.innerHeight,
-    })
-    setZoomed(true)
+    if (pendingZoom) {
+      setPendingZoom(null)
+      return
+    }
+    const point = { x: event.clientX, y: event.clientY }
+    if (zoomDimensions) {
+      setOffset(
+        panOffset(zoomDimensions, point.x, point.y, {
+          ...FULLSCREEN,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        }),
+      )
+      setZoomed(true)
+      return
+    }
+    setPendingZoom(point)
   }
 
   const onMouseMove = (event: React.MouseEvent) => {
@@ -111,7 +142,7 @@ export function ZoomImage({
       <div
         ref={previewRef}
         className="relative flex w-full items-center justify-center overflow-hidden"
-        style={{ height, cursor: zoomed ? 'zoom-out' : 'zoom-in' }}
+        style={{ height, cursor: loading ? 'wait' : zoomed ? 'zoom-out' : 'zoom-in' }}
         onClick={zoomed ? undefined : onClick}
       >
         <img
@@ -121,6 +152,11 @@ export function ZoomImage({
           style={{ visibility: zoomed ? 'hidden' : 'visible' }}
           draggable={false}
         />
+        {loading && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/50">
+            <LoaderCircle className="size-10 animate-spin text-white" />
+          </div>
+        )}
       </div>
       {zoomed && zoomDimensions && (
         // biome-ignore lint/a11y/useKeyWithClickEvents: zoom affordance mirrors legacy widget

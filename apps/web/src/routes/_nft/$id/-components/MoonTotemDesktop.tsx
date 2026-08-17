@@ -48,9 +48,10 @@ export function MoonTotemDesktop({ initialTokenId }: { initialTokenId: number })
         <div className="min-h-0 flex-1">
           <ZoomImage
             src={getImageUrl({ tokenId, size: 2048 })}
-            zoomSrc={getImageUrl({ tokenId, size: 2048, withSymbol: ownedByUser })}
+            zoomSrc={getImageUrl({ tokenId, size: '6k', withSymbol: ownedByUser })}
             alt={`Moon Totem #${tokenId}`}
             height="100%"
+            zoomScale={1.1}
           />
         </div>
 
