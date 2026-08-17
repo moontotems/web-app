@@ -15,6 +15,7 @@ import {
   Smile,
   Sparkles,
   Twitter,
+  ZoomIn,
 } from 'lucide-react'
 import type { ReactNode } from 'react'
 
@@ -76,6 +77,9 @@ export function SidebarLeft() {
           </Link>
           <Link to="/orbit" onClick={close}>
             <MenuItem icon={<Moon className={ICON} />}>Orbit</MenuItem>
+          </Link>
+          <Link to="/infinit-zoom-scroll" onClick={close}>
+            <MenuItem icon={<ZoomIn className={ICON} />}>Infinite Zoom</MenuItem>
           </Link>
           <Link to="/games/space-invader" onClick={close}>
             <MenuItem icon={<Gamepad2 className={ICON} />}>Space Invader</MenuItem>

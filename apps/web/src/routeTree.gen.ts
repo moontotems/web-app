@@ -27,6 +27,7 @@ import { Route as NftLunarPhasesIndexRouteImport } from './routes/_nft/lunar-pha
 import { Route as NftLunarOriginsIndexRouteImport } from './routes/_nft/lunar-origins/index'
 import { Route as NftLunarMonthsIndexRouteImport } from './routes/_nft/lunar-months/index'
 import { Route as NftLunarCalendarIndexRouteImport } from './routes/_nft/lunar-calendar/index'
+import { Route as NftInfinitZoomScrollIndexRouteImport } from './routes/_nft/infinit-zoom-scroll/index'
 import { Route as NftFeaturesIndexRouteImport } from './routes/_nft/features/index'
 import { Route as NftFavoritesIndexRouteImport } from './routes/_nft/favorites/index'
 import { Route as NftContractInterfaceIndexRouteImport } from './routes/_nft/contract-interface/index'
@@ -126,6 +127,12 @@ const NftLunarCalendarIndexRoute = NftLunarCalendarIndexRouteImport.update({
   path: '/lunar-calendar/',
   getParentRoute: () => NftRoute,
 } as any)
+const NftInfinitZoomScrollIndexRoute =
+  NftInfinitZoomScrollIndexRouteImport.update({
+    id: '/infinit-zoom-scroll/',
+    path: '/infinit-zoom-scroll/',
+    getParentRoute: () => NftRoute,
+  } as any)
 const NftFeaturesIndexRoute = NftFeaturesIndexRouteImport.update({
   id: '/features/',
   path: '/features/',
@@ -192,6 +199,7 @@ export interface FileRoutesByFullPath {
   '/contract-interface/': typeof NftContractInterfaceIndexRoute
   '/favorites/': typeof NftFavoritesIndexRoute
   '/features/': typeof NftFeaturesIndexRoute
+  '/infinit-zoom-scroll/': typeof NftInfinitZoomScrollIndexRoute
   '/lunar-calendar/': typeof NftLunarCalendarIndexRoute
   '/lunar-months/': typeof NftLunarMonthsIndexRoute
   '/lunar-origins/': typeof NftLunarOriginsIndexRoute
@@ -219,6 +227,7 @@ export interface FileRoutesByTo {
   '/contract-interface': typeof NftContractInterfaceIndexRoute
   '/favorites': typeof NftFavoritesIndexRoute
   '/features': typeof NftFeaturesIndexRoute
+  '/infinit-zoom-scroll': typeof NftInfinitZoomScrollIndexRoute
   '/lunar-calendar': typeof NftLunarCalendarIndexRoute
   '/lunar-months': typeof NftLunarMonthsIndexRoute
   '/lunar-origins': typeof NftLunarOriginsIndexRoute
@@ -250,6 +259,7 @@ export interface FileRoutesById {
   '/_nft/contract-interface/': typeof NftContractInterfaceIndexRoute
   '/_nft/favorites/': typeof NftFavoritesIndexRoute
   '/_nft/features/': typeof NftFeaturesIndexRoute
+  '/_nft/infinit-zoom-scroll/': typeof NftInfinitZoomScrollIndexRoute
   '/_nft/lunar-calendar/': typeof NftLunarCalendarIndexRoute
   '/_nft/lunar-months/': typeof NftLunarMonthsIndexRoute
   '/_nft/lunar-origins/': typeof NftLunarOriginsIndexRoute
@@ -279,6 +289,7 @@ export interface FileRouteTypes {
     | '/contract-interface/'
     | '/favorites/'
     | '/features/'
+    | '/infinit-zoom-scroll/'
     | '/lunar-calendar/'
     | '/lunar-months/'
     | '/lunar-origins/'
@@ -306,6 +317,7 @@ export interface FileRouteTypes {
     | '/contract-interface'
     | '/favorites'
     | '/features'
+    | '/infinit-zoom-scroll'
     | '/lunar-calendar'
     | '/lunar-months'
     | '/lunar-origins'
@@ -336,6 +348,7 @@ export interface FileRouteTypes {
     | '/_nft/contract-interface/'
     | '/_nft/favorites/'
     | '/_nft/features/'
+    | '/_nft/infinit-zoom-scroll/'
     | '/_nft/lunar-calendar/'
     | '/_nft/lunar-months/'
     | '/_nft/lunar-origins/'
@@ -486,6 +499,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NftLunarCalendarIndexRouteImport
       parentRoute: typeof NftRoute
     }
+    '/_nft/infinit-zoom-scroll/': {
+      id: '/_nft/infinit-zoom-scroll/'
+      path: '/infinit-zoom-scroll'
+      fullPath: '/infinit-zoom-scroll/'
+      preLoaderRoute: typeof NftInfinitZoomScrollIndexRouteImport
+      parentRoute: typeof NftRoute
+    }
     '/_nft/features/': {
       id: '/_nft/features/'
       path: '/features'
@@ -592,6 +612,7 @@ interface NftRouteChildren {
   NftContractInterfaceIndexRoute: typeof NftContractInterfaceIndexRoute
   NftFavoritesIndexRoute: typeof NftFavoritesIndexRoute
   NftFeaturesIndexRoute: typeof NftFeaturesIndexRoute
+  NftInfinitZoomScrollIndexRoute: typeof NftInfinitZoomScrollIndexRoute
   NftLunarCalendarIndexRoute: typeof NftLunarCalendarIndexRoute
   NftLunarMonthsIndexRoute: typeof NftLunarMonthsIndexRoute
   NftLunarOriginsIndexRoute: typeof NftLunarOriginsIndexRoute
@@ -615,6 +636,7 @@ const NftRouteChildren: NftRouteChildren = {
   NftContractInterfaceIndexRoute: NftContractInterfaceIndexRoute,
   NftFavoritesIndexRoute: NftFavoritesIndexRoute,
   NftFeaturesIndexRoute: NftFeaturesIndexRoute,
+  NftInfinitZoomScrollIndexRoute: NftInfinitZoomScrollIndexRoute,
   NftLunarCalendarIndexRoute: NftLunarCalendarIndexRoute,
   NftLunarMonthsIndexRoute: NftLunarMonthsIndexRoute,
   NftLunarOriginsIndexRoute: NftLunarOriginsIndexRoute,

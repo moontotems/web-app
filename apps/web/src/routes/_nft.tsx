@@ -14,6 +14,7 @@ function NftShell() {
     route.includes('moontotem') ||
     route.includes('/explore') ||
     route.includes('/orbit') ||
+    route.includes('/infinit-zoom-scroll') ||
     route.includes('/games/') ||
     /\/\d+$/.test(route || '')
 
