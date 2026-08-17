@@ -6,6 +6,8 @@ import { useMoonTotems } from '~/lib/nft/MoonTotemsProvider'
 import { getImageUrl } from '~/lib/nft/image-url'
 import { useScrollToTop } from '~/lib/nft/use-scroll-to-top'
 
+import { HintOverlay } from './-components/HintOverlay'
+
 /** How many 6k crops to mount at once as you scroll. */
 const PAGE_SIZE = 12
 
@@ -64,7 +66,7 @@ const EyeCrop = ({ tokenId, eager }: { tokenId: number; eager?: boolean }) => {
 const InfiniteZoomScrollPage = () => {
   const { isMobile, shuffledIds, setHeaderTitle } = useMoonTotems()
   const [count, setCount] = useState(PAGE_SIZE)
-  const [showHint, setShowHint] = useState(true)
+  const [hintStep, setHintStep] = useState(0)
   const sentinelRef = useRef<HTMLDivElement>(null)
   const scrollerRef = useRef<HTMLDivElement>(null)
   useScrollToTop()
@@ -93,11 +95,7 @@ const InfiniteZoomScrollPage = () => {
     if (!scroller) return
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (showHint) {
-        event.preventDefault()
-        setShowHint(false)
-        return
-      }
+      if (hintStep < 2) return
       if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
       event.preventDefault()
       const slideHeight = scroller.clientHeight
@@ -108,28 +106,29 @@ const InfiniteZoomScrollPage = () => {
 
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
-  }, [showHint])
+  }, [hintStep])
 
   const ids = shuffledIds.slice(0, count)
 
   return (
     <>
-      {showHint && (
-        <button
-          type="button"
-          className="fixed inset-0 z-2000 flex cursor-pointer items-center justify-center bg-black/55"
-          onClick={() => setShowHint(false)}
-        >
-          <div className="border border-white/20 bg-[#262626] px-12 py-10 text-center text-white">
-            <p className="text-sm tracking-[0.25em] text-white/70">
-              {isMobile ? 'SWIPE' : 'USE THE ARROW KEYS'}
-            </p>
-            <p className="mt-5 text-3xl tracking-[0.4em]">↑ ↓</p>
-            <p className="mt-5 text-xs tracking-wider text-white/45">
-              {isMobile ? 'TAP ANYWHERE' : 'PRESS ANY KEY'}
-            </p>
-          </div>
-        </button>
+      {hintStep === 0 && (
+        <HintOverlay onDismiss={() => setHintStep(1)}>
+          <p className="text-sm tracking-[0.25em] text-white/70">
+            {isMobile ? 'SWIPE' : 'USE THE ARROW KEYS'}
+          </p>
+          <p className="mt-5 text-3xl tracking-[0.4em]">↑ ↓</p>
+        </HintOverlay>
+      )}
+      {hintStep === 1 && (
+        <HintOverlay onDismiss={() => setHintStep(2)}>
+          <p className="text-sm tracking-[0.25em] text-white/70">
+            {isMobile ? 'TAP' : 'CLICK'}
+            <br />
+            <br />
+            TO SHOW TOTEM INFO
+          </p>
+        </HintOverlay>
       )}
       <div
         ref={scrollerRef}
