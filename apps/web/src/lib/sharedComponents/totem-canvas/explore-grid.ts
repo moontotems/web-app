@@ -150,6 +150,6 @@ export function exploreViewKey(
 }
 
 export function initialScale(viewportW: number, isMobile: boolean): number {
-  const colsOnScreen = isMobile ? 6 : 14
+  const colsOnScreen = isMobile ? 10 : 28
   return viewportW / (colsOnScreen * EXPLORE_CELL_WIDTH)
 }
