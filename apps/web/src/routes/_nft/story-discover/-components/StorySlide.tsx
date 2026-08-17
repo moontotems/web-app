@@ -102,98 +102,107 @@ export const StorySlide = ({ tokenId, eager }: { tokenId: number; eager?: boolea
     return () => window.clearTimeout(id)
   }, [bodyDone, showButton, showImage])
 
+  const headline = (
+    <h2 className="m-0 text-[32px] font-light leading-[40px] md:text-[55px] md:leading-[60px]">
+      {title.slice(0, titleCharCount)}
+      {inView && !titleDone && title ? (
+        <span className="ml-0.5 inline-block animate-pulse text-white/70">|</span>
+      ) : null}
+    </h2>
+  )
+
+  const lunarRow =
+    titleDone && lunarItems.length > 0 ? (
+      <div className="mt-6 flex gap-4">
+        {lunarItems.map((item, index) => (
+          <div
+            key={item.label}
+            className="min-w-0 flex-1 transition-opacity duration-700"
+            style={{ opacity: index < visibleLunarCount ? 1 : 0 }}
+          >
+            <img
+              alt={item.label}
+              className="aspect-square w-full object-contain"
+              decoding="async"
+              loading="lazy"
+              src={item.src}
+              title={item.label}
+            />
+          </div>
+        ))}
+      </div>
+    ) : null
+
+  const bodyBlock = bodyReady ? (
+    <p className="m-0 mt-6 whitespace-pre-wrap text-[23px] font-light leading-[34px] md:text-[27px] md:leading-[35px]">
+      {fullText.slice(0, bodyCharCount)}
+      {inView && !bodyDone && fullText ? (
+        <span className="ml-0.5 inline-block animate-pulse text-white/70">|</span>
+      ) : null}
+    </p>
+  ) : null
+
+  const revealButton =
+    showButton && !showImage ? (
+      <button
+        type="button"
+        className="mt-6 cursor-pointer bg-[#1062FE] px-5 py-2.5 text-base text-white hover:brightness-110"
+        onClick={() => setShowImage(true)}
+      >
+        Meet {metaData?.trait_name1} {metaData?.trait_name2}
+      </button>
+    ) : null
+
+  const totemImage = (
+    <img
+      alt={`Moon Totem ${tokenId}`}
+      src={getImageUrl({ tokenId, size: 2048 })}
+      className="h-full w-full object-contain transition-opacity duration-1000"
+      style={{ opacity: showImage ? 1 : 0 }}
+      decoding="async"
+      draggable={false}
+      loading={eager ? 'eager' : 'lazy'}
+    />
+  )
+
   return (
     <div
       ref={slideRef}
       className="snap-start overflow-hidden bg-black"
       style={{ height: `calc(100vh - ${HEADER_HEIGHT}px)` }}
     >
-      <div
-        className={
-          isMobile
-            ? 'flex h-full w-full flex-col'
-            : 'flex h-full w-full flex-row'
-        }
-      >
-        <div
-          className={
-            isMobile
-              ? showImage
-                ? 'flex h-1/2 w-full items-start overflow-y-auto'
-                : 'flex h-full w-full items-start overflow-y-auto'
-              : 'flex h-full w-1/2 items-start overflow-y-auto'
-          }
-        >
-          <div className="w-full p-[25px] text-left text-white">
-            <h2 className="m-0 text-[32px] font-light leading-[40px] md:text-[55px] md:leading-[60px]">
-              {title.slice(0, titleCharCount)}
-              {inView && !titleDone && title ? (
-                <span className="ml-0.5 inline-block animate-pulse text-white/70">|</span>
-              ) : null}
-            </h2>
+      {isMobile ? (
+        <div className="flex h-full w-full flex-col">
+          <div className="shrink-0 px-[25px] pt-[25px] text-left text-white">
+            {headline}
+            {lunarRow}
+          </div>
 
-            {titleDone && lunarItems.length > 0 ? (
-              <div className="mt-6 flex gap-4">
-                {lunarItems.map((item, index) => (
-                  <div
-                    key={item.label}
-                    className="min-w-0 flex-1 transition-opacity duration-700"
-                    style={{ opacity: index < visibleLunarCount ? 1 : 0 }}
-                  >
-                    <img
-                      alt={item.label}
-                      className="aspect-square w-full object-contain"
-                      decoding="async"
-                      loading="lazy"
-                      src={item.src}
-                      title={item.label}
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : null}
+          {showImage ? (
+            <div className="relative min-h-0 w-full flex-1 bg-black">{totemImage}</div>
+          ) : (
+            <div className="min-h-0 flex-1 overflow-y-auto px-[25px] pb-[25px] text-left text-white">
+              {bodyBlock}
+              {revealButton}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="flex h-full w-full flex-row">
+          <div className="flex h-full w-1/2 items-start overflow-y-auto">
+            <div className="w-full p-[25px] text-left text-white">
+              {headline}
+              {lunarRow}
+              {bodyBlock}
+              {revealButton}
+            </div>
+          </div>
 
-            {bodyReady ? (
-              <p className="m-0 mt-6 whitespace-pre-wrap text-[23px] font-light leading-[34px] md:text-[27px] md:leading-[35px]">
-                {fullText.slice(0, bodyCharCount)}
-                {inView && !bodyDone && fullText ? (
-                  <span className="ml-0.5 inline-block animate-pulse text-white/70">|</span>
-                ) : null}
-              </p>
-            ) : null}
-
-            {showButton && !showImage ? (
-              <button
-                type="button"
-                className="mt-6 cursor-pointer bg-[#1062FE] px-5 py-2.5 text-base text-white hover:brightness-110"
-                onClick={() => setShowImage(true)}
-              >
-                Reveal Totem
-              </button>
-            ) : null}
+          <div className="relative flex h-full w-1/2 items-center justify-center bg-black">
+            {totemImage}
           </div>
         </div>
-
-        {!isMobile || showImage ? (
-          <div
-            className={
-              isMobile
-                ? 'relative flex h-1/2 w-full items-center justify-center bg-black'
-                : 'relative flex h-full w-1/2 items-center justify-center bg-black'
-            }
-          >
-            <img
-              alt={`Moon Totem ${tokenId}`}
-              src={getImageUrl({ tokenId, size: 2048 })}
-              className="h-full w-full object-contain transition-opacity duration-1000"
-              style={{ opacity: showImage ? 1 : 0 }}
-              decoding="async"
-              draggable={false}
-              loading={eager ? 'eager' : 'lazy'}
-            />
-          </div>
-        ) : null}
-      </div>
+      )}
     </div>
   )
 }
