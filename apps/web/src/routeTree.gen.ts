@@ -35,6 +35,7 @@ import { Route as NftContractInterfaceIndexRouteImport } from './routes/_nft/con
 import { Route as NftContractEventsIndexRouteImport } from './routes/_nft/contract-events/index'
 import { Route as NftAttributesIndexRouteImport } from './routes/_nft/attributes/index'
 import { Route as NftAllIndexRouteImport } from './routes/_nft/all/index'
+import { Route as Nft3dIndexRouteImport } from './routes/_nft/3d/index'
 import { Route as NftIdIndexRouteImport } from './routes/_nft/$id/index'
 import { Route as NftMoontotemIdRouteImport } from './routes/_nft/moontotem.$id'
 import { Route as AuthenticatedAppHomeIndexRouteImport } from './routes/_authenticated/_app/home/index'
@@ -169,6 +170,11 @@ const NftAllIndexRoute = NftAllIndexRouteImport.update({
   path: '/all/',
   getParentRoute: () => NftRoute,
 } as any)
+const Nft3dIndexRoute = Nft3dIndexRouteImport.update({
+  id: '/3d/',
+  path: '/3d/',
+  getParentRoute: () => NftRoute,
+} as any)
 const NftIdIndexRoute = NftIdIndexRouteImport.update({
   id: '/$id/',
   path: '/$id/',
@@ -192,6 +198,7 @@ export interface FileRoutesByFullPath {
   '/auth/callback': typeof AuthCallbackRoute
   '/moontotem/$id': typeof NftMoontotemIdRoute
   '/$id/': typeof NftIdIndexRoute
+  '/3d/': typeof Nft3dIndexRoute
   '/all/': typeof NftAllIndexRoute
   '/attributes/': typeof NftAttributesIndexRoute
   '/contract-events/': typeof NftContractEventsIndexRoute
@@ -220,6 +227,7 @@ export interface FileRoutesByTo {
   '/auth/callback': typeof AuthCallbackRoute
   '/moontotem/$id': typeof NftMoontotemIdRoute
   '/$id': typeof NftIdIndexRoute
+  '/3d': typeof Nft3dIndexRoute
   '/all': typeof NftAllIndexRoute
   '/attributes': typeof NftAttributesIndexRoute
   '/contract-events': typeof NftContractEventsIndexRoute
@@ -252,6 +260,7 @@ export interface FileRoutesById {
   '/_nft/': typeof NftIndexRoute
   '/_nft/moontotem/$id': typeof NftMoontotemIdRoute
   '/_nft/$id/': typeof NftIdIndexRoute
+  '/_nft/3d/': typeof Nft3dIndexRoute
   '/_nft/all/': typeof NftAllIndexRoute
   '/_nft/attributes/': typeof NftAttributesIndexRoute
   '/_nft/contract-events/': typeof NftContractEventsIndexRoute
@@ -282,6 +291,7 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/moontotem/$id'
     | '/$id/'
+    | '/3d/'
     | '/all/'
     | '/attributes/'
     | '/contract-events/'
@@ -310,6 +320,7 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/moontotem/$id'
     | '/$id'
+    | '/3d'
     | '/all'
     | '/attributes'
     | '/contract-events'
@@ -341,6 +352,7 @@ export interface FileRouteTypes {
     | '/_nft/'
     | '/_nft/moontotem/$id'
     | '/_nft/$id/'
+    | '/_nft/3d/'
     | '/_nft/all/'
     | '/_nft/attributes/'
     | '/_nft/contract-events/'
@@ -547,6 +559,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NftAttributesIndexRouteImport
       parentRoute: typeof NftRoute
     }
+    '/_nft/3d/': {
+      id: '/_nft/3d/'
+      path: '/3d'
+      fullPath: '/3d/'
+      preLoaderRoute: typeof Nft3dIndexRouteImport
+      parentRoute: typeof NftRoute
+    }
     '/_nft/all/': {
       id: '/_nft/all/'
       path: '/all'
@@ -605,6 +624,7 @@ interface NftRouteChildren {
   NftIndexRoute: typeof NftIndexRoute
   NftMoontotemIdRoute: typeof NftMoontotemIdRoute
   NftIdIndexRoute: typeof NftIdIndexRoute
+  Nft3dIndexRoute: typeof Nft3dIndexRoute
   NftAllIndexRoute: typeof NftAllIndexRoute
   NftAttributesIndexRoute: typeof NftAttributesIndexRoute
   NftContractEventsIndexRoute: typeof NftContractEventsIndexRoute
@@ -629,6 +649,7 @@ const NftRouteChildren: NftRouteChildren = {
   NftIndexRoute: NftIndexRoute,
   NftMoontotemIdRoute: NftMoontotemIdRoute,
   NftIdIndexRoute: NftIdIndexRoute,
+  Nft3dIndexRoute: Nft3dIndexRoute,
   NftAllIndexRoute: NftAllIndexRoute,
   NftAttributesIndexRoute: NftAttributesIndexRoute,
   NftContractEventsIndexRoute: NftContractEventsIndexRoute,

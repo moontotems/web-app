@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router'
 import {
   BarChart3,
   BookOpen,
+  Box,
   CircleUserRound,
   Compass,
   FileCode2,
@@ -80,6 +81,9 @@ export const SidebarLeft = () => {
           </Link>
           <Link to="/infinit-zoom-scroll" onClick={close}>
             <MenuItem icon={<ZoomIn className={ICON} />}>Infinite Zoom</MenuItem>
+          </Link>
+          <Link to="/3d" onClick={close}>
+            <MenuItem icon={<Box className={ICON} />}>3D Totem</MenuItem>
           </Link>
           <Link to="/story-discover" onClick={close}>
             <MenuItem icon={<BookOpen className={ICON} />}>Story Discover</MenuItem>
